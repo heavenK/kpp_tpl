@@ -1,0 +1,108 @@
+<!--{template header_reg}-->
+
+<div class="blank0"></div>
+    <!-- 登陆页面 -->
+    <div class="sy_dl">
+    	<!--<div class="sy_dlleft">
+        	<p><b>用户登录</b></p>
+        </div>-->
+        <div class="sy_dltop">
+        	<p><b>用户登录</b></p>
+        </div>
+        <div class="sy_dlright">
+        	<div class="sydl_t">
+            	<ul>
+                <form action="index.php?do=login" method="post" id="login_frm" name="login_frm">
+                            <input type="hidden" name="formhash" id="formhash" value="{FORMHASH}">
+							<input type="hidden" name="hdn_refer" id="hdn_refer" value="{$_K['refer']}">
+							<input type="hidden" name="handlekey" value="login_frm1"><!--账号-->
+                            <li class="sydl_btn">
+                                <label class="sydl_btnz">账&nbsp;&nbsp;&nbsp;&nbsp;户&nbsp;:</label>
+                                <!--{eval $inter==1 and $v=$_lang['you_can_user_phone_eamil'] or $v=$_lang['input_your_user_name'];}-->
+                                <input style="width:200px;" type="text" value="{$v}" class="txt txt_input" size="20" autocomplete="off" name="txt_account" id="txt_account" limit="required:true;len:2-20" msg="{$_lang['user_error']}" title="{$_lang['username_can_chinese']}" msgArea="login_account_msg" />
+                                <span class="msg" id="login_account_msg"></span>
+                            </li>
+                            <li class="sydl_btn">
+                                <label class="sydl_btnz">密&nbsp;&nbsp;&nbsp;&nbsp;码&nbsp;:</label>
+                                <input type="text" style="width:200px;" id="txt_password" name="txt_password" value="{$_lang['password_is_not_null']}" style="" class="txt_input txt" original-title="">
+                                <input class="txt_input txt" style="width:200px;display:none;" type="password" name="pwd_password" id="pwd_password" maxlength="20" limit="required:true;len:6-20" msg="{$_lang['password_length_limit']}" title="{$_lang['password_length']}" msgArea="login_password_msg" />
+                                <span class="msg" id="login_password_msg"></span>
+                            </li>
+                            <li class="sydl_btn01">
+                            	<input name="" type="checkbox" value="" />&nbsp;一周内自动登录&nbsp;&nbsp;&nbsp;<a class="sydl_btn01wz" href="index.php?do=get_password" style="color:#F60;">忘记密码？</a>
+                            </li>
+                            <li class="sydl_btn0" style="width:328px; height:37px; padding-top:0px; padding-left:60px;">
+                                <input name="" onclick="return user_login();" type="button"  value="登录"/>
+                                <input name="" onclick="window.location='index.php?do=register'" type="button"  value="免费注册"/>
+                            </li> 
+            	</ul>
+        	</div>
+            <div class="sydl_mt">
+            	<p class="mt_dl">您也可以使用合作网站账号登录</p>
+                <p class="mt">
+                {loop $api_open $k $v}
+                    {if $weibo_list[$k.'_app_id']}
+                        <a href="index.php?do=oauth_login&type={$k}" alt="{$api_name[$k]['name']}" title="{$api_name[$k]['name']}">
+                            <img src="resource/img/ico/{$k}_t.gif" alt="{$api_name[$k]['name']}" title="{$api_name[$k]['name']}">
+                        </a>&nbsp;{$api_name[$k]['name']}&nbsp;
+                   {/if}			
+                {/loop}
+				</p>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<script type="text/javascript">
+    In('form');
+	var inter = "{$inter}";
+    $("#txt_account").focus(function(){
+        var content = $("#txt_account").val();
+        if (content == "{$_lang['you_can_user_phone_eamil']}"||content=="{$_lang['input_your_user_name']}") {
+            $("#txt_account").val("");
+        }
+    });
+    
+    $("#txt_account").blur(function(){
+        var content = $("#txt_account").val();
+			inter==1?val="{$_lang['you_can_user_phone_eamil']}":val="{$_lang['input_your_user_name']}";
+        if (!content) {
+            //$("#txt_account").val(val);
+        }
+    });
+    
+    $("#txt_password").focus(function(){
+        var content = $("#pwd_password").val();
+        $(this).hide();
+		$("#pwd_password").show();
+		$("#pwd_password")[0].focus();
+        if (content == L.password_not_empty) {
+        	$("#txt_account").val("");
+        }
+    });
+    
+    $("#pwd_password").blur(function(){
+        var content = $("#pwd_password").val();
+        if (!content) {
+            $(this).hide();
+            $('#txt_password').show();
+        }
+    });
+    
+    
+    //登录
+    function user_login(){ 
+        if (checkForm(document.getElementById("login_frm"), false)) {
+        	//login_frm.submit();
+        	showWindow('login_frm1', 'login_frm', 'post',0,{cover:1},'hide()');
+        	
+        }
+        return false;
+    }
+    
+    function hide(){
+    	//hideWindow('login_frm1');
+    }
+</script>
+</body>
+</html>

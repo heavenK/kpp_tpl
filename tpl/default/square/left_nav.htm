@@ -1,0 +1,18 @@
+<!-- index_left start  -->
+					<div class="index_left clearfix">
+						<div class="left_nav clearfix">
+						    <dl>
+						    	<dd><a href="index.php?do=square" {if $do==square && $view==index} class="selected" {/if}><span class="icon16 home mr_5 "></span> 广场首页</a></dd>
+								{if $uid}
+								<dd><h2>我的</h2></dd>
+						    	<dd><a href="index.php?do=square&view=demand" {if $view==demand} class="selected" {/if}><span class="icon16 notepad-2 mr_5 "></span>需求</a></dd>
+						    	<dd><a href="index.php?do=square&view=goods" {if $view==goods} class="selected" {/if}><span class="icon16 case mr_5 "></span>服务</a></dd>
+						    	<!--<dd><a href="index.php?do=square&view=manuscript" {if $view==manuscript} class="selected" {/if}><span class="icon16 clipboard-copy mr_5"></span>稿件</a></dd>-->
+						    	<dd><a href="index.php?do=square&view=message" {if $view==message} class="selected" {/if}><span class="icon16 spechbubble-sq-line mr_5"></span>留言</a></dd>
+						    	<dd><a href="index.php?do=square&view=favor" {if $view==favor} class="selected" {/if}><span class="icon16 star-fav-empty mr_5"></span>收藏</a></dd>
+						    	<dd><a href="index.php?do=square&view=focus" {if $view==focus} class="selected" {/if}><span class="icon16 user mr_5"></span>关注</a></dd>
+						        {/if}
+							</dl>
+						</div>
+					</div>
+	<!-- index_left end  -->

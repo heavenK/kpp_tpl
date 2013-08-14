@@ -1,0 +1,279 @@
+<!--{template header_user_top}-->
+<link href="{SKIN_PATH}/css/user_center.css" rel="stylesheet" type="text/css">
+<div class="blank1"></div>
+<!--contain start-->
+<div class="yhcenter container_24">
+    	<!--  账号设置 begin -->
+    	<div class="yhzhbox tabCon">
+        	
+            
+            <!--{template user_base_left}-->
+            
+            <div class="yhzhright">
+            	
+{if $verify}<!--messages消息 start-->
+                        <div class="messages m_infor">
+                            <div class="icon16">
+                                warning
+                            </div>
+                            {$_lang['customer_service_personnel_will']} {$auth_item[auth_day]}{$_lang['working_days_to_complete_certification']}{$_lang['zh_mh']}{$basic_config['kf_phone']}
+                        </div>
+                        <!--messages消息 end--><!--{template verify_secode}-->{else}<!--detail内容 start-->
+                        <article class="box_detail">
+                            <!--messages消息 start-->
+                            <div class="messages m_infor">
+                                <div class="icon16">
+                                    warning
+                                </div>
+                                {$_lang['customer_service_personnel_will']} {$auth_item[auth_day]}{$_lang['working_days_to_complete_certification']}{$_lang['zh_mh']}{$basic_config['kf_phone']}<a href="###" class="close">&times;</a>
+                            </div>
+                            <!--messages消息 end-->
+                            <div class="prefix_1 suffix_1 clearfix">
+                                <!--step步骤 start-->
+                                <div class="step_progress clearfix">
+                                    {loop $step_arr $k $v}
+                                    <div class="step {$k} {if $k==$auth_step}selected{/if}">
+                                        <span class="icon32">{$k}</span>
+                                        <strong>{$v[0]}</strong>{$v[1]}
+                                    </div>
+                                    {/loop}
+                                </div>
+                                <!--step步骤 end-->{if $auth_step=='step1'}<!--detail内容 start-->
+                                <article class="box_detail">
+                                    <div class="form_box ">
+                                        <div class="messages m_warn">
+                                            <div class="icon16">
+                                            </div>
+                                            {$_lang['warn_about_account']}{$_lang['zh_th']} <a href="###" class="close">&times;</a>
+                                        </div>
+                                        <div class="rowElem clearfix t_r border_b_c">
+                                            <button type="button" value="{$_lang['add_new_account']}" name="{$_lang['add_new_account']}" onclick="location.href='index.php?do=user&view=setting&op=fina_account&opp=add'">
+                                                <span class="icon plus">&nbsp;</span>{$_lang['add_new_account']}
+                                            </button>
+                                        </div>
+                                        <ul>
+                                            <!--{eval $ki=0;}-->{loop $account_list $v}<!--{eval $ki++;}-->
+                                            <li class="border_b_c clearfix pad20">
+                                                <div class="grid_5">
+                                                    <img src="resource/img/system/kppw_2.0_{$v[bank_name]}.png" alt="{$bank_arr[$v[bank_name]]}" title="{$bank_arr[$v[bank_name]]}"/>
+                                                </div>
+                                                <div class="grid_5">
+                                                    <!--{eval echo kekezu::set_star($v[card_num],3,3);}-->({if $v['auth_status']==1}认证成功{elseif $v['auth_status']==2}认证失败{else}未认证{/if})
+                                                </div>
+                                                <div class="grid_5 t_r">
+                                                    {if $v['auth_status']} 
+                                                    <button type="button" class="negative button" onclick="reauth('{$v[bank_a_id]}');">
+                                                        <span class="icon cross">&nbsp;</span>取消认证
+                                                    </button>
+                                                    {if $v['auth_status']==1}
+                                                    <button type="button" class="negative button" onclick="location.href='{$origin_url}&op={$op}&auth_code=$auth_code&auth_step=step4&show_id=$v[bank_a_id]&ver=1'" value="{$_lang['view']}" name="{$_lang['view']}">
+                                                        <span class="icon book ">&nbsp;</span>查看
+                                                    </button>
+                                                    {/if}
+                                                    {else}
+                                                    {if !$auth_bank[$v[bank_id]]}
+                                                    <button type="button" class="negative button red" onclick="user_auth('{$v['bank_id']}');">
+                                                        <span class="icon rightarrow">&nbsp;</span>立即认证
+                                                    </button>
+                                                    <button type="button" class="negative button red" onclick="del_bind('{$v['bank_id']}');">
+                                                        <span class="icon rightarrow">&nbsp;</span>解除绑定
+                                                    </button>
+                                                    {else} 
+                                                    <button type="button" value="{$_lang['next_step']}" class="negative button red" onclick="location.href='{$origin_url}&op={$op}&auth_code=$auth_code&auth_step=step3&show_id=$v[bank_a_id]&ver=1'">
+                                                        <span class="icon rightarrow">&nbsp;</span>继续认证
+                                                    </button>
+													  <button type="button" value="{$_lang['next_step']}" class="icon cross red" onclick="del_auth('{$v[bank_id]}');">
+                                                        <span class="icon rightarrow">&nbsp;</span>删除
+                                                    </button>
+                                                    {/if}
+                                                    {/if}
+                                                </div>
+                                            </li>
+                                            {/loop}
+                                        </ul>
+                                    </div>
+                                </article>
+                                <!--detail内容 end-->{elseif $auth_step=='step3'}
+                                <div class="form_box">
+                                    <div class="form_tip pad10">
+                                        {if $auth_info['pay_to_user_cash']>0}
+                                        <p>
+                                            银行已经向你的账户中支付了一笔款项，请查清后填入下面的输入框中，输入错误将会导致此次认证失败
+                                        </p>
+                                        {else} 
+                                        <p>
+                                            <b>{$_lang['data_submit_success']}{$_K['sitename']}{$_lang['to_your_bank_card_remittance']}{$_lang['zh_th']}</b>
+                                        </p>
+                                        <p>
+                                            {$_K['sitename']}{$_lang['will_be']}{$auth_item[auth_day]}{$_lang['a_few_workdays_will_do']}向您提交的账户中支付一笔款项
+                                        </p>
+                                        <p>
+                                            {$_lang['tips_about_pass_auth']}
+                                        </p>
+                                        <p>
+                                            <font color="red">
+                                                {$_lang['friendly_sentiments']}
+                                            </font>
+                                        </p>
+                                        {/if}
+                                    </div>
+                                    <div class="prefix_6">
+                                        <ul>
+                                            <li class="clearfix pad10">
+                                                <div class=" grid_2 t_c">
+                                                    <img src="{$auth_item['auth_big_ico']}" title="{$auth_item['auth_title']}" /><span class="font12">{if $auth_tips}（{$auth_tips}）{/if}</span>
+                                                </div>
+                                                <div class=" prefix_2 ">
+                                                    <img src="resource/img/system/kppw_2.0_{$account_info[bank_name]}.png">
+                                                    <p>
+                                                        {$_lang['bank_card_num']}{$_lang['zh_mh']}<!--{eval echo kekezu::set_star($account_info['card_num'],3,3);}-->
+                                                    </p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    {if $auth_step=='step3'&&$auth_info['pay_to_user_cash']>0}
+                                    <div class="prefix_6">
+                                        <form action="{$ac_url}&auth_step=step3&show_id={$auth_info[bank_a_id]}" id="confirm" name="confirm" method="post">
+                                            <div class="clearfix">
+                                                {$_lang['input_cash']}{$_lang['zh_mh']}<input type="text" name="user_get_cash" id="user_get_cash"  size="31" title="{$_lang['input_cash_you_received']}" limit="required:true" msg="请输入打款金额" msgArea="span_get_cash" class="mr_5"/>元
+												<span id="span_get_cash"></span>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="form_button">
+                                        <button type="button" value="{$_lang['submit']}" onclick="auth_confirm()">
+                                            {$_lang['submit']}
+                                        </button>
+                                        <a href="{$ac_url}&auth_step=step1" class="button">返回</a>
+                                    </div>
+                                    <div class="clear">
+                                    </div>
+                                    {/if} 
+                                </div>
+                                {/if} 
+                                {if $auth_step=='step4'}
+								<div class="form_box">
+								<div class="form_tip pad10 font14b c396">
+                                    		{$auth_item['auth_title']} {if $auth_tips}({$auth_tips}){/if} 
+                                </div>
+                                <div class="prefix_3 clearfix pad10 $auth_style">
+                             
+                                    <span class="tip_icon"></span>
+                                   
+                                    <div class="pt_30 clearfix">
+                                    	
+                                       <ul>
+                                            <li class="clearfix pad10">
+                                                <div class=" grid_2 t_c">
+                                                    <img src="{$auth_item['auth_big_ico']}" title="{$auth_item['auth_title']}" />
+                                                </div>
+                                                <div class=" prefix_2 ">
+                                                    <img src="resource/img/system/kppw_2.0_{$account_info[bank_name]}.png">
+                                                    <p>
+                                                        {$_lang['bank_card_num']}{$_lang['zh_mh']}<!--{eval echo kekezu::set_star($account_info['card_num'],3,3);}-->
+                                                    </p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+								</div>
+                                {/if}
+                                {/if}
+   
+   
+   
+                
+                
+			<div class="clear" style="height:20px;"></div>
+                    
+                    
+            </div>
+           </div>
+
+           </div>
+           
+            
+        </div>
+        
+        
+    </div>
+    <!-- center end -->
+</div> 
+<script type="text/javascript">
+                    In('form');
+                    function next_step(bank_id){
+                        //var bank_id=$(":radio[name='bank_id']:checked").val();
+                        if (bank_id) {
+                            location.href = "$ac_url&auth_step=step1&bank_id=" + bank_id;
+                        }
+                        else {
+                            showDialog("{$_lang['please_select_anrelevance_account']}!", "alert", "{$_lang['operate_tips']}");
+                            return false;
+                        }
+                    }
+                    
+                    function reauth(bank_a_id){
+                        var url = "{$origin_url}&op={$op}&auth_code=$auth_code&auth_step=step1&ac=reauth&bank_a_id=" + bank_a_id;
+                        showDialog("{$_lang['reauth_will_delete_record']}", "confirm", "{$_lang['operate_tips']}", function(){
+                            formSub(url, 'url', false);
+                        });
+                        return false;
+                    }
+                    
+                    function del_bind(bank_id){
+                        var url = "{$origin_url}&op={$op}&auth_code=$auth_code&auth_step=step1&ac=del_bind&bank_id=" + bank_id;
+                        showDialog("确认解除绑定？", "confirm", "操作提示", function(){
+                            formSub(url, 'url', false);
+                        });
+                        return false;
+                    }
+                     function del_auth(bank_id){
+                        var url = "{$origin_url}&op={$op}&auth_code=$auth_code&auth_step=step1&ac=del_auth&bank_id=" + bank_id;
+                        showDialog("删除此认证将删除绑定的关联账号，确认删除吗？", "confirm", "操作提示", function(){
+                            formSub(url, 'url', false);
+                        });
+                        return false;
+                    }
+                    function user_auth(bank_id){
+                        if (bank_id) {
+                                form_sbt(bank_id);
+                        }else {
+                            showDialog("{$_lang['please_select_anrelevance_account']}!", "alert", "{$_lang['operate_tips']}");
+                            return false;
+                            
+                        }
+                    }
+                    
+                    function form_sbt(bank_id){
+                        var url = "{$ac_url}&auth_step=step2&bank_id=" + bank_id;
+                        formSub(url, 'url', false);
+                    }
+                    
+                    function online_pay(cash){
+                        window.location.href = 'index.php?do=user&view=finance&op=recharge&cash=' + cash + '#userCenter';
+                    }
+                    
+                    function auth_confirm(){
+                        var i = checkForm(document.getElementById("confirm"));
+                        if (i) {
+                           // showDialog("{$_lang['confirm_to_pay']}", "confirm", "{$_lang['operate_tips']}", "frm_sub()");
+						   frm_sub();
+                            return false;
+                        }
+                        else {
+                            return false;
+                        }
+                    }
+                    
+                    function frm_sub(){
+						//alert(111);
+                      //  $("#confirm").submit()
+                        formSub('confirm', 'form', true)
+                    }
+                </script>
+<!--contain end-->
+
+<!--{template user/user_footer}-->
+<!--{template footer}-->

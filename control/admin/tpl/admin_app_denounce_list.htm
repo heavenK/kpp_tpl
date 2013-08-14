@@ -1,0 +1,124 @@
+<!--{template control/admin/tpl/admin_header}-->
+<div class="page_title">
+    <h1>{$_lang['prom_relation_manage']}</h1>
+    <div class="tool">
+        <a href="index.php?do={$do}&&view={$view}" class="here">举报</a>
+    </div>
+</div>
+<div class="box search p_relative">
+    <div class="title">
+        <h2>{$_lang['search']}</h2>
+    </div>
+    <div class="detail">
+        <form method="post" action="index.php?do={$do}&view={$view}" id="frm_art_search">
+        <input type="hidden" name="page" value="{$page}">
+        <table cellspacing="0" cellpadding="0">
+         <tbody>
+           <tr>
+             <th>编号</th>
+              <td>
+                <input type="text" size='10' class="txt" name="space[id]" value="{$space['id']}" onkeyup="clearstr(this);">
+              </td>
+		     <th>举报内容</th>
+              <td>
+                <input type="text" size='10' class="txt" name="space[content]" value="{$space['content']}" onkeyup="clearspecial(this);">
+              </td>
+		   </tr>
+             <tr>
+                 <th>结果排序</th>
+                  <td>
+             		<select name="ord[]">
+                           <option value="denounce_id" {if $ord['0']=='denounce_id' or !isset($ord['0'])} selected="selected"{/if}>{$_lang['default']}{$_lang['order']}</option>
+                           	
+                      </select>
+                         <select name="ord[]">
+                            <option {if $ord['1']=='desc' or !isset($ord['1'])}selected="selected" {/if} value="desc">{$_lang['desc']}</option>
+                            <option {if $ord['1']=='asc'}selected="selected" {/if} value="asc">{$_lang['asc']}</option>
+                      </select>
+                   </td>
+              <th>
+                       显示结果
+               </th>
+                   <td>
+                     <select name="page_size">
+                          <option value="10" {if $page_size=='10'}selected="selected"{/if}>{$_lang['page_size']}10</option>
+                          <option value="20" {if $page_size=='20'}selected="selected"{/if}>{$_lang['page_size']}20</option>
+                          <option value="30" {if $page_size=='30'}selected="selected"{/if}>{$_lang['page_size']}30</option>
+                     </select>
+					 <button class="pill" type="submit" value="{$_lang['search']}" name="sbt_search"><span class="icon magnifier">&nbsp;</span>{$_lang['search']}</button>
+                   </td>
+		
+                <th>
+                   &nbsp;
+                </th>
+                 <td>
+                 	&nbsp;
+                 </td>
+             </tr>
+          </tbody>
+        </table>　
+     </form>
+   </div>
+</div>
+	 <div class="box list">
+	 	<div class="title">
+ 	   		<h2>{$_lang['prom_relation_manage']}</h2>
+	    </div>
+		  <div class="detail">
+		  	 <form method="post" action="index.php?do={$do}&view={$view}" id="frm_list">
+		  	 	<input type="hidden" name="w[page_size]" value="{$page_size}">
+				<input type="hidden" name="page" value="{$page}">
+				<div  id="ajax_dom">
+			<table cellpadding="0" cellspacing="0">
+               <tbody>
+               	<tr>
+               		<th>编号</th>
+					<th>举报人用户名</th>
+					<th>被举报用户名</th>
+					<th>类型</th>
+					<th>举报原因</th>
+					<th>举报内容</th>
+					<th>时间</th>
+                    <th width="130">操作</th>
+				</tr>
+			
+				 {loop $denounce_list $k  $v}
+               	<tr class="item">
+               		<td>{$v['denounce_id']}</td>
+					<td>{$v['username']}</td>
+					<td>{$v['to_username']}</td>
+					<td>{$type_arr[$v['from_type']]}</td>
+					<td title="{$v['reason']}"><!--{eval echo kekezu::cutstr($v['reason'],20)}--></td>
+					<td title="{$v['content']}"><!--{eval echo kekezu::cutstr($v['content'], 20)}--></td>
+					
+               		<td>
+               			<!--{date('Y-m-d H:i:s',$v['on_time'])}-->&nbsp;
+					</td>
+					<td>
+						{if $v['status'] != 1}
+							{if $v['from_type']=='task'}
+							<a class="button" href="index.php?do={$do}&view={$view}&op=del&from_type=$v['from_type']&obj_id=$v['obj_id']&denounce_id={$v['denounce_id']}" onclick="return cdel(this);"><span class="trash icon"></span>删除免费需求</a>
+							{elseif $v['from_type']=='leave'}
+							<a class="button" href="index.php?do={$do}&view={$view}&op=del&from_type=$v['from_type']&obj_id=$v['obj_id']&denounce_id={$v['denounce_id']}" onclick="return cdel(this);"><span class="trash icon"></span>删除留言</a>
+							{elseif $v['from_type']=='service'}
+							<a class="button" href="index.php?do={$do}&view={$view}&op=del&from_type=$v['from_type']&obj_id=$v['obj_id']&denounce_id={$v['denounce_id']}" onclick="return cdel(this);"><span class="trash icon"></span>删除免费服务</a>
+							{/if}
+						{else}
+							已删除
+						{/if}
+					</td> 
+				</tr>
+				{/loop}	
+				<tr>
+                	<td colspan="8">
+                	{if $pages['page']}<div class="page fl_right">{$pages['page']}</div>{/if}
+				   </td>
+            	 </tr>	
+               </tbody>
+			</table>
+			</div>
+			</form>
+		  </div>
+	 </div>		
+
+<!--{template control/admin/tpl/admin_footer}-->

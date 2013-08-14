@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /config
+Disallow: /base
+Disallow: /control/admin
+Disallow: /data
+Disallow: /model
+

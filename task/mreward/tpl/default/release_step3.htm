@@ -1,0 +1,162 @@
+{if $_K['map_api']=='baidu'}
+<script type="text/javascript" src="{$_K['baidu_api']}"></script>
+{else}
+<script type="text/javascript" src="{$_K['google_api']}"></script>
+{/if}
+ 
+<div class="prefix_1 suffix_1 clearfix">
+    <h2 class="c333 mt_10">订单确认</h2>
+	<form action="{$basic_url}" method="post" name="frm_step3" id="frm_step3">
+		<input type="hidden" name="formhash" value="{FORMHASH}">
+    	
+           
+
+               <div class="task_result">
+                            <h3 class="title">
+                            	<strong>
+                            		<span class="cc00">{c:$release_info['txt_task_cash']}</span>
+								 	<span class="c333">{$release_info['txt_title']}</span>
+								 </strong>
+							</h3>
+							<div class="detail">
+								<p>
+									<span>{$model_info['model_name']}</span> |
+									<span>{$indus_arr[$release_info['indus_pid']]['indus_name']}-{$indus_arr[$release_info['indus_id']]['indus_name']}</span>
+								</p>
+								<div id="task_dec" class="task_dec  ws_break">
+                                  <!--{eval echo htmlspecialchars_decode(strip_tags($release_info['tar_content']))}-->
+								</div>
+								<div class="show_more"><a href="#"><span class="arrow_b"></span></a></div>
+	                        </div>
+                                
+                </div>        
+                
+		 {if $trust_list==x}
+                <h3 class="block ">
+                    {$_lang['trust']}
+                </h3>
+			{loop $trust_list $k $v}
+                <div class="clearfix" class="trust_box">
+                    <ul> 
+					<li class="clearfix">
+						<label style='float:left;display:inline;cursor:pointer;'>
+							<input type="checkbox" name="trust" value="{$k}" class="trust">
+						</label>
+						<img class="block ml_5" src="payment/{$k}/{$k}db.gif" title="{$v['pay_name']}" alt=''>
+					</li>
+                        <li class="w6 t_l font14">
+                            <a href="javascript:void(0);" title="{$v['descript']}"><!--{eval echo kekezu::cutstr($v['descript'],80)}--></a>
+                        </li>
+                    </ul>
+                </div>
+			{/loop}
+        {/if}
+		 
+                
+           
+		
+			
+		
+		
+		
+		{if $item_list}
+		
+			
+                <h2 class="c333 mt_10">
+                    {$_lang['may_need']}
+                </h2>
+				<div class="tools" style="margin-left:0; margin-right:0;">
+				{loop $item_list $k $v}
+                
+                    <div class="tool_list">
+						
+						<div  class="img">
+							<label>
+                            <!--<input type="checkbox" name="item[{$v['item_id']}]" value="{$v['item_name']}" class="item" {if $v['item_code']=='map'}id="item_map"{/if} item_code="{$v['item_code']}"
+							{if $item_info[$v['item_id']]}checked{/if} item_id="{$v['item_id']}" item_cash="{$v['item_cash']}" id="checkbox_$v['item_code']" onclick="show_payitem_num(this,'$v['item_code']');">-->
+                       		
+							<img src="{$v['small_pic']}"> <strong>{$v['item_name']}</strong>
+							</label>
+						</div>
+                        <div class="tool_text"> 
+						    <!--{eval $exist_num = keke_payitem_class::payitem_exists($uid,"$v[item_code]");}--> 
+							
+						    {if $exist_num}
+							       <input type="hidden" name="item_type" id="item_type_{$v['item_code']}" value="use">
+							        <span>您已购买了此工具，剩余数: <strong class="red" id="remain_num_{$v['item_code']}">{$exist_num}</strong>$payitem_standard[$v['item_standard']] </span>
+									{if $v['item_code']=='map'}
+									 <input type="hidden" name="payitem_ids[{$v['item_code']}]" value="1" id="payitem_map" item_id="$v['item_id']" item_cash="$v['item_cash']"
+								   item_code="$v['item_code']" item_type="use" item_name="map" exist_num="{$exist_num}"
+										  size="4">
+									<a href="javascript:void(0)" id="set_map" onclick="set_map();"  class="button">{$_lang['set_map_coordinate']}</a>
+									<script type="text/javascript">
+										function set_map(){
+											showWindow("map","index.php?do=release&r_step=step3&ac=show_map",'get');return false;						
+										}								
+									</script>
+									{else}
+									
+									 <span>
+									 	<label>使用:</label> <input type="text" name="payitem_ids[{$v['item_code']}]" value="{$item_info[$v['item_id']]['item_num']}" id="payitem_{$v['item_code']}" item_id="$v['item_id']" item_cash="$v['item_cash']"
+								   item_code="$v['item_code']" item_type="use" item_name="$v['item_name']" exist_num="{$exist_num}"
+										  size="4" onblur="edit_payitem('$v[item_code]');" limit="required:false;type:int;between:0-{$exist_num}"  msg="{$_lang['payment_item_msg_error']}" msgarea="msg_$v['item_code']" >
+										{$standard[$v[item_standard]]}
+										</span>
+									{/if}
+								  
+									
+							{else}
+							       <input type="hidden" name="item_type" id="item_type_{$v['item_code']}" value="buy">
+								   <span>
+								   	<span>您还没有购买过此工具。</span>
+								   <label>购买:</label> <input type="text" name="payitem_ids[{$v['item_code']}]" value="{$item_info[$v['item_id']]['item_num']}" id="payitem_{$v['item_code']}" item_id="$v['item_id']" item_cash="$v['item_cash']"
+								   item_code="$v['item_code']" item_type="buy" item_name="$v['item_name']"
+									  size="4" onblur="edit_payitem('$v[item_code]');" limit="required:false;type:int;between:0-"  msg="{$_lang['payment_item_msg_error']}" msgarea="msg_$v['item_code']" >
+									{if $v['item_code']=='top'||$v['item_code']=='urgent'}天{else}次{/if}</span>
+									<span>
+									<label>单价:</label><span class="cc00" style="margin-right:0;">{c:$v['item_cash']}</span>/{$standard[$v['item_standard']]} </span>
+									{if $v['item_code']=='map'}
+							       <span style="display:none" id="buy_map">
+							       	<a href="javascript:void(0)" id="set_map" onclick="set_map();"  class="button">{$_lang['set_map_coordinate']}</a>
+									<script type="text/javascript">
+										function set_map(){
+											showWindow("map","index.php?do=release&r_step=step3&ac=show_map",'get');return false;						
+										}								
+									</script>
+							       </span>
+								   {/if}
+							{/if}
+								<span id="msg_$v['item_code']"></span>
+							   {if $v['item_code']=='map'}
+							   <input type="hidden" name="px" id="px" value="{if $release_info['px']}$release_info['px']{else}30.51667{/if}"/>
+							   <input type="hidden" name="py" id="py" value="{if $release_info['py']}$release_info['py']{else}114.31667{/if}"/>					 
+							   <input type="hidden" name="zo" id="zo" value="{if $release_info['zo']}$release_info['zo']{else}10{/if}"/>
+							   <input type="hidden" name="point" id="point">
+							   <input type="hidden" name="province" id="hdn_province"/>
+							   {/if}
+                       </div>
+                	</div>
+				{/loop}
+				</div>
+          {/if} 
+		
+		
+			<div class="step_button t_r">
+				<ul>
+					<li class="mb_10">托管赏金：<span class="cc00">{c:$release_info['txt_task_cash']}</span></li>
+					<li class="mb_10"><input type="hidden" name="ago_total" id="ago_total" value="$total_cash">
+				增值工具购买<span id="item_count">{$item_detail['item_count']}</span> 项，共<span class="cc33" id="item_cash">{c:$item_detail['item_cash']}</span> </li>
+					<li>{$_lang['pay_cash']}{$_lang['zh_mh']}<span class="font18 cc33" id="total">{c:$total_cash}</span><font color="red" class="font18"></font><button type="button" name="is_submit" onclick="return stepCheck();" class="big button"><span class="icon check"></span>{$_lang['confirm_release']}</button></li>
+				</ul>
+				
+				
+			</div>
+			
+        </form>
+   
+    	
+    
+</div>
+
+ 
+<!--end 列表内容-->

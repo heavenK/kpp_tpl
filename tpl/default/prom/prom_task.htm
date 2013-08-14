@@ -1,0 +1,140 @@
+<!--{template header}-->
+<div class="wrapper">
+ 	<div class="container_24 clearfix">
+		<div class="mt_30 mb_30 clearfix">
+			<!-- 左边内容 start -->
+			<div class="grid_20 clearfix">
+				<!--{template prom/prom_common}-->
+	           
+	            <div class="prom_border box mt_10 mb_10 clearfix">
+	            	<div class="box_header">
+		            	<div class="inner">
+		            		<h2 class="title">任务推广</h2>
+		            	</div>
+		            </div>
+	            	<div class="prom_detail border_t_c">
+	            		<div class="pad20">
+	            			<div class="rowElem clearfix ">
+		            			<label class="grid_2 t_c pt_10"><img src="{SKIN_PATH}/img/style/tui.png"></label>
+		            			<div class="grid_15">
+		            				<div>	
+											成功推荐好友做任务并成功中标，获得中标提成金额
+		            					<span class="cf60">{$effect_mode_bid_task['rate']}%</span>提成
+		            				</div>
+									<div class="prom_task_top  pt_20 pb_20 clearfix">
+	            			<ul>
+	            				<li>
+	            					<dl>
+	            						<dt>生效规则：</dt>
+	            						<dd>一、模型绑定：{if $effect_mode_bid_task['model']}
+																<!--{eval $models = explode(",",$effect_mode_bid_task['model']);}-->
+																{loop $models $v}
+																	{if $model_list[$v]}【$model_list[$v]['model_name']】{/if}
+																{/loop}。
+															{else}
+																无模型限制。
+															{/if}
+										</dd>
+	            						<dd>二、行业限制：
+										{if $effect_mode_bid_task['indus_string']}
+											<!--{eval $indus = explode(",",$effect_mode_bid_task['indus_string']);}-->
+											{loop $indus $v}
+												{if $indus_list[$v]}【$indus_list[$v]['indus_name']】{/if}
+											{/loop}{$_lang['zh_jh']}
+										{else}
+											无行业限制。
+										{/if}
+										</dd>
+	            					
+
+	            					</dl>
+	            				</li>
+	            				<li>
+	            					<dl>
+	            						<dt>失败原因：</dt>
+	            						<dd>1、推广的用户已有邀请注册的上线，并在返佣期限范围内。</dd>
+	            						<dd>2、用户发布的任务未能正常结束,如出现任务冻结、失败等情况。</dd>
+	            						<dd>3、用户发布的任务不在生效规则范围内。</dd>
+
+	            					</dl>
+	            				</li>
+	            			</ul>
+	            		</div>
+		            				<div class="font14b cf60">你的收益＝任务佣金×{$effect_mode_bid_task['rate']}%
+		            				</div>
+		            				<div>
+		            					指用户通过推广链接\代码承接任务并中标，任务成功结束即为推广有效，推广员能获得任务佣金<span class="cf60">{$effect_mode_bid_task['rate']}%</span>的提成。
+		            					
+		            				</div>
+		            				<div> <span class="font14b cf60">比如：</span> 单人悬赏金额<span class="cf60">10000</span>元，你能获得现金提成<span class="cf60"><!--{eval echo 10000*($task_config['task_rate']/100)*($effect_mode_bid_task['rate']/100)}--></span>元!</div>
+		            			</div>
+							</div>
+	            		</div>
+	            	</div>
+	            	<div style="" id="task_list" class="data_list"><!--用户中心推广数据加载-->
+					<div id="ajax_list">
+						<table cellspacing="0" cellpadding="0" class="data_table">
+						  <thead>
+						    <tr>
+						    	    <th class="t_c" scope="col">所属模型</th>
+						       		<th class="t_c" scope="col">任务标题</th>
+						       		<th class="t_c" scope="col">任务金额</th>
+						       		<th class="t_c" scope="col">推广总金(元)</th>
+						       <th scope="col">&nbsp;</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						  	{loop $prom_list $k $v}
+								{if $model_list[$v['model_id']]['model_code']!='tender'}
+								<!--{eval $v['task_cash_coverage'] and $cash=$v['real_cash'] or $cash=$v['task_cash'];}-->
+						        <tr>
+						 	    	<td>{$model_list[$v['model_id']]['model_name']}</td>
+						            <td><a title="{$v['task_title']}" target="_blank" href="index.php?do=task&task_id={$v['task_id']}"><!--{eval echo kekezu::cutstr($v['task_title'],68)}--></a></td>
+									<td class="t_c">{c:$cash}</td>
+									<td class="t_c">{c:$cash}&times;{$v['profit_rate']}%&times;{$prom_rule['rate']}%=<font color="red"><!--{eval $cash = keke_curren_class::convert($cash);}--><!--{eval echo $cash*$v['profit_rate']*$prom_rule['rate']/10000;}--></font></td>
+									<td><button  onclick="promLink('bid_task','task','{$v[task_id]}','{$v[task_title]}');" href="javascript:void(0);">获取推广链接</button></td>
+								</tr>
+								{/if}
+							{/loop}
+						       </tbody>
+						       <tr>
+						          	<td colspan="5">
+						          		<div class="page clearfix"><p>{$pages['page']}</p><span class="t_r">{$_lang['load_result']}{$count}{$_lang['tiao']}</span></div>
+						          	</td>
+						  </tr>
+						</table>
+					</div>
+				</div>
+                   
+                   
+	            </div>
+	        </div>
+	        <!-- 左边内容 end  -->
+           
+            <!--{template prom/prom_com_right}-->
+        </div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	function promLink(promCode,l,o,promText){
+		if(check_user_login()){
+			var url = "index.php?do=ajax&view=prom&ajax=prom_11&prom_code="+promCode;
+			o?url+="&o="+o:"";
+			l?url+="&l="+l:"";
+			promText?url+="&promtext="+promText:"";
+			showWindow("promink",url);return false;
+		}
+	}
+	function getList(obj,promCode){
+		if($.trim($("#"+obj).html()).length==0){
+			var url = "index.php?do=ajax&view=prom&ajax=prom_list&prom_code="
+					+promCode;
+			$("#"+obj).load(url).show();
+			$("html,body").animate({scrollTop:$("#"+obj).offset().top})
+		}
+	}
+</script>
+
+
+<!--{template footer}-->

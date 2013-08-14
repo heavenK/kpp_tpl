@@ -1,0 +1,246 @@
+<!--{template header}-->
+<link href="resource/css/public.css" rel="stylesheet" type="text/css">
+<div class="wrapper">
+    <!--页面头部-->
+    <header class="clearfix page_header">
+        <div class="container_24 clearfix">
+            <!--面包屑-->
+            <div class="breadcrumbs clearfix">
+                <a href="{$_K['siteurl']}/index.php">{$_lang['home']}</a> &gt; <a href="javascript:void(0);">{$_lang['pub_task']}</a>
+            </div>
+            <!--end 面包屑-->
+            <div class="clear">
+            </div>
+        </div>
+    </header>
+    <!--end 页面头部--><!--详细内容区-->
+    <section class="content box">
+        <!--布局框-->
+        <div class="container_24">
+
+            <div class="content_d">
+            <!--step步骤 start-->
+            <div class="step_progress all_3 clearfix">
+             {loop $stage_nav $k $v}
+                <div class="step {$v['0']} ">
+                  <div class="{if $v['0']==$r_step}selected{/if}">
+                   <strong class="{if $v['0']==$r_step}selected{/if}">{$k}{$v['1']}</strong>
+                   </div>  
+                </div>
+                {/loop} 
+            </div>
+            <div class="clear"></div>
+            <!--step步骤 end--><!--步骤下所有内容-->
+            <div class="step1_detail">
+                {if $r_step=='step1'}<!--任务模式-->
+                <nav class="primary_nav primary_nav1 clearfix border_b_c hidden">
+                    <ul>
+                        {loop $model_list $k $v}
+                        <li>
+                            <a href="index.php?do=release&pub_mode={$pub_mode}&model_id={$k}" {if $k==$model_id}class="selected"{/if}><span class="icon32 task_model"><!--{eval echo kekezu::cutstr($v['model_name'],0,2)}--></span><em>{$v['model_name']}</em></a>
+                        </li>
+                        {/loop}
+                    
+                    </ul>
+                    <div class="clear">
+                    </div>
+                </nav>
+				{/if}
+				<!--向前 向后-->
+				
+                {if $r_step=='step2'}
+	                <nav class="clearfix primary_nav1 border_b_c pad5">
+	                	<a href="{$basic_url}&r_step=step1" class="ml_10"><span class="icon16 undo" title="{$_lang['return']}">{$_lang['return']}</span></a>
+						<a href="{if $release_info['step2']}{$basic_url}&r_step=step3{else}javascript:void(0);{/if}" class="{if $release_info['step2']}ml_10 mr_10{else}grey ml_10{/if}"><span class="icon16 redo" title="{$_lang['forward']}">{$_lang['forward']}</span></a>
+						{if $user_info['pub_num']}
+						<a href="index.php?do=user&view=employer&op=task&model_id={$model_id}" class="ml_10 button">{$_lang['view_i_release_the_task']}</a>
+						{/if}
+					</nav>
+                {/if} 
+                {if $r_step=='step3'}
+	                <nav class="clearfix primary_nav1 border_b_c pad5">
+	                	<a href="{$basic_url}&r_step=step2" class="ml_10 mr_10"><span class="icon16 undo" title="{$_lang['return']}">{$_lang['return']}</span></a>
+						<a href="javascript:void(0);" class="grey"><span class="icon16 redo" title="{$_lang['forward']}">{$_lang['forward']}</span></a>
+					</nav>
+                {/if} 
+				<!--end 向前 向后-->
+				<!--end 任务模式-->
+                <!--任务模式下部内容-->
+           <div class="clearfix">
+               <div class="grid_22 suffix_1 prefix_1 ">
+               <!--from表单 start-->
+                <div class="form_box clearfix box border_n">
+                    <div class="rowElem  mb_10 clearfix">
+                            <label class="grid_3">
+                                <strong>{$_lang['industry']}{$_lang['zh_mh']}</strong>
+                            </label>
+                           <div class="grid_10">
+                                <select name="indus_pid" id="indus_pid" title="{$_lang['select_industry']}"  onchange="showIndus(this.value)" limit = "required:true;between:5-10" msg = '{$_lang['industry_no_choose']}' msgArea="span_indus">
+                                    <option value="">{$_lang['select_industry']}</option>
+                                    {loop $indus_p_arr $v}
+                                         <option value="{$v['indus_id']}" {if $release_info['indus_pid']==$v['indus_id']}selected{/if}>{$v['indus_name']}</option>
+                                    {/loop} 
+                                 </select>
+                                 
+                            <span  id="reload_indus">
+                                <select name="indus_id" id="indus_id"  limit = "required:true;between:5-10" msg='{$_lang['industry_z_no_choose']}' title='{$_lang['choose_part']}' msgArea="span_indus"><span id="span_indus"></span>
+                                    <option value="">{$_lang['choose_part']}</option>
+                                    {if $release_info['indus_id']}
+                                    {loop $indus_arr $k $v}
+                                         <option value="{$v['indus_id']}" {if $release_info['indus_id']==$v['indus_id']}selected{/if}>{$v['indus_name']}</option>
+                                    {/loop}
+                                    {/if}
+                                </select>
+                            </span>
+                             
+                            </div>
+                            <div class="grid_1 cc00">*</div>
+                            <div id="span_indus" class="ml_5"></div>
+                    </div>
+                    <div class="rowElem mb_10 clearfix">
+                            <label class="grid_3">
+                                <strong>{$_lang['title']}{$_lang['zh_mh']}</strong>
+                            </label>
+                            <div class="grid_10">
+                                <input name="txt_title" id="txt_title" type="text" value="<!--{eval echo kekezu::escape($release_info['txt_title'])}-->" title="{$_lang['txt_title']}" size="34" msgArea="span_title"
+                                limit="required:true;len:5-50" msg="{$_lang['msg_title']}" maxlength="50" style="width:375px" class="mr_5"/>
+                                <div class="c999" id="span_title">{$_lang['span_title']}</div>
+                            </div>
+                            <div class="grid_1 cc00">*</div>
+                    </div>
+                    <div class="rowElem mb_10 clearfix">
+                            <label class="grid_3">
+                                <strong>{$_lang['need']}{$_lang['zh_mh']}</strong>
+                            </label>
+                            <div class="grid_10">
+                                <textarea style="width:100%" rows="12" name="tar_content" title="{$_lang['textarea_title']}" id="tar_content" msgArea="msg_content" 
+                                class="xheditor {tools:'Bold,Fontface,FontColor,Italic,Underline,Strikethrough,Align,List,Outdent,Indent,Link,Unlink,Table',skin:'nostyle'}"><!--{eval echo kekezu::escape($release_info['tar_content'])}--></textarea>
+                                <div class="clear"></div>
+                                <p class="c999">已输入长度:13， 还可以输入:99987</p>
+                                <div id="msg_content"></div>
+                                <script type="text/javascript" src="resource/js/xheditor/xheditor.js"></script>
+                                <script type="text/javascript">
+                                     $(function(){
+                                        editor = $("#tar_content").xheditor();
+                                     })
+                                </script>
+                            </div>
+                            <div class="grid_1">
+                            <span class="cc00">*</span>
+                            </div>
+                    </div>
+                    <div class="rowElem clearfix lit_form mb_10 border_n po_re">
+                            <label class="grid_3">
+                                <strong>{$_lang['upload']}{$_lang['zh_mh']}</strong>
+                            </label>
+                            <!--上传内容-->
+                            <div class="grid_16">
+                                <input type="file" class="file" name="upload" id="upload">
+                                <div class="po_ab" style="left:270px;top:10px;">
+                                    <span style="line-height:15px;" class="ws_prewrap mr_20">最多可添加5个附件</span>
+                                    <a href="#">无法上传?</a>
+                                </div>
+                                    <input type="hidden" name="file_ids" id="file_ids">
+                            </div> 
+                            <div class="clear"></div>
+                            <script type="text/javascript">
+                                    $(function(){
+                                        uploadify({
+                                                auto:true,
+                                                size:"{$basic_config['max_size']}MB",
+                                                exts:'{$ext_types}',
+                                                limit:5}
+                                            );
+                                    })
+                            </script>
+                            <script src="resource/js/uploadify/jquery.uploadify-3.1.min.js" type="text/javascript"></script>
+							<link href="resource/js/uploadify/uploadify.css" rel="stylesheet">
+                            <!--end 上传内容-->
+                    </div> 
+                    <div class="rowElem mb_10 clearfix">
+                                <label class="grid_3">
+                                    <strong>{$_lang['contact']}{$_lang['zh_mh']}</strong>
+                                </label>
+                                <div class="grid_10">
+                                    <input name="txt_mobile" id="contact_mobile" type="text" value="{if $release_info['txt_mobile']}$release_info['txt_mobile']{else}$user_info['mobile']{/if}" 
+                                     title="{$_lang['mobile_title']}" size="34" msgArea="span_mobile"
+                                    limit="required:true;type:mobileCn" msg="{$_lang['mobile_msg']}" maxlength="50"  class="mr_5"/><span class="cc00">*</span>
+                                   
+                                </div>
+                    </div>    
+                    <div class="bf7 bord_c mt_10 mb_10 pad10">
+                        <div class="rowElem mb_10 clearfix">
+                            <span class="cc00 pl_20">选择合适的任务模式，可促进威客交稿，缩短任务的完成时间！</span>
+                            <span class="icon16 phone-2"></span><a class="ml_10" href="#">咨询客服(027-23554847)</a>
+                        </div>
+                        <div class="rowElem mb_10 clearfix">
+                         <label class="grid_3"><strong>任务模式：</strong></label>
+                         <div class="grid_10">
+                            <select>
+                             <option>单人悬赏</option>
+                             <option>多人悬赏</option> 
+                             <option>计件悬赏</option> 
+                             <option>普通招标</option> 
+                             <option>订金招标</option>  
+                             <option>淘宝任务</option>   
+                            </select>
+                            <a href="#" class="ml_20">什么是任务模式?</a>
+                       </div>
+                       </div>
+                        <div class="rowElem mb_10 clearfix">
+                        <label class="grid_3"><strong>{$_lang['budget']}{$_lang['zh_mh']}</strong></label>
+                       <div class="grid_10">
+                          <input name="txt_task_cash" size="30" value="{if $release_info['txt_task_cash']}$release_info['txt_task_cash']{else}$task_config['min_cash']{/if}" type="text" id="txt_task_cash" msgArea="span_task_cash"  title="{$_lang['mtask_cash_title']}{$task_config['min_cash']}{$_lang['yuan']}" onkeyup="clearstr(this)"
+                        limit="required:true;type:float;between:{$task_config['min_cash']}-" msg="{$_lang['mtask_cash_msg']}{$task_config['min_cash']}{$_lang['yuan']}" onblur="getMaxDday(this.value)" />
+                        <span class="ml_5">{$_lang['yuan']}</span>
+                        <span id="span_task_cash" class="ml_5"></span>
+                       </div>
+                        </div>
+                        <div class="rowElem mb_10 clearfix">
+                      <label class="grid_3"><strong>截稿日期：</strong></label>
+                        <div class="grid_12">
+                            <input name="txt_task_day"   onclick="showcalendar(event, this, 0)" size="30" value="{if $release_info['txt_task_day']}$release_info['txt_task_day']{else}$default_max_day{/if}" type="text" id="txt_task_day"    min_day="$task_config['min_day']"    title="{$_lang['task_round_title']}:{$task_config['min_day']}{$_lang['day']},{$_lang['max_day']}{if $release_info['max']}{$release_info['max']}{else}$max_day{/if}" msgArea="span_task_day" onkeyup="clearstr(this)"
+                            limit="required:true;type:date;than:min;less:max" msg="{$_lang['task_round_msg']}" max=""/><span class="ml_5">年-月-日</span>
+                            
+                             <span id="span_task_day" class="ml_5"></span>
+                            
+                        </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="step_button">
+                    <button type="submit" name="is_submit" onclick="stepCheck();" class="big button">{$_lang['next_step']}</button>
+                    <span class="block"><input type="checkbox" name="agreement" id="agreement" checked>
+                        <label>
+                            {$_lang['agree']}《<a href="" target="_blank" class="agreement_link">{$_lang['agreement']}</a>》
+                        </label>
+                    </span>
+                </div>
+                 <div class="agreement_part clearfix" style="display:none;">
+                    <p><!--{tag 任务发布协议}--></p>
+                </div>
+            </div>
+            <!--end 左边部分--> 
+            </div>
+                <!--end 步骤下所有内容-->
+            </div>
+        </div>
+        <!--end 布局框-->
+    
+    <!--end 详细内容区-->
+</div>
+</section>
+</div>
+<script type="text/javascript" src="resource/js/system/release.js"></script>
+<script type="text/javascript">
+    var model_id = parseInt("{$model_id}") + 0;
+    var uid = parseInt("{$uid}") + 0;
+    var r_step = "{$r_step}";
+    var basic_url = "{$basic_url}";
+    var min_day = parseInt("{$task_config['min_day']}");
+	
+	In('ajaxfileupload','form');
+</script>
+
+<!--{template footer}-->

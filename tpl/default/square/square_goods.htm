@@ -1,0 +1,80 @@
+<!--{template header}-->
+<div class="wrapper">
+	<div class="mt_20">
+		<div class="container_24 clearfix">
+			<div class="box clearfix">
+				<!--{template square/left_nav}-->
+					<div class="core clearfix">
+						<!-- core_down start  -->
+						<div class="core_down clearfix">
+							<h2>我发布的服务/商品</h2>
+							<div class="core_down_nav ml_20 mr_20">
+								<a href="index.php?do=square&view=goods" {if !$type} class="selected" {/if}>所有</a>
+								<a href="index.php?do=square&view=goods&type=free_service" {if $type == 'free_service'} class="selected" {/if}>免费服务</a>
+								<a href="index.php?do=square&view=goods&type=service" {if $type == 'service'} class="selected" {/if}>付费商品</a>
+								
+							</div>
+							<!-- <div class="msg msg_need block ml_20 mr_20">
+								<a href="#" class="block">有15条新动态，点击查看</a>
+							</div> -->
+							<div class="core_down_info mb_10 clearfix">
+								<input type="hidden" name="page" value="{$page}">
+									<input type="hidden" name="pagesize" value="{$pagesize}">
+								<ul>
+									{loop $service_list $k $v}
+									<li class="clearfix" id="service_{$v['weibo_id']}">
+										<div class="info_van clearfix">
+											<a href="index.php?do=space&member_id={$v['obj_uid']}" target="_blank" >
+											<!--<img src="http://localhost/kppw2.2/data/avatar/default/man_small.jpg" class="pic_small">-->
+											<!--{userpic($v['obj_uid'],big)}-->
+											<p class="c999">{$v['obj_username']}</p>
+										  </a>
+										</div>
+										<div class="info_body clearfix">
+										<div>
+											<span class="sale mr_5">出售 </span>
+											<a href="{if $v['detail_type'] == 'free_task'||$v['detail_type'] == 'free_service'}index.php?do=square&view=goods_detail&service_id={else}index.php?do=service&sid={/if}{$v['obj_id']}" target="_blank" class="task_info">{$v['obj_title']}</a>
+											 <!--{eval $time_desc = kekezu::time2Units(time()-$v[on_time],minute)}-->
+											<span class="ml_5 mr_5 c999">{if $time_desc}{$time_desc}前{else}刚刚{/if}</span>
+											<a href="index.php?do=space&member_id={$v['obj_uid']}" >{$v['obj_username']}</a><span class="c999">发布</span>
+										</div>
+										<div>{if $v['obj_type']=='task'||$v['obj_type']=='free_task'}赏金{else}售价{/if}：<span class="mr_5 org">￥{$v['obj_cash']}元</span>来自：<span>{if $v['detail_type']=='free_task'}免费需求{elseif $v['detail_type']=='free_service'}免费服务{else}{$model_info[$v['detail_type']][model_name]}{/if}</span>
+										</div>
+										<div class="info_talk clearfix">
+											<a href="javascript:void(0)" class="border_r_c"><span>{$v['leave_num']}</span>留言</a><a href="javascript:void(0)" class="border_r_c"><span>0</span>收藏</a>
+											{if $v['detail_type']!='free_service'}
+											<a href="javascript:void(0)" ><span>$v[work_num]</span>售出</a>
+											{/if}
+										</div>
+									</div>
+									</li>
+									{/loop}
+								
+								</ul>
+								
+								<!--翻页-->
+								{if $pages['page']}
+                                  <div class="page">
+                                    <p class="clearfix">
+                                             $pages['page']
+                                      </p>
+                                      <div class="clear"></div>
+                                  </div>
+                                  {/if}
+                                  <!--end 翻页-->
+                                  
+							</div>
+						</div>
+						<!-- core_down end -->
+					</div>
+				<!--{template square/index_right}-->
+				
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	var uid = '{$uid}';
+
+</script>
+<!--{template footer}-->

@@ -1,0 +1,87 @@
+<!--{template header_user_top}-->
+<div class="blank1"></div>
+<!--contain start-->
+<div class="yhcenter">
+    	<!--  账号设置 begin -->
+    	<div class="yhzhbox tabCon">
+        	
+            
+            <!--{template user_base_left}-->
+            
+            <div class="yhzhright">
+            	
+                <div class="acaq">
+	<div class="ac_zltop">
+    	<span><b>账号绑定</b></span>
+	</div>
+    <div class="ac_zhbd">
+    	<div class="messages m_infor clearfix">
+            <span class="icon16 fl_l">info</span>
+            开通账户绑定，除了正常登录账户以外，你还可以绑定第三方账户登录 <a href="###" class="close">&times;</a>
+        </div>
+        <div class="ac_zhb0" style=" ">
+        	<h3>您当前使用的登录账号</h3>
+            <div class="ac_zhb00">
+                <p ><label class="_dl" >登录&nbsp;账户名：</label>{$username}</p>
+                <p ><label class="_dl">手机登录：</label><span>{$user_info['mobile']}</span></p>
+                <p ><label class="_dl">邮箱登陆：</label>{$user_info['email']}</p>
+              </div>
+        </div>
+        <div class="key_zh">
+            <h3>您账号绑定情况</h3>
+            <div class="key_zhbd">
+                	<ul>
+                    	{if $t}
+                            {loop $t $k $v}
+                            {if $weibo_list[$k.'_app_id']}
+                            <li>
+                                <span class="t_l"><img width="16" src="resource/img/ico/ico_32_{$k}.gif">{$api_name[$k]['name']}</span>
+                                <span class="">{if $v['uid']}<span class="c999">{$_lang['been_link']}($v['account'])</span> {else}<span class="c999">{$_lang['no_link']}</span> {/if}</span>
+                                <div>
+                                {if $v['uid']}
+                                <a href="index.php?do=$do&view=$view&op=$op&ac=unbind&type=$k&id=$v['id']">
+                                    {$_lang['unbind']}
+                                </a>
+                                {else}
+                                <a href="index.php?do=$do&view=$view&op=$op&ac=bind&type=$k">
+                                    {$_lang['to_bind']}
+                                </a>
+                                {/if}
+                                </div>
+                            </li>
+                            {/if}
+                            {/loop}
+                        {else}
+                            <li class="t_c">  $_lang['not_open']</li>
+                        {/if}
+                    </ul>
+            	</div>
+        		</div>
+    		</div>
+		</div>
+                
+                
+			<div class="clear"></div>
+                    
+                    
+            </div>
+           </div>
+
+           </div>
+           
+            
+        </div>
+        
+        
+    </div>
+    <!-- center end -->
+</div> 
+<script type="text/javascript">
+	$(function(){
+		$("#list li:last").css('border-bottom',0);
+	})
+</script>
+<!--contain end-->
+
+<!--{template user/user_footer}-->
+<!--{template footer}-->

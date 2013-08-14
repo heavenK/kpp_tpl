@@ -1,0 +1,127 @@
+ <!--  帮助 start -->
+    <div class="help_center" >
+     	
+     	<div id="help_center" class="help_detail hidden">
+	     		<h3>{$_lang['what']}{$model_info['model_name']}？</h3>
+		        <p><!--{eval echo kekezu::filter_input($model_info['model_desc'])}--></p>
+      	</div>
+  
+      	<div class="help_down ">
+			<a href="#" class="action_show">任务说明<span class="arrow_b"></span></a>
+		</div>
+	</div>
+ <!--  帮助 end -->
+ <!--左边部分-->
+
+		
+ <!--from表单 start-->
+   		<div class="form_box clearfix box border_n">
+      		<!-- <div class="form_tip">
+        		<h5 class="font14b t_c" style="color:#7caf22">{$model_info[model_name]}{$_lang['task_process']}</h5>
+				<div class="min_step all_8 step_orange mb_10 ml_30">
+					<ul class="clearfix">
+						<li class>
+							<div class="icon"></div>
+							<span>{$_lang['release']}</span>
+						</li>
+						
+						<li>
+							<div class="icon"></div>
+							<span>{$_lang['audit']}</span>
+						</li>
+						
+						<li>
+							<div class="icon"></div>
+							<span>{$_lang['submit_work']}</span>
+						</li>
+						
+						<li>
+							<div class="icon"></div>
+							<span>{$_lang['choos_work']}</span>
+						</li>
+						
+						<li>
+							<div class="icon"></div>
+							<span>{$_lang['hosted_reward']}</span>
+						</li>
+						
+						<li>
+							<div class="icon"></div>
+							<span>{$_lang['delivering']}</span>
+						</li>
+						
+						<li>
+							<div class="icon"></div>
+							<span>{$_lang['user_mark']}</span>
+						</li>
+						
+						<li class="last">
+							<div class="icon"></div>
+							<span>{$_lang['task_over']}</span>
+						</li>
+						
+					</ul>
+				</div>
+      		</div> -->
+	  		<form action="{$basic_url}" method="post" name="frm_step1" id="frm_step1">
+	  			<input type="hidden" name="step1" value="step1"> 
+	  			<input type="hidden" name="formhash" value="{FORMHASH}">
+				<input type="hidden" name="txt_task_cash" value="{$task_config[deposit]}">
+				<input type="hidden" name="min" value="$min" id="min">
+		        <input type="hidden" name="max" value="{if $release_info['max']}{$release_info['max']}{else}{$max}{/if}" id="max">	
+        		<div class="rowElem clearfix po_re">
+          			<label class="grid_8"><strong>{$_lang['budget']}{$_lang['zh_mh']}</strong></label>
+           			<div class="grid_12">
+           			<select name="task_cash_cove" id="task_cash_cove"  limit="required:truet;ype:int"  msg="{$_lang['budegt_msg']}" title="{$_lang['budget_title']}" msgArea="span_cash_cove" style="width:190px;">
+       				<option value="">{$_lang['please_choose']}</option>
+					{loop $cash_cove $v}
+					<option value="{$v['cash_rule_id']}" {if $release_info[task_cash_cove]==$v[cash_rule_id]} selected="selected" {/if} >{$v['cove_desc']}</option>
+					{/loop}
+					</select>
+					<span class="ml_5">元</span>
+						<span id="span_cash_cove"  class="ml_5"></span>			
+           			</div>
+        		</div>
+              <div class="rowElem clearfix">
+              <label class="grid_8"><strong>竞标截止日期{$_lang['zh_mh']}</strong></label>
+              <div class="grid_12">
+       
+               <input name="txt_task_day"   onclick="showcalendar(event, this, 0)" size="30" value="{if $release_info[txt_task_day]}$release_info[txt_task_day]{else}$max{/if}" type="text" id="txt_task_day" title="{$_lang['task_round_title']}:$min_day{$_lang['day']},{$_lang['max_day']}$max " msgArea="span_task_day" onkeyup="clearstr(this)"
+			   	limit="required:true;type:date;than:min;less:max" msg="{$_lang['task_round_msg']}" max="{$default_max_day}"/><!--between:{$task_config[min_day]}-{$default_max_day}-->
+            	<span class="ml_5">年-月-日</span>
+				 <span id="span_task_day"  class="ml_5"></span>
+				 
+			</div>
+        </div>
+        		<div class="rowElem clearfix">
+           			<label class="grid_8"><strong>{$_lang['cash_assign']}{$_lang['zh_mh']}</strong></label>
+             		<div class="grid_6"><strong>{$_lang['single_reward']}</strong></div>
+        		</div>
+     		</form>
+   		 </div>
+<!--from表单 end-->
+    	<div class="step_button"> <button type="submit" name="is_submit" onclick="stepCheck_ext();" class="big button">{$_lang['next_step']}</button></div>
+
+<!--end 左边部分-->
+
+<!--右边部分-->
+<!-- <div class="grid_7 alpha omega">
+	<div class=" prefix_1 suffix_1 pt_20">
+    	<h3 class="font14b">{$_lang['what']}{$model_info[model_name]}？ </h3>
+        <p><!--{eval echo kekezu::filter_input($model_info[model_desc])}</p>
+    </div>
+</div> -->
+<!--end 右边部分-->
+<script type="text/javascript">
+			In('calendar');
+	function stepCheck_ext(){
+		var slt_val = $("#task_cash_cove").val(); 
+		if(!slt_val){
+			$("#span_cash_cove").addClass("msg msg_error").html("<i></i><span>{$_lang['choose_block']}</span>");	return false;		
+		}else{
+			$("#span_cash_cove").removeClass("msg msg_error").html(" ");
+		}
+		stepCheck();		
+	}
+</script>
+ 

@@ -1,0 +1,92 @@
+<!--{template header}-->
+<!--contain start-->
+<div class="wrapper">
+    <div class="container_24">
+        <!--{template user/user_nav}-->
+        <!--main start-->
+        <section class="clearfix section">
+            <!--{template user/user_side}-->
+            <div class="show_panel container_24 po_re">
+                <div class="prefix_3 grid_21">
+                    <div class="panel clearfix box clearfix">
+                     <!--header内容头部 start-->
+                           
+                            <!--header内容头部 end-->
+                             <article class="box_detail">
+                                <div class="pad20">
+                                   <div class="all_authent clearfix">
+                                        <dl class="clearfix">
+                                            <dt class="font18b c333">安全认证信息</dt>
+											{loop $auth_item_list $v}
+                                            <dd>
+                                                <div class="clearfix">
+                                                    <span class="fl_l">
+                                                        <img src="$v['auth_small_ico']">
+                                                        <strong class="c333 pl_5">
+                                                        	{if $v[auth_code]=='realname'||$v['auth_code']=='enterprise'}
+															{if $identy_auth_info['realname']}
+                                                        	<a href="index.php?do={$do}&view={$view}&op={$op}&auth_code=realname" title="{$v[auth_title]}{$_lang['msg']}">
+                                                        	身份认证
+                                                            </a>
+															{elseif $identy_auth_info['enterprise']}
+															<a href="index.php?do={$do}&view={$view}&op={$op}&auth_code=enterprise" title="{$v[auth_title]}{$_lang['msg']}">
+                                                        	身份认证
+                                                            </a>
+															{else}
+															<a href="index.php?do={$do}&view={$view}&op={$op}&auth_code=$v[auth_code]" title="{$v[auth_title]}{$_lang['msg']}">
+                                                        	身份认证
+                                                            </a>
+															{/if}
+															{else}
+															<a href="index.php?do={$do}&view={$view}&op={$op}&auth_code={$v[auth_code]}" title="{$v[auth_title]}{$_lang['msg']}">
+                                                        	$v['auth_title']
+                                                            </a>
+															{/if}
+                                                      </strong>
+                                                    </span>
+                                                    <span class="fl_r">
+                                                        <span class="msg {if $user_auth_info[$v[auth_code]]['auth_status']}msg_ok{else}{/if}">
+                                                        <i></i>{if $user_auth_info[$v[auth_code]]['auth_status']}已认证{else}
+														
+														{/if}
+                                                        </span>
+													{if !$user_auth_info[$v[auth_code]]['auth_status']}
+													    {if $v[auth_code]=='realname'||$v['auth_code']=='enterprise'}
+														   {if $identy_auth_info['enterprise']}
+														   	<a href="index.php?do={$do}&view={$view}&op={$op}&auth_code=enterprise" class="button">立即认证</a>
+														  {else}
+														  	<a href="index.php?do={$do}&view={$view}&op={$op}&auth_code=realname" class="button">立即认证</a>
+														  {/if}
+														{else}
+														  <a href="index.php?do={$do}&view={$view}&op={$op}&auth_code={$v[auth_code]}" class="button">立即认证</a>
+														{/if}
+                                                    {/if}
+													</span>
+                                                </div>
+                                                <div class="pt_10">
+                                                    <p>$v['auth_desc']</p>
+                                                </div>
+                                                
+                                            </dd>
+											{/loop}
+                                        </dl>
+
+                                   </div>
+                                </div>
+                            </article>
+                   
+                    <div class="clear">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--main end-->
+    </div>
+</div>      
+<script type="text/javascript">
+In('form','custom','xheditor') ;
+
+</script>
+<!--contain end-->
+<!--{template user/user_footer}-->
+<!--{template footer}-->

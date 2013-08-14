@@ -1,0 +1,124 @@
+<!--{template header}-->
+ <div class="wrapper">
+ 	<div class="container_24 clearfix">
+		<div class="mt_30 mb_30 clearfix">
+			<div class="grid_20 clearfix">
+				<!--{template prom/prom_common}-->
+				<div class="prom_border box mt_10 mb_10 clearfix">
+					<div class="box_header">
+		            	<div class="inner">
+		            		<h2 class="title">商品推广</h2>
+		            	</div>
+		            </div>
+	            	<div class="prom_detail border_t_c">
+	            		<div class="pad20">
+	            			<div class="rowElem clearfix ">
+		            			<label class="grid_2 t_c pt_10"><img src="{SKIN_PATH}/img/style/tui.png"></label>
+		            			<div class="grid_15">
+		            				<div>	
+		            					成功推广商品给好友，商品交易成功后，获得商品交易提成金额
+		            					<span class="cf60">{$effect_mode_service['rate']}%</span>提成
+		            				</div>
+									<div class="prom_task_top  pt_20 pb_20 clearfix">
+	            			<ul>
+	            				<li>
+	            					<dl>
+	            						<dt>生效规则：</dt>
+										<dd>一、模型绑定：
+												{if $effect_mode_service['model']}
+													<!--{eval $models = explode(",",$effect_mode_service['model']);}-->
+													{loop $models $v}
+														{if $model_list[$v]}【$model_list[$v]['model_name']】{/if}
+													{/loop}。
+												{else}
+													无模型限制。
+												{/if}
+										</dd>
+	            						<dd>二、行业限制：
+										{if $effect_mode_service['indus_string']}
+											<!--{eval $indus = explode(",",$effect_mode_service['indus_string']);}-->
+											{loop $indus $v}
+												{if $indus_list[$v]}【$indus_list[$v]['indus_name']】{/if}
+											{/loop}{$_lang['zh_jh']}
+										{else}
+											无行业限制。
+										{/if}
+										</dd>
+	            						
+
+	            					</dl>
+	            				</li>
+	            				<li>
+	            					<dl>
+	            						<dt>失败原因：</dt>
+	            						<dd>1、推广的用户已有邀请注册的上线，并在返佣期限范围内。</dd>
+	            						<dd>2、用户发布的商品未能正常结束,如出现商品下架等情况。</dd>
+	            						<dd>3、用户发布的商品不在生效规则范围内。</dd>
+
+	            					</dl>
+	            				</li>
+	            			</ul>
+	            		</div>
+		            				<div class="font14b cf60">你的收益＝商品提成金额×{$effect_mode_service['rate']}%
+		            				</div>
+		            				<div>
+		            					指用户通过推广链接\代码购买商品，商品交易成功结束即为推广有效，推广员能获得商品提成金额<span class="cf60">{$effect_mode_service['rate']}%</span>的提成。
+		            				</div>
+		            				<div> <span class="font14b cf60">比如：</span> 商品售价<span class="cf60">10000</span>元，出售成功后，你能获得现金提成<span class="cf60"><!--{eval echo 10000*($goods_config['service_profit']/100)*($effect_mode_service['rate']/100)}--></span>元!</div>
+		            			</div>
+							</div>
+	            		</div>
+	            		<div style="" id="service_list" class="data_list mt_10"><!--用户中心推广数据加载-->
+							<div id="ajax_list">
+							<table cellspacing="0" cellpadding="0" class="data_table">
+							  <thead>
+							    <tr>
+							    	    <th class="t_c" scope="col">所属模型</th>
+							       		<th class="t_c" scope="col">商品标题</th>
+							       		<th class="t_c" scope="col">商品售价(元)</th>
+							       		<th class="t_c" scope="col">推广总金(元)</th>
+							       <th scope="col">&nbsp;</th>
+							    </tr>
+							  </thead>
+							  <tbody>
+							  	{loop $prom_list $k $v}
+							    <tr>
+									<td>{$model_list[$v['model_id']]['model_name']}</td>
+									<td><a title="{$v['title']}" target="_blank" href="index.php?do=service&sid={$v['service_id']}"><!--{eval echo kekezu::cutstr($v['title'],68)}--></a></td>
+									<td class="t_c">{c:$v['price']}</td><!--{eval $v['price'] = keke_curren_class::convert($v['price']);}-->
+									<td class="t_c">{$v['price']}&times;{$v['profit_rate']}%&times;{$prom_rule['rate']}%=<font color="red"><!--{eval echo $v['price']*$v['profit_rate']*$prom_rule['rate']/10000;}--></font></td>
+									<td><button onclick="promLink('service','service','{$v[service_id]}','{$v[title]}');" href="javascript:void(0);">获取推广链接</button></td>
+								</tr>
+								{/loop}
+							     
+							       </tbody>
+							     
+							         <tr>
+							          	<td colspan="5"><div class="page clearfix"><p>{$pages['page']}</p><span class="t_r">{$_lang['load_result']}{$count}{$_lang['tiao']}</span></div></td>
+							  </tr>
+							      
+							</table>
+							</div>
+							</div>
+	            	</div>
+	            </div>
+	        </div>
+	        <!--{template prom/prom_com_right}-->
+		 </div>
+	</div>
+</div>
+<script type="text/javascript">
+	function promLink(promCode,l,o,promText){
+		if(check_user_login()){
+			var url = "index.php?do=ajax&view=prom&ajax=prom_11&prom_code="+promCode;
+			o?url+="&o="+o:"";
+			l?url+="&l="+l:"";
+			promText?url+="&promtext="+promText:"";
+			showWindow("promlin",url);return false;
+		}
+	}
+</script>
+
+
+
+<!--{template footer}-->

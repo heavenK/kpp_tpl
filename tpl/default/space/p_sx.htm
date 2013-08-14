@@ -1,0 +1,79 @@
+<div class="data_list">
+<table class="data_table " cellpadding="0" cellspacing="0">
+<thead>
+    <tr>
+        <th width="30%">
+            $_lang['pj_name']
+        </th>
+        <th width="">
+            $_lang['pj']
+        </th>
+        <th width="15%">
+            {if $come=='gz'||empty($come)}
+            $_lang['gz']
+            {else}
+            $_lang['witkey']
+            {/if}
+        </th>
+    </tr>
+</thead>
+<tbody>
+{if !empty($result)}
+{loop $result $k $v}
+<tr>
+	<td>
+		{if in_array($v['model_code'],array('goods','service'))}
+											{if $v['title']}
+												<a href="index.php?do=service&sid={$v['origin_id']}" class="font14b" target="_blank">{$v['title']}</a>
+												<span class="block">[商品]</span>
+											{else}
+												<span style="color:red">该商品已删除</span>
+											{/if}
+												
+                                       {else}
+                                       		{if $v['task_title']}
+                                       		<a href="index.php?do=task&task_id={$v['origin_id']}" class="font14b" target="_blank">{$v['task_title']}</a>
+                                       		{else}
+                                       		<span style="color:red">	该任务已删除</span>
+                                       		{/if}
+											
+											<span class="block">[{$_lang['task']}]</span>
+                                        {/if}
+	</td>
+	<td>{if $v['mark_status']=='1'}{$_lang['praise']}
+            <img src="resource/img/ico/ico_mark_{$v['mark_status']}.gif" >
+            {elseif $v['mark_status']=='2'}{$_lang['the_assessment']}
+            <img src="resource/img/ico/ico_mark_{$v['mark_status']}.gif" >
+            {elseif $v['mark_status']=='3'}{$_lang['negative_feedback']}
+            <img src="resource/img/ico/ico_mark_{$v['mark_status']}.gif" >
+            {/if}
+             {if !empty($v['mark_content'])}
+                        {$v['mark_content']}
+             {else}
+				{if $v['mark_status']=='1'}好评
+                  	{elseif $v['mark_status']=='2'}中评
+                  	{elseif $v['mark_status']=='3'}差评
+                  	{/if}
+     		{/if}
+            <p><!--{eval echo date('Y-m-d H:i:s',$v['mark_time'])}--></p> 
+    </td>
+	<td>
+	<div>{$v['by_username']}</div>
+	<!--{eval $credit=unserialize($v['seller_level']);}-->{if $credit['pic']}{$credit['pic']}{else}<span style="color:red">	该用户不存在</span>{/if}
+	</td>
+</tr>
+{/loop}
+{else}
+ 	<tr><td colspan="3" class="t_c">$_lang['no_data']</td></tr>
+ {/if}
+ <tr>
+</tbody>
+</table>
+</div>
+  	<div class="page">
+        		<p class="clearfix">
+            		{$pages['page']}
+        		</p>
+	 </div>
+
+ 

@@ -1,0 +1,51 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{ margin:0; padding:0;}
+img{ border:0;}
+
+.blank0{ clear:both; height:25px;}
+
+
+.dl_sy{ width:1000px; margin:0 auto;}
+
+	.zc_topt{ width:1000px; margin:0 auto; height:77px; padding-top:30px;}
+	.zc_toptleft{ width:230px; height:73px; float:left;}
+	.logo{ float:left; width:76px; height:73px;}
+	.zc_z{ float:left; width:150px; height:73px; text-align:center;}
+	.zc_z p{ line-height:73px; font-size:25px; font-family:'微软雅黑'; letter-spacing:2px;}
+	
+	.zc_toptright{ float:right; width:280px; height:53px; padding-top:20px;}
+	.zc_toptright p{ font-size:12px; line-height:20px; color:#999; text-align:right;}
+	.zc_toptright p span{ color:#F30;}
+	.zc_toptright a{ cursor:pointer; font-size:12px;}
+	.zc_toptright a:hover{ color:#ff8600;}
+	
+	.sy_dl{ clear:both; width: 448px; overflow:hidden;margin:0 auto; background:#f9f9f9; border:1px #d8d8d8 solid; padding-top:30px; padding-bottom:10px; padding-left:150px;}
+		
+	.sy_dltop{ width:317px; height:50px;}
+		.sy_dltop p{ font-size:16px; font-family:'微软雅黑'; line-height:25px;}
+		/*.sy_dlleft{ float:left; width:108px; height:286px;}
+			.sy_dlleft p{ font-size:16px; font-family:'微软雅黑'; line-height:25px;}*/
+		.sy_dlright{ float:left; width:417px; height:286px;}
+		.sydl_t{ width:317px; height:180px; border-bottom:1px #CCC solid;}
+		.sydl_t ul{ list-style:none;}
+		.sydl_t ul li{ list-style:none;}
+		.sydl_btn{ width:388px; height:38px;}
+		.sydl_btnz{ float:left; width:60px; font-size:14px; line-height:25px; font-family:'微软雅黑';  text-justify:inter-ideograph;}
+		.sydl_btn input{float:left; width:210px; height:25px; line-height:25px;  font-size:13px; color:#666; padding-left:15px;}
+		.sydl_btn01{ height:30px; width:328px; padding-left:60px;  font-size:13px; color:#666; line-height:30px;}
+		.sydl_btn01 input a.sydl_btnwz01{ color:#F60;}
+		
+		.sydl_btn0 input{ width:100px; height:37px; background:#47b68c; font-size:18px; color:#FFF; font-family:'微软雅黑'; cursor:pointer;}
+		.sydl_btn0 input:hover{ background:#a3e8cb;}
+		
+		.sydl_mt{ width:328px; padding-left:0px; }
+		.sydl_mt0{ padding-left:30px; padding-top:15px;}
+		
+		.sydl_mt0 p{ font-size:12px; line-height:25px;}
+		
+		.mt_dl{font-size:15px; color:#666666; font-family:'微软雅黑';}
+		.mt{ height:45px; font-size:12px; line-height:45px;}
+		.sydl_mt0 p{ font-size:12px; line-height:35px;}
+		

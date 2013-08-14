@@ -1,0 +1,113 @@
+<!--{template header}-->
+<!--contain start-->
+<div class="wrapper">
+ <div class="container_24">
+  <!--{template user/user_nav}-->
+<!--main start-->
+  <section class="clearfix section">
+  <!--{template user/user_side}-->
+  <div class="show_panel container_24 po_re">
+   <div class="prefix_3 grid_21">
+     <div class="panel clearfix box">
+     <!--main content-->
+       <div class="">
+        <!--header内容头部 start-->
+         <header class="clearfix box_header">
+           <h2 class="grid_4 alpha omega box_title t_c">{$_lang['toolbox']}</h2>
+           <div class="grid_17 alpha omega">
+              <nav class="box_nav">
+                <ul>
+                    {loop $third_nav $k $v}
+                       <li {if $k==$show}class="selectedLava"{/if}>
+                         <a href="{$origin_url}&op={$op}&show={$k}" title="$v['1']">$v['0']</a>
+                        </li>
+                    {/loop}
+                </ul>
+               </nav>
+         </div>
+         <div class="clear"></div>
+       </header>
+    <!--header内容头部 end-->
+	<!--detail内容 start-->
+    <article class="box_detail">
+     <div class="prefix_1 suffix_1 mt_10">
+      <div class="border_b_c mb_20 pad10">
+      {if $remain}
+        <p><strong>您还可以使用的工具剩余数：</strong>
+       
+          {loop $payitem_list $k $v}
+     
+          <span class="mr_10" style="white-space:nowrap;">
+            {$v['item_name']}
+          <strong style="color:#FF6600"><!--{eval echo intval($remain)}--></strong> {$payitem_standard[$v['item_standard']]}
+          </span>
+          {/loop}
+         </p>
+        {else}
+
+       <p>您现在没有可以使用的工具，{$_lang['make_you_more_competitive']}</p>
+       {/if}
+     </div>
+      <div class="buy_list">
+        
+
+ {if $payitem_list}           
+      {loop $payitem_list $k $v}
+     {if item_show($v['item_type'])}
+  <div class="item">
+    <!--{eval $remain= keke_payitem_class::payitem_exists($uid,"$k",$v['item_type']);}-->
+      <ul>
+            <li class="fl_r">
+              <button type="submit" value="{$_lang['buy_now']}" name="{$_lang['buy_now']}" onclick="location.href='{$origin_url}&op={$op}&show={$show}&item_code={$v['item_code']}#userCenter'">
+                  <span class="icon plus">&nbsp;</span>{$_lang['buy_now']}
+               </button>
+             </li>
+              <li class="img">
+                  <img src="{$_K['siteurl']}/{$v['small_pic']}" alt="{$v['item_name']}" title="{$v['item_name']}"/>
+              </li>
+               <li class="item_txt">
+                  <strong>{$v['item_name']}</strong>
+                  <strong style="color:#FF6600">{c:$v['item_cash']} / {$payitem_standard[$v['item_standard']]}</strong>
+                  <div>
+                    {$_lang['in_use']}：
+                    {if $task_open&&$shop_open}
+                      {$payitem_type[$v['item_type']]}
+                    {elseif !$task_open}
+                      {$_lang['shop_fabu']}
+                    {else}
+                      {$_lang['task_fabu']}
+                    {/if}
+                  </div>
+                  <div class=" c999 info">{$v['item_desc']}</div>
+               </li>
+               
+            
+               
+       </ul>
+       </div>
+    {/if}
+     {/loop}
+  {else}
+    
+    
+      <div class="t_c ">{$_lang['norecord']}</div>
+    
+  
+  {/if}
+          
+        </div>
+    </div>
+    </article>
+   <!--detail内容 end-->
+  </div>
+  <!--main content end -->
+   <div class="clear"></div>
+   </div>
+   </div>
+ </section>
+   <!--main end-->
+  </div>
+</div>
+<!--contain end-->
+<!--{template user/user_footer}-->
+<!--{template footer}-->

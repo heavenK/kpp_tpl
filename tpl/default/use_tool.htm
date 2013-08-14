@@ -1,0 +1,120 @@
+<!--{template header}-->
+<div class="winbody {$_K['theme']}_style">
+ <div class="clearfix box pad10">
+    <!--from表单 start-->
+    <form method="post" id="frm_use_tool" name="frm_use_tool" action="index.php?do=task&view=tools&opp=tips&task_id=$task_id">
+    	<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}"> 
+       <div class="rowElem clearfix t_c" id="desc">
+       	{if $obj == 'top'}
+       		    <span class="mr_20">
+						<label>使用：</label>
+					   <input type="text" class="member txt_input" name="payitem_num[{$p_in['item_id']}]"   
+						   id="payitem_$p_in['item_code']" 
+						   style="width:53px;" limit="required:false;type:int;between:1-{$exist_payitem_arr[$p_in['item_code']]}" 
+						   ext="$exist_payitem_arr[$p_in['item_code']]" 
+						   title="{$_lang['use_times_cannot_exceed']}"
+						   msg="{$_lang['input_times_error']}"
+						   msgArea="msg_{$p_in['item_code']}" 						 
+						   > 
+						   {$payitem_standard[$p_in['item_standard']]}
+						   <span id="msg_{$p_in['item_code']}" class="ml_5"></span>
+						   	
+				</span>
+				
+				<span class="mr_20">
+					您还剩余{$_lang['zh_mh']}
+		
+						<strong class="cc00">{$exist_payitem_arr['top']}</strong>
+
+					{$payitem_standard[$p_in['item_standard']]}
+					
+					<!--{eval $time = time();}-->
+										
+				</span>
+			{elseif $obj == 'urgent'}
+				<span class="mr_20">
+						<label>使用：</label>
+					   <input type="text" class="member txt_input" name="payitem_num[{$p_in['item_id']}]"   
+						   id="payitem_$p_in['item_code']" 
+						   style="width:53px;" limit="required:false;type:int;between:1-{$exist_payitem_arr[$p_in['item_code']]}" 
+						   ext="$exist_payitem_arr[$p_in['item_code']]" 
+						   title="{$_lang['use_times_cannot_exceed']}"
+						   msg="{$_lang['input_times_error']}"
+						   msgArea="msg_{$p_in['item_code']}" 						 
+						   > 
+						 {$payitem_standard[$p_in['item_standard']]}
+						   <span id="msg_{$p_in['item_code']}" class="ml_5"></span>
+						   	
+				</span>
+				
+				<span class="mr_20">
+					剩余{$_lang['zh_mh']}
+					{if $exist_payitem_arr['urgent']>0}
+						<strong class="cc00">{$exist_payitem_arr['urgent']}</strong>
+					{else}
+						<strong class="cc00">0</strong>
+					{/if}
+					{$payitem_standard[$p_in['item_standard']]}
+					
+					<!--{eval $time = time();}-->
+										
+				</span>
+			{elseif $obj == 'seohide'}
+				<span class="mr_20">
+						<label>使用：</label>
+					   <input type="text" class="member txt_input" name="payitem_num[{$p_in['item_id']}]"   
+						   id="payitem_$p_in['item_code']" 
+						   style="width:53px;" limit="required:false;type:int;between:1-{$exist_payitem_arr[$p_in['item_code']]}" 
+						   ext="$exist_payitem_arr[$p_in['item_code']]" 
+						   title="{$_lang['use_times_cannot_exceed']}"
+						   msg="{$_lang['input_times_error']}"
+						   msgArea="msg_{$p_in['item_code']}" 						 
+						   > 
+						 {$payitem_standard[$p_in['item_standard']]}
+						   <span id="msg_{$p_in['item_code']}" class="ml_5"></span>
+						   	
+				</span>
+				
+				<span class="mr_20">
+					剩余{$_lang['zh_mh']}
+					{if $exist_payitem_arr['seohide']>0}
+						<strong class="cc00">{$exist_payitem_arr['seohide']}</strong>
+					{else}
+						<strong class="cc00">0</strong>
+					{/if}
+					{$payitem_standard[$p_in['item_standard']]}
+					
+					<!--{eval $time = time();}-->
+										
+				</span>
+			{/if}
+      </div>
+      <div class="rowElem clearfix form_button">
+       	 	 <button type="button" class="button" value="{$_lang['ok']}" onclick="subReport()"><span class="check icon"></span>{$_lang['save']}</button>
+		 	 <button type="button" class="button" value="{$_lang['cancel']}" onclick="hideWindow('use_tool')"><span class="reload icon"></span>{$_lang['cancel']}</button>
+      </div>
+   </form>
+  <!--from表单 end-->
+
+
+
+ </div>
+</div>
+
+<script type="text/javascript">
+		In('form'); 
+</script>
+
+<script type="text/javascript">
+var task_id = '{$task_id}';
+var service_id = '{$sid}';
+function subReport(){
+	if(task_id){
+		$("#frm_use_tool").attr("action","index.php?do=task&view=tools&opp=tips&task_id={$task_id}");
+	}else if(service_id){
+		$("#frm_use_tool").attr("action","index.php?do=service&view=tools&opp=tips&sid={$sid}");
+	}
+		formSub('frm_use_tool','form',false);
+}
+</script>
+<!--{template footer}-->

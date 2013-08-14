@@ -1,0 +1,40 @@
+<!--{template header}--> 
+ <style type="text/css">
+ 	.file{position:absolute; font-size:20px;filter:alpha(opacity=0);-moz-opacity:0;opacity:0;z-index:1}
+ </style>
+<div class="winbody">
+ <div class="clearfix box  pad10">
+
+    <!--from表单 start-->
+   
+     <div class="rowElem clearfix t_c">
+
+      		<label >您确认要选择"{$work_info['username']}"(参与编号#{$work_id}){$work_status[$to_status]}吗？</label>
+			 <div >
+	           <!--{userpic($work_info['uid'],'middle')}-->
+			 </div>
+
+      </div>
+	  
+      <div class="rowElem clearfix form_button">
+       	 	 <button type="button" class="button" value={$_lang['save']} onclick="chooseWork()" id="sbt_btn"><span class="check icon"></span>{$_lang['save']}</button>
+		 	 <button type="button" class="button" value={$_lang['cancel']} onclick="hideWindow('work_choose')"><span class="reload icon"></span>{$_lang['cancel']}</button>
+      </div>
+ 
+  <!--from表单 end-->
+
+ </div>
+
+</div>
+
+
+<script type="text/javascript">
+	function chooseWork(){
+				var url = 'index.php?do=task&task_id={$task_id}&op=work_choose&work_id={$work_id}&to_status={$to_status}&sbt_edit=1';
+				formSub(url,'url',false);
+				hideWindow('work_choose');	return false;
+		}
+
+</script>
+
+<!--{template footer}-->

@@ -1,0 +1,56 @@
+<div class="grid_4 clearfix">
+				<div class="prom_border box  mb_10 clearfix">
+					<div class="box_header backLava">
+		            	<div class="inner">
+		            		<strong class="title">赚钱工具</strong>
+		            		<p class="pl_10">选择你习惯的推广方式</p>
+		            	</div>
+		            </div>
+		            <div class="prom_detail clearfix">
+		            	<div class="prom_list">
+			            	<ul>
+				            	<li> <a href="index.php?do=prom" {if !$view||$view=='index'} class="selected"{/if}>新手任务</a></li>
+				            	<li> <a href="index.php?do=prom&view=task" {if $view=='task'} class="selected"{/if}>任务推广</a></li>
+				            	<li> <a href="index.php?do=prom&view=good" {if $view=='good'} class="selected"{/if}>商品推广</a></li>
+			            	</ul>
+						</div>
+		            </div>
+		        </div>
+		        <div class="prom_border box  mb_10 clearfix">
+		        	<div class="box_header border_b_c">
+		            	<div class="inner">
+		            		<h2 class="title">推广动态</h2>
+						</div>
+		            </div>
+		            <div class="prom_detail">
+			            <div class="pl_10 pr_10 pb_10">
+			            	<div class="prom_rel">
+				            	<ul>
+				            		{if $prom_event_list}
+									{loop $prom_event_list $k $v}
+									<li>
+										<!--{eval $time_desc = kekezu::time2Units(time()-$v[event_time],minute)}-->
+				            			<p><a href="index.php?do=space&member_id={$v['parent_uid']}" class="mr_5 ws_break">{$v['parent_username']}</a>{if $time_desc}{$time_desc}前{else}刚刚{/if} 推广了</p>
+				            			<p>
+				            				{if $v['action'] == 'bid_task'}
+												<!--{eval $task_info = get_task_title($v['obj_id']);}-->
+												<a href="index.php?do=task&task_id={$v['obj_id']}" class="mr_5 ws_break">{$task_info['task_title']}</a>
+											{elseif $v['action'] == 'service'}
+												<!--{eval $service_info = get_goods_title($v['obj_id']); //var_dump($service_info);}-->
+												<a href="index.php?do=service&sid={$v['obj_id']}" class="mr_5 ws_break">{$service_info['title']}</a>
+											{else}
+												<a href="javascript:;" class="mr_5 ws_break">{$v['event_desc']}</a>
+											{/if}
+				            					获得<span class="cc00 ml_5">{$v['rake_cash']}元</span>
+										 </p>
+				            		</li>
+				            		{/loop}
+									{else}
+										暂时还没有动态
+									{/if}
+				            	</ul>
+			            	</div>
+			            </div>
+		        	</div>
+		        </div>
+	</div>

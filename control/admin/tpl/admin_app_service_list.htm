@@ -1,0 +1,119 @@
+<!--{template control/admin/tpl/admin_header}-->
+<div class="page_title">
+    <h1>{$_lang['prom_relation_manage']}</h1>
+    <div class="tool">
+        <a href="index.php?do={$do}&&view={$view}" class="here">免费商品</a>
+    </div>
+</div>
+<div class="box search p_relative">
+    <div class="title">
+        <h2>{$_lang['search']}</h2>
+    </div>
+    <div class="detail">
+        <form method="post" action="index.php?do={$do}&view={$view}" id="frm_art_search">
+        <input type="hidden" name="page" value="{$page}">
+        <table cellspacing="0" cellpadding="0">
+         <tbody>
+           <tr>
+             <th>编号</th>
+              <td>
+                <input type="text" size='10' class="txt" name="space[id]" value="{$space['id']}" onkeyup="clearstr(this);">
+              </td>
+		     <th>标题</th>
+              <td>
+                <input type="text" size='10' class="txt" name="space[title]" value="{$space['title']}" onkeyup="clearspecial(this);">
+              </td>
+             <th>描述</th>
+              <td>
+                <input type="text" size='10' class="txt" name="space[desc]" value="{$space['desc']}" onkeyup="clearspecial(this);">
+              </td>
+            </tr>
+             <tr>
+                 <th>结果排序</th>
+                  <td>
+             		<select name="ord[]">
+                           <option value="service_id" {if $ord['0']=='service_id' or !isset($ord['0'])} selected="selected"{/if}>{$_lang['default']}{$_lang['order']}</option>
+                           	
+                      </select>
+                         <select name="ord[]">
+                            <option {if $ord['1']=='desc' or !isset($ord['1'])}selected="selected" {/if} value="desc">{$_lang['desc']}</option>
+                            <option {if $ord['1']=='asc'}selected="selected" {/if} value="asc">{$_lang['asc']}</option>
+                      </select>
+                   </td>
+              <th>
+                       显示结果
+               </th>
+                   <td>
+                     <select name="page_size">
+                          <option value="10" {if $page_size=='10'}selected="selected"{/if}>{$_lang['page_size']}10</option>
+                          <option value="20" {if $page_size=='20'}selected="selected"{/if}>{$_lang['page_size']}20</option>
+                          <option value="30" {if $page_size=='30'}selected="selected"{/if}>{$_lang['page_size']}30</option>
+                     </select>
+					 <button class="pill" type="submit" value="{$_lang['search']}" name="sbt_search"><span class="icon magnifier">&nbsp;</span>{$_lang['search']}</button>
+                   </td>
+		
+                <th>
+                   &nbsp;
+                </th>
+                 <td>
+                 	&nbsp;
+                 </td>
+             </tr>
+          </tbody>
+        </table>　
+     </form>
+   </div>
+</div>
+	 <div class="box list">
+	 	<div class="title">
+ 	   <h2>{$_lang['prom_relation_manage']}</h2></div>
+		  <div class="detail">
+		  	 <form method="post" action="index.php?do={$do}&view={$view}" id="frm_list">
+		  	 	<input type="hidden" name="w[page_size]" value="{$page_size}">
+				<input type="hidden" name="page" value="{$page}">
+				<div  id="ajax_dom">
+			<table cellpadding="0" cellspacing="0">
+               <tbody>
+               	<tr>
+               		<th>
+	<input type="checkbox" id="checkbox" onclick="checkall();" class="checkbox" >编号
+</th>
+					<th>用户姓名</th>
+					<th>标题</th>
+					<th>描述</th>
+					<th>时间</th>
+                    <th width="130">操作</th>
+				</tr>
+				 {loop $task_list $key  $value}
+               	<tr class="item">
+               		<td><input type="checkbox" name="ckb[]" class="checkbox" value="{$value['service_id']}">{$value['service_id']}</td>
+					<td>{$value['username']}</td>
+					<td>{$value['service_title']}</td>
+					<td><!--{eval echo kekezu::cutstr($value['service_desc'], 30)}--></td>
+               		<td>
+               			<!--{date('Y-m-d H:i:s',$value['on_time'])}-->&nbsp;
+					</td>
+					<td>
+						<a class="button dbl_target" href="index.php?do={$do}&view=service_edit&op=edit&pro_id=$value['service_id']"><span class="pen icon"></span>{$_lang['edit']}</a>
+						<a class="button" href="index.php?do={$do}&view={$view}&op=del&pro_id=$value['service_id']" onclick="return cdel(this);"><span class="trash icon"></span>{$_lang['delete']}</a>
+					</td> 
+				</tr>
+				{/loop}	
+				<tr>
+                	<td colspan="8">
+                	{if $pages['page']}<div class="page fl_right">{$pages['page']}</div>{/if}
+                    <div class="clearfix">
+                            <label for="checkbox" onclick="checkall(event);">{$_lang['select_all']}</label>
+							<input type="hidden" name="sbt_action" class="sbt_action"/>
+							<button type="submit" name="sbt_action" value="{$_lang['mulit_delete']}" onclick="return batch_act(this,'frm_list')" class="pill negative">
+							<span class="trash icon"></span>{$_lang['mulit_delete']}</button>&nbsp;&nbsp;
+					</div>
+				   </td>
+            	 </tr>	
+               </tbody>
+			</table>
+			 </form>
+			</div>
+	
+
+<!--{template control/admin/tpl/admin_footer}-->

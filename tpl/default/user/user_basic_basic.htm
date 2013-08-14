@@ -1,0 +1,217 @@
+<!--{template header_user_top}-->
+<div class="blank1"></div>
+<!--contain start-->
+<div class="yhcenter">
+    	<!--  账号设置 begin -->
+    	<div class="yhzhbox tabCon">
+        	
+            
+            <!--{template user_base_left}-->
+            
+            <div class="yhzhright">
+            	<div class="zh_ac">
+            	<!-- 账号 begin -->
+            	<div class="yh_zh">
+                	<div class="yh_zhtop">
+                    	<span><b>账号信息</b></span>
+                    </div>
+                    <div class="yh_zhdl">
+                    	<div class="yh_zhtb">
+                        	<div class="yh_zhtb00">
+                            	<div class="yh_zhtb00left">
+                                	<p>账号登录信息</p>
+                                </div>
+                                <div class="yh_zhtb00right">
+                                	<div class="tvb">
+                                    	<div class="tvbleft">
+                                        	<p>用户名</p>
+                                        </div>
+                                        <div class="tvbright">
+                                        	<p>{$username}</p>
+                                        </div>
+                                    </div>
+                                    <div class="tvb">
+                                    	<div class="tvbleft">
+                                        	<p>豆豆ID</p>
+                                        </div>
+                                        <div class="tvbright">
+                                        	<p>{$uid}</p>
+                                        </div>
+                                    </div>
+                                    <div class="tvb">
+                                    	<div class="tvbleft">
+                                        	<p>邮箱登陆账号</p>
+                                        </div>
+                                        <div class="tvbright">
+                                        	<p>{$user_info['email']}</p>
+                                        </div>
+                                    </div>
+                                    
+                                     <div class="tvb">
+                                    	<div class="tvbleft">
+                                        	<p>手机登录账号</p>
+                                        </div>
+                                        <div class="tvbright">
+                                        	<p>{$user_info['mobile']}</p>
+                                        </div>
+                                    </div>
+                                    <div class="tvbbottom">
+                                    	<div class="tvbleft">
+                                        	<p>上次登录时间</p>
+                                        </div>
+                                        <div class="tvbright">
+                                        	<p><!--{eval echo date('Y-m-d H:i:s',$user_info['last_login_time'])}--></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                         	<div class="yh_zhtb01">
+                            	<div class="yh_zhtb01left">
+                               	  <p>密码安全强度</p>
+                                </div>
+          						<div class="yh_zhtb01right">
+                                	<div class="tnbtop">
+                                   	  <p>您可以通过以下方式提高资金安全强度</p>
+                  					</div>
+                                    <div class="tnbbottom">
+                       	  				<ul>
+                                        	<li><a href="index.php?do=user&view=setting&op=safe">修改密码</a></li>
+                                            <li class="s0">|</li>
+                                            <li><a href="index.php?do=user&view=setting&op=safe&opp=sec_code">修改安全密码</a></li>
+                                            <li class="s0">|</li>
+                                            <li><a href="index.php?do=user&view=payitem&op=auth">完善账号安全认证</a></li>
+                                            
+                                        </ul>
+              						</div>
+                                </div>
+                          </div>
+                      </div>
+                      <div class="blank2"></div>
+                      <!-- 密码安全强度 -->
+                      <div class="yh_zhrz">
+                        	<span><b>密码安全强度</b></span>
+                            <div class="yh_zhrzbox">
+                                
+                                {loop $auth_item_list $v}
+                                	<div class="yh_zhrzll{if $user_auth_info[$v[auth_code]]['auth_status']}00{else}{/if}">
+                                        <div class="renzheng">
+                                            <div class="off">
+                                                <span>
+                                                <img src="$v['auth_small_ico']">
+                                                {if $v[auth_code]=='realname'||$v['auth_code']=='enterprise'}
+                                                {if $identy_auth_info['realname']}
+                                                <a href="index.php?do={$do}&view={$view}&op={$op}&auth_code=realname" title="{$v[auth_title]}{$_lang['msg']}">
+                                                <b>实名认证</b>
+                                                </a>
+                                                {elseif $identy_auth_info['enterprise']}
+                                                <a href="index.php?do={$do}&view={$view}&op={$op}&auth_code=enterprise" title="{$v[auth_title]}{$_lang['msg']}">
+                                                <b>实名认证</b>
+                                                </a>
+                                                {else}
+                                                <a href="index.php?do={$do}&view={$view}&op={$op}&auth_code=$v[auth_code]" title="{$v[auth_title]}{$_lang['msg']}">
+                                                <b>实名认证</b>
+                                                </a>
+                                                {/if}
+                                                {else}
+                                                <a href="index.php?do={$do}&view={$view}&op={$op}&auth_code={$v[auth_code]}" title="{$v[auth_title]}{$_lang['msg']}">
+                                                <b>$v['auth_title']</b>
+                                                </a>
+                                                {/if}
+                                                
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <span class="fl_r">
+                                                    <span class="msg {if $user_auth_info[$v[auth_code]]['auth_status']}msg_ok{else}{/if}">
+                                                    <i></i>{if $user_auth_info[$v[auth_code]]['auth_status']}已认证{else}
+                                                    
+                                                    {/if}
+                                                    </span>
+                                                    <span>
+                                                    {if !$user_auth_info[$v[auth_code]]['auth_status']}
+                                                        {if $v[auth_code]=='realname'||$v['auth_code']=='enterprise'}
+                                                           {if $identy_auth_info['enterprise']}
+                                                            <a href="index.php?do={$do}&view=payitem&op=auth&auth_code=enterprise" class="button">立即认证</a>
+                                                          {else}
+                                                            <a href="index.php?do={$do}&view=payitem&op=auth&auth_code=realname" class="button">立即认证</a>
+                                                          {/if}
+                                                        {else}
+                                                          <a href="index.php?do={$do}&view=payitem&op=auth&auth_code={$v[auth_code]}" class="button">立即认证</a>
+                                                        {/if}
+                                                    {/if}
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <p>$v['auth_desc']</p>
+                                    </div>
+                                    {/loop}
+
+                            </div>
+                        </div>
+                        <!--  -->
+                    </div>
+                </div>
+                <!-- 账号 end -->
+            </div>
+
+           </div>
+           
+            
+        </div>
+        
+        
+    </div>
+    <!-- center end -->
+</div> 
+    
+    
+    
+<script type="text/javascript">
+In('form','custom','xheditor') ;
+function check_basic1(){
+	formSub('frm','form',true);
+}
+
+function check_basic2(){
+	if(contentCheck('tar_content',"{$_lang['shop_sign']}",50,1000,0,'msg_content',editor)){		
+		formSub('frm','form',true);
+		return true;
+	}else {
+	 	return false;
+	}
+}
+	  
+
+$(function(){
+	if(type!=2){
+		t1();
+	}else{
+		t2();
+	}
+})
+var type = '{$user_type}';
+	$("#type_1").click(function(){
+		t1();
+	});
+	$("#type_2").click(function(){
+		t2();
+	});
+function t1(){
+	$('#single,#na_1,#ab_1').removeClass('hidden').next().addClass('hidden');
+	$("#tar_content").attr("ignore",'true');
+	
+}
+function t2(){
+	$('#single,#na_1,#ab_1').addClass('hidden').next().removeClass('hidden');
+	$("#birthday").attr("ignore",'true');
+	$("#truename").attr("ignore",'true');
+	
+	
+}
+
+</script>
+<!--contain end-->
+
+<!--{template user/user_footer}-->
+<!--{template footer}-->

@@ -1,0 +1,104 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{margin:0; padding:0;}
+html,body{ width:100%; height:100%; font-size:14px; font-family:'微软雅黑'}
+ul{ list-style:none;}
+li{ list-style:none;}
+img{ border:0;}
+
+a{ text-decoration:none;}
+.a1{text-align:center; color:#F30;}
+.blank{ clear:both; height:15px;}
+
+.a0{ margin-left:30px; font-size:16px;}
+
+.b0{ letter-spacing:7px;}
+.b1{ letter-spacing:27px;}
+.b2{ letter-spacing:-0.5px;}
+
+
+/*zhuce*/
+#zhucetop{ width:1000px; margin:0 auto;}
+
+	.zc_topt{ width:1000px; margin:0 auto; height:77px; padding-top:30px;}
+	.zc_toptleft{float:left; width:280px; height:73px; }
+	.logo{ float:left; width:76px; height:73px;}
+	.zc_z{ float:right; width:180px; height:73px; }
+	.zc_z p{ line-height:73px; font-size:22px; font-family:'微软雅黑'; letter-spacing:0.5px; margin-left:10px;}
+	
+	.zc_toptright{ float:right; width:280px; height:53px; padding-top:20px;}
+	.zc_toptright p{ font-size:12px; line-height:20px; color:#999; text-align:right;}
+	.zc_toptright p span{ color:#F30;}
+	.zc_toptright a{ cursor:pointer; font-size:12px;}
+	.zc_toptright a:hover{ color:#ff8600;}
+	
+
+	.zc_n{ clear:both;width:898px; overflow:hidden;  border:1px solid #b2b2b2; background:#f7f7f7; padding:20px 50px; }
+	.zc_frist{ width:868px; height:48px; border-bottom:1px #d2d1d0 solid; padding-left:30px;}
+	.zc_n01{ width:320px; height:30px; background:#47b68c; }
+	.zc_n01 p{line-height:30px;color:#FFFFFF; cursor:pointer; font-size:16px; padding-left:15px;}
+	.zc_n01 a{line-height:30px;color:#FFFFFF; cursor:pointer; font-size:16px;}
+	
+	.zc_nleft{ float:left; width:645px; border-right:1px #d6d6d6 solid;}
+	.zc_n02{ width:645px; overflow:hidden; padding-top:15px;}
+	.zc_bp{ width:615px; height:65px; background:url(../zhuce/zcbg.png) no-repeat left top; background-position:30px; position:relative; }
+	.zc_bp01{width:31px; height:30px; position:absolute; left:34px; top:18px; background:url(../zhuce/dian.png) no-repeat;}
+	.sz{width:31px; height:30px; position:absolute; left:7px; top:-5px; color:#FFF;}
+	.zc_bp02{width:31px; height:30px; position:absolute; left:315px; top:15px;}
+	.sz2{ color:#48b78d;}
+	
+	
+	.zc_n02t{ width:645px; }
+	.zc_n02tleft{ float:left; margin-left:35px;}
+	.zc_n02tcenter{ float:left; width:100px; margin-left:40px;} 
+	.zc_n02tcenter00{ float:left; width:150px; margin-left:0px;} 
+	
+	.zc_n02tright{ float:left; margin-left:140px;}
+	.zc_n02tleft p, .zc_n02tright p,.zc_n02tcenter p{ font-size:14px; line-height:25px; color:#000000;}
+	.zc_n02tleft p span,.zc_n02tright p span{ font-size:13px; color:#c3c3c3; line-height:18px;}
+	
+	.zc_k{ width:645px; overflow:hidden; padding-top:25px;}
+	.zc_kn{ clear:both; width: 645px; height:25px; margin-bottom:10px;}
+	.zc_kz{ float:left; width:90px; height:25px; line-height:25px; font-size:15px;}
+	.zc_kk{ float:left;height:25px;}
+	.zc_kk a:visitide{ width:50px; height:30px; background:#0066FF; line-height:30px;}
+	
+	.zc_btn{ float:left; width:93px; height:30px;}
+	.btn{width:93px; height:28px; }
+	
+	
+	.zc_btn01{float:left; width:200px; height:50px; padding-top:180px; padding-left:40px;}
+	
+	
+
+	
+	.txt_input{ width:230px; height:23px; line-height:23px;}
+	 
+	.zc_f{clear:both; width:615px; padding-top:15px; padding-left:30px; padding-bottom:30px; }
+	.zc_f a{ color:#211699; cursor:pointer;}
+	
+	.zc_nright{ float:left; width:225px; height:230px;  padding-top:50px; padding-left:20px;}
+	
+	.zc_btn01 p{ font-size:22px; font-family:'Î¢ÈíÑÅºÚ'; margin-left:0px; line-height:35px;}
+	.zc_btn00{ overflow:hidden;}
+	.zc_btn00 p{ font-size:18px; margin-left:30px; line-height:40px;}
+	
+	
+	/* ×¢²á³É¹¦ begin */
+	.zc_c{ width: 620px; height:150px; padding-top:15px;}
+	.zc_c p{ font-size:42px; line-height:150px; }
+	.zc_h{ width:620px; height:50px;}
+	.zc_h input,.zc_btn01 input{ width:140px; height:50px; background:#41b98c; font-size:26px; line-height:50px; text-align:center; color:#FFFFFF; font-weight:bold; cursor:pointer;}
+	.zc_btn input, .zc_btn00 input{ width:100px; height:35px; font-size:16px; font-family:'Î¢ÈíÑÅºÚ'; cursor:pointer; background:url(../zhuce/btnbg.png) no-repeat; margin-left:90px;}
+	.zc_btn00 input{  margin-left:30px;}
+	
+	.zc_h input:hover,.zc_btn01 input:hover{ width:140px; height:50px; background:#2d9d73; font-size:26px; line-height:50px; text-align:center; color:#FFFFFF; font-weight:bold; cursor:pointer;}
+	
+	
+	
+	
+	.box{ overflow:hidden; }
+	.box_content{ text-indent:2em; line-height:25px; width:540px;overflow:hidden;display:none;  position:relative; top:10px; background:#FFF; }
+	.box_content p{ margin:10px; text-align:justify; font-size:12px;}
+	

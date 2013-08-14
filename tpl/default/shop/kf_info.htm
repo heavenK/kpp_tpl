@@ -1,0 +1,33 @@
+<!--{template header}-->
+<div class="winbody {$_K['theme']}_style">
+ <div class="clearfix  c333 pad10">
+    <!--from表单 start-->
+    <form method="post" id="frm_denounce" name="frm_denounce" action=''>
+		 <div class="rowElem   clearfix">
+		 	<div class="messages m_warn">
+		       <span class="icon16 fl_l"></span>客服信息
+		   </div>
+		    </div>
+	 <div class="rowElem clearfix" id="desc">
+      		 <label class=" t_r"></label>
+			 <div class=" pad20 fl_l clearfix">
+      		 	<!--{userpic($kf_info['uid'],'middle')}-->
+			 </div>
+			 <div class="clearfix pt_15">
+			      <p>姓名：	 $kf_info['username']</p>
+			      <p>客服电话：{if  $kf_info['phone']} $kf_info['phone']{else}暂无{/if}</p>
+			      <p>客服邮箱: {if  $kf_info['email']}$kf_info['email']{else}暂无{/if}</p>
+			      <p>QQ:	{if  $kf_info['qq']} $kf_info['qq']{else}暂无{/if}</p>
+			 </div>
+      </div>
+      
+     
+   </form>
+  <!--from表单 end-->
+
+
+
+ </div>
+</div>
+
+<!--{template footer}-->

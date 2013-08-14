@@ -1,0 +1,202 @@
+
+<!--{template header}-->
+<!--页面内容区-->
+ <div class="wrapper">
+ 	<div class="container_24 clearfix">
+		<div class="mt_30 mb_30">
+			<div class="grid_20 clearfix">
+				<!--{template prom/prom_common}-->
+				
+	            <div class="prom_border box mt_10 mb_10 clearfix">
+	            	
+					<div class="box_header">
+		            	<div class="inner">
+		            		<h2 class="title">新手任务：邀请好友注册，赚取第一笔佣金</h2>
+		            	</div>
+		            </div>
+					<div class="prom_detail border_t_c">
+		            	<div class="pad20">
+		            		<div class="rowElem clearfix ">
+		            			<label class="grid_2 t_c pt_10"><img src="{SKIN_PATH}/img/style/zhu.png"></label>
+		            			<div class="grid_15">
+		            				<div>成功推荐会员注册，并通过 {$effect_mode_reg['prom_item']} ，获得<span class="cf60">{c:$effect_mode_reg['cash']}</span> 元和<span class="cf60">{c:$effect_mode_reg['credit']}</span> 代金券提成
+		            				</div>
+		            				<div class="font14b cf60">你的收益＝注册会员数×({c:$effect_mode_reg['cash']}+$effect_mode_reg['credit']代金券 )
+		            				</div>
+		            				<div>
+		            					用户通过推广链接\代码注册成为会员，并通过 {$effect_mode_reg['prom_item']} ，推广员就能获得<span class="cf60">{c:$effect_mode_reg['cash']}和{$effect_mode_reg['credit']}代金券</span>的提成。在{$effect_mode_reg['month']}天，您所推广的下线在网站上交易还有奖励。
+		            					
+		            				</div>
+		            				<div> <span class="font14b cf60">比如：</span> 推荐100名会员注册并通过{$effect_mode_reg['prom_item']}，您能获得现金提成<span class="cf60">{c:100*$effect_mode_reg['cash']}</span>+<span class="cf60"><!--{eval echo 100*$effect_mode_reg['credit']}--></span>代金券！</div>
+		            			</div>
+							</div>
+		            		<div class="rowElem clearfix ">
+		            			<label class="grid_2 t_r"><strong class="title">方法一：</strong></label>
+		            			<div class="">
+		            				复制以下邀请链接，通过QQ、微博私信等发送给你的亲朋好友。
+		            			</div>
+		            		</div>
+		            		<div class="rowElem clearfix ">
+		            			{if $uid}
+		            			<label class="grid_4 t_r">邀请链接：</label>
+		            			<div class="">
+		            				<input type="text" style="width:50%;" class="ml_10 mr_10" value="{if $uid}$link_reg{/if}" id="promReg"><a href="javascript:;" onclick="copytext('promReg');" id="reg">点击复制到剪贴板</a>
+		            			</div>
+								{else}
+								请您先<a href="index.php?do=login">登录</a>,再查看链接
+								{/if}
+							</div>
+		            		<div class="rowElem clearfix ">
+		            			<label class="grid_2 t_r"><strong class="title">方法二：</strong></label>
+		            			<div class="">
+		            				将内容分享到论坛、个人签名、人人网、QQ个人空间等。
+		            			</div>
+		            		</div>
+		            		<div class="rowElem clearfix ">
+		            			{if $uid}
+		            			<label class="grid_4 t_r">代码：</label>
+		            			<div class="">
+		            				<input type="text" style="width:50%;" class="ml_10 mr_10" value="{if $uid}{$link_code}{/if}" id="promCode"><a href="javascript:;" onclick="copytext('promCode');">点击复制到剪贴板</a>
+		            			</div>
+								{else}
+								请您先<a href="index.php?do=login">登录</a>,再查看链接
+								{/if}
+							</div>
+		            		
+						</div>
+		            </div>
+	        	</div>
+	        	<div class="prom_border box mt_10 mb_10 clearfix">
+	        		<div class="box_header">
+		            	<div class="inner">
+		            		<h2 class="title">新手任务：邀请好友发布任务</h2>
+		            	</div>
+		            </div>
+		            <div class="prom_detail border_t_c">
+		            	<div class="pad20">
+		            		<div class="rowElem clearfix ">
+		            			<label class="grid_2 t_c pt_10"><img src="{SKIN_PATH}/img/style/fa.png"></label>
+		            			<div class="grid_15">
+		            				<div>
+		            					邀请好友发布任务，任务成功结束后，可一次性获得
+										    <span class="cf60">
+										    {if $effect_mode_pub_task[pub_task_rake_type]==2}
+											任务赏金的{$effect_mode_pub_task['rate']}%
+											{else}
+											{c:$effect_mode_pub_task['cash']}和{$effect_mode_pub_task['credit']}代金券
+											{/if}
+		            						
+											</span> 推广金
+		            				</div>
+									<div class="prom_task_top  pt_20 pb_20 clearfix">
+	            			<ul>
+	            				<li>
+	            					<dl>
+	            						<dt>生效规则：</dt>
+	            						<dd>一、模型绑定：{if $effect_mode_pub_task['model']}
+																<!--{eval $models = explode(",",$effect_mode_pub_task['model']);}-->
+																{loop $models $v}
+																	{if $model_list[$v]}【$model_list[$v]['model_name']】{/if}
+																{/loop}。
+															{else}
+																无模型限制。
+															{/if}
+										</dd>
+	            						<dd>二、行业限制：
+										{if $effect_mode_pub_task['indus_string']}
+											<!--{eval $indus = explode(",",$effect_mode_pub_task['indus_string']);}-->
+											{loop $indus $v}
+												{if $indus_list[$v]}【$indus_list[$v]['indus_name']】{/if}
+											{/loop}{$_lang['zh_jh']}
+										{else}
+											无行业限制。
+										{/if}
+										</dd>
+	            					</dl>
+	            				</li>
+	            				<li>
+	            					<dl>
+	            						<dt>失败原因：</dt>
+	            						<dd>1、推广的用户已有邀请注册的上线，并在返佣期限范围内。</dd>
+	            						<dd>2、用户发布的任务未能正常结束,如出现任务冻结、失败等情况。</dd>
+	            						<dd>3、用户发布的任务不在生效规则范围内。</dd>
+
+	            					</dl>
+	            				</li>
+	            			</ul>
+	            		</div>
+		            				<div class="fontb cf60">
+		            					你的收益={if $effect_mode_pub_task[pub_task_rake_type]==2}
+										{$effect_mode_pub_task['rate']}%×任务赏金
+										{else}
+										{c:$effect_mode_pub_task['cash']} +{$effect_mode_pub_task['credit']}代金劵
+										{/if}
+										
+		            				
+		            				</div>
+		            				<div>
+		            					用户通过推广链接\代码邀请好友发布任务，任务成功结束即为推广有效，推广员就能获得
+										    <span class="cf60">
+										    {if $effect_mode_pub_task[pub_task_rake_type]==2}
+		            						{$effect_mode_pub_task['rate']}%×任务赏金
+											{else}
+											{c:$effect_mode_pub_task['cash']}+{$effect_mode_pub_task['credit']}代金券
+											{/if}
+											</span>的推广提成。
+		            				</div>
+		            				<div> <span class="fontb cf60">比如：</span> 邀请好友发布了<span class="cf60">10000</span>元任务，任务结束后你能立刻获得
+		            					<span class="cf60">
+		            						{if $effect_mode_pub_task[pub_task_rake_type]==2}
+		            						{c:10000/100*$effect_mode_pub_task['rate']}
+											{else}
+											{c:$effect_mode_pub_task['cash']}+{$effect_mode_pub_task['credit']}代金券！
+											{/if}
+											</span></div>
+		            			</div>
+							</div>
+		            		
+			            	<div class="rowElem clearfix ">
+			            			<label class="grid_2 t_r"><strong class="title">呈现方式：</strong></label>
+			            			<div class="">
+			            				<span class="mr_10"><input type="radio" name="linkMode" id="linkMode1" value="1" checked="checked">原始链接</span>
+			            									<input type="radio" name="linkMode" id="linkMode2" value="2">文字链接
+			            			</div>
+			            	</div>
+			            	<div class="rowElem clearfix ">
+			            		{if $uid}
+			            		<label class="grid_2 t_r"><strong class="title">推广代码：</strong></label>
+			            		<div class="">
+			            			<input type="text" style="width:50%;" class="ml_10 mr_10" id="prompub" value="{if $uid}{$link_pub}{/if}"><a href="javascript:;" onclick="copytext('prompub');">点击复制到剪贴板</a>
+			            		</div>
+								{else}
+								请您先<a href="index.php?do=login">登录</a>,再查看链接
+								{/if}
+							</div>
+							
+						</div>
+	        		</div>
+				</div>
+			</div>
+			<!--{template prom/prom_com_right}-->
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	//新手任务：邀请好友注册，赚取第一笔佣金
+	 function copytext(i){
+       if(check_user_login()){
+			setCopy($("#" + i).val(),'复制成功');
+		}
+    }
+	//新手任务：邀请好友发布任务
+	var link_pub = "{$link_pub}";
+	var link_pub_code = "{$link_pub_code}";
+	$("#linkMode1").click(function(){
+		$("#prompub").val(link_pub);
+	})
+	$("#linkMode2").click(function(){
+		$("#prompub").val(link_pub_code);
+	})
+</script>
+<!--{template footer}-->

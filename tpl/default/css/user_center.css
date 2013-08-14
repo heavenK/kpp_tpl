@@ -1,0 +1,255 @@
+/*-------------------------------------------------
+--------------------------------------------------- 
+           娉ㄩ噴 DEFINITIONS	: mg
+	浣滆€?AUTHOR 		: mg
+	鐗堟湰 VERSION		: 2012-02-10
+	
+	鍐呭CONTENTS:
+	1 椤甸潰鍚嶇О
+		1.0 绠＄悊闈㈡澘
+		1.1 涓汉璁剧疆
+			1.1.1 鍩烘湰璧勬枡
+			1.1.2 閾惰璐︽埛
+			1.1.3 鍥惧儚璁剧疆
+			1.1.4 淇¤獕绛夌骇
+			1.1.5 绌洪棿璁剧疆
+		1.2 澧炲€兼湇鍔?
+			1.2.1 宸ュ叿绠?
+			1.2.2 璁よ瘉涓績(绗笁銆佸洓姝?
+		1.3瀹屾垚姝ラ椤甸潰
+			1.3.1 涓汉璁剧疆--閾惰璐︽埛--鏂板璐︽埛鎴愬姛锛堢鍥涙锛?
+			 	   璐㈠姟绠＄悊--璐﹀彿鍏呭€?-绛夊緟鍚庡彴瀹℃牳;
+			 	   璐㈠姟绠＄悊--璐﹀彿鎻愮幇--瀹屾垚鎻愮幇  ;
+	    1.4鏍囩椤甸潰
+			 1.4.1  涓汉鐢ㄦ埛娉ㄥ唽锛堢浜屾锛?
+				       涓汉璁剧疆--鍩烘湰璧勬枡-- 濞佸鎶€鑳?
+				       
+
+----------------------------------------------------------------*/
+
+.panel{min-height:700px;height:auto !important;height:700px; }
+
+/* 1 椤甸潰鍚嶇О
+ -----------------------------------------------------
+===========================================================*/
+/* 1.0 绠＄悊闈㈡澘
+ -----------------------------------------------------*/
+	.btn_width{width:80px; text-align:center;}
+	.auth img{display:inline-block; margin-right:5px;}
+	#ie8 .auth img,#ie7 .auth img,#ie6 .auth img{margin-right:-2px;}
+	ul.trading li{ background:#fff; height:25px; line-height:25px; margin-bottom:2px; padding:0 10px 0 20px;}
+	ul.trading span{margin:0 10px 0 5px;}
+	
+	.tool_item{overflow:hidden; /*width:720px;*/ width:560px;  margin:0 auto; }
+		.toolbox ul li{float:left;  height:80px; width:80px; text-align:center;}
+		.box.default .tool_item #left a,.box.default .tool_item #right a{ display:block; height:18px; width:18px;}
+		.box.default .tool_item #left a{ background:url("../img/center/in_left.gif") no-repeat;}
+		.box.default .tool_item #right a{ background:url("../img/center/in_right.gif") no-repeat;}
+		.box.default .tool_item #left{ position:absolute; left:40px; top:35px;}
+		.box.default .tool_item #right{position:absolute; right:40px; top:35px;}
+	/*h3{ color:#fff;}*/
+	h3 em{ font-style:normal; font-weight:normal; font-size:12px;}
+	
+
+/* 1.1 涓汉璁剧疆
+ -----------------------------------------------------*/
+	/* 1.1.1 鍩烘湰璧勬枡
+	------------------------------------------------------*/
+		/* 涓汉缁忓巻*/
+	
+		.exp_info span{ color:#999; display:block}
+		.exp_info p{ clear:both; color:#333; font-size:14px; margin-bottom:10px;}
+		
+
+		/*鎶€鑳借瘉涔?/
+		.upd_infos{ border:1px solid #ccc; min-height:200px;_height: expression( this.scrollHeight < 200 ? "200px" : "auto" );}
+		.upd_infos ul li{ line-height:35px; border-bottom:1px solid #dcdcdc; background:#FAFAFA;position:relative;}
+		.upd_infos ul li a{ color:#323232;}
+		.upd_infos ul li span{ white-space:nowrap; overflow:hidden;}
+		/*.uplist ul{ border-bottom:1px solid #E5E7E6;}
+		.uplist ul li{  border-top:1px solid #E5E7E6; line-height:35px; position:relative;}*/
+
+	/* 1.1.2 閾惰璐︽埛
+	 -----------------------------------------------------*/
+		/*鏂板璐︽埛*/
+		.map_img{ background-image:url(../img/center/world-map.gif); background-repeat:no-repeat; width:355px; height:200px; text-indent:-999em;}
+		
+		.map_item{}
+			.map_item li{ display:inline;}
+			.map_item li a{ display:block; font-size:14px; line-height:30px; color:#666; padding-left:40px;}
+			.map_item li a:hover{ background:#f4f4f4;}
+				.map_item li a:active,.map_item li a.select{ background:#30549e; color:#fff;}
+				
+		.map_list{}
+		.map_list dl{}
+			.map_list dt{ font-weight:bold; padding:5px 0;}
+				.map_list dd{ }
+				.hk{width:335px;}
+				.mc{width:380px;}
+				.tw{width:380px;}
+					.map_list dd a{ display:block; font-size:12px; line-height:25px; color:#666; margin-left:20px;}
+					.map_list dd a:hover{background:#2f549f; color:#fff;}
+						.map_list dd a:active,.map_list dd a.select{ background:#30549e; color:#fff;}
+		
+		.box.basic_style .selecter a:hover .icon32.user{background-position:-32px -7616px;}
+		.box.basic_style .selecter a:hover .icon32.users{background-position:-32px -7648px;}
+
+	/* 1.1.3 鍥惧儚璁剧疆
+	 -----------------------------------------------------*/
+		/*閫夋嫨鍥惧儚*/
+			.choose_tx li { display:inline; float:left; margin:5px;}
+		/*涓婁紶鍥惧儚*/
+			.img_cut{ background:#2e2e2e; height:280px; }
+			/*
+			.shooting{ height:300px; background:#f0f0f0 url(../img/kppw_2.0_user_shooting.png) no-repeat center center;}
+			*/
+	/* 1.1.4淇¤獕绛夌骇
+	 -----------------------------------------------------*/
+		/*淇¤獕鎴愰暱*/
+		.box.basic_style  .groupinfo .loading_bar{ border-radius:5px}
+		.box.basic_style  .groupinfo .progress_bar{ background-color:#690;border-radius:5px}
+		.groupinfo p{ margin-bottom:0; clear:both; line-height:30px; padding:10px 0; overflow:hidden}
+		.groupinfo p strong{ float:left}
+		.groupinfo p a{ float:right; font-size:2.5em; color:#690; font-weight:bold}
+		.groupinfo p a img{ vertical-align:top}
+		.groupinfo p a.pay{ color:#f60}
+		.groupinfo p a.pay sub{ color:#f90; bottom:1em; font-size:14px;}
+		.groupinfo p span{ display:inline-block; }
+		
+		/*浜掕瘎璁板綍*/
+		.credit_list{ line-height:50px;}
+		.credit_list p{ margin-bottom:0; font-size:14px}
+		.credit_list .comment{ color:#999}
+		.credit_list .comment a{ font-weight:bold}
+	
+	/* 1.1.5绌洪棿璁剧疆
+	 -----------------------------------------------------*/
+		/*妗堜緥绠＄悊銆佹垚鍛樼鐞?/
+		.case_title{ background-color:#F5F5F5; border:1px solid #ccc; line-height:35px;}
+			.case_title .gj_bg{ background: #2F549F url(../img/style/box_title.gif) no-repeat right -2px; color:#fff; padding-left:10px; min-width:200px;_width:expression((document.documentElement.clientWidth||document.body.clientWidth)< 200 ? "200px":"");}
+			.case_word_title{ padding-left:220px}
+		.case_box{border:1px solid #ccc; border-top:none;}
+			.case_info{width:200px; top:0; left:0; z-index:1;}
+				.case_info ul li.t_c a{width:180px; white-space:nowrap; overflow:hidden; display:block;}
+					.case_info ul li.t_c a:hover{width:auto; overflow:visible; background:#fff;}
+					.case_info ul li.t_c a span:hover{height:25px; background:#fff; display:inline-block;}
+			.case_word{min-height:319px; margin-left:200px;}
+
+/* 1.2 澧炲€兼湇鍔?
+ -----------------------------------------------------*/
+	/* 1.2.1 宸ュ叿绠?
+	------------------------------------------------------*/
+		/*宸ュ叿璐拱*/
+		.info p{ margin-bottom:0; line-height:18px;}
+
+
+	/* 1.2.2 璁よ瘉涓績(绗笁銆佸洓姝?
+	 -----------------------------------------------------*/
+		.e_title_width{width:85px; float:left; margin-right:10px;}
+
+/* 1.3瀹屾垚姝ラ椤甸潰
+ -------------------------------------------------------*/
+	/* 1.3.1 涓汉璁剧疆--閾惰璐︽埛--鏂板璐︽埛鎴愬姛锛堢鍥涙锛?
+		 	  璐㈠姟绠＄悊--璐﹀彿鍏呭€?-绛夊緟鍚庡彴瀹℃牳;
+		 	  璐㈠姟绠＄悊--璐﹀彿鎻愮幇--瀹屾垚鎻愮幇  ; 
+	--------------------------------------------------------*/
+		.box.complete .completedata{border-bottom:none; overflow:hidden;}
+		.box.complete .completedata li{ padding:10px;}
+		.box.complete .completedata li img{display:block; float:left;margin-right:10px;}
+		#ie8 .account1 .pay_way{width:140px !important;}
+		#ie8 .form_box label.pay_way{width:95px; overflow:hidden;}
+		#ie6 .form_box label.pay_way{width:90px; overflow:hidden;}
+/* 1.4鏍囩椤甸潰
+ -------------------------------------------------------*/
+	/* 1.4.1  涓汉鐢ㄦ埛娉ㄥ唽锛堢浜屾锛?
+	       涓汉璁剧疆--鍩烘湰璧勬枡-- 濞佸鎶€鑳?
+	----------------------------------------------------------- */
+		.tags_add a{width:80px; background:#2F549F; color:#fff; text-align:center; line-height:25px; height:25px; margin:0 5px 5px 0; font-size:12px; float:left; *display:inline-block;}
+
+/*  閫夐」妗? */
+select{margin-right:5px;}
+
+
+.box .box_header .box_nav:before,
+.box .box_header .box_nav:after {  content: '\0020';  display: block;  overflow: hidden;  visibility: hidden;  width: 0;  height: 0;}
+.box .box_header .box_nav:after {clear: both;}
+.box .box_header .box_nav {zoom: 1;}	
+/*鍏敤*/
+
+.box.default.model_bord .box_header{border-color:#F4F4F4;}
+/* 瀹炲悕璁よ瘉绗笁姝?*/
+.last_step_three .box.complete{border-color:#ccc; background:#fff;}
+	.last_step_three .last_success_step{border:1px solid #ccc; margin:50px 0;}
+	.last_step_three .box.complete .completedata{border:none; margin:40px auto 0; padding:0 50px 0 40px; _padding:0 30px 0 0;}
+		.last_step_three .box.complete .completedata li{border:none; padding:5px 10px;}
+.messages{margin-left:10px; margin-right:10px;}		
+
+.buy_list{ width: 102%;}
+.buy_list .item{ float:left; display:inline; margin-right:15px; width:48%; height:150px; margin-bottom: 30px; border-bottom: 1px dashed #ddd}
+.buy_list .item .img{ float: left; text-align: center; width: 30px;}
+.buy_list .item .item_txt{ padding-left: 30px;}
+
+.float_row dt{ float: left; width: 120px; font-weight: bold}
+.float_row .detail{ padding-left: 120px;}
+
+@media only screen and (min-width: 320px) and (max-width: 640px){
+ .box .box_nav,
+ .box .btns,
+ .box .box_detail{ visibility:visible; height:auto; padding-top:5px !important; padding-bottom:5px !important; overflow:visible;}
+}
+
+/* finance_info */
+.finance_info dt,.security_strength dt{font-size: 14px;font-weight: bold;float: left;display: inline-block;height: 70px;line-height: 30px;color: #333;}
+	.finance_info dd,.security_strength dd{line-height: 30px;}
+		.finance_info dd a,.security_strength dd a{margin-right: 20px;}
+			.finance_info dd a:hover,.security_strength dd a:hover{text-decoration: underline;}
+/* all_authent */
+.all_authent dd{background: #f4f4f4;margin-right: 10px;margin-top: 10px;padding: 10px;float: left;height: 90px;width: 44.5%;display:inline;}
+.all_authent dd img{width: 16px;height: 16px;overflow: hidden;display: inline-block;}
+
+/* tab */
+.tab {
+    position: relative;
+	overflow:hidden;
+    z-index: 2;
+    top:1px;
+}
+.tab a {
+	position:relative;
+	border:1px solid #ccc;
+    background: #F3F3F3;
+    padding:5px 20px;
+	height:25px;
+	line-height:25px;
+	overflow:hidden;
+	float:left;
+	margin-right:5px;
+	font-size: 14px;
+}
+.tab a.selected{border-bottom-color:#fff; background:#fff; padding-right:30px; }
+.tab a .arrow {
+	position:absolute;
+	top:15px; 
+	right:10px;
+    border-color: #999999 #F3F3F3 #F3F3F3;
+    border-style: solid;
+    border-width: 4px;
+    display: none;
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    margin-left: 5px;
+    vertical-align: middle;
+    width: 0;
+}
+.tab a:hover {
+    background: none repeat scroll 0 0 #FFFFFF;
+    text-decoration: none;
+}
+.tab a:hover .arrow {
+    border-color: #666666 #FFFFFF #FFFFFF;
+}
+.tab a.selected .arrow {
+    border-color: #2F549F #FFFFFF #FFFFFF;
+	display:block;
+}

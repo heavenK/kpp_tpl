@@ -1,0 +1,176 @@
+<!--{eval $page_title=$task_info[task_title].'--'.$_K[html_title];}-->
+<!--{template header}-->
+<script type="text/javascript"> 
+	In('task');
+</script>
+ <!--页面内容区-->
+ <div class="wrapper">
+  <!--页面头部-->
+  <header class="clearfix page_header">
+    <div class="container_24 clearfix">
+      <!--面包屑-->
+      <div class="po_re clearfix">
+         <div class="breadcrumbs clearfix">
+              <a href="{$_K['siteurl']}/index.php">{$_lang[home]}</a>\<a href="{$_K['siteurl']}/index.php?do=task_list">{$_lang[task_hall]}</a>\
+          	  <a href="{$_K['siteurl']}/index.php?do=task_list&path=A{$task_info[indus_pid]}">{$indus_p_arr[$task_info[indus_pid]][indus_name]}</a>
+          		\<a href="{$_K['siteurl']}/index.php?do=task_list&path=A{$task_info[indus_pid]}">{$indus_arr[$task_info[indus_id]][indus_name]}</a>
+         </div>
+        <!--end 面包屑-->
+        <div class="grid_19">
+           <div class="page_title ws_break">
+                <h2 class="title">
+                   <strong class="red mr_10">￥{$task_info[task_cash]}</strong>
+                            <a href="index.php?do=task&task_id={$task_id}">{$task_info[task_title]}</a>
+                </h2>
+               <div class="page_sub_title c666 mb_10">
+                     <span>{$_lang['task_pub_time']}{$_lang['zh_mh']}<!--{date('Y-m-d H:i',$task_info[start_time])}--></span>
+                    <span class="border_l_c mar10">&nbsp;</span>
+                     <a class="mre_task_kind c333" href="javascript:void(0);" title="{$_lang['only_one_can_bid']},威客中标后将得到：{c:$cash};">{$model_list[$task_info['model_id']]['model_name']}{$_lang['model']}<span>&nbsp;</span></a>
+                     <span class="border_l_c mar10">&nbsp;</span>
+                     <span>{$_lang['id']}{$_lang['zh_mh']}#{$task_id}</span>
+                     <span class="border_l_c mar10">&nbsp;</span>
+                     {$task_info['view_num']} {$_lang['people']}{$_lang['view']}
+                    <span class="border_l_c mar10">&nbsp;</span>
+                    <span>{$show_payitem}</span>
+                </div>
+            </div>
+        </div>
+       <div class="grid_5">
+		<div class="mre_r_con clearfix">
+			<div class="control clearfix">
+				<span id="is_bided">{$is_bided}</span>
+				{if $union_hand}
+					<a href="{$union_hand}" class="submit block">我要交稿</a>
+				{/if}
+			</div>
+		</div>
+		</div>
+      </div>
+      <div class="clear"></div>
+      <!--页面子导航-->
+    	<div class="po_re grid_24" id="header_nav" >
+        <nav class="clearfix page_nav po_re" id="top_nav">
+          <ul>
+              <li {if !$view||$view=='base'}class="selected"{/if}>
+             	  <a href="{$basic_url}" title="{$_lang[description]}">
+                	<span class="icon16 notepad-2 mr_5"></span> {$_lang[description]}
+                </a>
+              </li>
+              <li {if $view=='work'}class="selected"{/if}>
+             	  <a href="{$basic_url}&view=work" title="{$_lang[work]}[{$task_info[work_num]}]">
+                	<span class="icon16 spechbubble-sq-line mr_5"></span>{$_lang[work]} <span class="c999">[{$task_info[work_num]}]</span>
+                </a>
+              </li>
+              <li class="border_n">
+               <a href="$task_info['siteurl']" target="_blank" title="查看原站">
+                <sapn class="icon16 expand"></span>
+                </a>
+              </li>
+          </ul>
+    	   </nav>
+    	<!--end 页面子导航-->
+      </div>
+	  
+	  
+	  	
+</header>
+<!--end 页面头部-->
+ <!--详细内容区-->
+  <section class="content">
+  <!--布局框-->  
+  <div class="container_24">
+  	<!--左边导航 start-->
+	 <div class="second_menu container_24 po_ab hidden" id="left_nav">
+        <div class="suffix_23 pull_1">
+            <nav class="minor_nav box">
+                <ul class="nav_group">
+                   <li >
+			         	<a href="{$basic_url}" title="{$_lang[description]}" {if !$view||$view=='base'}class="selected"{/if}>
+			            	<div class="icon16 notepad-2 mr_5">{$_lang[description]}</div>
+			            </a>
+			         </li>
+			         <li>
+			         	<a href="{$basic_url}&view=work" title="{$_lang[work]}[{$task_info[work_num]}]" {if $view=='work'}class="selected"{/if}>
+			            	<div class="icon16 spechbubble-sq-line mr_5">{$_lang[work]}[{$task_info[work_num]}]</div>
+			            </a>
+			         </li>
+			        
+                </ul>
+                <ul class="nav_group">
+					<li>
+			         	<a href="javascript:void(0);" class="" title="{$_lang[stay_top]}">
+			            	<div class="icon16 arrow-top-right" id="arrow-top-right">{$_lang[stay_top]}</div>
+			            </a>
+			         </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+  	<!--左边导航 end-->
+
+   <!--章节1-->
+   <section class="clearfix section">
+    <!---->
+    <div class="show_panel grid_24 po_re">
+     <div class="panel clearfix box basic_style">
+      {if !$view||$view=='base'}
+      <!--布局 左-->
+      
+        <!--布局 内边距-->
+         <div class="pad20">
+         <!--内容1-->
+       <details open class="mb_20 " id="details">
+       <!--标题-->
+        <summary  class="pad5 fontb">{$_lang[requirement]}</summary>
+         <!--内容-->
+			<pre class="pl_10 ws_prewrap ws_break" ><!--{eval echo kekezu::escape($task_info[task_desc])}--></pre> 
+      </details>
+      <!--end 内容1-->
+   </div>
+   <!--end 布局 内边距-->
+
+  <!--end 布局 左-->
+  <!--布局 右-->
+ 
+      <!--end 布局 右-->
+   {elseif $view=='work'}
+   		<!--{template task/prom/tpl/default/task_work}-->
+   {/if}
+       <div class="clear"></div>
+        <!--工具栏-->
+         <!--  <div class="operate fl_r mt_10">
+ 
+            <a href="index.php" class="" title="{$_lang[return_home]}"><div class="icon16 home">{$_lang[return_home]}</div></a>
+ 
+            <a href="javascript:void(0)" class="scrollTop" title="{$_lang[return_top]}"><div class="icon16 arrow-top">{$_lang[return_top]}</div></a>
+          </div> -->
+        <!--end 工具栏-->
+       </div>
+   </div>
+   <!---->
+   </section>
+   <!--end 章节1-->
+    </div>
+    <!--end 布局框-->     	
+   </section>
+   <!--end 详细内容区-->
+  </div>
+<!--end 页面内容区-->
+ 
+<script type="text/javascript" src="resource/js/jqplugins/jQuery.mouseDelay.js"></script>
+<script type="text/javascript">
+	var guid  	 	= parseInt($task_info['uid'])+0;
+	var task_id		= parseInt($task_id)+0;
+	var uid 		= parseInt('{$uid}')+0;$(function() {
+	$(function(){
+		var loading = parseInt($(".process li.selected").index()) + 1;
+		$(".progress_bar").css("width", loading * 33.33 + "%");
+	})
+})
+</script>
+<!--{template footer}-->	
+
+
+
+
+

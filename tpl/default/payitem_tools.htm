@@ -1,0 +1,123 @@
+{if $_K['map_api']=='baidu'}
+<script type="text/javascript" src="{$_K['baidu_api']}"></script>
+{else}
+<script type="text/javascript" src="{$_K['google_api']}"></script>
+{/if}
+<script type="text/javascript">
+In('form');
+</script>
+<div class="grid_24">
+<div class="panel clearfix box">
+<form action="index.php?do=task&task_id={$task_id}&view=tools" method="post" name="frm_payitem" id="frm_payitem">
+	<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}">
+	<input type="hidden" name="px" id="px" value="30.51667"/>
+   	<input type="hidden" name="py" id="py" value="114.31667"/>					 
+  	<input type="hidden" name="zo" id="zo" value="10"/>
+   	<input type="hidden" name="point" id="point">
+   	<input type="hidden" name="province" id="hdn_province"/>
+	
+
+<div class="tools clearfix">
+		<!--{eval $total=0;}-->
+		{loop $payitem_arr $k $v}
+		<!--{eval $exist_num = intval($exist_payitem_arr[$v['item_code']]);$total+=$exist_num;}-->
+		<input type="hidden" name="payitem[]" value="$v['item_id']">
+		<div class="tool_list">
+			<div class="img"> 
+				<img alt="$v['item_name']" src="$v['small_pic']" title="$v['item_name']">
+				<strong>$v['item_name']</strong>	
+            </div>
+
+			<div class="tool_text">
+				
+				{if $exist_num>0}
+				{if $v['item_code']!='map'&&$v['item_code']!='seohide'}
+				  
+					<button type="button" name="is_submit"  class="button" onclick="use_tool('{$v[item_code]}')">{$_lang['using']}</button>
+				 
+				
+				{elseif $v['item_code']=='map'}
+					  
+							{if !$task_info['city']} 
+
+								<button type="button"  class="button" onclick="set_map('{$v[item_id]}');" >{$_lang['set_area']}</button>
+							{/if}
+				
+						
+	           {elseif $v['item_code']=='seohide'}
+							{if !strpos(', '.$task_info[pay_item],' '.$k)} 
+								<button type="button" name="is_submit"  class="button" onclick="use_tool('{$v[item_code]}')">{$_lang['using']}</button>
+							{/if}
+				{elseif !$task_info['point']}
+						   
+						   <input type="hidden" name="payitem_num[{$v['item_id']}]" id="payitem_map"/>
+						   <div class="hidden" id="use_map">
+						   	 	<label>{$_lang['using']}{$_lang['zh_mh']}</label><input type="checkbox" temp="payitem_map"/>
+						   </div>
+
+				{/if}
+				
+				<span>
+					您已购买了此工具，剩余
+						<strong class="cc00">$exist_num</strong>
+						{if $v['item_code']!='map'&&$v['item_code']!='seohide'}		
+							天
+						{else}
+							次
+						{/if}
+				</span>
+						
+				
+				
+				{else}
+				<!--{eval $now_time = time();}-->
+				 
+				   {if $v['time']!=1000000000}
+					您已没有此工具了，
+					{else}
+				    {$_lang['have_not_buy_tool']}，
+					{/if}
+				
+				  
+				     <a href='index.php?do=user&view=payitem&op=toolbox' target="_blank" class="mr_10">立即去{$_lang['buy_now']}</a>
+				{/if}
+				
+				<span >
+					<i></i>
+					{if $v['item_code']=='map'}
+					    {if $task_info['city']}
+						<span class="msg msg_ok">{$_lang['had_set_area']}{$_lang['zh_mh']}$task_info['city']</span>
+						{/if}
+					{else}
+					  {if $v[time]&&$v[time]!=1000000000}
+					    	<span class="msg msg_ok">您已使用了该工具，将$v['item_name']至<!--{eval echo date('Y-m-d',$payitem_arr_desc[$v['item_code']]);}-->。</span>
+					  {/if}
+					{/if}
+				</span>
+			</div>		 
+		</div>
+		{/loop}
+	
+	</div>
+
+</form>
+</div>
+
+<script type="text/javascript" >
+	function set_map(item_id){ 
+		showWindow("map","index.php?do=release&r_step=step3&ac=show_map&task_id={$task_id}&item_id="+item_id,'get',0);return false;
+	}	
+	function sbt_payitem(){ 
+			if($("#point").val()){
+				$("input[temp='payitem_map']").attr("checked","checked");
+			formSub('frm_payitem','form',true);
+	
+	}
+	}
+	function use_tool(obj){
+		var task_id = "{$task_id}";
+		showWindow("use_tool",'index.php?do=task&view=tools&opp=tips&task_id='+task_id+'&obj='+obj,'get','0');
+	}
+	
+</script>
+<!--end 列表内容-->

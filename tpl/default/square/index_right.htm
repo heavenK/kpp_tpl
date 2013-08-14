@@ -1,0 +1,60 @@
+<div class="index_right clearfix">
+	                      {if $uid}
+							<div class="person_info clearfix">
+								<!--{userpic($uid,'middle')}-->
+							</div>
+							<div class="name_box">
+								<p><a href="index.php?do=space&member_id={$uid}" target="_blank">{$username}</a></p>
+								<p class="mb_10"><!--{eval $seller_leve=unserialize($user_info['seller_level'])}-->{$seller_leve['pic']}</p>
+								<p><!--{eval $buyer_leve=unserialize($user_info['buyer_level'])}-->{$buyer_leve['pic']}</p>
+							</div>	
+							<div class="clear"></div>
+							<div class="user_atten clearfix user_atten_l">
+								<ul>
+									<li>
+										<a href="index.php?do=square&view=demand" class="s_func1" target="_blank">
+											<strong>{$t_count}</strong>
+											<span>需求</span>
+										</a>
+
+									</li>
+									<li >
+										<a href="index.php?do=square&view=goods" class="s_func1" target="_blank">
+											<strong>{$s_count}</strong>
+											<span>商品</span>
+										</a>
+
+									</li>
+									
+								</ul>
+
+							</div>
+							<div class="clear"></div>
+							<div class="balance weibo">
+								<div class="box_header clearfix">
+									<h2>余额</h2>
+									<div class="active">
+										<a href="index.php?do=user&view=finance&op=recharge" target="_blank">充值</a>
+										<a href="index.php?do=user&view=finance&op=withdraw" target="_blank">提现</a>
+									</div>
+								</div>
+								<div class="box_detail">
+								<p>现金：<span class="org">{c:$user_info['balance']}</span></p>
+								<p>元宝：<span class="org">{c:$user_info['credit']}</span></p>
+								</div>
+							</div>
+							{/if}
+							<div class="clear"></div>
+							<div class="notice_right weibo">
+								<div class="box_header clearfix">
+									<h2>公告</h2>
+								</div>
+								<div class="box_detail">
+								 <ul class="no_right_detail">
+								 	{loop $bulletin_arr $v}
+								 	<li><a href="index.php?do=single&art_id={$v['art_id']}" target="_blank">$v[art_title]</a></li>
+								 	{/loop}
+								 </ul>
+								</div>
+							</div>
+					</div>

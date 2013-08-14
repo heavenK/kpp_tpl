@@ -1,0 +1,214 @@
+<!--内容部分--><!--  帮助 start -->
+<div class="help_center">
+    <div id="help_center" class="help_detail hidden">
+        <p>
+            <!--{eval echo kekezu::filter_input($model_info['model_desc'])}-->
+        </p>
+    </div>
+    <div class="help_down ">
+        <a href="#" class="action_show">说明<span class="arrow_b"></span></a>
+    </div>
+</div>
+<!--  帮助 end --><!--from表单 start-->
+<div class="form_box clearfix box border_n">
+    <form action="{$basic_url}" method="post" name="frm_step1" id="frm_step1" enctype="multipart/form-data">
+        <input type="hidden" name="step1" value="step1"><input type="hidden" name="p_step" value="step1"><input type="hidden" name="formhash" value="{FORMHASH}">
+        <div class="rowElem clearfix">
+            <label class="grid_3">
+                <strong>{$_lang['goods_class']}：</strong>
+            </label>
+            <div class="grid_20">
+                <select name="indus_pid" id="indus_pid" onchange="showTaskIndus(this.value)" limit = "required:true;between:5-10" msg = '{$_lang['industry_class_has_not_choose']}' msgArea="span_indus">
+                    <option value="">{$_lang['please_choose_class']}</option>
+                    {loop $indus_p_arr $v}<option value="{$v['indus_id']}" {if $release_info['indus_pid']==$v['indus_id']}selected{/if}>{$v['indus_name']} </option>
+                    {/loop}
+                </select>
+                <select name="indus_id" id="indus_id" limit="required:true;between:5-10" msg='{$_lang['industry_son_class_not_choose']}' title='{$_lang['your_goods_what_industry']}' msgArea="span_indus">
+                    <option value="">{$_lang['please_choose_son_class']}</option>
+                    {if $release_info['indus_id']}
+                    {loop $indus_arr $k $v}<option value="{$v['indus_id']}" {if $release_info['indus_id']==$v['indus_id']}selected{/if}>{$v['indus_name']} </option>
+                    {/loop}
+                    {/if}
+                </select>
+                <span class="cc00 mr_5">*</span>
+                <span id="span_indus"></span>
+            </div>
+        </div>
+        <div class="rowElem clearfix po_re">
+            <label class="grid_3">
+                <strong>{$_lang['goods_name']}：</strong>
+            </label>
+            <div class="grid_20">
+                <input name="txt_title" type="text" value="{$release_info['txt_title']}" title="{$_lang['you_submit_goods_notice']}" size="34" msgArea="span_title" msg="{$_lang['please_input_goods_name']}" limit="required:true;len:5-50" id="txt_title" maxlength=50 style="width:535px" class="mr_5"/><span class="cc00 mr_5">*</span>
+                <span id="span_title">{$_lang['goods_name_max_word']}</span>
+            </div>
+        </div>
+        <div class="rowElem clearfix">
+            <label class="grid_3">
+                <strong>{$_lang['goods_description']}：</strong>
+            </label>
+            <div class="grid_14 ">
+                <textarea style="width:100%" cols="65" rows="25" name="tar_content" title="{$_lang['goods_detail_description']}" id="tar_content" msgArea="msg_content" class="xheditor-simple {urlBase:'$_K['siteurl']/',html5Upload:false,upImgUrl:'index.php?do=ajax&view=upload&file_type=att',skin:'nostyle'}">
+                    <!--{eval echo kekezu::escape($release_info['tar_content'])}-->
+                </textarea>
+                <script type="text/javascript" src="resource/js/xheditor/xheditor.js">
+                </script>
+                <script type="text/javascript">
+                    $(function(){
+                        editor = $("#tar_content").xheditor();
+                        
+                    })
+                    
+                </script>
+            </div>
+            <div class="grid_6">
+                <span class="cc00 mr_5">*</span>
+                <span id="msg_content"></span>
+            </div>
+        </div>
+        <!--上传内容-->
+        <div class="rowElem clearfix ">
+            <label class="grid_3">
+                <strong>{$_lang['upload']}图片{$_lang['zh_mh']}</strong>
+            </label>
+            <!--上传内容-->
+            <div class="grid_20 po_re">
+                <input type="file" class="file" name="upload" id="upload">
+                <div class="po_ab" style="left:150px;top:5px;">
+                    <span class="mr_20">最多可添加5个附件</span>
+                    <a href="javascript:void();" class="file_type" title="<ol class='t_l'><li>{$_lang['upload_max']}{$basic_config['max_size']}M.</li><li>{$_lang['upload_style']}{$ext}</li></ol>">无法上传?</a>
+                </div>
+                <input type="hidden" name="file_ids" id="file_ids">
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function(){
+                uploadify({
+                    auto: true,
+                    size: "{$basic_config['max_size']}MB",
+                    exts: '{$ext}',
+                    limit: 5
+                }, {
+                    fileType: 'service',
+                    objType: 'service'
+                });
+            })
+        </script>
+        <div class="rowElem clearfix">
+            <label class="grid_3">
+                <strong>{$_lang['sell_price']}：</strong>
+            </label>
+            <div class="grid_20">
+                <input name="txt_price" type="text" id="txt_price" value="<!--{eval number_format($release_info[txt_price],2,',','.');}-->" msgArea="span_price" size="13px" 
+                limit="required:true;type:float;between:{$goods_config['min_cash']}-" 
+                msg="{$_lang['sell_min_money']}{$goods_config['min_cash']}{$_lang['yuan']}" 
+                title="{$_lang['input_goods_sell_price']}{$goods_config['min_cash']}{$_lang['yuan']}"/><span class=" ml_5">{$_lang['yuan']}/</span>
+                <select name="unite_price" id="unite_price" style="width:110px;">
+                    {loop $price_unit $v}<option value="{$v}" {if $release_info['unite_price']==$v}selected{/if}>{$v} </option>
+                    {/loop}
+                </select>
+                <span id="span_price"></span>
+            </div>
+            <span class="grid_4 omega"></span>
+        </div>
+        <div class="rowElem clearfix">
+            <label for="fileField" class="grid_3">
+                <strong>{$_lang['pay_way']}：</strong>
+            </label>
+            <div class="grid_20">
+                <input class="border_n" type="radio" id="pay_out" name="submit_method" value="outside" {if $release_info['submit_method']=='outside' ||!$release_info['submit_method']}checked{/if}>
+                <label for="pay_out">
+                    {$_lang['website_out_pay']}
+                </label>
+                <input class="border_n" type="radio" id="pay_down" name="submit_method" value="inside" {if $release_info['submit_method']=='inside'}checked{/if}>
+                <label for="pay_down">
+                    {$_lang['wensite_in_download']}
+                </label>
+            </div>
+            <span class="grid_4 omega"></span>
+        </div>
+        <div class="rowElem clearfix" id="submit_method">
+            <label class="grid_3">
+                <strong>{$_lang['goods_original']}</strong>
+            </label>
+            <!--上传内容-->
+            <div class="grid_20 po_re">
+                <input type="file" class="file" name="file_upload_i" id="file_upload_i">
+                <div class="po_ab" style="left:150px;top:5px;">
+                    <span class="mr_20">{$_lang['upload_limit']}<!--{eval echo max($goods_config['max_filecount'],1);}-->个附件</span>
+                    <a href="javascript:void();" class="file_type" title="<ol class='t_l'><li>{$_lang['upload_max']}{$basic_config['max_size']}M.</li><li>{$_lang['upload_style']}*.rar;*.zip</li></ol>">无法上传?</a>
+                </div>
+                <input type="hidden" name="file_path_2" id="file_path_2">
+            </div>
+            <script type="text/javascript">
+                var max_filecount = "{$goods_config['max_filecount']}";
+                max_filecount ? '' : max_filecount = 1;
+                $(function(){
+                    uploadify({
+                        auto: true,
+                        size: "{$basic_config['max_size']}MB",
+                        exts: '*.rar;*.zip',
+                        file: 'file_upload_i',
+                        
+                        limit: max_filecount
+                    }, {
+                        fileType: 'att',
+                        objType: 'service'
+                    });
+                })
+            </script>
+            <!--end 上传内容-->
+        </div>
+		<div class="rowElem clearfix" id="kefu_help">
+            <label class="grid_3">
+                <strong>协助流程：</strong>
+            </label>
+            <!--上传内容-->
+            <div class="grid_20 po_re">
+                <textarea name="kefu" disabled="true" cols="60" rows="3">服协助交付的流程介绍</textarea>
+            </div>
+            
+            <!--end 上传内容-->
+        </div>
+    </form>
+</div>
+<!--from表单 end-->
+<div class="step_button">
+    <span class="ml_10">
+        <label>
+            <input type="checkbox" name="agreement" id="agreement" checked="checked">{$_lang['agree']}《<a href="index.php?do=protocol&pro_id=221" class="agreement_link">作品出售协议</a>》
+        </label>
+    </span>
+    <button type="submit" name="is_submit" onclick="return check_file();" class="button" id="cfile_btn" style="display:none">
+        <span class="check icon"></span>{$_lang['next']}
+    </button>
+    
+    <button type="submit" name="is_submit" onclick="stepCheck();" class="button" id="file_btn">
+        <span class="check icon"></span>{$_lang['next']}
+    </button>
+</div>
+<!--源文件协议内容-->
+<div class="source_content clearfix hidden" id="agreement_info">
+    <div class="source_agreement">
+        <h5 class="font14b t_c">{$_lang['goods_sell_agreement']}</h5>
+        <!--{tag 作品出售协议}-->
+    </div>
+</div>
+<script type="text/javascript">
+<!--
+	function check_file(){
+		if($("#file_path_2").val()){
+			stepCheck();
+		}else{
+			showDialog('您选择了直接下载方式，必须上传作品文件！','alert','操作提示');
+			return false;
+		}
+		return false;
+	}
+//-->
+</script>
+<script src="resource/js/uploadify/jquery.uploadify-3.1.min.js" type="text/javascript"></script>
+
+<link href="resource/js/uploadify/uploadify.css" rel="stylesheet">
+<!--end 源文件协议内容-->
+<!--end 内容部分-->

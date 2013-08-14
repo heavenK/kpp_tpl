@@ -1,0 +1,220 @@
+<!--{template header_user_top}-->
+<div class="blank1"></div>
+<!--contain start-->
+<div class="yhcenter">
+    	<!--  账号设置 begin -->
+    	<div class="yhzhbox tabCon">
+        	
+            
+            <!--{template user_base_left}-->
+            
+            <div class="yhzhright">
+            	<div class="ac_zl">
+           		<div class="ac_zltop">
+                	<span><b>资料完善</b></span>
+                </div>
+                <div class="ac_zlwsbox">
+                    <div class="ac_zlws">
+                        <ul class="zlws">
+                            <li class="ws"><a href="index.php?do=user&view=setting&op=basic&opp=contact">基本资料</a></li>
+                            <li class="ws"><a href="index.php?do=user&view=setting&op=basic&opp=exp">成长经历</a></li>
+                            <li class="zl"><a href="index.php?do=user&view=setting&op=basic&opp=cert">技能证书</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="prefix_1 suffix_1 mt_10">
+         <div class="clearfix box font14">
+            <!--messages消息 start-->
+              <div id="messages"></div>
+                <!--messages消息 end-->
+                  <div class="suffix_1 clearfix  pb_20 pt_10">
+                     <div class="grid_8">
+                       <h4 class="mb_10">{$_lang['certificate_has_been_uploaded']}</h4>
+                         <div class="upd_infos">
+                            <ul id="upd_infos">
+                               {loop $cert_info $v}
+                                 <li class="clearfix" id="{$v['ext_id']}">
+                                     <span class="font14 grid_8"><a href="{$v['v2']}">{$v['v1']}</a></span>
+                                     <a href="javascript:;" onclick="del_cert($v['ext_id'],$v['v3'])" class="close">&times;</a>
+                                 </li>
+                                {/loop}
+                            </ul>
+                           </div>
+                      </div>
+                     <div class="grid_9" style="float:right;">
+                     	<form id="frm_cert" name="frm_cert">
+                        <h4 class="mb_10 border_b_c">{$_lang['upload_cert']}</h4>
+                            <div class="clear"></div>
+							<div class="rowElem clearfix">
+                               <label class="grid_2 t_r">{$_lang['cert_pic']} </label>
+                               <div class="grid_5">
+								  <input class="txt_input" type="file" name="file_name" id="file_name">
+                              </div>
+                            </div>
+							<div class="rowElem clearfix" id="cert_name_area">
+                               <label class="grid_2 t_r">{$_lang['cert_name']} :</label>
+                               <div class="grid_6">
+								 	<input class="txt_input" type="text" size="19" name="cert_name" id="cert_name" value="{$_lang['skill_name_example']}" onfocus="if(this.value=='{$_lang[skill_name_example]}') this.value='';this.style.color='#333';"  style="color:#999;" limit="required:true;len:2-20"
+									msg="{$_lang['cert_name_can_not_be_none']}" msgArea="span_cert">
+                               	<span id="span_cert"></span>
+								
+								</div>
+                            </div>
+							<div class="rowElem clearfix">
+								 <label class="grid_2 t_r">&nbsp; </label>
+                               <div class="grid_5">
+								    <button type="button" style="width:150px" onclick="fileUpload();" id="btn_up">
+	                                   {$_lang['save_setting']}
+	                                </button>
+                               </div>
+                            </div>
+						</form>
+                      </div>
+                      </div>
+                   </div>
+                 </div>
+              <!--detail内容 end-->
+            </div>
+          <!--main content end-->
+         </div>
+       <div class="clear"></div>
+                    
+                    
+                </div>
+           </div>
+
+           </div>
+           
+            
+        </div>
+        
+        
+    </div>
+    <!-- center end -->
+</div> 
+<script type="text/javascript">
+		$(function(){
+			uploadify({
+					auto:false,
+					file:'file_name',
+					hide:true,
+					size:"{$basic_config['max_size']}MB",
+					exts:'*.gif;*.jpg;*.jpeg;*.png',
+					limit:100,
+					text:"{$_lang['select_file']}"}
+				,{
+					fileType:'att',
+					objType:'user_cert'
+				});
+		})
+</script>
+<script src="resource/js/uploadify/jquery.uploadify-3.1.min.js" type="text/javascript"></script>
+<link href="resource/js/uploadify/uploadify.css" rel="stylesheet">
+<script type="text/javascript" >
+	In('calendar','form'); 
+    function fileUpload(){
+    	if($("#cert_name").val()=="{$_lang['skill_name_example']}"){
+    		$("#cert_name").val("");
+    	}
+		if(checkForm(document.getElementById('frm_cert'))){
+        	$('#file_name').uploadify('upload');
+		}
+    }
+	function showName(obj){
+	
+			$("#cert_name_area").slideDown(200);
+	}
+    /**
+	 * 上传完成后的后续操作
+	 * @param {Object} data 响应的json对象
+	 */
+	function uploadResponse(json){
+        var url = "index.php?do=user&view=setting&op=basic&opp=cert&ac=upload";
+          var uid = parseInt($uid) + 0;
+		  var cert_name = $("#cert_name").val();
+             $.post(url, {v1:cert_name,v2: json.msg.url,v3: json.fid, uid: uid}, function(data){
+	            if (data.status != '0') {
+	                var cert = $('<li class="clearfix" id="' + data.status + '">' +'<span class="font14 grid_8">' +
+	                            '<a href="' + json.msg.url +'">' +cert_name +'</a></span>' +
+	                            '<a href="javascript:;" onclick="del_cert(' +data.status +',' +json.fid +')"' +
+	                            ' class="close" >&times;</a></li>');
+	                   loadingControl('1', 'complete!');
+					  
+	                   setTimeout("tipsAppend('messages','" + data.msg + "','successful','m_correct')", 100);
+	                   cert.appendTo("#upd_infos");
+	            	  $("#cert_name").val("{$_lang['skill_name_example']}").css('color','#999');
+				}
+	           else {
+	                loadingControl('2', 'fail!');
+	                setTimeout("tipsAppend('messages','" + data.msg + "','error','m_error')", 100);
+	          }
+    	 }, 'json')
+	}
+    //删除上传项
+    function del_att(f_id, cert_id){
+        var uid = parseInt($uid) + 0;
+        var url = "index.php?do=ajax&view=ajax&ac=del_att&fid=" + f_id + "&uid=" + uid;
+        $.getJSON(url, function(json){
+            if (json.status == '1') {
+                if ($("#" + cert_id).length > 0) {
+                    del_cert(cert_id, f_id);
+                }
+                else {
+                    tipsAppend('messages', json.msg, 'successful', 'm_correct');
+                    $("#a_att_" + f_id).fadeOut().remove();
+                }
+            }
+            else {
+                tipsAppend('messages', json.msg, 'error', 'm_error');
+            }
+        });
+    }
+    
+    //删除证书
+    function del_cert(cert_id, f_id){
+        var url = "index.php?do=user&view=setting&op=basic&opp=cert&ac=del&cert_id=" + cert_id + "&f_id=" + f_id;
+        $.getJSON(url, function(json){
+            if (json.status == '1') {
+                $("#" + cert_id).fadeOut().remove();
+                tipsAppend('messages', json.msg, 'successful', 'm_correct');
+            }
+            else {
+                tipsAppend('messages', json.msg, 'error', 'm_error');
+            }
+        });
+    }
+    
+    /*上传控制条**/
+    function loadingControl(type, content){
+        var animated = $(".progress_bar").is("animated");
+        var loading = $(".progress_bar");
+        switch (type) {
+            case "1"://OK
+                if (animated) {
+                    loading.stop();
+                    loadingControl(type, content);
+                }
+                else {
+                    loading.css("width", "0px").html(L.uploading).animate({
+                        width: '300px'
+                    }, 2000, function(){
+                        loading.html(content);
+                    });
+                }
+                break;
+            case "2"://fail
+                if (animated) {
+                    loading.stop();
+                }
+                else {
+                    loading.html(content);
+                }
+                break;
+        }
+    }
+    
+</script>
+<!--contain end-->
+
+<!--{template user/user_footer}-->
+<!--{template footer}-->

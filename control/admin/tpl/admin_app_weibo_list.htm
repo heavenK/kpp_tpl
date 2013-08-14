@@ -1,0 +1,123 @@
+<!--{template control/admin/tpl/admin_header}-->
+<div class="page_title">
+    <h1>{$_lang['prom_relation_manage']}</h1>
+    <div class="tool">
+        <a href="index.php?do={$do}&&view={$view}" class="here">微博</a>
+    </div>
+</div>
+<div class="box search p_relative">
+    <div class="title">
+        <h2>{$_lang['search']}</h2>
+    </div>
+    <div class="detail">
+        <form method="post" action="index.php?do={$do}&view={$view}" id="frm_art_search">
+        <input type="hidden" name="page" value="{$page}">
+        <table cellspacing="0" cellpadding="0">
+         <tbody>
+           <tr>
+             <th>编号</th>
+              <td>
+                <input type="text" size='10' class="txt" name="space[id]" value="{$space['id']}" onkeyup="clearstr(this);">
+              </td>
+		     <th>标题</th>
+              <td>
+                <input type="text" size='10' class="txt" name="space[title]" value="{$space['title']}" onkeyup="clearspecial(this);">
+              </td>
+             <th>类型</th>
+              <td>
+                <input type="text" size='10' class="txt" name="space[type]" value="{$space['type']}" onkeyup="clearspecial(this);">
+              </td>
+            </tr>
+             <tr>
+                 <th>结果排序</th>
+                  <td>
+             		<select name="ord[]">
+                           <option value="weibo_id" {if $ord['0']=='weibo_id' or !isset($ord['0'])} selected="selected"{/if}>{$_lang['default']}{$_lang['order']}</option>
+                           	
+                      </select>
+                         <select name="ord[]">
+                            <option {if $ord['1']=='desc' or !isset($ord['1'])}selected="selected" {/if} value="desc">{$_lang['desc']}</option>
+                            <option {if $ord['1']=='asc'}selected="selected" {/if} value="asc">{$_lang['asc']}</option>
+                      </select>
+                   </td>
+              <th>
+                       显示结果
+               </th>
+                   <td>
+                     <select name="page_size">
+                          <option value="10" {if $page_size=='10'}selected="selected"{/if}>{$_lang['page_size']}10</option>
+                          <option value="20" {if $page_size=='20'}selected="selected"{/if}>{$_lang['page_size']}20</option>
+                          <option value="30" {if $page_size=='30'}selected="selected"{/if}>{$_lang['page_size']}30</option>
+                     </select>
+					 <button class="pill" type="submit" value="{$_lang['search']}" name="sbt_search"><span class="icon magnifier">&nbsp;</span>{$_lang['search']}</button>
+                   </td>
+                <th>
+                   &nbsp;
+                </th>
+                 <td>
+                 	&nbsp;
+                 </td>
+             </tr>
+          </tbody>
+        </table>　
+     </form>
+   </div>
+</div>
+	 <div class="box list">
+	 	<div class="title">
+ 	   <h2>{$_lang['prom_relation_manage']}</h2></div>
+		  <div class="detail">
+		  	 <form method="post" action="index.php?do={$do}&view={$view}" id="frm_list">
+		  	 	<input type="hidden" name="w[page_size]" value="{$page_size}">
+				<input type="hidden" name="page" value="{$page}">
+				<div  id="ajax_dom">
+			<table cellpadding="0" cellspacing="0">
+               <tbody>
+               	<tr>
+               		<th>
+	<input type="checkbox" id="checkbox" onclick="checkall();" class="checkbox" >编号
+</th>
+					<th>对象用户姓名</th>
+					<th>操作人名称姓名</th>
+					<th>标题</th>
+					<th>类型</th>
+					<th>留言数</th>
+					<th>收藏数</th>
+					<th>时间</th>
+                    <th width="130">操作</th>
+				</tr>
+				 {loop $weibo_list $key  $value}
+               	<tr class="item">
+               		<td><input type="checkbox" name="ckb[]" class="checkbox" value="{$value['weibo_id']}">{$value['weibo_id']}</td>
+					<td>{$value['obj_username']}</td>
+					<td>{$value['op_username']}</td>
+					<td><!--{eval echo kekezu::cutstr($value['obj_title'],20)}--></td>
+					<td>{if $value['detail_type']=='free_task'}免费需求{elseif $value['detail_type']=='free_service'}免费服务{else}{$model_info[$value['detail_type']][model_name]}{/if}</td>
+					<td>{$value['leave_num']}</td>
+					<td>{$value['focus_num']}</td>
+               		<td>
+               			<!--{date('Y-m-d H:i:s',$value['on_time'])}-->&nbsp;
+					</td>
+					<td>
+						<a class="button" href="index.php?do={$do}&view={$view}&op=del&pro_id=$value['weibo_id']" onclick="return cdel(this);"><span class="trash icon"></span>{$_lang['delete']}</a>
+					</td> 
+				</tr>
+				{/loop}	
+				<tr>
+                	<td colspan="10">
+                	{if $pages['page']}<div class="page fl_right">{$pages['page']}</div>{/if}
+                    <div class="clearfix">
+                           <label for="checkbox" onclick="checkall(event);">{$_lang['select_all']}</label>　
+							<input type="hidden" name="sbt_action" class="sbt_action"/>
+							<button type="submit" name="sbt_action" value="{$_lang['mulit_delete']}" onclick="return batch_act(this,'frm_list')" class="pill negative">
+							<span class="trash icon"></span>{$_lang['mulit_delete']}</button>&nbsp;&nbsp;
+					</div>
+				   </td>
+            	 </tr>	
+               </tbody>
+			</table>
+			</form>
+			</div>
+		  </div>
+
+<!--{template control/admin/tpl/admin_footer}-->

@@ -1,0 +1,80 @@
+<!--{template control/admin/tpl/admin_header}--> 
+
+<div class="page_title">
+	<h1>插件管理</h1>
+     
+</div>
+<!--页头结束--> 
+
+      <div class="box search p_relative">
+    	<div class="title"><h2>未启用的插件</h2></div>
+        <div class="gc" id="detail">
+        	<form>
+			<table cellspacing="0" cellpadding="0">
+			 <tbody>
+			 	{loop $plug_close $v}
+			 	<tr>
+			 		<th width="8%">$v['plug_name']</th>
+					<td><a href="index.php?do=app&view=app_center&ac=open&plug_id={$v[plug_id]}" class="button" type="button" >启用</a></td>
+					<td>$v[plug_desc]</td>
+					
+			 	</tr>
+				{/loop}	
+			 </tbody>
+			</table>
+			</form>
+        </div>
+	 </div>
+	 
+	  
+      <div class="box search p_relative">
+    	<div class="title"><h2>已启用的插件</h2></div>
+        <div class="gc" id="detail">
+        	<form>
+			<table cellspacing="0" cellpadding="0">
+			 <tbody>
+				{loop $plug_open $v}	
+				<tr>
+					<th width="8%">$v[plug_name]</th>
+					<td><a href="index.php?do=app&view=app_center&ac=close&plug_id={$v[plug_id]}" class="button" type="button" >关闭</a></td>
+					<td class="pl">
+						$v[plug_desc]
+					    <ul>
+					    	{loop $resource_new_arr[$v[submenu_id]] $v}
+					    	<li><a href="$v['resource_url']">$v[resource_name]</a></li>
+							{/loop}
+					    </ul>
+					</td>
+				</tr>
+				{/loop}
+			 </tbody>
+			</table>
+			</form>
+        </div>
+	 </div>
+
+     
+				
+<!--{template control/admin/tpl/admin_footer}-->
+<script type="text/javascript">
+	function open_plug(plug_id){
+		d = art.dialog;
+		c = "确认开启？";
+		var url = "index.php?do=app&view=app_center&ac=open&plug_id="+plug_id;
+		
+	d.confirm(c, function(){
+		window.location.href = url ;
+	});
+	return false;
+	}
+	function close_plug(plug_id){
+		d = art.dialog;
+		c = "确认关闭？";
+		var url = "index.php?do=app&view=app_center&ac=close&plug_id="+plug_id;
+		
+	d.confirm(c, function(){
+		window.location.href = url ;
+	});
+	return false;
+	}
+</script>

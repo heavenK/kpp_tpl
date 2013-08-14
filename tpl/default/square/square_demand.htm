@@ -1,0 +1,95 @@
+<!--{template header}-->
+<div class="wrapper">
+	<div class="mt_20">
+		<div class="container_24 clearfix">
+			<div class="box clearfix">
+				<!--{template square/left_nav}-->
+					<div class="core clearfix">
+						<!-- core_down start  -->
+						<div class="core_down clearfix">
+							<h2>{$_lang['pub_request_by_me']}</h2>
+							<div class="core_down_nav ml_20 mr_20">
+								<a href="index.php?do=square&view=demand" {if !$type} class="selected" {/if}>{$_lang['all']}</a>
+								<a href="index.php?do=square&view=demand&type=free_task" {if $type == 'free_task'} class="selected" {/if}>免费需求</a>
+								<a href="index.php?do=square&view=demand&type=task" {if $type == 'task'} class="selected" {/if}>{$_lang['need_task']}</a>
+								
+							</div>
+							<!-- <div class="msg msg_need block ml_20 mr_20">
+								<a href="#" class="block">{$_lang['has']}15{$_lang['click_view']}</a>
+							</div> -->
+							<div class="core_down_info mb_10 clearfix">
+								<input type="hidden" name="page" value="{$page}">
+									<input type="hidden" name="pagesize" value="{$pagesize}">
+								<ul>
+									{loop $task_list $k $v}
+									<li class="clearfix">
+										<div class="info_van clearfix">
+											<a href="index.php?do=space&member_id={$v['obj_uid']}" target="_blank" >
+											<!--<img src="http://localhost/kppw2.2/data/avatar/default/man_small.jpg" class="pic_small">-->
+											<!--{userpic($v['obj_uid'],big)}-->
+											<p class="c999">{$v['obj_username']}</p>
+										  </a>
+										</div>
+										<div class="info_body clearfix">
+										<div>
+											<span class="needs mr_5">{$_lang['need']} </span>
+											<a href="{if $v['detail_type']=='free_task'}index.php?do=square&view=task_detail&{else}index.php?do=task&{/if}task_id={$v['obj_id']}" target="_blank" class="task_info">{$v['obj_title']}</a>
+											 <!--{eval $time_desc = kekezu::time2Units(time()-$v[on_time],minute)}-->
+											<span class="ml_5 mr_5 c999">{if $time_desc}{$time_desc}{$_lang['ago']}{else}{$_lang['just']}{/if}</span>
+											<a href="index.php?do=space&member_id={$v['obj_uid']}" >{$v['obj_username']}</a><span class="c999">{$_lang['pub']}</span>
+										</div>
+										<div>{$_lang['fee']}：<span class="mr_5 org">
+											{if in_array($v['detail_type'],array('tender','dtender','match'))}
+										<!--{eval  $cash = intval($v[obj_cash])}-->
+										{c:$cash_cove[$cash][start_cove]}-{c:$cash_cove[$cash][end_cove]}
+										{else}
+										{c:$v['obj_cash']}
+										{/if}
+											</span>{$_lang['from']}：<span>{if $v['detail_type']=='free_task'}免费需求{elseif $v['detail_type']=='free_service'}{$_lang['free_goods']}{else}{$model_info[$v['detail_type']][model_name]}{/if}</span>
+										</div>
+										<div class="info_talk clearfix">
+											{if $v['detail_type']!='free_task' && $v['detail_type']!='free_service'}
+											<a href="javascript:void(0)" class="border_r_c"><span>{$v['work_num']}</span>{$_lang['bid']}</a>{/if}
+											
+											<a href="javascript:void(0)" class="border_r_c"><span>{$v['leave_num']}</span>{$_lang['message']}</a><a href="javascript:void(0)"><span>{$v['focus_num']}</span>{$_lang['favor']}</a>
+										</div>
+									</div>
+									<div class="site_stats" style="display:none;">
+											<!--<span id="up"><a href="javascript:void(0)" onclick="hide_tools();"></a></span>-->
+											<span id="down"><a href="javascript:void(0)" onclick="show_tools_{$v['weibo_id']}();"></a></span>
+										</div>
+										<div class="site_stats_down" style="display:none;" id="tool_boxes_{$v['weibo_id']}">
+											<a href="#">{$_lang['tool_box']}</a>
+										</div>
+									</li>
+									<script type="text/javascript">
+										function show_tools_{$v['weibo_id']}(){
+											$("#tool_boxes_"+{$v['weibo_id']}).toggle();
+										}
+									</script>
+									{/loop}
+							
+								</ul>
+								
+								<!--翻页-->
+								{if $pages['page']}
+                                  <div class="page">
+                                    <p class="clearfix">
+                                             $pages['page']
+                                      </p>
+                                      <div class="clear"></div>
+                                  </div>
+                                  {/if}
+                                  <!--end 翻页-->
+                                  
+							</div>
+						</div>
+						<!-- core_down end -->
+					</div>
+				<!--{template square/index_right}-->
+				
+			</div>
+		</div>
+	</div>
+</div>
+<!--{template footer}-->

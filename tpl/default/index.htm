@@ -1,0 +1,697 @@
+<!--{template header}-->
+<script type="text/javascript" src="resource/js/jqplugins/slides.min.jquery.js"></script>
+<script type="text/javascript" src="resource/js/jqplugins/easySlider1.5.js"></script>
+<script type="text/javascript" src="{$style_path}/js/index.js"></script>
+ <!--内容区 satrt-->
+  <div class="wrapper clearfix">
+    <div class="container_24 clearfix"> 
+   <div class="pt_10"></div>
+
+
+	<div class="grid_18 mb_10">
+	   <div class="box default clearfix">
+	     <div class="inner">
+	      <!--切换广告 start-->
+	       <div class="banner po_re">
+	         <div id="slides">
+	          <!--图片内容区域 start-->
+	              <div class="slides_container">
+	                   <!--{ad_show(HOME_TOP_SLIDE,1)}-->
+	              </div>
+	          <!--图片内容区域 end-->
+
+	         </div>
+	       </div>
+	      <!--切换广告 end-->
+	     </div>
+	    </div>
+	</div>
+	
+	
+  <div class="grid_6 mb_10  clearfix">
+
+    <div class="box model">
+	      <div class="inner post">
+          <table>
+            <tbody>
+              <tr>
+                <td>
+                   <h2>海量服务商提交稿件，任您选！</h2>
+                    <p><a href="index.php?do=release" onclick="return check_user_login();" class="submit block mar10" rel="nofollow">发布任务</a></p>
+                    <p>{$_K['sitename']}</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+	      </div>
+		  <!--公告 start-->
+		  <div class="inner notice">
+		  <!--公告头部 start-->
+		  <header class="box_header clearfix">
+	          	<nav class="box_nav">
+	               <ul class="ov_hide block clearfix">
+	                  <li id="ul_plac_1" onclick="swaptab('plac','backLava','',3,1)"><a href="javascript:void(0);" title="{$_lang['website_bulletin']}">{$_lang['website_bulletin']}</a></li>
+	                  <li id="ul_plac_2" onclick="swaptab('plac','backLava','',3,2,{ajax:1,url:'index.php?ajax=bid_notice'})"><a href="javascript:void(0);" title="{$_lang['bid_announcement']}">{$_lang['bid_announcement']}</a></li>
+	                  <li id="ul_plac_3" onclick="swaptab('plac','backLava','',3,3,{ajax:1,url:'index.php?ajax=withdraw'})"><a href="javascript:void(0);" title="{$_lang['carry_announcement']}">{$_lang['carry_announcement']}</a></li>
+	                  <!--<li id="ul_plac_4" onclick="swaptab('plac','backLava','',4,4,{ajax:1,url:'index.php?ajax=safe'})"><a href="javascript:void(0);" title="{$_lang['safe']}">{$_lang['safe']}</a></li>-->
+	               </ul>
+	            </nav>
+	      </header>
+		  <!--公告头部 end-->
+			 <!--公告detail内容 start-->
+	         <article class="box_detail" id="div_plac_1">
+	           <ul>
+	              {loop $bulletin_arr $v}
+					<li><a href="index.php?do=single&art_id={$v['art_id']}">{$v['art_title']}</a></li>
+				 {/loop}
+	           </ul>
+	         </article>
+	        <article class="box_detail hidden" id="div_plac_2">
+	          
+	        </article>
+	        <article class="box_detail hidden" id="div_plac_3">
+	          
+	        </article>
+
+		  </div>
+		   <!--公告 end-->
+    </div>
+   
+                
+  <div class="clear"></div></div>
+   <!--{ad_show(HOME_CENTAL_ONE,首页_中部一栏广告)}-->
+     <div class="clear"></div>
+      {if $task_open}
+          
+      <div class="grid_24 mb_10">
+        <div class="box model blue">
+          <!--任务列表 start-->
+           <div class="task clearfix">
+            <!--头部 start-->
+             <header class="box_header clearfix">
+               <div class="grid_4 alpha">
+                 <!--标题 start-->
+                  <h1 class="box_title"><span>{$_lang['task']}</span>Task</h1>
+                 <!--标题 end-->
+               </div>
+                 <!--按钮区域 start-->
+                   <div class="btns">
+                      <a href="index.php?do=release" onclick="return check_user_login();" class="button primary" rel="nofollow"><span class="plus icon"></span>{$_lang['pub_task']}</a><a href="index.php?do=task_list" class="button"><span class="rightarrow icon"></span>{$_lang['into_task_hall']}</a>
+                   </div>
+                 <!--按钮区域 end-->
+            </header>
+          <!--头部 end-->
+          <!--任务推荐-->
+
+			<article class="box_detail clearfix">
+			<div class="grid_5 alpha">
+               <div class="category">
+                   <ul class="indus_list">
+                       {loop $final_task $k $v}
+                       {if $is<20||($is==20&&$s==21)}
+                       <li>
+                           <a href="index.php?do=task_list&path=A$v['indus_id']" target="_blank">$v['indus_name']</a>
+                           <div class="s_nav hidden">
+                           		<div class="indus">
+                               {loop $indus_c_arr $k1 $v1}
+                               {if $k==$v1['indus_pid']}
+                               
+                                   <a href="index.php?do=task_list&path=A{$v1['indus_pid']}&indus_id={$v1['indus_id']}">$v1['indus_name']</a>
+                               
+                               {/if} 
+                               {/loop}
+							   </div>
+							   <div class="recommend">
+								   <h3>分类任务推荐</h3>
+								   <ul>
+								   {if $task_array[$k]}
+								   	{loop $task_array[$k] $k2 $v2}
+									{if $k2<5}
+								   	<li><a href="index.php?do=task&task_id=$v2['task_id']"><strong class="money">
+								   		   {if !$v2['task_cash_coverage']}
+      							           {c:$v2['task_cash']}
+      						               {else}
+      							           {$cur_info['symbol_left']}<!--{eval echo keke_curren_class::output($cash_coverage[$v2['task_cash_coverage']]['start_cove'],0,true)}--> ~ <!--{eval echo keke_curren_class::output($cash_coverage[$v2['task_cash_coverage']]['end_cove'],0,true)}-->{$cur_info['symbol_right']}
+      						              {/if}
+							         </strong> $v2['task_title']</a></li>
+									{/if}
+									{/loop}
+								   {else}
+								   暂无推荐任务
+								   {/if}
+								   </ul>
+							   </div>	
+                           </div>
+                       </li>
+                       {/if}
+                       {/loop}
+                     </ul>
+                      <p class="all_list"><a href="index.php?do=task" target="_blank" class="button">{$_lang['more_category_of_task']}&gt;&gt;</a></p>
+                           
+                   
+               </div>
+           </div>
+		   
+			<div class="grid_19 alpha omega ">
+
+           <!--顶部推荐3条任务内容 start-->
+           
+  
+             <!--列表 start-->
+			 
+               <ul class=" tops clearfix">
+                 {loop $task_recomm_3 $v}
+					       <li class="col3">
+                      <!--单条内容 start-->
+                       <div class="item">
+                         <!--任务金额 start-->
+                           <strong class="money">
+                            	{if !$v['task_cash_coverage']}
+									{c:$v['task_cash']}
+								{else}
+									{$cur_info['symbol_left']}<!--{eval echo keke_curren_class::output($cash_coverage[$v['task_cash_coverage']]['start_cove'],0,true)}--> ~ <!--{eval echo keke_curren_class::output($cash_coverage[$v['task_cash_coverage']]['end_cove'],0,true)}-->{$cur_info['symbol_right']}
+								{/if}
+            			</strong>
+                         <!--任务金额 end-->
+                         <!--任务标题 start-->
+                         <h2 class="task_title"><a href="index.php?do=task&task_id={$v['task_id']}" title="{$v['task_title']}" target="_blank">{$v['task_title']}</a></h2>
+                         <!--任务标题 end-->
+                         <!--任务发布者 start-->
+                         <span class="publisher"><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->" title="{$v['username']}" target="_blank">{$v['username']}</a></span>
+                         <!--任务发布者 end-->
+                         <!--任务模型 start-->
+                         <span class="task_mode">{$mode_list[$v['model_id']]['model_name']}</span>
+                         <!--任务模型 end-->
+                        
+                      </div>
+                    <!--单条内容 end-->
+                   </li>
+				   
+                   <li class="line"></li>
+				        {/loop}
+               </ul>
+			   
+			  
+               <!--列表 end-->
+    
+   
+        <!--顶部推荐3条任务内容 end-->
+                        
+      <!--detail内容 start-->
+
+         <!--列表内容 33条 start-->
+           <ul class="small_list clearfix">
+             {loop $recomm_task $v}
+             <li class="col3 clearfix">
+             <!--单条内容 start-->
+                <div class="item clearfix">
+                	<a href="index.php?do=task&task_id={$v['task_id']}" title="{$v['task_title']}" target="_blank">&nbsp;
+                   
+				        <!--任务标题 start-->
+                   <strong class="money">
+                  	 
+      						{if !$v['task_cash_coverage']}
+      							{c:$v['task_cash']}
+      						{else}
+      							{$cur_info['symbol_left']}<!--{eval echo keke_curren_class::output($cash_coverage[$v['task_cash_coverage']]['start_cove'],0,true)}--> ~ <!--{eval echo keke_curren_class::output($cash_coverage[$v['task_cash_coverage']]['end_cove'],0,true)}-->{$cur_info['symbol_right']}
+      						{/if}
+                  </strong>
+				      <!--任务金额 start-->
+                  {$v['task_title']}
+                  <!--任务金额 end-->
+				  
+                   <!--任务标题 end-->
+				        </a>
+
+                 </div>
+              <!--单条内容 end-->
+              </li>
+  		        {/loop}
+        </ul>
+       <!--列表内容 33条 end-->
+
+  
+	</div>
+	<!--任务推荐 end-->
+	
+
+   </div>
+   </article> 
+
+  </div>
+ </div>
+  {/if}
+  {if $shop_open}
+ 		 <!--{ad_show(HOME_CENTAL_TWO,首页_中部二栏广告)}-->
+  	<div class="grid_24 mb_10">
+       <div class="box model purple">
+       <!--商城内容 start-->
+         <div class="shop">
+           <!--头部 satrt-->
+             <header class="box_header clearfix">
+               <div class="grid_4 alpha">
+                 <!--商城标题 start-->
+                  <h1 class="box_title"><span>{$_lang['shop']}</span>Shop</h1>
+                 <!--商城标题 end-->
+               </div>
+
+                <div>
+                <!--商城按钮 start-->
+                    <div class="btns">
+                      <a href="index.php?do=shop_release" onclick="return check_user_login();" class="button primary" rel="nofollow"><span class="plus icon"></span>{$_lang['pub_goods']}</a><a href="index.php?do=shop_list" class="button"><span class="rightarrow icon"></span>{$_lang['enter_shop']}</a>
+                    </div>
+                <!--商城按钮 end-->
+                </div>
+               <div class="clear"></div>
+          </header>
+          <!--头部 end-->
+           
+		   
+		   
+		    <article class="box_detail clearfix" >
+
+           <div class="grid_5 alpha omega">
+               <div class="category">
+                   <ul class="indus_list">
+                       <!--{eval $is=0;$s=sizeof($final_shop);$load=array();}-->
+					   {loop $final_shop $k $v}
+                       {if $is<21||($is==21&&$s==22)}
+                       <li>
+                           <a href="index.php?do=shop_list&path=A$v['indus_id']" target="_blank">$v['indus_name']</a>
+                           <div class="s_nav hidden">
+                           		<div class="indus">
+                               {loop $indus_c_arr $k1 $v1}
+                               {if $k==$v1['indus_pid']}
+                                   <a href="index.php?do=shop_list&path=A{$v1['indus_pid']}&indus_id={$v1['indus_id']}">$v1['indus_name']</a>
+                               {/if} 
+                               {/loop}
+							  </div>
+							   <div class="recommend">
+								   <h3>分类商品推荐</h3>
+								   <ul>
+								   	{if $service_array[$k]}
+										  {loop $service_array[$k] $k2 $v2}
+										{if $k2<5}
+									   	<li><a href="index.php?do=service&sid={$v2['service_id']}"><strong class="money">{c:$v2[price]}/{$v2['unite_price']}</strong> $v2['title']</a></li>
+									   	{/if}
+										{/loop}
+									{else}
+									   暂无推荐商品
+									{/if}
+								 
+								   </ul>
+							   </div>
+                           </div>
+                       </li>
+					           {/if} 
+                       {/loop}
+					   </ul> 
+                       <p class="all_list">
+                           <a href="index.php?do=shop" target="_blank" class="button">{$_lang['more_category_of_shop']}&gt;&gt;</a>
+                       </p>
+                       
+                      
+               </div>
+           </div>   
+
+		                
+         <!--detail内容 start-->
+		 {if $recomm_service}
+
+             <!--商城列表 12条 start-->
+             <ul class="small_list clearfix">
+                 <!--第一条商品 start--><!--第一条商品 end-->
+				  {loop $range $v}
+                 <li class="item clearfix">
+                     {if $recomm_service[$v]}
+					 	<a href="index.php?do=service&sid={$recomm_service[$v]['service_id']}" title="{$recomm_service[$v]['title']}">
+					 	
+						 	<img src="<!--{eval echo keke_shop_class::output_pics($recomm_service[$v]['pic'],210,1);}-->" alt="{$recomm_service[$v]['title']}" onerror="this.src='{$style_path}/img/shop/shop_default.gif'">
+							 <span class="shop_item_info">
+							 	<strong class="money">{c:$recomm_service[$v][price]}/{$recomm_service[$v]['unite_price']}</strong>
+		                     	<strong class="title">
+		                             {$recomm_service[$v]['title']}
+		                         </strong>
+		                         
+							 </span>
+						 </a>
+                     {else}
+					 	<a href="javascript:void(0);" title="{$_lang['now_no_goods']}"><img name="lazyImg" src="<!--{eval echo keke_shop_class::output_pics($recomm_service[$v]['pic'],210,1);}-->" onerror="this.src='{$style_path}/img/shop/shop_default.gif'" alt="{$_lang['now_no_goods']}"></a>
+					 {/if}
+                 </li>
+                 {/loop}
+             </ul>
+             <!--商城列表 26条 end-->
+
+			 {/if}
+            
+                 {if $top_s_4}
+                 <ul class="tops clearfix">
+                     {loop $top_s_4 $k $v}
+                     <li class="clearfix">
+                         <div class="item">
+                             <div class=" fl_l mr_10">
+                                 <a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->" title="{$v['username']}"><!--{userpic($v['uid'],'small')}--></a>
+                             </div>
+                             <div class="shoper_info">
+                                 <ul>
+                                     <li>
+                                         <a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->" class="font14" title="{$v['shop_name']}"><strong><!--{eval echo kekezu::cutstr($v['shop_name'],20);}--></strong></a>
+                                     </li>
+                                     <li>
+                                         {$_lang['praise_rate']}{$_lang['zh_mh']}<span class="cc00">{if $v['seller_total_num']}<!--{eval echo number_format($v[seller_good_num]*100/$v[seller_total_num],2)}-->{else}0{/if}%</span>
+                                     </li>
+                                     <li>
+                                         {$_lang['industry']}{$_lang['zh_mh']}<span>{$indus_p_arr[$v[indus_pid]][indus_name]} | {$indus_c_arr[$v[indus_id]][indus_name]} </span>
+                                     </li>
+                                 </ul>
+                             </div>
+                         </div>
+                     </li>
+                     {/loop}
+                 </ul>
+                 {/if}
+            
+	
+			</article>
+           <!--detail内容 end-->
+     
+        <!--商城内容 end-->
+     </div>
+    </div>
+  </div>
+  {/if}
+  
+  
+  
+
+  <!--首页_中部三栏广告 start-->
+  	<!--{ad_show(HOME_CENTAL_THREE,首页_中部三栏广告)}-->
+  <!--首页_中部三栏广告 end-->
+  
+  
+ 
+            
+     <div class="grid_16 mb_10 m_h">
+      <div class="box model yellow">
+       <div class="inner">
+        <!--案例  start-->
+          <div class="case">
+            <!--头部 start-->
+           <header class="box_header clearfix">
+             <div class="grid_5 alpha omega">
+               <h1 class="box_title"><span>{$_lang['success_case']}</span>Case</h1>
+             </div>
+			 <div class="btns">
+                    <a href="index.php?do=case" class="button" title="{$_lang['more_information']}">{$_lang['more_information']}&raquo;</a>
+              </div>
+           </header>
+         <!--头部 end-->
+         <!--detail内容 start-->
+         <article class="box_detail no_bottom clearfix">
+            <!--列表内容 start-->
+              <ul class="small_list  clearfix">
+                 <!--头条 start-->
+				  {loop $case_list $k $v}
+				 
+                    <li class="first">
+                        <div class="main_img">
+                       		<a {if $v['obj_type']=='task'}href="index.php?do=task&task_id=$v['obj_id']" {else} href="index.php?do=service&sid=$v['obj_id']"{/if} title="{$v['case_title']}">
+                       			
+                      				<img  src="{if file_exists($v['case_img'])}<!--{eval echo keke_shop_class::output_pics($v['case_img'],210,1);}-->{else}{$style_path}/img/shop/shop_default.gif{/if}" alt="{$v['case_title']}"/>
+							  
+                       		</a>
+						            </div>
+                        <div class="main_title clearfix">
+                        	 <a {if $v['obj_type']=='task'}href="index.php?do=task&task_id=$v['obj_id']" {else} href="index.php?do=service&sid=$v['obj_id']"{/if}>
+                        		<span class="cc00 mr_10">{c:$v['case_price']}</span>{$v['case_title']}
+							             </a>
+						            </div>
+                    </li>
+				 {/loop}
+                 
+            </ul>
+
+           <!--列表内容 end-->
+         <div class="clear"></div>
+       </article>
+      <!--detail内容 end-->
+   </div>
+   <!--案例 end-->
+  </div>
+ </div>
+</div>
+    <div class="grid_8 mb_10 m_h">
+    <div class="box model rose">
+      <div class="inner">
+        <!--新闻资讯 start-->
+          <div class="news">
+           <header class="box_header clearfix">
+             <div class="grid_5 alpha omega">
+               <!--标题 start-->
+                <h1 class="box_title"><span>{$_lang['information']}</span>News</h1>
+               <!--标题 end-->
+             </div>
+           
+               <div class="btns">
+               	<a href="index.php?do=article" class="button" title="{$_lang['more_information']}">{$_lang['more_information']}&raquo;</a>
+               </div>
+             </header>
+                          
+             <!--detail内容 start-->
+            <article class="box_detail no_bottom clearfix" id="div_news_1">
+               <!--列表内容 start-->
+                <ul class="small_list clearfix">
+                  {loop $news_list $k $v}
+          			{if $k==0}
+                  <li>
+                    <!--头条图片 start-->
+                       <div class="main_img">
+                          <a href="index.php?do=article&view=article_info&art_id={$v['art_id']}" title="{$v['art_title']}">
+                            <img name="lazyImg" src="{if file_exists($v['art_pic'])}$v['art_pic']{else}{$style_path}/img/style/new_default.gif{/if}" alt="{$v['art_title']}" title="{$v['art_title']}"/>
+              </a>
+                       </div>
+                    <!--头条图片 end-->
+                    <!--头条标题 start-->
+                     <div class="main_title clearfix">
+                       <a href="index.php?do=article&view=article_info&art_id={$v['art_id']}" title="{$v['art_title']}">{$v['art_title']}</a>
+                      <span class="date"><!--{date('Y-m-d',$v['pub_time'])}--></span>
+                     </div>
+                  </li>
+          {else}
+                 <li>
+                     <div class="item">
+                         <a href="index.php?do=article&view=article_info&art_id={$v['art_id']}" title="{$v['art_title']}">{$v['art_title']}</a>
+                            <span class="date"><!--{date('Y-m-d',$v['pub_time'])}--></span>
+                     </div>
+                     <div class="clear"></div>
+                 </li>
+           {/if}
+         {/loop}
+                 
+                </ul>
+
+               <!--列表内容 end-->
+
+            </article>
+           <!--detail内容 end-->
+         </div>
+       <!--新闻资讯 end-->
+      </div>
+      </div>
+     </div>    
+     <div class="clear"></div>      
+     <div class="box default m_h">
+	    <div class="inner">
+	  <!--  网站统计 start -->
+	    <div class="site_stats po_re">
+	
+	      <div id="slider" class="box_detail">
+	    <!--   注册用户 start -->
+	       <ul>
+	          <li>
+	            <p>
+	              <span>{$_lang['register_user_number']}</span><span><strong class="num goup" >{$register}</strong></span>
+	            </p>
+	    <!--  任务统计 start -->
+	      {if $task_open}
+	          <p>
+	            <span>{$_lang['task_order_money']}</span><span><strong class="num godown" >{$task_in}</strong></span>
+	          </p>
+	          <p>
+	            <span>{$_lang['task_number']}</span><span><strong class="num goup" >{$task_count}</strong></span>
+	          </p>
+	       {/if}
+	      <!-- 任务统计 end -->
+	    </li>
+	     <!--    认证统计 start -->
+	     <li>
+	        <p>
+	          <span>{$_lang['auth_statistics_number']}</span><span><strong class="num gouspan" >{$all_auth}</strong></span>
+	        </p>
+	 
+	      <!-- 认证统计 end -->
+	    <!--  商城统计 start -->
+	        {if $shop_open}
+	          <p>
+	            <span>{$_lang['shop_order_money']} </span><span><strong class="num  godown " >{$service_in}</strong></span>
+	          </p>
+	          <span>{$_lang['goods_number']} </span><span><strong class="num godown " >{$service_count}</strong></span>
+	       {/if}
+	     </li>
+	        </ul>
+	   <!--    商城统计 end -->
+	    </div>
+	   <!--  网站统计 end -->
+	     </div>
+	    </div>
+	  </div>
+  
+    <div class="clear"></div>      
+  
+  <!--首页_中部四栏广告 start-->
+ 		 <!--{ad_show(HOME_CENTAL_FOUR,首页_中部四栏广告)}-->
+  <!--首页_中部四栏广告end-->
+  <div class="clear"></div>
+   </div>
+ </div>
+
+<div class="comment clearfix ">
+<div class="container_24 ">
+<span class="icon16 spechbubble-2 mt_5 mr_5"></span>{$_lang['I_have_comments_or_suggestions_now']}<a href="javascript:void(0);" title="{$_lang['feedback']}" onclick="suggest()">{$_lang['submit']}</a>！</div>
+</div>
+ 	 
+<!--网站地址 start-->
+ <div class="sitemap clearfix m_h">
+ 	
+    <div class="container_24 clearfix">
+    	
+    <!--推荐分类-->
+	{if $task_open||$shop_open}
+
+                <dl>
+                    <dt>{$_lang['recommend_cate']}</dt>
+                      <dd>
+                           <ul>
+                           	<!--{eval $i=0;}-->
+                            {loop $indus_p_arr $k $v}
+								{if $v['is_recommend']==1 and $i<5}
+								  <!--{eval $i++;}-->
+				            	<li><a href="index.php?do=task_list&path=A{$k}"  target="_blank">{$v['indus_name']}</a></li>
+								{/if}
+							{/loop}
+                           </ul>
+                      </dd>
+                </dl>
+
+	 {/if}
+	<!--任务大厅-->
+	{if $task_open}
+    
+       <dl>
+         <dt>{$_lang['task_hall']}</dt>
+            <dd>
+             <ul>
+                <li><a href="index.php?do=release" onclick="return check_user_login();" target="_blank">{$_lang['pub_task']}</a></li>
+				<li><a href="index.php?do=task_list" target="_blank">{$_lang['join_work']}</a></li>
+				<li><a href="index.php?do=task_list" target="_blank">{$_lang['task_hall']}</a></li>
+				<li><a href="index.php?do=task_map" target="_blank">{$_lang['task_map']}</a></li> 
+              </ul>
+             </dd>
+        </dl>
+  
+	  {/if}
+	  <!--威客商城-->
+	  {if $shop_open}
+    
+         <dl>
+            <dt>{$_lang['witkey_shop']}</dt>
+              <dd>
+                 <ul>
+                 	<li><a href="index.php?do=shop_release" onclick="return check_user_login();" target="_blank" rel="nofollow">{$_lang['pub_goods']}</a></li>
+					<li><a href="index.php?do=shop_release&model_id=7" onclick="return check_user_login();" target="_blank">{$_lang['create_service']}</a></li>
+				    {loop $link_task $v}
+						{if $v['model_type']=='shop'&&$v['model_status']=='1'}
+	                      <li><a href="index.php?do=shop_list&path=C{$v['model_id']}" target="_blank">{$v['model_name']}</a></li>
+						{/if}
+					 {/loop}
+					 
+                 </ul>
+                </dd>
+         </dl>
+   
+	 {/if}
+	 <!--资讯中心-->
+   
+        <dl>
+           <dt>{$_lang['news_center']}</dt>
+              <dd>
+                  <ul>
+					{loop $link_news $k $v}
+			       		 <li><a href="index.php?do=article" target="_blank"><span>{$v['cat_name']}</span></a></li>
+					{/loop}
+                  </ul>
+              </dd>
+        </dl>
+   
+	 <!--关于网站-->
+	
+		<dl>
+	    	<dt>{$_lang['about_website']}</dt>
+	        <dd>
+	        	<ul>
+	        		{loop $link_about $v}
+                  	  <li><a href="index.php?do=single&art_id={$v['art_id']}" target="_blank" title="{$v['art_title']}">{$v['art_title']}</a></li>
+					{/loop}
+	            </ul>
+	        </dd>
+	    </dl>
+
+	 <!--帮助中心-->
+    
+    	<dl>
+        	<dt>{$_lang['help_center']}</dt>
+            <dd>
+            	<ul>
+			    	{loop $link_help $k $v}
+			       		 <li><a href="index.php?do=help&fpid={$v[art_cat_id]}" target="_blank"><span>{$v['cat_name']}</span></a></li>
+					{/loop}
+                </ul>
+            </dd>
+        </dl>
+   
+		</div> 
+
+</div>
+<!--网站地址 end-->
+
+ {if !isset($footer_load) }
+<section class="site_links clearfix m_h">
+ <div class="container_24 ">
+ 	  
+      <div class="links">
+	    	<dl>
+	        	<dt>{$_lang['friend_link']}</dt>
+	            <dd>
+	            	<ul class="clearfix">
+	            		
+				    	{loop $flink $k $v}
+				       		 <li><a href="{$v['link_url']}" target="_blank"><span>{$v['link_name']}</span></a></li>
+						{/loop}
+	                </ul>
+	            </dd>
+	        </dl>
+	    </div>
+	   
+	</div>
+</section>
+ <!--网站链接以及语言栏 关注我们 搜索 end-->
+{/if}
+
+
+<!--内容区 end-->
+
+<script type="text/javascript">
+	var uid 		= parseInt('{$uid}')+0;
+</script>
+<!--{template footer}-->

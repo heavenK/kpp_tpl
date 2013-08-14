@@ -1,0 +1,395 @@
+<!--{template header}-->
+<div class="wrapper">
+	<div class="mt_20">
+		<div class="container_24 clearfix">
+			<div class="box clearfix">
+				<!--{template square/left_nav}-->
+					<div class="core clearfix">
+						<!-- core_down start  -->
+						<div class="core_down clearfix">
+							<h2>我的关注</h2>
+							<div class="core_down_nav ml_20 mr_20">
+								<a href="{$url}&type=1" class="care_focus {if $type==1||!$type} selected{/if}">关注</a>
+								<a href="{$url}&type=2" class="fans {if $type==2} selected{/if}">粉丝</a>
+								<a href="{$url}&type=3" class="keep_care {if $type==3} selected{/if}">相互关注</a>
+								
+							</div>
+							<!-- <div class="msg msg_need block ml_20 mr_20">
+								<a href="#" class="block">有15条新动态，点击查看</a>
+							</div> -->
+							
+							<div id="care_focus " class="clearfix" >
+								<div class="core_down_info mb_10 pl_20 clearfix">
+									<input type="hidden" name="page" value="{$page}">
+									<input type="hidden" name="pagesize" value="{$pagesize}">
+									<ul>
+										{if $follow_list}
+										{loop $follow_list $k $v}
+										<li class="clearfix " id="follow_{$v['follow_id']}">
+											<div class="info_van clearfix">
+												<a href="index.php?do=space&member_id={$v['focus_uid']}" target="_blank">
+													<!--<img src="http://localhost/kppw2.2/data/avatar/default/man_small.jpg" class="pic_small">-->
+													<!--{userpic($v['focus_uid'],big)}-->
+												</a>
+											</div>
+											<div class="info_body clearfix">
+												<div>
+													<a href="index.php?do=space&member_id={$v['focus_uid']}">{$v['focus_username']}</a>
+													<span>
+														<!--{eval $user_leve=unserialize($v['seller_level'])}-->
+														<!--<img src="data/uploads/sys/mark/28624f3b088d957db.gif?fid=2077">-->
+														{$user_leve['pic']}
+													</span>
+												</div>
+												<div class="cares_info c333 clearfix">
+													<span>关注：<a href="javascript:void(0);" class="border_r_c pr_5"><!--{eval echo kekezu::get_following_count($v['focus_uid']);}--></a></span>
+													<span>粉丝：<a href="javascript:void(0);"><!--{eval echo kekezu::get_follower_count($v['focus_uid']); //echo $v['focus_uid'];}--></a></span>	
+												</div>	
+												
+												<div class="care_right clearfix">
+													{if $type==1||!$type}
+													<span class="icon16 checkmark mr_5"></span>已关注
+													<a href="javascript:void(0);" class="border_l_c" onclick="follow('cancel','{$v[follow_id]}');">取消</a>
+												{elseif $type==2}
+													<a href="javascript:void(0);" class="border_r_c" onclick="follow('remove','{$v[follow_id]}');" id="follow{$v['focus_uid']}">移除粉丝</a>
+													<!--{eval $weth = kekezu::get_follower_count($v['focus_uid']);}-->
+													{if !$weth}
+													<a href="javascript:void(0);"  onclick="add_follow('add','{$v[uid]}');" id="add_follow_{$v['focus_uid']}">加关注</a>
+													{else}
+														<span>互相关注</span>
+													{/if}
+												{elseif $type==3}
+													<span>互相关注</span>
+												{/if}
+												</div>
+											</div>
+										</li>
+										{/loop}
+										{else}
+											<li class="clearfix">
+											{if $type==1||!$type}
+													你还没有关注谁！
+												{elseif $type==2}
+													你还没有粉丝哦！
+												{elseif $type==3}
+													你还么有互相关注！
+												{/if}
+											</li>
+										{/if}
+										<!--<li class="clearfix">
+											<div class="info_van clearfix">
+												<a href="#" target="_blank">
+													<img src="http://localhost/kppw2.2/data/avatar/default/man_small.jpg" class="pic_small">
+													
+												</a>
+											</div>
+											<div class="info_body clearfix">
+												<div>
+													<a href="#">雨水</a>
+													<span>
+														<img src="data/uploads/sys/mark/28624f3b088d957db.gif?fid=2077">
+													</span>
+												</div>
+												<div class="cares_info c333 clearfix">
+													<span>关注：<a href="#" class="border_r_c pr_5">152</a></span>
+													<span>粉丝：<a href="#">115</a></span>	
+												</div>	
+												<div class="care_right clearfix">
+													<span class="icon16 checkmark mr_5"></span>
+													已关注
+													<a href="#" class="border_l_c">取消</a>
+												</div>
+											</div>
+										
+										</li>
+										<li class="clearfix">
+											<div class="info_van clearfix">
+												<a href="#" target="_blank">
+													<img src="http://localhost/kppw2.2/data/avatar/default/man_small.jpg" class="pic_small">
+													
+												</a>
+											</div>
+											<div class="info_body clearfix">
+												<div>
+													<a href="#">yoke</a>
+													<span>
+														<img src="data/uploads/sys/mark/188574f3b088a50adf.gif?fid=2076">
+													</span>
+												</div>
+												<div class="cares_info c333 clearfix">
+													<span>关注：<a href="#" class="border_r_c pr_5">152</a></span>
+													<span>粉丝：<a href="#">115</a></span>	
+												</div>	
+												<div class="care_right clearfix">
+													<span class="icon16 checkmark mr_5"></span>
+													已关注
+													<a href="#" class="border_l_c">取消</a>
+												</div>
+											</div>
+										
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div id="fans " class="clearfix" >
+								<div class="core_down_info mb_10 clearfix">
+									<ul>
+										<li class="clearfix">
+											<div class="info_van clearfix">
+												<a href="#" target="_blank">
+													<img src="http://localhost/kppw2.2/data/avatar/default/man_small.jpg" class="pic_small">
+													
+												</a>
+											</div>
+											<div class="info_body clearfix">
+												<div>
+													<a href="#">秋水</a>
+													<span>
+														<img src="data/uploads/sys/mark/28624f3b088d957db.gif?fid=2077">
+													</span>
+												</div>
+												<div class="cares_info c333 clearfix">
+													<span>关注：<a href="#" class="border_r_c pr_5">102</a></span>
+													<span>粉丝：<a href="#">113</a></span>	
+												</div>	
+												<div class="care_right clearfix">
+													<a href="#">移除粉丝</a>
+													<a href="#" class="border_l_c">加关注</a>
+													
+												</div>
+											</div>
+										
+										</li>
+										<li class="clearfix">
+											<div class="info_van clearfix">
+												<a href="#" target="_blank">
+													<img src="http://localhost/kppw2.2/data/avatar/default/man_small.jpg" class="pic_small">
+													
+												</a>
+											</div>
+											<div class="info_body clearfix">
+												<div>
+													<a href="#">雨说</a>
+													<span>
+														<img src="data/uploads/sys/mark/28624f3b088d957db.gif?fid=2077">
+													</span>
+												</div>
+												<div class="cares_info c333 clearfix">
+													<span>关注：<a href="#" class="border_r_c pr_5">152</a></span>
+													<span>粉丝：<a href="#">115</a></span>	
+												</div>	
+												<div class="care_right clearfix">
+													<a href="#" >移除粉丝</a>
+													<a href="#" class="border_l_c">加关注</a>
+													
+												</div>
+											</div>
+										
+										</li>
+										<li class="clearfix">
+											<div class="info_van clearfix">
+												<a href="#" target="_blank">
+													<img src="http://localhost/kppw2.2/data/avatar/default/man_small.jpg" class="pic_small">
+													
+												</a>
+											</div>
+											<div class="info_body clearfix">
+												<div>
+													<a href="#">blue_sky</a>
+													<span>
+														<img src="data/uploads/sys/mark/188574f3b088a50adf.gif?fid=2076">
+													</span>
+												</div>
+												<div class="cares_info c333 clearfix">
+													<span>关注：<a href="#" class="border_r_c pr_5">125</a></span>
+													<span>粉丝：<a href="#">168</a></span>	
+												</div>	
+												<div class="care_right clearfix">
+													<a href="#">移除粉丝</a>
+													<a href="#" class="border_l_c">加关注</a>
+													
+												</div>
+											</div>
+										
+										</li>
+										<li class="clearfix">
+											<div class="info_van clearfix">
+												<a href="#" target="_blank">
+													<img src="http://localhost/kppw2.2/data/avatar/default/man_small.jpg" class="pic_small">
+													
+												</a>
+											</div>
+											<div class="info_body clearfix">
+												<div>
+													<a href="#">李浩</a>
+													<span>
+														<img src="data/uploads/sys/mark/188574f3b088a50adf.gif?fid=2076">
+													</span>
+												</div>
+												<div class="cares_info c333 clearfix">
+													<span>关注：<a href="#" class="border_r_c pr_5">105</a></span>
+													<span>粉丝：<a href="#">158</a></span>	
+												</div>	
+												<div class="care_right clearfix">
+													<a href="#">移除粉丝</a>
+													<a href="#" class="border_l_c">加关注</a>
+													
+												</div>
+											</div>
+										
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div id="keep_care " class="clearfix">
+								<div class="core_down_info mb_10 clearfix">
+									<ul>
+										<li class="clearfix">
+											<div class="info_van clearfix">
+												<a href="#" target="_blank">
+													<img src="http://localhost/kppw2.2/data/avatar/default/man_small.jpg" class="pic_small">
+													
+												</a>
+											</div>
+											<div class="info_body clearfix">
+												<div>
+													<a href="#">秋水</a>
+													<span>
+														<img src="data/uploads/sys/mark/28624f3b088d957db.gif?fid=2077">
+													</span>
+												</div>
+												<div class="cares_info c333 clearfix">
+													<span>关注：<a href="#" class="border_r_c pr_5">102</a></span>
+													<span>粉丝：<a href="#">113</a></span>	
+												</div>	
+												<div class="care_right c333 clearfix">
+												<span>互相关注</span>
+												<a href="#" class="border_l_c">取消关注</a>
+													
+												</div>
+											</div>
+										
+										</li>
+										<li class="clearfix">
+											<div class="info_van clearfix">
+												<a href="#" target="_blank">
+													<img src="http://localhost/kppw2.2/data/avatar/default/man_small.jpg" class="pic_small">
+													
+												</a>
+											</div>
+											<div class="info_body clearfix">
+												<div>
+													<a href="#">雨说</a>
+													<span>
+														<img src="data/uploads/sys/mark/28624f3b088d957db.gif?fid=2077">
+													</span>
+												</div>
+												<div class="cares_info c333 clearfix">
+													<span>关注：<a href="#" class="border_r_c pr_5">152</a></span>
+													<span>粉丝：<a href="#">115</a></span>	
+												</div>	
+												<div class="care_right c333 clearfix">
+												<span>互相关注</span>
+												<a href="#" class="border_l_c">取消关注</a>
+													
+												</div>
+											</div>
+										
+										</li>
+										<li class="clearfix">
+											<div class="info_van clearfix">
+												<a href="#" target="_blank">
+													<img src="http://localhost/kppw2.2/data/avatar/default/man_small.jpg" class="pic_small">
+													
+												</a>
+											</div>
+											<div class="info_body clearfix">
+												<div>
+													<a href="#">blue_sky</a>
+													<span>
+														<img src="data/uploads/sys/mark/188574f3b088a50adf.gif?fid=2076">
+													</span>
+												</div>
+												<div class="cares_info c333 clearfix">
+													<span>关注：<a href="#" class="border_r_c pr_5">125</a></span>
+													<span>粉丝：<a href="#">168</a></span>	
+												</div>	
+												<div class="care_right c333 clearfix">
+												<span>互相关注</span>
+												<a href="#" class="border_l_c">取消关注</a>
+													
+												</div>
+											</div>
+										
+										</li>
+										<li class="clearfix">
+											<div class="info_van clearfix">
+												<a href="#" target="_blank">
+													<img src="http://localhost/kppw2.2/data/avatar/default/man_small.jpg" class="pic_small">
+													
+												</a>
+											</div>
+											<div class="info_body clearfix">
+												<div>
+													<a href="#">李浩</a>
+													<span>
+														<img src="data/uploads/sys/mark/188574f3b088a50adf.gif?fid=2076">
+													</span>
+												</div>
+												<div class="cares_info c333 clearfix">
+													<span>关注：<a href="#" class="border_r_c pr_5">105</a></span>
+													<span>粉丝：<a href="#">158</a></span>	
+												</div>	
+												<div class="care_right c333 clearfix">
+												<span>互相关注</span>
+												<a href="#" class="border_l_c">取消关注</a>
+													
+												</div>
+											</div>
+										
+										</li>-->
+									</ul>
+								</div>
+							</div>
+						</div>
+						
+							<!--翻页-->
+								{if $page['page']}
+                                  <div class="page">
+                                    <p class="clearfix">
+                                             $page['page']
+                                      </p>
+                                      <div class="clear"></div>
+                                  </div>
+                                  {/if}
+                                  <!--end 翻页-->
+						</div>
+						<!-- core_down end -->
+						<!--{template square/index_right}-->
+					</div>
+			
+				
+			</div>
+		</div>
+	</div>
+<script type="text/javascript">
+//	var base_url = "{$url}";
+//	function follow(action,id){
+////		if(action == 'add'){
+////			$.post(base_url,{action:action,ac_id:id},function(json){
+////				if(json.status == 1){
+////					$("#follow"+json.msg).text('取消关注');
+////				}
+////			},'json');
+////		}else{
+//			$.post(base_url,{action:action,ac_id:id},function(json){
+//				if(json.status == 1){
+//					$("#follow_"+json.msg).hide();
+//				}
+//			},'json');
+////		}
+//		
+//	}
+	
+</script>
+<!--{template footer}-->

@@ -1,0 +1,69 @@
+{if $ajax=='prom_11'}<!--用户中心推广链接获取-->
+<!--推广链接 start-->
+<!--{template header}-->
+<script type="text/javascript" src="resource/js/system/custom.js"></script>
+ <article class="box_detail">
+     <div class="form_box {$_K['theme']}_style pad10">
+     	<form>
+       <div class="rowElem clearfix pb_10">
+       	 <label class="grid_2 t_r">{$_lang['display_way']}</label>
+         <div class="grid_8" >
+         	<input type="radio" name="linkMode" id="linkMode1" value="1" checked="checked"/>
+         	 <label>{$_lang['source_link']}</label>
+			<input type="radio" name="linkMode" id="linkMode2" value="2" />
+         	 <label>{$_lang['txt_link']}</label>
+          </div>
+        </div>
+		
+        <div class="rowElem clearfix">
+           <label class="grid_2 t_r">
+              {$_lang['pro_code']}
+           </label>
+           <div class="grid_17">
+           	<textarea id="promCode" cols="80" rols="5" style="width:400px;height:50px">{$link}</textarea>
+          </div>
+		  
+        </div>
+		
+		<div class="rowElem clearfix">
+			<div class="grid_3" style="padding-left:65px;">
+       		  <button type="button" value="{$_lang['copy_pro_code']}" onclick="copytext('promCode');"><span class="icon plus">&nbsp;</span>{$_lang['copy_pro_code']}</button>
+			</div>
+        </div>
+		</form>
+      </div>
+ </article>
+ <script type="text/javascript">
+ 	var link = '{$lin}';
+	var promText = '{$promtext}';
+	$("#promCode").val(link);
+	$("#linkMode1").click(function(){
+		$("#promCode").val(link);
+	})
+	
+	$("#linkMode2").click(function(){
+		var textLink = "<a href="+link+" target=_blank>"+promText+"</a>";
+		$("#promCode").val(textLink);
+	})
+    function copytext(i){
+        setCopy($("#" + i).val(), "{$_lang['copy_success']}");
+    }
+		function promLink(promCode,l,o,promText){
+		var url = "index.php?do=ajax&view=prom&ajax=prom_11&prom_code="+promCode;
+		o?url+="&o="+o:"";
+		l?url+="&l="+l:"";
+		promText?url+="&promtext="+promText:"";
+		showWindow("promink",url);return false;
+	}
+	function getList(obj,promCode){
+		if($.trim($("#"+obj).html()).length==0){
+			var url = "index.php?do=ajax&view=prom&ajax=prom_list&prom_code="
+					+promCode;
+			$("#"+obj).load(url).show();
+			$("html,body").animate({scrollTop:$("#"+obj).offset().top})
+		}
+	}
+ </script>
+<!--{template footer}-->
+<!--推广链接 end-->
+{/if}

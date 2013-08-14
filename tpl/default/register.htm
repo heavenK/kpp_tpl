@@ -1,0 +1,201 @@
+<!--{template header_reg}--><!--页面样式	-->
+	<!--zhuce top end -->
+	<div class="blank"></div>
+	<!--zhuce begin  -->
+	<div class="zc_n">
+    	<div class="zc_frist">
+        	<div class="zc_n01">
+				<!--<p>网站快速注册</p>-->
+                <a class="a0"><b>网站快速注册</b></a>
+			</div>
+        </div>
+		<div class="zc_nleft">
+			<div class="zc_n02">
+            	<div class="zc_bp">
+                	<div class="zc_bp01" >
+                    	<h1 class="sz">1</h1>
+                    </div>
+                    <div class="zc_bp02" >
+                    	<h1 class="sz2">2</h1>
+                    </div>
+                </div>
+				<div class="zc_n02t">
+					<div class="zc_n02tleft">
+						<p>填写用户名和密码<br /></p>
+					</div>
+					<div class="zc_n02tright">
+						<p>注册成功<br /></p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="zc_k">
+				<div style="float:left; width:615px; padding-left:30px;">
+				<form action="index.php?do=register" method="post" id="register_frm" name="register_frm">
+                	<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}">
+                    <input type="hidden" name="hdn_refer" id="hdn_refer" value="{$_K['refer']}">
+                    <input type="hidden" name="handlekey" value="register_frm1"><!--账号-->
+                	<div class="zc_kn">
+						<label class="zc_kz b1">账号</label>
+						<div class="zc_kk">
+							<input type="text" class="txt txt_input" autocomplete="off" name="txt_account" id="txt_account" limit="required:true;len:2-20;type:string;general:true" msg="{$_lang['username_input_error']}" ajax="index.php?do=register&check_username=" title="{$_lang['please_input_register_account']}" msgArea="login_account_msg" style="width:200px;" />
+                        <span class="msg" id="login_account_msg"><i></i></span>    
+                        </div>
+					</div>
+					<div class="zc_kn">
+						<label class="zc_kz b1">密码</label>
+						<div class="zc_kk">
+							<input class="txt_input" onKeyup="pwStrength(this.value)" style="width:200px;" type="password" name="pwd_password" id="pwd_password" maxlength="20" limit="required:true;len:6-20" msg="{$_lang['password_input_error']}" title="{$_lang['please_input_register_pw']}" msgArea="password_msg"/>
+                            <span class="msg" id="password_msg"></span>
+						</div>
+					</div>
+					<div class="zc_kn">
+						<label class="zc_kz b2">确认密码</label>
+						<div class="zc_kk">
+							<input class="txt_input" style="width:200px;" type="password" name="pwd_password2" id="pwd_password2" maxlength="20" limit="required:true;equals:pwd_password" msg="{$_lang['repeat_password_error']}" title="{$_lang['input_pw_agian']}" msgArea="password2_msg"/>
+                            <span class="msg" id="password2_msg"></span>
+						</div>
+					</div>
+					<div class="zc_kn">
+						<label class="zc_kz b1">邮箱</label>
+						<div class="zc_kk">
+							<input class="txt_input" style="width:200px;" autocomplete="off" type="text" class="txt" name="txt_email" id="txt_email"limit="type:email;required:true;len:6-50" msg="{$_lang['email_error']}" title="{$_lang['email_format']}" ajax="index.php?do=register&check_email=" msgArea="email_msg"/>
+                            <span class="" id="email_msg"></span>
+						</div>
+					</div>
+					<div class="zc_kn">
+						<label class="zc_kz b0">验证码</label>
+						<div class="zc_kk">
+							<input style="width:65px;" class="fl_l txt_input" name="txt_code" type="text" 
+                            size="8" id="txt_code" limit="required:true;len:4" msg="{$_lang['auth_code_error']}"msgArea="secode_msg"
+                            ajax="index.php?do=ajax&view=code&txt_code=" >
+                        </div>
+                        <div class="zc_kk">
+                                <img height="25" width="100" id="secode_img" src="secode_show.php?sid=" onClick="document.getElementById('secode_img').src='secode_show.php?sid='+Math.random(); return false;">
+                                <a class="font14" href="#" onClick="document.getElementById('secode_img').src='secode_show.php?sid='+Math.random(); return false;">{$_lang['change_a_group']}</a>
+                                <span class="" id="secode_msg"></span>
+                            <a id="show_secode" href='index.php?do=ajax&view=menu&ajax=show_secode'></a>
+						</div>
+					</div>
+				
+				</div>
+				<div class="zc_btn">
+                    <input name="" type="button" class="btn" style="font-size:16px; color:#FFF; width:100px; height:30px; border: 1px solid #C90;background-image: -webkit-gradient(linear, left top, left bottom, from(#FDD901), to(#F5C400));background-image: -webkit-linear-gradient(top, #FDD901, #F5C400);background-image: -moz-linear-gradient(top, #FDD901, #F5C400);
+background-image: -ms-linear-gradient(top, #FDD901, #F5C400);background-image: -o-linear-gradient(top, #FDD901, #F5C400);background-image: linear-gradient(to bottom, #FDD901, #F5C400);filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#fdd901,endColorstr=#f5c400);
+zoom: 1;border-radius: 5px;text-shadow: 0 1px 1px white;" value="提交注册" onClick="return user_register();"/>
+				</div>
+			</div>
+            
+            
+			<div class="zc_f box">
+				<p class="mt_20 prefix_4 ml_5">
+                    <input  name="inputtext" type="checkbox" checked="checked" id="inputtext" limit="required:true"
+                      msg="{$_lang['you_should_agree_agreement']}" msgArea="login_msg"/> &nbsp;{$_lang['i_has_read_and_accpet']}<a  class="agreement_link" href="" onClick="$('.box_content').show();" target="_blank">{$_lang['register_agreement']}</a>{$_lang['and_copyright_notice']}
+                      <span id="login_msg"></span>
+                </p>
+                <div class="box_content">
+                	<div style="border:1px #CCC solid; padding-bottom:3px;">
+                	<p><!--{tag 注册协议}--></p>
+                    </div>
+                </div>
+			</div>
+            </form>
+            
+            
+            
+            
+            <script type="text/javascript">
+			var mySlide = new Slide("box","slide","box_content",1);
+			mySlide._slideEvent();
+			</script>
+		</div>
+		
+		<div class="zc_nright">
+			<div class="zc_btn00">
+					<p>已有豆8账号</p>
+                    <input name="" type="button" class="btn" onClick="window.location='index.php?do=login'" style="font-size:16px; color:#FFF; line-height:23px; border:none;" value="立即登录"/>
+			</div>
+            <div class="sydl_mt0">
+            	<p class="mt_dl">您也可以使用合作网站账号登录</p>
+                <p class="mt">
+                {loop $api_open $k $v}
+                    {if $weibo_list[$k.'_app_id']}
+                        <a href="index.php?do=oauth_login&type={$k}" alt="{$api_name[$k]['name']}" title="{$api_name[$k]['name']}">
+                            <img src="resource/img/ico/{$k}_t.gif" alt="{$api_name[$k]['name']}" title="{$api_name[$k]['name']}">
+                        </a>&nbsp;
+                   {/if}			
+                {/loop}
+				</p>
+            </div>
+		</div>
+	</div>
+    
+    
+    <script type="text/javascript">
+   In('form');
+    //注册
+    function user_register(){
+		var i = checkForm(document.getElementById("register_frm"));
+        if (i) {
+			 showWindow('register_frm1', 'register_frm', 'post',0,{cover:1});
+         }else{
+      		return false;
+		 }
+    }
+$("#txt_code").focus(function(){
+	$("#show_secode_menu_content").removeClass("hidden");
+});
+$(".agreement_link").toggle(function(){
+	$(".agreement_part").show();
+},function(){
+	$(".agreement_part").hide();
+});
+function checkStrong(sPW){
+	//if (sPW.length < 3){
+		//Modes=1;
+	//}else{
+		var pwLength = 	sPW.length;
+		  var patEn = /[a-zA-Z]/;
+		  var patnum = /[0-9]/;
+		  var speChar = /[`~!@#$\^&\*\(\)=\|{}':;',\/\?\[\]\.<>]/;
+		  var isEn = patEn.test(sPW);
+		  var isNum = patnum.test(sPW);
+		  var isSpe = speChar.test(sPW);
+		  Modes = getStrong(isEn,isNum,isSpe,pwLength);
+	
+	//}
+	 return Modes; 
+}
+
+function getStrong (isEn,isNum,isSpe,pwLength){
+	if (isEn && isNum && isSpe && (pwLength>6)){
+		var setModes = 3;
+	}else{
+		var setModes = 2;
+		if((isEn && isNum)||(isNum && isSpe)||(isEn&&isSpe)){
+			var setModes = 2;
+		}else{
+			var setModes = 1;
+		}
+	}
+	return setModes;
+}
+
+function pwStrength(pwd){ 
+  if (pwd==null||pwd==""){ 
+  	S_level = 0;
+  } else{ 
+	  S_level=checkStrong(pwd); 
+	  $("#pwdStrength span:lt("+S_level+")").addClass('selected');
+	  $("#pwdStrength span:gt("+(S_level-1)+")").removeClass('selected'); 
+  } 
+
+}
+								
+</script>
+	<!-- zhuce end -->
+	<div class="blank"></div>
+</div>
+
+</body>
+</html>

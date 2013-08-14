@@ -1,0 +1,109 @@
+<!--{template header}-->
+<div class="wrapper">
+	<div class="mt_20">
+		<div class="container_24 clearfix">
+			<div class="box clearfix">
+				<!--{template square/left_nav}-->
+					<div class="core clearfix">
+						<!-- core_down start  -->
+						<div class="core_down clearfix">
+							<h2>我的留言</h2>
+							<div class="core_down_nav ml_20 mr_20">
+								<a href="index.php?do=square&view=message" {if !$type} class="selected"{/if}>所有</a>
+								<a href="index.php?do=square&view=message&type=receive" {if $type =='receive'} class="selected"{/if}>收到的留言</a>
+								<a href="index.php?do=square&view=message&type=send" {if $type == 'send'} class="selected"{/if}>发出的留言</a>
+							</div>
+							<!-- <div class="msg msg_need block ml_20 mr_20">
+								<a href="#" class="block">有15条新动态，点击查看</a>
+							</div> -->
+							<div class="core_down_info mb_10 clearfix">
+								<ul>
+									<input type="hidden" name="page" value="{$page}">
+									<input type="hidden" name="pagesize" value="{$pagesize}">
+									{loop $message_list $k $v}
+									<li class="clearfix" id="message_list_{$v['comment_id']}">
+										<div class="info_van clearfix">
+											<a href="index.php?do=space&member_id={$v['m_uid']}" target="_blank">
+													<!--<img src="http://localhost/kppw2.2/data/avatar/default/man_small.jpg" class="pic_small">-->
+													<!--{userpic($v['m_uid'],big)}-->
+													<p class="c999">$v['m_username']</p>
+												</a>
+										</div>
+										<div class="info_body clearfix">
+											<div class="c999">
+												<span>留言给</span>
+												<a href="index.php?do=space&member_id={if $v['t_uid']}{$v['t_uid']}{else}{$v['s_uid']}{/if}" target="_blank">{if $v['t_username']}{$v['t_username']}{else}{$v['s_username']}{/if}</a>的{if $v['m_obj_type']=='free_task'}需求{else}商品{/if}
+												<a href="index.php?do=square&view={if $v['m_obj_type']=='free_task'}task_detail&task_id={else}goods_detail&service_id={/if}{$v['m_obj_id']}" target="_blank">{if $v['m_obj_type']=='free_task'}{$v['task_title']}{else}{$v['service_title']}{/if}</a>
+												<p class="c333 ">{$v['content']}</p>
+											</div>
+											<div class="c999">
+												<span class="mr_10">留言时间：<!--{date('Y-m-d H:i:s',$v['m_on_time'])}--></span>
+												{if $type =='receive'}
+												<div class="info_talk clearfix">
+												<a href="index.php?do=square&view={if $v['m_obj_type']=='free_task'}task_detail&task_id={else}goods_detail&service_id={/if}{$v['m_obj_id']}" target="_blank">回复</a>
+												</div>
+												{/if}
+											</div>
+										</div>
+										{if $type !='receive'}
+									<div class="site_stats">
+											<span id="down"><a href="javascript:void(0)" onclick="up_{$v['comment_id']}()"></a></span>
+										</div>
+										{/if}
+									<div class="site_stats_down" style="display:none;" id="message_{$v['comment_id']}">
+									{if $uid == $v['m_uid']}
+											<a href="javascript:void()" onclick="del_message('{$v[comment_id]}')">删除</a>
+										{else}	
+											<a href="index.php?do=square&view={if $v['m_obj_type']=='free_task'}task_detail&task_id={else}goods_detail&service_id={/if}{$v['m_obj_id']}" target="_blank">回复</a>
+								{/if}
+									</div>
+									</li>
+									<script type="text/javascript">
+										function up_{$v['comment_id']}(){
+											$("#message_"+{$v['comment_id']}).toggle();
+										}
+									</script>
+									{/loop}
+							
+								</ul>
+								
+								<!--翻页-->
+								{if $pages['page']}
+                                  <div class="page">
+                                    <p class="clearfix">
+                                             $pages['page']
+                                      </p>
+                                      <div class="clear"></div>
+                                  </div>
+                                  {/if}
+                                  <!--end 翻页-->
+                                  
+							</div>
+						</div>
+						<!-- core_down end -->
+					</div>
+				<!--{template square/index_right}-->
+				
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	var uid = '{$uid}';
+	function del_message(message_id){
+		showDialog('确认要删除该条留言？','confirm','操作提示','del_post('+message_id+');');
+	}
+	function del_post(message_id){
+		$.post('index.php?do=square&view=message',{ac:'del',message_id:message_id},function(json){
+			if(json.status == 1){
+				$("#message_list_"+json.data.res).hide();
+				showDialog(json.msg,'right','操作提示');
+			}else{
+				showDialog(json.msg,'alert','操作提示');
+			}
+		},'json');
+	}
+	
+	
+</script>
+<!--{template footer}-->

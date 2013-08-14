@@ -1,0 +1,184 @@
+<!--{eval $page_title=$service_info['title'].'--'.$_K['html_title'];}--><!--{template header}--><!--页面内容区--><!--页面样式-->
+
+<div class="wrapper">
+    <!--页面头部-->
+    <header class="clearfix page_header">
+        <div class="container_24 clearfix">
+            <!--面包屑-->
+            <div class="breadcrumbs clearfix">
+                <a href="{$_K['siteurl']}/index.php">{$_lang['home']}</a>
+                &gt;<a href="{$_K['siteurl']}/index.php?do=shop_list&model_id={$model_id}">{$_lang['witkey_shop']}</a>
+                &gt;<a href="{$_K['siteurl']}/index.php?do=shop_list&model_id={$model_id}&indus_pid={$service_info['indus_pid']}">{$indus_p_arr[$service_info['indus_pid']]['indus_name']}</a>
+                &gt;<a href="{$_K['siteurl']}/index.php?do=shop_list&model_id={$model_id}&indus_id={$service_info['indus_id']}">{$indus_arr[$service_info['indus_id']]['indus_name']}</a>
+            </div>
+            <!--end 面包屑-->
+            <div class="grid_24 po_re">
+                <!--step步骤 start-->
+                <div class="box normal2">
+                    <div class="step_progress clearfix">
+                        <div class="step step1 selected">
+                            <span class="icon32 pub">1</span>
+                            <strong>确认订单信息</strong>
+                        </div>
+                        <div class="step step2 ">
+                            <span class="icon32 pub">2</span>
+                            <strong>付款</strong>
+                        </div>
+                        <div class="step step3 ">
+                            <span class="icon32 pub">3</span>
+                            <strong>{if $model_id==6}作品交互{else}开始服务{/if} </strong>
+                        </div>
+                        <div class="step step4 ">
+                            <span class="icon32 pub">4</span>
+                            <strong>双方互评</strong>
+                        </div>
+                    </div>
+                </div>
+                <!--step步骤 end-->
+            </div>
+        </div>
+    </header>
+    <!--end 页面头部--><!--详细内容区-->
+    <section class="content mt_20 mb_20 clearfix">
+        <!--布局框-->
+        <div class="container_24 clearfix">
+            <!-- 左边部分-->
+            <div class="grid_5 ">
+                <div class="box normal2 clearfix" style="height:350px;overflow:hidden;">
+                    <div class="inner">
+                        <div class="box_header">
+                            <h2 class="title">{if $service_info['model_id']==7}服务信息{else}作品信息{/if}</h2>
+                        </div>
+                        <div class="box_detail">
+                            <div class="pad10">
+                                <div class="service_detail_img">
+                                	<!--{eval $pics = explode("," , $service_info['pic'])}-->
+                                    <img src="<!--{eval echo keke_shop_class::output_pics($pics[0],100,1)}-->" alt="{$service_info['title']}">
+                                    
+                                </div>
+                            </div>
+                            <div class="service_detail_info c333 clearfix">
+                                <p>
+                                    <span>{if $service_info['model_id']==7}服务名称{else}作品名称{/if}</span>：<a href="index.php?do=service&sid={$service_info['service_id']}"><!--{eval echo kekezu::cutstr($service_info['title'],16)}--></a>
+                                </p>
+                                <p>
+                                    单价：<span class="cc00">{if $service_info['model_id'] == 7}{c:$service_info['price']}{else}{c:$service_info['price']}/{$service_info['unite_price']}{/if}</span>
+                                </p>
+                                <p>
+                                    卖家名称：<a href="index.php?do=space&member_id={$service_info['uid']}">{$service_info['username']}</a>
+                                </p>
+                                <p>
+                                    联系方式：{$seller_info['mobile']}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end 左边部分--><!--右边部分-->
+            <div class="grid_19">
+                <div class="box normal2 clearfix" style="height:350px;overflow:hidden;">
+				{if $op=='buy'}
+				
+                    <div class="sure_buy_info clearfix">
+                        <div class="box_header">
+                            <h2 class="title">确认购买信息</h2>
+                        </div>
+                        <div class="pad20">
+                            <div class=" pb_10 ws_break">
+                                给卖家留言： 
+                                <textarea cols="100" rows="9" id="tar_content" name="tar_content"></textarea>
+								
+                            </div>
+                            
+							支付金额：<span class="cc00">{c:$service_info['price']}</span>
+                              
+                        </div>
+                        <div class="t_c pb_20">
+                            <button class="big button" value="1" name="confirm_to_order" id="confirm_to_order">
+                                    确认无误，{if $service_info['model_id'] == 6}购买{else}下单{/if}
+                            </button>
+                        </div>
+                    </div>    
+					
+					
+				{else}
+				
+				   <div class="sure_buy_info clearfix">
+                        <div class="box_header">
+                            <h2 class="title">确认购买信息</h2>
+                        </div>
+                        <div class="pad20">
+                            <div class="pt_20 pb_10 ws_break">
+                                                                         买家留言： 
+                               {$order_info['to_seller_message']}
+                            </div>
+							 <div class="pt_20 pb_10">
+                                                                         下单时间：<!--{eval echo date('Y-m-d,H:i:s',$order_info['order_time'])}-->
+                            </div>
+                         
+							支付金额：<span class="cc00">{c:$service_info['price']}</span>
+                              
+                        </div>
+                        <div class="t_c pt_20 pb_20">
+                        	
+							{if $order_info['order_status']=='close'}
+							 订单已关闭
+							{else}
+							  {if $uid==$service_info['uid']}
+								      <button class="big button" value="1" name="confirm_to_accept" id="confirm_to_accept">
+                                                                                                          接受订单
+                                     </button>
+									 <button class="big button" value="1" name="confirm_to_close" id="confirm_to_close">
+                                                                                                          拒绝订单
+                                     </button>
+								{/if}
+								{if $uid==$order_info['order_uid']}
+                                                                        确认您的订单信息，等待卖家接受订单
+									<button class="big button" value="1" name="confirm_to_close" id="confirm_to_close">
+                                                                                                          取消订单
+                                     </button>
+								{/if}
+							{/if}
+                            	
+                        </div>
+                    </div>
+					{/if}
+                </div>
+            </div>
+        </div>
+            <!--end 右边部分-->
+      
+        <!--end 布局框-->
+    </section>
+    <!--end 详细内容区-->
+</div>
+<!--end 页面内容区-->
+<script type="text/javascript">
+    In.add('service', {
+        path: "resource/js/system/service.js",
+        type: 'js'
+    });
+    In('service', 'custom');
+    var sid = "{$sid}";
+    var basic_url = "index.php?do=shop_order&steps=step1&sid=" + sid;
+    var uid = parseInt('{$uid}') + 0;
+	var order_id = parseInt('{$order_id}')+0;
+	$(function(){
+		$("#confirm_to_order").click(function(){
+				var leave_message_to_seller = $("#tar_content").val();
+				var url = basic_url+'&op=confirm&message='+leave_message_to_seller;
+				formSub(url,'url',false);
+			
+		})
+		$("#confirm_to_accept").click(function(){
+				var url = basic_url+'&op=seller_confirm&order_id='+order_id;
+				formSub(url,'url',false);
+		})
+		$("#confirm_to_close").click(function(){
+				var url = basic_url+'&op=seller_close&order_id='+order_id;
+				formSub(url,'url',false);
+		})
+	})
+</script>
+<!--{template footer}-->

@@ -1,0 +1,213 @@
+<!--{eval $page_title=$service_info['title'].'--'.$_K['html_title'];}--><!--{template header}--><!--页面内容区--><!--页面样式-->
+
+<div class="wrapper">
+    <!--页面头部-->
+    <header class="clearfix page_header">
+        <div class="container_24 clearfix">
+            <!--面包屑-->
+            <div class="breadcrumbs clearfix">
+                <a href="{$_K['siteurl']}/index.php">{$_lang['home']}</a>
+                &gt;<a href="{$_K['siteurl']}/index.php?do=shop_list&model_id={$model_id}">{$_lang['witkey_shop']}</a>
+                &gt;<a href="{$_K['siteurl']}/index.php?do=shop_list&model_id={$model_id}&indus_pid={$service_info['indus_pid']}">{$indus_p_arr[$service_info['indus_pid']]['indus_name']}</a>
+                &gt;<a href="{$_K['siteurl']}/index.php?do=shop_list&model_id={$model_id}&indus_id={$service_info['indus_id']}">{$indus_arr[$service_info['indus_id']]['indus_name']}</a>
+            </div>
+            <!--end 面包屑-->
+            <div class="grid_24 po_re">
+                <!--step步骤 start-->
+                <div class="box normal2">
+                    <div class="step_progress clearfix">
+                        <div class="step step1 ">
+                            <span class="icon32 pub">1</span>
+                            <strong>确认订单信息</strong>
+                        </div>
+                        <div class="step step2 ">
+                            <span class="icon32 pub">2</span>
+                            <strong>付款</strong>
+                        </div>
+                        <div class="step step3 ">
+                            <span class="icon32 pub">3</span>
+                            <strong>{if $model_id==6}作品交互{else}开始服务{/if} </strong>
+                        </div>
+                        <div class="step step4 selected">
+                            <span class="icon32 pub">4</span>
+                            <strong>双方互评</strong>
+                        </div>
+                    </div>
+                </div>
+                <!--step步骤 end-->
+            </div>
+        </div>
+    </header>
+    <!--end 页面头部-->
+    <!--详细内容区-->
+    <section class="content mb_20 clearfix">
+        <!--布局框-->
+        <div class="container_24 clearfix"> 
+            <div class="grid_24 ">
+                <div class="box normal2">
+                    <div class="inner">
+                         <div class="prefix_1">
+                        <div class="pt_20 pb_20">
+                            <div class="t_r pb_10">
+                            	{if $order_info['order_status']!='arbitral'&&!$mark_info['mark_status']}
+                                <button type="button" onclick="orderReport('{$order_id}')">交易维权</button>
+								{/if}
+                            </div>
+                        <!--源文件协议内容-->
+                            <form method="post" action=""  name="agree_frm">
+                            <div class="source_content1 clearfix">
+                                <div class="source_agreement1 clearfix">
+                                     <!--左边发布者-->
+                                        <div class="grid_10">
+                                            <div class="publisher border_c">
+                                                <div class="user_info border_b_c clearfix pad10 ">
+                                                    <div class="fl_l mr_10">
+                                                      <p><!--{userpic($seller_info['uid'],'middle')}--></p>
+                                                    </div>
+                                                    <ul class="intor">
+                                                      <li class="font14b">卖家</li>
+                                                      <li>{$seller_info['username']}</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="pad10 contact">
+                                                    <span>真实姓名：{if $seller_info['truename']}{$seller_info['truename']}{else}暂无{/if}</span>
+                                                    <span>电话：{if $seller_info['phone']}{$seller_info['phone']}{else}暂无{/if}</span>
+                                                    <span>手机号码：{if $seller_info['mobile']}{$seller_info['mobile']}{else}暂无{/if}</span>
+                                                    <span>Q  Q：{if $seller_info['qq']}{$seller_info['qq']}{else}暂无{/if}</span>
+                                                    <span>MSN：{if $seller_info['msn']}{$seller_info['msn']}{else}暂无{/if} </span>
+                                                    <span>邮箱：{if $seller_info['email']}{$seller_info['email']}{else}暂无{/if}</span>
+                                                </div>
+                                                <div class="border_t_c t_c pt_10 pb_10 c333">  
+												
+                                                    <!-- 服务 -->
+													{if $uid==$seller_info['uid']}
+                                                    {if $order_info['order_status']=='arbitral'}
+													 此订单正在仲裁中，等待后台处理
+													{elseif $mark_info['mark_status']!=1&&$mark_info['mark_count']<2}
+                                                    <button type="button" onclick="orderMark('{$mark_info[mark_count]}','{$service_info[model_id]}','{$order_id}','{$sid}','{$order_info[order_uid]}');">互评</button>
+													{/if}
+													{/if}
+												
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <!--end 左边发布者-->
+                                     <div class="grid_2 alpha omega">
+                                        <p style="margin:auto; line-height:300px; text-align:center"><img src="resource/img/public/mutual.png" alt="{$_lang['each']}"></p>
+                                     </div>
+                                    <!--右边中标者-->
+                                    <div class="grid_10">
+                                        <div class="publisher border_c ">
+                                            <div class=" user_info border_b_c clearfix pad10 ">
+                                                <div class="fl_l mr_10">
+                                                  <p><!--{userpic($buyer_info['uid'],'middle')}--></p>
+                                                </div>
+                                                 <ul class="intor">
+                                                    <li class="font14b">买家</li>
+                                                    <li>{$buyer_info['username']}</li>
+                                                </ul>
+                                            </div>
+                                            <div class="pad10 contact">
+                                                <span>真实姓名：{if $buyer_info['truename']}{$buyer_info['username']}{else}暂无{/if}</span>
+                                                <span>电话：{if $buyer_info['phone']}{$buyer_info['phone']}{else}暂无{/if}</span>
+                                                <span>手机号码：{if $buyer_info['mobile']}{$buyer_info['mobile']}{else}暂无{/if}</span>
+                                                <span>Q  Q:{if $buyer_info['qq']}{$buyer_info['qq']}{else}暂无{/if}</span>
+                                                <span>MSN：{if $buyer_info['msn']}{$buyer_info['msn']}{else}暂无{/if} </span>
+                                                <span>邮箱：{if $buyer_info['email']}{$buyer_info['email']}{else}暂无{/if}</span>
+                                                                                    
+                                            </div>
+                                             <div class="border_t_c t_c pt_10 pb_10 c333">
+                                               
+                                                 <!-- 服务 -->
+                                                 
+											     {if $uid==$buyer_info['uid']}
+												    {if $order_info['order_status']=='arbitral'}
+													 此订单正在仲裁中，等待后台处理
+													{else}
+													{if $service_info['model_id']==6 && $service_info['submit_method'] == 'inside'}
+													<a id="ddd" target="_blank" href="index.php?do=ajax&view=file&ajax=download&file_name={$file_info['file_name']}&file_path={$file_info['save_name']}#file" >
+	             	{$file_info['file_name']}<span class="c999">（<!--{eval echo is_file($file_info['save_name'])?kekezu::get_format_size(filesize($file_info[save_name])):''}-->）</span><span class="icon16 download"></span></a>
+													{/if}
+                                                    {if $mark_info['mark_status']!=1&&$mark_info['mark_count']<2}						
+                                                    <button type="button" onclick="orderMark('{$mark_info['mark_count']}','{$service_info['model_id']}','{$order_id}','{$sid}','{$order_info[seller_uid]}');">互评</button>
+													{/if} 
+												 {/if}
+												 {/if}
+                                                </div>
+                                        </div>
+                                    </div>
+                                      <!--end 右边中标者-->
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                        <!--end 源文件协议内容-->
+                            </form>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+        <!--end 布局框-->
+    </section>
+    <!--end 详细内容区-->
+</div>
+<!--end 页面内容区-->
+<script type="text/javascript">
+    In.add('service', {
+        path: "resource/js/system/service.js",
+        type: 'js'
+    });
+    In('service', 'custom');
+    var sid = "{$sid}";
+	var basic_url = "index.php?do=user&view=finance&op=order&obj_type=service&role=2&page_size=10&status=&page=1";
+    var basic_url1 = "index.php?do=shop_order&sid=" + sid;
+    var uid = parseInt('{$uid}') + 0;
+	var seller_uid = parseInt('{$service_info[uid]}')+0;
+	var buyer_uid = parseInt('{$order_info[order_uid]}')+0;
+	$(function(){
+		$("#confirm_to_pay").click(function(){
+				var leave_message_to_seller = $("#tar_content").val();
+				var url = basic_url1+'&op=confirm&message='+leave_message_to_seller;
+				formSub(url,'url',false);
+			
+		})
+	})
+	/**
+	 * 互评
+	 * @param {Object} model_code
+	 * @param {Object} obj_id
+	 */
+	function orderMark(mark_count,model_id,order_id,obj_id,to_uid){
+	  if(mark_count==0||mark_count==1){
+	  	if(seller_uid==uid){
+				role_type=1;
+		}else{
+				role_type=2;
+		}
+		url=basic_url1+"&model_id="+model_id+"&mark=1&obj_id="+order_id+"&order_id="+order_id+"&role_type="+role_type+"&to_uid="+to_uid;
+		mark(url,'service','sid',obj_id);
+		
+	  }else{
+	  	showDialog("$_lang['pingjia_error']",'alert',"$_lang['msg_tishi']");return false;
+	  }
+		
+	}
+	/**
+	 * 互评
+	 * @param {Object} model_code
+	 * @param {Object} obj_id
+	 */
+	function orderReport(order_id){
+	  	if(seller_uid==uid){
+				role=1;
+				 to_uid = buyer_uid;
+		}else{
+				role=2;
+				 to_uid = seller_uid;
+		}
+	report('order',role,order_id,to_uid);
+	}
+		
+</script>
+<!--{template footer}-->

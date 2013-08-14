@@ -1,0 +1,93 @@
+<!--{template header}-->
+<div class="winbody {$_K['theme']}_style">
+ <div class="clearfix box pad10">
+    <!--from表单 start-->
+    <form method="post" id="frm_suggest" name="frm_suggest" action=''>
+     <div class="rowElem clearfix" id="upload_tip">
+      		 <label class="fl_l t_r">建议标题：</label>
+			<div class="fl_l" style="width:350px">
+			 	<input type="text" name="txt_title" id="txt_title" limit="required:true" maxlength="50" msg="标题不能为空" msgArea="span_txt_title">
+				<span id="span_txt_title"></span>
+			</div>
+      </div>
+	  <div class="rowElem clearfix" id="upload_tip">
+      		 <label class="fl_l t_r">建议类型：</label>
+			<div class="fl_l">
+			 	<select name="slt_type">
+			 		<option value="1">我的建议</option>
+					<option value="2">我的问题</option>
+			 	</select>
+			</div>
+      </div>
+       <div class="rowElem clearfix" id="desc">
+      		 <label class="fl_l t_r">详细描述： </label>
+			 <div class="fl_l">
+      		 <textarea cols="70" rows="5" name="tar_content" id="tar_content"  class="txt_input" onkeydown="checkInner(this,'100',event)"></textarea>
+      		<div class="clear"></div>
+             <div class="c999" id="length_show">{$_lang['input_cause_msg_notice']}</div>
+			 </div>
+      </div>
+	  <div class="rowElem clearfix" id="upload_tip">
+      		 <label class="fl_l t_r">输验证码：</label>
+			<div class="fl_l" style="width:350px">
+			 	<input type="text" name="txt_code" id="txt_code" limit="required:true;len:4" msg="验证码错误" msgArea="secode_msg" ajax="index.php?do=ajax&view=code&txt_code=" >
+				<span id="show_secode_menu_content" class="hidden secode_box">
+ 				<img id="secode_img" src="secode_show.php?sid=" onclick="document.getElementById('secode_img').src='secode_show.php?sid='+Math.random(); return false;">
+				</span>
+				<span class="" id="secode_msg"></span>
+			</div>
+      </div>
+      <div class="rowElem clearfix form_button">
+       	 	 <button type="button" class="button" value="{$_lang['save']}" onclick="subReport()"><span class="check icon"></span>{$_lang['save']}</button>
+		 	 <button type="button" class="button" value="{$_lang['cancel']}" onclick="hideWindow('suggest')"><span class="reload icon"></span>{$_lang['cancel']}</button>
+      </div>
+   </form>
+  <!--from表单 end-->
+
+
+
+ </div>
+</div>
+<script type="text/javascript">
+		In('form'); 
+</script>
+
+<script type="text/javascript">
+	function subReport(){
+		var basic_url = 'index.php?do=index';
+		var i = checkForm(document.getElementById('frm_suggest'));
+		if(i){
+		var shtml 	 = contentCheck('tar_content','{$title}',5,100,1,'upload_tip');
+			if(shtml){		
+				var data = $("#frm_suggest").serialize();				
+				$.post(basic_url+'&op={$op}&'+data,{sbt_edit:true},
+				function(json){
+					if(json.status=='1'){
+							showDialog(json.data,'right',json.msg);hideWindow('suggest');
+							location.href = basic_url;
+							return false;
+						}
+					else{
+						showDialog(json.data,'alert',json.msg);return false;
+					}
+			},'json');
+			}
+		}
+	}
+	/**
+	 * 上传完成后的后续操作
+	 * @param {Object} data 响应的json对象
+	 */
+	function uploadResponse(json){
+		if($("#"+json.fid).length<1){
+				$("#file_url").val(json.msg.url);
+			}
+	}
+	
+	$(function(){
+		$("#txt_code").focus(function(){
+			$("#show_secode_menu_content").removeClass("hidden");
+		});
+	})
+</script>
+<!--{template footer}-->

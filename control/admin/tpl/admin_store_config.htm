@@ -1,0 +1,48 @@
+  <!--{template control/admin/tpl/admin_header}-->
+<div class="page_title">
+    <h1>店铺管理</h1>
+    <div class="tool">
+       		 <a href="index.php?do=store&view=config" {if $view=='config'}class="here"{/if}>店铺配置</a>
+			 <a href="index.php?do=store&view=list" {if $view=='list'}class="here"{/if}>店铺列表</a>
+    </div>
+</div>
+<div class="box post">
+    <div class="tabcon">
+        <div class="title">
+            <h2>店铺配置</h2>
+        </div>
+        <div class="detail">
+            <form name="frm_config_shop" id="frm_config_shop" action="index.php?do=store&view=config" method="post" accept-charset="{$_K['charset']}">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tbody id="qq">
+                        <tr>
+                            <th scope="row" width="130">
+                               店铺 是否开启{$_lang['zh_mh']}
+                            </th>
+                            <td>
+                                <input type="radio" name="shop_is_open" value="1" {if $config['shop_is_open']==1}checked="checked"{/if}>启用
+                                <input type="radio" name="shop_is_open" value="2" {if $config['shop_is_open']==2}checked="checked"{/if}>禁用
+								(是否开启店铺)
+                            </td>
+                        </tr>
+                    </tbody>
+                    <th scope="row">
+                        &nbsp;
+                    </th>
+                    <td>
+                        <div class="clearfix padt10">
+                            <button class="positive pill primary button" type="submit" name='submit' value="{$_lang['submit']}">
+                                <span class="check icon"></span>{$_lang['submit']}
+                            </button>
+                            <button class="pill button" type="button" onclick="history.go(-1);" value="{$_lang['return']}">
+                                <span class="leftarrow icon"></span>{$_lang['return']}
+                            </button>
+                        </div>
+                    </td>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--{template control/admin/tpl/admin_footer}-->

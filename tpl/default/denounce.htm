@@ -1,0 +1,110 @@
+<!--{template header}-->
+<div class="winbody {$_K['theme']}_style">
+ <div class="clearfix  c333 pad10">
+    <!--from表单 start-->
+    <form method="post" id="frm_denounce" name="frm_denounce" action=''>
+     <input type="hidden" name="obj_id" value="{$obj_id}">
+	 <input type="hidden" name="from_type" value="{$from_type}">
+     <input type="hidden" name="to_uid" value="{$to_uid}">
+     <input type="hidden" name="to_username" value="{$to_username}">
+	 <input type="hidden" name="obj_content" value="{$obj_content}">
+		 <div class="rowElem   clearfix">
+		 	<div class="messages m_warn">
+		       <span class="icon16 fl_l"></span>不良信息是指含有色情，暴力。广告或其他骚扰你正常生活的内容
+		   </div>
+		    </div>
+	 <div class="rowElem clearfix" id="desc">
+      		 <label class=" t_r">你要举报的是"{$to_username}"发的信息：</label>
+			 <div class=" pad10">
+      		 	<!--{userpic($uid,big)}-->
+				<span class="pl_10">{$obj_content}</span>
+			 </div>
+      </div>
+     <!--
+	 <div class="rowElem clearfix" id="upload_tip">
+      		 <label class="fl_l t_r">{$_lang['attachment_upload']}</label>
+		<div class="fl_l" style="width:350px">
+			 	<input type="hidden" name="file_url" id="file_url">
+			 	<input type="file" class="file" name="upload" id="upload">
+		  	 	 {$_lang['only_one_upload']}{$_lang['upload_notice']}{$basic_config['max_size']}{$_lang['size_notice']}:
+			<div>
+			<div class="upfile ws_break">
+                 <span style="line-height:15px; display:block" class=" ws_prewrap ws_break">.doc,.docx,.rar,.zip</span>
+            </div>
+			</div>
+		</div>
+      </div>-->
+       <div class="rowElem clearfix" id="desc">
+      		 <label class="fl_l t_r">你可以填写更多举报说明：<span class="c999">（选填,字数范围0－100个文字）</span>
+      		 </label>
+			 <div class="fl_l">
+      		 <textarea cols="70" rows="3" name="reason" id="reason"  class="txt_input" onkeydown="checkInner(this,'100',event)"></textarea>
+      		<div class="clear"></div>
+             <div class="c999" id="length_show">{$_lang['input_cause_msg_notice']}</div>
+			 </div>
+      </div>
+	 <div class="rowElem clearfix">
+       请放心，你的隐私将会得到保护。
+         <button type="button" class="button" value="{$_lang['save']}" onclick="subDenounce()"><span class="check icon"></span>{$_lang['save']}</button>
+		 	 <button type="button" class="button" value="{$_lang['cancel']}" onclick="hideWindow('denounce')"><span class="reload icon"></span>{$_lang['cancel']}</button>
+      </div>
+     
+   </form>
+  <!--from表单 end-->
+
+
+
+ </div>
+</div>
+<script type="text/javascript">
+		$(function(){
+			uploadify({
+					auto:true,
+					size:"{$basic_config['max_size']}MB",
+					exts:'{$flie_types}',
+					text:"$_['upload_file']",
+					limit:1}
+				,{
+					task_id:'{$task_id}',
+					obj_id:'{$obj_id}',
+					objType:'{$obj_type}'
+				});
+		})
+</script>
+<script src="resource/js/uploadify/jquery.uploadify-3.1.min.js" type="text/javascript"></script>
+<link href="resource/js/uploadify/uploadify.css" rel="stylesheet">
+<script type="text/javascript">
+		In('form'); 
+</script>
+
+<script type="text/javascript">
+	function subDenounce(){
+		var i = checkForm(document.getElementById('frm_denounce'));
+		if(i){
+//		var shtml 	 = contentCheck('reason','title',0,100,1,'');
+//			if(shtml){		
+				var data = $("#frm_denounce").serialize();		
+				$.post('index.php?do=square&op=denounce&'+data,{sbt_edit:true},
+				function(json){
+					if(json.status=='1'){
+						$("#reason").val('');
+						showDialog(json.msg, "right", '操作提示');
+						hideWindow('denounce');return false;
+					}else{
+						showDialog(json.msg,'alert','操作提示');hideWindow('denounce');return false;
+					}
+			},'json');
+//			}
+		}
+	}
+	/**
+	 * 上传完成后的后续操作
+	 * @param {Object} data 响应的json对象
+	 */
+	function uploadResponse(json){
+		if($("#"+json.fid).length<1){
+				$("#file_url").val(json.msg.url);
+			}
+	}
+</script>
+<!--{template footer}-->

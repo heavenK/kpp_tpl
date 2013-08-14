@@ -1,0 +1,103 @@
+<!--{if !isset($inajax)}-->
+
+<!--页脚 satrt-->
+<footer class="footer clearfix">
+<!--网站链接以及语言栏 关注我们 搜索 start-->
+
+
+
+			
+					
+
+            <!--网站版权声明 start-->
+            <section class="site_copyright clearfix">
+            	<div class="container_24 clearfix ">
+            		
+            		
+                    	 	<dl>
+							<dt>
+                    	 		{$_lang['company']}{$basic_config['company']}<span class="pad10">{$_lang['address']}{$basic_config['address']}</span>{$_lang['contact_phone']}{$basic_config['phone']}
+							</dt>
+							<dd>
+                    	 	{P_NAME}{KEKE_VERSION} {$basic_config['copyright']} <a href="http://icp.valu.cn/" target="_blank">{$basic_config['filing']}</a>
+								{if KEKE_DEBUG}
+								<span>
+									Querys: <!--{eval echo db_factory::create()->get_query_num()}-->
+									 &nbsp;
+									Times:<!--{eval echo kekezu::execute_time()}-->
+								</span>			
+								{/if}
+							</dd>  
+                    	 	</dl>
+						 <div class="clear"></div>
+					
+					
+					<!--语言栏 关注我们 搜索 start-->
+			
+                    <div class="site_attach clearfix">
+						
+                        <div class="lan_box">
+                            <form action="" method="post" id="lan_bottom">
+                                <div class="clearfix">
+                                     <label>{$_lang['language']}</label>
+                                     <select id="lan" name="lan" style="width:100px" onchange="setLang(this)">
+									  {loop $lang_list $k $v}
+									    <option value="{$k}" c="{$curr_list[$k][0]}" {if $k==$language}selected{/if}>{$v}</option>
+									  {/loop}
+                                     </select>
+                                
+                           
+                               
+                                     <label> {$_lang['currency']}{$_lang['zh_mh']}</label>
+                                     <select  style="width:100px" onchange="setCurr(this.value,1);">
+									  {loop $f_c_list $k $v}
+									    <option value="{$k}" id="{$k}" {if $currency==$k}selected{/if}>{$v['title']}</option>
+									  {/loop}
+                                     </select>
+                                 </div>
+                            </form>
+						</div>	
+                        
+						
+						</div>
+						
+                  
+                    <!--语言栏 关注我们 搜索 end-->
+					
+					
+                </div>
+   				<div class="clearfix"><!--{eval echo htmlspecialchars_decode($basic_config['stats_code'])}--></div>
+            </section>
+            <!--网站版权声明 end-->
+            
+            <!--返回顶部 start-->
+			
+        	<a class="top animated hidden" href="javascript:void(0);" title="{$_lang['return_top']}"><em>&diams;</em>Top</a>
+              
+            <!--返回顶部 end-->
+    </footer>
+    <!--页脚 end-->
+</div>
+{if $uid}
+	<!--{eval kekezu::update_oltime($uid,$username)}-->
+{/if}
+<script type="text/javascript">
+	var uid='{$uid}';
+	var xyq = "<!--{eval echo $xyq = session_id();}-->";
+{if $exec_time_traver}
+$(function(){
+   $.get('js.php?op=time&r='+Math.random());	
+})
+{/if}
+
+ //js异步加载
+	In('header_top','custom','lavalamp','tipsy','autoIMG','slides');
+
+
+
+
+</script>
+
+</body>
+</html>
+<!--{/if}-->

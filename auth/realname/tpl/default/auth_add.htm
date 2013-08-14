@@ -1,0 +1,192 @@
+<!--{template header_user_top}-->
+<link href="{SKIN_PATH}/css/user_center.css" rel="stylesheet" type="text/css">
+<div class="blank1"></div>
+<!--contain start-->
+<div class="yhcenter container_24">
+    	<!--  账号设置 begin -->
+    	<div class="yhzhbox tabCon">
+        	
+            
+            <!--{template user_base_left}-->
+            
+            <div class="yhzhright">
+            	
+                {if $verify}
+             <!--{template verify_secode}-->
+    {else}
+
+
+
+
+	 	 <!--detail内容 start-->
+            <article class="box_detail last_step_three">
+
+				
+				<div class=" border_t_c">
+					
+				
+				
+               <!--messages消息 start-->   
+			   
+                   <div class="messages m_infor clearfix">
+                      <div class="icon16 fl_l">warning</div>
+                           <div class="grid_18">实名认证免费. {$_lang['customer_service_personnel_will']} {$auth_item[auth_day]}{$_lang['working_days_to_complete_certification']}{$_lang['zh_mh']}{$basic_config['kf_phone']}</div>
+                       <a href="###" class="close">&times;</a>
+                   </div> 
+                   <!--messages消息 end-->
+                   <div class="prefix_1 suffix_1 clearfix">
+                     <!--step步骤 start-->
+                       <div class="step_progress clearfix">
+                       	{loop $step_arr $k $v}
+						  <div class="step {$k} {if $k==$auth_step}selected{/if}">
+                           <span class="icon32">{$k}</span>
+                           <strong>{$v[0]}</strong>{$v[1]}
+                         </div>
+						{/loop}
+                     </div>
+                     <!--step步骤 end-->
+                     {if $auth_step=='step1'}
+				  <form action="{$ac_url}&auth_step=step2" method="post" id="frm_auth" enctype="multipart/form-data" name="frm_auth">
+                     <div class="form_box pt_20">
+                      	<div class="rowElem clearfix">
+              				<label class="grid_5 clearfix">
+              					<div class="fl_r pr_10">
+              						<img src="{$auth_item['auth_big_ico']}" />
+              					</div>
+              				</label>
+                            <div class="grid_6"> <strong class="font14b">{$auth_item['auth_title']}</strong> <span class="c999 block">{$auth_item['auth_desc']}</span> </div>
+                      	</div>
+                         <div class="rowElem clearfix">
+                            <label class="grid_5 t_r">{$_lang['username']}{$_lang['zh_mh']}</label>
+                               <div class="grid_4">{$user_info[username]}</div>                                 
+                          </div>
+                          <div class="rowElem clearfix">
+                              <label class="grid_5 t_r">{$_lang['realname']}{$_lang['zh_mh']}</label>
+                              <input type="text" class="mr_5" name="fds[realname]" id="realname" size="35" value="{$user_info[truename]}"
+							   limit="required:true;len:2-10" msg="{$_lang['msg_about_realname']}" title="{$_lang['title_about_realname']}" msgArea="span_realname"/><span id="span_realname"></span>
+							   <div class=" prefix_5 c999">{$_lang['enter_correct_realname']}</div>
+						  </div>
+                          <div class="rowElem clearfix">
+                              <label class="grid_5 t_r">{$_lang['id_card']}{$_lang['zh_mh']}</label>
+                              <input type="text"class="mr_5"  name="fds[id_card]" id="id_card" size="35" msgArea="msg_id_card"
+							   limit="required:true;type:idCard" msg="{$_lang['msg_about_card_num']}" title="{$_lang['title_about_card_num']}" value="{$user_info[idcard]}"/><span class="red" id="msg_id_card"></span>
+                              <div class=" prefix_5 c999">{$_lang['please_fill_in_with_realname_corresponding_to_the_card_num']}</div>
+						   </div>
+                           <div class="rowElem clearfix">
+                           	<label class="grid_5 t_r">身份证正反面图片{$_lang['zh_mh']}</label>
+								<input type="file" name="id_pic" ext='.gif,.jpg,.png' onchange="isExtName(this);" id="id_pic"/>
+						   </div>
+                           <div class="rowElem clearfix form_button">
+                           		
+									<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}">
+                             	    <button type="button" name="sbt_add" class="button" value="{$_lang['auth_now']}" onclick="user_auth()">{$_lang['auth_now']}</button>
+						   </div>  
+                         </div>
+                      </form >
+				 {elseif $auth_step=='step2'||$auth_step=='step3'}
+				 <div class="box complete border_n ">
+                    
+                      	<div class="last_success_step clearfix">
+                      	<div class="fl_l {$auth_style} po_re" style="top:30px; left:30px; _left:0px;">
+          					<span class="tip_icon"></span>
+                        </div>
+                        <div class="completedata clearfix">                        		
+                           <ul>
+                           	<li class="clearfix">                        
+                                 <div><img src="{$auth_item['auth_big_ico']}" /></div>                                 
+                                  <div class="font14b">{$auth_item['auth_title']}
+                                  <span>（{$auth_tips}）</span></div>
+                                  <!--<div class="c999">{$_lang['use_realname_to_auth']}</div>-->
+                             </li>
+							 
+							 <li class="clearfix">
+  								<div>{$_lang['realname']}{$_lang['zh_mh']}</div>
+								<div class=" font14b">$auth_info['realname']</div>
+                           	 </li>
+							<li class="clearfix">                          
+								<div>{$_lang['id_card']}{$_lang['zh_mh']}</div>
+								 <div class="c999">
+                                  <!--{eval echo kekezu::set_star($auth_info['id_card'],3,5);}-->
+                               	  </div>
+                           	 </li>
+					       <li>
+					        {if !$auth_info['auth_status']}
+							  实名认证申请提交成功，请耐心等待管理员审核！
+							{/if}
+					       </li>
+                        </ul>
+                    </div>
+                   		<div class="fl_r pad10">
+							<a href="{$ac_url}&auth_step=step1" class="button" onclick="return return_update(this);">{$_lang['return_and_modify']}</a>
+						</div>
+					</div>
+				
+               </div>
+             </div> 
+			{/if}
+            </div> 
+            <div class="clear" style="height:20px;"></div> 
+			</div>
+       </article>
+   <!--detail内容 end-->
+   {/if}
+   
+   
+   
+   <script type="text/javascript">
+				 function return_update(obj){
+					var url = obj.href;
+					showDialog("返回修改后将重新认证，之前的认证信息会作废，是否确定返回？",'confirm',"{$_lang['operate_notice']}","jump_url('"+url+"');");	
+					return false;
+				}
+				
+				function jump_url(url){
+					location.href=url
+				}
+	
+			</script>
+                
+                
+			<div class="clear"></div>
+                    
+                    
+            </div>
+           </div>
+
+           </div>
+           
+            
+        </div>
+        
+        
+    </div>
+    <!-- center end -->
+</div> 
+<script type="text/javascript"> 
+	function user_auth(){
+		if(!$("#id_pic").val()){
+			showDialog("$_lang['pleace_upload_card']",'alert',"$_lang['friend_tishi']");
+			return false;
+			
+		}
+		
+		var i=checkForm(document.getElementById("frm_auth"));
+		if(i){
+				form_sbt();
+		}else{
+			return false;
+		}
+	}
+	function form_sbt(){
+		//$('#frm_auth').submit();
+		formSub('frm_auth','form',true);
+	}
+	function online_pay(cash){
+		window.location.href='index.php?do=user&view=finance&op=recharge&cash='+cash+'#userCenter';
+	}
+	In('form');
+</script>
+<!--contain end-->
+
+<!--{template user/user_footer}-->
+<!--{template footer}-->

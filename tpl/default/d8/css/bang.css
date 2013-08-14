@@ -1,0 +1,43 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{ margin:0; padding:0;}
+html, body{ width:100%; height:100%; font-family:''微软雅黑; font-size:14px; color:#000;}
+img{ border:0;}
+a{ color:#000; text-decoration:none;}
+a:hover{ color:#F30;}
+
+
+
+
+
+
+
+.bangbox{ width:1000px; margin:0 auto;background:#04251e; padding-top:10px; position:relative;}
+
+.ban_w{ width:82px; height:177px; position:absolute; left:-82px; top:0px; display:block; background:url(../images/bangbg.jpg) no-repeat;}
+.ban_box{ width:972px; overflow:hidden; margin:0 auto; background:#dcdcdc; padding: 9px 13px; }
+	.ban_sj{ width:974px; overflow:hidden; margin:0 auto; border:1px #b1b3ae solid; background:#FFF;}
+	.ban_sjleft{ float:left; width:174px; overflow:hidden;border-right:1px #d9d9d9 solid;text-align:center; position:relative;}
+	
+	.bang_wz{ width:111px; height:88px; position:absolute; top:60px; left:35px;}
+	.bang_wz p{ font-size:30px; color:#215338;}
+	.bang_duo{ width:79px; height:42px; position:absolute; top:154px; left:45px;}
+	.bang_duo p{ color:#FFF; cursor:pointer;}
+	
+	.ban_sjright{ float:right; width:750px; height:222px; padding-top:10px; }
+	.ban_snav{ width:940px; height:30px; border-left:1px #c1c1c1 solid; border-top:1px #c1c1c1 solid; border-bottom:1px #c1c1c1 solid;}
+	.ban_snav ul{ list-style:none;}
+			.ban_snav ul li{ float:left; font-size:16px; font-family:'微软雅黑'; line-height:30px; margin:0px 8px;}
+	.ban_sjtu{width:750px; height:184px;  }
+	
+	.ban_sjtu00{ float:left; width:174px; height:86px; margin-top:5px; margin-right:10px;}
+		.ban_sjtu00left{ float:left; width:84px; height:84px;}
+		.ban_sjtu00right{ float:right; width:83px; height:59px; padding-top:25px; line-height:20px;}
+		.ban_sjtu00right span{  font-size:15px; font-family:'微软雅黑'; }
+		.ban_sjtu00right .ban_mt{ font-size:11px; color:#666;}
+		.ban_m{ width:70px; height:16px; border:1px #dcdcdc solid; line-height:18px; font-size:13px; color:#666; padding-left:5px; cursor:pointer;}
+		.ban_m:hover{ width:74px; height:16px; background:#F30; color:#FFF;}
+		
+		.ban_t{ width:91px; height:67px; position:relative; top:70px; left:40px; font-size:22px; font-family:'微软雅黑'; text-align:center; }
+			.ban_t p{line-height:33px; color:#006630;}

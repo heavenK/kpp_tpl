@@ -1,0 +1,84 @@
+<!--{template header}-->
+<div class="wrapper">
+	<div class="mt_20">
+		<div class="container_24 clearfix">
+			<div class="box clearfix">
+				<!--{template square/left_nav}-->
+					<div class="core clearfix">
+						<!-- core_down start  -->
+						<div class="core_down clearfix">
+							<h2>我的收藏</h2>
+							<div class="core_down_nav ml_20 mr_20">
+								<a href="index.php?do=square&view=favor" {if !$type} class="selected" {/if}>所有</a>
+								<a href="index.php?do=square&view=favor&type=task" {if $type=='task'} class="selected" {/if}>需求</a>
+								<a href="index.php?do=square&view=favor&type=service" {if $type=='service'} class="selected" {/if}>服务</a>
+								
+							</div>
+							<!-- <div class="msg msg_need block ml_20 mr_20">
+								<a href="#" class="block">有15条新动态，点击查看</a>
+							</div> -->
+							<div class="core_down_info mb_10 clearfix">
+								<input type="hidden" name="page" value="{$page}">
+									<input type="hidden" name="pagesize" value="{$pagesize}">
+								<ul>
+									{loop $favor_arr $k $v}
+									<li class="clearfix" id="favor_{$v['favor_id']}">
+										<div class="info_van clearfix">
+											<a href="index.php?do=space&member_id={$v['uid']}" target="_blank">
+												
+												<!--{userpic($v['uid'],big)}-->
+												<p class="c999">$v['username']</p>
+											</a>
+										</div>
+										<div class="info_body clearfix">
+										<div>
+											<span class="{if $v['obj_type']=='free_task'}needs{else}sale{/if} mr_5">{$obj_arr[$v['obj_type']]}</span>
+											<a href="index.php?do=square&view={if $v['obj_type']=='free_task'}task_detail&task_id={else}goods_detail&service_id={/if}{$v['obj_id']}" class="task_info" target="_blank">{$v['obj_title']}</a>
+											 <!--{eval $time_desc = kekezu::time2Units(time()-$v[on_time],minute)}-->
+											<span class="ml_5 mr_5 c999">{if $time_desc}{$time_desc}前{else}刚刚{/if}</span>
+
+											<a href="index.php?do=space&member_id={$v['obj_uid']}" target="_blank">{$v['username']}</a><span class="c999">收藏</span>
+										</div>
+										<div>{if $v['obj_type']=='free_task'}赏金{else}售价{/if}：<span class="mr_5 org">￥0元</span>来自：<span>{if $v['obj_type']=='free_task'}免费需求{elseif $v['obj_type']=='free_service'}免费服务{/if}</span>
+										</div>
+										
+										<div class="info_talk clearfix">
+											<a href="javascript:void(0)" onclick="del_favor('{$v[favor_id]}','{$v[obj_id]}','{$v[obj_type]}');">取消收藏</a>
+										</div>
+									</div>
+									</li>
+									{/loop}
+									
+								</ul>
+								
+								<!--翻页-->
+								{if $pages['page']}
+                                  <div class="page">
+                                    <p class="clearfix">
+                                             $pages['page']
+                                      </p>
+                                      <div class="clear"></div>
+                                  </div>
+                                  {/if}
+                                  <!--end 翻页-->
+                                  
+							</div>
+						</div>
+						<!-- core_down end -->
+					</div>
+				<!--{template square/index_right}-->
+				
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	function del_favor(favor_id,obj_id,obj_type){
+		$.post('index.php?do=square&view=favor',{action:'del_favor',del_favor_id:favor_id,obj_id:obj_id,obj_type:obj_type},function(json){
+			if(json.status == 1){
+				$("#favor_"+json.msg).hide();
+			}
+		},'json');
+	}
+</script>
+<!--{template footer}-->
