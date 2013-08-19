@@ -4,6 +4,11 @@ $step or $step = 'step1';
 $ac_url = $origin_url . "&op=$op&ver=".intval($ver);
 $offline_pay_list = get_pay_config('','offline');
 $payment_list = get_pay_config();
+$third_nav=array(
+		"account"=>array('账户信息',$_lang['finance_record_stats']),
+		"basic"=>array($_lang['finance_detail'],$_lang['finance_record_stats']),
+		"charge"=>array($_lang['recharge_record'],$_lang['recharge_record_stats']),
+		"withdraw"=>array($_lang['withdraw_record'],$_lang['withdraw_record_stats']));
 switch ($step) {
 	case "step2" :
 		switch ($pay_type) { 

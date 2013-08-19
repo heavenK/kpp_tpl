@@ -7,7 +7,8 @@ $cur_info = $_currencies[$now_cur];
 $cash_coverage = kekezu::get_cash_cove ( '', true );
 if ($task_open) {
 	$final_task = kekezu::get_classify_indus();
-	$indus_recomm_task = db_factory::query(sprintf("select task_id,task_title,task_cash,task_cash_coverage,indus_pid,task_status from %switkey_task where is_top=1 and task_status=2 order by start_time desc",TABLEPRE));
+	$indus_recomm_task = db_factory::query(sprintf("select task_id,task_title,task_cash,task_cash_coverage,indus_pid,task_status,start_time from %switkey_task where task_status=2 order by start_time desc limit 0,10",TABLEPRE));
+	$indus_recomm_task_1 = db_factory::query(sprintf("select task_id,task_title,task_cash,task_cash_coverage,indus_pid,task_status,start_time from %switkey_task where task_status=2 and model_id=1 order by start_time desc limit 0,10",TABLEPRE));
 	$task_array = array();
 	if($indus_recomm_task){
 		foreach($indus_recomm_task as $k=>$v){
@@ -42,6 +43,11 @@ if ($shop_open) {
 	$range = range ( 0, 11);
 	$recomm_service = db_factory::query ( sprintf ( "select service_id,price,unite_price,pic,ad_pic,title from %switkey_service where  service_status='2' order by on_time desc limit 0,12", TABLEPRE ), 1, 600 );
 }
+// 最新威客
+	$new_member = db_factory::query(sprintf("select *  from %switkey_member order by uid desc limit 0,10",TABLEPRE));
+
+// end
+
 if(isset($op)&&$op == 'suggest'){
 		$title='我有话要说';
 		if($sbt_edit){

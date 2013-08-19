@@ -16,11 +16,7 @@ if ($model_id) {
 	intval ( $page_size ) or $page_size = '12';
 	intval ( $page ) or $page = '1';
 	$url = $origin_url . "&op=$op&model_id=$model_id&page_size=$page_size&status=$status&page=$page";
-	$third_nav = array ();
-	foreach ( $model_list as $v ) {
-		$third_nav [] = array ("1" => $v ['model_id'], "2" => $_lang ['release'] . $v ['model_name'], "3" => intval ( $task_count [$v ['model_id']] ['count'] ) );
-	}
-	$third_nav = ( array ) $third_nav;
+	
 	$ord_arr = array (' task_id desc ' => $_lang ['task_id_desc'], " task_id asc " => $_lang ['task_id_asc'], " start_time desc " => $_lang ['start_time_desc'], " start_time asc " => $_lang ['start_time_asc'], " end_time desc " => $_lang ['end_time_desc'], " end_time asc " => $_lang ['end_time_asc'] );
 	if (isset ( $ac )) {
 		$task_id = intval ( $task_id );

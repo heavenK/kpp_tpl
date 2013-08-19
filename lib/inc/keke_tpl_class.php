@@ -36,6 +36,7 @@ class keke_tpl_class {
 		$template = preg_replace ( "/\<\!\-\-\{date\((.+?),(.+?)\)\}\-\-\>/ie", "keke_tpl_class::datetags('\\1','\\2')", $template );
 		$template = preg_replace ( "/{c\:(.+?)(,?)(\d?)\}/ie", "keke_curren_class::currtags('\\1','\\3')", $template );
 		$template = preg_replace ( "/\<\!\-\-\{userpic\((.+?),(.+?)\)\}\-\-\>/ie", "keke_tpl_class::userpic('\\1','\\2')", $template );
+		$template = preg_replace ( "/\<\!\-\-\{userpicurl\((.+?),(.+?)\)\}\-\-\>/ie", "keke_tpl_class::userpicurl('\\1','\\2')", $template );
 		$template = preg_replace ( "/\<\!\-\-\{eval\s+(.+?)\s*\}\-\-\>/ies", "keke_tpl_class::evaltags('\\1')", $template );
 		$var_regexp = "((\\\$[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)(\[[a-zA-Z0-9_\-\.\"\'\[\]\$\x7f-\xff]+\])*)";
 		$template = preg_replace ( "/\<\!\-\-\{(.+?)\}\-\-\>/s", "{\\1}", $template );
@@ -105,6 +106,10 @@ class keke_tpl_class {
 	static function userpic($uid, $size) {
 		global $_K;
 		return '<!--{eval echo  keke_user_class::get_user_pic(' . $uid . ',' . $size . ')}-->';
+	}
+	static function userpicurl($uid, $size) {
+		global $_K;
+		return '<!--{eval echo  keke_user_class::get_user_pic_url(' . $uid . ',' . $size . ')}-->';
 	}
 	static function stripvtags($expr, $statement = '') {
 		$res = preg_replace ( "/\<\?\=(\\\$.+?)\?\>/s", "\\1", $expr );

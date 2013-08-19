@@ -1,11 +1,14 @@
 <?php	defined ( 'IN_KEKE' ) or exit('Access Denied');
-$ops = array ('pub', 'task', 'shop','credit');
+$ops = array ('pub', 'task', 'shop','credit','index');
 if($task_open==0){
 	unset($ops[1]);
 }
 if($shop_open==0){
 	unset($ops[2]);
 }
+// add by heavenK
+if(!$op) $op = 'index';
+// end
 $ops = array_merge($ops);
 in_array($op,$ops) or $op =$ops[1];
 $sub_nav = array(
@@ -23,9 +26,23 @@ if($shop_open==0){
 $model_list=kekezu::get_table_data ( '*', 'witkey_model', " model_type = '$op' and model_status=1", 'model_id asc ', '', '', 'model_id', 3600 );
 $model_fds = array_keys($model_list);
 $model_id or $model_id = intval($model_fds['0']);
+$third_nav = array ();
+
+// modify by heavenK
+$task_count = kekezu::get_table_data ( "model_id,count(task_id) as count", "witkey_task", " uid = '$uid' ", '', 'model_id', '', 'model_id' );
+$model_list1 = kekezu::get_table_data ( '*', 'witkey_model', " model_type = 'task' and model_status=1", 'model_id asc ', '', '', 'model_id', 3600 );
+foreach ( $model_list1 as $v ) {
+	$third_nav [] = array ("1" => $v ['model_id'], "2" => $v ['model_name'], "3" => intval ( $task_count [$v ['model_id']] ['count'] ) );
+}
+$third_nav = ( array ) $third_nav;
+// end
+
 switch ($op){
 	case "pub":
 		 header("Location:index.php?do=release");
+		break;
+	case "index":
+		require 'user_'.$view.'_'.$op.'.php';	
 		break;
 	case "task":
 		require 'user_'.$view.'_'.$op.'.php';	

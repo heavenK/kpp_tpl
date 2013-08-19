@@ -1,0 +1,41 @@
+<div class="yhgzleft">
+            	<div class="yh_list">
+                    <div class="yhzhleftnav">
+                        <p><b>
+                        	{if $view=='store'}店铺管理{/if}
+                        	{if $view=='finance'}账户管理{/if}
+                        </b></p>
+                    </div>
+                    <div class="yhzhlefttree">
+                        <ul>
+                            <li class="m"><p>我的{if $view=='store'}店铺{/if}{if $view=='finance'}账户{/if}</p>
+                            	<ul>
+                                	
+                                   {loop $third_nav $k $v}
+                                    <li>
+                                        <p><a href="{$origin_url}&op=$op&opp={$k}&action={$k}" title="$v['1']">$v['0']</a></p>
+                                    </li>
+                                   {/loop}
+                                   
+                                </ul>
+                                {if $view=='finance'}
+                           	 <li class="m"><p>充值提现</p>
+                                <ul>
+                                    <li>
+                                        <p><a href="index.php?do=user&view=finance&op=recharge&show=online">在线充值</a></p>
+                                    </li>
+                                    <li>
+                                        <p><a href="index.php?do=user&view=finance&op=recharge&show=offline">线下充值</a></p>
+                                    </li>
+                                    <li>
+                                        <p><a href="index.php?do=user&view=finance&op=withdraw">账户提现</a></p>
+                                    </li>
+                                </ul>
+                                {/if}
+                            </li>
+                        </ul>
+                    </div>
+                
+                </div>
+                <!--{template user_left_ad}-->
+            </div>

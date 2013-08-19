@@ -4,6 +4,11 @@ $step or $step = 'step1';
 $verify = kekezu::reset_secode_session ( $ver ? 0 : 1 ); 
 $ac_url = $origin_url . "&op=$op&ver=" . intval ( $ver );
 $pay_config = kekezu::get_table_data ( "*", "witkey_pay_config", '', '', "", '', 'k' );
+$third_nav=array(
+		"account"=>array('账户信息',$_lang['finance_record_stats']),
+		"basic"=>array($_lang['finance_detail'],$_lang['finance_record_stats']),
+		"charge"=>array($_lang['recharge_record'],$_lang['recharge_record_stats']),
+		"withdraw"=>array($_lang['withdraw_record'],$_lang['withdraw_record_stats']));
 switch ($step) {
 	case "step1" :
 		if ($reset) {

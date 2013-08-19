@@ -1,29 +1,20 @@
-<!--{template header}--><!--contain start-->
-<div class="wrapper">
-    <div class="container_24">
-        <!--{template user/user_nav}-->
-		<!--main start-->
-        <section class="clearfix section">
-            <!--{template user/user_side}-->
-            <div class="show_panel container_24 po_re">
-                <div class="prefix_3 grid_21">
-                    <div class="panel clearfix box">
-                        <!--main content-->
-                        <div class="">
+<!--{template header_user_top}-->
+<link href="{SKIN_PATH}/css/user_center.css" rel="stylesheet" type="text/css">
+<div class="blank1"></div>
+<!--contain start-->
+<div class="yhcenter container_24">
+    	<!--  账号设置 begin -->
+    	<div class="yhzhbox tabCon">
+        	
+            
+            <!--{template user_common_left}-->
+            
+            <div class="yhzhright">
+                <!--main content-->
+                <div class="">
                             <!--header内容头部 start-->
                             <header class="clearfix box_header">
                                 <h2 class="grid_4 alpha omega box_title t_c">账户信息</h2>
-                                <div class="grid_17 alpha omega">
-                                    <nav class="box_nav">
-                                        <ul>
-                                            {loop $third_nav $k $v}
-                                            <li {if $k==$action}class="selectedLava"{/if}>
-                                                <a href="{$origin_url}&op=$op&action={$k}" title="$v['1']">$v['0']</a>
-                                            </li>
-                                            {/loop}
-                                        </ul>
-                                    </nav>
-                                </div>
                                 <div class="clear">
                                 </div>
                             </header>
@@ -425,15 +416,24 @@
                             </article>
                             <!--detail内容 end-->
                         </div>
-                        <!--main content end -->
-                        <div class="clear">
-                        </div>
-                    </div>
-                </div>
-                </section>
-                <!--main end-->
+                <!--main content end -->
+                
+			<div class="clear"></div>
+                    
+                    
             </div>
-            </div>
-            <!--contain end-->
-<!--{template user/user_footer}-->            
+           </div>
+
+           </div>
+           
+            
+        </div>
+        
+        
+    </div>
+    <!-- center end -->
+</div> 
+<!--contain end-->
+
+<!--{template user/user_footer}-->
 <!--{template footer}-->

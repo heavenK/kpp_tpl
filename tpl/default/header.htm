@@ -9,7 +9,13 @@
         <div class="container_24" >
         	<div class="menu grid_24 clearfix">
                 <ul class="clearfix">
-
+                	{loop $nav_arr $k $v}
+                   		<li>
+                   			<a href="{$v['nav_url']}" {if isset($nav_active_index) && $v['nav_style']==$nav_active_index}class="selected"{/if} {if $v['newwindow']}target="_blank"{/if}>
+                   			<span>{$v['nav_title']}</span></a>
+						</li>
+						<li class="line"></li>
+					{/loop}
                 </ul>
                 <!---->
                   <div class="operate po_ab">

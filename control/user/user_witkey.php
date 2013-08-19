@@ -1,11 +1,16 @@
-<?php	defined ( 'IN_KEKE' ) or exit('Access Denied');
-$ops = array ('pub', 'task', 'shop','g_pub','credit');
+<?php
+defined ( 'IN_KEKE' ) or exit('Access Denied');
+$ops = array ('pub', 'task', 'shop','g_pub','credit','index');
 if($task_open==0){
 	unset($ops[1]);
 }
 if($shop_open==0){
 	unset($ops[0],$ops[2],$ops[3]);
 }
+
+// add by heavenK
+if(!$op) $op = 'index';
+// end
 $ops = array_merge($ops);
 in_array($op,$ops) or $op =$ops[1];
 $sub_nav = array(
@@ -22,12 +27,22 @@ if($shop_open==0){
 	unset($sub_nav[0],$sub_nav[1]['shop'],$sub_nav[1]['g_pub']);
 }
 $op=='task' and $model_type='task' or $model_type='shop';
+
+// add by heavenK
+if($op == 'index') $model_type = 'task';
+//	end
+
 $model_list=kekezu::get_table_data ( '*', 'witkey_model', " model_type = '$model_type' and model_status=1", 'model_id asc ', '', '', 'model_id', 3600 );
 $model_fds = array_keys($model_list);
 $model_id or $model_id = intval($model_fds['0']);
+
+
 switch ($op){
 	case "pub":
 		 header("Location:index.php?do=shop_release");
+		break;
+	case "index":
+		require 'user_'.$view.'_'.$op.'.php';
 		break;
 	case "task":
 		require 'user_'.$view.'_'.$op.'.php';	

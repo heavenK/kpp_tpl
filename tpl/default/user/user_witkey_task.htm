@@ -1,29 +1,21 @@
-<!--{template header}--><!--contain start-->
-<div class="wrapper">
-    <div class="container_24">
-        <!--{template user/user_nav}-->
-		<!--main start-->
-        <section class="clearfix section">
-            <!--{template user/user_side}-->
-            <div class="show_panel container_24 po_re">
-                <div class="prefix_3 grid_21">
-                    <div class="panel clearfix box">
-                        <!--main content-->
-                        <div class="">
+<!--{template header_user_top}-->
+<link href="{SKIN_PATH}/css/user_center.css" rel="stylesheet" type="text/css">
+<div class="blank1"></div>
+<!--contain start-->
+<div class="yhcenter container_24">
+    	<!--  账号设置 begin -->
+    	<div class="yhzhbox tabCon">
+        	
+            
+            <!--{template user_witkey_left}-->
+            
+            <div class="yhzhright">
+                <!--main content-->
+                <div class="">
                             <!--header内容头部 start-->
                             <header class="clearfix box_header">
                                 <h2 class="grid_4 alpha omega box_title t_c">{$_lang['task_manage']}</h2>
-                                <div class="grid_17 alpha omega">
-                                    <nav class="box_nav">
-                                        <ul>
-                                            {loop $model_list $k $v}
-                                            <li {if $model_id==$k}class="selectedLava"{/if}>
-                                                <a href="index.php?do={$do}&view={$view}&op={$op}&model_id={$k}" title={$_lang['my_go_in']}{$v['model_name']}>{$_lang['my_go_in']}{$v['model_name']}(<!--{eval echo intval($user_join[$k])}-->)</a>
-                                            </li>
-                                            {/loop} 
-                                        </ul>
-                                    </nav>
-                                </div>
+
                                 <div class="clear">
                                 </div>
                             </header>
@@ -71,7 +63,7 @@
                                                         {/loop}
                                                     </select>
                                                 </div>
-                                                <div class="mr_20 fl_l">
+                                                <div class="fl_l">
                                                     <select class="fl_l" id="frm_block" name="page_size">
                                                         <option value="10" {if $page_size=='10'}selected="selected"{/if}>{$_lang['page_size']}10{$_lang['tiao']}</option>
                                                         <option value="20" {if $page_size=='20'}selected="selected"{/if}>{$_lang['page_size']}20{$_lang['tiao']}</option>
@@ -179,17 +171,23 @@
                             </article>
                             <!--detail内容 end-->
                         </div>
-                    </div>
-                    <!--main content end -->
-                    <div class="clear">
-                    </div>
-                </div>
+                <!--main content end -->
+                
+			<div class="clear"></div>
+                    
+                    
             </div>
-        </section>
-        <!--main end-->
+           </div>
+
+           </div>
+           
+            
+        </div>
+        
+        
     </div>
-</div>
-<!--contain end-->
+    <!-- center end -->
+</div> 
 <script type="text/javascript">
 //确认工作
 function work_over(url){
@@ -208,5 +206,7 @@ function work_over(url){
 		showWindow('share',url,'get','0');return false;
 	}
 </script>
+<!--contain end-->
+
 <!--{template user/user_footer}-->
 <!--{template footer}-->

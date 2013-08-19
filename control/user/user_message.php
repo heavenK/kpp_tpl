@@ -140,5 +140,4 @@ if (isset ( $check_username ) && ! empty ( $check_username )) {
 	}
 	die ();
 }
-
 require keke_tpl_class::template ( "user/" . $do . "_".$view."_system");

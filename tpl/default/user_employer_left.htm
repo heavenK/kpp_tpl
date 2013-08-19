@@ -1,0 +1,36 @@
+<div class="yhgzleft">
+            	<div class="yh_list">
+                    <div class="yhzhleftnav">
+                        <p><b>我是雇主</b></p>
+                    </div>
+                    <div class="yhzhlefttree">
+                        <ul>
+                        	<li>>&nbsp;&nbsp;<a href="index.php?do=release">我需要服务</a></li>
+                            <li class="m"><p>我发布的任务</p>
+                                <ul>
+                                	{loop $third_nav $v}
+                                    <li>
+                                        <p><a href="index.php?do=user&view=employer&op=task&model_id={$v['1']}" title="{$v['2']}">{$v['2']}($v['3'])</a></p>
+                                    </li>
+                                    {/loop}
+                                </ul>
+                            </li>
+                            <li class="m"><p>信誉评价</p>
+                                <ul>
+                                    <li><p><a href="index.php?do=user&view=employer&op=credit">信誉等级成长</a></p></li>
+                                    <li><p><a href="index.php?do=user&view=employer&op=credit&part=pj">交易评价管理</a></p></li>
+                                </ul>
+                            </li>
+                            <li class="m"><p>发票管理</p>
+                                <ul>
+                                    <li><p>已经申请</p></li>
+                                    <li><p>已经受理</p></li>
+                                    <li><p>拒绝受理</p></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                
+                </div>
+                <!--{template user_left_ad}-->
+            </div>

@@ -1,33 +1,25 @@
-<!--{template header}--><!--contain start-->
-<div class="wrapper">
-    <div class="container_24">
-        <!--{template user/user_nav}--><!--main start-->
-        <section class="clearfix section">
-            <!--{template user/user_side}-->
-            <div class="show_panel container_24 po_re">
-                <div class="prefix_3 grid_21">
-                    <div class="panel clearfix box">
-                        <!--main content-->
-                        <div class="">
-                            <!--header内容头部 start-->
-                            <header class="clearfix box_header">
-                                <h2 class="grid_4 alpha omega box_title t_c">{$_lang['basics']}</h2>
-                                <div class="grid_17 alpha omega">
-                                    <nav class="box_nav ">
-                                        <ul>
-                                            {loop $third_nav $k $v}
-                                            <li {if $k==$opp}class="selectedLava"{/if}>
-                                                <a href="{$ac_url}&opp={$k}" >{$v['0']}</a>
-                                            </li>
-                                            {/loop}
-                                        </ul>
-                                    </nav>
-                                </div>
-                                <div class="clear">
-                                </div>
-                            </header>
-                            <!--header内容头部 end-->
-                            <div class="prefix_1 suffix_1 mt_10">
+<!--{template header_user_top}-->
+<link href="{SKIN_PATH}/css/user_center.css" rel="stylesheet" type="text/css">
+<div class="blank1"></div>
+<!--contain start-->
+<div class="yhcenter container_24">
+    	<!--  账号设置 begin -->
+    	<div class="yhzhbox tabCon">
+        	
+            
+            <!--{template user_base_left}-->
+            
+            <div class="yhzhright">
+            	<div class="ac_zl">
+           		<div class="ac_zltop">
+                	<span><b>资料完善</b></span>
+                </div>
+                <div class="ac_zlwsbox">
+                    <div class="ac_zlws">
+                        <!--{template user/user_info_nav}-->
+                    </div>
+                    
+                    <div class="prefix_1 suffix_1 mt_10" style="padding-left:10px;">
                                 <div class="clearfix box font14">
                                     <!--from表单 start-->
                                     <form action="{$ac_url}&opp={$opp}" method="post" id="frm" name="frm">
@@ -77,19 +69,25 @@
                                     <!--from表单 end-->
                                 </div>
                             </div>
-                            <!--detail内容 end-->
-                        </div>
-                        <!--main content end-->
-                    </div>
-                    <div class="clear">
-                    </div>
-                </div>
+              <!--detail内容 end-->
             </div>
-        </section>
-        <!--main end-->
+          <!--main content end-->
+         </div>
+       <div class="clear"></div>
+                    
+                    
+                </div>
+           </div>
+
+           </div>
+           
+            
+        </div>
+        
+        
     </div>
-</div>
-<!--contain end-->
+    <!-- center end -->
+</div> 
 <script type="text/javascript">
     function InsertIndus(pIndus, insertDiv){
         $.getJSON("$ac_url&opp=$opp&ac=get_skill&indus_id=" + pIndus, function(json){
@@ -182,5 +180,7 @@
         set_tags();
     });
 </script>
+<!--contain end-->
+
 <!--{template user/user_footer}-->
 <!--{template footer}-->

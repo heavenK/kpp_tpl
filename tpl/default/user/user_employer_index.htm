@@ -1,0 +1,184 @@
+<!--{template header_user_top}-->
+<div class="blank1"></div>
+<!--contain start-->
+<div class="yhcenter">
+    	<!--  账号设置 begin -->
+    	<div class="yhgzbox tabCon">
+        
+        	<!--{template user_employer_left}-->
+        	
+            <div class="yhgzright">
+            	<!-- 雇主 begin -->
+                <div class="rr_yhgz02">
+                    <div class="_gztt">
+                       <a>雇主提醒：<a href="index.php?do=user&view=employer&op=task&status=0">未付款（{$task_0}）</a>
+                       |&nbsp;<a href="index.php?do=user&view=employer&op=task&status=2">投稿中（{$task_2}）</a>
+                       |&nbsp;<a href="index.php?do=user&view=employer&op=task&status=3">待选稿（{$task_3}）</a>
+                       |&nbsp;<a href="index.php?do=user&view=employer&op=task&status=6">待交付（{$task_6}）</a>
+                       |&nbsp;<a href="index.php?do=user&view=message"><span>站内短信（{$messagecount}）</span></a>
+               		</div>
+               	</div>
+                <div style="height:15px;"> </div>
+            	<div class="yhgzright_t">
+                	<div class="yhgzr_tleft">
+                    	<dl>
+                        	<dt><!--{userpic($uid,middle)}--></dt>
+                        	<dd><a href="index.php?do=user&view=setting&op=picture">更换头像</a></dd>
+                    	</dl>
+                    </div>
+                    <div class="yhgzr_tright">
+                    	<div class="rr_yhgz01">
+                        	<div class="rr_yhgz01left">
+                            	<p>欢迎您：&nbsp;&nbsp;{$username}</p>
+                                <p>认证状况：
+                                	{loop $auth_item $k $v}
+									{if $v['auth_open']==1}
+									{if $k!=$un_code}
+										{if $auth_info[$k]['auth_status']==1}
+										
+										<img src="{$v['auth_small_ico']}" width="16px" height="16px" alt="" title="{$v['auth_title']}">
+										{else}
+										<a href="index.php?do=user&view=payitem&op=auth&auth_code={$v['auth_code']}"><img src="{$v['auth_small_n_ico']}" width="16px" height="16px" alt="" title="{$v['auth_title']}"></a>
+										{/if}
+                                        &nbsp;&nbsp;	
+									{/if}					
+									{/if}			
+									{/loop}
+                              </p>
+                              <p class="_gz">雇主信誉：<span>{$user_info['buyer_credit']}</span></p>
+                              <p class="_gz">威客能力：<span>{$user_info['seller_credit']}</span></p>
+                              <p>可用金额：<span>{c:$user_info['balance']}</span> &nbsp;&nbsp;&nbsp;<a href="index.php?do=user&view=finance&op=recharge">账户充值</a>&nbsp;&nbsp;&nbsp;<a href="index.php?do=user&view=finance&op=withdraw">提现</a>&nbsp;&nbsp;&nbsp;<a href="index.php?do=user&view=finance&op=detail&action=basic">收支明细</a></p>
+                            </div>
+                            
+                            <div class="rr_yhgz01right" >
+                            	<div class="_gzts">
+                                	<p><a>设“我是雇主”为首页</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div style="height:15px;"> </div>
+                <div class="yhgzright_r">
+                	<!--公告 begin -->
+                	<div class="left_yhgz">
+                    	<div class="left_yhgzs">
+                        	<p><img src="/tpl/default/d8/grzx/gg.png" />&nbsp;&nbsp;最新公告：<a href="">豆8网服务器升级广告</a></p>
+                        </div>
+                        <div style="height:15px;"> </div>
+                        
+                        <div class="left_yhgzg">
+                        	<div class="left_yhgzst">
+                            	<div class="mz">人才关注</div>
+                                <div class="my">设置</div>
+                            </div>
+                            <div class="left_yhgzsm">
+                            	
+                            </div>
+                        </div>
+                        <div style="height:15px;"> </div>
+                        <div class="left_yhgzg">
+                        	<div class="left_yhgzst">
+                            	<span>雇主帮助</span>
+                            </div>
+                            <div class="left_yhgzb">
+                            	<div class="left_yhgzb01">
+                                	<div class="left_help">
+                                    	<p class="nb">购买产品/服务<br />发布任务<br />直接雇佣</p>
+                                    </div>
+                                    <div class="jian">
+                                    	<p><img src="/tpl/default/d8/grzx/jian.png" /></p>
+                                    </div>
+                                    
+                                    <div class="left_help">
+                                    	<p class="nb01">托管赏金</p>
+                                    </div>
+                                    <div class="jian">
+                                    	<p><img src="/tpl/default/d8/grzx/jian.png" /></p>
+                                    </div>
+                                    <div class="left_help">
+                                    	<p class="nb01">获得产品或服务</p>
+                                    </div>
+                                    <div class="jian">
+                                    	<p><img src="/tpl/default/d8/grzx/jian.png" /></p>
+                                    </div>
+                                    <div class="left_help">
+                                    	<p class="nb01">验收并确定付款</p>
+                                    </div>
+                                </div>
+                                <div class="left_yhgzb02">
+                            	
+                            	</div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!-- 公告 end -->
+                    <!-- right begin -->
+                    <div class="right_yhgzm">
+                    	<div class="right_yhgzdy">
+                        	<div class="right_yhgzmm">
+                            	<div class="_m">
+                                	<img src="/tpl/default/d8/grzx/xin.png" />
+                                </div>
+                                <div class="_mt">
+                                	<span>任务订阅</span>
+                                    <p>每周五定时发送邮件</p>
+                                </div>
+                            </div>
+                            <div style="height:25px;"></div>
+                            <div class="right_yhgzmt">
+                            	<div class="right_yhgzmt0">
+                            	<input type="text" name="k" id="search_key" class="" value="" onBlur="" autocomplete="off" onFocus="" x-webkit-speech="" x-webkit-grammar="" lang="" original-title="">
+                                </div>
+                                <div class="right_yhgzmt00">
+                                <input name="" type="button" value="订阅"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="height:15px;"> </div>
+                    	<div class="right_yhgz">
+                            <div class="right_yhgztop">
+                                <span>成功雇主说</span>
+                            </div>
+                            <div class="right_yhgzd">
+                                
+                            </div>
+                        </div>
+                        <div style="height:15px;"> </div>
+                        <div class="right_yhgz">
+                            <div class="right_yhgztop">
+                                <span>交易安全</span>
+                            </div>
+                            <div class="right_yhgzd">
+                                
+                            </div>
+                        </div>
+                        <div style="height:15px;"> </div>
+                        <div class="right_yhgz">
+                            <div class="right_yhgztop">
+                                <span>意见栏，给我们意见</span>
+                            </div>
+                            <div class="right_yhgzd">
+                                <textarea name="" cols="" rows=""></textarea>
+                                <input name="" type="button"  value="提交" />
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <!-- right end -->
+                </div>
+                <!-- 雇主 end -->
+            </div>
+        </div>
+        
+        
+    </div>
+    <!-- center end -->
+</div> 
+<!--contain end-->
+
+<!--{template user/user_footer}-->
+<!--{template footer}-->

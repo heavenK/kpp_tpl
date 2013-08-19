@@ -1,0 +1,302 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="{$_K['charset']}">
+<title>{$page_title}</title>
+<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
+<meta name="keywords" content="{$page_keyword}">
+<meta name="description" content="{$page_description}">
+<meta name="generator" content="{$_lang['keke_pub']} {KEKE_VERSION}" />
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style” content=black" /> 
+<meta name="author" content="kekezu" />
+<meta name="copyright" content="{$basic_config['copyright']}" />
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/style.css">
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/huiyuandenglu.css"/>
+
+
+<script type="text/javascript" src="/tpl/default/d8/js/DD_belatedPNG_0.0.8a-min.js"></script>
+
+
+<script type="text/javascript" src="/tpl/default/d8/js/jquery.pack.js"></script>
+<script type="text/javascript" src="/tpl/default/d8/js/jQuery.blockUI.js"></script>
+<script type="text/javascript" src="/tpl/default/d8/js/jquery.SuperSlide.js"></script>
+
+<script type="text/javascript">
+		    function show(id){
+                document.getElementById(id).style.display="";
+
+            }
+		</script>
+<script type="text/javascript">
+		    function hide(id){
+		        document.getElementById(id).style.display="none";
+		    }
+		</script>
+<!-- VIP-js -->
+<script type="text/javascript">
+$(document).ready(function (){
+	
+	//点击小图切换大图
+	$("div[name=thumbnail] li a").click(function(){
+		$(this).parent().parent().parent().parent().siblings('.zoompic').find('img').hide().attr({ "src": $(this).attr("href"), "title": $("> img", this).attr("title") });
+		$(this).parent().parent().parent().find("li.current").removeClass("current");
+		$(this).parents("li").addClass("current");
+		return false;
+	});
+	$(".zoompic>img").load(function(){
+		$(".zoompic>img:hidden").show();
+	});
+	
+	//小图片左右滚动
+	var slider = $('.slider ul');
+	var slider_child_l = $('.slider ul li').length;
+	var slider_width = $('.slider ul li').width();
+	//$slider.width($slider_child_l * $slider_width);
+	
+	var slider_count = 0;
+	
+	if (slider_child_l < 5) {
+		$('#btn-right').css({cursor: 'auto'});
+		$('#btn-right').removeClass("dasabled");
+	}
+	
+	$('#btn-right').click(function() {
+		if (slider_child_l < 5 || slider_count >= slider_child_l - 5) {
+			return false;
+		}
+		
+		slider_count++;
+		slider.animate({left: '-=' + slider_width + 'px'}, 'fast');
+		slider_pic();
+	});
+	
+	$('#btn-left').click(function() {
+		if (slider_count <= 0) {
+			return false;
+		}
+		slider_count--;
+		slider.animate({left: '+=' + slider_width + 'px'}, 'fast');
+		slider_pic();
+	});
+	
+	function slider_pic() {
+		if (slider_count >= slider_child_l - 5) {
+			$('#btn-right').css({cursor: 'auto'});
+			$('#btn-right').addClass("dasabled");
+		}
+		else if (slider_count > 0 && slider_count <= slider_child_l - 5) {
+			$('#btn-left').css({cursor: 'pointer'});
+			$('#btn-left').removeClass("dasabled");
+			$('#btn-right').css({cursor: 'pointer'});
+			$('#btn-right').removeClass("dasabled");
+		}
+		else if (slider_count <= 0) {
+			$('#btn-left').css({cursor: 'auto'});
+			$('#btn-left').addClass("dasabled");
+		}
+	}
+	
+});
+</script>
+        
+<!--[if IE 6]>
+<script src="js/DD_belatedPNG_0.0.8a-min.js"></script>
+<script>
+  /* EXAMPLE */
+  DD_belatedPNG.fix('.prev');
+  DD_belatedPNG.fix('.next');
+  /* string argument can be any CSS selector */
+  /* .png_bg example is unnecessary */
+  /* change it to what suits you! */
+</script>
+<![endif]-->
+
+<!--[if IE 6]>
+<script src="js/DD_belatedPNG_0.0.8a-min.js"></script>
+<script>
+  /* EXAMPLE */
+  DD_belatedPNG.fix('div, ul, img, li, input , a , dl , dt , dd,span');
+  /* string argument can be any CSS selector */
+  /* .png_bg example is unnecessary */
+  /* change it to what suits you! */
+</script>
+<![endif]-->
+
+<!-- dd menu -->
+<script type="text/javascript">
+<!--
+var timeout         = 500;
+var closetimer		= 0;
+var ddmenuitem      = 0;
+
+// open hidden layer
+function mopen(id)
+{	
+	// cancel close timer
+	mcancelclosetime();
+
+	// close old layer
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+	// get new layer and show it
+	ddmenuitem = document.getElementById(id);
+	ddmenuitem.style.visibility = 'visible';
+
+}
+// close showed layer
+function mclose()
+{
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+}
+
+// go close timer
+function mclosetime()
+{
+	closetimer = window.setTimeout(mclose, timeout);
+}
+
+// cancel close timer
+function mcancelclosetime()
+{
+	if(closetimer)
+	{
+		window.clearTimeout(closetimer);
+		closetimer = null;
+	}
+}
+
+// close layer when click-out
+document.onclick = mclose; 
+// -->
+
+
+function search_keydown(event){
+    if ($.browser.msie) {
+        if (window.event.keyCode == 13) {
+        	topSearch();
+        }
+    }
+    else {
+        if (event.keyCode == 13) {
+        	topSearch();
+        }
+    }
+}
+
+$("#search_btn").click(function(){topSearch();})
+
+
+function topSearch(){
+	var searchKey = $.trim($("#search_key").val());
+ 
+	if(searchKey){
+		var type      = $("#search_select .selected").attr("rel");
+		var link    = "index.php?do="+type+"&path=H2&search_key="+searchKey;
+			$("#frm_search").attr("action",link);
+		location.href=link;
+	}
+}
+</script>
+
+
+</head>
+<body>
+<div class="head">
+  <div class="header">
+    <div class="logo"><a href="#"><img src="/tpl/default/d8/images/logo.jpg" alt="" /></a></div>
+	<div class="logo_r">
+      <div class="top_t">
+        <ul id="sddm">
+	<li style="padding-left:60px;"><a href="index.php?do=user&view=setting" onmouseover="mopen('m1')" onmouseout="mclosetime()">个人中心</a></li>
+	<li><a href="index.php?do=release" onmouseover="mopen('m2')" onmouseout="mclosetime()">发布任务</a></li>
+	<li><a href="#" onmouseover="mopen('m3')" onmouseout="mclosetime()">豆豆导航</a>
+		<div class="dddh" id="m3" onmouseover="mcancelclosetime()" onmouseout="mclosetime()"> 
+  <h2>雇主服务</h2>
+  <div class="gz">
+    <ul>
+      <li><a href="index.php?do=release">发布任务</a></li>
+      <li><a href="#">人才宝库</a></li>
+      <li><a href="#">客服中心</a></li>
+      <li><a href="#">直接雇佣</a></li>
+    </ul>
+  </div>
+  <h2>威客服务</h2>
+  <div class="gz">
+    <ul>
+      <li><a href="#">任务广场</a></li>
+      <li><a href="index.php?do=user&view=setting">个人中心</a></li>
+      <li><a href="index.php?do=user&view=finance&op=withdraw">我要提现</a></li>
+      <li><a href="#">VIP工作室</a></li>
+    </ul>
+  </div>
+  <h2>豆豆服务</h2>
+  <div class="gz">
+    <ul>
+      <li><a href="#">玩转豆币</a></li>
+      <li><a href="#">师徒关系</a></li>
+      <li><a href="#">豆豆学堂</a></li>
+      <li><a href="#">豆豆商圈</a></li>
+      <li><a href="#">豆豆论坛</a></li>
+      <li><a href="#">诚信保障</a></li>
+      <li><a href="#">豆豆游戏</a></li>
+      <li><a href="#">网站地图</a></li>
+    </ul>
+  </div>
+</div>
+	</li>
+	<li><a href="#" onmouseover="mopen('m4')" onmouseout="mclosetime()">豆豆游戏</a></li>
+	<li><a href="index.php?do=help" onmouseover="mopen('m5')" onmouseout="mclosetime()">帮助中心</a></li>
+</ul>
+	  </div>
+      <form action="" method="post" id="frm_search" class="clearfix fl_l">
+	  <div class="top_b">
+      	<div id="search_select" class="search_options" style="display:none;">
+        {if $task_open}
+             <a href="javascript:void(0);" class="selected" rel="task_list"><span>{$_lang['task']}</span>▼</a>
+        {elseif !$task_open&&$shop_open}
+             <a href="javascript:void(0);" class="selected" rel="shop_list"><span>{$_lang['goods']}</span>▼</a>
+        {/if}
+        {if $task_open}
+             <a href="javascript:void(0);" class="hidden"   rel="task_list">{$_lang['task']}</a>
+        {/if}
+        {if $shop_open}
+            <a href="javascript:void(0);" class="hidden"   rel="shop_list">{$_lang['goods']}</a>
+         {/if}
+        </div>
+	    <input type="text" value="热门词：豌豆，奖金"  name="search_key" onkeydown="search_keydown(event);" id="search_key" onfocus="if(this.value=='热门词：豌豆，奖金'){this.value='';}"  onblur="if(this.value==''){this.value='热门词：豌豆，奖金'}"; class="input_1" /> 
+        <div class="denglu">
+    	<ul >
+        	<li class="dl_z">
+            	<a href="index.php?do=login" target="_blank">会员登录</a>
+            </li>
+            <li class="dl_z"> <a href="index.php?do=register" target="_blank">免费注册</a></li>
+        </ul>
+</div>
+	  </div>
+      </form>
+	  <div class="xiangmu">
+	    项目总数：<span>{$task_count}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交易金额：<span>￥{$task_in}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;威客数量：<span>{$register}</span>
+	  </div>
+	  <div class="menu">
+	    <ul>
+		  <li class="h_r"><a href="index.php" class="hide">首页</a></li>
+		  <li>|</li>
+		  <li><a href="#" class="hide">任务中心</a></li>
+		   <li>|</li>
+		  <li><a href="#" class="hide">人才宝库</a></li>
+		   <li>|</li>
+		  <li><a href="#" class="hide">VIP工作室</a></li>
+		   <li>|</li>
+		  <li><a href="#" class="hide">豆豆学堂</a></li>
+		   <li>|</li>
+		  <li><a href="#" class="hide">豆豆论坛</a></li>
+		   <li>|</li>
+		  <li><a href="#" class="hide">豆豆游戏</a></li>
+		  <li>|</li>
+		</ul>
+	 </div>
+	</div>
+  </div>
+</div>

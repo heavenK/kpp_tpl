@@ -3,33 +3,39 @@
 
 *{ margin:0; padding:0;}
 html, body{ width:100%; height:100%; font-size:14px; font-family:'微软雅黑'; font-style:normal;margin:0; padding:0;}
-
+a{ text-decoration:none;}
+a:hover{ text-decoration:none;}
 img{ border:0;}
 ul{ list-style:none;}
 li{ list-style:none;}
 
 /* denglu */
 
-.denglu{ float:right;width:250px; height:44px; border:1px #c0c0c0 solid; overflow:visible; background:url(../zhuce/denglu/btnbg.gif) no-repeat; position:relative;}
+.denglu{ float:right;width:216px; height:40px; overflow:visible; background:url(../images/btnbg.gif) no-repeat;}
 
-.dl_d{float:left; width:129px; height:44px; text-align:center; line-height:44px; color:#FFF; font-size:20px; cursor:pointer;}
-.dl_d:hover{background:url(../zhuce/denglu/btnbg00.gif) no-repeat;}
-.dl_t{ width:252px; height:138px; background:url(../zhuce/denglu/btnbg01.png) no-repeat; position:absolute; top:44px; left:-1px; display:none;}
+.dl_d{float:left; width:100px; height:40px; text-align:center; line-height:40px; color:#FFF; font-size:16px; cursor:pointer;}
+
+
+.dl_d:hover{background:url(../images/btnbg00.gif) no-repeat;}
+
+.dl_t{ width:200px; height:138px; background:url(../images/btnbg01.png) no-repeat; position:absolute; top:87px; right:184px; display:none; z-index:999999;}
 
 .dl_t ul{padding-top:15px;}
-.dl_t ul li{width:252px; line-height:30px; height:30px; margin:0; padding:0;}
-.dl_t ul li.dl_btn0{width:252px; line-height:30px; height:30px; }
+.dl_t ul li{width:200px; line-height:30px; height:30px; margin:0; padding:0;}
+.dl_t ul li.dl_btn0{width:200px; line-height:30px; height:30px; }
 .dl_d:hover div.dl_t{ display:block;}
 
-.dl_z{ float:left; width:121px; height:44px; text-align:center; line-height:44px; color:#FFF; font-size:20px;}
+.dl_z{ float:left; width:100px; height:44px; text-align:center; line-height:44px; color:#FFF; font-size:16px;}
+
+.dl_z a{ color:#FFF; font-size:16px;}
 
 
 .dl_btn label{ font-size:14px; color:#000;}
-.dl_btn input{ color:#b2b2b2; font-size:12px;}
+.dl_btn input{ height:25px; color:#b2b2b2; font-size:12px;}
 .dl_btn .dl_btnz{ width:350px; height:30px;}
 
 
 .dl_btn0{ width:210px; height:40px;  font-size:14px; padding-left:40px;}
-	.dl_btn0 input{ width:80px; height:30px; background:#47b68c; font-size:18px; line-height:30px; color:#FFF; cursor:pointer;}
-	.dl_btn0 input:hover{ width:80px; height:30px; background:#a3e8cb; font-size:18px; line-height:30px; color:#FFF; cursor:pointer;}
+.dl_btn0 input{ width:80px; height:30px; background:#47b68c; font-size:18px; line-height:30px; color:#FFF; cursor:pointer;}
+.dl_btn0 input:hover{ width:80px; height:30px; background:#a3e8cb; font-size:18px; line-height:30px; color:#FFF; cursor:pointer;}
 

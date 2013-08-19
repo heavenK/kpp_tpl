@@ -185,6 +185,19 @@ class keke_user_class {
 			return "<img src='" . UC_API . "/avatar.php?uid=$uid&size=$size' class='pic_" . $size . "'>";
 		}
 	}
+	static function get_user_pic_url($uid, $size = 'small') {
+		global $kekezu, $_K;
+		if (! in_array ( $size, array ('larger', 'middle', 'small' ) )) {
+			$size = 'small';
+		}
+		if ($kekezu->_sys_config ['user_intergration'] == 1 || $kekezu->_sys_config ['user_intergration'] == 3) {
+			$dir = keke_user_avatar_class::get_avatar ( $uid, $size );
+			return "$_K[siteurl]/data/avatar/" . $dir ;
+		} elseif ($kekezu->_sys_config ['user_intergration'] == 2) {
+			require_once S_ROOT . './keke_client/ucenter/client.php';
+			return UC_API . "/avatar.php?uid=$uid&size=$size";
+		}
+	}
 	static function send_email_action_user($info = array()) {
 		global $kekezu;
 		global $_lang;

@@ -9,6 +9,8 @@ switch ($view) {
 		$witkey_result = keke_user_mark_class::get_user_mark($uid,1,1);
 		break;
 	case "witkey" :
+		$model_list=kekezu::get_table_data ( '*', 'witkey_model', " model_type = 'task' and model_status=1", 'model_id asc ', '', '', 'model_id', 3600 );
+		$user_join = keke_task_config::get_user_join_task (); 
 		$able_level = unserialize ( $user_info ['seller_level'] );
 		$buyer_aid = keke_user_mark_class::get_user_aid ( $uid, 2, null, 1 );
 		$user_type = 1;
