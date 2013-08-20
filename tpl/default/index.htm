@@ -79,7 +79,7 @@
                             	{loop $new_member $k $v}
                                 <li>
                                     <div id="div{$k}" onMouseOver="show('div{$k}');" onMouseOut="hide('div{$k}');" style="display:none; cursor:pointer;">
-                                    <div class="text"><p>DB-177666</p><p>诚信保障：</p><p>能力等级：级别三级</p></div>
+                                    <div class="text"><p>{$v['username']}</p><p>诚信保障：{$v['balance']}</p><p>能力等级：{$credit_level[$k]["title"]}</p></div>
                                     <div class="bg"></div>
                                     </div>
                                     <a href="#"><img src="<!--{userpicurl($v['uid'],middle)}-->" onMouseOver="show('div{$k}')" onMouseOut="hide('div{$k}')" /></a><span><a href="#">{$v['username']}</a></span>
@@ -88,109 +88,37 @@
                               <div class="gengduo_1"><a href="#">查看更多>></a></div>
 							</ul>
 							<ul class="infoListImg">
-                              
-                              <li>
-                                <div id="div7" onMouseOver="show('div7');" onMouseOut="hide('div7');" style="display:none; cursor:pointer;">
-                                <div class="text"><p>DB-177666</p><p>诚信保障：</p><p>豆币数量：100000</p><p>能力等级：级别三级</p></div>
-                                <div class="bg"></div>
-                                </div>
-                                <a href="#"><img src="/tpl/default/d8/images/img1.jpg" onMouseOver="show('div7')" onMouseOut="hide('div7')" /></a><span><a href="#">逍遥浪子</a></span>
-                              </li>
-                              <li>
-                                <div id="div8" onMouseOver="show('div8');" onMouseOut="hide('div8');" style="display:none; cursor:pointer;">
-                                <div class="text"><p>DB-177666</p><p>诚信保障：</p><p>豆币数量：100000</p><p>能力等级：级别三级</p></div>
-                                <div class="bg"></div>
-                                </div>
-                                <a href="#"><img src="/tpl/default/d8/images/img1.jpg" onMouseOver="show('div8')" onMouseOut="hide('div8')" /></a><span><a href="#">逍遥浪子</a></span>
-                              </li>
-                              <li>
-                                <div id="div4" onMouseOver="show('div4');" onMouseOut="hide('div4');" style="display:none; cursor:pointer;">
-                                <div class="text"><p>DB-177666</p><p>诚信保障：</p><p>豆币数量：100000</p><p>能力等级：级别三级</p></div>
-                                <div class="bg"></div>
-                                </div>
-                                <a href="#"><img src="/tpl/default/d8/images/img1.jpg" onMouseOver="show('div4')" onMouseOut="hide('div4')" /></a><span><a href="#">逍遥浪子</a></span>
-                              </li>
-                              <li>
-                                <div id="div5" onMouseOver="show('div5');" onMouseOut="hide('div5');" style="display:none; cursor:pointer;">
-                                <div class="text"><p>DB-177666</p><p>诚信保障：</p><p>豆币数量：100000</p><p>能力等级：级别三级</p></div>
-                                <div class="bg"></div>
-                                </div>
-                                <a href="#"><img src="/tpl/default/d8/images/img1.jpg" onMouseOver="show('div5')" onMouseOut="hide('div5')" /></a><span><a href="#">逍遥浪子</a></span>
-                              </li>
+                              {loop $new_member_vip $k $v}
+                                <li>
+                                    <div id="div1{$k}" onMouseOver="show('div1{$k}');" onMouseOut="hide('div1{$k}');" style="display:none; cursor:pointer;">
+                                    <div class="text"><p>{$v['username']}</p><p>诚信保障：{$v['balance']}</p><p>能力等级：{$v["seller_level"]["title"]}</p></div>
+                                    <div class="bg"></div>
+                                    </div>
+                                    <a href="#"><img src="<!--{userpicurl($v['uid'],middle)}-->" onMouseOver="show('div1{$k}')" onMouseOut="hide('div1{$k}')" /></a><span><a href="#">{$v['username']}</a></span>
+                                  </li>
+								{/loop}
 							</ul>
 							<ul class="infoListImg">
-                              <li>
-                                <div id="div1" onMouseOver="show('div1');" onMouseOut="hide('div1');" style="display:none; cursor:pointer;">
-                                <div class="text"><p>DB-177666</p><p>诚信保障：</p><p>豆币数量：100000</p><p>能力等级：级别三级</p></div>
-                                <div class="bg"></div>
-                                </div>
-                                <a href="#"><img src="/tpl/default/d8/images/img1.jpg" onMouseOver="show('div1')" onMouseOut="hide('div1')" /></a><span><a href="#">逍遥浪子</a></span>
-                              </li>
-                              <li>
-                                <div id="div2" onMouseOver="show('div2');" onMouseOut="hide('div2');" style="display:none; cursor:pointer;">
-                                <div class="text"><p>DB-177666</p><p>诚信保障：</p><p>豆币数量：100000</p><p>能力等级：级别三级</p></div>
-                                <div class="bg"></div>
-                                </div>
-                                <a href="#"><img src="/tpl/default/d8/images/img1.jpg" onMouseOver="show('div2')" onMouseOut="hide('div2')" /></a><span><a href="#">逍遥浪子</a></span>
-                              </li>
-                              <li>
-                                <div id="div3" onMouseOver="show('div3');" onMouseOut="hide('div3');" style="display:none; cursor:pointer;">
-                                <div class="text"><p>DB-177666</p><p>诚信保障：</p><p>豆币数量：100000</p><p>能力等级：级别三级</p></div>
-                                <div class="bg"></div>
-                                </div>
-                                <a href="#"><img src="/tpl/default/d8/images/img1.jpg" onMouseOver="show('div3')" onMouseOut="hide('div3')" /></a><span><a href="#">逍遥浪子</a></span>
-                              </li>
-                              <li>
-                                <div id="div4" onMouseOver="show('div4');" onMouseOut="hide('div4');" style="display:none; cursor:pointer;">
-                                <div class="text"><p>DB-177666</p><p>诚信保障：</p><p>豆币数量：100000</p><p>能力等级：级别三级</p></div>
-                                <div class="bg"></div>
-                                </div>
-                                <a href="#"><img src="/tpl/default/d8/images/img1.jpg" onMouseOver="show('div4')" onMouseOut="hide('div4')" /></a><span><a href="#">逍遥浪子</a></span>
-                              </li>
-                              <li>
-                                <div id="div5" onMouseOver="show('div5');" onMouseOut="hide('div5');" style="display:none; cursor:pointer;">
-                                <div class="text"><p>DB-177666</p><p>诚信保障：</p><p>豆币数量：100000</p><p>能力等级：级别三级</p></div>
-                                <div class="bg"></div>
-                                </div>
-                                <a href="#"><img src="/tpl/default/d8/images/img1.jpg" onMouseOver="show('div5')" onMouseOut="hide('div5')" /></a><span><a href="#">逍遥浪子</a></span>
-                              </li>
+                              {loop $new_member $k $v}
+                                <li>
+                                    <div id="div2{$k}" onMouseOver="show('div2{$k}');" onMouseOut="hide('div2{$k}');" style="display:none; cursor:pointer;">
+                                    <div class="text"><p>{$v['username']}</p><p>诚信保障：{$v['balance']}</p><p>能力等级：{$credit_level[$k]["title"]}</p></div>
+                                    <div class="bg"></div>
+                                    </div>
+                                    <a href="#"><img src="<!--{userpicurl($v['uid'],middle)}-->" onMouseOver="show('div2{$k}')" onMouseOut="hide('div2{$k}')" /></a><span><a href="#">{$v['username']}</a></span>
+                                  </li>
+								{/loop}
 							</ul>
                             <ul class="infoListImg">
-                              <li>
-                                <div id="div1" onMouseOver="show('div1');" onMouseOut="hide('div1');" style="display:none; cursor:pointer;">
-                                <div class="text"><p>DB-177666</p><p>诚信保障：</p><p>豆币数量：100000</p><p>能力等级：级别三级</p></div>
-                                <div class="bg"></div>
-                                </div>
-                                <a href="#"><img src="/tpl/default/d8/images/img1.jpg" onMouseOver="show('div1')" onMouseOut="hide('div1')" /></a><span><a href="#">逍遥浪子</a></span>
-                              </li>
-                              <li>
-                                <div id="div2" onMouseOver="show('div2');" onMouseOut="hide('div2');" style="display:none; cursor:pointer;">
-                                <div class="text"><p>DB-177666</p><p>诚信保障：</p><p>豆币数量：100000</p><p>能力等级：级别三级</p></div>
-                                <div class="bg"></div>
-                                </div>
-                                <a href="#"><img src="/tpl/default/d8/images/img1.jpg" onMouseOver="show('div2')" onMouseOut="hide('div2')" /></a><span><a href="#">逍遥浪子</a></span>
-                              </li>
-                              <li>
-                                <div id="div3" onMouseOver="show('div3');" onMouseOut="hide('div3');" style="display:none; cursor:pointer;">
-                                <div class="text"><p>DB-177666</p><p>诚信保障：</p><p>豆币数量：100000</p><p>能力等级：级别三级</p></div>
-                                <div class="bg"></div>
-                                </div>
-                                <a href="#"><img src="/tpl/default/d8/images/img1.jpg" onMouseOver="show('div3')" onMouseOut="hide('div3')" /></a><span><a href="#">逍遥浪子</a></span>
-                              </li>
-                              <li>
-                                <div id="div4" onMouseOver="show('div4');" onMouseOut="hide('div4');" style="display:none; cursor:pointer;">
-                                <div class="text"><p>DB-177666</p><p>诚信保障：</p><p>豆币数量：100000</p><p>能力等级：级别三级</p></div>
-                                <div class="bg"></div>
-                                </div>
-                                <a href="#"><img src="/tpl/default/d8/images/img1.jpg" onMouseOver="show('div4')" onMouseOut="hide('div4')" /></a><span><a href="#">逍遥浪子</a></span>
-                              </li>
-                              <li>
-                                <div id="div5" onMouseOver="show('div5');" onMouseOut="hide('div5');" style="display:none; cursor:pointer;">
-                                <div class="text"><p>DB-177666</p><p>诚信保障：</p><p>豆币数量：100000</p><p>能力等级：级别三级</p></div>
-                                <div class="bg"></div>
-                                </div>
-                                <a href="#"><img src="/tpl/default/d8/images/img1.jpg" onMouseOver="show('div5')" onMouseOut="hide('div5')" /></a><span><a href="#">逍遥浪子</a></span>
-                              </li>
+                              {loop $new_member $k $v}
+                                <li>
+                                    <div id="div3{$k}" onMouseOver="show('div3{$k}');" onMouseOut="hide('div3{$k}');" style="display:none; cursor:pointer;">
+                                    <div class="text"><p>{$v['username']}</p><p>诚信保障：{$v['balance']}</p><p>能力等级：{$credit_level[$k]["title"]}</p></div>
+                                    <div class="bg"></div>
+                                    </div>
+                                    <a href="#"><img src="<!--{userpicurl($v['uid'],middle)}-->" onMouseOver="show('div3{$k}')" onMouseOut="hide('div3{$k}')" /></a><span><a href="#">{$v['username']}</a></span>
+                                  </li>
+								{/loop}
 							</ul>
 						</div>
 					</div>
@@ -211,7 +139,7 @@
 						<p>帮您<br />做开发</p>
 					</div>
                    <div name="panel"></div>
-                    <p class="slide"><a href="javascirpt:;" num=0 class="btn-slide"  id="btn-bs">&nbsp;</a></p>	
+                    <p class="slide"><a href="###" num=0 class="btn-slide"  id="btn-bs">&nbsp;</a></p>	
                     
 				</div>
 				<div class="ban_sright">
@@ -1269,19 +1197,17 @@ $(document).ready(function(){
         <div class="b1_bnsj">
           <div class="text_bnsj">
             <ul>
-              <li><b>￥10000.00</b> <a href="#">电子音乐鱼缸设计</a> <span>已完成</span></li>
-              <li><b>￥10000.00</b> <a href="#">电子音乐鱼缸设计</a> <span>已完成</span></li>
-              <li><b>￥10000.00</b> <a href="#">电子音乐鱼缸设计</a> <span>已完成</span></li>
-              <li><b>￥10000.00</b> <a href="#">电子音乐鱼缸设计</a> <span>已完成</span></li>
+                {loop $logo_task_end $k $v}
+                 <li><b>￥{$v["task_cash"]}</b> <a href="index.php?do=task&task_id={$v["task_id"]}"><!--{eval echo kekezu::cutstr($v['task_title'],20);}--></a> <span>已完成</span></li>
+                {/loop}
             </ul>
           </div>
           <div class="xian"></div>
           <div class="text_bnsj_b">
             <ul>
-              <li><b>￥10000.00</b> <a href="#">电子音乐鱼缸设计</a> <span>进行中</span></li>
-              <li><b>￥10000.00</b> <a href="#">电子音乐鱼缸设计</a> <span>进行中</span></li>
-              <li><b>￥10000.00</b> <a href="#">电子音乐鱼缸设计</a> <span>进行中</span></li>
-              <li><b>￥10000.00</b> <a href="#">电子音乐鱼缸设计</a> <span>进行中</span></li>
+              {loop $logo_task $k $v}
+                 <li><b>￥{$v["task_cash"]}</b> <a href="index.php?do=task&task_id={$v["task_id"]}"><!--{eval echo kekezu::cutstr($v['task_title'],20);}--></a> <span>进行中</span></li>
+                {/loop}
             </ul>
           </div>
         </div>
@@ -1298,19 +1224,17 @@ $(document).ready(function(){
         <div class="b1_bnsj">
           <div class="text_bnsj">
             <ul>
-              <li><b>￥10000.00</b> <a href="#">电子音乐鱼缸设计</a> <span>已完成</span></li>
-              <li><b>￥10000.00</b> <a href="#">电子音乐鱼缸设计</a> <span>已完成</span></li>
-              <li><b>￥10000.00</b> <a href="#">电子音乐鱼缸设计</a> <span>已完成</span></li>
-              <li><b>￥10000.00</b> <a href="#">电子音乐鱼缸设计</a> <span>已完成</span></li>
+              {loop $web_task_end $k $v}
+                 <li><b>￥{$v["task_cash"]}</b> <a href="index.php?do=task&task_id={$v["task_id"]}"><!--{eval echo kekezu::cutstr($v['task_title'],20);}--></a> <span>已完成</span></li>
+              {/loop}
             </ul>
           </div>
           <div class="xian"></div>
           <div class="text_bnsj_b">
             <ul>
-              <li><b>￥10000.00</b> <a href="#">电子音乐鱼缸设计</a> <span>进行中</span></li>
-              <li><b>￥10000.00</b> <a href="#">电子音乐鱼缸设计</a> <span>进行中</span></li>
-              <li><b>￥10000.00</b> <a href="#">电子音乐鱼缸设计</a> <span>进行中</span></li>
-              <li><b>￥10000.00</b> <a href="#">电子音乐鱼缸设计</a> <span>进行中</span></li>
+              {loop $web_task $k $v}
+                 <li><b>￥{$v["task_cash"]}</b> <a href="index.php?do=task&task_id={$v["task_id"]}"><!--{eval echo kekezu::cutstr($v['task_title'],20);}--></a> <span>已完成</span></li>
+              {/loop}
             </ul>
           </div>
         </div>
@@ -1327,19 +1251,17 @@ $(document).ready(function(){
         <div class="b1_bnsj">
           <div class="text_bnsj">
             <ul>
-              <li><b>￥10000.00</b> <a href="#">电子音乐鱼缸设计</a> <span>已完成</span></li>
-              <li><b>￥10000.00</b> <a href="#">电子音乐鱼缸设计</a> <span>已完成</span></li>
-              <li><b>￥10000.00</b> <a href="#">电子音乐鱼缸设计</a> <span>已完成</span></li>
-              <li><b>￥10000.00</b> <a href="#">电子音乐鱼缸设计</a> <span>已完成</span></li>
+              {loop $tg_task_end $k $v}
+                 <li><b>￥{$v["task_cash"]}</b> <a href="index.php?do=task&task_id={$v["task_id"]}"><!--{eval echo kekezu::cutstr($v['task_title'],20);}--></a> <span>已完成</span></li>
+              {/loop}
             </ul>
           </div>
           <div class="xian"></div>
           <div class="text_bnsj_b">
             <ul>
-              <li><b>￥10000.00</b> <a href="#">电子音乐鱼缸设计</a> <span>进行中</span></li>
-              <li><b>￥10000.00</b> <a href="#">电子音乐鱼缸设计</a> <span>进行中</span></li>
-              <li><b>￥10000.00</b> <a href="#">电子音乐鱼缸设计</a> <span>进行中</span></li>
-              <li><b>￥10000.00</b> <a href="#">电子音乐鱼缸设计</a> <span>进行中</span></li>
+              {loop $tg_task $k $v}
+                 <li><b>￥{$v["task_cash"]}</b> <a href="index.php?do=task&task_id={$v["task_id"]}"><!--{eval echo kekezu::cutstr($v['task_title'],20);}--></a> <span>已完成</span></li>
+              {/loop}
             </ul>
           </div>
         </div>
@@ -1356,19 +1278,17 @@ $(document).ready(function(){
         <div class="b1_bnsj">
           <div class="text_bnsj">
             <ul>
-              <li><b>￥10000.00</b> <a href="#">电子音乐鱼缸设计</a> <span>已完成</span></li>
-              <li><b>￥10000.00</b> <a href="#">电子音乐鱼缸设计</a> <span>已完成</span></li>
-              <li><b>￥10000.00</b> <a href="#">电子音乐鱼缸设计</a> <span>已完成</span></li>
-              <li><b>￥10000.00</b> <a href="#">电子音乐鱼缸设计</a> <span>已完成</span></li>
+              {loop $life_task_end $k $v}
+                 <li><b>￥{$v["task_cash"]}</b> <a href="index.php?do=task&task_id={$v["task_id"]}"><!--{eval echo kekezu::cutstr($v['task_title'],20);}--></a> <span>已完成</span></li>
+              {/loop}
             </ul>
           </div>
           <div class="xian"></div>
           <div class="text_bnsj_b">
             <ul>
-              <li><b>￥10000.00</b> <a href="#">电子音乐鱼缸设计</a> <span>进行中</span></li>
-              <li><b>￥10000.00</b> <a href="#">电子音乐鱼缸设计</a> <span>进行中</span></li>
-              <li><b>￥10000.00</b> <a href="#">电子音乐鱼缸设计</a> <span>进行中</span></li>
-              <li><b>￥10000.00</b> <a href="#">电子音乐鱼缸设计</a> <span>进行中</span></li>
+              {loop $life_task $k $v}
+                 <li><b>￥{$v["task_cash"]}</b> <a href="index.php?do=task&task_id={$v["task_id"]}"><!--{eval echo kekezu::cutstr($v['task_title'],20);}--></a> <span>已完成</span></li>
+              {/loop}
             </ul>
           </div>
         </div>

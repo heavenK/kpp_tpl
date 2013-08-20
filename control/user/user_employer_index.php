@@ -51,6 +51,7 @@ if ($model_id) {
 		$page_obj = $kekezu->_page_obj;
 		$cls = $model_list [$model_id] ['model_code'] . "_task_class";
 		$status_arr = call_user_func ( array ($cls, "get_task_status" ) );
+		
 		$pub_count = intval ( db_factory::get_count ( sprintf ( "select count(task_id) pub_count from %switkey_task
  		where YEARWEEK(FROM_UNIXTIME(start_time)) = YEARWEEK('%s') and model_id='%d' and uid='%d'", TABLEPRE, date ( 'Y-m-d H:i:s', time () ), $model_id, $uid ) ) );
 		$sql = sprintf ( "select *,substring(
@@ -69,6 +70,7 @@ if ($model_id) {
 	}
 	$payitem_list = keke_payitem_class::get_payitem_config ();
 }
+
 $len = strlen($status);
 function master_opera($m_id, $t_id, $url,$task_cash) {
 	global $kekezu;

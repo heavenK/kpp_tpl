@@ -44,10 +44,33 @@ if ($shop_open) {
 	$recomm_service = db_factory::query ( sprintf ( "select service_id,price,unite_price,pic,ad_pic,title from %switkey_service where  service_status='2' order by on_time desc limit 0,12", TABLEPRE ), 1, 600 );
 }
 // 最新威客
-	$new_member = db_factory::query(sprintf("select *  from %switkey_member order by uid desc limit 0,10",TABLEPRE));
-
+	$new_member = db_factory::query(sprintf("select *  from %switkey_member m left join %switkey_space s on m.uid=s.uid order by m.uid desc limit 0,10",TABLEPRE,TABLEPRE));
+	foreach($new_member as $key => $val){
+		$credit_level[$key] = unserialize($val['seller_level']);
+	}
 // end
-
+// 最新VIP威客
+	$new_member_vip = db_factory::query(sprintf("select *  from %switkey_member m left join %switkey_space s on m.uid=s.uid where s.isvip=1 order by m.uid desc limit 0,10",TABLEPRE,TABLEPRE));
+	foreach($new_member_vip as $key => $val){
+		$new_member_vip[$key]['seller_level'] = unserialize($val['seller_level']);
+	}
+// end
+// 最新创意任务
+	$logo_task_end = db_factory::query(sprintf("select *  from %switkey_task where task_status=8 and indus_pid=441 order by task_id desc limit 0,4",TABLEPRE));
+	$logo_task = db_factory::query(sprintf("select *  from %switkey_task where task_status=2 and indus_pid=441  order by task_id desc limit 0,4",TABLEPRE));
+// end
+// 最新程序开发
+	$web_task_end = db_factory::query(sprintf("select *  from %switkey_task where task_status=8 and indus_pid=2 order by task_id desc limit 0,4",TABLEPRE));
+	$web_task = db_factory::query(sprintf("select *  from %switkey_task where task_status=2 and indus_pid=2  order by task_id desc limit 0,4",TABLEPRE));
+// end
+// 最新营销推广
+	$tg_task_end = db_factory::query(sprintf("select *  from %switkey_task where task_status=8 and indus_pid=442 order by task_id desc limit 0,4",TABLEPRE));
+	$tg_task = db_factory::query(sprintf("select *  from %switkey_task where task_status=2 and indus_pid=442  order by task_id desc limit 0,4",TABLEPRE));
+// end
+// 最新生活服务
+	$life_task_end = db_factory::query(sprintf("select *  from %switkey_task where task_status=8 and indus_pid=192 order by task_id desc limit 0,4",TABLEPRE));
+	$life_task = db_factory::query(sprintf("select *  from %switkey_task where task_status=2 and indus_pid=192  order by task_id desc limit 0,4",TABLEPRE));
+// end
 if(isset($op)&&$op == 'suggest'){
 		$title='我有话要说';
 		if($sbt_edit){
