@@ -2,7 +2,7 @@
 <link href="{SKIN_PATH}/css/user_center.css" rel="stylesheet" type="text/css">
 <div class="blank1"></div>
 <!--contain start-->
-<div class="yhcenter container_24">
+<div class="yhcenter container_24 {$_K['theme']}_style">
     	<!--  账号设置 begin -->
     	<div class="yhzhbox tabCon">
         	
@@ -11,15 +11,17 @@
             
             <div class="yhzhright">
                 <!--main content-->
-                <div class="">
-                            <!--header内容头部 start-->
-                            <header class="clearfix box_header">
-                                <h2 class="grid_4 alpha box_title t_c">{$_lang['send_message']}</h2>
-								
-                                <div class="clear">
-                                </div>
-                            </header>
-                            <!--header内容头部 end-->
+                    <div class="_gztt _gztt0 ">
+                        <div class="yh_xxnav">
+                            <span>{$_lang['send_message']}</span>
+                        </div>
+                    </div>
+                    <div class="xx_yh">
+                        
+                        <!--{template user/user_mes_nav}-->
+                        
+                        <div style="clear:both; height:15px;"></div>
+
                             <div class="prefix_1 suffix_1">
                                 <!--from表单 start-->
                                 <div class="clearfix box font14">
@@ -32,7 +34,7 @@
 												msg="{$_lang['user_name_at_least_three']}"
 												limit="required:true;len:2-40"
 												ajax="index.php?do=user&view=message&check_username="
-												id="txt_to_username" msgarea="msg_txt_to_username" size="39" />
+												id="txt_to_username" msgarea="msg_txt_to_username" style=" float:left;width:300px; border:1px solid #ccc" class="txt" size="39" />
 											<span id="msg_txt_to_username"> </span>
 
 										</div>
@@ -40,7 +42,7 @@
                                             <label class="grid_2 t_r">
                                                 {$_lang['message_title']}:
                                             </label>
-                                            <input type="text" name="txt_msg_title" id="txt_msg_title"  size="39" limit="type:string;required:true;len:1-50" msg="{$_lang['txt_msg_title']}" tips="{$_lang['txt_msg_title']}" msgArea="msg_title" />
+                                            <input type="text" style="width:300px; border:1px solid #ccc" class="txt" name="txt_msg_title" id="txt_msg_title"  size="39" limit="type:string;required:true;len:1-50" msg="{$_lang['txt_msg_title']}" tips="{$_lang['txt_msg_title']}" msgArea="msg_title" />
 									 
                                                 <span id="msg_title">
                                                 </span> 
@@ -50,7 +52,7 @@
                                                 {$_lang['message_content']}:
                                             </label>
 											<div class="fl_l">
-                                            <textarea  rows="12" name="txt_msg_content" id="tar_content" msgArea="msg_content"  style="width:390px;" onblur="contentCheck('tar_content','{$_lang['message_content']}',1,500)" ></textarea>
+                                            <textarea  rows="12" name="txt_msg_content" id="tar_content" msgArea="msg_content" class="yh_nr" style="width:300px; border:1px solid #ccc" onblur="contentCheck('tar_content','{$_lang['message_content']}',1,500)" ></textarea>
                                             </div>
 											<div class="fl_l ml_5">
                                                 <div id="msg_content">
@@ -60,8 +62,8 @@
 											
                                         </div>
                                         <input type="hidden" name="formhash" id="formhash" value="{FORMHASH}">
-                                        <div class="rowElem clearfix form_button">
-                                            <a class="button"  onclick="check_send()"><span class="check icon"></span>{$_lang['send']}</a>
+                                        <div class="btnyh">
+                                        	<input type="button" class="tet" value="发送" name=""   onclick="check_send()" style="border:none">
                                         </div>
                                     </form>
                                 </div>
@@ -77,14 +79,9 @@
            </div>
 
            </div>
-           
-            
-        </div>
-        
-        
-    </div>
+
     <!-- center end -->
-</div> 
+
 <script type="text/javascript">
             	In('form');
                 function check_send(){
@@ -98,4 +95,4 @@
 <!--contain end-->
 
 <!--{template user/user_footer}-->
-<!--{template footer}-->
+<!--{template footer_dou}-->

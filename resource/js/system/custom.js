@@ -238,6 +238,7 @@ function formSub(form,type,check){
 			}
 			break;
 	}
+	
 	if(pass==true){
 		if(t=='url'){
 			showWindow('sitesub',url,'get','0');return false;

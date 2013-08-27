@@ -1,0 +1,8 @@
+<div class="xx_yhnav">
+    <ul class="yhzxbtn">
+        <li class="{if $msg_type==system}mo{else}mt{/if}"><a href="index.php?do=$do&view=$view&op=inbox&msg_type=system">系统消息【{$count_system}】</a></li>
+        <li class="{if $msg_type==accept}mo{else}mt{/if}"><a href="index.php?do=$do&view=$view&op=inbox&msg_type=accept">个人收信箱【{$count_accept}】</a></li>
+        <li class="{if $msg_type==output}mo{else}mt{/if}"><a href="index.php?do=$do&view=$view&op=output&msg_type=output">发件箱【{$count_output}】</a></li>
+        <li class="{if $msg_type==write}mo{else}mt{/if}"><a href="index.php?do=$do&view=$view&op=send&msg_type=write">写短信</a></li>
+    </ul>
+</div>

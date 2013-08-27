@@ -1,7 +1,7 @@
 <?php
 /**
  * 
- * 客客推广联盟，工厂处理类
+ * 推广联盟，工厂处理类
  * @author Administrator
  *
  */
@@ -9,7 +9,7 @@ keke_lang_class::load_lang_class ( 'keke_tool_class' );
 class keke_tool_class {
 	
 	/**
-	 * 客客联盟通讯链接快熟构造
+	 * 联盟通讯链接快熟构造
 	 * [所有业务的初始请求发起都可由此函数完成]
 	 * @param array $param_data 外部传递的业务参数数组
 	 * @param string $return_type 希望的返回类型  [url=>请求链接,form=>请求表单]

@@ -18,57 +18,44 @@
                         <!--{template user/user_info_nav}-->
                     </div>
                     
-                    <div class="prefix_1 suffix_1 mt_10">
-         <div class="clearfix box font14">
-            <!--messages消息 start-->
-              <div id="messages"></div>
-                <!--messages消息 end-->
-                  <div class="suffix_1 clearfix  pb_20 pt_10">
-                     <div class="grid_8">
-                       <h4 class="mb_10">{$_lang['certificate_has_been_uploaded']}</h4>
-                         <div class="upd_infos">
-                            <ul id="upd_infos">
-                               {loop $cert_info $v}
-                                 <li class="clearfix" id="{$v['ext_id']}">
-                                     <span class="font14 grid_8"><a href="{$v['v2']}">{$v['v1']}</a></span>
-                                     <a href="javascript:;" onclick="del_cert($v['ext_id'],$v['v3'])" class="close">&times;</a>
-                                 </li>
-                                {/loop}
-                            </ul>
-                           </div>
-                      </div>
-                     <div class="grid_9" style="float:right;">
-                     	<form id="frm_cert" name="frm_cert">
-                        <h4 class="mb_10 border_b_c">{$_lang['upload_cert']}</h4>
-                            <div class="clear"></div>
-							<div class="rowElem clearfix">
-                               <label class="grid_2 t_r">{$_lang['cert_pic']} </label>
-                               <div class="grid_5">
-								  <input class="txt_input" type="file" name="file_name" id="file_name">
-                              </div>
+                    <div class="jbzl">
+                    	<div class="jnzc">
+                        	<div class="jnzcleft">
+                            	<h4>技能证书</h4>
+                                <div>
+                                	{loop $cert_info $v}
+                                     <li class="clearfix" id="{$v['ext_id']}">
+                                         <span class="font14 grid_8"><a href="{$v['v2']}">{$v['v1']}</a></span>
+                                         <a href="javascript:;" onclick="del_cert($v['ext_id'],$v['v3'])" class="close">&times;</a>
+                                     </li>
+                                    {/loop}
+                                </div>
                             </div>
-							<div class="rowElem clearfix" id="cert_name_area">
-                               <label class="grid_2 t_r">{$_lang['cert_name']} :</label>
-                               <div class="grid_6">
-								 	<input class="txt_input" type="text" size="19" name="cert_name" id="cert_name" value="{$_lang['skill_name_example']}" onfocus="if(this.value=='{$_lang[skill_name_example]}') this.value='';this.style.color='#333';"  style="color:#999;" limit="required:true;len:2-20"
+                            <div class="jnzcright">
+                            	<h4>上传证书,支持格式:.gif、.jpg、.jpeg、.png</h4> 
+                                <form id="frm_cert" name="frm_cert">
+                                <div class="zy rowElem clearfix">
+                                	<label>证书图片：</label>
+                                    <div class="zn">
+                                        <input class="txt_input" type="file" name="file_name" id="file_name">
+                                    </div>
+                                </div>
+                                <div class="zy" id="cert_name_area">
+                                	<label>{$_lang['cert_name']}：</label>
+                                    <input class="txt_input" type="text" size="19" name="cert_name" id="cert_name" value="{$_lang['skill_name_example']}" onfocus="if(this.value=='{$_lang[skill_name_example]}') this.value='';this.style.color='#333';"  style="color:#999;" limit="required:true;len:2-20"
 									msg="{$_lang['cert_name_can_not_be_none']}" msgArea="span_cert">
-                               	<span id="span_cert"></span>
-								
-								</div>
-                            </div>
-							<div class="rowElem clearfix">
-								 <label class="grid_2 t_r">&nbsp; </label>
-                               <div class="grid_5">
-								    <button type="button" style="width:150px" onclick="fileUpload();" id="btn_up">
+                                </div>
+                                <button type="button" style="width:150px" onclick="fileUpload();" id="btn_up">
 	                                   {$_lang['save_setting']}
-	                                </button>
-                               </div>
+	                            </button>
+                                </form>
                             </div>
-						</form>
-                      </div>
-                      </div>
-                   </div>
-                 </div>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
               <!--detail内容 end-->
             </div>
           <!--main content end-->
@@ -81,13 +68,10 @@
 
            </div>
            
-            
-        </div>
+
         
-        
-    </div>
     <!-- center end -->
-</div> 
+
 <script type="text/javascript">
 		$(function(){
 			uploadify({
@@ -211,6 +195,5 @@
     
 </script>
 <!--contain end-->
-
 <!--{template user/user_footer}-->
-<!--{template footer}-->
+<!--{template footer_dou}-->

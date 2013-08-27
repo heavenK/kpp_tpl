@@ -37,6 +37,6 @@ $lang = array(
 	'mail_address'=>'邮箱地址',
 	'mail_send_testing_mail'=>'发送测试邮件',
 	'website_config_fail'=>'站点信息配置失败',
-	'keke_mail_testing'=>'客客威客信息测试邮件',
+	'keke_mail_testing'=>'威客信息测试邮件',
 	'test_mail_sent_successfully'=>'测试邮件发送成功 !',
 );

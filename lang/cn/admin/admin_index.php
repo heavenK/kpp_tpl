@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-	'admin_keke_sys'=>'后台管理 - 客客专业威客系统',
+	'admin_keke_sys'=>'后台管理 - 专业威客系统',
 	'faster_operate'=>'快捷操作',
 	'hello'=>'您好',
 	'default_blue'=>'默认蓝',

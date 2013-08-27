@@ -1,0 +1,36 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{background:url(../images/header_bg1.jpg) repeat-x #fff;}
+.menu ul li .hide:hover { width:100px;color:#fff; background:url(../images/nav_bg1.jpg) no-repeat top center;}
+.menu ul li.h_r			{ width:100px; height:34px; background:url(../images/nav_bg1.jpg) no-repeat top center; float:left;}
+.menu ul li.h_r a:hover	{ width:100px;color:#fff; background:url(../images/nav_bg1.jpg) no-repeat top center;}
+.top_b{border-top:1px solid #c1a05d; background:#f8f6e7;}
+.hydl{background:url(../images/vip31.jpg) repeat-x;}
+.hydl a{background:none;}
+.hydl i{background:#c29a60;}
+.logo_top_nav{background:url(../images/logo_nav1.jpg) no-repeat;}
+.rukou_nav{ background:#a47436; box-shadow:2px 2px 3px #b28244}
+.gz ul li a:hover{background:#f2e49b; color:#000;}
+
+.slideTxtBox				{ width:100%; text-align:center;}
+.slideTxtBox .hd			{ height:35px; line-height:35px; background:url(../images/vip36.jpg) repeat-x; position:relative; margin-bottom:5px;}
+.slideTxtBox .hd ul			{ float:left;position:absolute;left:0px;top:-1px;height:35px;width: 324px;margin-top:1px; background:url(../images/vip37.jpg) no-repeat}
+.slideTxtBox .hd ul li		{ float:left;width:120px; height:35px;color:#000; border:0px;}
+.slideTxtBox .hd ul li a 	{ font-size:20px; color:#fff;}
+.slideTxtBox .hd ul li.on a { color:#000;}
+.slideTxtBox .hd ul li.on	{ height:30px; background:none; cursor:pointer; border:none; border-right:0px solid #adb2ae;}
+.slideTxtBox .hd tt a		{ float:right; font-size:12px; color:#000; margin-right:19px; display:inline;}
+.hd a 						{ cursor:pointer;}
+.slideTxtBox .bd			{ padding:5px 5px 0 5px ; border:1px solid #d5d5d5; margin-bottom:15px;}
+.slideTxtBox .bd ul			{ padding:15px 10px 20px 10px; font-size:12px;}
+.infoList li				{ line-height:26px; text-align:left; background:url(../images/span_d.jpg) no-repeat left; padding-left:10px;}
+.infoList li a				{ font-size:12px; color:#666666; }
+.infoList li a:hover		{ font-size:12px; color:#b80002; }
+.infoList li .date			{ float:right; color:#231b19; }
+.gengduo a					{ text-align:right; display:inline; color:#def3ec; margin-top:5px; float:right; }
+
+
+.menu ul li.h_r a.hide{color:#fff;}
+.menu ul li a.hide{color:#000;}
+.menu .hide{width:100px;}

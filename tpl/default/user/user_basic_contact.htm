@@ -43,7 +43,9 @@
                             <p>
                             	<label>手机号：</label>
                                 {if $auth['mobile']}
+                                <span>
                                 <!--{eval echo(substr($user_info['mobile'],0,4).'****'.substr($user_info['mobile'],7,4));}-->
+                                </span>
                                 {else}
                                   <input class="txt_input" name="conf[mobile]" id="mobile" type="text" value="{$user_info['mobile']}" title="{$_lang['fill_in_your_own_phonenum']}"
                                    limit="required:false;type:mobileCn" msg="{$_lang['wrong_format_about_phonenum']}" msgArea="span_mobile"
@@ -51,53 +53,108 @@
                                 {/if}
                                 &nbsp;&nbsp;
                                 {if $auth['mobile']}
-                                    手机已认证
+                                    <a>手机已认证</a>
                                 {else}
                                 <a href="index.php?do=user&view=payitem&op=auth&auth_code=mobile">
                                     {$_lang['mobile_auth']}
                                 </a>
                                 {/if}
-
+								<div class="selectbox_dw">
                                 <select name="sect[mobile]" style="width:70px; float:right; margin-right:5px; height:27px;">
                                     <option value="1" {if $sect_info['mobile']['v1']==1}selected="selected"{/if}>{$_lang['user_private']}&nbsp;</option>
                                     <option value="2" {if $sect_info['mobile']['v1']==2||!$sect_info['mobile']['v1']}selected="selected"{/if}>{$_lang['user_public']}&nbsp;</option>
                                 </select>
+                                </div>
                                 <p style="font-size:12px; padding-left:75px; line-height:25px;">用于接收重要提醒（仅方便用于一品威客网客服联系您，请放心填写）</p>
                             </p>
                             <p>
                             	<label>QQ：</label>
                                 <input class="txt_input" name="conf[qq]" id="qq" type="text" value="{$user_info['qq']}" title="{$_lang['fill_in_your_own_qqnum']}" limit="required:false;type:int;len:5-13" msg="{$_lang['wrong_format_about_qqnum']}" msgArea="span_qq" size="37" />
+                             	<div class="selectbox_dw">
                                 <select name="sect[qq]" style="width:70px; float:right; margin-right:5px; height:27px;">
                                     <option value="1" {if $sect_info['qq']['v1']==1}selected="selected"{/if}>{$_lang['user_private']}&nbsp;</option>
                                     <option value="2" {if $sect_info['qq']['v1']==2||!$sect_info['qq']['v1']}selected="selected"{/if}>{$_lang['user_public']}&nbsp;</option>
                                 </select>
+                                </div>
                             </p>
                             <p>
                             	<label>电子邮箱：</label>
                                 {if $auth['email']}
+                                <span>
                                 <!--{eval $t_length = strlen($user_info[email]);
                                     $m_length = strpos($user_info[email],'@');
                                     $start_str = substr(substr($user_info[email],0,$m_length),0,4);
                                     $middle_str = str_repeat('*',$t_length-$m_length);
                                     $end_str = substr($user_info[email], -($t_length-$m_length));
                                     echo($start_str.$middle_str.$end_str);}-->
+                                </span>
                                 {else}
                                 <input class="txt_input" name="conf[email]" id="email" type="text" value="{$user_info['email']}" title="{$_lang['fill_in_your_own_email']}" limit="required:false;type:email"
                                  msg="{$_lang['wrong_format_about_mailaddress']}" msgArea="span_email" size="37" />
                                  {/if}
                                  &nbsp;&nbsp;
                                  {if $auth['email']}
-                                      邮箱已认证
+                                      <a>邮箱已认证</a>
                                   {else}
                                   <a href="index.php?do=user&view=payitem&op=auth&auth_code=email">{$_lang['email_auth']}</a>
                                   </button>
                                   {/if}
+                                 <div class="selectbox_dw">
                                 <select name="sect[email]"  style="width:70px; float:right; margin-right:5px; height:27px;">
                                     <option value="1" {if $sect_info['email']['v1']==1}selected="selected"{/if}>{$_lang['user_private']}&nbsp;</option>
                                     <option value="2" {if $sect_info['email']['v1']==2||!$sect_info['email']['v1']}selected="selected"{/if}>{$_lang['user_public']}&nbsp;</option>
                                 </select>
+                                </div>
                             </p>
+                            <p>
+                            	<label>出生地：</label>
+                                <input class="txt_input" name="conf[hometown]" id="hometown" type="text" value="{$user_info['hometown']}" />
+                           </p>
+                           <p>
+                            	<label><span>*</span>&nbsp;学历：</label>
+                                <input type="text" name="conf[xueli]" id="xueli"  value="{$user_info['xueli']}" class="texts4" />
+                                <label style="width:56px;">身高：</label>
+                                <input type="text" name="conf[shengao]" id="shengao"  value="{$user_info['shengao']}" class="texts4" />
+                                <label style="width:50px;">体重：</label>
+                                <input type="text" name="conf[tizhong]" id="tizhong"  value="{$user_info['tizhong']}" class="texts4" />
+                           </p>
+                           <p>
+                            	<label>星座：</label>
+                                <input type="text" name="conf[xingzuo]" id="xingzuo"  value="{$user_info['xingzuo']}" class="texts4" />
+                                <label style=" width:56px;">血型：</label>
+                                <input type="text" name="conf[xuexing]" id="xuexing"  value="{$user_info['xuexing']}" class="texts4" />
+                           </p>
+                           <p>
+                            	<label>语言：</label>
+                                <input type="text" name="conf[yuyan]" id="yuyan"  value="{$user_info['yuyan']}" class="texts1" />
+                           </p>
+                           <p>
+                            	<label><span>*</span>&nbsp;爱好：</label>
+                                <textarea name="conf[aihao]" id="aihao"  cols="70" rows="5" style="width:252px; height:100px; border:1px solid #ccc " >{$user_info['aihao']}</textarea>
+                           </p>
+                           <p>
+                            	<label><span>*</span>&nbsp;职业：</label>
+                                <input type="text" name="conf[zhiye]" id="zhiye"  value="{$user_info['zhiye']}" class="texts1" />
+                           </p>
+                           <p>
+                            	<label>个人才艺：</label>
+                                <textarea name="conf[gerencaiyi]" id="gerencaiyi" cols="70" rows="5" style="width:252px; height:100px; border:1px solid #ccc" onkeyup="" onkeydown="">{$user_info['gerencaiyi']}</textarea>
+                           </p>
+                           <p>
+                            	<label><span>*</span>&nbsp;毕业院校：</label>
+                                <input type="text" name="conf[biyeyuanxiao]" id="biyeyuanxiao"  value="{$user_info['biyeyuanxiao']}" class="texts1" />
+                           </p>
+                           <p>
+                            	<label>休闲方式：</label>
+                                <textarea name="conf[xiuxianfangshi]" id="xiuxianfangshi" cols="70" rows="5" style="width:252px; height:100px; border:1px solid #ccc">{$user_info['xiuxianfangshi']}</textarea>
+                           </p>
+                           <p>
+                            	<label><span>*</span>&nbsp;自我介绍：</label>
+                                <textarea name="conf[ziwojieshao]" id="ziwojieshao" cols="70" rows="5" style="width:252px; height:100px; border:1px solid #ccc">{$user_info['ziwojieshao']}</textarea>
+                           </p>
+                            <p>
                             <input name="" type="button" value="提交保存" onclick="formSub('frm','form',true);" style="text-align:center;  width:100px; height:30px;margin-top:15px; margin-left:75px;" />
+                        	</p>
                         </form>
                         </div>
                     </div>
@@ -113,7 +170,7 @@
         
     </div>
     <!-- center end -->
-</div> 
+
 <script type="text/javascript"  >
 	In('form','pcas',function(){
 		  new PCAS("province","city","area","{$loca['0']}","{$loca['1']}","{$loca['2']}");
@@ -166,6 +223,5 @@ function t2(){
 
 </script>
 <!--contain end-->
-
 <!--{template user/user_footer}-->
-<!--{template footer}-->
+<!--{template footer_dou}-->

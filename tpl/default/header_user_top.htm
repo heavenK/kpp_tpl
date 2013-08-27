@@ -1,124 +1,166 @@
 <!--{template header_top_title}-->
-<script>
-$(function(){
-	$("li:has(ul)").addClass("p");
-	$("ul:eq(0)>li ul").hide();
-	$("p").click(function(){
-		$(this).parent(":has(ul)").find(">ul").slideToggle().end().toggleClass("p");
-	});
-})
-</script>
-<body id="{$do}">
-<div id="yh" class="{$_K['theme']}_style">
 
-	<div id="append_parent">
-    </div>
- 
-    <!--无刷新临时替换层-->
-    <div id="noflushwarper">
-        <div id="noflushwarper_sub"></div>
-    </div>
+<body id="{$do}">
+<div id="append_parent">
+</div>
+
+<!--无刷新临时替换层-->
+<div id="noflushwarper">
+    <div id="noflushwarper_sub"></div>
+</div>
+
+
+<div class="you"><a href="#"><img src="/tpl/default/d8/images/you.gif"  width="222" height="220"/></a></div>
+<div class="box">
+	<div class="weweima"><img src="/tpl/default/d8/images/erweima.jpg"  width="99" height="97"/></div>
     
-    
-	<!--top begin  -->
-	<div class="yh_top">
-    	<div class="yh_topnav">
-        	<div class="yh_topnavleft">
-            	<a><span>欢迎您，</span></a><a href="index.php?do=user" title="{$username}">&nbsp;{if $username}{$username}{elseif $oauth_user_info}{$oauth_user_info['account']}{/if}</a>&nbsp;&nbsp;<a href="index.php?do=user&view=message" target="_blank">站内信<b>【{$messagecount}】</b></a>&nbsp;&nbsp;<a href="index.php?do=logout" target="_blank">退出</a>
-            </div>
-            <div class="yh_topnavright">
-            	<ul>
-                	<li><a href="">豆豆游戏</a></li>
-                    <li><a href="">我的工作室</a></li>
-                    <li><a href="">豆豆导航</a></li>
-                    <li><a href="">帮助中心</a></li>
-                    <li><a href="">豆豆商圈</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    
-    <div class="yh_toplogo">
-    	<div class="yh_toplogoleft">
-        	<div class="yh_toplo">
-            	<a href="index.php">
-            	{if isset($custom_logo)}
-                <img src="{$basic_config['web_logo']}"//>
-                {else}
-                <img src="/tpl/default/d8/grzx/logo.png" />
-                {/if}
-            	</a>
-            </div>
-        </div>
-        <div class="yh_toplogoright">
-        	<div class="yh_zx">
-            	<div class="yh_zxleft">
-                	<a><span>用户中心</span></a>
-                </div>
-                <div class="yh_zxright">
-                	<!--搜索框和选项 start-->
-                    <form action="" method="post" id="frm_search" class="clearfix fl_l">
-                      <div id="search_select" class="search_options" style="display:none">
-                          {if $task_open}
-                               <a href="javascript:void(0);" class="selected" rel="task_list"><span>{$_lang['task']}</span>▼</a>
-                          {elseif !$task_open&&$shop_open}
-                               <a href="javascript:void(0);" class="selected" rel="shop_list"><span>{$_lang['goods']}</span>▼</a>
-                          {/if}
-                          {if $task_open}
-                               <a href="javascript:void(0);" class="hidden"   rel="task_list">{$_lang['task']}</a>
-                          {/if}
-                          {if $shop_open}
-                              <a href="javascript:void(0);" class="hidden"   rel="shop_list">{$_lang['goods']}</a>
-                           {/if}
-                      </div>
-                        <div class="yh_search"> 
-                            <input type="text" name="search_key" onkeydown="search_keydown(event);" id="search_key" class="fl_l search_input txt_input togg c999 search"
-						 value="{$_lang['input']}{if $task_open}{$_lang['task']}{/if}{if $task_open&&$shop_open}/{/if}{if $shop_open}{$_lang['goods']}{/if}" 
-						   x-webkit-speech x-webkit-grammar="bUIltin:search" lang="zh-CN" style="width:277px; height:18px;">
-             
-                        </div>
-                    </form>
-                   <!-- 搜索框和选项 end -->
-                   <div class="yh_zxyh">
-                   		<ul>
-                        	<li class="btn_r"><a href="">任务管理</a></li>
-                            <li class="btn_w"><a href="">我的账本</a></li>
+    <div class="header"><!--顶部导航-->
+        <div class="logo"><a href="index.php"><img src="/tpl/default/d8/images/logo.jpg"  width="159" height="188"/></a></div>
+        <div class="logo_r">
+			<div class="logo_top_nav">
+            	<div class="logo_top_nav_t">
+                    <a href="#">豆豆游戏</a>
+                    <a href="index.php?do=release">发布任务</a>
+                    <a href="#" id="daohang">豆豆导航</a>
+                    <a href="index.php?do=user&view=setting">个人中心</a>
+                    <a href="index.php?do=help">帮助中心</a>
+          		</div>
+          		<div class="rukou_nav">
+                    <h2>雇主服务</h2>
+                    <div class="gz">
+                        <ul>
+                            <li><a href="index.php?do=release">发布任务</a></li>
+                            <li><a href="#">人才宝库</a></li>
+                            <li><a href="#">客服中心</a></li>
+                            <li><a href="#">直接雇佣</a></li>
                         </ul>
-                   </div>
-                </div>
-            </div>
-            <div class="blank0"></div>
-            <!-- 导航 begin -->
-            <div class="yh_navbox">
-            	<div class="yh_nav">
-                	<div class="yh_navleft">
-                    	<ul class="mybtn">
-                        	<li class="{if $view=='setting'||$view=='payitem'}se{else}ss{/if}"><a href="index.php?do=user&view=setting">账号设置</a></li>
-                            <li class="{if $view=='employer'}se{else}ss{/if}"><a href="index.php?do=user&view=employer">我是雇主</a></li>
-                            <li class="{if $view=='witkey'}se{else}ss{/if}"><a href="index.php?do=user&view=witkey">我是威客</a></li>
-                            <li class="{if $view=='message'}se{else}ss{/if}"><a href="index.php?do=user&view=message">消息管理</a></li>
-                            <li class="{if $view=='store'}se{else}ss{/if}"><a href="index.php?do=user&view=store">工作室管理</a></li>
-                            <li class="{if $view=='finance'}se{else}ss{/if}"><a href="index.php?do=user&view=finance">我的账本</a></li>
+                    </div>
+                    <h2>威客服务</h2>
+                    <div class="gz">
+                        <ul>
+                            <li><a href="index.php?do=task_list">任务广场</a></li>
+                            <li><a href="index.php?do=user&view=setting">个人中心</a></li>
+                            <li><a href="index.php?do=user&view=finance&op=withdraw">我要提现</a></li>
+                            <li><a href="#">VIP工作室</a></li>
+                        </ul>
+                    </div>
+                    <h2>豆豆服务</h2>
+                    <div class="gz" style="border:none;">
+                        <ul>
+                            <li><a href="#">玩转豆币</a></li>
+                            <li><a href="shitu.html">师徒关系</a></li>
+                            <li><a href="#">豆豆学堂</a></li>
+                            <li><a href="#">豆豆商圈</a></li>
+                            <li><a href="#">豆豆论坛</a></li>
+                            <li><a href="#">诚信保障</a></li>
+                            <li><a href="#">豆豆游戏</a></li>
+                            <li><a href="#">网站地图</a></li>
                         </ul>
                     </div>
                 </div>
+			</div>
+          
+            <div class="top_b">
+                <div class="denglu">
+               		{if !$uid&&!$oauth_user_info}
+                	<div class="hydl">
+                    	<a href="#" id="huiyuan">会员登录<b style="font-size:14px;">▼</b></a>
+                        <i></i>
+                    	<a href="index.php?do=register" >免费注册</a>
+                    </div>
+                    {else}
+                    <div class="hydl">
+                    	<a href="index.php?do=user&view=setting">{if $username}{$username}{elseif $oauth_user_info}{$oauth_user_info['account']}{/if}</a>
+                        <i></i>
+                    	<a href="index.php?do=logout" >{$_lang['logout']}</a>
+                    </div>
+                    {/if}
+                    <div class="dl_t">
+                    <form action="index.php?do=login" method="post" id="login_frm" name="login_frm">
+                        <input type="hidden" name="formhash" id="formhash" value="{FORMHASH}">
+                        <input type="hidden" name="hdn_refer" id="hdn_refer" value="{$_K['refer']}">
+                        <input type="hidden" name="handlekey" value="login_frm1"><!--账号-->
+                        <ul>
+                            <li class="dl_btn">
+                                <label class="dl_btnz">账户</label>
+                                <input class="" name="txt_account" id="txt_account" type="text" style="width:140px" value="用户名/手机号/邮箱" onFocus="if(this.value=='用户名/手机号/邮箱'){this.value='';}"  onblur="if(this.value==''){this.value='用户名/手机号/邮箱'}";/>
+                            </li>
+                            <li class="dl_btn">
+                                <label class="dl_btnz">密码</label>
+                                <input class=""  style="width:140px" type="password" name="pwd_password" id="pwd_password" value="密码长度应为6-20位" original-title="" onFocus="if(this.value=='密码长度应为6-20位'){this.value='';}"  onblur="if(this.value==''){this.value='密码长度应为6-20位'}">
+                            </li>
+                            
+                            <li class="dl_btn0" style="width:155px; height:30px; padding-top:15px; padding-left:30px;">
+                                <input name="" type="button" onClick="return user_login();"  value="登录"/>
+                                <a href="">忘记密码？</a>
+                            </li> 
+                        </ul>
+                    </form>
+                    </div>
+            	</div>
+
                 
-                <div class="yh_nav00">
-                	<ul>
-                        <li class="s1">快捷操作:</li>
-                        <li><a href="index.php?do=user&view=setting&op=basic&opp=skill">设置我的技能标签</a></li>
-                        <li class="s0">|</li>
-                        <li><a href="index.php?do=user&view=setting&op=basic">完善我的个人资料</a></li>
-                        <li class="s0">|</li>
-                        <li><a href="index.php?do=user&view=payitem&op=auth">完善我的账号认证</a></li>
-                        <li class="s0">|</li>
-                        <li><a href="#">升级商铺，获得更多特权</a></li>
-                        <li class="s0"></li>
-            		</ul>
+                
+                <div class="top_b_t">
+                <form action="" method="post" id="frm_search" class="clearfix fl_l">
+                	<div style="display:none;">
+                        	<div id="search_select" class="search_options">
+                        	{if $task_open}
+                           		 <a href="javascript:void(0);" class="selected" rel="task_list"><span>{$_lang['task']}</span>▼</a>
+                            {elseif !$task_open&&$shop_open}
+								 <a href="javascript:void(0);" class="selected" rel="shop_list"><span>{$_lang['goods']}</span>▼</a>
+                            {/if}
+							{if $task_open}
+						   		 <a href="javascript:void(0);" class="hidden"   rel="task_list">{$_lang['task']}</a>
+							{/if}
+							{if $shop_open}
+                           	 	<a href="javascript:void(0);" class="hidden"   rel="shop_list">{$_lang['goods']}</a>
+							 {/if}
+                            </div>
+                        </div>
+                    <input type="text" value="热门词：豌豆，奖金" name="search_key" onKeyDown="search_keydown(event);" id="search_key" onFocus="if(this.value=='热门词：豌豆，奖金'){this.value='';}"  onblur="if(this.value==''){this.value='热门词：豌豆，奖金'}"; class="input_1" /> 
+                    <input name="" type="button" id="search_btn"  value="" class="suo"/>
+                </form>
                 </div>
-                
             </div>
-            <!--导航 end  -->
+            
+            <div class="xiangmu">
+                <i><b>项目总数：</b><span>{$task_count}</span></i>
+                <i><b>交易金额：</b><span>￥{$task_in}</span></i>
+                <i><b>威客数量： </b><span>{$register}</span></i>
+            </div>
+			
+            <div class="menu">
+                <ul>
+                  <li {if $view=='setting'||$view=='payitem'}class="h_r"{/if}><a href="index.php?do=user&view=setting" class="hide">账号设置</a></li>
+                  <li>|</li>
+                  <li {if $view=='employer'}class="h_r"{/if}><a href="index.php?do=user&view=employer" class="hide">我是雇主</a></li>
+                   <li>|</li>
+                  <li {if $view=='witkey'}class="h_r"{/if}><a href="index.php?do=user&view=witkey" class="hide">我是威客</a></li>
+                   <li>|</li>
+                  <li {if $view=='message'}class="h_r"{/if}><a href="index.php?do=user&view=message" class="hide">消息管理</a></li>
+                   <li>|</li>
+                  <li {if $view=='store'}class="h_r"{/if}><a href="index.php?do=user&view=store" class="hide">工作室管理</a></li>
+                   <li>|</li>
+                  <li {if $view=='finance'}class="h_r"{/if}><a href="index.php?do=user&view=finance" class="hide">我的账本</a></li>
+                   <li>|</li>
+                  <li><a href="#" class="hide">师徒关系</a></li>
+                  <li>|</li>
+                </ul>
+             </div>
         </div>
     </div>
-    <!--top end-->
+
+	<div class="yh_nav00">
+          <ul>
+              <li class="s1">快捷操作:</li>
+              <li><a href="index.php?do=user&view=setting&op=basic&opp=skill">设置我的技能标签</a></li>
+              <li class="s0">|</li>
+              <li><a href="index.php?do=user&view=setting&op=basic">完善我的个人资料</a></li>
+              <li class="s0">|</li>
+              <li><a href="index.php?do=user&view=payitem&op=auth">完善我的账号认证</a></li>
+              <li class="s0">|</li>
+              <li><a href="#">升级商铺，获得更多特权</a></li>
+              <li class="s0"></li>
+          </ul>
+     </div>

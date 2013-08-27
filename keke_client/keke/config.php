@@ -1,6 +1,6 @@
 <?php
 /**
- * 客客推广联盟，初始化配置类
+ * 推广联盟，初始化配置类
  * @var unknown_type
  */
 global $config, $_K;

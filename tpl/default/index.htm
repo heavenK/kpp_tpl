@@ -1,378 +1,367 @@
 <!--{template header_index_top}-->
-<!-- banner -->
-<div class="banner">
-  <!-- banner S -->
-	<div id="demoContent">
-		<div class="effect" style="width:1140px">
-					<div class="leftLoop">
-						<div class="hd">
-							<a class="next"></a>
-						  <ul><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li></ul>
-							<a class="prev"></a>
-						</div>
-						<div class="bd">
-							<ul class="picList">
-								<!--{ad_show(HOME_TOP_SLIDE,1)}-->
-							</ul>
-						</div>
-					</div>
-					<script type="text/javascript">jQuery(".leftLoop").slide({ mainCell:".bd ul",effect:"leftLoop",vis:1,scroll:1,autoPlay:true});</script>
-		</div>
-	</div>
-<!-- banner E -->
-</div>
 
-<!-- 最新任务 -->
+<div class="banner"><!--焦点图轮换-->
+        <div id="demoContent">
+            <div class="effect" style="width:1000px">
+                  <div class="leftLoop">
+                      <div class="hd">
+                          <a class="next"></a>
+                          <ul><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li></ul>
+                          <a class="prev"></a>
+                      </div>
+                      <div class="bd">
+                          <ul class="picList">
+                              <!--{ad_show(HOME_TOP_SLIDE,1)}-->
+                          </ul>
+                      </div>
+                  </div>
+                  <script type="text/javascript">$(".leftLoop").slide({ mainCell:".bd ul",effect:"leftLoop",vis:1,scroll:1,autoPlay:true});</script>
+            </div>
+        </div>
+    </div>
 
-<div class="g_zt">
-  <div class="g_zx">
-    <div class="effect">
-					<div class="slideTxtBox">
-						<div class="hd">
-							<ul><li><a href="">最新任务</a></li><li><a href="">最新动态</a></li><li><a href="">最新雇佣</a></li><li style="border-right:0px; width:75px;"><a href="">最新赛事</a></li></ul>
-						</div>
-						<div class="bd">
-							<ul class="infoList">
-                            	{loop $indus_recomm_task $k $v}
-								<li><span class="date"><!--{date('Y-m-d',$v['start_time'])}--></span><a href="index.php?do=task&task_id={$v['task_id']}"><!--{eval echo kekezu::cutstr($v['task_title'],24);}--></a></li>
-                                {/loop}
-                                <li class="gengduo" style="background:none;"><a href="index.php?do=task">查看更多>>></a></li>
-							</ul>
-							<ul class="infoList">
-                            	{loop $bulletin_arr $v}
-                                	<li><span class="date"><!--{date('Y-m-d',$v['pub_date'])}--></span><a href="index.php?do=single&art_id={$v['art_id']}">{$v['art_title']}</a></li>
-                             	{/loop}
-                                <li class="gengduo" style="background:none;"><a href="index.php?do=article&view=article_list&art_cat_id=17">查看更多>>></a></li>
-							</ul>
-							<ul class="infoList">
-								{loop $indus_recomm_task_1 $k $v}
-								<li><span class="date"><!--{date('Y-m-d',$v['start_time'])}--></span><a href="index.php?do=task&task_id={$v['task_id']}"><!--{eval echo kekezu::cutstr($v['task_title'],24);}--></a></li>
-                                {/loop}
-                                <li class="gengduo" style="background:none;"><a href="index.php?do=task">查看更多>>></a></li>
-							</ul>
-                            <ul class="infoList">
-								<li><span class="date">2011-11-11</span><a href="">澳大利亚八大名校招生说明会</a></li>
-								<li><span class="date">2011-11-11</span><a href="">2012世界大学排名新鲜出炉</a></li>
-								<li><span class="date">2011-11-11</span><a href="">新加坡留学，国际双语课程</a></li>
-								<li><span class="date">2011-11-11</span><a href="">高考后留学日本名校随你选</a></li>
-								<li><span class="date">2011-11-11</span><a href="">教育培训行业优势资源推介</a></li>
-								<li><span class="date">2011-11-11</span><a href="">即刻预约今年最后一场教育展</a></li>
-                                <li><span class="date">2011-11-11</span><a href="">数理化老师竟也看学习资料？</a></li>
-								<li><span class="date">2011-11-11</span><a href="">学英语送ipad2,45天突破听说</a></li>
-								<li><span class="date">2011-11-11</span><a href="">学外语，上北外！</a></li>
-                                <li class="gengduo" style="background:none;"><a href="#">查看更多>>></a></li>
-							</ul>
-						</div>
-					</div>
-					<script type="text/javascript">jQuery(".slideTxtBox").slide();</script>
-		</div>
-  </div>
+	<div class="g_zt"><!--最新动态-->
+        <div class="g_zx">
+            <div class="effect">
+                <div class="slideTxtBox">
+                    <div class="hd">
+                        <ul><li><a>最新任务</a></li><li><a>最新动态</a></li><li><a>最新雇佣</a></li><li style="border-right:0px; width:75px;"><a>最新赛事</a></li></ul>
+                    </div>
+                    <div class="bd">
+                        <ul class="infoList">
+                            {loop $indus_recomm_task $k $v}
+                            <li><span class="date"><!--{date('Y-m-d',$v['start_time'])}--></span><a href="index.php?do=task&task_id={$v['task_id']}"><!--{eval echo kekezu::cutstr($v['task_title'],24);}--></a></li>
+                            {/loop}
+                            <li class="gengduo" style="background:none;"><a href="index.php?do=task">查看更多>>></a></li>
+                        </ul>
+                        <ul class="infoList">
+                            {loop $bulletin_arr $v}
+                                <li><span class="date"><!--{date('Y-m-d',$v['pub_date'])}--></span><a href="index.php?do=single&art_id={$v['art_id']}">{$v['art_title']}</a></li>
+                            {/loop}
+                            <li class="gengduo" style="background:none;"><a href="index.php?do=article&view=article_list&art_cat_id=17">查看更多>>></a></li>
+                        </ul>
+                        <ul class="infoList">
+                            {loop $indus_recomm_task_1 $k $v}
+                            <li><span class="date"><!--{date('Y-m-d',$v['start_time'])}--></span><a href="index.php?do=task&task_id={$v['task_id']}"><!--{eval echo kekezu::cutstr($v['task_title'],24);}--></a></li>
+                            {/loop}
+                            <li class="gengduo" style="background:none;"><a href="index.php?do=task">查看更多>>></a></li>
+                        </ul>
+                        <ul class="infoList">
+                            <li><span class="date">2011-11-11</span><a href="">澳大利亚八大名校招生说明会</a></li>
+                            <li><span class="date">2011-11-11</span><a href="">2012世界大学排名新鲜出炉</a></li>
+                            <li><span class="date">2011-11-11</span><a href="">新加坡留学，国际双语课程</a></li>
+                            <li><span class="date">2011-11-11</span><a href="">高考后留学日本名校随你选</a></li>
+                            <li><span class="date">2011-11-11</span><a href="">教育培训行业优势资源推介</a></li>
+                            <li><span class="date">2011-11-11</span><a href="">即刻预约今年最后一场教育展</a></li>
+                            <li><span class="date">2011-11-11</span><a href="">数理化老师竟也看学习资料？</a></li>
+                            <li><span class="date">2011-11-11</span><a href="">学英语送ipad2,45天突破听说</a></li>
+                            <li><span class="date">2011-11-11</span><a href="">学外语，上北外！</a></li>
+                            <li class="gengduo" style="background:none;"><a href="#">查看更多>></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <script type="text/javascript">$(".slideTxtBox").slide();</script>
+            </div>
+        </div>
   
-  <div class="g_tp">
-    <div class="effect">
-					<div class="slideImgBox">
-						<div class="hd">
-							<ul><li><a href="">最新威客</a></li><li><a href="">最新VIP</a></li><li><a href="">最新等级</a></li><li><a href="">最新中标</a></li></ul>
-						</div>
-						<div class="bd">
-							<ul class="infoListImg">
-                            	{loop $new_member $k $v}
-                                <li>
-                                    <div id="div{$k}" onMouseOver="show('div{$k}');" onMouseOut="hide('div{$k}');" style="display:none; cursor:pointer;">
-                                    <div class="text"><p>{$v['username']}</p><p>诚信保障：{$v['balance']}</p><p>能力等级：{$credit_level[$k]["title"]}</p></div>
-                                    <div class="bg"></div>
-                                    </div>
-                                    <a href="#"><img src="<!--{userpicurl($v['uid'],middle)}-->" onMouseOver="show('div{$k}')" onMouseOut="hide('div{$k}')" /></a><span><a href="#">{$v['username']}</a></span>
-                                  </li>
-								{/loop}
-                              <div class="gengduo_1"><a href="#">查看更多>></a></div>
-							</ul>
-							<ul class="infoListImg">
-                              {loop $new_member_vip $k $v}
-                                <li>
-                                    <div id="div1{$k}" onMouseOver="show('div1{$k}');" onMouseOut="hide('div1{$k}');" style="display:none; cursor:pointer;">
-                                    <div class="text"><p>{$v['username']}</p><p>诚信保障：{$v['balance']}</p><p>能力等级：{$v["seller_level"]["title"]}</p></div>
-                                    <div class="bg"></div>
-                                    </div>
-                                    <a href="#"><img src="<!--{userpicurl($v['uid'],middle)}-->" onMouseOver="show('div1{$k}')" onMouseOut="hide('div1{$k}')" /></a><span><a href="#">{$v['username']}</a></span>
-                                  </li>
-								{/loop}
-							</ul>
-							<ul class="infoListImg">
-                              {loop $new_member $k $v}
-                                <li>
-                                    <div id="div2{$k}" onMouseOver="show('div2{$k}');" onMouseOut="hide('div2{$k}');" style="display:none; cursor:pointer;">
-                                    <div class="text"><p>{$v['username']}</p><p>诚信保障：{$v['balance']}</p><p>能力等级：{$credit_level[$k]["title"]}</p></div>
-                                    <div class="bg"></div>
-                                    </div>
-                                    <a href="#"><img src="<!--{userpicurl($v['uid'],middle)}-->" onMouseOver="show('div2{$k}')" onMouseOut="hide('div2{$k}')" /></a><span><a href="#">{$v['username']}</a></span>
-                                  </li>
-								{/loop}
-							</ul>
-                            <ul class="infoListImg">
-                              {loop $new_member $k $v}
-                                <li>
-                                    <div id="div3{$k}" onMouseOver="show('div3{$k}');" onMouseOut="hide('div3{$k}');" style="display:none; cursor:pointer;">
-                                    <div class="text"><p>{$v['username']}</p><p>诚信保障：{$v['balance']}</p><p>能力等级：{$credit_level[$k]["title"]}</p></div>
-                                    <div class="bg"></div>
-                                    </div>
-                                    <a href="#"><img src="<!--{userpicurl($v['uid'],middle)}-->" onMouseOver="show('div3{$k}')" onMouseOut="hide('div3{$k}')" /></a><span><a href="#">{$v['username']}</a></span>
-                                  </li>
-								{/loop}
-							</ul>
-						</div>
-					</div>
-					<script type="text/javascript">jQuery(".slideImgBox").slide();</script>
-		</div>
-  </div>
-</div>
-
-<!-- 帮您做设计 -->
-<div class="bnsj_s">
-  <div class="bnsj_q"><img src="/tpl/default/d8/images/bang_b.gif" /></div>
-  <div class="bnsj_r">
-    <div class="bnsj_r002">
-<div class="z">
-<div class=" ban_s">
-				<div class="ban_sleft">
-					<div class="ban_t">
-						<p>帮您<br />做开发</p>
-					</div>
-                   <div name="panel"></div>
-                    <p class="slide"><a href="###" num=0 class="btn-slide"  id="btn-bs">&nbsp;</a></p>	
-                    
-				</div>
-				<div class="ban_sright">
-					<div class="ban_snav">
-						<ul>
-							<li><a href="" target="_blank">商标/VI设计</a></li>
-							<li><a href="" target="_blank">服装设计</a></li>
-							<li><a href="" target="_blank">动漫设计</a></li>
-							<li><a href="" target="_blank">卡片设计</a></li>
-							<li><a href="" target="_blank">照片处理</a></li>
-							<li><a href="" target="_blank">多媒体设计</a></li>
-							<li><a href="" target="_blank">网页设计</a></li>
-							<li><a href="" target="_blank">应用设计</a></li>
-						</ul>
-					</div>
-					 
-					<div class="ban_stuy">
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-					</div> 
-					<div name="aaaaa">
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-                        <!--<div class="ban_snav1">
-						<ul>
-							<li><a href="" target="_blank">3D模型设计</a></li>
-                            <li>\</li>
-							<li><a href="" target="_blank">导视系统设计</a></li>
-                            <li>\</li>
-							<li><a href="" target="_blank">雕塑设计</a></li>
-                            <li>\</li>
-							<li><a href="" target="_blank">庭院景观设计</a></li>
-                            <li>\</li>
-							<li><a href="" target="_blank">小区规划</a></li>
-                            <li>\</li>
-							<li><a href="" target="_blank">CBD规划设计</a></li>
-                            <li>\</li>
-							<li><a href="" target="_blank">展会装修</a></li>
-                            <li>\</li>
-							<li><a href="" target="_blank">酒店会所装潢</a></li>
-                            <li>\</li>
-                            <li><a href="" target="_blank">精装房设计</a></li>
-                            <li>\</li>
-                            <li><a href="" target="_blank">样板间设计</a></li>
-                            <li>\</li>
-                            <li><a href="" target="_blank">白建房装修</a></li>
-                            <li>\</li>
-                            <li><a href="" target="_blank">定制橱柜设计</a></li>
-                            <li>\</li>
-                            <li><a href="" target="_blank">定制衣柜设计</a></li>
-                            <li>\</li>
-                            <li><a href="" target="_blank">智能家居系统规划</a></li>
-                            <li>\</li>
-                            <li><a href="" target="_blank">电视墙设计</a></li>
-						</ul>
-					</div>-->
-                        
-                        
-					</div>
-                    
-				</div>
-			
+  		<div class="g_tp">
+    		<div class="effect">
+                <div class="slideImgBox">
+                    <div class="hd">
+                        <ul><li><a>最新威客</a></li><li><a>最新VIP</a></li><li><a>最新等级</a></li><li><a>最新中标</a></li></ul>
+                    </div>
+                    <div class="bd">
+                        <ul class="infoListImg">
+                          {loop $new_member $k $v}
+                          <li>
+                              <div id="div4{$k}" onMouseOver="show('div4{$k}');" onMouseOut="hide('div4{$k}');" style="display:none; cursor:pointer;">
+                              <div class="text"><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><p>{$v['username']}</p><p>诚信保障：{$v['balance']}</p><p>能力等级：{$credit_level[$k]["title"]}</p></a></div>
+                              <div class="bg"></div>
+                              </div>
+                              <a href=""><img src="<!--{userpicurl($v['uid'],middle)}-->" onMouseOver="show('div4{$k}')" onMouseOut="hide('div4{$k}')" /></a><span><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->">{$v['username']}</a></span>
+                            </li>
+                          {/loop}
+                        </ul>
+                        <ul class="infoListImg">
+                          {loop $new_member_vip $k $v}
+                          <li>
+                              <div id="div1{$k}" onMouseOver="show('div1{$k}');" onMouseOut="hide('div1{$k}');" style="display:none; cursor:pointer;">
+                              <div class="text"><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><p>{$v['username']}</p><p>诚信保障：{$v['balance']}</p><p>能力等级：{$credit_level[$k]["title"]}</p></a></div>
+                              <div class="bg"></div>
+                              </div>
+                              <a href=""><img src="<!--{userpicurl($v['uid'],middle)}-->" onMouseOver="show('div1{$k}')" onMouseOut="hide('div1{$k}')" /></a><span><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->">{$v['username']}</a></span>
+                            </li>
+                          {/loop}
+                        </ul>
+                        <ul class="infoListImg">
+                          {loop $new_member $k $v}
+                          <li>
+                              <div id="div2{$k}" onMouseOver="show('div2{$k}');" onMouseOut="hide('div2{$k}');" style="display:none; cursor:pointer;">
+                              <div class="text"><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><p>{$v['username']}</p><p>诚信保障：{$v['balance']}</p><p>能力等级：{$credit_level[$k]["title"]}</p></a></div>
+                              <div class="bg"></div>
+                              </div>
+                              <a href="#"><img src="<!--{userpicurl($v['uid'],middle)}-->" onMouseOver="show('div2{$k}')" onMouseOut="hide('div2{$k}')" /></a><span><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->">{$v['username']}</a></span>
+                            </li>
+                          {/loop}
+                        </ul>
+                        <ul class="infoListImg">
+                          {loop $new_member $k $v}
+                          <li>
+                              <div id="div3{$k}" onMouseOver="show('div3{$k}');" onMouseOut="hide('div3{$k}');" style="display:none; cursor:pointer;">
+                              <div class="text"><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><p>{$v['username']}</p><p>诚信保障：{$v['balance']}</p><p>能力等级：{$credit_level[$k]["title"]}</p></a></div>
+                              <div class="bg"></div>
+                              </div>
+                              <a href="#"><img src="<!--{userpicurl($v['uid'],middle)}-->" onMouseOver="show('div3{$k}')" onMouseOut="hide('div3{$k}')" /></a><span><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->">{$v['username']}</a></span>
+                            </li>
+                          {/loop}
+                        </ul>
+                    </div>
+                </div>
+                <script type="text/javascript">$(".slideImgBox").slide();</script>
 			</div>
-           
-            
-</div>
-<div class="z">
-<div class=" ban_s">
-				<div class="ban_sleft1">
-					<div class="ban_t">
-						<p style="color:#F29600;">帮您<br />做设计</p>
-					</div>
-                   <div name="pane2"></div>
-                    <p class="slide"><a href="javascript:;" num=1 class="btn-slide1" id="btn-sj">&nbsp;</a></p>	
-                    
+  		</div>
+	</div>
+
+	<div class="line" style="width:1000px; height:2px; overflow:hidden; background:#c7c7c9; float:left; margin:10px 0 10px 0; display:inline;"></div>
+
+	<div class="bnsj_s">
+  		<div class="bnsj_q"><img src="/tpl/default/d8/images/bang_b.gif" /></div>
+  		<div class="bnsj_r">
+    		<div class="bnsj_r002">
+            	<div class="z">
+                    <div class=" ban_s">
+                    <div class="ban_sleft">
+                        <div class="ban_t">
+                            <p>帮您<br />做设计</p>
+                        </div>
+                       <div name="panel"></div>
+                        <p class="slide"><a num=0 class="btn-slide"  id="btn-bs">&nbsp;</a></p>	
+                    </div>
+                    <div class="ban_sright">
+                        <div class="ban_snav">
+                            <ul>
+                                <li><a href="" target="_blank">商标/VI设计</a></li>
+                                <li><a href="" target="_blank">服装设计</a></li>
+                                <li><a href="" target="_blank">动漫设计</a></li>
+                                <li><a href="" target="_blank">卡片设计</a></li>
+                                <li><a href="" target="_blank">照片处理</a></li>
+                                <li><a href="" target="_blank">多媒体设计</a></li>
+                                <li><a href="" target="_blank">网页设计</a></li>
+                                <li><a href="" target="_blank">应用设计</a></li>
+                            </ul>
+                        </div>
+                         
+                        <div class="ban_stuy">
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>LOGO设计</span>
+                                    <p>1271位设计师</p>
+                                    <p class="ban_m"><a href="#">我有需求</a></p>
+                                </div>
+                            </div>
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>LOGO设计</span>
+                                    <p>1271位设计师</p>
+                                    <p class="ban_m"><a href="#">我有需求</a></p>
+                                </div>
+                            </div>
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>LOGO设计</span>
+                                    <p>1271位设计师</p>
+                                    <p class="ban_m"><a href="#">我有需求</a></p>
+                                </div>
+                            </div>
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>LOGO设计</span>
+                                    <p>1271位设计师</p>
+                                    <p class="ban_m"><a href="#">我有需求</a></p>
+                                </div>
+                            </div>
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>LOGO设计</span>
+                                    <p>1271位设计师</p>
+                                    <p class="ban_m"><a href="#">我有需求</a></p>
+                                </div>
+                            </div>
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>LOGO设计</span>
+                                    <p>1271位设计师</p>
+                                    <p class="ban_m"><a href="#">我有需求</a></p>
+                                </div>
+                            </div>
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>LOGO设计</span>
+                                    <p>1271位设计师</p>
+                                    <p class="ban_m"><a href="#">我有需求</a></p>
+                                </div>
+                            </div>
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>LOGO设计</span>
+                                    <p>1271位设计师</p>
+                                    <p class="ban_m"><a href="#">我有需求</a></p>
+                                </div>
+                            </div>
+                        </div> 
+                        <div name="aaaaa">
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>LOGO设计</span>
+                                    <p>1271位设计师</p>
+                                    <p class="ban_m"><a href="#">我有需求</a></p>
+                                </div>
+                            </div>
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>LOGO设计</span>
+                                    <p>1271位设计师</p>
+                                    <p class="ban_m"><a href="#">我有需求</a></p>
+                                </div>
+                            </div>
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>LOGO设计</span>
+                                    <p>1271位设计师</p>
+                                    <p class="ban_m"><a href="#">我有需求</a></p>
+                                </div>
+                            </div>
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>LOGO设计</span>
+                                    <p>1271位设计师</p>
+                                    <p class="ban_m"><a href="#">我有需求</a></p>
+                                </div>
+                            </div>
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>LOGO设计</span>
+                                    <p>1271位设计师</p>
+                                    <p class="ban_m"><a href="#">我有需求</a></p>
+                                </div>
+                            </div>
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>LOGO设计</span>
+                                    <p>1271位设计师</p>
+                                    <p class="ban_m"><a href="#">我有需求</a></p>
+                                </div>
+                            </div>
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>LOGO设计</span>
+                                    <p>1271位设计师</p>
+                                    <p class="ban_m"><a href="#">我有需求</a></p>
+                                </div>
+                            </div>
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>LOGO设计</span>
+                                    <p>1271位设计师</p>
+                                    <p class="ban_m"><a href="#">我有需求</a></p>
+                                </div>
+                            </div>
+                            <!--<div class="ban_snav1">
+                            <ul>
+                                <li><a href="" target="_blank">3D模型设计</a></li>
+                                <li>\</li>
+                                <li><a href="" target="_blank">导视系统设计</a></li>
+                                <li>\</li>
+                                <li><a href="" target="_blank">雕塑设计</a></li>
+                                <li>\</li>
+                                <li><a href="" target="_blank">庭院景观设计</a></li>
+                                <li>\</li>
+                                <li><a href="" target="_blank">小区规划</a></li>
+                                <li>\</li>
+                                <li><a href="" target="_blank">CBD规划设计</a></li>
+                                <li>\</li>
+                                <li><a href="" target="_blank">展会装修</a></li>
+                                <li>\</li>
+                                <li><a href="" target="_blank">酒店会所装潢</a></li>
+                                <li>\</li>
+                                <li><a href="" target="_blank">精装房设计</a></li>
+                                <li>\</li>
+                                <li><a href="" target="_blank">样板间设计</a></li>
+                                <li>\</li>
+                                <li><a href="" target="_blank">白建房装修</a></li>
+                                <li>\</li>
+                                <li><a href="" target="_blank">定制橱柜设计</a></li>
+                                <li>\</li>
+                                <li><a href="" target="_blank">定制衣柜设计</a></li>
+                                <li>\</li>
+                                <li><a href="" target="_blank">智能家居系统规划</a></li>
+                                <li>\</li>
+                                <li><a href="" target="_blank">电视墙设计</a></li>
+                            </ul>
+                        </div>-->
+                        </div>
+                        </div>
+                    </div>
 				</div>
-				<div class="ban_sright">
+
+				<div class="z">
+                	<div class=" ban_s">
+                    <div class="ban_sleft1">
+                        <div class="ban_t">
+                            <p style="color:#F29600;">帮您<br />做开发</p>
+                        </div>
+                       <div name="pane2"></div>
+                        <p class="slide"><a num=1 class="btn-slide1" id="btn-sj">&nbsp;</a></p>	
+                    </div>
+					<div class="ban_sright">
 					<div class="ban_snav">
 						<ul>
 							<li><a href="" target="_blank">移动应用</a></li>
@@ -545,28 +534,22 @@
 								<p class="ban_m"><a href="#">我有需求</a></p>
 							</div>
 						</div>
-                        
-                       
+                        </div>
 					</div>
-                        
-                        
-					</div>
-                    
 				</div>
 			
 </div>
 
- <div class="z">
-<div class=" ban_s">
-				<div class="ban_sleft2">
-					<div class="ban_t">
-						<p style="color:#e51373;">帮您<br />做策划</p>
-					</div>
-                   <div name="panel"></div>
-                    <p class="slide"><a href="javascript:;" num=2 class="btn-slide2" id="btn-f">&nbsp;</a></p>	
-                    
-				</div>
-				<div class="ban_sright">
+ 				<div class="z">
+					<div class=" ban_s">
+					<div class="ban_sleft2">
+                        <div class="ban_t">
+                            <p style="color:#e51373;">帮您<br />做策划</p>
+                        </div>
+                       <div name="panel"></div>
+                        <p class="slide"><a num=2 class="btn-slide2" id="btn-f">&nbsp;</a></p>	
+                    </div>
+					<div class="ban_sright">
 					<div class="ban_snav">
 						<ul>
 							<li><a href="" target="_blank">移动应用</a></li>
@@ -739,29 +722,23 @@
 								<p class="ban_m"><a href="#">我有需求</a></p>
 							</div>
 						</div>
-                        
-                       
 					</div>
-                        
-                        
 					</div>
-                    
 				</div>
 			
 			</div> 
                  
-            
- <div class="z">
-<div class=" ban_s">
-				<div class="ban_sleft3">
-					<div class="ban_t">
-						<p style="color:#036eb7;">帮您<br />做装修</p>
-					</div>
-                   <div name="panel"></div>
-                    <p class="slide"><a href="javascript:;" num=3 class="btn-slide3" id="btn-l">&nbsp;</a></p>	
-                    
-				</div>
-				<div class="ban_sright">
+				<div class="z">
+                    <div class=" ban_s">
+                    <div class="ban_sleft3">
+                        <div class="ban_t">
+                            <p style="color:#036eb7;">帮您<br />做装修</p>
+                        </div>
+                       <div name="panel"></div>
+                        <p class="slide"><a num=3 class="btn-slide3" id="btn-l">&nbsp;</a></p>	
+                        
+                    </div>
+					<div class="ban_sright">
 					<div class="ban_snav">
 						<ul>
 							<li><a href="" target="_blank">移动应用</a></li>
@@ -940,22 +917,21 @@
                         
                         
 					</div>
-                    
 				</div>
 			
 			</div>
        
- <div class="z">
-<div class=" ban_s">
-				<div class="ban_sleft4">
-					<div class="ban_t">
-						<p style="color:#946134;">帮您<br />做服务</p>
-					</div>
-                   <div name="panel"></div>
-                    <p class="slide"><a href="javascript:;" num=4 class="btn-slide4" id="btn-h">&nbsp;</a></p>	
-                    
-				</div>
-				<div class="ban_sright">
+				<div class="z">
+                    <div class=" ban_s">
+                    <div class="ban_sleft4">
+                        <div class="ban_t">
+                            <p style="color:#946134;">帮您<br />做服务</p>
+                        </div>
+                       <div name="panel"></div>
+                        <p class="slide"><a num=4 class="btn-slide4" id="btn-h">&nbsp;</a></p>	
+                        
+                    </div>
+					<div class="ban_sright">
 					<div class="ban_snav">
 						<ul>
 							<li><a href="" target="_blank">移动应用</a></li>
@@ -1134,467 +1110,589 @@
                         
                         
 					</div>
-                    
 				</div>
 			
 			</div>     
-            
-</div>
-</div>
-</div>
-</div>
-
-<div id="tj" style="display:none;">
-<script type="text/javascript">
-$(document).ready(function(){
-
-	//$("div[name=aaaaa]").slideToggle("slow");
-	$("div[name=aaaaa]").hide();
-	$("#btn-bs").click(function(){
-		$("div[name=aaaaa]").eq($(this).attr('num')).slideToggle("slow").toggleClass("highlight");
-		$("div[name=panel]").eq($(this).attr('num')).slideToggle("slow");
-		$(this).toggleClass("active5"); return;
-	});	
-	$("#btn-sj").click(function(){
-		$("div[name=aaaaa]").eq($(this).attr('num')).slideToggle("slow").toggleClass("highlight");
-		$("div[name=panel]").eq($(this).attr('num')).slideToggle("slow");
-		$(this).toggleClass("active1"); return;
-	});
-	$("#btn-f").click(function(){
-		$("div[name=aaaaa]").eq($(this).attr('num')).slideToggle("slow").toggleClass("highlight");
-		$("div[name=panel]").eq($(this).attr('num')).slideToggle("slow");
-		$(this).toggleClass("active2"); return;
-	});	
-
-	$("#btn-l").click(function(){
-		$("div[name=aaaaa]").eq($(this).attr('num')).slideToggle("slow").toggleClass("highlight");
-		$("div[name=panel]").eq($(this).attr('num')).slideToggle("slow");
-		$(this).toggleClass("active3"); return;
-	});
-	$("#btn-h").click(function(){
-		$("div[name=aaaaa]").eq($(this).attr('num')).slideToggle("slow").toggleClass("highlight");
-		$("div[name=panel]").eq($(this).attr('num')).slideToggle("slow");
-		$(this).toggleClass("active4"); return;
-	});
-
-	 
-});
-</script>
-
-</div>
-
-<!-- 帮你设计 -->
-<div class="bnsj_c">
-  <div class="bnsj_q1"><img src="/tpl/default/d8/images/bnsj_q.gif" /></div>
-  <div class="bnsj_r">
-    <div class="bnsj_r001">
-      <div class="bnsj_l">
-        <div class="b_bnsj">
-          <h2>创意设计<br />求您帮忙</h2>
-          <h3><a href="#">更多任务</a></h3>
-          <h4><a href="#">发布任务</a></h4>
-        </div>
-        <div class="b1_bnsj">
-          <div class="text_bnsj">
-            <ul>
-                {loop $logo_task_end $k $v}
-                 <li><b>￥{$v["task_cash"]}</b> <a href="index.php?do=task&task_id={$v["task_id"]}"><!--{eval echo kekezu::cutstr($v['task_title'],20);}--></a> <span>已完成</span></li>
-                {/loop}
-            </ul>
-          </div>
-          <div class="xian"></div>
-          <div class="text_bnsj_b">
-            <ul>
-              {loop $logo_task $k $v}
-                 <li><b>￥{$v["task_cash"]}</b> <a href="index.php?do=task&task_id={$v["task_id"]}"><!--{eval echo kekezu::cutstr($v['task_title'],20);}--></a> <span>进行中</span></li>
-                {/loop}
-            </ul>
-          </div>
-        </div>
-      
-      
-      </div>
-      
-      <div class="bnsj_r1">
-        <div class="b_bnsj">
-          <h2>程序开发<br />求您帮忙</h2>
-          <h3><a href="#">更多任务</a></h3>
-          <h4><a href="#">发布任务</a></h4>
-        </div>
-        <div class="b1_bnsj">
-          <div class="text_bnsj">
-            <ul>
-              {loop $web_task_end $k $v}
-                 <li><b>￥{$v["task_cash"]}</b> <a href="index.php?do=task&task_id={$v["task_id"]}"><!--{eval echo kekezu::cutstr($v['task_title'],20);}--></a> <span>已完成</span></li>
-              {/loop}
-            </ul>
-          </div>
-          <div class="xian"></div>
-          <div class="text_bnsj_b">
-            <ul>
-              {loop $web_task $k $v}
-                 <li><b>￥{$v["task_cash"]}</b> <a href="index.php?do=task&task_id={$v["task_id"]}"><!--{eval echo kekezu::cutstr($v['task_title'],20);}--></a> <span>已完成</span></li>
-              {/loop}
-            </ul>
-          </div>
-        </div>
-      
-      
-      </div>
-      
-      <div class="bnsj_l">
-        <div class="b_bnsj">
-          <h2>营销推广<br />求您帮忙</h2>
-          <h3><a href="#">更多任务</a></h3>
-          <h4><a href="#">发布任务</a></h4>
-        </div>
-        <div class="b1_bnsj">
-          <div class="text_bnsj">
-            <ul>
-              {loop $tg_task_end $k $v}
-                 <li><b>￥{$v["task_cash"]}</b> <a href="index.php?do=task&task_id={$v["task_id"]}"><!--{eval echo kekezu::cutstr($v['task_title'],20);}--></a> <span>已完成</span></li>
-              {/loop}
-            </ul>
-          </div>
-          <div class="xian"></div>
-          <div class="text_bnsj_b">
-            <ul>
-              {loop $tg_task $k $v}
-                 <li><b>￥{$v["task_cash"]}</b> <a href="index.php?do=task&task_id={$v["task_id"]}"><!--{eval echo kekezu::cutstr($v['task_title'],20);}--></a> <span>已完成</span></li>
-              {/loop}
-            </ul>
-          </div>
-        </div>
-      
-      
-      </div>
-      
-      <div class="bnsj_r1">
-        <div class="b_bnsj">
-          <h2>生活服务<br />求您帮忙</h2>
-          <h3><a href="#">更多任务</a></h3>
-          <h4><a href="#">发布任务</a></h4>
-        </div>
-        <div class="b1_bnsj">
-          <div class="text_bnsj">
-            <ul>
-              {loop $life_task_end $k $v}
-                 <li><b>￥{$v["task_cash"]}</b> <a href="index.php?do=task&task_id={$v["task_id"]}"><!--{eval echo kekezu::cutstr($v['task_title'],20);}--></a> <span>已完成</span></li>
-              {/loop}
-            </ul>
-          </div>
-          <div class="xian"></div>
-          <div class="text_bnsj_b">
-            <ul>
-              {loop $life_task $k $v}
-                 <li><b>￥{$v["task_cash"]}</b> <a href="index.php?do=task&task_id={$v["task_id"]}"><!--{eval echo kekezu::cutstr($v['task_title'],20);}--></a> <span>已完成</span></li>
-              {/loop}
-            </ul>
-          </div>
-        </div>
-      
-      
-      </div>
+			</div>
+		</div>
     </div>
-  </div>
 
-</div>
-
-<!-- VIP -->
-<div class="bnsj_vip">
-  <div class="bnsj_vip1"><img src="/tpl/default/d8/images/vip_v.gif" /></div>
-  <div class="bnsj_r">
-    <div class="bnsj_r003">
-      <!-- content S -->
-      <div class="vip_l">
-        <div class="zoombox">
-
-	<div class="zoompic"><img src="/tpl/default/d8/images/3427.jpg" width="230" height="151" alt="美女配奥迪A4L墙纸" /></div>
-	<div class="bg1">
-                                      <h1>关于程序开发</h1>
-                                      <h2><a href="#">我要雇佣</a></h2>
-                                      <h3>23345667<br />诚信保证：2000<br />能力等级：豆芽</h3>
-                                    </div>
-                                    <div class="gd"><a href="#">更<br />多<br />人<br />才<br /><<br /><</a></div>
-	
-	<div class="sliderbox">
-		<div id="btn-left" class="arrow-btn dasabled"></div>
-		<div class="slider" name="thumbnail">
-			<ul>
-				<li class="current"><a href="/tpl/default/d8/images/3427.jpg" target="_blank"><img src="/tpl/default/d8/images/14fd.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸01" /></a></li>
-				<li><a href="/tpl/default/d8/images/52347.jpg" target="_blank"><img src="/tpl/default/d8/images/41a.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸02" /></a></li>
-				<li><a href="/tpl/default/d8/images/23463.jpg" target="_blank"><img src="/tpl/default/d8/images/234fa.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸03" /></a></li>
-				<li><a href="/tpl/default/d8/images/3247.jpg" target="_blank"><img src="/tpl/default/d8/images/412saf.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸04" /></a></li>
-				<li><a href="/tpl/default/d8/images/26547.jpg" target="_blank"><img src="/tpl/default/d8/images/41356a.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸05" /></a></li>
-			</ul>
-		</div>
-		<div id="btn-right" class="arrow-btn"></div>
-	</div>
-</div>
-        <!--slider end-->
-      </div>
-      <!-- content E -->
-      
-	  <!-- content S -->
-      <div class="vip_l">
-        <div class="zoombox">
-
-	<div class="zoompic"><img src="/tpl/default/d8/images/3427.jpg" width="230" height="151" alt="美女配奥迪A4L墙纸" /></div>
-	<div class="bg1">
-                                      <h1>关于程序开发</h1>
-                                      <h2><a href="#">我要雇佣</a></h2>
-                                      <h3>23345667<br />诚信保证：2000<br />能力等级：豆芽</h3>
-                                    </div>
-                                    <div class="gd"><a href="#">更<br />多<br />人<br />才<br /><<br /><</a></div>
-	
-	<div class="sliderbox">
-		<div id="btn-left" class="arrow-btn dasabled"></div>
-		<div class="slider" name="thumbnail">
-			<ul>
-				<li class="current"><a href="/tpl/default/d8/images/3427.jpg" target="_blank"><img src="/tpl/default/d8/images/14fd.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸01" /></a></li>
-				<li><a href="/tpl/default/d8/images/52347.jpg" target="_blank"><img src="/tpl/default/d8/images/41a.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸02" /></a></li>
-				<li><a href="/tpl/default/d8/images/23463.jpg" target="_blank"><img src="/tpl/default/d8/images/234fa.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸03" /></a></li>
-				<li><a href="/tpl/default/d8/images/3247.jpg" target="_blank"><img src="/tpl/default/d8/images/412saf.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸04" /></a></li>
-				<li><a href="/tpl/default/d8/images/26547.jpg" target="_blank"><img src="/tpl/default/d8/images/41356a.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸05" /></a></li>
-			</ul>
-		</div>
-		<div id="btn-right" class="arrow-btn"></div>
-	</div>
-</div>
-        <!--slider end-->
-      </div>
-      <!-- content E -->
-	  
-      <!-- content S -->
-      <div class="vip_l">
-        <div class="zoombox">
-
-	<div class="zoompic"><img src="/tpl/default/d8/images/3427.jpg" width="230" height="151" alt="美女配奥迪A4L墙纸" /></div>
-	<div class="bg1">
-                                      <h1>关于程序开发</h1>
-                                      <h2><a href="#">我要雇佣</a></h2>
-                                      <h3>23345667<br />诚信保证：2000<br />能力等级：豆芽</h3>
-                                    </div>
-                                    <div class="gd"><a href="#">更<br />多<br />人<br />才<br /><<br /><</a></div>
-	
-	<div class="sliderbox">
-		<div id="btn-left" class="arrow-btn dasabled"></div>
-		<div class="slider" name="thumbnail">
-			<ul>
-				<li class="current"><a href="/tpl/default/d8/images/3427.jpg" target="_blank"><img src="/tpl/default/d8/images/14fd.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸01" /></a></li>
-				<li><a href="/tpl/default/d8/images/52347.jpg" target="_blank"><img src="/tpl/default/d8/images/41a.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸02" /></a></li>
-				<li><a href="/tpl/default/d8/images/23463.jpg" target="_blank"><img src="/tpl/default/d8/images/234fa.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸03" /></a></li>
-				<li><a href="/tpl/default/d8/images/3247.jpg" target="_blank"><img src="/tpl/default/d8/images/412saf.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸04" /></a></li>
-				<li><a href="/tpl/default/d8/images/26547.jpg" target="_blank"><img src="/tpl/default/d8/images/41356a.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸05" /></a></li>
-			</ul>
-		</div>
-		<div id="btn-right" class="arrow-btn"></div>
-	</div>
-</div>
-        <!--slider end-->
-      </div>
-      <!-- content E -->
-      
-	  <!-- content S -->
-      <div class="vip_l">
-        <div class="zoombox">
-
-	<div class="zoompic"><img src="/tpl/default/d8/images/3427.jpg" width="230" height="151" alt="美女配奥迪A4L墙纸" /></div>
-	<div class="bg1">
-                                      <h1>关于程序开发</h1>
-                                      <h2><a href="#">我要雇佣</a></h2>
-                                      <h3>23345667<br />诚信保证：2000<br />能力等级：豆芽</h3>
-                                    </div>
-                                    <div class="gd"><a href="#">更<br />多<br />人<br />才<br /><<br /><</a></div>
-	
-	<div class="sliderbox">
-		<div id="btn-left" class="arrow-btn dasabled"></div>
-		<div class="slider" name="thumbnail">
-			<ul>
-				<li class="current"><a href="/tpl/default/d8/images/3427.jpg" target="_blank"><img src="/tpl/default/d8/images/14fd.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸01" /></a></li>
-				<li><a href="/tpl/default/d8/images/52347.jpg" target="_blank"><img src="/tpl/default/d8/images/41a.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸02" /></a></li>
-				<li><a href="/tpl/default/d8/images/23463.jpg" target="_blank"><img src="/tpl/default/d8/images/234fa.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸03" /></a></li>
-				<li><a href="/tpl/default/d8/images/3247.jpg" target="_blank"><img src="/tpl/default/d8/images/412saf.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸04" /></a></li>
-				<li><a href="/tpl/default/d8/images/26547.jpg" target="_blank"><img src="/tpl/default/d8/images/41356a.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸05" /></a></li>
-			</ul>
-		</div>
-		<div id="btn-right" class="arrow-btn"></div>
-	</div>
-</div>
-        <!--slider end-->
-      </div>
-      <!-- content E -->
-	  
-    </div>
-  </div>
-
-</div>
-
-<!-- 热门 -->
-<div class="re">
-  <div class="bnsj_q2"><img src="/tpl/default/d8/images/re_r.gif" /></div>
-  <div class="bnsj_r">
-    <div class="re_r001">
-      <div class="re_l">
-        <div class="re_tu">
-          <div class="youxi"><a href="#"></a></div>
-        </div>
-        <div class="re_text">
-          <p>我特别喜欢斗地主一类的棋牌游戏，以前常常泡在各种娱乐平台一玩就忘了时间，耽搁好多工作。常常告诉自己不应该在玩游戏了。但偶然的一次机会，我在浏览任务的时候发现豆8网竟然也有游戏区...</p>
-          <p><span><a href="#">查看更多>></a></span></p>
-        </div>
-      </div>
-      <div class="re_l">
-        <div class="re_tu1">
-          <div class="xuetang"><a href="#"></a></div>
-        </div>
-        <div class="re_text1">
-          <p>我特别喜欢斗地主一类的棋牌游戏，以前常常泡在各种娱乐平台一玩就忘了时间，耽搁好多工作。常常告诉自己不应该在玩游戏了。但偶然的一次机会，我在浏览任务的时候发现豆8网竟然也有游戏区...</p>
-          <p><span><a href="#">查看更多>></a></span></p>
-        </div>
-      </div>
-      <div class="re_l">
-        <div class="re_tu2">
-          <div class="jianghu"><a href="#"></a></div>
-        </div>
-        <div class="re_text">
-          <p>我特别喜欢斗地主一类的棋牌游戏，以前常常泡在各种娱乐平台一玩就忘了时间，耽搁好多工作。常常告诉自己不应该在玩游戏了。但偶然的一次机会，我在浏览任务的时候发现豆8网竟然也有游戏区...</p>
-          <p><span><a href="#">查看更多>></a></span></p>
-        </div>
-      </div>
-      <div class="re_l">
-        <div class="re_tu3">
-          <div class="shangquan"><a href="#"></a></div>
-        </div>
-        <div class="re_text">
-          <p>我特别喜欢斗地主一类的棋牌游戏，以前常常泡在各种娱乐平台一玩就忘了时间，耽搁好多工作。常常告诉自己不应该在玩游戏了。但偶然的一次机会，我在浏览任务的时候发现豆8网竟然也有游戏区...</p>
-          <p><span><a href="#">查看更多>></a></span></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<!-- 特色 -->
-<div class="te">
-  <div class="bnsj_q3"><img src="/tpl/default/d8/images/te_t.gif" /></div>
-  <div class="te_r">
-    <div class="te_r001">
+	<div id="tj" style="display:none;">
+	<script type="text/javascript">
+    $(document).ready(function(){
+        //$("div[name=aaaaa]").slideToggle("slow");
+        $("div[name=aaaaa]").hide();
+        $("#btn-bs").click(function(){
+            $("div[name=aaaaa]").eq($(this).attr('num')).slideToggle("slow").toggleClass("highlight");
+            $("div[name=panel]").eq($(this).attr('num')).slideToggle("slow");
+            $(this).toggleClass("active5"); return;
+        });	
+        $("#btn-sj").click(function(){
+            $("div[name=aaaaa]").eq($(this).attr('num')).slideToggle("slow").toggleClass("highlight");
+            $("div[name=panel]").eq($(this).attr('num')).slideToggle("slow");
+            $(this).toggleClass("active1"); return;
+        });
+        $("#btn-f").click(function(){
+            $("div[name=aaaaa]").eq($(this).attr('num')).slideToggle("slow").toggleClass("highlight");
+            $("div[name=panel]").eq($(this).attr('num')).slideToggle("slow");
+            $(this).toggleClass("active2"); return;
+        });	
     
-      <div class="te_l">
-        <h2>热门活动推荐</h2>
-        <div class="te_t"></div>
-        <p><img src="/tpl/default/d8/images/te_tu.jpg" /></p>
-      </div>
-      
-      <div class="te_l">
-        <h2>大品牌案例：</h2>
-        <div class="te_t1">
-          <ul>
-            <li><a href="#"><img src="/tpl/default/d8/images/anli_1.jpg" title="中国移动通信" /></a></li>
-            <li><a href="#"><img src="/tpl/default/d8/images/anli_2.jpg" title="中国电信" /></a></li>
-            <li><a href="#"><img src="/tpl/default/d8/images/anli_3.jpg" title="CCTV" /></a></li>
-            <li><a href="#"><img src="/tpl/default/d8/images/anli_4.jpg" title="阿里巴巴旗下LOO良无限" /></a></li>
-            <li><a href="#"><img src="/tpl/default/d8/images/anli_5.jpg" title="JOEONE" /></a></li>
-            <li><a href="#"><img src="/tpl/default/d8/images/anli_6.jpg" title="红星·美凯龙" /></a></li>
-          </ul>
-        </div>
-        <div class="rk"><a href="#" title="豆8网秘书全程服务，品牌合作入口">豆8网秘书全程服务，品牌合作入口> ></a></div>
-      </div>
-      
-      <div class="te_l1">
-        <ul>
-          <li class="w_1"><a href="#"></a></li>
-          <li class="w_2"><a href="#"></a></li>
-          <li class="w_3"><a href="#"></a></li>
-        </ul>
-      </div>
-      
-    </div>
-  </div>
-
-</div>
-
-<!-- foot -->
-<div class="foot">
-  <div class="home-help">
-    <div class="home_l">
-	  <h2>了解我们</h2>
-	  <div class="home_b">
-	    <ul>
-		  <li><a href="#">关于我们</a></li>
-		  <li><a href="#">大事记</a></li>
-		  <li><a href="#">豆豆规则</a></li>
-		  <li><a href="#">客服中心</a></li>
-		</ul>
-	  </div>
-	</div>
-	
-	<div class="home_l">
-	  <h2>新手入门</h2>
-	  <div class="home_b">
-	    <ul>
-		  <li><a href="#">帮助中心</a></li>
-		  <li><a href="#">诚信保障</a></li>
-		  <li><a href="#">我要认证</a></li>
-		  <li><a href="#">支付方式</a></li>
-		</ul>
-	  </div>
-	</div>
-	
-	<div class="home_l">
-	  <h2>VIP中心</h2>
-	  <div class="home_b">
-	    <ul>
-		  <li><a href="#">VIP功能介绍</a></li>
-		  <li><a href="#">升级VIP</a></li>
-		</ul>
-	  </div>
-	</div>
-	
-	<div class="home_l">
-	  <h2>关注我们</h2>
-	  <div class="home_b">
-	    <ul>
-		  <li><a href="#">新浪微博</a></li>
-		  <li><a href="#">腾讯微博</a></li>
-		  <li><a href="#">微信二维码</a></li>
-		</ul>
-	  </div>
-	</div>
-	
-    <div class="home_l">
-	  <h2>豆8宣传部</h2>
-	  <div class="home_b">
-	    <ul>
-		  <li><a href="#">广告服务</a></li>
-		  <li><a href="#">公司资质</a></li>
-		  <li><a href="#">加入我们</a></li>
-		  <li><a href="#">网站地图</a></li>
-		</ul>
-	  </div>
+        $("#btn-l").click(function(){
+            $("div[name=aaaaa]").eq($(this).attr('num')).slideToggle("slow").toggleClass("highlight");
+            $("div[name=panel]").eq($(this).attr('num')).slideToggle("slow");
+            $(this).toggleClass("active3"); return;
+        });
+        $("#btn-h").click(function(){
+            $("div[name=aaaaa]").eq($(this).attr('num')).slideToggle("slow").toggleClass("highlight");
+            $("div[name=panel]").eq($(this).attr('num')).slideToggle("slow");
+            $(this).toggleClass("active4"); return;
+        });
+    });
+    </script>
 	</div>
     
-  </div>
+	<!-- 帮你设计 -->
+    <div class="bnsj_c">
+      <div class="bnsj_q1"><img src="/tpl/default/d8/images/bnsj_q.gif" /></div>
+      <div class="bnsj_r">
+        <div class="bnsj_r001">
+          <div class="bnsj_l">
+            <div class="b_bnsj">
+              <h2>创意设计<br />求您帮忙</h2>
+              <h3><a href="#">更多任务</a></h3>
+              <h4><a href="#">发布任务</a></h4>
+            </div>
+            <div class="b1_bnsj">
+              <div class="text_bnsj">
+                <ul>
+                	{loop $logo_task_end $k $v}
+                     <li><b>￥{$v["task_cash"]}</b> <a href="index.php?do=task&task_id={$v["task_id"]}"><!--{eval echo kekezu::cutstr($v['task_title'],20);}--></a> <span>已完成</span></li>
+                    {/loop}
+                </ul>
+              </div>
+              <div class="xian"></div>
+              <div class="text_bnsj_b">
+                <ul>
+                    {loop $logo_task $k $v}
+                     <li><b>￥{$v["task_cash"]}</b> <a href="index.php?do=task&task_id={$v["task_id"]}"><!--{eval echo kekezu::cutstr($v['task_title'],20);}--></a> <span>进行中</span></li>
+                    {/loop}
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bnsj_r1">
+            <div class="b_bnsj">
+              <h2>程序开发<br />求您帮忙</h2>
+              <h3><a href="#">更多任务</a></h3>
+              <h4><a href="#">发布任务</a></h4>
+            </div>
+            <div class="b1_bnsj">
+              <div class="text_bnsj">
+                <ul>
+                  {loop $web_task_end $k $v}
+                     <li><b>￥{$v["task_cash"]}</b> <a href="index.php?do=task&task_id={$v["task_id"]}"><!--{eval echo kekezu::cutstr($v['task_title'],20);}--></a> <span>已完成</span></li>
+                  {/loop}
+                </ul>
+              </div>
+              <div class="xian"></div>
+              <div class="text_bnsj_b">
+                <ul>
+                  {loop $web_task $k $v}
+                     <li><b>￥{$v["task_cash"]}</b> <a href="index.php?do=task&task_id={$v["task_id"]}"><!--{eval echo kekezu::cutstr($v['task_title'],20);}--></a> <span>进行中</span></li>
+                  {/loop}
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bnsj_l">
+            <div class="b_bnsj">
+              <h2>营销推广<br />求您帮忙</h2>
+              <h3><a href="#">更多任务</a></h3>
+              <h4><a href="#">发布任务</a></h4>
+            </div>
+            <div class="b1_bnsj">
+              <div class="text_bnsj">
+                <ul>
+                  {loop $tg_task_end $k $v}
+                     <li><b>￥{$v["task_cash"]}</b> <a href="index.php?do=task&task_id={$v["task_id"]}"><!--{eval echo kekezu::cutstr($v['task_title'],20);}--></a> <span>已完成</span></li>
+                  {/loop}
+                </ul>
+              </div>
+              <div class="xian"></div>
+              <div class="text_bnsj_b">
+                <ul>
+                  {loop $tg_task $k $v}
+                     <li><b>￥{$v["task_cash"]}</b> <a href="index.php?do=task&task_id={$v["task_id"]}"><!--{eval echo kekezu::cutstr($v['task_title'],20);}--></a> <span>进行中</span></li>
+                  {/loop}
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bnsj_r1">
+            <div class="b_bnsj">
+              <h2>生活服务<br />求您帮忙</h2>
+              <h3><a href="#">更多任务</a></h3>
+              <h4><a href="#">发布任务</a></h4>
+            </div>
+            <div class="b1_bnsj">
+              <div class="text_bnsj">
+                <ul>
+                  {loop $life_task_end $k $v}
+                     <li><b>￥{$v["task_cash"]}</b> <a href="index.php?do=task&task_id={$v["task_id"]}"><!--{eval echo kekezu::cutstr($v['task_title'],20);}--></a> <span>已完成</span></li>
+                  {/loop}
+                </ul>
+              </div>
+              <div class="xian"></div>
+              <div class="text_bnsj_b">
+                <ul>
+                  {loop $life_task $k $v}
+                     <li><b>￥{$v["task_cash"]}</b> <a href="index.php?do=task&task_id={$v["task_id"]}"><!--{eval echo kekezu::cutstr($v['task_title'],20);}--></a> <span>进行中</span></li>
+                  {/loop}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    </div>
+
+	<!-- VIP -->
+    <div class="bnsj_vip">
+       <div class="bnsj_vip1"><img src="/tpl/default/d8/images/vip_v.gif" /></div>
+       <div class="bnsj_r">
+            <div class="bnsj_r003">
+             	<div class="slider_box" id="slider_name">
+  <div class="silder_tip" id="movie_tip"><a href="#">更<br />
+    多<br />
+    人<br />
+    才<br />
+    ><br />
+    ></a></div>
+  <ul class="silder_con">
+    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/3427.jpg" width="230" height="151" /></a>
+      <div class="bg1">
+        <h1>关于程序开发</h1>
+        <h2><a href="#">我要雇佣</a></h2>
+        <h3>23345667<br />
+          诚信保障：2000<br />
+          能力等级：豆芽</h3>
+      </div>
+    </li>
+    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/3247.jpg" width="230" height="151" /></a>
+      <div class="bg1">
+        <h1>关于程序开发</h1>
+        <h2><a href="#">我要雇佣</a></h2>
+        <h3>23345667<br />
+          诚信保障：2000<br />
+          能力等级：豆芽</h3>
+      </div>
+    </li>
+    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/23463.jpg" width="230" height="151" /></a>
+      <div class="bg1">
+        <h1>关于程序开发</h1>
+        <h2><a href="#">我要雇佣</a></h2>
+        <h3>23345667<br />
+          诚信保障：2000<br />
+          能力等级：豆芽</h3>
+      </div>
+    </li>
+    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/26547.jpg" width="230" height="151" /></a>
+      <div class="bg1">
+        <h1>关于程序开发</h1>
+        <h2><a href="#">我要雇佣</a></h2>
+        <h3>23345667<br />
+          诚信保障：2000<br />
+          能力等级：豆芽</h3>
+      </div>
+    </li>
+    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/2153.jpg" width="230" height="151" /></a>
+      <div class="bg1">
+        <h1>关于程序开发</h1>
+        <h2><a href="#">我要雇佣</a></h2>
+        <h3>23345667<br />
+          诚信保障：2000<br />
+          能力等级：豆芽</h3>
+      </div>
+    </li>
+  </ul>
+  <div class="bobobo" style="width:485px; height:2px; background:#ccc; position:absolute; bottom:105px;"></div>
+  <ul class="silder_nav clearfix">
+    <li><a href="#" ><img src="/tpl/default/d8/images/3427.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸01" /></a></li>
+    <li><a href="#" ><img src="/tpl/default/d8/images/3247.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸02" /></a></li>
+    <li><a href="#" ><img src="/tpl/default/d8/images/23463.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸03" /></a></li>
+    <li><a href="#" ><img src="/tpl/default/d8/images/26547.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸04" /></a></li>
+    <li><a href="#" ><img src="/tpl/default/d8/images/2153.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸05" /></a></li>
+  </ul>
 </div>
 
-<div class="foot_nav">
-  <p><a href="#">关于我们</a> / <a href="#">广告服务</a> / <a href="#">加入我们</a> / <a href="#">支付方式</a> / <a href="#">网站地图</a> / <a href="#">客服中心</a> / <a href="#">联系我们</a> / </p>
-  <p>服务热线：4008505066</p>
+          		<div class="slider_box" id="slider_name_02">
+  <div class="silder_tip" id="movie_tip"><a href="#">更<br />
+    多<br />
+    人<br />
+    才<br />
+    ><br />
+    ></a></div>
+  <ul class="silder_con">
+    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/3427.jpg" width="230" height="151" /></a>
+      <div class="bg1">
+        <h1>关于程序开发</h1>
+        <h2><a href="#">我要雇佣</a></h2>
+        <h3>23345667<br />
+          诚信保障：2000<br />
+          能力等级：豆芽</h3>
+      </div>
+    </li>
+    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/3247.jpg" width="230" height="151" /></a>
+      <div class="bg1">
+        <h1>关于程序开发</h1>
+        <h2><a href="#">我要雇佣</a></h2>
+        <h3>23345667<br />
+          诚信保障：2000<br />
+          能力等级：豆芽</h3>
+      </div>
+    </li>
+    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/23463.jpg" width="230" height="151" /></a>
+      <div class="bg1">
+        <h1>关于程序开发</h1>
+        <h2><a href="#">我要雇佣</a></h2>
+        <h3>23345667<br />
+          诚信保障：2000<br />
+          能力等级：豆芽</h3>
+      </div>
+    </li>
+    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/26547.jpg" width="230" height="151" /></a>
+      <div class="bg1">
+        <h1>关于程序开发</h1>
+        <h2><a href="#">我要雇佣</a></h2>
+        <h3>23345667<br />
+          诚信保障：2000<br />
+          能力等级：豆芽</h3>
+      </div>
+    </li>
+    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/2153.jpg" width="230" height="151" /></a>
+      <div class="bg1">
+        <h1>关于程序开发</h1>
+        <h2><a href="#">我要雇佣</a></h2>
+        <h3>23345667<br />
+          诚信保障：2000<br />
+          能力等级：豆芽</h3>
+      </div>
+    </li>
+  </ul>
+  <div class="bobobo" style="width:485px; height:2px; background:#ccc; position:absolute; bottom:105px;"></div>
+  <ul class="silder_nav clearfix">
+    <li><a href="#" ><img src="/tpl/default/d8/images/3427.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸01" /></a></li>
+    <li><a href="#" ><img src="/tpl/default/d8/images/3247.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸02" /></a></li>
+    <li><a href="#" ><img src="/tpl/default/d8/images/23463.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸03" /></a></li>
+    <li><a href="#" ><img src="/tpl/default/d8/images/26547.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸04" /></a></li>
+    <li><a href="#" ><img src="/tpl/default/d8/images/2153.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸05" /></a></li>
+  </ul>
+</div>
+
+				<div class="slider_box" id="slider_name_03">
+  <div class="silder_tip" id="movie_tip"><a href="#">更<br />
+    多<br />
+    人<br />
+    才<br />
+    ><br />
+    ></a></div>
+  <ul class="silder_con">
+    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/3427.jpg" width="230" height="151" /></a>
+      <div class="bg1">
+        <h1>关于程序开发</h1>
+        <h2><a href="#">我要雇佣</a></h2>
+        <h3>23345667<br />
+          诚信保障：2000<br />
+          能力等级：豆芽</h3>
+      </div>
+    </li>
+    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/3247.jpg" width="230" height="151" /></a>
+      <div class="bg1">
+        <h1>关于程序开发</h1>
+        <h2><a href="#">我要雇佣</a></h2>
+        <h3>23345667<br />
+          诚信保障：2000<br />
+          能力等级：豆芽</h3>
+      </div>
+    </li>
+    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/23463.jpg" width="230" height="151" /></a>
+      <div class="bg1">
+        <h1>关于程序开发</h1>
+        <h2><a href="#">我要雇佣</a></h2>
+        <h3>23345667<br />
+          诚信保障：2000<br />
+          能力等级：豆芽</h3>
+      </div>
+    </li>
+    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/26547.jpg" width="230" height="151" /></a>
+      <div class="bg1">
+        <h1>关于程序开发</h1>
+        <h2><a href="#">我要雇佣</a></h2>
+        <h3>23345667<br />
+          诚信保障：2000<br />
+          能力等级：豆芽</h3>
+      </div>
+    </li>
+    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/2153.jpg" width="230" height="151" /></a>
+      <div class="bg1">
+        <h1>关于程序开发</h1>
+        <h2><a href="#">我要雇佣</a></h2>
+        <h3>23345667<br />
+          诚信保障：2000<br />
+          能力等级：豆芽</h3>
+      </div>
+    </li>
+  </ul>
+  <div class="bobobo" style="width:485px; height:2px; background:#ccc; position:absolute; bottom:105px;"></div>
+  <ul class="silder_nav clearfix">
+    <li><a href="#" ><img src="/tpl/default/d8/images/3427.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸01" /></a></li>
+    <li><a href="#" ><img src="/tpl/default/d8/images/3247.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸02" /></a></li>
+    <li><a href="#" ><img src="/tpl/default/d8/images/23463.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸03" /></a></li>
+    <li><a href="#" ><img src="/tpl/default/d8/images/26547.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸04" /></a></li>
+    <li><a href="#" ><img src="/tpl/default/d8/images/2153.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸05" /></a></li>
+  </ul>
+</div>
+
+				<div class="slider_box" id="slider_name_04">
+  <div class="silder_tip" id="movie_tip"><a href="#">更<br />
+    多<br />
+    人<br />
+    才<br />
+    ><br />
+    ></a></div>
+  <ul class="silder_con">
+    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/3427.jpg" width="230" height="151" /></a>
+      <div class="bg1">
+        <h1>关于程序开发</h1>
+        <h2><a href="#">我要雇佣</a></h2>
+        <h3>23345667<br />
+          诚信保障：2000<br />
+          能力等级：豆芽</h3>
+      </div>
+    </li>
+    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/3247.jpg" width="230" height="151" /></a>
+      <div class="bg1">
+        <h1>关于程序开发</h1>
+        <h2><a href="#">我要雇佣</a></h2>
+        <h3>23345667<br />
+          诚信保障：2000<br />
+          能力等级：豆芽</h3>
+      </div>
+    </li>
+    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/23463.jpg" width="230" height="151" /></a>
+      <div class="bg1">
+        <h1>关于程序开发</h1>
+        <h2><a href="#">我要雇佣</a></h2>
+        <h3>23345667<br />
+          诚信保障：2000<br />
+          能力等级：豆芽</h3>
+      </div>
+    </li>
+    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/26547.jpg" width="230" height="151" /></a>
+      <div class="bg1">
+        <h1>关于程序开发</h1>
+        <h2><a href="#">我要雇佣</a></h2>
+        <h3>23345667<br />
+          诚信保障：2000<br />
+          能力等级：豆芽</h3>
+      </div>
+    </li>
+    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/2153.jpg" width="230" height="151" /></a>
+      <div class="bg1">
+        <h1>关于程序开发</h1>
+        <h2><a href="#">我要雇佣</a></h2>
+        <h3>23345667<br />
+          诚信保障：2000<br />
+          能力等级：豆芽</h3>
+      </div>
+    </li>
+  </ul>
+  <div class="bobobo" style="width:485px; height:2px; background:#ccc; position:absolute; bottom:105px;"></div>
+  <ul class="silder_nav clearfix">
+    <li><a href="#" ><img src="/tpl/default/d8/images/3427.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸01" /></a></li>
+    <li><a href="#" ><img src="/tpl/default/d8/images/3247.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸02" /></a></li>
+    <li><a href="#" ><img src="/tpl/default/d8/images/23463.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸03" /></a></li>
+    <li><a href="#" ><img src="/tpl/default/d8/images/26547.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸04" /></a></li>
+    <li><a href="#" ><img src="/tpl/default/d8/images/2153.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸05" /></a></li>
+  </ul>
+</div>
+            </div>
+      </div>
+    
+    </div>
+
+	<!-- 热门 -->
+    <div class="re">
+      <div class="bnsj_q2"><img src="/tpl/default/d8/images/re_r.gif" /></div>
+      <div class="bnsj_r">
+        <div class="re_r001">
+          <div class="re_l">
+            <div class="re_tu">
+              <div class="youxi"><a href="#"></a></div>
+            </div>
+            <div class="re_text">
+              <p>我特别喜欢斗地主一类的棋牌游戏，以前常常泡在各种娱乐平台一玩就忘了时间，耽搁好多工作。常常告诉自己不应该在玩游戏了。但偶然的一次机会，我在浏览任务的时候发现豆8网竟然也有游戏区...</p>
+              <p><span><a href="#">查看更多>></a></span></p>
+            </div>
+          </div>
+          <div class="re_l">
+            <div class="re_tu1">
+              <div class="xuetang"><a href="#"></a></div>
+            </div>
+            <div class="re_text1">
+              <p>我特别喜欢斗地主一类的棋牌游戏，以前常常泡在各种娱乐平台一玩就忘了时间，耽搁好多工作。常常告诉自己不应该在玩游戏了。但偶然的一次机会，我在浏览任务的时候发现豆8网竟然也有游戏区...</p>
+              <p><span><a href="#">查看更多>></a></span></p>
+            </div>
+          </div>
+          <div class="re_l">
+            <div class="re_tu2">
+              <div class="jianghu"><a href="#"></a></div>
+            </div>
+            <div class="re_text">
+              <p>我特别喜欢斗地主一类的棋牌游戏，以前常常泡在各种娱乐平台一玩就忘了时间，耽搁好多工作。常常告诉自己不应该在玩游戏了。但偶然的一次机会，我在浏览任务的时候发现豆8网竟然也有游戏区...</p>
+              <p><span><a href="#">查看更多>></a></span></p>
+            </div>
+          </div>
+          <div class="re_l">
+            <div class="re_tu3">
+              <div class="shangquan"><a href="#"></a></div>
+            </div>
+            <div class="re_text">
+              <p>我特别喜欢斗地主一类的棋牌游戏，以前常常泡在各种娱乐平台一玩就忘了时间，耽搁好多工作。常常告诉自己不应该在玩游戏了。但偶然的一次机会，我在浏览任务的时候发现豆8网竟然也有游戏区...</p>
+              <p><span><a href="#">查看更多>></a></span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    </div>
+
+ 	<!-- 特色 -->
+    <div class="te">
+      <div class="bnsj_q3"><img src="/tpl/default/d8/images/te_t.gif" /></div>
+      <div class="te_r">
+        <div class="te_r001">
+        
+          <div class="te_l">
+            <h2>热门活动推荐</h2>
+            <div class="te_t"></div>
+            <p><img src="/tpl/default/d8/images/te_tu.jpg" /></p>
+          </div>
+          
+          <div class="te_l">
+            <h2>大品牌案例：</h2>
+            <div class="te_t1">
+              <ul>
+                <li><a href="#"><img src="/tpl/default/d8/images/anli_1.jpg" title="中国移动通信" /></a></li>
+                <li><a href="#"><img src="/tpl/default/d8/images/anli_2.jpg" title="中国电信" /></a></li>
+                <li><a href="#"><img src="/tpl/default/d8/images/anli_3.jpg" title="CCTV" /></a></li>
+                <li><a href="#"><img src="/tpl/default/d8/images/anli_4.jpg" title="阿里巴巴旗下LOO良无限" /></a></li>
+                <li><a href="#"><img src="/tpl/default/d8/images/anli_5.jpg" title="JOEONE" /></a></li>
+                <li><a href="#"><img src="/tpl/default/d8/images/anli_6.jpg" title="红星·美凯龙" /></a></li>
+              </ul>
+            </div>
+            <div class="rk"><a href="#" title="豆8网秘书全程服务，品牌合作入口">豆8网秘书全程服务，品牌合作入口> ></a></div>
+          </div>
+          
+          <div class="te_l1">
+            <ul>
+              <li class="w_1"><a href="#"></a></li>
+              <li class="w_2"><a href="#"></a></li>
+              <li class="w_3"><a href="#"></a></li>
+            </ul>
+          </div>
+          
+        </div>
+      </div>
+    
+    </div>
+   
+ 	<!-- foot -->
+    <div class="foot">
+      <div class="home-help">
+        <div class="home_l">
+          <h2>了解我们</h2>
+          <div class="home_b">
+            <ul>
+              <li><a href="#">关于我们</a></li>
+              <li><a href="#">大事记</a></li>
+              <li><a href="#">豆豆规则</a></li>
+              <li><a href="#">客服中心</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="home_l">
+          <h2>新手入门</h2>
+          <div class="home_b">
+            <ul>
+              <li><a href="#">帮助中心</a></li>
+              <li><a href="#">诚信保障</a></li>
+              <li><a href="#">我要认证</a></li>
+              <li><a href="#">支付方式</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="home_l">
+          <h2>VIP中心</h2>
+          <div class="home_b">
+            <ul>
+              <li><a href="#">VIP功能介绍</a></li>
+              <li><a href="#">升级VIP</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="home_l">
+          <h2>关注我们</h2>
+          <div class="home_b">
+            <ul>
+              <li><a href="#">新浪微博</a></li>
+              <li><a href="#">腾讯微博</a></li>
+              <li><a href="#">微信二维码</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="home_l" style="border:none;">
+          <h2>豆8宣传部</h2>
+          <div class="home_b">
+            <ul>
+              <li><a href="#">广告服务</a></li>
+              <li><a href="#">公司资质</a></li>
+              <li><a href="#">加入我们</a></li>
+              <li><a href="#">网站地图</a></li>
+            </ul>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    
+    <div class="foot_nav">
+      <p><a href="#">关于我们</a> / <a href="#">广告服务</a> / <a href="#">加入我们</a> / <a href="#">支付方式</a> / <a href="#">网站地图</a> / <a href="#">客服中心</a> / <a href="#">联系我们</a> / </p>
+      <p>服务热线：4008505066</p>
+    </div>
+<script src="/tpl/default/d8/js/jquery.slides.js" type="text/javascript"></script>
+
 </div>
 
 <!-- footer -->
 <div class="footer">
   <div class="footer_p">
     
-	<p><a href="#"><img src="/tpl/default/d8/images/foot_03.jpg" /></a>&nbsp;<a href="#"><img src="/tpl/default/d8/images/foot_04.jpg" /></a>&nbsp;<a href="#"><img src="/tpl/default/d8/images/foot_05.jpg" /></a>&nbsp;<a href="#"><img src="/tpl/default/d8/images/foot_06.jpg" /></a>&nbsp;<a href="#"><img src="/tpl/default/d8/images/foot_07.jpg" /></a></p>
+    <p><a href="#"><img src="/tpl/default/d8/images/foot_03.jpg" /></a>&nbsp;<a href="#"><img src="/tpl/default/d8/images/foot_04.jpg" /></a>&nbsp;<a href="#"><img src="/tpl/default/d8/images/foot_05.jpg" /></a>&nbsp;<a href="#"><img src="/tpl/default/d8/images/foot_06.jpg" /></a>&nbsp;<a href="#"><img src="/tpl/default/d8/images/foot_07.jpg" /></a></p>
     <p><a href="#">关于豆8</a> | <a href="#">About Tencent</a> | <a href="#">服务协议</a> | <a href="#">隐私权保护</a> | <a href="#">开放平台</a> | <a href="#">广告服务</a> | <a href="#">豆8招聘</a> | <a href="#">豆8公益</a> | <a href="#">客服中心</a> | <a href="#">网站导航</a></p>
     <p>Copyright © 1998-2013 Dou Ba.All Rights Reserved</p>
     <p>DouBa公司 版权所有</p>
   </div>
 </div>
-
 
 </body>
 </html>

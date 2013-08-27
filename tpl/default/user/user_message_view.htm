@@ -2,7 +2,7 @@
 <link href="{SKIN_PATH}/css/user_center.css" rel="stylesheet" type="text/css">
 <div class="blank1"></div>
 <!--contain start-->
-<div class="yhcenter container_24">
+<div class="yhcenter container_24 {$_K['theme']}_style">
     	<!--  账号设置 begin -->
     	<div class="yhzhbox tabCon">
         	
@@ -11,15 +11,16 @@
             
             <div class="yhzhright">
                 <!--main content-->
-                <div class="">
-                	 <!--header内容头部 start-->
-                            <header class="clearfix box_header">
-                                <h2 class="grid_4 alpha box_title t_c">{$_lang['view_message']}</h2>
-								
-                                <div class="clear">
-                                </div>
-                            </header>
-                            <!--header内容头部 end-->
+                    <div class="_gztt _gztt0 ">
+                        <div class="yh_xxnav">
+                            <span>{$_lang['send_message']}</span>
+                        </div>
+                    </div>
+                    <div class="xx_yh">
+                        
+                        <!--{template user/user_mes_nav}-->
+                        
+                        <div style="clear:both; height:15px;"></div>
 					
 				<div class="prefix_1 suffix_1">
                                 <!--from表单 start-->
@@ -75,14 +76,9 @@
            </div>
 
            </div>
-           
-            
-        </div>
-        
-        
-    </div>
+
     <!-- center end -->
-</div> 
+
 <script type="text/javascript">
 	  function del(obj){
 		var url = obj.href;
@@ -92,4 +88,4 @@
 <!--contain end-->
 
 <!--{template user/user_footer}-->
-<!--{template footer}-->
+<!--{template footer_dou}-->

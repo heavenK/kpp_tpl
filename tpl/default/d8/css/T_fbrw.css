@@ -1,0 +1,126 @@
+/* CSS Document */
+body{ background:url(../images/header_bg.jpg) repeat-x #fff; padding:0;margin:0;font-size:12px; font-family:"微软雅黑", "宋体";} 
+div,ul,li,p,h1,input,img,form,font,dl,dt,dd,h1,h2,h3,h4{ margin:0;padding:0;}
+img{border:none;}
+ul,li{list-style:none;}
+a{text-decoration:none;}
+
+
+.box { width:1000px; margin:0 auto; position:relative;}
+
+/** 发布任务 **/
+
+.fbrw_xq{width:998px; height:100px; background:#e4f9f0; margin:0 auto; margin-top:50px; border:1px solid #dfdfdf; float:left;}
+
+.fbrw_4{width:180px; line-height:100px; float:left; margin-left:20px; font-size:32px; font-family:"微软雅黑"; color:#00251e;}
+
+.fbrw_4 img{float:left; padding:35px 5px 0 0;}
+
+.fbrw_5{width:300px; height:100px; background:url(../images/fb.jpg) no-repeat center 18px; float:left; margin-left:30px;}
+
+.ms{width:75px; display:block; float:left; margin:55px 0 0 10px; font-size:14px; line-height:35px; text-align:center;}
+
+.cg{width:75px; display:block; float:left; margin:55px 0 0 132px; font-size:14px; line-height:35px; text-align:center;}
+
+.ljfb1{width:998px; overflow:hidden; margin:0 auto; margin-top:10px; float:left; border:1px solid #dee0df; }
+
+.ljfb_left1{width:673px; overflow:hidden; float:left; padding:10px; border-right:1px solid #ccc}
+
+.ljfb_left1 h2{line-height:45px; font-size:18px; font-family:"微软雅黑";}
+
+.yjxm{width:693px; height:40px;}
+
+.ljfb_left1 h3{line-height:40px; font-size:15px; font-family:"微软雅黑";}
+
+.ljfb_left1 h3 a{color:#0167cc; font-weight:normal;}
+
+.input_6{width:455px; height:25px; line-height:25px; padding-left:3px; border:1px solid #ccc}
+
+.styinput{ margin-bottom:5px;}
+
+.rwbt{font-size:14px; line-height:30px; color:#999;}
+
+.mgdx{padding-top: 5px;float: left !important; line-height:25px;}
+
+.mgdx a{color:#0167cc;}
+
+.mgdx_r{float:left;}
+
+.filess { width:117px; height:33px; background:url(../images/shang01.jpg) no-repeat; border:none; cursor:pointer; font-size:14px; color:#fff; font-weight:bold; }
+.filess:hover { background:url(../images/shang02.jpg) no-repeat;}
+
+.rwbt_1{width:680px; overflow:hidden; }
+
+.select_op{width:100px; height:35px; padding:5px 0 5px 3px; font-size:13px; display:block; float:left;}
+
+.input_7{width:459px; height:33px; border:1px solid #ccc; font-size:12px; color:#000; padding-left:3px; }
+
+
+.fw_n{width:998px; overflow:hidden; margin:0 auto; margin-top:10px; float:left; }
+
+.pad10 { padding:10px; line-height:20px; }
+.xyfw{line-height:35px;}
+
+.ljfb_right{width:273px; height:268px; border:1px solid #dee0df; float:right; margin-top:30px; margin-right:14px;}
+.ljfb_right h5 { font-size:16px; font-weight:bold; text-align:center; padding-top:10px;}
+
+.ljfb_right h2{font-size:16px; font-family:"微软雅黑"; text-align:center; line-height:25px; padding:10px 0 10px 0;}
+
+.ljfb_right h3{width:258px; height:54px; background:url(../images/wnfw.gif) no-repeat; display:block; margin:0 auto;}
+
+.ljfb_right h3 a{width:258px; height:54px; background:url(../images/wnfw.gif) no-repeat; display:block;}
+
+.ljfb_right h3 a:hover{width:258px; height:54px; background:url(../images/wnfw_hover.gif) no-repeat; display:block;}
+
+.telep{width:258px; height:34px; line-height:34px; font-size:20px; margin:0 auto; margin-top:20px;}
+
+.telep img{float:left; width:34px; height:34px; padding:0 15px 0 0;}
+
+.qq{width:258px; height:34px; line-height:34px; font-size:18px; margin:0 auto; margin-top:20px;}
+
+.qq img{float:left; width:34px; height:34px; padding:0 15px 0 0;}
+
+/**下拉菜单样式**/
+.selectbox_dw					{ position:relative; float:left; }
+.selectbox 						{ border:1px solid #d8d8d8; width: 100px; margin-right:20px; CURSOR: pointer; HEIGHT: 24px;line-height:24px;display:inline-block; background: url(../images/mem_sel.jpg) no-repeat right #f3f3f3;margin-top:2px;color:#9a9a9a;position: relative; border-radius:4px; padding-left:3px; z-index:1; font-size:12px;}
+DIV.selectbox-wrapper 			{ BORDER: #d1d1d1 1px solid;BORDER-TOP: #d1d1d1 0px solid;BORDER-LEFT: #d1d1d1 1px solid; WIDTH: 103px;BORDER-BOTTOM: #d1d1d1 1px solid;POSITION: absolute;left:0px;top:26px;BACKGROUND-COLOR: #fff;TEXT-ALIGN: left;margin:0px 0 0 0 px;z-index:9999; overflow-y:scroll; height:100px;}
+DIV.selectbox-wrapper UL LI.selected{ BACKGROUND-COLOR: #97f6d6;}
+DIV.selectbox-wrapper UL LI.current	{ COLOR: #fff;BACKGROUND-COLOR: #69cfa8;}
+DIV.selectbox-wrapper UL LI 	{ PADDING-BOTTOM: 3px; WIDTH: 83px; padding-left:3px; CURSOR: pointer; LINE-HEIGHT: 22px; list-style:none; z-index:10001; }
+.box2{border:1px solid #F4F4F4;width:90px;height:24px;clip:rect(0px,179px,16px,0px);overflow:hidden;float:left;} 
+
+.selectbox_dw02					{ position:relative; float:left; margin-right:20px; width:100px;}
+
+.wenben { width:613px; height:203px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

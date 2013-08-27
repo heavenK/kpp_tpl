@@ -17,73 +17,63 @@
                     <div class="ac_zlws">
                         <!--{template user/user_info_nav}-->
                     </div>
-                    <div class="jbzl">
-                    	<div class="jbzl">
-                    	<div class="jbzl_cz clearfix box font14">
-                        	<div class="grid_19 suffix_1" style="width:670px;">
-                              {if $exp_info}<h3 class="mt_10 mb_10">{$_lang['have_been_added_personal_experiences']}</h3>{/if}
-                                  {loop $exp_info $v}
-                                  <div class="exp_info pb_10 border_b_c mb_10 clearfix" id="{$v['ext_id']}">
-                                      <div class="grid_17 alpha">
-                                          <span>{$v['v1']}{$_lang['to']}{$v['v2']}</span>
-                                          <p style="word-wrap : break-word ;word-break:break-all;">
-                                             <!--{eval echo nl2br($v['v3'])}-->
-                                          </p>
-                                      </div>
-                                      <div class="grid_2 omega mt_20 tool_bar">
-                                          <a href="javascript:void(0)" title="{$_lang['edit']}" class="mr_10 fl_l" onclick="edit(this,$v['ext_id'],'$v['v1']','$v['v2']');"><span class="icon16 pencil">{$_lang['edit']}</span></a>
-                                          <a href="javascript:void(0)" title="{$_lang['delete']}"class="fl_l" onclick="del($v['ext_id'])"><span class="icon16 delete">{$_lang['delete']}</span></a>
-                                      </div>
-                                      <div class="clear">
-                                      </div>
-                                  </div>
-                                  {/loop} 
-                              </div>
-
-                                <div id="form" class="czjl">
-                                <h3 class="mt_10 mb_10">{$_lang['add_personal_exp']}</h3>
-                                	<form action="{$ac_url}&opp={$opp}" method="post" id="frm" name="frm">
-                                        	<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}">
-                                            <input type="hidden" name="ac" id="ac" value="add">
-											<input type="hidden" name="ext_id" id="ext_id">
-											<input type="hidden" name="max" value="<!--{date('Y-m-d',time())}-->" id="max">
-                                    <div class="rowElem clearfix" id="start">
-                                                <label class="grid_2 t_r">
-                                                   {$_lang['start_time']}{$_lang['zh_mh']}
-                                                </label>
-                                                <div class="grid_15">
-                                                <input class="txt_input fl_l" size="22" type="text" name="exp[v1]" onclick="showcalendar(event, this, 0)" title="{$_lang['start_time']}" id="v1"
-												 limit="required:true;type:date;less:max" value="<!--{date('Y-m-d',time()-86400)}-->" msgArea="span_v1"
-												  msg="{$_lang['start_time_early']}<!--{date('Y-m-d',time())}-->" title="{$_lang['start_time_early']}<!--{date('Y-m-d',time())}-->"/><span id="span_v1"></span>
-                                                </div>
-                                            </div>
-                                            <div class="rowElem clearfix" id="end">
-                                                <label class="grid_2 t_r">
-                                                    {$_lang['deadline']}{$_lang['zh_mh']}
-                                                </label>
-                                                <div class="grid_15">
-                                                <input class="txt_input fl_l" size="22" type="text" name="exp[v2]" onclick="showcalendar(event, this, 0)" title="{$_lang['deadline']}" id="v2"
-												 limit="required:true;type:date;than:v1" value="<!--{date('Y-m-d',time())}-->"
-												  msgArea="span_v2" msg="{$_lang['dealy_time_later']}" title="{$_lang['dealy_time_later']}"/><span id="span_v2"></span>
-                                                </div>
-                                            </div>
-                                            <div class="rowElem clearfix" id="desc">
-                                                <label class="grid_2 t_r">
-                                                    {$_lang['exp_describe']}{$_lang['zh_mh']}
-                                                </label>
-                                                <div class="grid_15">
-                                               	 <textarea rows="5" cols="70" style="width:300px;height:100px;" title="{$_lang['length_about_exp_description']}"
-												 name="exp[v3]"  id="v3" onkeydown="checkInner(this,180,event)" class="fl_l"></textarea>
-												 </div>
-												 <div class="clear"></div>
-												 <div class="grid_2">&nbsp;</div>
-												<div class="c999 grid_6" id="length_show">{$_lang['exp_limit']}</div>
-                                            </div>
-                                            <input name="" type="button" id="sbt_add"  value="{$_lang['add_exp']}" onclick="return check_form('frm');" style="text-align:center;  width:100px; height:30px; margin-top:15px; margin-left:75px;" />
-                                    </form>
-                                </div>
+                    
+                    <div class="grid_19 suffix_1" style="width:670px;">
+                    {if $exp_info}<h3 class="mt_10 mb_10">{$_lang['have_been_added_personal_experiences']}</h3>{/if}
+                        {loop $exp_info $v}
+                        <div class="exp_info pb_10 border_b_c mb_10 clearfix" id="{$v['ext_id']}">
+                            <div class="grid_17 alpha">
+                                <span>{$v['v1']}{$_lang['to']}{$v['v2']}</span>
+                                <p style="word-wrap : break-word ;word-break:break-all;">
+                                   <!--{eval echo nl2br($v['v3'])}-->
+                                </p>
+                            </div>
+                            <div class="grid_2 omega mt_20 tool_bar">
+                                <a href="javascript:void(0)" title="{$_lang['edit']}" class="mr_10 fl_l" onclick="edit(this,$v['ext_id'],'$v['v1']','$v['v2']');"><span class="icon16 pencil">{$_lang['edit']}</span></a>
+                                <a href="javascript:void(0)" title="{$_lang['delete']}"class="fl_l" onclick="del($v['ext_id'])"><span class="icon16 delete">{$_lang['delete']}</span></a>
+                            </div>
+                            <div class="clear">
                             </div>
                         </div>
+                        {/loop} 
+                    </div>
+                              
+                              
+                              
+                    <div class="jbzl">
+                    	<div class="jbzl_cz">
+                        	<span>添加成长经历</span>
+                            <div id="form"  class="czjl">
+                            	<form action="{$ac_url}&opp={$opp}" method="post" id="frm" name="frm">
+                                <input type="hidden" name="formhash" id="formhash" value="{FORMHASH}">
+                                <input type="hidden" name="ac" id="ac" value="add">
+                                <input type="hidden" name="ext_id" id="ext_id">
+                                <input type="hidden" name="max" value="<!--{date('Y-m-d',time())}-->" id="max">
+                            	<p>
+                                	<label>开始时间：</label>
+                                    <input class="txt_input" size="22" type="text" name="exp[v1]" onclick="showcalendar(event, this, 0)" title="{$_lang['start_time']}" id="v1"
+												 limit="required:true;type:date;less:max" value="<!--{date('Y-m-d',time()-86400)}-->" msgArea="span_v1"
+												  msg="{$_lang['start_time_early']}<!--{date('Y-m-d',time())}-->" title="{$_lang['start_time_early']}<!--{date('Y-m-d',time())}-->"/>
+                                </p>
+                                <p>
+                                	<label>截止时间：</label>
+                                    <input class="txt_input" size="22" type="text" name="exp[v2]" onclick="showcalendar(event, this, 0)" title="{$_lang['deadline']}" id="v2"
+												 limit="required:true;type:date;than:v1" value="<!--{date('Y-m-d',time())}-->"
+												  msgArea="span_v2" msg="{$_lang['dealy_time_later']}" title="{$_lang['dealy_time_later']}"/>
+                                </p>
+                                <p>
+                                	<label>经历描述：</label>
+                                	<textarea rows="5" cols="70" style="width:300px; height:100px; border:1px solid #ccc" title="{$_lang['length_about_exp_description']}"
+												 name="exp[v3]"  id="v3" onkeydown="checkInner(this,180,event)"></textarea>
+                                    <div style="color:#333; margin-left:75px; font-size:12px;" id="length_show">{$_lang['exp_limit']}</div>
+                                </p>
+                                <input name="" type="button" onclick="return check_form('frm');" value="添加经历" style="text-align:center;  width:100px; height:30px; line-height:30px; margin-top:15px; margin-left:75px; cursor:pointer" />
+                            	</form>
+                            </div>
+                        </div>
+                    </div>
+                   
+                        
                     </div>
                     
                 </div>
@@ -95,9 +85,8 @@
         </div>
         
         
-    </div>
     <!-- center end -->
-</div> 
+
 <script type="text/javascript">
 	In('form');
 	var Today = '{$today}';
@@ -182,6 +171,5 @@
     }
 </script>
 <!--contain end-->
-
 <!--{template user/user_footer}-->
-<!--{template footer}-->
+<!--{template footer_dou}-->

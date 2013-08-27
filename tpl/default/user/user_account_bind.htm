@@ -35,9 +35,11 @@
                             {loop $t $k $v}
                             {if $weibo_list[$k.'_app_id']}
                             <li>
-                                <span class="t_l"><img width="16" src="resource/img/ico/ico_32_{$k}.gif">{$api_name[$k]['name']}</span>
-                                <span class="">{if $v['uid']}<span class="c999">{$_lang['been_link']}($v['account'])</span> {else}<span class="c999">{$_lang['no_link']}</span> {/if}</span>
-                                <div>
+                                <span class="t_l"><img class="wobo" width="16" src="resource/img/ico/ico_32_{$k}.gif"><span class=" mt_5 ml_5">{$api_name[$k]['name']}</span></span>
+                                <span class="">
+                                {if $v['uid']}
+                                <span class="c999">{$_lang['been_link']}($v['account'])</span> {else}<span class="c999">{$_lang['no_link']}</span> {/if}</span>
+                                <div style="text-align:center">
                                 {if $v['uid']}
                                 <a href="index.php?do=$do&view=$view&op=$op&ac=unbind&type=$k&id=$v['id']">
                                     {$_lang['unbind']}
@@ -69,13 +71,8 @@
 
            </div>
            
-            
-        </div>
-        
-        
-    </div>
     <!-- center end -->
-</div> 
+
 <script type="text/javascript">
 	$(function(){
 		$("#list li:last").css('border-bottom',0);
@@ -84,4 +81,4 @@
 <!--contain end-->
 
 <!--{template user/user_footer}-->
-<!--{template footer}-->
+<!--{template footer_dou}-->

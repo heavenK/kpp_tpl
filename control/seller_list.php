@@ -11,7 +11,7 @@ $dynamic_arr = kekezu::get_feed(" feedtype='pub_service' ", "feed_time desc", 10
 $website_url = "index.php?" . $_SERVER ['QUERY_STRING'];
 $indus_all_arr = $kekezu->_indus_arr;
 $where_arr = get_where_arr();
-$sql = "select a.*,b.seller_level,b.skill_ids,b.residency,b.indus_id,b.indus_pid,b.seller_total_num,b.seller_good_num,
+$sql = "select a.*,b.seller_level,b.skill_ids,b.residency,b.indus_id,b.indus_pid,b.isvip,b.seller_total_num,b.reg_time,b.balance,b.seller_good_num,
 		if(b.seller_total_num>0,b.seller_good_num/b.seller_total_num,0) as good_rate
 		from " . TABLEPRE . "witkey_shop as a left join ".TABLEPRE."witkey_space b 
 		on a.uid = b.uid  where 1=1  and a.shop_status = 1"; 
@@ -19,9 +19,28 @@ $count_sql = "select  count(shop_id) as c
 		from " . TABLEPRE . "witkey_shop as a left join ".TABLEPRE."witkey_space b 
 		on a.uid = b.uid  where 1=1 and a.shop_status = 1"; 
 $where = get_where ( $path );
+
+
+// add by heavenK
+$service_arr_top = db_factory::query ( $sql . " order by if(b.seller_total_num>0,b.seller_good_num/b.seller_total_num,0) desc limit 0,10" );
+$final_task = kekezu::get_classify_indus();
+$top_s_4 = db_factory::query ( sprintf ( "select a.username,a.uid,a.indus_id,a.indus_pid,a.seller_good_num,a.seller_total_num,b.shop_name from %switkey_shop b "
+		." left join %switkey_space a on a.uid=b.uid  where a.recommend=1 and IFNULL(b.is_close,0)=0 and shop_status=1 order by a.uid desc limit 0,6", TABLEPRE,TABLEPRE ), 1, 600 );
+
+$task_count = db_factory::get_one ( sprintf ( " select count(task_id) count from %switkey_task", TABLEPRE ), 1, 600 ); 
+$task_in = db_factory::get_one ( sprintf ( " select sum(fina_cash) cash from %switkey_finance where fina_action='task_bid' and fina_type='in' ", TABLEPRE ), 1, 600 ); 
+$register = db_factory::get_one ( sprintf ( " select count(uid) count from %switkey_member ", TABLEPRE ), 1, 600 ); 
+
+$task_count =  intval ( $task_count ['count'] );
+$task_in = number_format ( $task_in ['cash'], 2, ".", "," );
+$register =  intval ( $register ['count'] );
+
+// end 
+
+
 unset($indus_id); 
 $url = "index.php?do=$do&page_size=$page_size&path=$path";
-$page_size = intval ( $page_size ) ? intval ( $page_size ) : 20;
+$page_size = intval ( $page_size ) ? intval ( $page_size ) : 10;
 $count = db_factory::get_count($count_sql . $where );
 $page = $page ? $page : 1;
 $pages = $kekezu->_page_obj->getPages ( $count, $page_size, $page, $url );
@@ -96,11 +115,17 @@ function rz_show($uid){
 	return $img_list;
 }
 function get_where($path) {
-	global $task_cash_arr, $search_key,$ord,$indus_id;
+	global $task_cash_arr, $search_key,$ord,$indus_id,$province,$city,$area;
 	$url_info = keke_search_class::get_analytic_url($path);
 	$indus_id and $where .=sprintf(" and b.indus_id = %d",$indus_id);
 	$url_info ['A'] and $where .= sprintf ( " and b.indus_pid = %d", $url_info ['A'] ); 
 	$url_info ['C'] and $where .= sprintf ( " and a.shop_type = %d", $url_info ['C'] ); 
+	
+	if($province&&$city&&$area){
+		$where .= sprintf(" and b.residency = '%s' ",$province.','.$city.','.$area);
+	}
+	
+	
 	$ord == 1 and $where .=" order by if(b.seller_total_num>0,b.seller_good_num/b.seller_total_num,0) asc";		
 	$ord ==2 and $where .=" order by if(b.seller_total_num>0,b.seller_good_num/b.seller_total_num,0) desc";	
 	$ord or $where .= " order by a.shop_id desc"; 
@@ -116,4 +141,17 @@ function get_where_arr(){
 		);
 	return $where_arr;
 }
+
+//案例
+foreach($service_arr as $key => $val){
+	$sql_c = "select a.*,a.indus_id in_id,b.* from " . TABLEPRE . "witkey_shop_case as a
+		left join " . TABLEPRE . "witkey_service as b
+				on a.service_id = b.service_id
+					where  a.shop_id = " . intval($val['shop_id']) . " order by b.service_id desc limit 0,5";
+					
+	$service_arr[$key]['shop_arr'] = db_factory::query ( $sql_c );	
+}
+
+// end
+
 require $kekezu->_tpl_obj->template ( $do );

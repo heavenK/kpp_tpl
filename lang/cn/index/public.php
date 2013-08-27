@@ -80,8 +80,8 @@ $lang = array (
  
 /**header_top.htm**/
 	'free_register'=>'免费注册',
-	'keke_pub'=>'客客出品',
-	'keke_witkey_area'=>'客客专业威客平台',
+	'keke_pub'=>'出品',
+	'keke_witkey_area'=>'专业威客平台',
 	'news_center'=>'资讯中心',
 	'search_goods'=>'查找商品',
 	'search_task'=>'查找任务',

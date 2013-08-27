@@ -1,5 +1,4 @@
 <!--{template header_user_top}-->
-<div class="blank1"></div>
 <!--contain start-->
 <div class="yhcenter">
     	<!--  账号设置 begin -->
@@ -91,7 +90,6 @@
                       <div class="yh_zhrz">
                         	<span><b>密码安全强度</b></span>
                             <div class="yh_zhrzbox">
-                                
                                 {loop $auth_item_list $v}
                                 	<div class="yh_zhrzll{if $user_auth_info[$v[auth_code]]['auth_status']}00{else}{/if}">
                                         <div class="renzheng">
@@ -120,10 +118,9 @@
                                                 
                                                 </span>
                                             </div>
-                                            <div>
-                                                <span class="fl_r">
-                                                    <span class="msg {if $user_auth_info[$v[auth_code]]['auth_status']}msg_ok{else}{/if}">
-                                                    <i></i>{if $user_auth_info[$v[auth_code]]['auth_status']}已认证{else}
+                                            <div class="no">
+                                                    <span>
+                                                    {if $user_auth_info[$v[auth_code]]['auth_status']}已认证{else}
                                                     
                                                     {/if}
                                                     </span>
@@ -140,7 +137,6 @@
                                                         {/if}
                                                     {/if}
                                                     </span>
-                                                </span>
                                             </div>
                                         </div>
                                         <p>$v['auth_desc']</p>
@@ -163,7 +159,6 @@
         
     </div>
     <!-- center end -->
-</div> 
     
     
     
@@ -212,6 +207,4 @@ function t2(){
 
 </script>
 <!--contain end-->
-
-<!--{template user/user_footer}-->
-<!--{template footer}-->
+<!--{template footer_dou}-->

@@ -9,7 +9,7 @@ if ($model_id) {
 		require "control/ajax/ajax_file.php";
 		die();
 	}
-	$task_count = kekezu::get_table_data ( "model_id,count(task_id) as count", "witkey_task", " uid = '$uid' ", '', 'model_id', '', 'model_id' );
+	$task_count1 = kekezu::get_table_data ( "model_id,count(task_id) as count", "witkey_task", " uid = '$uid' ", '', 'model_id', '', 'model_id' );
 	$cove_arr = kekezu::get_table_data ( "*", "witkey_task_cash_cove", "", "", "", "", "cash_rule_id" );
 	$model_id and $model_id = intval ( $model_id );
 	$where = " model_id = '$model_id' and uid='$uid' ";

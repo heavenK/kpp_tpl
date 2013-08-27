@@ -24,7 +24,7 @@ $return = getCallBackValue($r0_Cmd,$r1_Code,$r2_TrxId,$r3_Amt,$r4_Cur,$r5_Pid,$r
 $bRet = CheckHmac($r0_Cmd,$r1_Code,$r2_TrxId,$r3_Amt,$r4_Cur,$r5_Pid,$r6_Order,$r7_Uid,$r8_MP,$r9_BType,$hmac);
 #	以上代码和变量不需要修改.
 
-//客客的支付处理业务数据
+//的支付处理业务数据
 list ( $_, $charge_type, $uid, $obj_id, $order_id, $model_id ) = explode ( '-', $r8_MP, 6 );
 $fac_obj = new pay_return_fac_class ( $charge_type, $model_id, $uid, $obj_id, $order_id, $r3_Amt, 'yeepay' );
 

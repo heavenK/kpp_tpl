@@ -36,20 +36,20 @@
                         	<div class="mm_t">
                             	<label class="mm_t00">{$_lang['current_safe_code']}{$_lang['zh_mh']}</label>
                                 <div class="grid_11">
-                                    <input class="txt_input" type="password" size="40" title={$_lang['enter_old_safe_code']} name="old_sec_code" id="old_sec_code" limit="required:true" ajax="{$origin_url}&op={$op}&opp={$opp}&check_old=" msg={$_lang['enter_old_safe_code']} msgArea="span_old"/><span id="span_old"></span>
+                                    <input class="txt_input" type="password" size="40" name="old_sec_code" id="old_sec_code" limit="required:true" ajax="{$origin_url}&op={$op}&opp={$opp}&check_old=" msg={$_lang['enter_old_safe_code']} msgArea="span_old"/><span id="span_old"></span>
                                 </div>
                             </div>
                             <div class="mm_t">
                             	<label class="mm_t00">{$_lang['new_safe_code']}{$_lang['zh_mh']}</label>
                                 <div class="grid_11">
-                                    <input class="txt_input" type="password" size="40" title={$_lang['enter_new_6_safe_code']} name="new_sec_code" id="new_sec_code" limit="required:true;len:6-20" msg={$_lang['safe_code_enter_err']} msgArea="span_new" /><span id="span_new"></span>
+                                    <input class="txt_input" type="password" size="40" name="new_sec_code" id="new_sec_code" limit="required:true;len:6-20" msg={$_lang['safe_code_enter_err']} msgArea="span_new" /><span id="span_new"></span>
                                 </div>
                             </div>
                             
                             <div class="mm_t">
                             	<label class="mm_t00">{$_lang['confirm_safe_code']}{$_lang['zh_mh']}</label>
                                 <div class="grid_11">
-                                    <input class="txt_input" type="password" size="40" title={$_lang['confirm_new_safe_code']} name="new_equal" id="new_equal" limit="required:true;equals:new_sec_code" msg={$_lang['confirm_safe_code_err']} msgArea="span_new_equal"/><span id="span_new_equal"></span>
+                                    <input class="txt_input" type="password" size="40" name="new_equal" id="new_equal" limit="required:true;equals:new_sec_code" msg={$_lang['confirm_safe_code_err']} msgArea="span_new_equal"/><span id="span_new_equal"></span>
                                 </div>
                             </div>
                             <div style="width:400px; height:30px;">
@@ -70,14 +70,9 @@
            </div>
 
            </div>
-           
-            
-        </div>
-        
-        
-    </div>
+
     <!-- center end -->
-</div> 
+
 <script type="text/javascript">
 	$(function(){
 		In('form');
@@ -87,4 +82,4 @@
 <!--contain end-->
 
 <!--{template user/user_footer}-->
-<!--{template footer}-->
+<!--{template footer_dou}-->

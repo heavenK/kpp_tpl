@@ -94,6 +94,45 @@ class keke_register_class {
 			$this->show_msg($_lang ['register_success'] . "$synhtml",1,$r);
 		}
 	}
+	function register_login_jump($userinfo) {
+		global $kekezu;
+		global $_lang;
+		global $_K;
+		$_SESSION ['uid'] = $userinfo ['uid'];
+		$_SESSION ['username'] = $userinfo ['username'];
+		if ($this->_message_obj->validate ( 'reg' ) && $this->_sys_config ['allow_reg_action'] == 0) {
+			$this->_message_obj->send_message ( $userinfo ['uid'], $userinfo ['username'], 'reg', $_lang ['register_success'], array (), $userinfo ['email'] );
+		}
+		$c = $_COOKIE;
+		if($_K['refer']){
+			$r = $_K['refer'];
+		}else{
+			$r = "index.php?do=register_wizard&refer=" . $_K ['refer'];
+		}
+		if (isset ( $_COOKIE ['user_prom_event'] )) {
+			$kekezu->init_prom ();
+			$prom_obj = $kekezu->_prom_obj;
+			$url_data = $prom_obj->extract_prom_cookie ();
+			$prom_obj->create_prom_relation ( $userinfo ['uid'], $userinfo ['username'], $url_data );
+			$url_data ['p'] == 'reg' and $obj_id = $userinfo ['uid'] or $obj_id = $url_data ['o'];
+			$prom_obj->create_prom_event ( $url_data ['p'], $userinfo ['uid'], $obj_id );
+		}
+		$synhtml = keke_user_class::user_synlogin ( $userinfo ['uid'], md5 ( $this->_reg_pwd ) );
+		if ($userinfo ['status'] == 3&&$this->_reg_type==1) {
+			$_SESSION ['uid'] = '';
+			$_SESSION ['username'] = '';
+			$arr = explode ( "@", $userinfo ['email'] );
+			$mail_url = "http://mail." . $arr [1];
+			$this->show_msg($_lang ['register_success_and_excite'] . "$synhtml",1,$mail_url);
+		} else {
+			if($this->_reg_type==2){
+					 $userinfo[pic] = keke_user_class::get_user_pic ( $userinfo ['uid'] );
+					 $r = $userinfo;
+					db_factory::execute(sprintf(" update %switkey_space set status=1 where uid='%d'",TABLEPRE,$userinfo['uid']));
+			}
+			$this->show_msg($_lang ['register_success'] . "$synhtml",1,"index.php?do=register&success=1");
+		}
+	}
 	function save_userinfo($reg_username, $reg_email, $reg_uid = null) {
 		$slt = kekezu::randomkeys ( 6 );
 		$pwd = keke_user_class::get_password ( $this->_reg_pwd, $slt );

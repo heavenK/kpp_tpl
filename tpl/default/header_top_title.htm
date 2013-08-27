@@ -16,7 +16,6 @@
 <meta name="author" content="kekezu" />
 <meta name="copyright" content="{$basic_config['copyright']}" />
 
-
 <script type="text/javascript">
 	var SITEURL= "{$_K['siteurl']}",
 	    SKIN_PATH = '{SKIN_PATH}',
@@ -29,31 +28,45 @@
 <!--公用样式-->
 <link href="resource/css/base.css" rel="stylesheet" charset="utf-8">
 <!--布局样式-->
-
 <link rel="stylesheet" media="all" href="resource/css/layout/960.min.css" charset="utf-8">
-
 <!--box样式-->
-<link href="resource/css/box.css" rel="stylesheet" charset="utf-8">
+<link href="resource/css/box_min.css" rel="stylesheet" charset="utf-8">
 
-<link href="resource/css/animate.css" rel="stylesheet" charset="utf-8">
+
 <link href="{SKIN_PATH}/css/common.css" rel="stylesheet" charset="utf-8">
 <link href="{SKIN_PATH}/theme/{$_K['theme']}/css/{$_K['theme']}_style.css" rel="stylesheet" charset="utf-8">
 <link href="resource/js/jqplugins/tipsy/tipsy.css" rel="stylesheet">
 <link href="resource/css/button/stylesheets/css3buttons.css" rel="stylesheet" charset="utf-8">
-<!--[if lt IE 9]>
-	<script src="resource/js/system/html5.js" type="text/javascript"></script>
-	<script src="resource/js/system/respond.min.js" type="text/javascript"></script>
-<![endif]-->
-<!--jQuery1.4.4库-->
+
+
+
+
+
+
+
 <script src="resource/js/jquery.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/T_header.css">
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/T_grzx.css">
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/T_footer.css">
+
+<script type="text/javascript" src="tpl/default/d8/js/jquery.pack.js"></script>
+<script type="text/javascript" src="tpl/default/d8/js/jQuery.blockUI.js"></script>
+<script type="text/javascript" src="tpl/default/d8/js/jquery.SuperSlide.js"></script>
+<script type="text/javascript" src="tpl/default/d8/js/jquery.idTabs.min.js"></script>
+
+
+
+
 <script src="lang/{$language}/script/lang.js" type="text/javascript"></script>
-<script src="resource/js/system/keke.js" type="text/javascript"></script>
+<script type="text/javascript" src="resource/js/system/keke.js"></script>
+
+
 <script src="resource/js/in.js" type="text/javascript"></script>
 <script type="text/javascript">
 	 //js异步加载预定义
  	In.add('mouseDelay',{path:"resource/js/jqplugins/jQuery.mouseDelay.js",type:'js'});
 	In.add('waypoints',{path:"resource/js/jqplugins/waypoints/waypoints.min.js",type:'js'});
-	In.add('custom',{path:"resource/js/system/custom.js",type:'js',rely:['waypoints']});
+	In.add('custom',{path:"resource/js/system/custom_min.js",type:'js',rely:['waypoints']});
  	In.add('form',{path:"resource/js/system/form_and_validation.js",type:'js'});
 	In.add('print',{path:"resource/js/jqplugins/jquery.print.js",type:'js'});
 	In.add('task',{path:"resource/js/system/task.js",type:'js'});
@@ -73,9 +86,62 @@
 </script>
 
 
+<!--点击IE6浏览器弹出升级页JS-->
+<script language="javascript">
+ieGo();
+function ieGo(){ 
+		var ie = !-[1,];  
+		if(ie == true) {
+			var ua = navigator.userAgent.toLowerCase();
+			var version = parseInt(ua.match(/msie ([\d.]+)/)[1]);
+			if(version <= 6) {
+				location.href='default.html'; 
+			}
+		}
+}
+</script>
 
-<link href="/tpl/default/d8/css/grzx.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/style.css">
-<link href="/tpl/default/d8/css/huiyuandenglu.css" type="text/css" rel="stylesheet" />
+<!--豆豆导航JS-->
+<script language="javascript">
+	$(function(){
+	  //当鼠标滑入时将div的class换成divOver
+	  $('#daohang,.rukou_nav').hover(function(){
+		$("#daohang").addClass('rukouOver');
+		$(".rukou_nav").show();  
+	   },
+	   function(){
+		//鼠标离开时移除divOver样式
+		$("#daohang").removeClass('rukouOver'); 
+		$(".rukou_nav").hide();
+	   }
+	  );
+	});
+</script> 
+
+<!--会员登陆JS-->
+<script language="javascript">
+	$(function(){
+	  //当鼠标滑入时将div的class换成divOver
+	  $('#huiyuan,.dl_t').hover(function(){
+		$("#huiyuan").addClass('rukouOver2');
+		$(".dl_t").show();  
+	   },
+	   function(){
+		//鼠标离开时移除divOver样式
+		$("#huiyuan").removeClass('rukouOver2'); 
+		$(".dl_t").hide();
+	   }
+	  );
+	});
+</script> 
+       
+
+<!--下拉框JS-->
+<script type="text/javascript" src="/tpl/default/d8/js/jQselect.js"></script>
+<script>
+$(document).ready(function () {
+	$(".SelectCity").selectbox();
+});
+</script> 
 
 </head>

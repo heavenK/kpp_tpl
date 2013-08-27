@@ -87,11 +87,13 @@ $limit = $pages ['where']; // 数组
 
 $task_list_arr = db_factory::query ( $sql . $where . $limit );
 
+
 // 查询条件
 $check_arr = keke_search_class::get_path_url ( $where_arr, $path );
 
 
 $check_url_arr = $check_arr ['url'];
+
 
 //var_dump( $where_arr );
 
@@ -102,6 +104,16 @@ isset($_COOKIE ['save_cookie']) and $cookie_arr = unserialize ( $_COOKIE ['save_
 
 isset($cookie_arr) and $cookie_arr = str_replace ( "&hid_save_cookie=1", "", $cookie_arr );
 (isset($hid_save_cookie) || $path == 'H2') and keke_search_class::save_cookie ( $cookie_arr, $website_url, $select_arr, $hid_save_cookie, $search_key );
+
+
+// add by heavenK
+$where_top = get_where_top ( $path );
+$task_list_arr_top = db_factory::query ( $sql . $where_top);
+$final_task = kekezu::get_classify_indus();
+$top_s_4 = db_factory::query ( sprintf ( "select a.username,a.uid,a.indus_id,a.indus_pid,a.seller_good_num,a.seller_total_num,b.shop_name from %switkey_shop b "
+		." left join %switkey_space a on a.uid=b.uid  where a.recommend=1 and IFNULL(b.is_close,0)=0 and shop_status=1 order by a.uid desc limit 0,6", TABLEPRE,TABLEPRE ), 1, 600 );
+// end 
+
 
 // 清空历史记录
 if (isset($hid_del_cookie)) {
@@ -234,6 +246,117 @@ function get_where($path) {
 			break;
 	}
 	$ord or $order_by = " order by (CASE WHEN substring( payitem_time, instr(a.payitem_time,'top')+4+LENGTH('top'),10)>UNIX_TIMESTAMP() THEN a.start_time ELSE 0 END) desc,a.start_time  desc";
+
+	return $where . $order_by;
+
+}
+
+
+// 获取查询条件前10
+function get_where_top($path) {
+	global $task_cash_arr, $search_key, $min, $max, $ord, $model_ids, $indus_id, $model_open,$province,$city,$area;
+	$url_info = keke_search_class::get_analytic_url ( $path );
+	isset ( $url_info ['F'] ) or $where = " (a.task_status=2 or a.task_status=3 or a.task_status=4 or a.task_status=5 or a.task_status=6 or a.task_status = 8)";
+	if (isset ( $url_info ['F'] )) {
+		switch ($url_info ['F']) {
+			case 2 :
+				$where = " a.task_status=2 ";
+				break;
+			case 3 :
+				$where = "a.task_status=3";
+				break;
+			case 6 :
+				$where = "a.task_status=6";
+				break;
+			case 8 :
+				$where = "a.task_status=8";
+				break;
+		}
+	}//task_list_search_cash
+	$indus_id and $where .= sprintf ( " and   a.indus_id = %d", $indus_id );
+	if($province&&$city&&$area){
+		$where .= sprintf(" and a.city = '%s' ",$province.','.$city.','.$area);
+	}
+	isset ( $url_info ['A'] ) and $where .= sprintf ( " and a.indus_pid = '%d'", $url_info ['A'] ); // 任务所属行业
+	! isset ( $_COOKIE ['keketask_list_search_cash'] ) && isset ( $url_info ['C'] ) and $where .= get_cash_where ( $task_cash_arr [$url_info ['C']] ['min'], $task_cash_arr [$url_info ['C']] ['max'] ); // 获取赏金
+	isset ( $url_info ['B'] ) && ! $model_ids and $where .= sprintf ( " and a.model_id = '%d'", intval ( $url_info ['B'] ) ); // 任务类型//
+	if (isset ( $url_info ['D'] )) {
+		switch ($url_info ['D']) { // 赏金托管
+			case 1 :
+				$where .= " and a.model_id = 4";
+				break;
+			case 2 :
+				$where .= " and a.model_id != 4";
+				break;
+			case 3 :
+				$where .= " and a.alipay_trust =1 ";
+				break;
+		}
+	}
+	if (isset ( $url_info ['E'] )) {
+		switch ($url_info ['E']) {
+			case 1 :
+				$where .= " and DATE_ADD(CURDATE(),INTERVAL  7 day) >= date(from_unixtime(a.end_time)) ";
+				break;
+			case 2 :
+				$where .= " and DATE_ADD(CURDATE(),INTERVAL 3 day) >= date(from_unixtime(a.end_time))  ";
+				break;
+			case 3 :
+				$where .= " and DATE_ADD(CURDATE(),INTERVAL 30 day) >= date(from_unixtime(a.end_time)) ";
+				break;
+			case 4 :
+				$time = time () + 24 * 3600;
+				$where .= " and a.end_time<$time ";
+				break;
+		}
+	}
+	$model_open and $where .= " and a.model_id in ( $model_open) ";
+	if (isset ( $url_info ['G'] )) {
+		switch ($url_info ['G']) { // 其他
+			case 1 :
+				$where .= " and FIND_IN_SET( '1', a.pay_item ) ";
+				break;
+			case 2 :
+				$where .= " and FIND_IN_SET( '2', a.pay_item ) and substring( payitem_time, instr(a.payitem_time,'top')+4+LENGTH('top'),10)>UNIX_TIMESTAMP() ";
+				break;
+			case 3 :
+				$where .= " and FIND_IN_SET( '3', a.pay_item ) and substring( a.payitem_time, instr(a.payitem_time,'urgent')+4+LENGTH('urgent'),10)>UNIX_TIMESTAMP() ";
+				break;
+			case 4 :
+				$where .= " and a.is_delay = 1 ";
+				break;
+		}
+	}
+	if (isset ( $_COOKIE ['keketask_list_search_cash'] )) {
+		intval ( $min ) or $min = 0;
+		intval ( $max ) or $max = 0;
+		if($path=="B4"||$path=="B5"||$path=="B12")
+		{
+			$where .= " and  a.task_cash <= ".$max." and a.task_cash >=".$min." ";
+		}
+		else
+		{
+// 			$min and $where .= " and a.task_cash>='$min' ";
+// 			$max and $where .= " and a.task_cash <= '$max' ";
+			$min && $max  and $where .= " and a.task_cash BETWEEN ".$min." and ".$max;
+		}
+		//$min && $max  and $where .= " and a.task_cash BETWEEN ".$min." and ".$max." or ( d.end_cove <= ".$max." and d.start_cove >=".$min.") ";
+	}
+	if (isset ( $url_info ['H'] )) {
+		switch ($url_info ['H']) {
+			case 1 :
+				$where .= " and a.task_id = '$search_key'";
+				break;
+			case 2 :
+				$where .= " and a.task_title like '%$search_key%'";
+				break;
+			case 3 :
+				$where .= " and a.username = '$search_key'";
+				break;
+		}
+	}
+
+	$order_by = " order by a.task_cash desc limit 0,10";
 
 	return $where . $order_by;
 
@@ -407,4 +530,13 @@ function get_model() {
 	return $res;
 }
 
+// add by heavenk
+$task_count = db_factory::get_one ( sprintf ( " select count(task_id) count from %switkey_task", TABLEPRE ), 1, 600 ); 
+$task_in = db_factory::get_one ( sprintf ( " select sum(fina_cash) cash from %switkey_finance where fina_action='task_bid' and fina_type='in' ", TABLEPRE ), 1, 600 ); 
+$register = db_factory::get_one ( sprintf ( " select count(uid) count from %switkey_member ", TABLEPRE ), 1, 600 ); 
+
+$task_count =  intval ( $task_count ['count'] );
+$task_in = number_format ( $task_in ['cash'], 2, ".", "," );
+$register =  intval ( $register ['count'] );
+// end
 require $kekezu->_tpl_obj->template ( $do );

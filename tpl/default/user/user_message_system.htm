@@ -2,7 +2,7 @@
 <link href="{SKIN_PATH}/css/user_center.css" rel="stylesheet" type="text/css">
 <div class="blank1"></div>
 <!--contain start-->
-<div class="yhcenter container_24">
+<div class="yhcenter container_24 {$_K['theme']}_style">
     	<!--  账号设置 begin -->
     	<div class="yhzhbox tabCon">
         	
@@ -11,15 +11,16 @@
             
             <div class="yhzhright">
                 <!--main content-->
-                <div class="">
-                            <!--header内容头部 start-->
-                            <header class="clearfix box_header">
-                                <h2 class="grid_4 alpha omega box_title t_c">{if $op=='inbox'}{$_lang['inbox']}{else}{$_lang['outbox']}{/if}</h2>
-                                
-                                <div class="clear">
-                                </div>
-                            </header>
-                            <!--header内容头部 end-->
+                    <div class="_gztt _gztt0 ">
+                        <div class="yh_xxnav">
+                            <span>{$_lang['send_message']}</span>
+                        </div>
+                    </div>
+                    <div class="xx_yh">
+                        
+                        <!--{template user/user_mes_nav}-->
+                        
+                        <div style="clear:both; height:15px;"></div>
                             <div class="data_list mar10" style="margin-bottom:0;">
                                 <form method="post" id="frm_msg" action="index.php?do={$do}&view={$view}&msg_type={$msg_type}">
                                 	<input type="hidden" name="op" value="{$op}" id="op">
@@ -114,14 +115,9 @@
            </div>
 
            </div>
-           
-            
-        </div>
-        
-        
-    </div>
+
     <!-- center end -->
-</div> 
+
 <script type="text/javascript">
   	In('form');
   function del(obj){
@@ -155,4 +151,4 @@
 <!--contain end-->
 
 <!--{template user/user_footer}-->
-<!--{template footer}-->
+<!--{template footer_dou}-->

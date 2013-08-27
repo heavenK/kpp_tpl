@@ -74,7 +74,7 @@ $lang = array(
 	'single_highest_fees'=>'单笔最高收费',
 	'user_single_charge_highest_amount'=>'用户提现单笔收费最高金额。超过5000的提现以此为收费标准。元',
 	'user_a_single_charge_ratio'=>'用户提现单笔收费比率%',
-    'keke_alipay_tenpay_notice'=>'客客携手支付宝财付通开通绿色通道，不定期开展业务活动详情请',
+    'keke_alipay_tenpay_notice'=>'携手支付宝财付通开通绿色通道，不定期开展业务活动详情请',
     'click'=>'点击',
     'this_system_has_open_alipay'=>'本系统已开通支付宝担保交易，请申请业务后再进行配置',
 );	
