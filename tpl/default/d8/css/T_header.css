@@ -1,6 +1,6 @@
 .you                { width:222px; height:220px; top:0; right:0; position: fixed; z-index:999999}
 .you_xia                { width:220px; height:126px; top:316px; right:0; position:fixed; z-index:999999}
-.weweima            { width:99px; height:97px; position:absolute; top:55px; right:-103px;}
+.weweima            { width:101px; height:101px; position:fixed; top:250px; left:0;}
 .header				{width:1000px; float:left; position:relative;}
 .logo				{width:159px; height:188px; float:left; position:absolute; left:-5px;}
 .logo img			{width:159px; height:188px;}

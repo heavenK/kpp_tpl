@@ -2,7 +2,7 @@
 <link href="{SKIN_PATH}/css/user_center.css" rel="stylesheet" type="text/css">
 <div class="blank1"></div>
 <!--contain start-->
-<div class="yhcenter container_24">
+<div class="yhcenter container_24 {$_K['theme']}_style">
     	<!--  账号设置 begin -->
     	<div class="yhzhbox tabCon">
         	
@@ -33,7 +33,7 @@
                                 <!--messages消息 end-->
                                 <div class="">
                                     <!--from表单 start-->
-                                    <div class="clearfix box pad10">
+                                    <div class="clearfix pad10">
                                         <form action="{$url}#userCenter" method="post" id="frm">
                                             <input type="hidden" name="page" value="{$page}">
                                             <div class="rowElem clearfix">
@@ -57,13 +57,6 @@
                                                         {/loop}
                                                     </select>
                                                 </div>
-                                                <div class="fl_l">
-                                                    <select class="fl_l " id="frm_block" name="page_size">
-                                                        <option value="10" {if $page_size=='10'}selected="selected"{/if}>{$_lang['page_size']}10{$_lang['tiao']} </option>
-                                                        <option value="20" {if $page_size=='20'}selected="selected"{/if}>{$_lang['page_size']}20{$_lang['tiao']} </option>
-                                                        <option value="30" {if $page_size=='30'}selected="selected"{/if}>{$_lang['page_size']}30{$_lang['tiao']} </option>
-                                                    </select>
-                                                </div>
                                                 <div class="fl_r">
                                                     <button class="block" type="submit" name="sbt_search" value="{$_lang['search']}">
                                                         <span class="icon magnifier"></span>{$_lang['search']}
@@ -77,7 +70,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th scope="col" width="50">
-                                                            {$_lang['task_id']}
+                                                            编号
                                                         </th>
                                                         <th scope="col">
                                                             {$_lang['task_title']}

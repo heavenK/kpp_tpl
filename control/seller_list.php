@@ -22,7 +22,7 @@ $where = get_where ( $path );
 
 
 // add by heavenK
-$service_arr_top = db_factory::query ( $sql . " order by if(b.seller_total_num>0,b.seller_good_num/b.seller_total_num,0) desc limit 0,10" );
+$service_arr_top = db_factory::query ( $sql . " order by if(b.seller_total_num>0,b.seller_good_num/b.seller_total_num,0) desc limit 0,6" );
 $final_task = kekezu::get_classify_indus();
 $top_s_4 = db_factory::query ( sprintf ( "select a.username,a.uid,a.indus_id,a.indus_pid,a.seller_good_num,a.seller_total_num,b.shop_name from %switkey_shop b "
 		." left join %switkey_space a on a.uid=b.uid  where a.recommend=1 and IFNULL(b.is_close,0)=0 and shop_status=1 order by a.uid desc limit 0,6", TABLEPRE,TABLEPRE ), 1, 600 );
@@ -35,6 +35,11 @@ $task_count =  intval ( $task_count ['count'] );
 $task_in = number_format ( $task_in ['cash'], 2, ".", "," );
 $register =  intval ( $register ['count'] );
 
+
+// 最新威客
+	foreach($service_arr_top as $key => $val){
+		$service_arr_top[$key]['seller_level'] = unserialize($val['seller_level']);
+	}
 // end 
 
 

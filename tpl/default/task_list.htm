@@ -107,7 +107,7 @@
     	<style>
 			.rclx	{ height:40px;}
 		</style>
-    	<div class="jquery02">
+    	<div class="jquery02" style="height:auto;">
             <div class="rclx">
                 <em>{$_lang['task_model']}</em>
                 <div class="selectbox_dw">
@@ -157,7 +157,7 @@
                 <em>所在地区：</em>
                 <div class="selectbox_dw">
                 <select name="province" id="province"></select><select name="city" id="city"></select><select name="area" id="area"></select>
-                <a class="button" style="" onclick="search_address()"><span class="magnifier icon"></span>{$_lang['search']}　</a>
+                <input type="submit" class="input_3" style="color:#fff; font-weight:bold;" name="" onclick="search_address()" value="筛选">
                 </div>
             </div>
             <div class="rclx" style="width:600px;">
@@ -176,7 +176,7 @@
             
             <script>
 			$("#task_model,#task_reward,#task_status").change(function(e) {
-					location.href=$(this).val();
+					location.href=$(this).val()+"#jquery";
 				});
 			</script>
     	</div>
@@ -213,7 +213,7 @@
                                             </dd>
                                              
                                             {loop $task_list_arr $k $v} 
-                                             <dd class="po_re pad10">
+                                             <dd class="po_re pad10" style="height:50px;">
                                                 <ul>
                                                     <li class="w4 t_l">
                                                         <p class="font14 cf60">
@@ -228,26 +228,24 @@
                                                        &nbsp;
                                                        		<!-- <span class="block m_h">[#{$v['task_id']}]</span> -->
 															<!--{eval $time = time();}-->
-                                                            {if $v['top_time']>$time&&$item_config['2']['small_pic']} <img src="{$_K['siteurl']}/{$item_config['2']['small_pic']}" alt="{$_lang['top']}" title="{$_lang['top']}">{/if}
-                                                           {if $v['urgent_time']>$time&&$item_config['3']['small_pic']}<img src="{$_K['siteurl']}/{$item_config['3']['small_pic']}" alt="{$_lang['hurry_up']}" title="{$_lang['hurry_up']}">{/if}
-														   {if $v['pay_item'] == '1'} <img src="{$_K['siteurl']}/{$item_config['1']['small_pic']}" alt="{$_lang['hide']}" title="{$_lang['hide']}">{/if}
-                                                     	   {if stristr($v['pay_item'],'4')&&$item_config['4']['small_pic']}<img src="{$_K['siteurl']}/{$item_config['4']['small_pic']}" alt="{$_lang['map']}" title="{$_lang['map']}">{/if}
-														   {if stristr($v['pay_item'],'5')&&$item_config['5']['small_pic']}<img src="{$_K['siteurl']}/{$item_config['5']['small_pic']}" alt="屏蔽搜索引擎" title="屏蔽搜索引擎">{/if}
-														   {if $v['is_top'] == '1'}<img src="{$_K['siteurl']}/resource/img/ico/tj.png" alt="{$_lang['recommend']}" title="{$_lang['recommend']}">{/if}
-														   {if $v['task_union'] == '2'}<img src="{$_K['siteurl']}/resource/img/ico/lm.png" alt="{$_lang['union']}" title="{$_lang['union']}">{/if}
-														   {if $v['is_delay'] == '1'}<img src="{$_K['siteurl']}/resource/img/ico/yq.png" alt="{$_lang['delay']}" title="{$_lang['delay']}">{/if}
+                                                            {if $v['top_time']>$time&&$item_config['2']['small_pic']} <img src="{$_K['siteurl']}/{$item_config['2']['small_pic']}" alt="{$_lang['top']}" >{/if}
+                                                           {if $v['urgent_time']>$time&&$item_config['3']['small_pic']}<img src="{$_K['siteurl']}/{$item_config['3']['small_pic']}" alt="{$_lang['hurry_up']}" >{/if}
+														   {if $v['pay_item'] == '1'} <img src="{$_K['siteurl']}/{$item_config['1']['small_pic']}" alt="{$_lang['hide']}">{/if}
+                                                     	   {if stristr($v['pay_item'],'4')&&$item_config['4']['small_pic']}<img src="{$_K['siteurl']}/{$item_config['4']['small_pic']}" alt="{$_lang['map']}">{/if}
+														   {if stristr($v['pay_item'],'5')&&$item_config['5']['small_pic']}<img src="{$_K['siteurl']}/{$item_config['5']['small_pic']}" alt="屏蔽搜索引擎">{/if}
+														   {if $v['is_top'] == '1'}<img src="{$_K['siteurl']}/resource/img/ico/tj.png" alt="{$_lang['recommend']}" >{/if}
+														   {if $v['task_union'] == '2'}<img src="{$_K['siteurl']}/resource/img/ico/lm.png" alt="{$_lang['union']}" >{/if}
+														   {if $v['is_delay'] == '1'}<img src="{$_K['siteurl']}/resource/img/ico/yq.png" alt="{$_lang['delay']}" >{/if}
                                                        </p>
                                                     </li>
                                                     <li class="w2 t_c pt_15">$v['view_num']/$v['work_num']</li>
                                                     <li class="w2 t_c">
-                                                       <p>{if isset($where_arr)}{$where_arr['B'][$v['model_id']]['model_name']}{/if}<br/><!--{eval echo get_wb_platform($v['task_id'])}--></p>
-                                                       <p class="cf60">
-                                                       <!--{eval    $b = $v['task_status']; $end_time = $end_time_arr[$b]['time'];}-->
+                                                       <p>{if isset($where_arr)}{$where_arr['B'][$v['model_id']]['model_name']}{/if}<!--{eval echo get_wb_platform($v['task_id'])}--></p>
+                                                       <p class="cf60"><!--{eval    $b = $v['task_status']; $end_time = $end_time_arr[$b]['time'];}-->
 														<!--{eval if(isset($end_time)){
-															echo keke_search_class::task_time_desc($v['task_status'],$v[$end_time]);
+															echo kekezu::cutstr(keke_search_class::task_time_desc($v['task_status'],$v[$end_time]),22);
 														}
-														}-->
-                                                        </p>
+														}--></p>
                                                     </li>
                                                     <li class="w2 t_c  pt_5">
                                                         <a href="#" class="button" rel="nofollow">我有类似需要</a>
@@ -450,7 +448,7 @@
 				        var city = $("#city").val();
 						var area = $("#area").val();
 						if(province&&city&&area){
-							window.location.href = "index.php?do=task_list&path=$path&province="+province+"&city="+city+"&area="+area;
+							window.location.href = "index.php?do=task_list&path=$path&province="+province+"&city="+city+"&area="+area+"#jquery";
 						}
 				   }
                     

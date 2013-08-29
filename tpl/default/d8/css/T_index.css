@@ -99,7 +99,7 @@ a{text-decoration:none;}
 .ban_sright{float:right; width:754px; overflow:hidden; padding-top:15px; padding-left:40px; border-left:1px #d9d9d9 solid;}
 .ban_snav{ width:758px; height:32px; border-left:1px #e1e1e1 solid; border-top:1px #e1e1e1 solid; border-bottom:1px #e1e1e1 solid;}
 .ban_snav ul{ list-style:none;}
-.ban_snav ul li{ float:left; font-size:18px; line-height:32px; margin:0px 8px;}
+.ban_snav ul li{ float:left; font-size:16px; line-height:30px; margin:0px 8px;}
 .ban_snav ul li a{color:#000;}
 .ban_stu{ width:750px; height:184px; margin-left:225px; }
 .ban_stuy{ width:760px;height:auto;overflow:hidden;zoom:1;}
@@ -109,7 +109,7 @@ a{text-decoration:none;}
 .ban_stu00right span{  font-size:14px; }
 .ban_stu00right p{ font-size:12px; color:#666;}
 .ban_m{ width:74px; height:22px; border:1px #dcdcdc solid; line-height:22px; font-size:20px; color:#F00; text-align:center; }
-.ban_m a{line-height:22px; font-size:17px; color:#878787; font-weight:500; text-align:center; }
+.ban_m a{line-height:20px; font-size:14px; color:#878787; font-weight:500; text-align:center; }
 .ban_m a:hover{color:#48b78d;}
 .ban_t{ width:91px; height:67px; position:relative; top:125px; left:40px; font-size:22px; text-align:center; }
 .ban_t p{line-height:33px; color:#006630;}
@@ -136,10 +136,10 @@ a{text-decoration:none;}
 .b_bnsj{width:130px; height:280px; _height:302px; border-right:1px solid #b4b4b2; background:url(../images/bnsj_bg1.gif) no-repeat top center; float:left;}
 .b_bnsj h2{ padding:60px 0 0 0; text-align:center; color:#006934; font-weight:normal;}
 .b_bnsj h3{font-size:16px; padding:35px 0 0 0; _padding:15px 0 0 0; text-align:center; color:#fff;}
-.b_bnsj h3 a{font-size:16px; color:#fff;}
+.b_bnsj h3 a{font-size:14px; color:#fff;}
 .b_bnsj h4{width:100px; height:30px; line-height:30px; font-size:15px; margin:35px 0 0 15px; text-align:center; color:#000; background:#48b68d;}
-.b_bnsj h4 a{font-size:16px; color:#000; display:block;}
-.b_bnsj h4 a:hover{font-size:15px; color:#fff; display:block;}
+.b_bnsj h4 a{font-size:14px; color:#000; display:block;}
+.b_bnsj h4 a:hover{font-size:14px; color:#fff; display:block;}
 .b1_bnsj{width:353px; overflow:hidden; float:left;}
 .b1_bnsj p{text-align:center;}
 .b1_bnsj p img{width:105px; height:105px; padding:5px; background:#d4eae2; margin:10px 10px 0 10px;}

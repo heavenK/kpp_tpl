@@ -12,6 +12,16 @@
 <meta name="apple-mobile-web-app-status-bar-style” content=black" /> 
 <meta name="author" content="kekezu" />
 <meta name="copyright" content="{$basic_config['copyright']}" />
+<script type="text/javascript">
+	var SITEURL= "{$_K['siteurl']}",
+	    SKIN_PATH = '{SKIN_PATH}',
+		LANG       = '{$language}',
+	    INDEX      = '{$do}',
+	    CHARSET    = "{$_K['charset']}";
+</script>
+
+
+<link href="resource/js/jqplugins/tipsy/tipsy.css" rel="stylesheet">
 
 
 
@@ -24,10 +34,8 @@
 <script type="text/javascript" src="/tpl/default/d8/js/jQuery.blockUI.js"></script>
 <script type="text/javascript" src="/tpl/default/d8/js/jquery.SuperSlide.js"></script>
 
-
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/style.css">
 <link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/T_header.css">
-<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/T_index.css">
-<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/T_rwzx.css">
 <link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/T_footer.css">
 
 
@@ -69,13 +77,11 @@ function ieGo(){
 			var ua = navigator.userAgent.toLowerCase();
 			var version = parseInt(ua.match(/msie ([\d.]+)/)[1]);
 			if(version <= 6) {
-				alert("请更新更高级版本")
 				location.href='default.html'; 
 			}
 		}
 }
 </script>
-
 
 
 <!--豆豆导航JS-->
@@ -93,8 +99,7 @@ function ieGo(){
 	   }
 	  );
 	});
-</script> 
-
+</script>
 <!--会员登陆JS-->
 <script language="javascript">
 	$(function(){
@@ -112,108 +117,63 @@ function ieGo(){
 	});
 </script> 
 
-<!--最新动态JS-->
-<script type="text/javascript">
-	function show(id){
-		document.getElementById(id).style.display="";
 
-	}
-</script>
-<script type="text/javascript">
-	function hide(id){
-		document.getElementById(id).style.display="none";
-	}
-</script>
+<style>
+/*** 图片轮换 防止冲突 ***/
+.rczl_lunhuan{width:958px; overflow:hidden;}
+.leftLoop1{ overflow:hidden; position:relative;}
+.leftLoop1 .hd{ overflow:hidden;}
+.leftLoop1 .hd .prev,.leftLoop1 .hd .next{display:block;  width:35px; height:38px; float:right; overflow:hidden;  
+ cursor:pointer; background:url(images/icoLeft.png) no-repeat; position:absolute; z-index:1000; top:72px; right:0}
+.leftLoop1 .hd .next{ background:url(images/icoright.png) no-repeat; position:absolute; z-index:1000; top:72px; left:0}
+.leftLoop1 .hd ul{ float:right; overflow:hidden; zoom:1; margin-top:10px;  }
+.leftLoop1 .hd ul li{ position:relative; _display:inline; float:left;  width:10px; height:10px; overflow:hidden; background:#ccc; margin-right:10px; text-indent:-999px; cursor:pointer;
+	-webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; behavior: url(../PIE.htc);}
+.leftLoop1 .hd ul li.on{ background:#f00;  }
+.leftLoop1 .bd{width:845px; padding:10px; margin:0 auto;   }
+.leftLoop1 .bd ul{ overflow:hidden; zoom:1; }
+.leftLoop1 .bd ul li{ margin:0 18px; text-align:center; float:left; _display:inline; overflow:hidden;  }
+.picList1{width:860px;}
+.picList1 li{ position:relative;}
+.picList1 .pic{ text-align:center; line-height:0px; padding:10px; border:1px solid #e8e8e8; }
+.picList1 .pic img{ width:113px; height:113px;}
+.picList1 .title{ line-height:24px;}
+.picList1 .title a{ line-height:24px; color:#000;}
+.vip_biaozhi{position:absolute; left:0; top:0;}
 
-<!-- VIP-js -->
-<script type="text/javascript">
-$(document).ready(function (){
-	
-	//点击小图切换大图
-	$("div[name=thumbnail] li a").click(function(){
-		$(this).parent().parent().parent().parent().siblings('.zoompic').find('img').hide().attr({ "src": $(this).attr("href"), "title": $("> img", this).attr("title") });
-		$(this).parent().parent().parent().find("li.current").removeClass("current");
-		$(this).parents("li").addClass("current");
-		return false;
-	});
-	$(".zoompic>img").load(function(){
-		$(".zoompic>img:hidden").show();
-	});
-	
-	//小图片左右滚动
-	var slider = $('.slider ul');
-	var slider_child_l = $('.slider ul li').length;
-	var slider_width = $('.slider ul li').width();
-	//$slider.width($slider_child_l * $slider_width);
-	
-	var slider_count = 0;
-	
-	if (slider_child_l < 5) {
-		$('#btn-right').css({cursor: 'auto'});
-		$('#btn-right').removeClass("dasabled");
-	}
-	
-	$('#btn-right').click(function() {
-		if (slider_child_l < 5 || slider_count >= slider_child_l - 5) {
-			return false;
-		}
-		
-		slider_count++;
-		slider.animate({left: '-=' + slider_width + 'px'}, 'fast');
-		slider_pic();
-	});
-	
-	$('#btn-left').click(function() {
-		if (slider_count <= 0) {
-			return false;
-		}
-		slider_count--;
-		slider.animate({left: '+=' + slider_width + 'px'}, 'fast');
-		slider_pic();
-	});
-	
-	function slider_pic() {
-		if (slider_count >= slider_child_l - 5) {
-			$('#btn-right').css({cursor: 'auto'});
-			$('#btn-right').addClass("dasabled");
-		}
-		else if (slider_count > 0 && slider_count <= slider_child_l - 5) {
-			$('#btn-left').css({cursor: 'pointer'});
-			$('#btn-left').removeClass("dasabled");
-			$('#btn-right').css({cursor: 'pointer'});
-			$('#btn-right').removeClass("dasabled");
-		}
-		else if (slider_count <= 0) {
-			$('#btn-left').css({cursor: 'auto'});
-			$('#btn-left').addClass("dasabled");
-		}
-	}
-	
-});
-</script>
-
+/*****焦点图轮换 *****/
+.banner						{ width:517px; height:256px; margin:0 auto; margin-top:0px; _margin-top:0; display:inline; float:left;}
+.picList li					{ width:517px; margin:0 auto;}
+.picList img				{ width:517px; height:256px; }
+.picList a:hover img		{ border-color:#f00;}
+.picList .title				{ line-height:24px; }
+.leftLoop					{ position:relative; width:566px; }
+.leftLoop .hd				{ overflow:hidden; }
+.leftLoop .hd .prev,.leftLoop .hd .next{display: block;width: 18px;float: right;overflow: hidden;cursor: pointer;position: absolute;z-index: 1000;top: 111px;right: 3px}
+.leftLoop .hd .next			{ position: absolute;z-index: 1000;top: 111px;left: 3px}
+.next 						{ position:absolute; top:0; left:0;}
+.leftLoop .hd ul			{ float:right; overflow:hidden; zoom:1; position:absolute; top:428px; right:50px; z-index:1000;}
+.leftLoop .hd ul li			{ position:relative; _display:inline; float:left; width:15px; overflow:hidden; background:url(../images/pagination.png) no-repeat; background-position:0 -18px; margin-right:10px; text-indent:-999px; cursor:pointer;}
+.leftLoop .hd ul li.on		{ background:url(../images/pagination.png) no-repeat; background-position:0 -1px}
+.leftLoop .bd				{ width:517px; height:256px; margin:0 auto;}
+.leftLoop .bd ul			{ overflow:hidden; zoom:1; }
+.leftLoop .bd ul li			{ margin:0 auto; text-align:center; float:left; _display:inline; overflow:hidden;}
+.picList img 				{ width:517px; height:256px;}
+</style>
 
 </head>
 <body>
-<div class="you"><a href="#"><img src="/tpl/default/d8/images/you.gif"  width="222" height="220"/></a></div>
-<div class="you_xia"><img src="/tpl/default/d8/images/360.png"  width="220" height="126" border="0" usemap="#Map"/>
-  <map name="Map" id="Map">
-    <area shape="rect" coords="1,1,222,48" href="#" />
-    <area shape="rect" coords="58,99,135,117" href="#" title="QQ客服" />
-  </map>
-</div>
 
-<div class="box">
+<div id="box">
 
-<div id="append_parent">
-</div>
+    <div id="append_parent">
+    </div>
+    
+    <!--无刷新临时替换层-->
+    <div id="noflushwarper">
+        <div id="noflushwarper_sub"></div>
+    </div>
 
-<!--无刷新临时替换层-->
-<div id="noflushwarper">
-    <div id="noflushwarper_sub"></div>
-</div>
-
-<div class="weweima"><img src="/tpl/default/d8/images/erweima.jpg"  width="99" height="97"/></div>
 	<div class="header"><!--顶部导航-->
         <div class="logo"><a href="index.php"><img src="/tpl/default/d8/images/logo.jpg"  width="159" height="188"/></a></div>
         <div class="logo_r">
@@ -261,6 +221,7 @@ $(document).ready(function (){
 			</div>
           
             <div class="top_b">
+            	<div class="top_tit"><img src="/tpl/default/d8/images/vip01.jpg" />专区</div>
                 <div class="denglu">
                		{if !$uid&&!$oauth_user_info}
                 	<div class="hydl">
@@ -340,24 +301,22 @@ $(document).ready(function (){
                 <i><b>交易金额：</b><span>￥{$task_in}</span></i>
                 <i><b>威客数量： </b><span>{$register}</span></i>
             </div>
-			
-            <div class="menu">
+             
+             <div class="menu">
                 <ul>
-                  <li {if $do=='index'}class="h_r"{/if}><a href="index.php" class="hide">首页</a></li>
+                  <li {if $view=='index'}class="h_r"{/if}><a href="index.php?do=vip_info&view=index" class="hide">VIP首页</a></li>
                   <li>|</li>
-                  <li {if $do=='task_list'}class="h_r"{/if}><a href="index.php?do=task_list" class="hide">任务中心</a></li>
+                  <li {if $view=='info'}class="h_r"{/if}><a href="index.php?do=vip_info&view=info" class="hide">特权介绍</a></li>
                    <li>|</li>
-                  <li {if $do=='seller_list'}class="h_r"{/if}><a href="index.php?do=seller_list" class="hide">人才宝库</a></li>
+                  <li><a href="#" class="hide">赚钱故事</a></li>
                    <li>|</li>
-                  <li {if $do=='vip_info'}class="h_r"{/if}><a href="index.php?do=vip_info" class="hide">VIP工作室</a></li>
+                  <li><a href="#" class="hide">常见问题</a></li>
                    <li>|</li>
-                  <li {if $do=='222'}class="h_r"{/if}><a href="#" class="hide">豆豆学堂</a></li>
+                  <li><a href="#" class="hide">开通和管理</a></li>
                    <li>|</li>
-                  <li><a href="#" class="hide">豆豆论坛</a></li>
-                   <li>|</li>
-                  <li><a href="#" class="hide">豆豆游戏</a></li>
-                  <li>|</li>
                 </ul>
              </div>
+             
         </div>
     </div>
+    <div class="clear"></div>

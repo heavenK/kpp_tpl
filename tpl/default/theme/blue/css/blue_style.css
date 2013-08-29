@@ -414,7 +414,7 @@ body {
   color: #2f549f;
 }
 .blue_style .data_list .data_table thead {
-  background: #2f549f;
+  background: #ccc;
 }
 .blue_style .ui-widget-header {
   background: #2f55a0 /*{bgColorHeader}*/;
