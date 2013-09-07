@@ -163,7 +163,12 @@ function ieGo(){
 
 </head>
 <body>
-
+<div class="you_xia"><img src="/tpl/default/d8/images/360.png"  width="220" height="126" border="0" usemap="#Map"/>
+  <map name="Map" id="Map">
+    <area shape="rect" coords="1,1,222,48" href="#" />
+    <area shape="rect" coords="58,99,135,117" href="#" title="QQ客服" />
+  </map>
+</div>
 <div id="box">
 
     <div id="append_parent">
@@ -179,10 +184,10 @@ function ieGo(){
         <div class="logo_r">
 			<div class="logo_top_nav">
             	<div class="logo_top_nav_t">
-                    <a href="#">豆豆游戏</a>
+                    <a href="index.php?do=user&view=setting">个人中心</a>
                     <a href="index.php?do=release">发布任务</a>
                     <a href="#" id="daohang">豆豆导航</a>
-                    <a href="index.php?do=user&view=setting">个人中心</a>
+                    <a href="#">豆豆游戏</a>
                     <a href="index.php?do=help">帮助中心</a>
           		</div>
           		<div class="rukou_nav">
@@ -211,7 +216,7 @@ function ieGo(){
                             <li><a href="shitu.html">师徒关系</a></li>
                             <li><a href="#">豆豆学堂</a></li>
                             <li><a href="#">豆豆商圈</a></li>
-                            <li><a href="#">豆豆论坛</a></li>
+                            <li><a href="#">豆豆江湖</a></li>
                             <li><a href="#">诚信保障</a></li>
                             <li><a href="#">豆豆游戏</a></li>
                             <li><a href="#">网站地图</a></li>
@@ -225,15 +230,15 @@ function ieGo(){
                 <div class="denglu">
                		{if !$uid&&!$oauth_user_info}
                 	<div class="hydl">
-                    	<a href="#" id="huiyuan">会员登录<b style="font-size:14px;">▼</b></a>
+                    	<a href="index.php?do=login" id="huiyuan"  class="huiyuan">会员登录<b style="font-size:14px;">▼</b></a>
                         <i></i>
-                    	<a href="index.php?do=register" >免费注册</a>
+                    	<a href="index.php?do=register" class="zhuce">免费注册</a>
                     </div>
                     {else}
                     <div class="hydl">
-                    	<a href="index.php?do=user&view=setting">{if $username}{$username}{elseif $oauth_user_info}{$oauth_user_info['account']}{/if}</a>
+                    	<a href="index.php?do=user&view=setting"  class="huiyuan">{if $username}{$username}{elseif $oauth_user_info}{$oauth_user_info['account']}{/if}</a>
                         <i></i>
-                    	<a href="index.php?do=logout" >{$_lang['logout']}</a>
+                    	<a href="index.php?do=logout"  class="zhuce">{$_lang['logout']}</a>
                     </div>
                     {/if}
                     <div class="dl_t">
@@ -304,15 +309,15 @@ function ieGo(){
              
              <div class="menu">
                 <ul>
+                  <li><a href="index.php" class="hide">豆8首页</a></li>
+                  <li>|</li>
                   <li {if $view=='index'}class="h_r"{/if}><a href="index.php?do=vip_info&view=index" class="hide">VIP首页</a></li>
                   <li>|</li>
                   <li {if $view=='info'}class="h_r"{/if}><a href="index.php?do=vip_info&view=info" class="hide">特权介绍</a></li>
                    <li>|</li>
-                  <li><a href="#" class="hide">赚钱故事</a></li>
+                  <li {if $view=='question'}class="h_r"{/if}><a href="index.php?do=vip_info&view=question" class="hide">常见问题</a></li>
                    <li>|</li>
-                  <li><a href="#" class="hide">常见问题</a></li>
-                   <li>|</li>
-                  <li><a href="#" class="hide">开通和管理</a></li>
+                  <li><a href="index.php?do=vip_info&view=info" class="hide">开通和管理</a></li>
                    <li>|</li>
                 </ul>
              </div>

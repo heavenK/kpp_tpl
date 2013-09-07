@@ -12,7 +12,6 @@ $member_id = intval ( $member_id );
 $language = $kekezu->_lang;
 keke_lang_class::package_init ( $do );
 $member_info = kekezu::get_user_info ( $member_id );
-
 //店铺信息
 $shop_info = db_factory::get_one(sprintf("select * from %switkey_shop where uid = '%d'",TABLEPRE,$member_id));
 
@@ -113,7 +112,8 @@ if ($uid == $shop_info ['uid'] && $ac == 'custom') {
 }
 
 $type = 'p';
-$view = 'store';
+//$view = 'store';
+if(!$view) $view = 'index';
 
 $ip = kekezu::get_ip ();
 
@@ -127,4 +127,13 @@ keke_lang_class::loadlang ( "{$type}_{$view}" );
 $footer_load = false;
 //空间地址
 $p_url = kekezu::build_space_url($member_id);
+
+//统计
+$task_count = db_factory::get_one ( sprintf ( " select count(task_id) count from %switkey_task", TABLEPRE ), 1, 600 ); 
+$task_in = db_factory::get_one ( sprintf ( " select sum(fina_cash) cash from %switkey_finance where fina_action='task_bid' and fina_type='in' ", TABLEPRE ), 1, 600 ); 
+$register = db_factory::get_one ( sprintf ( " select count(uid) count from %switkey_member ", TABLEPRE ), 1, 600 ); 
+
+$task_count =  intval ( $task_count ['count'] );
+$task_in = number_format ( $task_in ['cash'], 2, ".", "," );
+$register =  intval ( $register ['count'] );
 require S_ROOT . "control/space/{$type}_{$view}.php";

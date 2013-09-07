@@ -4,6 +4,7 @@ class keke_register_class {
 	protected $_space_obj;
 	protected $_member_obj;
 	protected $_sys_config;
+	protected $_reg_uid;
 	protected $_reg_username;
 	protected $_reg_type;
 	public $_reg_pwd;
@@ -24,14 +25,14 @@ class keke_register_class {
 		$this->_reg_ip = kekezu::get_ip ();
 		$this->_reg_type = intval ( $reg_type );
 	}
-	function user_register($reg_username, $reg_pwd, $reg_email, $reg_code, $check_code = true, $old_pwd = null) {
+	function user_register($reg_username, $reg_pwd, $reg_email, $reg_code, $check_code = true, $old_pwd = null, $reg_uid = null) {
 		global $kekezu;
 		global $_lang;
-		$reg_uid = null;
 		$this->_reg_username = $reg_username;
 		$this->_reg_pwd = $reg_pwd;
 		$this->_reg_email = $reg_email;
 		$this->_check_code = $check_code;
+		$this->_reg_uid = $reg_uid;
 		$this->check_all ( $reg_username, $reg_email, $reg_code );
 		switch ($kekezu->_sys_config ['user_intergration']) {
 			case 2 :
@@ -228,6 +229,17 @@ class keke_register_class {
 		$limit_username = keke_user_class::user_getprotected ();
 		if ($limit_username && in_array ( $check_username, $limit_username )) {
 			return $_lang ['register_fail_limit_register'];
+		}
+		return true;
+	}
+	function check_uid($reg_uid) {
+		global $_lang;
+		$check_uid = trim ( $reg_uid );
+		if (empty ( $check_uid )) {
+			return $_lang ['username_is_empty'];
+		}
+		if (kekezu::check_user_by_name ( $check_uid, 0 )) {
+			return $_lang ['user_has_exist'];
 		}
 		return true;
 	}

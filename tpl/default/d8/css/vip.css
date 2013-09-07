@@ -12,6 +12,7 @@ body{background:url(../images/header_bg1.jpg) repeat-x #fff;}
 .logo_top_nav{background:url(../images/logo_nav1.jpg) no-repeat;}
 .rukou_nav{ background:#a47436; box-shadow:2px 2px 3px #b28244}
 .gz ul li a:hover{background:#f2e49b; color:#000;}
+.rukouOver2{ filter:alpha(opacity=50); -moz-opacity:0.5; -khtml-opacity: 0.5; opacity: 0.5;}
 
 .slideTxtBox				{ width:100%; text-align:center;}
 .slideTxtBox .hd			{ height:35px; line-height:35px; background:url(../images/vip36.jpg) repeat-x; position:relative; margin-bottom:5px;}
@@ -29,8 +30,16 @@ body{background:url(../images/header_bg1.jpg) repeat-x #fff;}
 .infoList li a:hover		{ font-size:12px; color:#b80002; }
 .infoList li .date			{ float:right; color:#231b19; }
 .gengduo a					{ text-align:right; display:inline; color:#def3ec; margin-top:5px; float:right; }
-
+.zhuce:hover				{background:none;}
 
 .menu ul li.h_r a.hide{color:#fff;}
 .menu ul li a.hide{color:#000;}
 .menu .hide{width:100px;}
+
+
+.picList img{height:350px;}
+.leftLoop .bd{height:350px;}
+.banner{height:350px;}
+.leftLoop .hd ul{top:320px;}
+.teacher_tdlist{background:url(../images/vip36.jpg) repeat-x;}
+.teacher_tdlist h1{height:34px; line-height:34px;}

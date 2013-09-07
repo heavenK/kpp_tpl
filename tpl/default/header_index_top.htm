@@ -195,13 +195,13 @@ $(document).ready(function (){
 
 </head>
 <body>
-<div class="you"><a href="#"><img src="/tpl/default/d8/images/you.gif"  width="222" height="220"/></a></div>
 <div class="you_xia"><img src="/tpl/default/d8/images/360.png"  width="220" height="126" border="0" usemap="#Map"/>
   <map name="Map" id="Map">
     <area shape="rect" coords="1,1,222,48" href="#" />
     <area shape="rect" coords="58,99,135,117" href="#" title="QQ客服" />
   </map>
 </div>
+
 
 <div class="box">
 
@@ -213,16 +213,15 @@ $(document).ready(function (){
     <div id="noflushwarper_sub"></div>
 </div>
 
-<div class="weweima"><img src="/tpl/default/d8/images/erweima.jpg"  width="99" height="97"/></div>
 	<div class="header"><!--顶部导航-->
         <div class="logo"><a href="index.php"><img src="/tpl/default/d8/images/logo.jpg"  width="159" height="188"/></a></div>
         <div class="logo_r">
 			<div class="logo_top_nav">
             	<div class="logo_top_nav_t">
-                    <a href="#">豆豆游戏</a>
+                    <a href="index.php?do=user&view=setting">个人中心</a>
                     <a href="index.php?do=release">发布任务</a>
                     <a href="#" id="daohang">豆豆导航</a>
-                    <a href="index.php?do=user&view=setting">个人中心</a>
+                    <a href="#">豆豆游戏</a>
                     <a href="index.php?do=help">帮助中心</a>
           		</div>
           		<div class="rukou_nav">
@@ -251,7 +250,7 @@ $(document).ready(function (){
                             <li><a href="shitu.html">师徒关系</a></li>
                             <li><a href="#">豆豆学堂</a></li>
                             <li><a href="#">豆豆商圈</a></li>
-                            <li><a href="#">豆豆论坛</a></li>
+                            <li><a href="#">豆豆江湖</a></li>
                             <li><a href="#">诚信保障</a></li>
                             <li><a href="#">豆豆游戏</a></li>
                             <li><a href="#">网站地图</a></li>
@@ -264,15 +263,15 @@ $(document).ready(function (){
                 <div class="denglu">
                		{if !$uid&&!$oauth_user_info}
                 	<div class="hydl">
-                    	<a href="#" id="huiyuan">会员登录<b style="font-size:14px;">▼</b></a>
+                    	<a href="index.php?do=login" id="huiyuan"  class="huiyuan">会员登录<b style="font-size:14px;">▼</b></a>
                         <i></i>
-                    	<a href="index.php?do=register" >免费注册</a>
+                    	<a href="index.php?do=register" class="zhuce">免费注册</a>
                     </div>
                     {else}
                     <div class="hydl">
-                    	<a href="index.php?do=user&view=setting">{if $username}{$username}{elseif $oauth_user_info}{$oauth_user_info['account']}{/if}</a>
+                    	<a href="index.php?do=user&view=setting"  class="huiyuan">{if $username}{$username}{elseif $oauth_user_info}{$oauth_user_info['account']}{/if}</a>
                         <i></i>
-                    	<a href="index.php?do=logout" >{$_lang['logout']}</a>
+                    	<a href="index.php?do=logout"  class="zhuce">{$_lang['logout']}</a>
                     </div>
                     {/if}
                     <div class="dl_t">
@@ -353,7 +352,7 @@ $(document).ready(function (){
                    <li>|</li>
                   <li {if $do=='222'}class="h_r"{/if}><a href="#" class="hide">豆豆学堂</a></li>
                    <li>|</li>
-                  <li><a href="#" class="hide">豆豆论坛</a></li>
+                  <li><a href="#" class="hide">豆豆江湖</a></li>
                    <li>|</li>
                   <li><a href="#" class="hide">豆豆游戏</a></li>
                   <li>|</li>

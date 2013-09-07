@@ -45,11 +45,11 @@
 	{loop $final_task $k $v}
      {if $is<20||($is==20&&$s==21)}
      <tr>
-        <td width="100" height="35" align="center" valign="middle"><a href="index.php?do=task_list&path=A$v['indus_id']">$v['indus_name']</a></td>
+        <td width="100" height="35" align="center" valign="middle"><a href="index.php?do=task_list&path=A$v['indus_id']" {if $path == "A".$v['indus_id'] && !$indus_id}style="background:#52c79b; color:#fff"{/if}>$v['indus_name']</a></td>
         <td height="35" valign="middle" class="sb">
         {loop $indus_c_arr $k1 $v1}
          {if $k==$v1['indus_pid']}
-             <a href="index.php?do=task_list&path=A{$v1['indus_pid']}&indus_id={$v1['indus_id']}">$v1['indus_name']</a>
+             <a href="index.php?do=task_list&path=A{$v1['indus_pid']}&indus_id={$v1['indus_id']}" {if $indus_id == $v1['indus_id']}style="background:#52c79b; color:#fff"{/if}>$v1['indus_name']</a>
          {/if} 
         {/loop}
         </td>

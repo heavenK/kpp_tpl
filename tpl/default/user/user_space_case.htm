@@ -1,236 +1,172 @@
-<!--{template header}--><!--contain start-->
-<link href="{SKIN_PATH}/css/user_center.css" rel="stylesheet" type="text/css">
-<div class="wrapper">
-    <div class="container_24">
-        <!--{template user/user_nav}-->
-		<!--main start-->
-        <section class="clearfix section">
-            <!--{template user/user_side}-->
-            <div class="show_panel container_24 po_re">
-                <div class="prefix_3 grid_21">
-                    <div class="panel clearfix box">
-                        <!--main content-->
-                        <div class="">
-                            <!--header内容头部 start-->
-                            <header class="clearfix box_header">
-                                <h2 class="grid_4 alpha box_title t_c">{$_lang['space_set']}</h2>
-                                <div class="grid_14 omega">
-                                    <nav class="box_nav">
-                                        <ul>
-				                      {loop $third_nav $k $v}
-										{if $k!='view'}
-				                            <li {if $k==$opp}class="selectedLava"{/if}>
-				                                <a href="index.php?do=user&view=setting&op=space&opp={$k}" title="{$v['1']}">{$v['0']}</a>
-				                            </li>  
-										{else} 
-											<li>
-												 <a href="index.php?do=space&member_id={$uid}" title="{$v['1']}" target="_blank">{$v['0']}</a>
-				                            </li>
-										{/if}
-				                       {/loop}
-                                        </ul>
-                                    </nav>
-                                </div>
-								{if $show=='list'}
-								<div class="rowElem clearfix t_r">
-					             <button type="button" value="{$_lang['add_case']}" onclick="location.href='{$ac_url}&show=add'" style="width:100px"> {$_lang['add_case']}
-					             </button>
-					           </div>
-							   {else}
-								<div class="rowElem clearfix t_r">
-					             <button type="button" value="{$_lang['view_case']}" onclick="location.href='{$ac_url}&show=list'" style="width:100px">{$_lang['view_case']}
-					             </button>
-					           </div>
-							   {/if}
-                                <div class="clear">
-                                </div>
-                            </header>
-                            <div class="prefix_1 suffix_1">
-                                <!--案例列表start-->
-                                 {if $show=='list'}
-								 {if $case_list}
-                                 {loop $case_list $v}
-										<div class="clearfix box mt_10" id="{$v['case_id']}">
-                                            <div class="case_title po_re clearfix ">
-                                            	<strong class="po_ab gj_bg">NO.{$v['case_id']}</strong>
-												<div class="case_word_title">
-													<span class="ml_5">$_lang['case_description']</span>
-												</div>
-											</div>
-											<div class="clearfix box case_box po_re" id="{$v['member_id']}">
-												<div class="clearfix case_info po_ab" >
-													<div class="po_re pad10">
-														<a href="#">
-															<img class="block mar_auto pic_img" width="132" height="139" src="{$v['case_pic']}">
-														</a>
-														<ul>
-	                                                        <li class="t_c"><a href="{if $v['case_url']}$v['case_url']{else}index.php?do=service&sid=$v['service_id']{/if}" title="{$v['case_name']}"><span>{$v['case_name']}</span></a></li>
-	                                                        <li class="ml_20">{$_lang['type']}{$_lang['zh_mh']}{if $v['case_type']=='1'}{$_lang['inside']}{else}{$_lang['outside']}{/if}</li>
-	                                                        <li class="ml_20">{$_lang['industry']}{$_lang['zh_mh']}{$indus_c_arr[$v['indus_id']]['indus_name']}</li>
-	                                                        <li class="ml_20">{$_lang['start_time']}{$_lang['zh_mh']}<!--{date('Y-m-d',$v['start_time'])}--></li>
-	                                                        <li class="ml_20">{$_lang['end_time']}{$_lang['zh_mh']}{if $v['end_time']}<!--{date('Y-m-d',$v['end_time'])}-->{else}{$_lang['up_to_now']}{/if}</li>
-	                                                    </ul>
-													</div>
-												</div>	
-                                        		<div class="case_word border_l_c po_re">     
-		                                                    <div class="pad20">
-			                                                    <div class="t_i">
-			                                                        {if $v['case_desc']}{$v['case_desc']}{else}{$_lang['no_description']}{/if}
-			                                                    </div>
-															</div>
-															<div class="operate po_ab">
-																<a href="{$ac_url}&show=add&case_id={$v['case_id']}" title="{$_lang['edit']}" class="mr_10"><div class="icon16 pencil mr_5">edit</div>{$_lang['edit']}</a>
-																|
-																<a href="javascript:void(0)" title="{$_lang['delete']}"class="mr_10" onclick="del($v['case_id'])"><div class="icon16 trash mr_5">delete</div>{$_lang['delete']}</a>
-															</div>
-		                                                </div>
-											</div>	
-	                                    </div>
-                                 {/loop}
-	                                 {else}
-		                                 <div class="bf7 mt_10 clearfix t_c font14b">
-		                                    {$_lang['no_case']}
-		                                 </div>
-	                                 {/if} 
-	                                  <div class="page">
-	                                        <p>
-	                                            {$pages['page']}
-	                                        </p>
-	                                    </div>  
-						    </div>	
-                                    {else}<!--from表单 start--><h3 class="mt_10 mb_10">
-                                    	{if $case_id}{$_lang['edit_spase_case']}{else}{$_lang['add_spase_case']}{/if}</h3>
-                                    <form action="{$ac_url}&show=add&case_id={$case_id}" method="post" id="frm" name="frm" enctype="multipart/form-data">
-                                        <input type="hidden" name="pk[case_id]" value="{$case_id}">
-                                        <div class="rowElem clearfix">
-                                            <label class="grid_2 t_r">
-                                            {$_lang['the_industry']}{$_lang['zh_mh']}
-                                            </label>
-                                            <div class=" fl_l mr_10" id="industry">
-                                                <select id="indus_pid" style="width:100px" limit="required:true" onchange="change_indus(this.value)" msgArea="span_indus" msg="{$_lang['choose_fu_indus']}">
+<!--{template header_user_top}-->
+
+<!--contain start-->
+<div class="yhcenter">
+    	<!--  账号设置 begin -->
+    	<div class="yhzhbox tabCon">
+        	
+            <!--{template user_store_left}-->
+            <div class="yhzhright">
+            	<!--密码修改 begin  -->
+               <div class="acaq">
+            	<div class="ac_zltop">
+                	<span><b>案例管理</b></span>
+                </div>
+                <div class="ggmm">
+                	<div class="ac_mm">
+                    	<ul class="mima">
+                        	<li class="{if $show == 'list'}mi{else}ma{/if}"><a href="index.php?do=user&view=setting&op=space&opp=case&show=list">案例列表</a></li>
+                            <li class="{if $show == 'add'}mi{else}ma{/if}"><a href="index.php?do=user&view=setting&op=space&opp=case&show=add">添加案例</a></li>
+                        </ul>
+                    </div>
+                    {if $show=='list'}
+                    <div class="yhzh_aq">
+                    	<div class="pad10" style="padding-top:10px; padding-bottom:20px">
+                                        <div class="tab">
+                                           <form id="" method="post" action="index.php?do={$do}&view={$view}&op={$op}&opp={$opp}">
+                                               <div class="tab_r">
+                                               		<div class="mr_10 a0">
+                                                        <label class="">
+                                                            服务类型：
+                                                        </label>
+                                                        <select name="indus_id" class="sel">
+                                                            <option selected="selected" value="">全部</option>
+                                                            {loop $indus $v}
+                                                            <option value="{$v[indus_id]}">{$v[indus_name]}</option>
+                                                            {/loop}
+                                                        </select>
+                                                    </div>
+                                                    
+                                                    <div class="mr_10 a0">
+                                                        <label class="">
+                                                            发布时间：
+                                                        </label>
+                                                        <input type="text" onclick="showcalendar(event, this, 0)" class="in_tou" value="{$start_time}" name="start_time">-<input type="text" onclick="showcalendar(event, this, 0)" class="in_tou" value="{$end_time}" name="end_time">
+                                                    </div>
+                                                    <div class="a1">
+                                                        <button value="搜索" name="sbt_search" type="submit" class="sub"><span></span>搜索</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <div style="clear:both;" class="data_list_d8">
+                                                <table width="730" cellspacing="0" cellpadding="0" style=" " class="data_table_d8">
+                                                    <thead>
+                                                        <tr>
+                                                            <th width="180" style=" margin-left:10px; line-height:20px;">图片</th>
+                                                        	<th width="184">分类</th>
+                                                        	<th width="243">标题</th>
+                                                        	<th width="124">操作</th>
+                                                        </tr>
+                                                    </thead>
+                                                    {loop $case_list $v}
+                                                    <tbody style="height:120px">
+                                                        <tr>
+                                                            <th style="font-weight:normal"><a href="{if $v['case_url']}$v['case_url']{else}index.php?do=service&sid=$v['service_id']{/if}" title="{$v['case_name']}"><img src="{$v['case_pic']}" width="100" height="100"/></a></th>
+                                                            <th style="font-weight:normal">{$indus_c_arr[$v['indus_id']]['indus_name']}</th>
+                                                            <th style="font-weight:normal"><a href="{if $v['case_url']}$v['case_url']{else}index.php?do=service&sid=$v['service_id']{/if}" title="{$v['case_name']}">{$v['case_name']}</a></th>
+                                                            <th style="font-weight:normal"><a href="{$ac_url}&show=add&case_id={$v['case_id']}#userCenter">编辑</a>&nbsp;|&nbsp;<a href="javascript:void(0)" title="{$_lang['delete']}" onclick="del($v['case_id'])">删除</a></th>
+                                                        </tr>
+                                                    </tbody>
+                                                    {/loop}
+                                                 </table>
+                                                 <style>
+												 	.fl_r a { margin-left:3px;}
+												 </style>
+                                                 <div class="fl_r">
+                                                        {$pages['page']}
+                                                    </div>
+                                             </div>
+                                         </div>
+                                    </div>
+                    </div>
+                    {else}
+                    <div class="yhzh_aq">
+                    	
+                    	<div class="cy_nr_d">
+                        	 <form action="{$ac_url}&show=add&case_id={$case_id}" method="post" id="frm" name="frm" enctype="multipart/form-data">
+                             <input type="hidden" name="pk[case_id]" value="{$case_id}">
+                               
+                               <div class="yjxm_tyt">
+                                  <!--新增选项 开始-->
+                                  <div class="fenlei">分类：</div>
+                                  <div class="selectbox_dw_tyt">
+                                      <select id="indus_pid" style="width:100px" limit="required:true" onchange="change_indus(this.value)" msgArea="span_indus" msg="{$_lang['choose_fu_indus']}">
                                                     <option value="">{$_lang['please_choose']}</option>
                                                     {loop $indus_p_arr $k $v}<option value="{$v['indus_id']}" {if $indus_c_arr[$case_info['indus_id']]['indus_pid']==$v['indus_id']}  selected="selected"{/if}>{$v['indus_name']} </option>
                                                     {/loop}
                                                 </select>
-                                                <select name="conf[indus_id]" id="indus_id" style="width:100px" limit="required:true" msg="{$_lang['choose_zi_indus']}" msgArea="span_indus">
+                                                
+                                  </div>
+                                  <div class="selectbox_dw_tyt" style="margin-left:5px;">
+                                      <select name="conf[indus_id]" id="indus_id" style="width:100px" limit="required:true" msg="{$_lang['choose_zi_indus']}" msgArea="span_indus">
                                               		<option value="">{$_lang['please_choose']}</option>
 											    </select>
-                                                <span id="span_indus" class="c999">({$_lang['add_what_industry_case']})</span>
-                                            </div>
-                                        </div>
-                                        <div class="rowElem clearfix">
-                                            <label class="grid_2 t_r">
-                                                {$_lang['case_type']}{$_lang['zh_mh']}
-                                            </label>
-                                            <div class="grid_3">
-                                                <input type="radio" name="conf[case_type]" value="1" id="case_type_1" {if $case_info['case_type']==1||!$case_info['case_type']}checked{/if}{if $case_info['case_type']==2}disabled{/if}>
-												<label>{$_lang['inside_case']}</label>
-                                            </div>
-                                            <div class="grid_3">
-                                                <input type="radio" name="conf[case_type]" value="2" id="case_type_2" {if $case_info['case_type']==2}checked{/if}{if $case_info['case_type']==1}disabled{/if}>
-												<label>{$_lang['outside_case']}</label>
-                                            </div>
-                                        </div>
-                                        <div class="rowElem clearfix" id="show_service" style="display:none;">
-                                            <label class="grid_2 t_r">
-                                                {$_lang['service_list']}{$_lang['zh_mh']}
-                                            </label>
-                                            <div class=" fl_l mr_10">
-                                                <select name="conf[service_id]" id="shop_service" style="width:260px" onchange="selectCase();" limit='required:true' msg="请选择服务" msgArea="span_service">
-                                                </select>
-												<span id="span_service"></span>
-                                            </div>
-                                        </div>
-                                        <div class="rowElem clearfix">
-                                            <label class="grid_2 t_r">
-                                                {$_lang['case_name']}{$_lang['zh_mh']}
-                                            </label>
-                                            <div class="grid_15">
-                                                <input name="conf[case_name]" size="28" type="text" title={$_lang['case_name_as']} id="case_name" value="{$case_info['case_name']}" limit="required:true;len:2-40" msg={$_lang['entet_corrent_case_name']} msgArea="span_case_name"/><span id="span_case_name"></span>
-                                            </div>
-                                        </div>
-                                        <div class="rowElem clearfix" id="show_url" style="display:none;">
-                                            <label class="grid_2 t_r">
-                                               {$_lang['outside_link']}{$_lang['zh_mh']}
-                                            </label>
-                                            <div class="grid_15">
-                                                <input name="conf[case_url]" size="39" type="text" title={$_lang['outside_case_link']} id="case_url" value="{$case_info['case_url']}" limit="required:false;type:url" msg={$_lang['enter_corrent_outside_case_link']} msgArea="span_case_url"/><span id="span_case_url"></span>
-                                            </div>
-                                        </div>
-                                        <div class="rowElem clearfix">
-                                            <label class="grid_2 t_r">
-                                                {$_lang['case_img']}{$_lang['zh_mh']}
-                                            </label>
-                                            <div class="grid_16">
-                                                <div class="grid_13">
-                                                    <input type="file" name="case_pic" id="case_pic" ext=".jpg,.gif,.png,.jpeg" class="button t_c" onchange="isExtName(this,1);">
+                                  </div>
+                                </div>
+                      <table width="100%" border="0" cellspacing="0" cellpadding="0" style="float:left;">
+                      <tbody><tr>
+                        <td width="80" valign="middle" align="right" height="40">标题：</td>
+                        <td width="20" valign="middle" height="40">&nbsp;</td>
+                        <td width="562" valign="middle" align="left" height="40">
+                        <input type="radio" name="conf[case_type]" value="2" id="case_type_2" checked style="display:none" />
+                        <input name="conf[case_name]"  class="nr_input_1" type="text" title={$_lang['case_name_as']} id="case_name" value="{$case_info['case_name']}" limit="required:true;len:2-40" msg={$_lang['entet_corrent_case_name']} msgArea="span_case_name"/><span id="span_case_name"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td width="80" valign="middle" align="right" height="40">链接：</td>
+                        <td width="20" valign="middle" height="40">&nbsp;</td>
+                        <td width="562" valign="middle" align="left" height="40">
+                        <input name="conf[case_url]" class="nr_input_1" type="text" title={$_lang['outside_case_link']} id="case_url" value="{$case_info['case_url']}" limit="required:false;type:url" msg={$_lang['enter_corrent_outside_case_link']} msgArea="span_case_url"/><span id="span_case_url"></span>
+                      </tr>
+                      
+                      <tr>
+                        <td width="80" valign="middle" align="right" height="40">稿件：</td>
+                        <td width="20" valign="middle" height="40">&nbsp;</td>
+                        <td valign="middle" align="left" height="40">
+                        <input type="file" name="case_pic" id="case_pic" ext=".jpg,.gif,.png,.jpeg" onchange="isExtName(this,1);">
 													{if $case_info['case_pic']}
 														<a href="{$_K['siteurl']}/$case_info['case_pic']" target="_blank"><!--{eval echo ltrim(strrchr($case_info['case_pic'],'/'),'/')}--></a>
 													{/if}
                                                     <input type="hidden" name="hdn_case_pic" id="hdn_case_pic" value="{$case_info['case_pic']}" />
-                                                </div>
-                                                <div class="grid_9 alpha ui_note">
-                                                    {$_lang['display_case_img']}
-                                                </div>
-                                             </div>
-                                        </div>
-                                        <div class="rowElem clearfix">
-                                            <label class="grid_2 t_r">
-                                                {$_lang['start_time']}{$_lang['zh_mh']}
-                                            </label>
-                                            <div class="grid_15">
-                                                <!--{eval if($case_info['start_time'])$date=$case_info['start_time'];else $date=time();}--><input size="23" type="text" name="conf[start_time]" onclick="showcalendar(event, this,0)" id="start_time" limit="required:true;type:date" value="<!--{date('Y-m-d',$date)}-->"/>
-                                            </div>
-                                        </div>
-                                        <div class="rowElem clearfix">
-                                            <label class="grid_2 t_r">
-                                                {$_lang['end_time']}{$_lang['zh_mh']}
-                                            </label>
-                                            <div class="grid_15">
-                                                <!--{eval if($case_info['end_time'])$date=$case_info['end_time'];else $date='';}-->
-												<input size="23" type="text" name="conf[end_time]" onclick="showcalendar(event, this,0)"
-												 id="end_time" limit="required:false;type:date;than:start_time" value="<!--{date('Y-m-d',$date)}-->"
-												  class="fl_l" msgArea="span_end_time" msg="{$_lang['end_time_error']}"/>
-												  <span id="span_end_time"></span>
-                                            </div>
-                                        </div>
-                                        <div class="rowElem clearfix">
-                                            <div class="grid_12 omega" id="desc">
-                                                <label class="grid_2 t_r">
-                                                    {$_lang['case_description']}{$_lang['zh_mh']}
-                                                </label>
-                                                <textarea name="conf[case_desc]" id="case_desc" cols="70" rows="8" class="grid_9 xheditor-simple {skin:'nostyle'}">
+                        </td>
+                      </tr>
+                      <tr>
+                        <td width="80" valign="middle" align="right" height="40">&nbsp;</td>
+                        <td width="20" valign="middle" height="40">&nbsp;</td>
+                        <td valign="middle" align="left" height="40">稿件展示图片，推荐大小为100*100。支持.jpg，.gif，.png，.jpeg格式。</td>
+                      </tr>
+                      <tr>
+                        <td width="80" valign="top" align="right" height="240">详情：</td>
+                        <td width="20" valign="top" height="240">&nbsp;</td>
+                        <td valign="top" align="left" height="240">
+                        <textarea name="conf[case_desc]" id="case_desc" cols="70" rows="8" class="nr_text grid_9 xheditor-simple {skin:'nostyle'}">
                                                     {$case_info['case_desc']}
                                                 </textarea>
-                                            </div>
-											<div class="clear"></div>
-											<div class="grid_2">&nbsp;</div>
-                                            <div class="grid_6 alpha ui_note">
-                                              {$_lang['case_description_carefully_enter']}
-                                            </div>
-                                        </div>
-                                        <div class="rowElem clearfix form_button t_c">
-                                            <button type="submit" name="sbt_action" id="sbt_action" value={if !$case_info}{$_lang['add']}{else}{$_lang['edit']}{/if}{$_lang['case']} onclick="return check_form('frm')">
-                                                <span class="check icon"></span>{if !$case_info}{$_lang['add']}{else}{$_lang['edit']}{/if}{$_lang['case']}
-                                            </button>
-                                        </div>
-                                    </form>
-                                    {/if}<!--from表单 end-->
-                                </div>
-                                <!--个人经历end-->
-                            </div>
-                            <!--detail内容 end-->
-                        </div>
-                        <!--main content end-->
+                        </td>
+                      </tr>
+                      <tr>
+                        <td width="80" valign="middle" align="right" height="40">&nbsp;</td>
+                        <td width="20" valign="middle" height="40">&nbsp;</td>
+                        <td valign="middle" align="left" height="40">&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td valign="middle" align="center" height="40" colspan="3"><input type="submit" onclick="return check_form('frm')" class="nr_input_2" name="sbt_action" id="sbt_action" value="{if !$case_info}填&nbsp;加{else}修&nbsp;改{/if}"></td>
+                        </tr>
+                    </tbody></table>
+
+
+         </div>
                     </div>
-                    <div class="clear">
-                    </div>
+                    {/if}
                 </div>
             </div>
-        </section>
-        <!--main end-->
+           </div>
+            </div>
+        </div>
 
-<!--contain end-->
+            
+
+    <!-- center end -->
 <script type="text/javascript">
 In('form','xheditor'); 
     $(function(){
@@ -375,6 +311,7 @@ In('form','xheditor');
             return false;
     }
 </script>
-<!--main end-->
+<!--contain end-->
+
 <!--{template user/user_footer}-->
-<!--{template footer}-->
+<!--{template footer_dou}-->

@@ -44,6 +44,7 @@ switch ($show){
 		}
 		break;
 	case "list":
+	
 		if($ac=='del'){
 			$res=db_factory::execute(sprintf(" delete from %switkey_shop_case where case_id='%d'",TABLEPRE,$case_id));
 			$res and kekezu::echojson($_lang['delete_success'],"1") or kekezu::echojson($_lang['delete_fail'],"0");

@@ -143,9 +143,10 @@ body
 .vip_zs_lrz i							{color:#ff1d1e;}
 .vip_zs_lzs								{background:url(../images/vip34.jpg) repeat-x;}
 .vip_zs_lzs h1							{line-height:51px; text-align:center; font-size:24px; font-weight:100;}
+.vip_zs_lzs h1 a						{color:#000;}
 .vip_zs_lzs	ul							{padding:15px 15px 0 15px;}
 .vip_zs_lzs ul li						{width:101px; float:left; margin:0 3px; display:inline;}
-.vip_zs_lzs ul li p						{line-height:24px; margin-bottom:5px; text-align:center;}
+.vip_zs_lzs ul li p						{line-height:24px; margin-bottom:5px; text-align:center; color:#000;}
 .vip_zs_right							{width:747px; float:right; margin-top:18px;}
 .vip_zs_rtop							{margin-bottom:40px;}
 .vip_zs_rtopl							{border:1px solid #d5d5d5; width:491px; height:272px; float:left;}
@@ -157,16 +158,18 @@ body
 .vip_zs_rtopr h1						{line-height:38px; margin-top:15px; font-size:20px; height:38px; padding-left:34px; font-weight:100;}
 .vip_zs_rtopr p							{line-height:31px; font-size:13px; height:31px; padding-left:34px;}
 .vip_zs_rtopbom							{width:184px; height:101px; float:left; margin:41px 0 0 28px; display:inline;border:1px solid #d5d5d5;}
-.vip_zs_rtopbom span					{width:91px; height:53px; float:left; line-height:53px; text-align:center;}
+.vip_zs_rtopbom span					{width:60px; height:53px; float:left; line-height:53px; text-align:center;}
 .vip_zs_rtopbom span a					{color:#000;}
 .vip_zs_rtopbom em						{width:159px; height:44px; float:left; background:url(../images/vip35.jpg) repeat-x; margin-left:13px; display:inline; line-height:44px; text-align:center;}
 .vip_zs_rtopbom em a					{color:#fff; font-size:23px;}
 .div_zs_rcsfw							{background:url(../images/vip36.jpg) repeat-x; height:35px; line-height:35px; margin-bottom:5px; padding:0 19px 0 14px; font-size:20px;}
 .div_zs_rcsfw a							{float:right; font-size:12px; color:#000; }
 .div_zs_rcsnr							{border:1px solid #d5d5d5; padding:22px 0 40px 23px; margin-bottom:15px;}
-.div_zs_rcsnr span						{border:1px solid #acbea7; float:left; margin-right:26px; display:inline; margin-bottom:10px;}
-
-
+.div_zs_rcsnr span						{border:1px solid #acbea7; float:left; margin-right:26px; display:inline; margin-bottom:10px; width:114px;}
+.div_zs_rcsnr ul li						{width:187px; float:left; padding:10px; margin-right:25px; display:inline;}
+.div_zs_rcsnr ul li h1					{float:left;}
+.div_zs_rcsnr ul li h1 img				{width:187px; height:187px;}
+.div_zs_rcsnr ul li p					{line-height:24px; font-size:13px;}
 
 /*新闻动态--news_shops.html*/
 .div_zs_news							{padding:0 7px 0 12px;}

@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="{$_K['charset']}">
+<title>{if $page_title}{$page_title}{else}{$shop_info[shop_name]}-{$shop_nav[$view]}-{$_K[html_title]}{/if}</title>
+<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
+<meta name="keywords" content="{$page_keyword}">
+<meta name="description" content="{$page_description}">
+<meta name="generator" content="{$_lang['keke_pub']} {KEKE_VERSION}" />
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style” content=black" /> 
+<meta name="author" content="kekezu" />
+<meta name="copyright" content="{$basic_config['copyright']}" />
+<script type="text/javascript">
+	var SITEURL= "{$_K['siteurl']}",
+	    SKIN_PATH = '{SKIN_PATH}',
+		LANG       = '{$language}',
+	    INDEX      = '{$do}',
+	    CHARSET    = "{$_K['charset']}";
+</script>
+
+
+<link href="resource/css/reset.css" rel="stylesheet" charset="utf-8">
+<!--公用样式-->
+<link href="resource/css/base.css" rel="stylesheet" charset="utf-8">
+<!--布局样式-->
+<link rel="stylesheet" media="all" href="resource/css/layout/960.min.css" charset="utf-8">
+<!--box样式-->
+<link href="resource/css/box_min.css" rel="stylesheet" charset="utf-8">
+
+
+<link href="{SKIN_PATH}/theme/{$_K['theme']}/css/{$_K['theme']}_style.css" rel="stylesheet" charset="utf-8">
+<link href="resource/js/jqplugins/tipsy/tipsy.css" rel="stylesheet">
+<link href="resource/css/button/stylesheets/css3buttons.css" rel="stylesheet" charset="utf-8">
+
+
+
+
+
+
+<script src="/tpl/default/d8/js/jquery-1.4.2.min.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="/tpl/default/d8/js/jquery.pack.js"></script>
+<script type="text/javascript" src="/tpl/default/d8/js/jQuery.blockUI.js"></script>
+<script type="text/javascript" src="/tpl/default/d8/js/jquery.SuperSlide.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/style.css">
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/T_footer.css">
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/T_header.css">
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/T_index.css">
+
+
+<script src="lang/{$language}/script/lang.js" type="text/javascript"></script>
+<script type="text/javascript" src="resource/js/system/keke.js"></script>
+
+
+<script src="resource/js/in.js" type="text/javascript"></script>
+<script type="text/javascript">
+	 //js异步加载预定义
+ 	In.add('mouseDelay',{path:"resource/js/jqplugins/jQuery.mouseDelay.js",type:'js'});
+	In.add('waypoints',{path:"resource/js/jqplugins/waypoints/waypoints.min.js",type:'js'});
+	In.add('custom',{path:"resource/js/system/custom_min.js",type:'js',rely:['waypoints']});
+ 	In.add('form',{path:"resource/js/system/form_and_validation.js",type:'js'});
+	In.add('print',{path:"resource/js/jqplugins/jquery.print.js",type:'js'});
+	In.add('task',{path:"resource/js/system/task.js",type:'js'});
+ 	In.add('calendar',{path:"resource/js/system/script_calendar.js",type:'js'}); 
+	In.add('xheditor',{path:"resource/js/xheditor/xheditor.js",type:'js'});  
+ 	In.add('script_city',{path:"resource/js/system/script_city.js",type:'js'}); 
+	In.add('lavalamp',{path:"resource/js/jqplugins/lavalamp/jquery.lavalamp-1.3.5.min.js",type:'js'});
+	In.add('tipsy',{path:"resource/js/jqplugins/tipsy/jquery.tipsy.js",type:'js'});
+	In.add('autoIMG',{path:"resource/js/jqplugins/autoimg/jQuery.autoIMG.min.js",type:'js'});
+ 	In.add('slides',{path:"resource/js/jqplugins/slides.min.jquery.js",type:'js'});
+	In.add('ajaxfileupload',{path:"resource/js/system/ajaxfileupload.js",type:'js'});
+	In.add('header_top',{path:"resource/js/system/header_top.js",type:'js',rely:['mouseDelay']}); 
+	In.add('lazy',{path:"resource/js/system/lazy.js",type:'js'});
+	In.add('pcas',{path:"resource/js/system/PCASClass.js",type:'js'});
+  		
+
+</script>
+
+<!--点击IE6浏览器弹出升级页JS-->
+<script language="javascript">
+ieGo();
+function ieGo(){ 
+		var ie = !-[1,];  
+		if(ie == true) {
+			var ua = navigator.userAgent.toLowerCase();
+			var version = parseInt(ua.match(/msie ([\d.]+)/)[1]);
+			if(version <= 6) {
+				alert("请更新更高级版本")
+				location.href='black'; 
+			}
+		}
+}
+</script>
+<!--豆豆导航JS-->
+<script language="javascript">
+	$(function(){
+	  //当鼠标滑入时将div的class换成divOver
+	  $('#daohang,.rukou_nav').hover(function(){
+		$("#daohang").addClass('rukouOver');
+		$(".rukou_nav").show();  
+	   },
+	   function(){
+		//鼠标离开时移除divOver样式
+		$("#daohang").removeClass('rukouOver'); 
+		$(".rukou_nav").hide();
+	   }
+	  );
+	});
+</script>
+<!--会员登陆JS-->
+<script language="javascript">
+	$(function(){
+	  //当鼠标滑入时将div的class换成divOver
+	  $('#huiyuan,.dl_t').hover(function(){
+		$("#huiyuan").addClass('rukouOver2');
+		$(".dl_t").show();  
+	   },
+	   function(){
+		//鼠标离开时移除divOver样式
+		$("#huiyuan").removeClass('rukouOver2'); 
+		$(".dl_t").hide();
+	   }
+	  );
+	});
+</script> 
+<!--最新动态JS-->
+<script type="text/javascript">
+	function show(id){
+		document.getElementById(id).style.display="";
+
+	}
+</script>
+<script type="text/javascript">
+	function hide(id){
+		document.getElementById(id).style.display="none";
+	}
+</script>
+
+
+</head>
+<body>
+
+<div id="box">
+
+    <div id="append_parent">
+    </div>
+    
+    <!--无刷新临时替换层-->
+    <div id="noflushwarper">
+        <div id="noflushwarper_sub"></div>
+    </div>
+
+	<div class="header"><!--顶部导航-->
+        <div class="logo"><a href="index.php"><img src="/tpl/default/d8/images/logo.jpg"  width="159" height="188"/></a></div>
+        <div class="logo_r">
+			<div class="logo_top_nav">
+            	<div class="logo_top_nav_t">
+                    <a href="index.php?do=user&view=setting">个人中心</a>
+                    <a href="index.php?do=release">发布任务</a>
+                    <a href="#" id="daohang">豆豆导航</a>
+                    <a href="#">豆豆游戏</a>
+                    <a href="index.php?do=help">帮助中心</a>
+          		</div>
+          		<div class="rukou_nav">
+                    <h2>雇主服务</h2>
+                    <div class="gz">
+                        <ul>
+                            <li><a href="index.php?do=release">发布任务</a></li>
+                            <li><a href="#">人才宝库</a></li>
+                            <li><a href="#">客服中心</a></li>
+                            <li><a href="#">直接雇佣</a></li>
+                        </ul>
+                    </div>
+                    <h2>威客服务</h2>
+                    <div class="gz">
+                        <ul>
+                            <li><a href="index.php?do=task_list">任务广场</a></li>
+                            <li><a href="index.php?do=user&view=setting">个人中心</a></li>
+                            <li><a href="index.php?do=user&view=finance&op=withdraw">我要提现</a></li>
+                            <li><a href="#">VIP工作室</a></li>
+                        </ul>
+                    </div>
+                    <h2>豆豆服务</h2>
+                    <div class="gz" style="border:none;">
+                        <ul>
+                            <li><a href="#">玩转豆币</a></li>
+                            <li><a href="shitu.html">师徒关系</a></li>
+                            <li><a href="#">豆豆学堂</a></li>
+                            <li><a href="#">豆豆商圈</a></li>
+                            <li><a href="#">豆豆江湖</a></li>
+                            <li><a href="#">诚信保障</a></li>
+                            <li><a href="#">豆豆游戏</a></li>
+                            <li><a href="#">网站地图</a></li>
+                        </ul>
+                    </div>
+                </div>
+			</div>
+          
+            <div class="top_b">
+            	<div class="top_tit">$shop_info[shop_name]</div>
+                <div class="denglu">
+               		{if !$uid&&!$oauth_user_info}
+                	<div class="hydl">
+                    	<a href="#" id="huiyuan"  class="huiyuan">会员登录<b style="font-size:14px;">▼</b></a>
+                        <i></i>
+                    	<a href="index.php?do=register"  class="zhuce">免费注册</a>
+                    </div>
+                    {else}
+                    <div class="hydl">
+                    	<a href="index.php?do=user&view=setting" class="huiyuan">{if $username}{$username}{elseif $oauth_user_info}{$oauth_user_info['account']}{/if}</a>
+                        <i></i>
+                    	<a href="index.php?do=logout"  class="zhuce">{$_lang['logout']}</a>
+                    </div>
+                    {/if}
+                    <div class="dl_t">
+                    <form action="index.php?do=login" method="post" id="login_frm" name="login_frm">
+                        <input type="hidden" name="formhash" id="formhash" value="{FORMHASH}">
+                        <input type="hidden" name="hdn_refer" id="hdn_refer" value="{$_K['refer']}">
+                        <input type="hidden" name="handlekey" value="login_frm1"><!--账号-->
+                        <ul>
+                            <li class="dl_btn">
+                                <label class="dl_btnz">账户</label>
+                                <input class="" name="txt_account" id="txt_account" type="text" style="width:140px" value="用户名/手机号/邮箱" onfocus="if(this.value=='用户名/手机号/邮箱'){this.value='';}"  onblur="if(this.value==''){this.value='用户名/手机号/邮箱'}";/>
+                            </li>
+                            <li class="dl_btn">
+                                <label class="dl_btnz">密码</label>
+                                <input class=""  style="width:140px" type="password" name="pwd_password" id="pwd_password" value="密码长度应为6-20位" original-title="" onfocus="if(this.value=='密码长度应为6-20位'){this.value='';}"  onblur="if(this.value==''){this.value='密码长度应为6-20位'}">
+                            </li>
+                            
+                            <li class="dl_btn0" style="width:155px; height:30px; padding-top:15px; padding-left:30px;">
+                                <input name="" type="button" onclick="return user_login();"  value="登录"/>
+                                <a href="">忘记密码？</a>
+                            </li> 
+                        </ul>
+                    </form>
+                    </div>
+            	</div>
+                
+                <script type="text/javascript">
+				//登录
+				function user_login(){ 
+					if (checkForm(document.getElementById("login_frm"), false)) {
+						//login_frm.submit();
+						showWindow('login_frm1', 'login_frm', 'post',0,{cover:1},'hide()');
+						
+					}
+					return false;
+				}
+			</script>
+                
+                
+                <div class="top_b_t">
+                <form action="" method="post" id="frm_search" class="clearfix fl_l">
+                <div style="display:none;">
+                        	<div id="search_select" class="search_options">
+                        	{if $task_open}
+                           		 <a href="javascript:void(0);" class="selected" rel="task_list"><span>{$_lang['task']}</span>▼</a>
+                            {elseif !$task_open&&$shop_open}
+								 <a href="javascript:void(0);" class="selected" rel="shop_list"><span>{$_lang['goods']}</span>▼</a>
+                            {/if}
+							{if $task_open}
+						   		 <a href="javascript:void(0);" class="hidden"   rel="task_list">{$_lang['task']}</a>
+							{/if}
+							{if $shop_open}
+                           	 	<a href="javascript:void(0);" class="hidden"   rel="shop_list">{$_lang['goods']}</a>
+							 {/if}
+                            </div>
+                        </div>
+                    <input type="text" value="热门词：豌豆，奖金" name="search_key" onkeydown="search_keydown(event);" id="search_key" onfocus="if(this.value=='热门词：豌豆，奖金'){this.value='';}"  onblur="if(this.value==''){this.value='热门词：豌豆，奖金'}"; class="input_1" /> 
+                    <input name="" type="button" id="search_btn"  value="" class="suo"/>
+                </form>
+                </div>
+            </div>
+            
+            <div class="xiangmu">
+                <i><b>项目总数：</b><span>{$task_count}</span></i>
+                <i><b>交易金额：</b><span>￥{$task_in}</span></i>
+                <i><b>威客数量： </b><span>{$register}</span></i>
+            </div>
+             
+             <div class="menu">
+                <ul>
+                  <li class="h_r"><a href="index.php?do=space&member_id={$member_info[uid]}" class="hide">工作室首页</a></li>
+                  <li>|</li>
+                  <li><a href="#" class="hide">关于我们</a></li>
+                   <li>|</li>
+                  <li><a href="#" class="hide">新闻中心</a></li>
+                   <li>|</li>
+                  <li><a href="#" class="hide">案例展示</a></li>
+                   <li>|</li>
+                  <li><a href="#" class="hide">出售服务</a></li>
+                   <li>|</li>
+                   <li><a href="#" class="hide">交易记录</a></li>
+                   <li>|</li>
+                   <li><a href="#" class="hide">师徒关系</a></li>
+                   <li>|</li>
+                   <li><a href="#" class="hide">联系我们</a></li>
+                   <li>|</li>
+                </ul>
+             </div>
+             
+        </div>
+    </div>
+    <div class="clear"></div>

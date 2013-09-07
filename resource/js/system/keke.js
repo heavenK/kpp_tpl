@@ -444,6 +444,95 @@ if(check_user_login()){
 		showWindow('message',encodeURI(url));return false;
 }
 }
+
+/**
+ * 逐出师门
+ * 
+ * @param int
+ *            uid 被逐出人
+ */
+function leave(uid) {
+	if(check_user_login()){
+		showDialog("确认逐出师门？", "confirm", "操作提示", function(){
+                            $.ajax({
+							   type: "GET",
+							   url: "index.php?do=user&view=shitu&ajax=1&to_uid="+uid,
+							   async: true,
+							   success: function(data){
+								   if(data == 1)	history.go(0);
+								   else	showDialog("操作失败！", 'error', L.operate_notice);
+							   }
+							})
+                        });
+		
+	}
+}
+/**
+ * 申请拜师
+ * 
+ * @param int
+ *            to_uid 师傅
+ */
+function send_req(to_uid) {
+	if(check_user_login()){
+		showDialog("确认拜入师门？", "confirm", "操作提示", function(){
+                            $.ajax({
+							   type: "GET",
+							   url: "index.php?do=user&view=shitu&ajax=2&from_uid="+uid+"&to_uid="+to_uid,
+							   async: true,
+							   success: function(data){
+								   if(data > 0)	showDialog("申请成功！", 'notice', L.operate_notice);
+								   else	showDialog("操作失败！", 'error', L.operate_notice);
+							   }
+							})
+                        });
+		
+	}
+}
+/**
+ * 同意申请
+ * 
+ * @param int
+ *            f_uid 徒弟ID
+ */
+function agree_req(f_uid) {
+	if(check_user_login()){
+		showDialog("确认同意？", "confirm", "操作提示", function(){
+                            $.ajax({
+							   type: "GET",
+							   url: "index.php?do=user&view=shitu&ajax=3&f_uid="+f_uid,
+							   async: true,
+							   success: function(data){
+								   if(data > 0)	history.go(0);
+								   else	showDialog("操作失败！", 'error', L.operate_notice);
+							   }
+							})
+                        });
+		
+	}
+}
+/**
+ * 拒绝申请
+ * 
+ * @param int
+ *            f_uid 徒弟ID
+ */
+function deny_req(f_uid) {
+	if(check_user_login()){
+		showDialog("确认拒绝？", "confirm", "操作提示", function(){
+                            $.ajax({
+							   type: "GET",
+							   url: "index.php?do=user&view=shitu&ajax=4&f_uid="+f_uid,
+							   async: true,
+							   success: function(data){
+								   if(data > 0)	history.go(0);
+								   else	showDialog("操作失败！", 'error', L.operate_notice);
+							   }
+							})
+                        });
+		
+	}
+}
 /**
  * 交易维权 *请在外部定义basic_url参数
  * 

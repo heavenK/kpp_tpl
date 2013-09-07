@@ -39,3 +39,10 @@ body{background:url(../images/header_bg3.jpg) repeat-x #fff;}
 
 .menu .hide{width:100px;}
 .menu ul li a.hide:hover{width:100px;}
+
+.picList img{height:350px;}
+.leftLoop .bd{height:350px;}
+.banner{height:350px;}
+.leftLoop .hd ul{top:320px;}
+.teacher_tdlist{background:url(../images/vip47.jpg) repeat-x;}
+.teacher_tdlist h1{height:34px; line-height:34px; color:#fff;}

@@ -1,7 +1,7 @@
 <?php
 defined ( 'IN_KEKE' ) or exit ( 'Access Denied' );
 $ops = array (
-		'setting','case' );
+		'setting','case','service','member','news' );
 in_array ( $op, $ops ) or $op = "setting";
 $sub_nav = array (
 		array (

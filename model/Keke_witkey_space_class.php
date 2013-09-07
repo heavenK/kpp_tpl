@@ -76,7 +76,7 @@ class Keke_witkey_space_class{
 	public $_biyeyuanxiao;
 	public $_xiuxianfangshi;
 	public $_ziwojieshao;
-	
+	public $_pid;
 
 	
 	
@@ -307,10 +307,13 @@ class Keke_witkey_space_class{
 	}
 	public function getXiuxianfangshi(){
 		return $this->_xiuxianfangshi ;
-	}public function getZiwojieshao(){
+	}
+	public function getZiwojieshao(){
 		return $this->_ziwojieshao ;
 	}
-
+	public function getPid(){
+		return $this->_pid ;
+	}
 
 
 	public function getCache_config() {
@@ -535,8 +538,12 @@ class Keke_witkey_space_class{
 	}
 	public function setXiuxianfangshi($value){
 		$this->_xiuxianfangshi = $value;
-	}public function setZiwojieshao($value){
+	}
+	public function setZiwojieshao($value){
 		$this->_ziwojieshao = $value;
+	}
+	public function setPid($value){
+		$this->_pid = $value;
 	}
 	
 	
@@ -793,7 +800,9 @@ class Keke_witkey_space_class{
 		if(!is_null($this->_ziwojieshao)){
 			$data['_ziwojieshao']=$this->_ziwojieshao;
 		}
-		
+		if(!is_null($this->_pid)){
+			$data['_pid']=$this->_pid;
+		}
 		
 
 		return $this->_uid = $this->_db->inserttable($this->_tablename,$data,1,$this->_replace);
@@ -1022,6 +1031,9 @@ class Keke_witkey_space_class{
 		}
 		if(!is_null($this->_ziwojieshao)){
 			$data['ziwojieshao']=$this->_ziwojieshao;
+		}
+		if(!is_null($this->_pid)){
+			$data['pid']=$this->_pid;
 		}
 
 		if($this->_where){

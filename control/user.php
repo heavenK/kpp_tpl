@@ -1,7 +1,7 @@
 <?php	defined ( 'IN_KEKE' ) or exit('Access Denied');
 keke_lang_class::package_init("user");
 $do and keke_lang_class::loadlang($do);
-$views = array('index','setting','finance','employer','witkey','message','collect','payitem','store');
+$views = array('index','setting','finance','employer','witkey','message','collect','payitem','store','shitu');
 if($task_open==0&&$shop_open==0){
 	unset($views['employer'],$views['witkey']);
 }

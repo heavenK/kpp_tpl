@@ -181,7 +181,7 @@ class keke_msg_class {
 			$this->send ();
 		}
 	}
-	public static function send_private_message($title, $tar_content, $to_uid, $to_username, $url = '', $output = 'normal') {
+	public static function send_private_message($title, $tar_content, $to_uid, $to_username, $url = '', $output = 'normal',$type = 'normal') {
 		global $uid, $username;
 		global $_lang;
 		if (CHARSET == 'gbk') {
@@ -199,6 +199,10 @@ class keke_msg_class {
 		$msg_obj->setContent ( $tar_content );
 		$msg_obj->setOn_time ( time () );
 		$msg_id = $msg_obj->create_keke_witkey_msg ();
+		if($type == 'ajax'){
+			echo $msg_id;
+			exit;
+		}
 		$msg_id and kekezu::keke_show_msg ( $url, $_lang['sms_send_success'], "", $output ) or kekezu::keke_show_msg ( $_lang['operate_notice'], $url, $_lang['sms_send_fail'], "error", $output );
 	}
 	public static function notify_user($uid, $username, $action, $title, $v_arr = array()) {

@@ -231,7 +231,7 @@ EOT;
 		}
 		return false;
 	}
-		static function check_username($check_username) {
+	static function check_username($check_username) {
 		global $basic_config, $_K,$handlekey;
 		global $_lang;
 		$check_username = trim ( $check_username );
@@ -266,6 +266,17 @@ EOT;
 		$limit_username = keke_user_class::user_getprotected ();
 		if ($limit_username && in_array ( $check_username, $limit_username )) {
 			return $_lang['register_fail_limit_register'];
+		}
+		return true;
+	}
+	function check_uid($reg_uid) {
+		global $_lang;
+		$check_uid = trim ( $reg_uid );
+		if (empty ( $check_uid )) {
+			return "账号为空";
+		}
+		if (kekezu::check_user_by_name ( $check_uid, 0 )) {
+			return "账号已存在";
 		}
 		return true;
 	}

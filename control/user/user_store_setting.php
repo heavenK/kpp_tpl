@@ -1,6 +1,6 @@
 <?php	defined ( 'IN_KEKE' ) or exit('Access Denied');
 $shop_info=db_factory::get_one(sprintf(" select * from %switkey_shop where uid='%d' ",TABLEPRE,$uid));
-$opps = array('basic','case');
+$opps = array('basic','case','skill','link','ads');
 in_array($opp,$opps) or $opp ="basic";
 $ac_url = "index.php?do=$do&view=$view&op=$op&opp=$opp";
 if($shop_info){

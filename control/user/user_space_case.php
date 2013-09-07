@@ -11,6 +11,7 @@ switch ($show){
 			$conf['start_time']=strtotime($conf['start_time']);
 			$conf['end_time']=strtotime($conf['end_time']);
 			$conf['shop_id']  =$shop_info['shop_id'];
+			$conf['on_time']  =time();
 			if($_FILES['case_pic']['name']){
 				$case_pic = keke_file_class::upload_file('case_pic');
 				$case_pic&&$conf['case_pic']=$case_pic;
@@ -44,6 +45,8 @@ switch ($show){
 		}
 		break;
 	case "list":
+		$indus = db_factory::query( sprintf ( "select indus_id,indus_name from %switkey_industry ", TABLEPRE ) );
+	
 		if($ac=='del'){
 			$res=db_factory::execute(sprintf(" delete from %switkey_shop_case where case_id='%d'",TABLEPRE,$case_id));
 			$res and kekezu::echojson($_lang['delete_success'],"1") or kekezu::echojson($_lang['delete_fail'],"0");
@@ -52,7 +55,18 @@ switch ($show){
 			$indus_c_arr=$kekezu->_indus_c_arr;
 			$case_obj=new Keke_witkey_shop_case_class();
 			$page_obj=$kekezu->_page_obj;
-			$where=" shop_id='{$shop_info['shop_id']}' order by on_time desc ";
+			
+			
+			$where=" shop_id='{$shop_info['shop_id']}' ";
+			
+			$indus_id and $where .= " and indus_id = '$indus_id'";
+			if($start_time || $end_time){
+				if($start_time) $where .= " and on_time > ".strtotime($start_time);
+				if($end_time) $where .= " and on_time < ".strtotime($end_time);
+			}
+			
+			$where .= " order by on_time desc ";
+			
 			intval($page) or $page='1';
 			intval($page_size) or $page_size='4';
 			$url=$ac_url."&show=list&page_size=$page_size&page=$page";

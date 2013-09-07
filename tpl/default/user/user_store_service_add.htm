@@ -1,0 +1,181 @@
+<!--{template header_user_top}-->
+
+<!--contain start-->
+<div class="yhcenter">
+    	<!--  账号设置 begin -->
+    	<div class="yhzhbox tabCon">
+        	
+            <!--{template user_store_left}-->
+            <div class="yhzhright">
+            	<!--密码修改 begin  -->
+               <div class="acaq">
+            	<div class="ac_zltop">
+                	<span><b>服务管理</b></span>
+                </div>
+                <div class="ggmm">
+                	<div class="ac_mm">
+                    	<ul class="mima">
+                        	<li class="ma"><a href="index.php?do=user&view=store&op=service&model_id=7">服务列表</a></li>
+                            <li class="mi"><a href="index.php?do=user&view=store&op=service&model_id=7&opp=add">出售服务</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="yhzh_aq">
+                    	
+                    	<div class="cy_nr_d">
+                        		<form action="{$basic_url}" method="post" name="frm_step2" id="frm_step1" enctype="multipart/form-data">
+                                <input type="hidden" name="step1" value="step1">
+                                <input type="hidden" name="p_step" value="step1">
+                                <input type="hidden" name="min" value="$min" id="min">
+                                <input type="hidden" name="formhash" value="{FORMHASH}">
+                            
+                               <div class="yjxm_tyt" style="width:100%">
+                                  <!--新增选项 开始-->
+                                  <div class="fenlei">分类：</div>
+                                  <div class="selectbox_dw_tyt">
+                                  	<select name="indus_pid" id="indus_pid" onchange="showTaskIndus(this.value)" >
+                                        <option value="">{$_lang['please_choose_class']}</option>
+                                          {loop $indus_p_arr $v}
+                                            <option value="{$v[indus_id]}" {if $release_info[indus_pid]==$v[indus_id]}selected{/if}>{$v[indus_name]}</option>
+                                          {/loop}
+                                     </select>
+                                  </div>
+                                  <div class="selectbox_dw_tyt" style="margin-left:5px;">
+                                      <select name="indus_id" id="indus_id">
+                                           <option value="">{$_lang['please_choose_son_class']}</option>
+                                            {if $release_info['indus_id']}
+                                                {loop $indus_arr $k $v}
+                                                    <option value="{$v[indus_id]}" {if $release_info[indus_id]==$v[indus_id]}selected{/if}>{$v[indus_name]}</option>
+                                                {/loop}
+                                            {/if}
+                                        </select>
+                                  </div>
+                                </div>
+                      <table width="100%" border="0" cellspacing="0" cellpadding="0" style="float:left;">   
+                      <tbody><tr>
+                        <td width="80" valign="middle" align="right" height="40">标题：</td>
+                        <td width="20" valign="middle" height="40">&nbsp;</td>
+                        <td width="562" valign="middle" align="left" height="40">
+                        <input name="txt_title" type="text" value="{$release_info['txt_title']}"  title="{$_lang['you_submit_service_notice']}" maxlength=50
+				   msgArea="span_title" msg="{$_lang['please_input_service_name']}" limit="required:true;len:5-50" id="txt_title" class="nr_input_1"/>
+                  <span class="cc00 mr_5">*</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td width="80" valign="middle" align="right" height="40">价格：</td>
+                        <td width="20" valign="middle" height="40">&nbsp;</td>
+                        <td valign="middle" align="left" height="40">
+                        <input name="txt_price" type="text" id="txt_price" value="<!--{eval number_format($release_info[txt_price],2,',','.');}-->" msgArea="span_price"
+					 limit="required:true;type:float;between:{$service_config[min_cash]}-" msg="{$_lang['sell_min_money']}{$service_config[min_cash]}{$_lang['yuan']}"
+					 title="{$_lang['input_service_sell_price']}{$service_config[min_cash]}{$_lang['yuan']}" class="nr_input_1"/>{$_lang['yuan']}/
+                        <select name="unite_price" id="unite_price" style="width:70px;">
+                            {loop $price_unit $v}
+                                <option value="{$v}" {if $release_info[unite_price]==$v}selected{/if}>{$v}</option>	
+                            {/loop}
+                        </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td width="80" valign="middle" align="right" height="40">完成时间：</td>
+                        <td width="20" valign="middle" height="40">&nbsp;</td>
+                        <td valign="middle" align="left" height="40">
+                        <input name="service_time" id="service_time" type="text" value="{$release_info[service_time]}" msgArea="span_time"
+					 limit="required:true;type:int;between:1-" msg="{$_lang['service_work_time_notice']}"
+					 title="{$_lang['service_work_time_notice']}" class="nr_input_1">
+                     	<select name="unit_time" id="unit_time" style="width:70px;">
+                            {loop $service_unit $v}
+                                <option value="{$v}" {if $release_info[unite_price]==$v}selected{/if}>{$v}</option>	
+                            {/loop}
+                        </select>
+                        
+                        </td>
+                      </tr>
+                      <tr>
+                        <td width="80" valign="middle" align="right" height="40">稿件：</td>
+                        <td width="20" valign="middle" height="40">&nbsp;</td>
+                        <td valign="middle" align="left" height="40">
+                        <input type="file" class="file" name="upload" id="upload" value="选择文件">
+                        <input type="hidden" name="file_ids" id="file_ids">
+                        
+                        </td>
+                      </tr>
+                      <script type="text/javascript">
+							$(function(){
+								uploadify({
+									auto: true,
+									size: "{$basic_config['max_size']}MB",
+									exts: '{$ext}',
+									limit: 5
+								}, {
+									fileType: 'service',
+									objType: 'service'
+								});
+							})
+						</script>
+                      <tr>
+                        <td width="80" valign="middle" align="right" height="40">&nbsp;</td>
+                        <td width="20" valign="middle" height="40">&nbsp;</td>
+                        <td valign="middle" align="left" height="40">稿件展示图片，推荐大小为100*100。支持.jpg，.gif，.png，.jpeg格式。</td>
+                      </tr>
+                      <tr>
+                        <td width="80" valign="top" align="right" height="240">详情：</td>
+                        <td width="20" valign="top" height="240">&nbsp;</td>
+                        <td valign="top" align="left" height="240">
+                        <textarea name="tar_content"  title="{$_lang['service_detail_description']}" id="tar_content" msgArea="msg_content" class="nr_text xheditor-simple {urlBase:'$_K['siteurl']/',html5Upload:false,upImgUrl:'index.php?do=ajax&view=upload&file_type=att',skin:'nostyle'}"><!--{eval echo kekezu::escape($release_info['tar_content'])}--></textarea>
+                        <script type="text/javascript" src="resource/js/xheditor/xheditor.js"></script>
+						<script type="text/javascript">
+                            $(function(){
+                                editor = $("#tar_content").xheditor();
+                                 
+                            })
+                             
+                        </script>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td width="80" valign="middle" align="right" height="40">&nbsp;</td>
+                        <td width="20" valign="middle" height="40">&nbsp;</td>
+                        <td valign="middle" align="left" height="40">&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td valign="middle" align="center" height="40" colspan="3"><input type="submit" onclick="stepCheck();"  class="nr_input_2" name="" value="保&nbsp;存"></td>
+                        </tr>
+                    </tbody></table>
+					</form>
+
+         </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+           </div>
+           </div>
+           </div>
+            
+
+    <!-- center end -->
+<script type="text/javascript">
+	In('calendar');
+</script>
+<script src="resource/js/uploadify/jquery.uploadify-3.1.min.js" type="text/javascript"></script>
+
+<link href="resource/js/uploadify/uploadify.css" rel="stylesheet">
+
+<script type="text/javascript">
+    var model_id = parseInt("{$model_id}") + 0;
+    var uid = parseInt("{$uid}") + 0;
+    var r_step = "{$r_step}";
+    var basic_url = "{$basic_url}";
+    var min_day = parseInt("{$service_config['min_day']}");
+
+
+  	 In.add('shelves',{path:"resource/js/system/shelves.js",type:'js'});
+	 In('shelves','ajaxfileupload','form','script_city'); 
+</script> 
+<!--contain end-->
+
+<!--{template user/user_footer}-->
+<!--{template footer_dou}-->

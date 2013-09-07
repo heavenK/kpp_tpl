@@ -286,7 +286,7 @@ a.top em{display:block; font-size:40px; height:10px; overflow:hidden; *margin-le
 .m_c .el li{padding: 0;border: none;}
  
 /* 窗口标题拖动效果 */
-.flb { height:28px; line-height:28px; padding:0 10px 0 10px; font-weight:bold; color:#95a7ae; font-family: Tahoma, Arial/9!important; background-color:#2F549F; /*background: linear-gradient(top, #edf5f8, #bdc6cd); background: -moz-linear-gradient(top, #2f549f, #2f549f); background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#edf5f8), to(#bdc6cd)); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#edf5f8', endColorstr='#bdc6cd'); border-bottom:1px solid #b6bec5;*/ }
+.flb { height:28px; line-height:28px; padding:0 10px 0 10px; font-weight:bold; color:#95a7ae; font-family: Tahoma, Arial/9!important; background-color:#48B68D; /*background: linear-gradient(top, #edf5f8, #bdc6cd); background: -moz-linear-gradient(top, #2f549f, #2f549f); background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#edf5f8), to(#bdc6cd)); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#edf5f8', endColorstr='#bdc6cd'); border-bottom:1px solid #b6bec5;*/ }
 .aui_state_focus .flb { color:#4c5a5f; }
 .aui_state_drag .flb { background: linear-gradient(top, #bdc6cd, #edf5f8); background: -moz-linear-gradient(top, #bdc6cd, #edf5f8); background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#bdc6cd), to(#edf5f8)); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#bdc6cd', endColorstr='#edf5f8'); box-shadow:none; }
 

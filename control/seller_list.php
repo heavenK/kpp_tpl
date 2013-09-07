@@ -43,7 +43,7 @@ $register =  intval ( $register ['count'] );
 // end 
 
 
-unset($indus_id); 
+//unset($indus_id); 
 $url = "index.php?do=$do&page_size=$page_size&path=$path";
 $page_size = intval ( $page_size ) ? intval ( $page_size ) : 10;
 $count = db_factory::get_count($count_sql . $where );
@@ -158,5 +158,4 @@ foreach($service_arr as $key => $val){
 }
 
 // end
-
 require $kekezu->_tpl_obj->template ( $do );

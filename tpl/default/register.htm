@@ -30,6 +30,7 @@
 			
 			<div class="zc_k">
 				<div style="float:left; width:615px; padding-left:30px;">
+                
 				<form action="index.php?do=register" method="post" id="register_frm" name="register_frm">
                 	<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}">
                     <input type="hidden" name="hdn_refer" id="hdn_refer" value="{$_K['refer']}">
@@ -37,9 +38,16 @@
                 	<div class="zc_kn">
 						<label class="zc_kz b1">账号</label>
 						<div class="zc_kk">
-							<input type="text" class="txt txt_input" autocomplete="off" name="txt_account" id="txt_account" limit="required:true;len:2-20;type:string;general:true" msg="{$_lang['username_input_error']}" ajax="index.php?do=register&check_username=" title="{$_lang['please_input_register_account']}" msgArea="login_account_msg" style="width:200px;" />
-                        <span class="msg" id="login_account_msg"><i></i></span>    
+							<input type="text" class="txt txt_input" autocomplete="off" name="int_uid" id="int_uid" limit="required:true;len:8;type:int;between:10000000-19999999;general:true" msg="账号输入有误！" ajax="index.php?do=register&check_uid=" title="{$_lang['please_input_register_account']}" msgArea="login_uid_msg" style="width:100px;" />&nbsp;&nbsp;&nbsp;&nbsp;<a href="###" onclick="rand_name()">随机生成</a>
+                        	<span class="msg" id="login_uid_msg"></span>    
                         </div>
+					</div>
+                    <div class="zc_kn">
+						<label class="zc_kz b0">用户名</label>
+						<div class="zc_kk">
+							<input type="text" class="txt txt_input" autocomplete="off" name="txt_account" id="txt_account" limit="required:true;len:2-20;type:string;general:true" msg="用户名输入有误！" ajax="index.php?do=register&check_username=" msgArea="login_account_msg" style="width:200px;" />
+                            <span class="msg" id="login_account_msg"><i></i></span>    
+						</div>
 					</div>
 					<div class="zc_kn">
 						<label class="zc_kz b1">密码</label>
@@ -59,7 +67,7 @@
 						<label class="zc_kz b1">邮箱</label>
 						<div class="zc_kk">
 							<input class="txt_input" style="width:200px;" autocomplete="off" type="text" class="txt" name="txt_email" id="txt_email"limit="type:email;required:true;len:6-50" msg="{$_lang['email_error']}" title="{$_lang['email_format']}" ajax="index.php?do=register&check_email=" msgArea="email_msg"/>
-                            <span class="" id="email_msg"></span>
+                            <span class="msg" id="email_msg"></span>
 						</div>
 					</div>
 					<div class="zc_kn">
@@ -68,13 +76,12 @@
 							<input style="width:65px;" class="fl_l txt_input" name="txt_code" type="text" 
                             size="8" id="txt_code" limit="required:true;len:4" msg="{$_lang['auth_code_error']}"msgArea="secode_msg"
                             ajax="index.php?do=ajax&view=code&txt_code=" >
-                        </div>
-                        <div class="zc_kk">
-                                <img height="25" width="100" id="secode_img" src="secode_show.php?sid=" onClick="document.getElementById('secode_img').src='secode_show.php?sid='+Math.random(); return false;">
+                            <img height="25" width="100" id="secode_img" src="secode_show.php?sid=" onClick="document.getElementById('secode_img').src='secode_show.php?sid='+Math.random(); return false;">
                                 <a class="font14" href="#" onClick="document.getElementById('secode_img').src='secode_show.php?sid='+Math.random(); return false;">{$_lang['change_a_group']}</a>
                                 <span class="" id="secode_msg"></span>
                             <a id="show_secode" href='index.php?do=ajax&view=menu&ajax=show_secode'></a>
-						</div>
+                        </div>
+                        
 					</div>
 				
 				</div>
@@ -190,7 +197,33 @@ function pwStrength(pwd){
   } 
 
 }
-								
+		
+function rand_name(){
+	var res = 0;
+	var uname = '';
+	var n = 0;
+	for(n =0; n<10; n++){
+		uname = parseInt(Math.random()*(19999999-10000000+1)+10000000);
+		$.ajax({
+           type: "GET",
+           url: "index.php?do=register&check_uid="+uname,
+           async: false,
+           success: function(data){
+               res = data;
+           }
+        })
+		
+		if(res == 1) {
+			$("#int_uid").val(uname);
+			$("#login_uid_msg").attr('class','msg');	
+			$("#login_uid_msg").html('');
+			exit;
+		}
+	}
+
+	alert("没随机到新账号！请再次点击！")
+	
+}						
 </script>
 	<!-- zhuce end -->
 	<div class="blank"></div>

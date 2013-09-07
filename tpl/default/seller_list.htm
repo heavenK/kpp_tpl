@@ -1,6 +1,29 @@
 <!--{template header_index_top}-->
 
-
+<script type="text/javascript">
+$(document).ready(function(){
+	//$("div[name=aaaaa]").slideToggle("slow");
+	$("div[name=aaaaa]").hide();
+	$("#btn-bs").click(function(){
+		$("div[name=aaaaa]").eq($(this).attr('num')).slideToggle("slow").toggleClass("highlight");
+		$("div[name=panel]").eq($(this).attr('num')).slideToggle("slow");
+		$(this).toggleClass("active5"); return;
+	});	
+	$("div[name=bbbbb]").hide();
+	$("#btn-bs1").click(function(){
+		$("div[name=bbbbb]").eq($(this).attr('num')).slideToggle("slow").toggleClass("highlight");
+		$("div[name=panel]").eq($(this).attr('num')).slideToggle("slow");
+		$(this).toggleClass("active5"); return;
+	});
+	$("div[name=ccccc]").hide();
+	$("#btn-bs2").click(function(){
+		$("div[name=ccccc]").eq($(this).attr('num')).slideToggle("slow").toggleClass("highlight");
+		$("div[name=panel]").eq($(this).attr('num')).slideToggle("slow");
+		$(this).toggleClass("active5"); return;
+	});
+	
+});
+</script>
 <!-- 立即发布任务 -->
 
 <div class="ljfb">
@@ -45,11 +68,11 @@
 	{loop $final_task $k $v}
      {if $is<20||($is==20&&$s==21)}
      <tr>
-        <td width="100" height="35" align="center" valign="middle"><a href="index.php?do=seller_list&path=A$v['indus_id']">$v['indus_name']</a></td>
+        <td width="100" height="35" align="center" valign="middle"><a href="index.php?do=seller_list&path=A$v['indus_id']" {if $path == "A".$v['indus_id'] && !$indus_id}style="background:#52c79b; color:#fff"{/if}>$v['indus_name']</a></td>
         <td height="35" valign="middle" class="sb">
         {loop $indus_c_arr $k1 $v1}
          {if $k==$v1['indus_pid']}
-             <a href="index.php?do=seller_list&path=A{$v1['indus_pid']}&indus_id={$v1['indus_id']}">$v1['indus_name']</a>
+             <a href="index.php?do=seller_list&path=A{$v1['indus_pid']}&indus_id={$v1['indus_id']}" {if $indus_id == $v1['indus_id']}style="background:#52c79b; color:#fff"{/if}>$v1['indus_name']</a>
          {/if} 
         {/loop}
         </td>
@@ -174,27 +197,27 @@
             		<div class="shsh_top">	
             			<div class="shsh_top_tx">
             				<b><a href="index.php?do=space&member_id={$v['uid']}&view=index"><img src="<!--{userpicurl($v['uid'],middle)}-->" width="98" height="98" /></a></b>
-            				<span><a href="index.php?do=space&member_id={$v['uid']}&view=index">查看服务和案例</a></span>
+            				<span><a href="javascript:void(0)">查看服务和案例</a></span>
                         </div>
             			<div class="shsh_top_xx">
                         	<h1>$v['shop_name']</h1>
-                        	<h2>
+                        	<h2 style="margin-bottom:0;">
                             	<!--{eval echo rz_show($v['uid']);}-->
                             </h2>
-                        	<h2>
+                        	<h2 style="margin-bottom:0;">
                             	<i>注册时间：</i><em><!--{eval echo date('Y-m-d',$v['reg_time'])}--></em>
                             </h2>
-                            <h2>
+                            <h2 style="margin-bottom:0;">
                             	<i>地址：</i><em>$v['residency']</em>
                             </h2>
-                            <h2>
+                            <h2 style="margin-bottom:0;">
                             	<i>诚信保障：</i><em>$v['balance']元</em>
                             </h2>
-                            <h2>
+                            <h2 style="margin-bottom:0;">
                             
                             	<i>服务项目：</i><em>{if !empty($indus_all_arr[$v['indus_pid']]['indus_name'])}  $indus_all_arr[$v['indus_pid']]['indus_name']|$indus_all_arr[$v['indus_id']]['indus_name']{else}无{/if}</em>
                             </h2>
-                            <h2>
+                            <h2 style="margin-bottom:0;">
                             	{if $v[shop_type]==1}
                                 <tt>个人</tt>
                                 {else}
@@ -211,7 +234,7 @@
                         </div>
             		</div>
             
-            		<div class="ppll">
+            		<div class="ppll" name="aaaaa">
                     {if $v['shop_arr']}
                         {loop $v['shop_arr'] $k1 $v1}
                         	{if $v1['case_type']==1}

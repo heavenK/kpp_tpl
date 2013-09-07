@@ -21,7 +21,9 @@
 .denglu				{ float:right; width:198px; height:32px; display:inline; margin:11px 10px 0 12px; background:#48b78d; border:1px solid #a9d9c3;}
 .hydl 				{ width:200px; height:34px; float:left;}
 .hydl i 			{ width:2px; height:16px; float:left; margin-top:9px; display:inline; background:#72c6a5;}
-.hydl a				{float:left; width:98px; height:32px; font-weight:bold; background:#48b78d; text-align:center; line-height:32px; color:#FFF; font-size:14px; cursor:pointer;}
+.huiyuan				{float:left; width:98px; height:32px; font-weight:bold; background:#48b78d; text-align:center; line-height:32px; color:#FFF; font-size:14px; cursor:pointer;}
+.zhuce    {float:left; width:98px; height:32px; font-weight:bold; background:#48b78d; text-align:center; line-height:32px; color:#FFF; font-size:14px; cursor:pointer;}
+.zhuce:hover { background:#a3e8cb;}
 .dl_t				{ width:200px; height:138px; background:url(../images/btnbg01.gif) no-repeat; position:absolute; top:101px; right:10px; display:none; z-index:99; padding-top:15px;}
 .dl_t ul			{}
 .dl_t ul li			{width:188px; line-height:30px; height:30px; margin-left:12px; float:left; _float:none; display:inline; padding:0;}
@@ -30,11 +32,12 @@
 .dl_z				{ float:left; width:100px; height:44px; text-align:center; line-height:44px; color:#FFF; font-size:14px;}
 .dl_z a				{ color:#FFF; font-size:14px;}
 .dl_btn label		{ font-size:14px; color:#000;}
-.dl_btn input		{ height:25px; color:#b2b2b2; font-size:12px; line-height:25px;}
+.dl_btn input		{ height:23px; color:#b2b2b2; font-size:12px; line-height:25px; border:1px solid #ccc}
 .dl_btn .dl_btnz	{ width:350px; height:30px;}
 .dl_btn0			{ width:210px; height:40px;  font-size:14px; padding-left:40px;}
-.dl_btn0 input		{ width:80px; height:30px; background:#47b68c; font-size:18px; line-height:30px; color:#FFF; cursor:pointer;}
-.dl_btn0 input:hover{ width:80px; height:30px; background:#a3e8cb; font-size:18px; line-height:30px; color:#FFF; cursor:pointer;}
+.dl_btn0 input		{ width:80px; height:30px; border:none; background:#47b68c; font-size:18px; line-height:30px; color:#FFF; cursor:pointer;}
+.dl_btn0 input:hover{ width:80px; height:30px; border:none; background:#a3e8cb; font-size:18px; line-height:30px; color:#FFF; cursor:pointer;}
+.rukouOver2  {  width:98px; height:32px; background:#a3e8cb; cursor:pointer; }
 .xiangmu			{width:845px; height:36px; line-height:36px; float:right; color:#333; font-size:14px; background:#f7f7f7;}
 .xiangmu i 			{ float:right; font-style:normal; margin-right:50px;}
 .xiangmu i b 		{ font-weight:normal; }
@@ -48,3 +51,5 @@
 .menu ul li a,.menu ul li a:visited{ display:block; text-align:center; font-size:14px; color:#fff;}
 .top_tit			{ float:left; line-height:59px; font-size:27px; padding-left:23px;}
 .slide a { cursor:pointer}
+
+.qq span a { color:#000}

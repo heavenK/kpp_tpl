@@ -74,7 +74,8 @@ a{ text-decoration:none;}
 .zc_k								{ width:645px; overflow:hidden; padding-top:25px;}
 .zc_kn								{ clear:both; width: 645px; height:25px; margin-bottom:10px;}
 .zc_kz								{ float:left; width:90px; height:25px; line-height:25px; font-size:15px;}
-.zc_kk								{ float:left;height:25px;}
+.zc_kk								{ float:left;height:25px; width:500px;}
+.zc_kk .msg							{ width:250px; float:right; font-size:12px; line-height:12px; color:#f00;}
 .zc_kk a:visitide					{ width:50px; height:30px; background:#0066FF; line-height:30px;}
 .zc_btn								{ float:left; width:93px; height:30px;}
 .btn								{width:93px; height:28px; }

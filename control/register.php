@@ -13,7 +13,7 @@ if (isset ($success)) {
 	 die ();
 }
 if (isset($formhash)&&kekezu::submitcheck($formhash)){ 
-	$reg_uid = $reg_obj->user_register($txt_account, md5($pwd_password), $txt_email,$txt_code,1,$pwd_password);
+	$reg_uid = $reg_obj->user_register($txt_account, md5($pwd_password), $txt_email,$txt_code,1,$pwd_password,$int_uid);
 	$user_info = keke_user_class::get_user_info($reg_uid); 
 	$reg_obj->register_login_jump($user_info);
 }
@@ -24,6 +24,11 @@ if (isset ( $check_email ) && ! empty ( $check_email )) {
 }
 if (isset ( $check_username ) && ! empty ( $check_username )) {
 	 $res =  keke_user_class::check_username ( $check_username );
+	 echo  $res;
+	 die ();
+}
+if (isset ( $check_uid ) && ! empty ( $check_uid )) {
+	 $res =  keke_user_class::check_uid ( $check_uid );
 	 echo  $res;
 	 die ();
 }

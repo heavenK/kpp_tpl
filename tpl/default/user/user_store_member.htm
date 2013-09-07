@@ -1,0 +1,174 @@
+<!--{template header_user_top}-->
+
+<!--contain start-->
+<div class="yhcenter">
+    	<!--  账号设置 begin -->
+    	<div class="yhzhbox tabCon">
+        	
+            <!--{template user_store_left}-->
+            <div class="yhzhright">
+            	<!--密码修改 begin  -->
+               <div class="acaq">
+            	<div class="ac_zltop">
+                	<span><b>成员管理</b></span>
+                </div>
+                <div class="ggmm">
+                	<div class="ac_mm">
+                    	<ul class="mima">
+                        	<li class="{if $show=='list'}mi{else}ma{/if}"><a href="index.php?do=user&view=store&op=member&show=list">成员列表</a></li>
+                            <li class="{if $show=='add'}mi{else}ma{/if}"><a href="index.php?do=user&view=store&op=member&show=add">添加成员</a></li>
+                        </ul>
+                    </div>
+                   {if $show=='list'}
+                    <div class="yhzh_aq">
+                    	<div class="cy_nr_d">
+                         <div class="cy_nr">
+                         
+                           <ul>
+                             <li class="nr_1">成员编号</li>
+                             <li class="nr_2">成员姓名</li>
+                             <li class="nr_3">成员头像</li>
+                             <li class="nr_4">操作</li>
+                           </ul>
+                           {loop $member_list $v}
+                           <ul class="yuan_list">
+                             <li class="nr_1">{$v['member_id']}</li>
+                             <li class="nr_2">{$v['truename']}</li>
+                             <li class="nr_3">
+                             	<!--{if $v['member_pic']}<img src="{$_K['siteurl']}/{$v['member_pic']}" class="block mar_auto pic_img" alt="{$_lang['display_picture']}" title="{$_lang['display_picture']}" width="50" height="50">{else}<img src="data/avatar/default/man_big.jpg" class="block mar_auto pic_img" alt="{$_lang['default_picture']}" title="{$_lang['default_picture']}" width="50" height="50">{/if}-->
+                             </li>
+                             <li class="nr_4"><a href="{$ac_url}&show=add&member_id={$v['member_id']}#userCenter" onclick="seEdit('{$v[member_id]}');">编辑</a>&nbsp;|&nbsp;<a href="###" onclick="del($v['member_id'])">删除</a></li>
+                           </ul>
+                           {/loop}
+                         </div>
+                        <div class="cy_di">共3个</div>
+                        </div>
+                    </div>
+                    {else}
+                    
+                    <div class="yhzh_aq">
+                    	<div class="cy_nr_d">
+                        
+                    <form action="{$ac_url}&show=add&member_id={$member_id}" method="post" id="frm" name="frm" enctype="multipart/form-data">
+                    <input type="hidden" name="pk[member_id]" value="$member_id">
+                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tbody><tr>
+                        <td width="80" valign="middle" align="right" height="40">成员姓名：</td>
+                        <td width="20" valign="middle" height="40">&nbsp;</td>
+                        <td width="562" valign="middle" align="left" height="40">
+                        <input name="conf[truename]" class="nr_input_1" type="text" title="{$_lang['member_names_length']}" id="truename" value="{$member_info['truename']}" limit="required:true;len:2-10" msg="{$_lang['tips_about_member_names']}" msgArea="span_truename"/><span id="span_truename"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td width="80" valign="middle" align="right" height="40">职务：</td>
+                        <td width="20" valign="middle" height="40">&nbsp;</td>
+                        <td valign="middle" align="left" height="40">
+                        <input name="conf[member_job]" class="nr_input_1" type="text" title="{$_lang['member_position_length']}" value="{$member_info['member_job']}" id="member_job" limit="required:true;len:2-30" msg="{$_lang['error_format_about_member_position']}" msgArea="span_member_job"/><span id="span_member_job"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td width="80" valign="middle" align="right" height="40">头像图片：</td>
+                        <td width="20" valign="middle" height="40">&nbsp;</td>
+                        <td valign="middle" align="left" height="40">
+                        <input type="file" name="member_pic" id="member_pic" ext=".jpg,.gif,.png,.jpeg" onchange="isExtName(this,1)">
+                        {if $member_info['member_pic']}
+                        <a href="{$_K['siteurl']}/{$member_info['member_pic']}" target="_blank"><!--{eval echo ltrim(strrchr($member_info['member_pic'],'/'),'/')}--></a>
+                        {/if}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td width="80" valign="middle" align="right" height="40">&nbsp;</td>
+                        <td width="20" valign="middle" height="40">&nbsp;</td>
+                        <td valign="middle" align="left" height="40">头像展示图片，推荐大小为50*50。支持.jpg，.gif，.png，.jpeg格式。</td>
+                      </tr>
+                      <tr>
+                        <td width="80" valign="top" align="right" height="240">成员简介：</td>
+                        <td width="20" valign="top" height="240">&nbsp;</td>
+                        <td valign="top" align="left" height="240">
+                        <textarea name="conf[member_desc]" id="member_desc" class="nr_text grid_9 xheditor-simple {skin:'nostyle'}">{$member_info['member_desc']}</textarea>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td width="80" valign="middle" align="right" height="40">&nbsp;</td>
+                        <td width="20" valign="middle" height="40">&nbsp;</td>
+                        <td valign="middle" align="left" height="40">&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td valign="middle" align="center" height="40" colspan="3">
+                        <input type="submit" class="nr_input_2" name="" onclick="return check_form('frm')" value="{if !$member_info}添&nbsp;加&nbsp;成&nbsp;员{else}编&nbsp;辑&nbsp;成&nbsp;员{/if}">
+                        </td>
+                        </tr>
+                    </tbody></table>
+                    </form>
+					{/if}
+
+         </div>
+                    </div>
+                </div>
+            </div>
+           </div>
+            </div>
+        </div>
+
+            
+
+    <!-- center end -->
+<script type="text/javascript">
+	In('form','xheditor');
+	
+	
+	function seEdit(sid){
+        var sid = parseInt(sid);
+        if (typeof(sid) == 'undefined' || isNaN(sid)) {
+            showDialog("$_lang['none_exists_service']", "alert", "{$_lang['operate_notice']}");
+            return false;
+        }
+        else {
+            var url = "index.php?do=user&view=setting&op=space&opp=member&show=add&member_id" + sid;
+			showWindow('service_edit',url,'get',0);return false;
+        }
+    }
+    /**
+     * 删除成员
+     * @param {Object} member_id 成员编号
+     */
+    function del(member_id){
+		showDialog("{$_lang['confirm_delete']}",'confirm',"{$_lang['operate_notice']}",function(){
+			var url = '$ac_url&show=list&ac=del&member_id=' + member_id;
+            $.getJSON(url, function(json){
+                if (json.status == '1') {
+                    tipsAppend(member_id, json.msg, 'successful', 'green');
+                    $(".member" + member_id).slideUp(2000).remove();
+                    if ($("dl dt").length == 0) {
+                        $("dl").append("<dt class='bf7 mt_10 clearfix t_c font14b'>{$_lang['no_member']}</dt>");
+                    }
+                }
+                else {
+                    tipsAppend(member_id, json.msg, 'error', 'red');
+                }
+            })
+		});
+    }
+    
+    /**
+     * 表单提交
+     * @param {Object} obj 表单id
+     */
+    function check_form(obj){
+        var shtml = $("#member_desc").val();
+        if (shtml.length < 2) {
+            tipsAppend("desc", "{$_lang['description_at_least_two_words']}", 'warning', 'm_warn',1);
+            $("#member_desc").focus();
+            return false;
+        }
+        var i = checkForm(document.getElementById(obj));
+        if (i) 
+            return true;
+        else 
+            return false;
+    }
+</script>
+<!--contain end-->
+
+<!--{template user/user_footer}-->
+<!--{template footer_dou}-->

@@ -32,4 +32,38 @@ if($task_open){
 	$pages     = $task['pages'];
 	$cash_cove = kekezu::get_cash_cove('',true);
 }
+
+
+// 收支
+$sql = ' select a.fina_cash,a.fina_type from '.TABLEPRE.'witkey_finance a left join '
+				.TABLEPRE.'witkey_task b on a.obj_id=b.task_id left join '.TABLEPRE
+				.'witkey_service c on a.obj_id=c.service_id ';
+$where =" where a.uid=".intval($uid)." and a.fina_type='in' and a.fina_action not in ('withdraw','offline_recharge','offline_charge','online_charge','online_recharge','withdraw_fail')";
+$fina_arr = db_factory::query($sql.$where);
+$shouru = 0;
+$sum = 0;
+foreach($fina_arr as $val){
+	$shouru += $val['fina_cash'];
+	$sum ++;
+}
+//end 
+
+
+// 成功案例
+$sql_c = "select a.*,a.indus_id in_id,b.* from " . TABLEPRE . "witkey_shop_case as a
+		left join " . TABLEPRE . "witkey_service as b
+				on a.service_id = b.service_id
+					where  a.shop_id = " . intval($shop_info ['shop_id']) . " order by b.service_id desc limit 0,4";
+$shop_arr = db_factory::query ( $sql_c );
+
+
+$sql = "select * from " . TABLEPRE . "witkey_task order by task_id desc limit 0,10";
+$task_list_arr = db_factory::query ( $sql );
+
+$sql = "select * from " . TABLEPRE . "witkey_article where art_cat_id=5 order by pub_time desc limit 0,10";
+$art_list_arr = db_factory::query ( $sql );
+
+$sql = "select * from " . TABLEPRE . "witkey_article where art_cat_id=366 order by pub_time desc limit 0,10";
+$art_list_arr_366 = db_factory::query ( $sql );
+
 require keke_tpl_class::template(SKIN_PATH."/space/{$type}_{$view}");

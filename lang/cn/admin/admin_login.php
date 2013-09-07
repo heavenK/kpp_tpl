@@ -12,10 +12,10 @@ $lang=array(
 
 
 /*admin_login.htm*/
-	'admin_keke_sys'=>'后台管理 - 专业威客系统',
-      'keke_professional_witkey_system'=>'专业威客系统',
+	'admin_keke_sys'=>'后台管理',
+      'keke_professional_witkey_system'=>'威客系统',
       'system_manage'=>'系统管理',
-      'keke_info_technology_company'=>'武汉信息技术有限公司',
+      'keke_info_technology_company'=>'',
       'username_can_not_null'=>'用户名不能为空',
       'please_input_right_login_username'=>'请填写正确登录账号',
       'password_can_not_null'=>'密码不能为空',

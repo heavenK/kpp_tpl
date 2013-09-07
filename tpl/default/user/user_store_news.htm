@@ -1,0 +1,183 @@
+<!--{template header_user_top}-->
+
+<!--contain start-->
+<div class="yhcenter">
+    	<!--  账号设置 begin -->
+    	<div class="yhzhbox tabCon">
+        	
+            <!--{template user_store_left}-->
+            <div class="yhzhright">
+            	<!--密码修改 begin  -->
+               <div class="acaq">
+            	<div class="ac_zltop">
+                	<span><b>新闻资讯</b></span>
+                </div>
+                <div class="ggmm">
+                	<div class="ac_mm">
+                    	<ul class="mima">
+                            <li class="{if $show == 'list'}mi{else}ma{/if}"><a href="index.php?do=user&view=store&op=news&show=list">公司新闻</a></li>
+                            <li class="{if $show == 'add'}mi{else}ma{/if}"><a href="index.php?do=user&view=store&op=news&show=add">添加公司新闻</a></li>
+                        </ul>
+                    </div>
+                    {if $show=='list'}
+                    <div class="yhzh_aq">
+                    	<div class="pad10" style="padding-top:10px">
+                                        <div class="tab">
+                                           <form id="" method="post" action="index.php?do={$do}&view={$view}&op={$op}&show={$show}">
+                                               <div class="tab_r">
+                                               		<div class="mr_10 a0">
+                                                        <label class="">
+                                                            文章标题：
+                                                        </label>
+                                                        <input type="text" name="art_title" class="in_tou" value="">
+                                                    </div>
+                                                    
+                                                    <div class="mr_10 a0">
+                                                        <label class="">
+                                                            发布时间：
+                                                        </label>
+                                                        <input type="text" name="start_time" onclick="showcalendar(event, this, 0)" class="in_tou" value="" name="">-<input type="text" onclick="showcalendar(event, this, 0)" name="end_time" class="in_tou" value="" name="">
+                                                    </div>
+                                                    <div class="a1">
+                                                        <button value="搜索" name="sbt_search" type="submit" class="sub"><span></span>搜索</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <div style="clear:both;" class="data_list_d8">
+                                                <table width="730" cellspacing="0" cellpadding="0" style=" " class="data_table_d8">
+                                                    <thead>
+                                                        <tr>
+                                                            <th width="160" style=" margin-left:10px; line-height:20px;">标题</th>
+                                                        	<th width="134">作者</th>
+                                                        	<th width="183">来源</th>
+                                                        	<th width="137">添加时间</th>
+                                                        	<th width="124">操作</th>
+                                                        </tr>
+                                                    </thead>
+                                                    {loop $art_arr $v}
+                                                    <tbody>
+                                                        <tr>
+                                                            <th style="font-weight:normal">{$v[art_title]}</th>
+                                                            <th style="font-weight:normal">{$v[username]}</th>
+                                                            <th style="font-weight:normal">{$v[art_source]}</th>
+                                                            <th style="font-weight:normal"><!--{date('Y-m-d',$v['pub_time'])}--></th>
+                                                            <th style="font-weight:normal"><a href="index.php?do=user&view=store&op=news&show=add&art_id={$v[art_id]}">查看</a></a></th>
+                                                        </tr>
+                                                    </tbody>
+                                                    {/loop}
+                                                 </table>
+                                             </div>
+                                         </div>
+                                    </div>
+                    </div>
+                    {else}
+                    <div class="yhzh_aq">
+                    	<div class="cy_nr_d">
+                    <form method="post" action="index.php?do={$do}&view={$view}&op={$op}&show={$show}" id="frm_art_edit" enctype="multipart/form-data">
+                    <input type="hidden" name="pk[art_id]" value="{$art_info['art_id']}" id='art_id'/>
+                    <input type="hidden" name="type" value="{$type}"/>
+                    <input type="hidden" name="fields[art_cat_id]" value="368"/>
+                    <input type="hidden" name="sbt_edit" value="1" />
+                               <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tbody><tr>
+                        <td width="80" valign="middle" align="right" height="40">文章标题：</td>
+                        <td width="20" valign="middle" height="40">&nbsp;</td>
+                        <td width="562" valign="middle" align="left" height="40">
+                        <input type="text" name="fields[art_title]" id="txt_art_title" value="{$art_info['art_title']}" maxlength="100"  class="nr_input_1 txt"
+	                        limit="required:true;len:3-100;general:false" 
+	                        msg="{if $type=='art'}{$_lang['article']}{elseif $type=='help'}{$_lang['help']}{elseif $type=='bulletin'}{$_lang['bulletin']}{elseif $type=='about'}{$_lang['about']}{else}{$_lang['single_page']}{/if}{$_lang['some_restrictions_about_title']}" 
+	                        msgArea="art_title_msg" 
+	                        title='{$_lang['please_input']}{if $type=='art'}{$_lang['article']}{elseif $type=='help'}{$_lang['help']}{else}{$_lang['single_page']}{/if}{$_lang['the_title']}' />
+	                        <span id="art_title_msg"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td width="80" valign="middle" align="right" height="40">作者：</td>
+                        <td width="20" valign="middle" height="40">&nbsp;</td>
+                        <td valign="middle" align="left" height="40">
+                        <input type="text" class="txt nr_input_1"
+						 name="fields[username]" id="txt_username" 
+						 value="{if $art_info['username']}{$art_info['username']}{else}{$username}{/if}"
+                        			 limit = "required:false" 
+                                     msg = '{$_lang['please_input_author']}' 
+                                     title='{$_lang['please_input_your_author']}' 
+                                     msgArea="msg_txt_username"/><span id="msg_txt_username"></span>
+                        
+                        </td>
+                      </tr>
+                      <tr>
+                        <td width="80" valign="middle" align="right" height="40">来源：</td>
+                        <td width="20" valign="middle" height="40">&nbsp;</td>
+                        <td valign="middle" align="left" height="40">
+                        <input type="text" class="txt nr_input_1"
+						name="fields[art_source]" 
+						id="art_source"
+						value="$art_source"
+                        			 limit = "required:false" 
+                                     msg = '{$_lang['choose_from']}' 
+                                     title='{if $type=='art'}{$_lang['article']}{elseif $type=='help'}{$_lang['help']}{elseif $type=='bulletin'}{$_lang['bulletin']}{elseif $type=='about'}{$_lang['about']}{else}{$_lang['single_page']}{/if}{$_lang['from_where']}{$_lang['zh_wh']}' 
+                                     msgArea="msg_art_source"/><span id="msg_art_source"></span>
+                        </td>
+                      </tr>
+                      
+                      <tr>
+                        <td width="80" valign="top" align="right" height="240">文章内容：</td>
+                        <td width="20" valign="top" height="240">&nbsp;</td>
+                        <td valign="top" align="left" height="240">
+                        <textarea name="fields[content]"  id="tar_content"  class="nr_text xheditor-simple {skin:'nostyle'}" >{$art_info['content']}</textarea>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td width="80" valign="middle" align="right" height="40">&nbsp;</td>
+                        <td width="20" valign="middle" height="40">&nbsp;</td>
+                        <td valign="middle" align="left" height="40">&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td valign="middle" align="center" height="40" colspan="3"><input type="submit"  class="nr_input_2" onclick="return checkForm(document.getElementById('frm_art_edit'),false)" value="{if $art_id}修&nbsp;改{else}添&nbsp;加{/if}&nbsp;公&nbsp;司&nbsp;新&nbsp;闻"></td>
+                        </tr>
+                    </tbody></table>
+					</form>
+
+         </div>
+                    </div>
+                    {/if}
+                </div>
+            </div>
+           </div>
+            </div>
+        </div>
+
+            
+<script type="text/javascript">
+In('xheditor'); 
+    $(function()
+            {
+                var c_id = parseInt("$art_info['art_cat_id']");
+                if (c_id) 
+                {
+                    $("#slt_cat_id").val(c_id);
+                }
+                
+                $("input[name='sbt_edit']").click(function(){
+                    var si = $("#slt_cat_id").val();
+                    if (!si) 
+                    {
+                        $("#msg_cat_id").html("{$_lang['choose_category']}");
+                        return false;
+                    }
+                    else 
+                    {
+                        $("#msg_cat_id").html("{$_lang['category_has_been_selected']}");
+                        return true;
+                    }
+                })
+            })
+			function uploadResponse(){
+				
+			}
+</script>
+    <!-- center end -->
+<!--contain end-->
+
+<!--{template user/user_footer}-->
+<!--{template footer_dou}-->

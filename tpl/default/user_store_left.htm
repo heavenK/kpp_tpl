@@ -1,0 +1,34 @@
+            <div class="yhzhleft">
+            	<div class="yh_list">
+                    <div class="yhzhleftnav">
+                        <p><b>工作室管理</b></p>
+                    </div>
+                    <div class="yhzhlefttree">
+                        <ul>
+                            <li class="m"><p>基本资料</p>
+                                <ul class="teng_ul" style="display:none;">
+                                    <li><p><a href="index.php?do=user&view=store" {if $opp == 'basic'} style="color:#48b78d"{/if}>开通工作室</a></p></li>
+                                    <li><p><a href="index.php?do=user&view=store&op=setting&opp=skill" {if $opp == 'skill'} style="color:#48b78d"{/if}>技能标签</a></p></li>
+                                    <li><p><a href="index.php?do=user&view=store&op=service&model_id=7" {if $op == 'service'} style="color:#48b78d"{/if}>服务管理</a></p></li>
+                                    <li><p><a href="index.php?do=user&view=setting&op=space&opp=member" {if $opp == 'member'} style="color:#48b78d"{/if}>成员管理</a></p></li>
+                                    <li><p><a href="index.php?do=user&view=store&op=news" {if $op == 'news'} style="color:#48b78d"{/if}>新闻资讯</a></p></li>
+									<li><p><a href="index.php?do=user&view=setting&op=space&opp=case" {if $opp == 'case'} style="color:#48b78d"{/if}>案例管理</a></p></li>
+                                    <li><p><a href="index.php?do=user&view=store&op=setting&opp=link" {if $opp == 'link'} style="color:#48b78d"{/if}>联系我们</a></p></li>
+                                    <li><p><a href="index.php?do=user&view=store&op=setting&opp=ads" {if $opp == 'ads'} style="color:#48b78d"{/if}>广告管理</a></p></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <script>
+					$(function(){
+						$("li:has(ul)").addClass("p");
+						$("li:has(ul):eq(0)").removeClass("p");
+						$(".teng_ul:eq(0)").show();
+						$("p").click(function(){
+							$(this).parent(":has(ul)").find(">ul").slideToggle().end().toggleClass("p");
+						});
+					})
+					</script>
+                </div>
+                 <!--{template user_left_ad}-->
+            </div>

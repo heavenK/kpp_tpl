@@ -1,0 +1,142 @@
+<!--{template header_user_top}-->
+
+<!--contain start-->
+<div class="yhcenter">
+    	<!--  账号设置 begin -->
+    	<div class="yhzhbox tabCon">
+        	
+            <!--{template user_store_left}-->
+            <div class="yhzhright">
+            	<!--密码修改 begin  -->
+               <div class="acaq">
+            	<div class="ac_zltop">
+                	<span><b>服务管理</b></span>
+                </div>
+                <div class="ggmm">
+                	<div class="ac_mm">
+                    	<ul class="mima">
+                        	<li class="mi"><a href="index.php?do=user&view=store&op=service&model_id=7">服务列表</a></li>
+                            <li class="ma"><a href="index.php?do=user&view=store&op=service&model_id=7&opp=add">出售服务</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="yhzh_aq" style="display:block">
+                    	<div class="pad10" style="padding-top:10px">
+                                        <div class="tab">
+                                           <form id="" method="post" action="index.php?do={$do}&view={$view}&op={$op}&model_id={$model_id}">
+                                               <div class="tab_r">
+                                               		<div class="mr_10 a0">
+                                                        <label class="">
+                                                            服务类型：
+                                                        </label>
+                                                        <select name="indus_id" class="sel">
+                                                            <option selected="selected" value="">全部</option>
+                                                            {loop $indus $v}
+                                                            <option value="{$v[indus_id]}">{$v[indus_name]}</option>
+                                                            {/loop}
+                                                        </select>
+                                                    </div>
+                                                    
+                                                    <div class="mr_10 a0">
+                                                        <label class="">
+                                                            发布时间：
+                                                        </label>
+                                                        <input type="text" onclick="showcalendar(event, this, 0)" class="in_tou" value="{$start_time}" name="start_time">-<input type="text" onclick="showcalendar(event, this, 0)" class="in_tou" value="{$end_time}" name="end_time">
+                                                    </div>
+                                                    <div class="a1">
+                                                        <button value="搜索" name="sbt_search" type="submit" class="sub"><span></span>搜索</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <div style="clear:both;" class="data_list_d8">
+                                                <table width="730" cellspacing="0" cellpadding="0" style=" " class="data_table_d8">
+                                                    <thead>
+                                                        <tr>
+                                                            <th width="120" style=" margin-left:10px; line-height:20px;">图片/分类/标题</th>
+                                                        	<th width="184">定价</th>
+                                                        	<th width="183">周期时间</th>
+                                                        	<th width="137">状态</th>
+                                                        	<th width="124">操作</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    	{loop $s_info $v}
+                                                        <tr>
+                                                            <th style="font-weight:normal"><a href="{$_K['siteurl']}/index.php?do=service&sid={$v['service_id']}" target="_blank">$v['title']</a></th>
+                                                            <th style="font-weight:normal">{c:$v['price']}</th>
+                                                            <th style="font-weight:normal">{$v['service_time']}{$v['unit_time']}</th>
+                                                            <th style="font-weight:normal">{$status_arr[$v['service_status']]}</th>
+                                                            <th style="font-weight:normal"><a href="###" onclick="seEdit('{$v[service_id]}');">编辑</a>&nbsp;|&nbsp;<a onclick="return del(this);" href="{$url}&ac=del&ser_id=$v['service_id']">删除</a></th>
+                                                        </tr>
+                                                        {/loop}
+                                                    </tbody>
+                                                 </table>
+                                             </div>
+                                         </div>
+                                    </div>
+                    </div>
+
+                </div>
+            </div>
+           </div>
+            </div>
+        </div>
+
+            
+
+    <!-- center end -->
+<script type="text/javascript" src="resource/js/xheditor/xheditor.js"></script>
+<script type="text/javascript">
+	
+	var suc = false;
+    function del(obj){
+        var url = obj.href;
+        showDialog("确定删除此商品吗？", "confirm", "操作提示!", function(){
+			accCheck(url, "存在未处理的订单、无法删除","reload");
+        });
+		
+        return false;
+    }
+    
+    function seEdit(sid){
+        var sid = parseInt(sid);
+        if (typeof(sid) == 'undefined' || isNaN(sid)) {
+            showDialog("$_lang['none_exists_service']", "alert", "{$_lang['operate_notice']}");
+            return false;
+        }
+        else {
+            var url = "index.php?do=user&view=witkey&op=g_pub&model_id=7&page_size=10&status=&page=1&ac=edit&ser_id=" + sid;
+			showWindow('service_edit',url,'get',0);return false;
+        }
+    }
+    function accCheck(url, cont,type,winName){
+        $.getJSON(url, {
+            ac: 'check'
+        }, function(json){
+            if (json.status == 1) {
+                showDialog(cont, "alert", "{$_lang['operate_notice']}");return false;
+            }else{
+				switch(type){
+					case "reload":
+           				 formSub(url,'url',false);
+						break;
+					case "window":
+          					showWindow(winName, url, 'get', 0); return false;
+						break;
+				}
+			}
+        })
+    }
+	function down_shelf(sid){
+        showDialog("确定要下架吗", "confirm", "操作提示", function(){
+			 var url = "{$url}&ac=down_shelf&ser_id=" + sid;
+			 formSub(url,'url',false);return false;
+        });
+		
+        return false;
+    }
+</script>
+<!--contain end-->
+
+<!--{template user/user_footer}-->
+<!--{template footer_dou}-->
