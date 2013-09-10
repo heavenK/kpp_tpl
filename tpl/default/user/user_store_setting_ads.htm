@@ -16,6 +16,7 @@
                   	<div class="cy_nr_d">
                     <form action="index.php?do={$do}&view={$view}&op={$op}&opp={$opp}" method="post" id="frm" name="frm" enctype="multipart/form-data">
 						<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}">
+                        <input type="hidden" name="ad_id"  value="{$ads_info['ad_id']}">
                       <table width="100%" border="0" cellspacing="0" cellpadding="0" style="float:left;">
                       <tbody><tr>
                         <td width="80" valign="middle" align="right" height="40">广告标题：</td>
@@ -28,13 +29,13 @@
                         <td width="80" valign="middle" align="right" height="40">开始时间：</td>
                         <td width="20" valign="middle" height="40">&nbsp;</td>
                         <td width="562" valign="middle" align="left" height="40">
-                        <input name="start_time" class="nr_input_1" type="text" value="{$ads_info['start_time']}"  onclick="showcalendar(event, this, 0)"/>
+                        <input name="start_time" class="nr_input_1" type="text" value="<!--{date('Y-m-d',$ads_info['start_time'])}-->"  onclick="showcalendar(event, this, 0)"/>
                       </tr>
                       <tr>
                         <td width="80" valign="middle" align="right" height="40">结束时间：</td>
                         <td width="20" valign="middle" height="40">&nbsp;</td>
                         <td width="562" valign="middle" align="left" height="40">
-                        <input name="end_time" class="nr_input_1" type="text" value="{$ads_info['end_time']}"  onclick="showcalendar(event, this, 0)"/>
+                        <input name="end_time" class="nr_input_1" type="text" value="<!--{date('Y-m-d',$ads_info['end_time'])}-->"  onclick="showcalendar(event, this, 0)"/>
                       </tr>
                       <tr>
                         <td width="80" valign="middle" align="right" height="40">图片地址：</td>

@@ -4,6 +4,7 @@ keke_lang_class::package_init("task");
 keke_lang_class::loadlang($do);
 $mode_arr  = array("professional","guide","onekey");
 in_array($pub_mode,$mode_arr) or $pub_mode='professional';
+if($r_step == 'step4') kekezu::show_msg("发布成功","index.php?do=user&view=employer&op=task",3,"发布成功","success");
 switch($pub_mode){
 	case "professional":
 		break;
@@ -34,7 +35,7 @@ $stage_nav=array("1"=>array("step1",$_lang['stage_nav_step1_a'],$_lang['stage_na
 				"4"=>array("step4",$_lang['stage_nav_step4_a'],$_lang['stage_nav_step4_b']));
 }
 $r_step or $r_step='step1';
-$basic_url = "index.php?do=release&pub_mode=$pub_mode&t_id=$t_id&model_id=".$model_id."&r_step=".$r_step;
+$basic_url = "index.php?do=release&pub_mode=$pub_mode&t_id=$t_id&model_id=".$model_id."&r_step=step3";
 if($ac=='show_map'){
 	$title=$_lang['task_map_set'];
 	$user_info ['residency']&&$local = explode(',', $user_info['residency']);
@@ -49,4 +50,7 @@ if($act=='agreement'){
 	$title=kekezu::lang("agreement");
 	require keke_tpl_class::template("task/release_agree");
 }
+
+$payitem_arr = keke_payitem_class::get_payitem_info('employer','sreward'); 
+$item_list = $payitem_arr; 
 require S_ROOT."./task/".$model_info['model_dir']."/control/release.php";

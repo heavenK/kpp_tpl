@@ -21,112 +21,178 @@
 	 	 <!--detail内容 start-->
             <article class="box_detail last_step_three">
 
-				
+				<div class="ac_rztop">
+                   <span><b>认证中心</b></span>
+               </div>
+               
 				<div class=" border_t_c">
-					
-				
-				
-               <!--messages消息 start-->   
-			   
-                   <div class="messages m_infor clearfix">
-                      <div class="icon16 fl_l">warning</div>
-                           <div class="grid_18">实名认证免费. {$_lang['customer_service_personnel_will']} {$auth_item[auth_day]}{$_lang['working_days_to_complete_certification']}{$_lang['zh_mh']}{$basic_config['kf_phone']}</div>
-                       <a href="###" class="close">&times;</a>
-                   </div> 
-                   <!--messages消息 end-->
-                   <div class="prefix_1 suffix_1 clearfix">
+
+                   <div class="smrz">
                      <!--step步骤 start-->
-                       <div class="step_progress clearfix">
-                       	{loop $step_arr $k $v}
-						  <div class="step {$k} {if $k==$auth_step}selected{/if}">
-                           <span class="icon32">{$k}</span>
-                           <strong>{$v[0]}</strong>{$v[1]}
-                         </div>
-						{/loop}
-                     </div>
-                     <!--step步骤 end-->
-                     {if $auth_step=='step1'}
-				  <form action="{$ac_url}&auth_step=step2" method="post" id="frm_auth" enctype="multipart/form-data" name="frm_auth">
-                     <div class="form_box pt_20">
-                      	<div class="rowElem clearfix">
-              				<label class="grid_5 clearfix">
-              					<div class="fl_r pr_10">
-              						<img src="{$auth_item['auth_big_ico']}" />
-              					</div>
-              				</label>
-                            <div class="grid_6"> <strong class="font14b">{$auth_item['auth_title']}</strong> <span class="c999 block">{$auth_item['auth_desc']}</span> </div>
-                      	</div>
-                         <div class="rowElem clearfix">
-                            <label class="grid_5 t_r">{$_lang['username']}{$_lang['zh_mh']}</label>
-                               <div class="grid_4">{$user_info[username]}</div>                                 
-                          </div>
-                          <div class="rowElem clearfix">
-                              <label class="grid_5 t_r">{$_lang['realname']}{$_lang['zh_mh']}</label>
-                              <input type="text" class="mr_5" name="fds[realname]" id="realname" size="35" value="{$user_info[truename]}"
-							   limit="required:true;len:2-10" msg="{$_lang['msg_about_realname']}" title="{$_lang['title_about_realname']}" msgArea="span_realname"/><span id="span_realname"></span>
-							   <div class=" prefix_5 c999">{$_lang['enter_correct_realname']}</div>
-						  </div>
-                          <div class="rowElem clearfix">
-                              <label class="grid_5 t_r">{$_lang['id_card']}{$_lang['zh_mh']}</label>
-                              <input type="text"class="mr_5"  name="fds[id_card]" id="id_card" size="35" msgArea="msg_id_card"
-							   limit="required:true;type:idCard" msg="{$_lang['msg_about_card_num']}" title="{$_lang['title_about_card_num']}" value="{$user_info[idcard]}"/><span class="red" id="msg_id_card"></span>
-                              <div class=" prefix_5 c999">{$_lang['please_fill_in_with_realname_corresponding_to_the_card_num']}</div>
-						   </div>
-                           <div class="rowElem clearfix">
-                           	<label class="grid_5 t_r">身份证正反面图片{$_lang['zh_mh']}</label>
-								<input type="file" name="id_pic" ext='.gif,.jpg,.png' onchange="isExtName(this);" id="id_pic"/>
-						   </div>
-                           <div class="rowElem clearfix form_button">
-                           		
-									<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}">
-                             	    <button type="button" name="sbt_add" class="button" value="{$_lang['auth_now']}" onclick="user_auth()">{$_lang['auth_now']}</button>
-						   </div>  
-                         </div>
-                      </form >
-				 {elseif $auth_step=='step2'||$auth_step=='step3'}
-				 <div class="box complete border_n " style="width:auto;">
-                    
-                      	<div class="last_success_step clearfix">
-                      	<div class="fl_l {$auth_style} po_re" style="top:30px; left:30px; _left:0px;">
-          					<span class="tip_icon"></span>
-                        </div>
-                        <div class="completedata clearfix">                        		
-                           <ul>
-                           	<li class="clearfix">                        
-                                 <div><img src="{$auth_item['auth_big_ico']}" /></div>                                 
-                                  <div class="font14b">{$auth_item['auth_title']}
-                                  <span>（{$auth_tips}）</span></div>
-                                  <!--<div class="c999">{$_lang['use_realname_to_auth']}</div>-->
-                             </li>
-							 
-							 <li class="clearfix">
-  								<div>{$_lang['realname']}{$_lang['zh_mh']}</div>
-								<div class=" font14b">$auth_info['realname']</div>
-                           	 </li>
-							<li class="clearfix">                          
-								<div>{$_lang['id_card']}{$_lang['zh_mh']}</div>
-								 <div class="c999">
-                                  <!--{eval echo kekezu::set_star($auth_info['id_card'],3,5);}-->
-                               	  </div>
-                           	 </li>
-					       <li>
-					        {if !$auth_info['auth_status']}
-							  实名认证申请提交成功，请耐心等待管理员审核！
-							{/if}
-					       </li>
+                      
+                     
+                     
+                     <div class="smrz_nav">
+                        <ul>
+                        	{loop $step_arr $k $v}
+                            <li class="{if "step".$k==$auth_step}selectedLava{/if} sm"> <a title="所在地区" {if "step".$k==$auth_step}style="color:#B80002"{/if}>{$k}.{$v[1]}</a> <!-- #userCenter --> </li>
+                            {/loop}
                         </ul>
                     </div>
-                   		<div class="fl_r pad10">
-							<a href="{$ac_url}&auth_step=step1" class="button" onclick="return return_update(this);">{$_lang['return_and_modify']}</a>
-						</div>
-					</div>
-				
-               </div>
-             </div> 
+                     <!--step步骤 end-->
+                     {if $auth_step=='step1'}
+                     <div class="smrz_box">
+                                <div class="smrz_ts">
+                                    <p><b>友情提示</b> 实名认证成功后，您可以享有以下特权：
+                    <br />提升账户安全性：提现时银行卡开户名必须与真实姓名相同，方可提现。
+                    <br />提升客户责任感：通过实名认证的用户更能得到客户的认可。</p>
+                                </div>
+                                <div class="smrz_dq">
+                                    <div style="font-weight:bold; font-size:13px; line-height:25px;padding-bottom:15px; ">
+                                        <span style="color:#F00;">*</span>
+                                        选择您的所在地区：
+                                    </div>
+                                    <div class="_rzdq">
+                                        <dl>
+                                            <dd><img src="/tpl/default/d8/images/yh_smrz_China.gif" /></dd>
+                                            <dt><input type="radio" name="zone" value="中国大陆" checked="checked" original-title="">中国大陆 </dt>
+                                        </dl>
+                                        <dl>
+                                            <dd><img src="/tpl/default/d8/images/gangao.jpg" /></dd>
+                                            <dt><input type="radio" name="zone" value="港澳地区" original-title="">港澳地区 </dt>
+                                        </dl>
+                                        <dl>
+                                            <dd><img src="/tpl/default/d8/images/taiwan.jpg" /></dd>
+                                            <dt><input type="radio" name="zone" value="台湾地区" original-title="">台湾地区 </dt>
+                                        </dl>
+                                        <dl>
+                                            <dd><img src="/tpl/default/d8/images/haiwai.jpg" /></dd>
+                                            <dt><input type="radio" name="zone" value="海外地区" original-title="">海外地区 </dt>
+                                        </dl>
+                                    </div>
+                                </div>
+                                <div class="smrz_dq">
+                                    <div style="font-weight:bold; font-size:13px; line-height:25px; padding-bottom:15px;">
+                                        <span style="color:#F00;">*</span>
+                                        选择您要认证的身份：
+                                    </div>
+                                    <div class="_rzdq">
+                                    <p>
+                                      <label>
+                                        <input type="radio" name="user_type" value="1" checked="checked" id="RadioGroup1_0" />
+                                        个人</label>
+                                      <label>
+                                        <input type="radio" name="user_type" value="2" id="RadioGroup1_1" />
+                                        企业</label>
+                                    </p>
+                                    </div>
+                                </div>
+                                <div class="ben">
+                                    <button style="width:100px" value="下一步" type="button" onclick="jump_next();">下一步</button>
+                                </div>
+                            </div>
+                              <script>
+							  	function jump_next(){
+										
+									var zone = $("input[name='zone']:checked").val();
+									var user_type = $("input[name='user_type']:checked").val();
+										
+									location='index.php?do=user&view=payitem&op=auth&auth_code=realname&ver=0&auth_step=step2&zone='+zone+'&user_type='+user_type;
+								}
+							  </script>       
+                     {elseif $auth_step=='step2'}
+				  <form action="{$ac_url}&auth_step=step3" method="post" id="frm_auth" enctype="multipart/form-data" name="frm_auth">
+                  <input type="hidden" name="fds[zone]" id="zone" value="{$zone}">
+                  <input type="hidden" name="fds[user_type]" id="user_type" value="{$user_type}">
+                  <div class="smrz_box">
+                    <div class="smrz_er">
+                        <p><label style=" float:left; width:150px; text-align:right;">用户名：</label>{$user_info[username]}</p>
+                        <p><label style=" float:left; width:150px; text-align:right;">身份类型：</label>{if $user_type==1}个人{else}企业{/if}</p>
+                       <div style="width:700px; overflow:hidden; ">
+                            <label style=" float:left; width:150px; text-align:right; line-height:28px;">真实身份：</label>
+                            <div style="float:left;height:30px;">
+                               <input type="text" style="width:200px; height:20px; border:1px solid #ccc" class="txt_input" name="fds[realname]" id="realname"  value="{$user_info[truename]}"
+							   limit="required:true;len:2-10" msg="{$_lang['msg_about_realname']}" title="{$_lang['title_about_realname']}" msgArea="span_realname"/><span id="span_realname"></span>
+                            </div>
+                            <div style=" clear:both;color:#999999; margin-left:150px; font-size:12px;">务必正确填写您的真实名称,一经认证将无法被修改。</div>
+                        </div>
+                        <div style="width:700px; overflow:hidden; padding-top:15px;">
+                            <label style=" float:left; width:150px; text-align:right; line-height:28px;">证件号码：</label>
+                            <div style="float:left;height:30px;">
+                               <input type="text" style="width:200px; height:20px; border:1px solid #ccc" class="txt_input"  name="fds[id_card]" id="id_card"  msgArea="msg_id_card"
+							   limit="required:true;type:idCard" msg="{$_lang['msg_about_card_num']}" title="{$_lang['title_about_card_num']}" value="{$user_info[idcard]}"/><span class="red" id="msg_id_card"></span>
+                               
+                            </div>
+                            <div style=" clear:both;color:#999999; margin-left:150px; font-size:12px;">务必正确填写您的真实名称,一经认证将无法被修改。</div>
+                        </div>
+                        <div style="width:700px; overflow:hidden; padding-top:15px;">
+                            <label style=" float:left; width:150px; line-height:24px;  text-align:right;">证件复印件：</label>
+                            <div style="float:left;height:30px;">
+                               <input type="file" name="id_pic" ext='.gif,.jpg,.png' onchange="isExtName(this);" style="width:100px; height:30px; cursor:pointer " id="id_pic"/>
+                               <span style="margin-left:50px; font-size:12px;">证件的扫描件或证件照片</span>
+                            </div>
+                        </div>
+                        
+                     <div class="ben">
+                     	{if $auth_info&&!$auth_info['auth_status']}
+                            <button  style="width:100px" type="button" class="button" value="{$_lang['waiting_for_approval']}"><span class="icon"></span>{$_lang['waiting_for_approval']}</button>
+                        {else}
+                            <input type="hidden" name="formhash" id="formhash" value="{FORMHASH}">
+                            <button type="button" name="sbt_add" class="button" value="{$_lang['auth_now']}"  style="width:100px"  onclick="user_auth()">立即认证</button>
+                        {/if}
+                    </div>   
+                        
+                    </div>
+                    
+                </div>
+                      </form >
+				 {elseif $auth_step=='step3'||$auth_step=='step4'}
+                 <div class="smrz_box">
+              	<div style="width:740px; overflow:hidden;">
+                    <div style="padding-top:20px; ">
+                            <p style=" font-size:14px; text-align:center;">{if !$auth_info['auth_status']}
+							  您的实名认证正在审核中，请耐心等待...
+							{else}
+                            恭喜，您已通过了实名认证
+                            {/if}</p>
+                    </div>
+                    <div style="width:740px; overflow:hidden; border-bottom:1px #e9e9e9 solid; padding:15px 0px;">
+                        <ul style="float:left;width:50px; height:50px; border:2px #dfdfdf solid; padding:2px;">
+                            <img src="<!--{userpicurl($uid,small)}-->" width=50 height=50>
+                        </ul>
+                        <ul style=" float:left; padding-left:30px;">
+                            <p style="font-size:14px; line-height:30px;"><b>个人</b></p>
+                            <p style="font-size:13px; color:#999999; line-height:30px;">以个人身份进行认证</p>
+                        </ul>
+                    </div>
+                    <div style="width:740px; overflow:hidden; border-bottom:1px #e9e9e9 solid; padding:15px 0px;">
+                        <div style="float:left; width:65px;">
+                            用户名：
+                        </div>
+                        <div style="float:left;">
+                            <b>$auth_info['realname']</b>
+                        </div>
+                    </div>
+                    <div style="width:740px; overflow:hidden; border-bottom:1px #e9e9e9 solid; padding:15px 0px;">
+                        <div style="float:left; width:65px;">
+                            证件号码：
+                        </div>
+                        <div style="float:left;">
+                            <b style="color:#999;"><!--{eval echo kekezu::set_star($auth_info['id_card'],0,5);}--></b>
+                        </div>
+                    </div>
+                    <div style="width:740px; overflow:hidden; border-bottom:1px #e9e9e9 solid; padding:15px 0px;">
+                        <div style="float:left; width:65px;">
+                            证件图片：
+                        </div>
+                        <div style="float:left;">
+                            <b style="color:#999;">已做隐私处理，不显示具体内容。</b>
+                        </div>
+                    </div>
+           		</div>
+            </div>
 			{/if}
             </div> 
-            <div class="clear" style="height:20px;"></div> 
-			</div>
        </article>
    <!--detail内容 end-->
    {/if}

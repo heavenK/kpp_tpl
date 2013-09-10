@@ -6,9 +6,9 @@ if(isset($check_mobile)&&$check_mobile){
 	die();
 }
 $page_title= $_lang['mobi_auth'];
-$step_arr=array("step1"=>array( $_lang['step_one'], $_lang['enter_cellphone_num']),
-				"step2"=>array( $_lang['step_two'], '填写手机验证码'),
-				"step3"=>array( $_lang['step_three'], $_lang['auth_pass']));
+$step_arr=array("1"=>array( $_lang['step_one'], "填写手机号码"),
+				"2"=>array( $_lang['step_two'], '接受并填写验证码'),
+				"3"=>array( $_lang['step_three'], "认证成功"));
 $auth_step= keke_auth_mobile_class::get_auth_step($auth_step,$auth_info);
 $ac_url = $origin_url . "&op=$op&auth_code=$auth_code&ver=".intval($ver);
 switch ($auth_step){

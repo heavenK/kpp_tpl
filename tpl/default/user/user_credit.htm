@@ -13,348 +13,128 @@
             {/if}
             <div class="yhzhright">
                 <!--main content-->
-                <div class="">
-                    <!--header内容头部 start-->
-                    <header class="clearfix box_header">
-                        <h2 class="grid_4 alpha box_title t_c">{if $part!=pj}{$_lang['credit_grade']}{else}评价管理{/if}</h2>
-                    </header>
-                    <!--header内容头部 end--><!--detail内容 start-->
-                    <article class="box_detail">
-					{if $part!=pj}
-                    	{if $user_type==2}
-                        <div class="prefix_1 suffix_1">
-                            <div class=" groupinfo clearfix">
-                                <div class="clearfix pt_20  pb_10">
-                                      
-									
-	                                    <h2 class="fl_l">{$_lang['credit_grade']}</h2>
-										<div class="fl_r">{$credit_level['pic']}</div>
-										
-										<div class="clear"></div>
-									
-	                                    <div class="loading_bar load_green" style="z-index:10">
-	                                        <div class="progress_bar shine" title="{$credit_level['title']} " grade="{$credit_level['grade_rate']}">
-	                                            {$credit_level['title']} 
-												
-	                                        </div>
-											<div class="tipsy tipsy-s"  style="left:{$credit_level['grade_rate']}%; margin-left:-83px; bottom:15px; line-height:15px; display:none;">
-													<div class="tipsy-arrow tipsy-arrow-s"></div>
-													<div class="tipsy-inner">
-														{$_lang['next_level_need']}
-														{$credit_level['level_up']}
-														{$_lang['reputation_value']}
-														
-													</div>
-											</div>
-	                                    </div>
-									
-                                </div>
-                                <div class=" clearfix grid_9">
-                                    <p>
-                                        <strong>{$_lang['reputation_value']}</strong>
-                                        <a href="javascript:void(0);">{$user_info['buyer_credit']}</a>
-                                    </p>
-									{if $task_open}
-                                    <p>
-                                        <strong>{$_lang['release_tasks_num']}</strong>
-                                        <a href="javascript:void(0);"><!--{eval echo intval($found_count['pub_task']['count'])}--></a>
-                                    </p>
-                                    
-									{/if}
-                                    {if $shop_open}
-	                                    <p>
-	                                        <strong>{$_lang['goods_num']}</strong>
-	                                        <a href="javascript:void(0);"><!--{eval echo intval($found_count['buy_service']['count'])}--></a>
-	                                    </p>
-									{/if}
-                                </div>
-								<div class="fl_l pl_20">
-									<div class=" clearfix grid_9">
-									<p>
-                                        <strong>{$_lang['favorable_rate']}</strong>
-                                        <a href="javascript:void(0);">{if $user_info['buyer_total_num']}<!--{eval echo number_format($user_info['buyer_good_num']/$user_info['buyer_total_num'],2)*100}-->{else}0{/if}%</a>
-                                    </p>
-									{if $task_open}
-                                    <p>
-                                        <strong>{$_lang['task_payment']}</strong>
-                                        <a href="javascript:void(0);" class="pay">
-                                            {c: $found_count['pub_task']['cash']}
-                                        </a>
-                                    </p>
-									{/if}
-									{if $shop_open}
-	                                
-	                                    <p>
-	                                        <strong>{$_lang['payment_services_section']}</strong>
-	                                        <a href="javascript:void(0);" class="pay">
-	                                            {c: $found_count['buy_service']['cash']}
-	                                        </a>
-	                                    </p>
-									{/if}
-	                                    
-	                                </div>
-								</div>
-								
-								<div class=" clearfix grid_9">
-								<!--辅助评价start-->
-								{loop $saler_aid $k $v}
-                                
-                                    <p>
-                                        	<span class="fl_l">
-	                                            <strong class="mr_5">{$v['aid_name']}</strong>
-	                                            <em class="cc00 mr_5">
-	                                                {$v['avg']}
-	                                            	{$_lang['fen']}
-	                                        	</em>
-                                        	</span>
-                                        
-                                            <!--{eval echo keke_user_mark_class::gen_star2($v['avg']);}-->
-                                        
-                                        	<span class="fl_r">
-                                            {$_lang['total']}{$v['count']}{$_lang['people']}
-                                        	</span>
-                                    </p>
-                                
-
-                                {/loop}<!--辅助评价end-->
-								</div>
-                                <div>
+                <div class="gz_xs">
+                    <div class="ac_zltop">
+                        <span><b>{if $part!=pj}信誉等级成长{else}评价管理{/if}</b></span>
+                    </div>
+                    
+                        <!--信誉等级成长 begin  -->
+                   {if $part!=pj}
+                   {if $user_type==2}
+                   <div class="xypjbox">
+                      <div class="xy_gl">
+                            <div class="xy_cz">
+                                <p><i>信誉等级</i>{$credit_level['pic']} <i>{$_lang['next_level_need']}</i></p>
+                                <div class="xy_dj loading_bar load_green">
+                                    <div class="progress_bar shine" grade="{$credit_level['grade_rate']}">
+                                          {$credit_level['title']} 
+                                          
+                                      </div>
+                                      <div class="tipsy tipsy-s"  style="left:{$credit_level['grade_rate']}%;  line-height:15px; display:none;">
+                                       
+                                      </div>
                                 </div>
                             </div>
-                        </div>
-						{elseif $user_type==1}
-                        <div class="prefix_1 suffix_1">
-                            <div class="groupinfo alpha omega clearfix">
-                            	
-								<div class=" clearfix pt_20  pb_10">
-	                                    <h2 class="fl_l title">{$_lang['ability_grade']}</h2>
-										<div class="fl_r">{$able_level['pic']}</div>
-								
-                                	<div class="clear"></div>
-								
-                                    <!--loading 加载 start-->
-									
-									
-                                    <div class="loading_bar " style="z-index:10">
-                                        <div class="progress_bar shine" grade="{$able_level['grade_rate']}">
-                                             
-                                        </div>
-										<div class="tipsy tipsy-s"  style="left:{$able_level['grade_rate']}%; margin-left:-83px; bottom:15px; display:none; line-height:15px;">
-												<div class="tipsy-arrow tipsy-arrow-s"></div>
-												<div class="tipsy-inner">
-													{$_lang['next_level_need']}
-													{$able_level['level_up']}
-													{$_lang['ability']}
-													
-												</div>
-											</div>
-                                    </div>
-									
-                                    <!--loading 加载 end-->
-
-                                </div>
-								
-								<div class="grid_9">
-                                    <p>
-                                       <strong>{$_lang['ability']}</strong>
-                                        <a href="javascript:void(0);">{$able_level['value']}</a>
-                                    </p>
-                                   
-                                    
-									{if $task_open}
-									<p>
-                                        <strong>{$_lang['number_of_successful_releases']}</strong>
-                                        <a href="javascript:void(0);"><!--{eval echo intval($found_count['task_bid']['count'])}--></a>
-                                    </p>
-									{/if}
-									{if $shop_open}
-                                    <p>
-                                        <strong>{$_lang['goods_sold_num']}</strong>
-                                        <a href="javascript:void(0);"><!--{eval echo intval($found_count['sale_service']['count'])}--></a>
-                                    </p>
-									{/if}
-                                </div>
-								
-								<div class="fl_l pl_20">
-									<div class="  grid_9">
-									<p>
-                                        <strong>{$_lang['favorable_rate']}</strong>
-                                        <a href="javascript:void(0);">{if $user_info['seller_total_num']}<!--{eval echo number_format($user_info['seller_good_num']/$user_info['seller_total_num'],2)*100}-->{else}0{/if}%</a>
-                                    </p>
-									{if $task_open}
-                                    <p>
-                                        <strong>{$_lang['get_task_models']}</strong>
-                                        <a href="javascript:void(0);" class="pay">
-                                             {c: $found_count['task_bid']['cash']}
-                                        </a>
-                                    </p>
-									{/if}
-									{if $shop_open}
-         
-                                    <p>
-                                        <strong>{$_lang['access_to_services_section']}</strong>
-                                        <a href="javascript:void(0);" class="pay">
-                                            {c: $found_count['sale_service']['cash']}
-                                        </a>
-                                    </p>
-									{/if}
-									</div>
-								</div>
-								
-								
-                                <div class="  grid_9 ">
-									{loop $buyer_aid $k $v}
-	                                    <p>
-	                                        <span class="fl_l">
-		                                        <strong class="mr_10">{$v['aid_name']}</strong>
-												
-												<span class="mr_10">
-		                                            <em class="cc00">
-		                                                {$v['avg']}
-														{$_lang['fen']}
-		                                            </em>
-												</span>	
-												<!--{eval echo keke_user_mark_class::gen_star2($v['avg']);}-->
-	                                        </span>
-	                                        
-	                                        <span class="fl_r">
-	                                            {$_lang['total']}{$v['count']}{$_lang['people']}
-	                                        </span>
-	                                    </p>
-	                                {/loop}<!--辅助评价end-->
-                                </div>
-
-								
-                                
+                            <div class="xy_cz">
+                                <p>
+                                    <b class="a0">信誉值</b>
+                                    <strong style="font-size:20px; color:#0C6; margin-left:10px" class="a11">{$user_info['buyer_credit']}</strong>
+                                </p>
+                                <p style="clear:both;"><b>成长数据：</b>&nbsp;&nbsp;服务发布<span><!--{eval echo intval($found_count['pub_task']['count'])}--></span>次；商品购买<span><!--{eval echo intval($found_count['buy_service']['count'])}--></span>次</p>
                             </div>
+                            
+                      </div>
+                        <!-- 信誉等级成长 end -->
                         </div>
-						{/if}
-                    {/if}
-					{if $part==pj}
-                    <div class="prefix_1 suffix_1">
-                    	
-						<div class=" clearfix ">
-	                         <h2 class="title">{$_lang['all_evaluation']}</h2>
-						</div>
-						<div class="data_list">
-						<table class="data_table">
-							{if $witkey_result}
-							<!--{eval $i=1;}-->
-							<thead>
-								<tr>
-									<th width="260">{$_lang['project_name']}{$_lang['task_goods']}</th>
-									<th>{$_lang['evaluate']}</th>
-									<th width="80">{$_lang['come_from']}</th>
-									<th width="200">{$_lang['assisted_evaluation']}</th>
-									
-								</tr>
-							</thead>
-							<tbody>
-								{loop $witkey_result $k $v}
-								<!--{eval $i++;}-->
-							
-								<tr>
-									<td>
-										{if in_array($v['model_code'],array('goods','service'))}
-												<a href="index.php?do=service&sid={$v['origin_id']}" class="font14b" target="_blank">{$v['title']}</a>
-												<span class="block">[{$_lang['shop']}]</span>
-                                       {else}
-											<a href="index.php?do=task&task_id={$v['origin_id']}" class="font14b" target="_blank">{$v['task_title']}</a>
-											<span class="block">[{$_lang['task']}]</span>
-                                        {/if}
-									</td>
-									<td>
-										<!--好中差-->
+                     {else}
+                     <div class="xypjbox">
+                      <div class="xy_gl">
+                            <div class="xy_cz">
+                                <p><i>信誉等级</i>{$able_level['pic']} <i>{$_lang['next_level_need']}</i></p>
+                                <div class="xy_dj loading_bar load_green">
+                                    <div class="progress_bar shine" grade="{$able_level['grade_rate']}">
+                                          {$able_level['title']} 
+                                          
+                                      </div>
+                                      <div class="tipsy tipsy-s"  style="left:{$able_level['grade_rate']}%;  line-height:15px; display:none;">
+                                       
+                                      </div>
+                                </div>
+                            </div>
+                            <div class="xy_cz">
+                                <p>
+                                    <b class="a0">能力值</b>
+                                    <strong style="font-size:20px; color:#0C6; margin-left:10px" class="a11">{$able_level['value']}</strong>
+                                </p>
+                                <p style="clear:both;"><b>成长数据：</b>&nbsp;&nbsp;服务发布<span><!--{eval echo intval($found_count['task_bid']['count'])}--></span>次；商品购买<span><!--{eval echo intval($found_count['buy_service']['count'])}--></span>次</p>
+                            </div>
+                            
+                      </div>
+                        <!-- 信誉等级成长 end -->
+                        </div>
+                     {/if}
+                   	{else}
+                    
+                    <div class="ggmm">
+                	<div class="ac_mm">
+                    	<ul class="mima">
+                        	<li class="{if $show == 'rec'}mi{else}ma{/if}"><a href="index.php?do=user&view=$view&op=credit&part=pj&show=rec">来自威客的评价</a></li>
+                            <li class="{if $show == 'send'}mi{else}ma{/if}"><a href="index.php?do=user&view=$view&op=credit&part=pj&show=send">我给威客的评价</a></li>
+                        </ul>
+                    </div>
+                    <div class="yhzh_aq">
+                        <div style="clear:both;">
+                                <table cellspacing="1" class="tab1" style=" width:730px">
+                                    <thead style="border-bottom:1px solid #e9e9e9;">
+                                        <tr>
+                                          <th style="width:105px;">编号</th>
+                                          <th style=" width:250px">标题</th>
+                                          <th style="width:75px;">{if $show == 'rec'}来自{else}接受{/if}</th>
+                                          <th style="width:105px;">获得评价</th>
+                                        </tr>
+                                    </thead>
+                                    {loop $witkey_result $k $v}
+                                    <!--{eval $i++;}-->
+                                    <tbody>
+                                    	
+                                        <tr style="height:25px">
+                                            <th style="font-weight:normal">{$v['origin_id']}</th>
+                                            <th style="font-weight:normal">
+                                            {if in_array($v['model_code'],array('goods','service'))}
+                                                    {$v['title']}
+                                           {else}
+                                                {$v['task_title']}
+                                            {/if}
+                                            
+                                            </th>
+                                            <th style="font-weight:normal">{$v['by_username']}</th>
+                                            <th style="font-weight:normal">
                                             {if $v['mark_status']=='1'}
 												<!--好中差图片-->
-	                                            <img src="resource/img/ico/ico_mark_{$v['mark_status']}.gif" >
 												{$_lang['praise']}
                                             {elseif $v['mark_status']=='2'}
-	                                            <img src="resource/img/ico/ico_mark_{$v['mark_status']}.gif" >
 												{$_lang['the_assessment']}
                                             {elseif $v['mark_status']=='3'}
-	                                            <img src="resource/img/ico/ico_mark_{$v['mark_status']}.gif" >
 												{$_lang['negative_feedback']}
                                             {else}
 												{$_lang['didnot_respond_to_evaluation']}
 											{/if}
-											<!--好中差 end -->
-											
-											<div><!-- 评价内容  -->
-												
-                                             	{$v['mark_content']} 
-											</div>
-									</td>
-									<td>{$v['by_username']}</td>
-									<td>
-										{if $user_type==1}
-											<!-- 来自威客对雇主的扩展评介  -->
-                                            	{loop $v['pj'] $kk $vv}
-											    	<div class="clearfix">
-			                                        	<!--扩展评价名称-->
-			                                            <span class="mr_10">{$vv['aid_name']}</span>
-			                                            <em class="cc00 mr_10">
-			                                            	<!--扩展评价分值-->
-			                                                {$vv['score']}
-			                                            {$_lang['fen']}
-														</em>
-			                                     		
-			                                        	<!--扩展评价星星-->
-														
-			                                                <!--{eval echo keke_user_mark_class::gen_star2($vv['score']);}-->
-													</div>	
-			                                      
-			                                       {/loop}
-												<!-- 来自威客对雇主的扩展评介  end  -->	   
-                                            {elseif $user_type==2}
-											
-												<!-- 来自雇主对威客的扩展评介  -->
-                                            	{loop $v['pj'] $kk $vv}
-					                                <div class=" clearfix ">
-					                                        	<!--扩展评价名称-->
-					                                            <span class="mr_10">{$vv['aid_name']}</span>
-					                                            <em class="cc00 mr_10">
-					                                            	<!--扩展评价分值-->
-					                                                {$vv['score']}
-					                                            {$_lang['fen']}
-																</em>
-					                                        	<!--扩展评价星星-->
-					                                            <!--{eval echo keke_user_mark_class::gen_star2($vv['score']);}-->
-					                                        
-					                                 </div>
-                                        		{/loop}
-												<!-- 来自雇主对威客的扩展评介 end -->
-                                            {/if}	
-									</td>
-								</tr>
-							{/loop}
-							
-                                {else}
-								
-	                                <tr>
-	                                	<td colspan="4" class="bf7 clearfix t_c">{$_lang['no_comments']}</td>
-	                                </tr>
-								
-                                {/if}
-							</tbody>
-						</table>
-						</div>
-						
-                       
-                           
-                            
-             
-                        <div class="page clearfix">
-                            <p>
-                                {$pages['page']} 
-                            </p>
-                        </div>
+                                            </th>
+                                        </tr>
+                                    </tbody>
+                                    {/loop}
+                                    <tfoot>
+                                        <tr class="_j_02">
+                                            <td align="right" colspan="8">{$pages['page']} </td>
+                                        </tr>
+                                    </tfoot>
+                              </table>
+                            </div>
                     </div>
+                </div>
+                    
                     {/if}
                     
-              
-                </article>
-                <!--detail内容 end-->
                 </div>
                 <!--main content end -->
                 

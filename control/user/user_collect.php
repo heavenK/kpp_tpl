@@ -51,4 +51,40 @@ $count=intval($favor_obj->count_keke_witkey_favorite());
 $pages=$page_obj->getPages($count, $page_size, $page, $url,"#userCenter");
 $favor_obj->setWhere($where.$pages['where']);
 $favor_arr=$favor_obj->query_keke_witkey_favorite();
+
+
+
+foreach($favor_arr as $key => $val){
+	if($key == 0) $ids = $val['obj_id'];
+	else $ids .= ','.$val['obj_id'];
+	$favor_arr_new[$val['obj_id']] = $val; 
+}
+
+if($ids){
+	$sql =  sprintf ( " select * from %switkey_task where task_id in (%s)", TABLEPRE, $ids );
+	$task_arr = db_factory::query ($sql);
+}
+
+foreach($task_arr as $key => $val){
+	$task_arr_new[$val['task_id']] = $val;
+}
+
+// add by heavenK
+if(!$op) $op = 'index';
+
+$task_count = db_factory::get_one ( sprintf ( " select count(task_id) count from %switkey_task", TABLEPRE ), 1, 600 ); 
+$task_in = db_factory::get_one ( sprintf ( " select sum(fina_cash) cash from %switkey_finance where fina_action='task_bid' and fina_type='in' ", TABLEPRE ), 1, 600 ); 
+$register = db_factory::get_one ( sprintf ( " select count(uid) count from %switkey_member ", TABLEPRE ), 1, 600 ); 
+
+$task_count =  intval ( $task_count ['count'] );
+$task_in = number_format ( $task_in ['cash'], 2, ".", "," );
+$register =  intval ( $register ['count'] );
+// end
+
+$model_list=kekezu::get_table_data ( '*', 'witkey_model', " model_type = 'task' and model_status=1", 'model_id asc ', '', '', 'model_id', 3600 );
+$user_join = keke_task_config::get_user_join_task (); 
+
+$sql = sprintf ( " select count(f_id) count from %switkey_favorite where uid = '$uid' and keep_type = 'task' ", TABLEPRE );
+$task_gz_count = db_factory::get_one ($sql, 1, 600 ); 
+
 require keke_tpl_class::template('user/user_'.$view);

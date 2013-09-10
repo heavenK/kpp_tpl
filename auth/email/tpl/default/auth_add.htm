@@ -15,123 +15,117 @@
 		 <!--{template verify_secode}-->
 {else}
   <!--detail内容 start-->
-   <article class="box_detail last_step_three">
-     <!--messages消息 start-->   
-      <div class="messages m_infor">
-         <div class="icon16">warning</div>
-                          {$_lang['customer_service_personnel_will']} {$auth_item[auth_day]}{$_lang['working_days_to_complete_certification']}{$_lang['zh_mh']}{$basic_config['kf_phone']}
-           <a href="###" class="close">&times;</a>
-      </div> 
-     <!--messages消息 end-->
-     <div class="prefix_1 suffix_1 clearfix">
-        <!--step步骤 start-->
-        <div class="step_progress clearfix">
-          {loop $step_arr $k $v}
-			<div class="step {$k} {if $k==$auth_step}selected{/if}">
-                <span class="icon32">{$k}</span><strong>{$v[0]}</strong>{$v[1]}
-            </div>
-		 {/loop}
-        </div>
+   <div class="ac_rztop">
+                   <span><b>认证中心</b></span>
+               </div>
+           <!-- 实名认证 -->
+                <div class="smrz">
+                <div class="smrz_nav">
+                    <ul>
+                    	{loop $step_arr $k $v}
+                            <li class="{if "step".$k==$auth_step}selectedLava{/if} sm"> <a title="填写邮箱地址"  {if "step".$k==$auth_step}style="color:#B80002"{/if}>{$k}.{$v[1]}</a> </li>
+                         {/loop}
+                    </ul>
+                </div>
+   
+   
+   
+          
         <!--step步骤 end-->
 {if $auth_step=='step1'}
-<div class="pad10  form_box">
- <form>
- 	<div class="rowElem clearfix">
-		<label class="prefix_1 grid_5 clearfix">
-			<div class="fl_r pr_10">
-				<img src="{$auth_item['auth_big_ico']}" alt="" />&nbsp;
-			</div>
-		</label>
-		<div class="grid_6"> <strong class="font14b">{$auth_item['auth_title']}</strong> 
-		<!--<span class="c999 block">{$auth_item['auth_desc']}</span> -->
-		</div>
-   </div>
-  <div class="rowElem clearfix">
-    <label class="grid_5 t_r">{$_lang['mail_address']}{$_lang['zh_mh']}</label>
-      <input type="text" name="fds[email]" id="email" msgArea="span_email"
-		size="40" value="{$user_info[email]}"
-	   limit="required:true;type:email" msg="{$_lang['please_fill_out_the_common_mailbox']}" title="{$_lang['tips_about_common_mailbox']}">
-		<span id="span_email"></span>
-  </div>
-  <div class="rowElem clearfix">
-    <label class="grid_9 t_r">{$_lang['after_auth_success']}{$_lang['zh_mh']}</label>
-  </div>
-  <div class="rowElem clearfix">
-	<label class="grid_4 t_r" style="width:90px;">&nbsp;</label>
-	<ul class="grid_14">
-		<li class="grid_13"> <b>{$_lang['email_login']}</b>{$_lang['use_email_login_keke']} </li>
-		<li class="grid_13"> <b>{$_lang['important_event_tips']}</b>{$_lang['can_pay_email_notice']} </li>
-		<li class="grid_13"> <b>{$_lang['on_time_feed']}</b>{$_lang['zh_jh']} </li>
-	</ul>
-  </div>
-   <div class="rowElem clearfix form_button">
-        <button type="button" name="sbt_add" class="button" value="{$_lang['next_step']}" onclick="user_auth();">{$_lang['next_step']}</button>
-   </div>
-  </form> 
- </div> 
-{elseif $auth_step=='step2'}
- <div class="box complete form_box ml_40 mr_40">
-  <div class="prefix_2 suffix_2">
-   <div class="completedata">
-     <ul>
-       <li class="clearfix">
-             <p class="ws_break">验证邮件已发送到{$auth_info['email']}邮箱，请查看邮箱进行验证
-				<a class="at_but b_1_y" onclick="gomail('{$mail_ext}');" href="javascript:void(0)">
-				<u></u>查看邮箱</a>
-			 </p>
-       </li>
-	   <li class="clearfix">
-		<div>
-		  <p class="f140">{$_lang['if_you_do_not_receive_mail']}</p>
-			{$_lang['mail_to_reach_the_required_few_minutes']}<strong>{$_lang['rubbish']}</strong>{$_lang['or']}
-					<a href="javascript:void(0)" onclick="resend()">{$_lang['retry_again']}</a><br>
-					{$_lang['error_email_address_we_recommend_that_you']}<a href="index.php?do=user&view=payitem&op=auth&del_auth_id=$auth_info[email_a_id]&auth_step=step1&auth_code=email#userCenter">{$_lang['change_mail_address']}</a>
-		</div>
+<form>
+			<div class="smrz_box">
+                <div class="smrz_ts">
+                    <p><b>友情提示</b> 邮箱认证成功后，您可以享有以下服务：<br>
+                      邮箱地址登录：可直接使用"邮箱地址"登录到一品威客<br>
+                      重要事件提醒：进行（支付/提现/选稿/中标）时，可及时收到邮件提醒<br>
+                    找回账号密码：忘记密码时，可使用邮件找回密码。 </p>
+                </div>
+                <div style="width:728px; overflow:hidden; border:1px #ccc solid; padding-top:20px; font-size:14px; margin-top:5px">
+                    <div style="clear:both; padding:5px 0px; zoom:1;">
+                        <label style=" float:left;width:150px; text-align:right;">认证账号：</label> {$user_info['username']}
+                    </div>
+                    <div style="clear:both; padding:10px 0px; zoom:1; height:30px;">
+                        <label style=" float:left;width:150px; text-align:right; margin-top:3px">邮箱地址：</label>
 
-       </li>
-      </ul>
-     </div>
-   </div>
-</div>
-{elseif $auth_step=='step3'}  
-  <div class="box complete border_n  ">
-        
-          	<div class="last_success_step clearfix">
-          	<div class="fl_l {$auth_style} po_re" style="top:30px; left:30px; _left:0px;">
-					<span class="tip_icon"></span>
-            </div>
-            <div class="completedata clearfix">                        		
-               <ul>
-               	<li class="clearfix">                        
-                     <div class=" "><img src="{$auth_item['auth_big_ico']}" /></div>                                 
-                <div class="font14b">{$auth_item['auth_title']}<span class="font12">（{$auth_tips}）  </span></div>
-                   <!--   <div class="c999 ">{$auth_item['auth_desc']}</div>-->
-                 </li>
-				 
-				 <li class="clearfix">
-						<div class="  ">{$_lang['username']}{$_lang['zh_mh']}</div>
-					<div class=" font14b">{$auth_info['username']}</div>
-               	 </li>
-				<li class="clearfix">                          
-					<div class="  ">{$_lang['email_address']}{$_lang['zh_mh']}</div>
-					 <div class="c999"> {$auth_info['email']}</div>
-               	 </li>
-		 
-            </ul>
-        </div>
-       		<div class="fl_r pad10">
-				<a href="{$ac_url}&auth_step=step1" class="button">{$_lang['return_and_modify']}</a>
-			</div>
-		</div>
-	
-     </div>
-  
+                   <input type="text" name="fds[email]" id="email" msgArea="span_email"
+                    style=" float:left; width:200px; height:20px; border:1px solid #ccc " value="{$user_info[email]}"
+                   limit="required:true;type:email" msg="{$_lang['please_fill_out_the_common_mailbox']}" title="{$_lang['tips_about_common_mailbox']}">
+                    </div>
+                </div>
+                
+                <div style="padding-top:15px;" class="ben">
+				  <button onclick="user_auth();" type="button" name="sbt_add" value="发送" style="width:100px">发送</button>
+	   			</div>
+            </div> 
+</form>
  
-</div> 
+{elseif $auth_step=='step2'}
+			<div class="smrz_box">
+              	 <div class="smrz_ts">
+                    <p><b>友情提示</b> 邮箱认证成功后，您可以享有以下服务：<br>
+                      邮箱地址登录：可直接使用"邮箱地址"登录到一品威客<br>
+                      重要事件提醒：进行（支付/提现/选稿/中标）时，可及时收到邮件提醒<br>
+                    找回账号密码：忘记密码时，可使用邮件找回密码。 </p>
+                </div>
+                <div style="padding-top:15px;">
+                	<p style="font-size:14px;">您的邮箱将收到一封认证确认邮件，请查收。点击邮件中的确认链接即可通过邮箱认证。</p>
+                </div>
+                <div style="padding-top:15px; margin-left:300px;" class="ben">
+					<button onclick="gomail('{$mail_ext}');" type="button" value="立即查收邮件" style="width:120px">立即查收邮件</button>
+	   			</div>
+                <div style="padding-top:15px; line-height:24px; font-size:12px; ">
+                	<p>如果您没有收到邮件<br>邮件到达需要2-3分钟，若您长时间未收到邮件。建议您检查<b>垃圾箱</b>或者<a onclick="resend()" href="javascript:void(0)" style="color:# 03F">重发邮件</a><br>如果您邮箱填写有误或一直无法收到邮件，建议您<a href="index.php?do=user&view=payitem&op=auth&del_auth_id=$auth_info[email_a_id]&auth_step=step1&auth_code=email#userCenter" style="color:# 03F">重新认证</a></p>
+                </div>
+            </div>
+
+
+
+
+{elseif $auth_step=='step3'}  
+<div class="smrz_box">
+                     <div class="smrz_ts">
+                        <p><b>友情提示</b> 邮箱认证成功后，您可以享有以下服务：<br>
+                          邮箱地址登录：可直接使用"邮箱地址"登录到一品威客<br>
+                          重要事件提醒：进行（支付/提现/选稿/中标）时，可及时收到邮件提醒<br>
+                        找回账号密码：忘记密码时，可使用邮件找回密码。 </p>
+                    </div>
+                </div>
+            	
+                <div style="width:740px; overflow:hidden;">
+                <div style="padding-top:15px; ">
+                        <p style=" color:#cc0000; font-size:14px; text-align:center;">恭喜，您已经通过了邮箱认证</p>
+                </div>
+                <div style="width:740px; overflow:hidden; border-bottom:1px #e9e9e9 solid; padding:15px 0px;">
+                	<ul style="float:left;width:50px; height:50px; border:2px #dfdfdf solid; padding:2px;">
+                    	<img src="<!--{userpicurl($uid,small)}-->" width=50 height=50>
+                    </ul>
+                    <ul style=" float:left; padding-left:30px;">
+                    	<p style="font-size:14px; line-height:30px;"><b>邮箱认证</b></p>
+                        <p style="font-size:13px; color:#999999; line-height:30px;">以常用邮箱进项认证</p>
+                    </ul>
+                </div>
+                <div style="width:740px; overflow:hidden; border-bottom:1px #e9e9e9 solid; padding:15px 0px;">
+
+                	<div style="float:left; width:65px;">
+                    	用户名：
+                    </div>
+                    <div style="float:left;">
+                    	<b>{$auth_info['username']}</b>
+                    </div>
+                </div>
+                <div style="width:740px; overflow:hidden; border-bottom:1px #e9e9e9 solid; padding:15px 0px;">
+                	<div style="float:left; width:65px;">
+                    	邮箱地址：
+                    </div>
+                    <div style="float:left;">
+                    	<b style="color:#999;">{$auth_info['email']}</b>
+                    </div>
+                </div>
+            </div>
 {/if}
  </div> 
  <div class="clear"></div> 
-</article>
 <!--detail内容 end-->
 {/if}
    

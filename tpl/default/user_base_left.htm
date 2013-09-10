@@ -7,29 +7,29 @@
                     <div class="yhzhlefttree">
                         <ul>
                             <li class="m"><p>基本资料</p>
-                                <ul style="display:none">
-                                    <li><p><a href="index.php?do=user&view=setting&op=basic&opp=contact">资料完善</a></p></li>
-                                    <li><p><a href="index.php?do=user&view=setting&op=picture">头像设置</a></p></li>
+                                <ul class="teng_ul" style="display:none">
+                                    <li><p><a href="index.php?do=user&view=setting&op=basic&opp=contact" {if $op == 'basic'} style="color:#48b78d"{/if}>资料完善</a></p></li>
+                                    <li><p><a href="index.php?do=user&view=setting&op=picture" {if $op == 'picture'} style="color:#48b78d"{/if}>头像设置</a></p></li>
                                 </ul>
                             </li>
                               <li class="m"><p>账号安全</p>
-                                <ul style="display:none">
-                                    <li><p><a href="index.php?do=user&view=setting&op=safe">密码修改</a></p></li>
-                                    <li><p><a href="index.php?do=user&view=setting&op=account_bind">绑定账号</a></p></li>
+                                <ul class="teng_ul" style="display:none">
+                                    <li><p><a href="index.php?do=user&view=setting&op=safe" {if $op == 'safe'} style="color:#48b78d"{/if}>密码修改</a></p></li>
+                                    <li><p><a href="index.php?do=user&view=setting&op=account_bind" {if $op == 'account_bind'} style="color:#48b78d"{/if}>绑定账号</a></p></li>
                                 </ul>
                             </li>
                             <li class="m"><p>账号认证</p>
-                                <ul style="display:none">
-                                    <li><p><a href="index.php?do=user&view=payitem&op=auth&auth_code=realname">实名认证</a></p></li>
-                                    <li><p><a href="index.php?do=user&view=payitem&op=auth&auth_code=email">邮箱认证</a></p></li>
-                                    <li><p><a href="index.php?do=user&view=payitem&op=auth&auth_code=mobile">手机认证</a></p></li>
-                                    <li><p><a href="index.php?do=user&view=payitem&op=auth&auth_code=bank">银行卡认证</a></p></li>
+                                <ul class="teng_ul" style="display:none">
+                                    <li><p><a href="index.php?do=user&view=payitem&op=auth&auth_code=realname" {if $auth_code == 'realname'} style="color:#48b78d"{/if}>实名认证</a></p></li>
+                                    <li><p><a href="index.php?do=user&view=payitem&op=auth&auth_code=email" {if $auth_code == 'email'} style="color:#48b78d"{/if}>邮箱认证</a></p></li>
+                                    <li><p><a href="index.php?do=user&view=payitem&op=auth&auth_code=mobile" {if $auth_code == 'mobile'} style="color:#48b78d"{/if}>手机认证</a></p></li>
+                                    <li><p><a href="index.php?do=user&view=payitem&op=auth&auth_code=bank" {if $auth_code == 'bank'} style="color:#48b78d"{/if}>银行卡认证</a></p></li>
                                 </ul>
                             </li>
                             <li class="m"><p>交易维权</p>
-                                <ul style="display:none">
-                                    <li><p>投诉管理</p></li>
-                                    <li><p>举报管理</p></li>
+                                <ul class="teng_ul" style="display:none">
+                                    <li><p><a href="index.php?do=user&view=setting&op=report&report_type=1" {if $report_type == 1} style="color:#48b78d"{/if}>投诉管理</a></p></li>
+                                    <li><p><a href="index.php?do=user&view=setting&op=report&report_type=2" {if $report_type == 2} style="color:#48b78d"{/if}>举报管理</a></p></li>
                                 </ul>
                             </li>
                         </ul>
@@ -38,11 +38,13 @@
                 <script>
 					$(function(){
 						$("li:has(ul)").addClass("p");
-						$("ul:eq(0)>li ul").hide();
+						$("li:has(ul):eq(0)").removeClass("p");
+						$(".teng_ul:eq(0)").show();
 						$("p").click(function(){
 							$(this).parent(":has(ul)").find(">ul").slideToggle().end().toggleClass("p");
 						});
 					})
 					</script>
+
                 <!--{template user_left_ad}-->
             </div>

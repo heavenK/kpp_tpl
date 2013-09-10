@@ -53,7 +53,7 @@ class keke_auth_realname_class extends keke_auth_base_class{
 			$data['start_time']==$data['end_time'] and $end_time=$data['end_time'] or $end_time=0;
 			$this->add_auth_record($data['uid'], $data['username'], $this->_auth_code,$end_time);
 			if($is_jump){
-				kekezu::show_msg ( $this->auth_lang().$_lang['apply_submit_success'], "index.php?do=user&view=payitem&op=auth&auth_code=realname&&auth_step=step2&ver=1#userCenter", 1, $this->auth_lang().'提交成功！','alert_right' );
+				kekezu::show_msg ( $this->auth_lang().$_lang['apply_submit_success'], "index.php?do=user&view=payitem&op=auth&auth_code=realname&&auth_step=step3&ver=1#userCenter", 1, $this->auth_lang().'提交成功！','alert_right' );
 			}else{
 				return true;
 			}

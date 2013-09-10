@@ -6,48 +6,45 @@
     	<!--  账号设置 begin -->
     	<div class="yhzhbox tabCon">
         	
-            
+            {if $view== 'witkey'}
             <!--{template user_witkey_left}-->
-            
-           <div class="yhgzright">
+            {else}
+            <!--{template user_employer_left}-->
+            {/if}
+            <div class="yhgzright">
                 <div class="yhgzright_r" style="border:1px solid #e9e9e9; padding-bottom:10px">
                 	<div class="ac_zltop" style="width:759px">
                         <span><b>任务管理</b></span>
                     </div>
                   	<div class="gz_rw">
                         <div class="tggx_r">
-                            <p>安全提示：您一共发布{if $model_id == 1}悬赏任务{else}{$model_list[$model_id]['model_name']}{/if}：{if $model_id == 1}<!--{eval echo intval($user_join[1]+$user_join[2])}-->{else}<!--{eval echo intval($user_join[$model_id])}-->{/if}个</p>
+                            <p>安全提示：您一共关注任务：{$count}个</p>
                     </div>
                         <div class="blank1"></div>
                         <div class="zpzwgl">
-                            <form action="{$url}" method="post" id="frm">
+                            <form action="{$url}#userCenter" method="post" id="frm">
                                 <input type="hidden" name="page" value="{$page}">
                                 <div class="tab_r">
                                     <div class="mr_10 a0">
-                                    	<input type="text" name="$id_fds" id="frm_block" value={$_lang['enter_manuscript_id']} title="{$_lang['please_input_task_id']}" class="in_tou"/>
+                                    	<input type="text" name="task_id" id="frm_block" value="请输入稿件编号" title="{$_lang['please_input_task_id']}" class="in_tou"/>
                                     </div>
                                     <div class="mr_10 a0">
                                         <label style="font-size:14px;" class=""><strong>任务状态：</strong></label>
-                                        <select class="zhuangt" id="frm_block" name="task_status"> 
-                                                         <option value="-1" {if !isset($task_status)||$task_status==-1}selected="selected"{/if}>{$_lang['all']}</option>
-                                                        {loop $status_arr $k $v}<option value="$k" {if $k==$task_status&&isset($task_status)}selected="selected"{/if}>{$v} </option>
-                                                        {/loop}
-                                                    </select>
-                                    </div>
-                                    <div class="mr_10 a0">
-                                        <select class="zhuangt" id="frm_block" name="ord">
-                                                        {loop $ord_arr $k $v}<option value="$k" {if $k==$ord}selected="selected"{/if}>{$v}  </option>
+                                        <select class="zhuangt" id="frm_block" name="status"> 
+                                                         <option value="" {if $len==0}selected="selected"{/if}>{$_lang['all']}</option>                                            	
+                                                        {loop $status_arr $k $v}<option value="$k" {if $k==$status&&$len==1}selected="selected"{/if}>{$v}</option>
                                                         {/loop}
                                                     </select>
                                     </div>
                                      <div class="mr_10 a0">
                                         <select class="zhuangt " id="frm_block" name="page_size">
-                                                        {loop $ord_arr $k $v}<option value="$k" {if $k==$ord}selected="selected"{/if}>{$v} </option>
-                                                        {/loop}
+                                                        <option value="10" {if $page_size=='10'}selected="selected"{/if}>{$_lang['page_size']}10{$_lang['tiao']} </option>
+                                                        <option value="20" {if $page_size=='20'}selected="selected"{/if}>{$_lang['page_size']}20{$_lang['tiao']} </option>
+                                                        <option value="30" {if $page_size=='30'}selected="selected"{/if}>{$_lang['page_size']}30{$_lang['tiao']} </option>
                                                     </select>
                                     </div>
                                     <div class="a1_02">
-                                        <button value="搜索" name="sbt_search" value={$_lang['search']} type="submit" class="sub"><span></span>搜索</button>
+                                        <button value="搜索" name="sbt_search" value="{$_lang['search']}" type="submit" class="sub"><span></span>搜索</button>
                                     </div>
                                  </div>
                             </form>
@@ -61,14 +58,13 @@
                                             <th style="width:80;">任务金额</th>
                                             <th style="width:130;">发布时间</th>
                                             <th style="width:75;">状态</th>
-                                            <th style="width:120;">操作</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    	{loop $task_info $v}
+                                    	{loop $task_info $k $v}
                                         <tr>
-                                            <th style="font-weight:normal">$v[$id_fds]</th>
-                                            <th style="font-weight:normal"><!--{eval echo kekezu::cutstr($v['task_title'],60)}--></th>
+                                            <th style="font-weight:normal">$v['task_id']</th>
+                                            <th style="font-weight:normal"><a href="index.php?do=task&task_id={$v['task_id']}" title="$v['task_id']" target="_blank">$v['task_title']</a></th>
                                             <th style="font-weight:normal">
                                             {if $v[model_id]==4||$v[model_id]==5}
                                                           {c:$cove_arr[$v[task_cash_coverage]]['start_cove']}-{c:$cove_arr[$v[task_cash_coverage]]['end_cove']}
@@ -77,17 +73,8 @@
                                                         {/if}
                                             
                                             </th>
-                                            <th style="font-weight:normal"> <!--{date('Y-m-d H:i:s',$v[$time_fds])}--></th>
+                                            <th style="font-weight:normal"><!--{date('Y-m-d H:i',$v['start_time'])}--></th>
                                             <th style="font-weight:normal">$status_arr[$v['task_status']]</th>
-                                            <th style="font-weight:normal">
-                                            <!--{eval $opera = wiki_opera($v['model_id'],$v['task_id'],$v['work_id'],$url);}-->
-															  {loop $opera $k $v}
-															  	<a href="{$v['href']}" {if $v['click']}onclick="{$v['click']}"{/if}>
-															  		{$v['desc']}&nbsp;
-															  	</a>
-															  {/loop}
-                                            
-                                            </th>
                                         </tr>
                                         {/loop}
                                     </tbody>
@@ -107,35 +94,117 @@
                     
                 </div>
                 <!-- 雇主 end -->
-            </div> 
+            </div>
             
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        </div>
 
-            
-            
-            
            </div>
-
-           </div>
+           
+            
 
     <!-- center end -->
 
 <script type="text/javascript">
+var files = '{$files}';
+function upload_file(model_id,task_id){
+	var url = "index.php?do=user&view=employer&op=task&download=1&model_id="+model_id+"&task_id="+task_id;
+	showWindow('filedown',url,'get',0);return false;
+	
+}
+	/**
+	 * 下载
+	 * @param {Object} obj_id
+	 */
+function download(obj_id,model_id){
+		
+	}
+//延期加价
+function taskDelay(url){
+		console.log(url);
+		var url = url+'&op=taskdelay';
+		
+		showWindow('taskdelay',url,'get',0);return false;
+
+}
+//赏金托管
+function task_pay(url){
+			showWindow('hosted_amount',url,'get',0);return false;
+}
 //确认工作
 function work_over(url){
 			showWindow("work_hand",url,"get",'0');
 			return false; 
 }
-    function del(obj){
+function del(obj){
         var url = obj.href;
         showDialog("$_lang['confirm_delete_ma']", "confirm", "{$_lang['operate_notice']}", function(){
-           formSub(url,'url',false);
+			
+           //location.href = url;
+		   formSub(url,'url',false);
         });
         return false;
     }
-	function share(t_id){
-		var url = "{$_K['siteurl']}/index.php?do=ajax&view=share&op=center&task_id="+t_id;
-		showWindow('share',url,'get','0');return false;
-	}
+	function pay(obj,pay_cash,order_id){
+	
+		var url = obj.href;
+	
+		var user_balance = parseInt($user_info['balance'])+0;
+		var user_credit = parseInt($user_info['credit'])+0;
+		var is_allow_credit = $basic_config['credit_is_allow'];
+		//alert(user_balance);
+		if(is_allow_credit==2){
+			user_credit=0;
+		}		
+		if((user_credit+user_balance)>=pay_cash){
+				 formSub(url,'url',false);
+				 return false;
+			}else{	
+			    location.href= "index.php?do=pay&order_id="+order_id;
+				return false;	
+			}         		          
+       return false;
+    }
+    
+    //弹框描述
+    function task_payitem(task_id, payitem, payitem_time){
+        var task_id = task_id;
+        var payitem = payitem;
+        var payitem_time = payitem_time;
+        var url = "index.php?do=user&view=employer&op=task&ajax=get_task_desc&task_id=" + task_id + '&payitem=' + payitem + '&payitem_time=' + payitem_time;
+        $.post(url, function(json){
+            if (json.status == 1) {
+                showDialog(json.data, "confirm", "{$_lang['task_top']}", "set_payitem('" + task_id + "','" + payitem + "','" + payitem_time + "');", 1)
+            }
+        }, 'json')
+    }
+    
+    //增值服务 
+    function set_payitem(task_id, payitem, payitem_time){
+        var task_id = task_id;
+        var payitem = payitem;
+        var payitem_time = payitem_time;
+        var url = "index.php?do=user&view=employer&op=task&ajax=set_task_payitem&task_id=" + task_id + '&payitem=' + payitem + '&payitem_time=' + payitem_time;
+        $.post(url, function(json){
+            if (json.status == 1) {
+                showDialog(json.msg, 'right', "{$_lang['friendly_notice']}");
+                return false;
+            }
+        }, 'json');
+        
+    }
 </script>
 <!--contain end-->
 

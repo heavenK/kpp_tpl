@@ -2,7 +2,7 @@
 <link href="{SKIN_PATH}/css/user_center.css" rel="stylesheet" type="text/css">
 
 <!--contain start-->
-<div class="yhcenter container_24 {$_K['theme']}_style">
+<div class="yhcenter container_24">
     	<!--  账号设置 begin -->
     	<div class="yhzhbox tabCon">
         	
@@ -10,206 +10,115 @@
             <!--{template user_common_left}-->
             
             <div class="yhzhright">
-                <!--main content-->
-                <div class="">
-       <!--header内容头部 start-->
-         <header class="clearfix box_header">
-          <h2 class="grid_4 alpha omega box_title t_c">{$_lang['account_recharge']}</h2>
-           <div class="clear"></div>
-         </header>
-     	   <!--header内容头部 end-->
-		 
-		   <!--detail内容 start-->
-		 <article class="box_detail">
-		  {if $show != 'offline'}	
-		  <!--messages消息 start-->
-		  
-		   <div class="msg msg_tips block clearfix ml_10 mr_10">		   	
-		     <i></i>
-		         {$_lang['recharge_min_money']}:{c:$pay_arr['recharge_min']['v']}{$_lang['zh_jh']} {$_lang['recharge_notice']}
-		   </div>
-		  <!--messages消息 end-->
-		   <div class="prefix_1 suffix_1 clearfix">
-		      <div class="pad10 ">
-		      <div class=" ">
-		       <div class="clearfix box font14">
-		       <form action="" name="pay" id="pay" method="post">
-		         <div class="rowElem clearfix">
-		          <label>{$_lang['input_recharge_money']}{$_lang['zh_mh']}</label>
-		            <input class="txt_input" type="text" name="recharge" id="recharge" value="{$cash}" size="30" limit="required:true;type:float;between:$pay_arr['recharge_min']['v']-100000" msg="{$_lang['recharge_money_notice']}{$pay_arr['recharge_min']['v']}{$_lang['yuan']}" title="{$_lang['recharge_money_notice']}{$pay_arr['recharge_min']['v']}{$_lang['yuan']}" msgArea="txt_cash_in_msg"/>
+                <div class="wdzbtop">
+                    <div class="wdzbtopleft">
+                        <img src="<!--{userpicurl($uid,'middle')}-->" width=100 height=100>
+                    </div>
+                    <div class="wdzbtopright">
+                        <p>用户名：{$username}</p>
+                        <p style="width:200px;">账户可用余额：<strong>{c:$user_info['balance']}</strong></p>
+                        <p><a href="index.php?do=user&view=finance&op=withdraw">账户提现</a></p>
+                    </div>
+                </div>
+                <div class="wdzbcz">
+                    <p><b>充值金额：&nbsp;</b>
+                    <input class="in_tou" type="text" name="recharge" id="recharge" value="{$cash}" size="30" limit="required:true;type:float;between:$pay_arr['recharge_min']['v']-100000" msg="{$_lang['recharge_money_notice']}{$pay_arr['recharge_min']['v']}{$_lang['yuan']}" title="{$_lang['recharge_money_notice']}{$pay_arr['recharge_min']['v']}{$_lang['yuan']}" msgArea="txt_cash_in_msg"/>&nbsp;&nbsp;&nbsp;&nbsp;元
 					<span id="txt_cash_in_msg"></span>
-		         </div>
-		  
-		        </div>
-				
-				<!--start 线上支付方式-->
-		           <div class="online">
-		              <div class=" account1 clearfix">
-		                
-		                  
-		                    <!--{eval $k=0;}-->
+                    
+                    </p>
+                </div>
+                <div class="xx_yh" style="float:left">
+                	<div class="xx_yhnav">
+                    	<ul class="yhzxbtn">
+                        	<li class="{if !$show}mo{else}mt{/if}"><a href="index.php?do=user&view=finance&op=recharge">在线网上支付</a></li>
+                            <li class="{if $show}mo{else}mt{/if}"><a href="index.php?do=user&view=finance&op=recharge&show=offline">线下银行付款</a></li>
+                        </ul>
+                    </div>
+                    
+                    
+                    <div style="clear:both; height:15px;"></div>
+                    {if $show != 'offline'}	
+                    <div class="yhtab" style="display: block;">
+                    	<div class="wszf">
+            	<!--支付1 begin -->
+            	<div class="wylo">
+                	<img src="/tpl/default/d8/images/wh.jpg">
+                    <h2>使用网上银行付款</h2>
+                    <p>选择网上银行付款不会动用您的账户余额</p>
+                </div>
+                <div class="wh_ws">
+					
+                    <div class="zfbk">
+                    <ul class="wsbank">
+                    	<!--{eval $k=0;}-->
 							{loop $payment_list $pay}
 		                       {if $pay['pay_status']}<!--{eval $k++;}-->
-		                          <div class="fl_l pay_way" style="width:140px; *width:100px; _width:100px;">
-		                              <label class="fl_l"> 
-									  <input class="fl_l mt_10" type="radio" name="online" value="{$pay['payment']}" {if $k=='1'}checked="checked"{/if}/>
-									  <img class="ov_hide fl_l" style="width:100px;"  src="payment/{$pay['payment']}/{$pay['payment']}.gif" align="absmiddle" >
-									  </label>
-		                          </div>
+                                  
+                                  <li>
+                                    <input type="radio" name="online" value="{$pay['payment']}" {if $k=='1'}checked="checked"{/if} class="yinhang" />
+                                    <label for="bank_code_CMB">
+                                      <img class="ml_5" src="payment/{$pay['payment']}/{$pay['payment']}.gif" width="93" height="20" > </label>
+                                  </li>
+                                  
+                                  
 							   {/if} 
 		                    {/loop}
-							{if $k==0}
-							   <div>{$_lang['online_pay']}{$_lang['account_close']}{$_lang['contact_admin']}</div>
-							 {/if} 
-		               
-		               </div>
-					   
-					   {if $payment_list['tenpay']['pay_status']}
-					<div class="clearfix form_box">
-						<table id="tbl_ten" cellspacing="0" border="0" cellpadding="0" width="100%" height="120" >
-							<caption class="bf7 pad5"><img src="resource/img/bank/logo.gif"/>{$_lang['provide_payment_service']}</caption>
-							<!--{eval $i=0;}-->
-							<tr>
-							{loop $ten_bank_type_arr $k $v}
-							<!--{eval $i++;}-->
-								<td class="pl_20 pt_10 pb_10"><input class="fl_l" type="radio" name="bank_type" {if $i==1} checked="checked" {/if} value="{$k}" id="{$k}">
-								<label class="pay_way" for="{$k}" style="cursor:pointer; float:left; *width:100px;"><img src="resource/img/bank/{$v}.gif"/></label>
-								</td>
-								{if $i%4==0}
-								</tr>
-								<tr>
-								<!--{eval continue;}-->
-								{/if}
-							{/loop}
-							
-								<tr>
-						</table>
-					</div>
-					{/if}
-					{if $k>0}
-		            <div class="rowElem clearfix t_c">
+                    </ul>
+                    </div>
+                    {if $k>0}
 		               <input type="hidden" name="sbt_pay" value="1">
-		               <button type="submit" name="sbt_button" value={$_lang['pay']} style="width:100px" onclick=" return user_pay();">{$_lang['pay']}</button>
-		            </div>
+		               <p><button type="submit" name="sbt_button" value={$_lang['pay']} class="but" onclick=" return user_pay();">{$_lang['pay']}</button>
+                    </p>
 					{/if}
-		            </div>
-					</form>
-				<!--end 线上支付方式-->
-				
-		       </div>
-		     </div>
-		    </div>
-			
-		    <div class="clear"></div>
-			{elseif $show=='offline'}
-			  <div class="msg msg_tips block clearfix ml_10 mr_10">		   	
-		     					<i></i>
-		                   {$_K['website_name']}{$_lang['remit_notice']} 
-		       </div>
-		      <form action="index.php?do=$do&view=$view&op=$op&step=step2&pay_type=offline_charge" name="offpay" id="offpay" method="post">
-				<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}">
-				<input type="hidden" name="step" value="step2">		
-				<input type="hidden" name="pay_type" value="offline_charge">
-				<input type="hidden" name="pay_account" id="pay_account">				
-			   	<div class="suffix_1 prefix_1 pt_10">
-			   		
-					<div class="rowElem clearfix fon14">
-			          <label>{$_lang['input_recharge_money']}{$_lang['zh_mh']}</label>
-			            <input class="txt_input" type="text" name="recharge" id="recharge" value="{$cash}" size="30" limit="required:true;type:float;between:$pay_arr['recharge_min']['v']-100000" msg="{$_lang['recharge_money_notice']}{$pay_arr['recharge_min']['v']}{$_lang['yuan']}" title="{$_lang['recharge_money_notice']}{$pay_arr['recharge_min']['v']}{$_lang['yuan']}" msgArea="txt_cash_in_msg"/>
-						<span id="txt_cash_in_msg"></span>
-			         </div>
-				 
-					<!--start 线下支付方式-->
-		            <div class=" offline " id="div_cont_2">
-		               
-		               <div class=" account1">
-		                  	<div class="form_box">
-		                      <h3 class="bf7 pad10">{$_lang['optional_account']}</h3>
-		                     
-							  {if is_array($offline_pay_list)}
-							  <table id="" cellspacing="0" border="0" cellpadding="0" width="100%" >
-							  	<tr>
-							  		<!--{eval $i=0;}-->
-								  {loop $offline_pay_list $k $v}
+                    
+                </div>
+                <!--支付1 end -->
+            </div>
+            </div>
+                  {elseif $show=='offline'}
+                   <!-- 个人收信箱begin -->
+                   <div class="yhtab " style="display: block;">
+						<div class="zf_ts"> 
+                            <b>豆8威客友情提醒：</b> 为识别汇款人，汇款时请多汇几分钱，冲值500元，可以汇500.01,500,02，并在附言上注明您的用户名，汇款完成后提交汇款记录或者第一时间联系我们，电话400 123 456 或者致电 0411-123456 
+                        </div>
+                        <table border="0" cellspacing="0" cellpadding="1" class="tabzf">
+                            <tbody>
+                                <tr class="odd">
+                                    <td height="20" class="hk" colspan="3" scope="col"><strong>普通账户汇款</strong></td>
+                                </tr>
+                                <tr class="odd">
+                                {loop $offline_pay_list $k $v}
 								  	{if $v['pay_status']} 
 			                           <!--{eval $i++;}-->
-			                              <td class="pl_20 pt_10 pb_10">
-			                                 <input type="radio" name="offline" id="{$v['payment']}"  value="{$v['pay_name']}" {if $k=='icbc'}checked{/if}/>
-											 <label for="{$v['payment']}">
-											 <img src="resource/img/system/kppw_2.0_{$v['payment']}.png" height="34">
-											 </label>
-			                              
-			                                 <ul class="prefix_1">
-			                                   <li>{$_lang['pay_name']}{$_lang['zh_mh']}{$v['pay_name']} </li>
-			                                   <li> {$_lang['choose_pay_account']}{$_lang['zh_mh']}{$v['pay_account']}</li>
-			                                   <li>{$_lang['pay_user']}{$_lang['zh_mh']}{$v['pay_user']}</li>
-			                                  
-			                                 </ul>
-			                               </td>
+                                       	<td>
+                                            <div class="a0 mt_10"> <img width="100" alt="" src="resource/img/system/kppw_2.0_{$v['payment']}.png" original-title=""> </div>
+                                            <ul class="ml_10 a0">
+                                                <li><b>开户行：</b>{$v['pay_name']}</li>
+                                                <li><b>账&#12288;号：</b>{$v['pay_account']}</li>
+                                                <li><b>户&#12288;名：</b>{$v['pay_user']}</li>
+                                            </ul>
+                                        </td>
 										   {if $i%3==0}
-											</tr>
-											<tr>
-											<!--{eval continue;}-->
-											{/if}
+										</tr>
+										<tr>
+										<!--{eval continue;}-->
+										{/if}
 			                            
 			                          {/if} 
-			                       {/loop}
-								   
-								 </table>
-								   
-								   <div class="clear"></div>
-								 </div>
-								 	{if $i>0}
-				               		<div class="mt_10 mb_10 font12 account1 clearfix">
-				                  		
-						                  	
-						                   
-						                   		<span class="fl_l">{$_lang['recharge_info']}{$_lang['zh_mh']}</span>
-												<div class="fl_l">
-												<textarea name="pay_info" id="pay_info" style="width:400px;height:80px"></textarea>
-												
-													<div>{$_lang['audit_notice']}</div>
-												</div>
-											 
-									 
-				                   </div>
-								   
-						            <div class="rowElem clearfix t_c">
-						               <input type="hidden" name="sbt_pay" value="1">
-						               <button type="submit" name="sbt_button" onclick="return off_pay();" value={$_lang['pay']} style="width:100px" >{$_lang['pay']}</button>
-						            </div>
-									{else}
-									<div>{$_lang['offline_pay']}{$_lang['account_close']}{$_lang['contact_admin']}</div>
-									{/if}
-							 	{else}  
-							   		<div>{$_lang['offline_pay']}{$_lang['account_close']}{$_lang['contact_admin']}</div>
-							   {/if}
-		                     
-		                   </div>
-						   
-					      
-						   
-						 
-		                 </div>
-					<!--end 线下支付方式-->
-		         
-		        </form>
-		       </div>
-		       <div class="clear"></div>
-		      
-		    {/if}    
-		      
-		    
-		  </article>
-		  <!--detail内容 end-->
- 
- 	</div>
-                <!--main content end -->
+			                    {/loop}
+                                
+                                </tr>
+                            </tbody>
+                        </table>
+                   </div>
+                   
+                   {/if}
+                   
+                </div>
                 
-			<div class="clear"></div>
-                    
-                    
             </div>
+            
+            
            </div>
 
            </div>

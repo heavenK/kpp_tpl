@@ -1,5 +1,5 @@
 <?php	defined ( 'IN_KEKE' ) or exit ( 'Access Denied' );
-$ops = array ('basic', 'picture','credit', 'safe','fina_account', 'account_bind','space');
+$ops = array ('basic', 'picture','credit', 'safe','fina_account', 'account_bind','space','rights','report');
 in_array ( $op, $ops ) or $op = "basic";
 $sub_nav =array(
 	 array (

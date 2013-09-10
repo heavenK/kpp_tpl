@@ -1,41 +1,31 @@
 <div class="yhgzleft">
-            	<div class="yh_list">
+			<div class="yh_list">
                     <div class="yhzhleftnav">
-                        <p><b>
-                        	{if $view=='store'}店铺管理{/if}
-                        	{if $view=='finance'}账户管理{/if}
-                        </b></p>
+                        <p><b>我的账本</b></p>
                     </div>
                     <div class="yhzhlefttree">
                         <ul>
-                            <li class="m"><p>我的{if $view=='store'}店铺{/if}{if $view=='finance'}账户{/if}</p>
-                            	<ul>
-                                	
-                                   {loop $third_nav $k $v}
-                                    <li>
-                                        <p><a href="{$origin_url}&op=detail&opp={$k}&action={$k}" title="$v['1']">$v['0']</a></p>
-                                    </li>
-                                   {/loop}
-                                   
+                            <li class="m"><p>收支明细</p>
+                                <ul class="teng_ul" style="display:none;">
+                                    <li><p><a href="index.php?do=user&view=finance&op=detail&opp=basic&action=basic&type=dou" {if $type == 'dou'}style="color:#48b78d"{/if}>豆币</a></p></li>
+                                    <li><p><a href="###">游戏币</a></p></li>
+                                    <li><p><a href="index.php?do=user&view=finance&op=detail&opp=basic&action=basic" {if $action == 'basic' && !$type}style="color:#48b78d"{/if}>人民币</a></p></li>
                                 </ul>
-                                {if $view=='finance'}
-                           	 <li class="m"><p>充值提现</p>
-                                <ul>
-                                    <li>
-                                        <p><a href="index.php?do=user&view=finance&op=recharge&show=online">在线充值</a></p>
-                                    </li>
-                                    <li>
-                                        <p><a href="index.php?do=user&view=finance&op=recharge&show=offline">线下充值</a></p>
-                                    </li>
-                                    <li>
-                                        <p><a href="index.php?do=user&view=finance&op=withdraw">账户提现</a></p>
-                                    </li>
-                                </ul>
-                                {/if}
                             </li>
+                            <li class="c"><a href="index.php?do=user&view=finance&op=recharge" {if $op == 'recharge'}style="color:#48b78d"{/if}>> 提现管理</a></li>
                         </ul>
                     </div>
-                
+                    <script>
+					$(function(){
+						$("li:has(ul)").addClass("p");
+						$("li:has(ul):eq(0)").removeClass("p");
+						$(".teng_ul:eq(0)").show();
+						$("p").click(function(){
+							$(this).parent(":has(ul)").find(">ul").slideToggle().end().toggleClass("p");
+						});
+					})
+					</script>
                 </div>
+
                 <!--{template user_left_ad}-->
             </div>

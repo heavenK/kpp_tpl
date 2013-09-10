@@ -657,6 +657,11 @@ function suggest() {
 		showWindow("suggest",'index.php?do=index&op=suggest','get','0');			
 	}
 }
+function suggest_con(con) {
+	if (check_user_login()) {
+		showWindow("suggest",'index.php?do=index&op=suggest&tar_content='+con,'get','0');			
+	}
+}
 function addFav(name,url){
 		if (document.all){
 	     	window.external.addFavorite(url,name);

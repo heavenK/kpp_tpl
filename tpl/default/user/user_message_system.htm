@@ -2,7 +2,7 @@
 <link href="{SKIN_PATH}/css/user_center.css" rel="stylesheet" type="text/css">
 
 <!--contain start-->
-<div class="yhcenter container_24 {$_K['theme']}_style">
+<div class="yhcenter container_24">
     	<!--  账号设置 begin -->
     	<div class="yhzhbox tabCon">
         	
@@ -11,100 +11,84 @@
             
             <div class="yhzhright">
                 <!--main content-->
-                    <div class="_gztt _gztt0 ">
+                    <div class="_gztt _gztt0 " style="height:44px">
                         <div class="yh_xxnav">
-                            <span>{$_lang['send_message']}</span>
+                            <span style=" font-size:16px; font-weight:bold; line-height:46px">发件箱</span>
                         </div>
+                        
                     </div>
                     <div class="xx_yh">
                         
                         <!--{template user/user_mes_nav}-->
                         
-                        <div style="clear:both; height:15px;"></div>
-                            <div class="data_list mar10" style="margin-bottom:0;">
-                                <form method="post" id="frm_msg" action="index.php?do={$do}&view={$view}&msg_type={$msg_type}">
+                        <form method="post" id="frm_msg" action="index.php?do={$do}&view={$view}&msg_type={$msg_type}">
                                 	<input type="hidden" name="op" value="{$op}" id="op">
                                 	<input type="hidden" name="page" value="{$page}" id="page">	
-                                    <table class="data_table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">
-                                                  {if $msg_type!='output'}{$_lang['status']}{/if}
-                                                </th>
-                                                <th scope="col" colspan="3" width="250">
-                                                    {$_lang['title']}
-                                                </th>
-                                                <th scope="col">
-                                                    {if $msg_type=='output'}{$_lang['send']}{else}{$_lang['from_user']}{/if}
-                                                </th>
-                                                <th scope="col">
-                                                    {$_lang['time']}
-                                                </th>
-                                                <th scope="col" colspan="1" width="120">
-                                                    {$_lang['operate']}
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        	{if $data}
-                                            {loop $data $k $v}
-											
-                                            <tr class="odd">
-                                                <td>
-                                                    <input type="checkbox" value="$v['msg_id'],$v['msg_status']" id="cbk_selected" name="ckb[]">
+                        <div class="yhtab" style="display: block;">
+                            <div class="tabxx">
+                                <div class="yh_yhtab">
+                                    <div class="yh_yhtab0">
+                                        <span>状态</span>
+                                    </div>
+                                    <div class="yh_yhtab01">
+                                        <span>标题</span>
+                                    </div>
+                                    <div class="yh_yhtab02">
+                                        <span>来自</span>
+                                    </div>
+                                    <div class="yh_yhtab03">
+                                        <span>时间</span>
+                                    </div>
+                                    <div class="yh_yhtab04">
+                                        <span>操作</span>
+                                    </div>
+                                </div>
+                                {loop $data $k $v}
+                                <div class="yh_yhtab00">
+                                    <div class="yh_yhtab0">
+                                        <p>
+                                        <input type="checkbox" value="$v['msg_id'],$v['msg_status']" id="cbk_selected" name="ckb[]">
 													{if $msg_type!='output'}
                                                    		 {if $uid==$v['to_uid']&&!$v['view_status']}{$_lang['unread']}{else}{$_lang['already_read']}{/if}
 												    {/if}
-                                                </td>
-                                                <td colspan="3">
-                                                	<!--{eval if($v['uid']){$type='inbox';}else{$type="system";}}-->
+                                        </p>
+                                    </div>
+                                    <div class="yh_yhtab01">
+                                        <p>
+                                        	<!--{eval if($v['uid']){$type='inbox';}else{$type="system";}}-->
                                                     <a {if $v['view_status']!=1&&$msg_type!='output'}style="font-weight: bold"{/if} title="$v['title']"
 														 href="index.php?do=$do&view=$view&op=views&ac=view&msg_id=$v['msg_id']&msg_type=$msg_type">
 														$v['title'] </a>
-                                                </td>
-                                                <td>
-                                                	{if $msg_type!='output'}
+                                        </p>
+                                    </div>
+                                    <div class="yh_yhtab02">
+                                        <p>{if $msg_type!='output'}
                                                 		{if !$v['username']}{$_lang['system_msg']}{else}{$v['username']}{/if}
 													{else}
 														$v['to_username']
-													{/if}
-                                                </td>
-                                                <td>
-                                                    <!--{date('Y-m-d',$v['on_time'])}-->
-                                                </td>
-                                                <td colspan="1">
-                                                    <a class="button" href="index.php?do=$do&view=$view&op=views&ac=view&msg_id=$v['msg_id']&msg_type=$msg_type"><span class="book icon"></span>{$_lang['view']}</a>
-													<a class="button" href="index.php?do=$do&view=$view&op=del&msg_id=$v['msg_id']&msg_status=$v['msg_status']&page=$page&msg_type=$msg_type"
-													 onclick="return del(this);"><span class="trash icon"></span>{$_lang['delete']}</a>
-                                                </td>
-                                            </tr>
-                                            {/loop}
-										
-                                        </tbody>
-                                    <tfoot>
-                                      <tr>
-                                         <td colspan="7">
-                                       	<div class="clearfix pad10">   
-											<a href="javascript:;" value="0" id="checkbox" onclick="checkall(this.id)">{$_lang['select_all']}</a>
-                                      	 	<button onclick="return mulit_del();" value="{$_lang['delete_selected']}" type="button" name="sbt_action"><span class="icon trash"></span>{$_lang['delete_selected']}</button>
-											{if $msg_type!='output'}
-												<button onclick="return mulit_views();" value="{$_lang['biao_already']}" type="button"  name="sbt_action"><span class="icon hand-1"></span>{$_lang['biao_already']}</button>
-											{/if}
-										</div>
-                                        </td>
-                                  </tr> 
-                               </tfoot>
-							   	{else}
-									<tr>	
-										<td colspan="8" class="t_c">
-										{$_lang['norecord']}
-										</td> 
-									</tr>
-								{/if}
-                           </table>
-                         </form>
-                       </div>
-                     <div class="page">{$pages['page']}<div class="clear"></div></div>
+													{/if}</p>
+                                    </div>
+                                    <div class="yh_yhtab03">
+                                        <p><!--{date('Y-m-d H:i',$v['on_time'])}--></p>
+                                    </div>
+                                    <div class="yh_yhtab04">
+                                        <p><a href="index.php?do=$do&view=$view&op=views&ac=view&msg_id=$v['msg_id']&msg_type=$msg_type">查看</a>&nbsp;&nbsp;<a href="index.php?do=$do&view=$view&op=del&msg_id=$v['msg_id']&msg_status=$v['msg_status']&page=$page&msg_type=$msg_type"
+													 onclick="return del(this);">删除</a></p>
+                                    </div>
+                                </div>
+                                {/loop}
+                            </div>
+                            <div class="_gztt00 ">
+                                <div class="yh_xxnav yh_xxbutton">
+                                    <input type="button"   onclick="checkall(this.id)" value="全选" class="xx_button" name="">
+                                    <input onclick="return mulit_del();" value="{$_lang['delete_selected']}" type="button" name="sbt_action" class="xx_button00">
+                                </div>
+                                <div class="pages fanye">
+                                   {$pages['page']}
+                                </div>
+                            </div>
+                           </div>
+
                    </div>
                 <!--main content end -->
                 

@@ -98,4 +98,27 @@ foreach($task_info as $val){
 	if($val['work_status'] == 4) $task_4++;
 	if($val['work_status'] == 7) $task_7++;
 }
+
+
+$follow_obj = keke_table_class::get_instance('witkey_free_follow');
+$where = " 1 = 1 ";
+$limit = 5;
+$curpage or $curpage = 1;
+if(!$type||$type == 1){
+	$sql  = sprintf("select f.*,s.uid focus_uid,s.username focus_username,s.seller_level  from %switkey_free_follow as f left join %switkey_space as s on f.fuid = s.uid where ",TABLEPRE,TABLEPRE);
+	$where .= " and f.uid = ".$uid;
+}
+$order .= " order by f.on_time desc "; 
+$count = db_factory::execute($sql.$where);
+$pages = $kekezu->_page_obj->getPages($count, $limit, $curpage, $url);
+$follow_list = db_factory::query($sql.$where.$pages['where']);
+
+
+
+$sql = "select * from " . TABLEPRE . "witkey_article where art_cat_id=203 order by pub_time desc limit 0,5";
+$art_list_arr = db_factory::query ( $sql );
+
+$sql = "select * from " . TABLEPRE . "witkey_article where art_cat_id=5 order by pub_time desc limit 0,5";
+$art_list_arr_1 = db_factory::query ( $sql );
+
 require keke_tpl_class::template ( "user/" . $do . "_" . $view . "_" . $op );

@@ -128,12 +128,12 @@
                                                     {if !$user_auth_info[$v[auth_code]]['auth_status']}
                                                         {if $v[auth_code]=='realname'||$v['auth_code']=='enterprise'}
                                                            {if $identy_auth_info['enterprise']}
-                                                            <a href="index.php?do={$do}&view=payitem&op=auth&auth_code=enterprise" class="button">立即认证</a>
+                                                            <a href="index.php?do={$do}&view=payitem&op=auth&auth_code=enterprise" class="button">未认证</a>
                                                           {else}
-                                                            <a href="index.php?do={$do}&view=payitem&op=auth&auth_code=realname" class="button">立即认证</a>
+                                                            <a href="index.php?do={$do}&view=payitem&op=auth&auth_code=realname" class="button">未认证</a>
                                                           {/if}
                                                         {else}
-                                                          <a href="index.php?do={$do}&view=payitem&op=auth&auth_code={$v[auth_code]}" class="button">立即认证</a>
+                                                          <a href="index.php?do={$do}&view=payitem&op=auth&auth_code={$v[auth_code]}" class="button">未认证</a>
                                                         {/if}
                                                     {/if}
                                                     </span>

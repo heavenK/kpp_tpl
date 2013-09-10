@@ -11,33 +11,22 @@
             
             <div class="yhzhright">
             	
-{if $verify}<!--messages消息 start-->
-                        <div class="messages m_infor">
-                            <div class="icon16">
-                                warning
-                            </div>
-                            {$_lang['customer_service_personnel_will']} {$auth_item[auth_day]}{$_lang['working_days_to_complete_certification']}{$_lang['zh_mh']}{$basic_config['kf_phone']}
-                        </div>
-                        <!--messages消息 end--><!--{template verify_secode}-->{else}<!--detail内容 start-->
-                        <article class="box_detail">
-                            <!--messages消息 start-->
-                            <div class="messages m_infor">
-                                <div class="icon16">
-                                    warning
-                                </div>
-                                {$_lang['customer_service_personnel_will']} {$auth_item[auth_day]}{$_lang['working_days_to_complete_certification']}{$_lang['zh_mh']}{$basic_config['kf_phone']}<a href="###" class="close">&times;</a>
-                            </div>
-                            <!--messages消息 end-->
-                            <div class="prefix_1 suffix_1 clearfix">
+{if $verify}
+<!--{template verify_secode}-->
+{else}
+<!--detail内容 start-->
+                           <div class="ac_rztop">
+                               <span><b>认证中心</b></span>
+                           </div>
                                 <!--step步骤 start-->
-                                <div class="step_progress clearfix">
-                                    {loop $step_arr $k $v}
-                                    <div class="step {$k} {if $k==$auth_step}selected{/if}">
-                                        <span class="icon32">{$k}</span>
-                                        <strong>{$v[0]}</strong>{$v[1]}
+                                <div class="smrz">
+                                <div class="smrz_nav">
+                                        <ul>
+                                            {loop $step_arr $k $v}
+                                                <li class="{if "step".$k==$auth_step}selectedLava{/if} sm"> <a title="填写手机号码"  {if "step".$k==$auth_step}style="color:#B80002"{/if}>{$k}.{$v[1]}</a> </li>
+                                             {/loop}
+                                        </ul>
                                     </div>
-                                    {/loop}
-                                </div>
                                 <!--step步骤 end-->{if $auth_step=='step1'}<!--detail内容 start-->
                                 <article class="box_detail">
                                     <div class="form_box ">
@@ -94,6 +83,10 @@
                                     </div>
                                 </article>
                                 <!--detail内容 end-->{elseif $auth_step=='step3'}
+                                <div class="smrz_ts">
+                         <p><b>友情提示</b> 以下账户信息以您提交的信息为准，非本站金融体系，请妥善填写，如出现信息误差，自行负责！</p>
+                    </div>
+                    <div class="blank1"></div>
                                 <div class="form_box">
                                     <div class="form_tip pad10">
                                         {if $auth_info['pay_to_user_cash']>0}
@@ -133,6 +126,10 @@
                                         </ul>
                                     </div>
                                     {if $auth_step=='step3'&&$auth_info['pay_to_user_cash']>0}
+                                    <div class="smrz_ts">
+                         <p><b>友情提示</b> 以下账户信息以您提交的信息为准，非本站金融体系，请妥善填写，如出现信息误差，自行负责！</p>
+                    </div>
+                    <div class="blank1"></div>
                                     <div class="prefix_6">
                                         <form action="{$ac_url}&auth_step=step3&show_id={$auth_info[bank_a_id]}" id="confirm" name="confirm" method="post">
                                             <div class="clearfix">
@@ -191,9 +188,8 @@
                     
             </div>
            </div>
-
+</div>
            </div>
-           
     <!-- center end -->
 
 <script type="text/javascript">

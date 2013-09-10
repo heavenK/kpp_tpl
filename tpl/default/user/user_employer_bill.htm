@@ -1,0 +1,119 @@
+<!--{template header_user_top}-->
+<link href="{SKIN_PATH}/css/user_center.css" rel="stylesheet" type="text/css">
+
+<!--contain start-->
+<div class="yhcenter container_24">
+    	<!--  账号设置 begin -->
+    	<div class="yhzhbox tabCon">
+        	
+            
+            <!--{template user_employer_left}-->
+            <div class="yhgzright">
+            	
+                <div class="gz_xs">
+                    <div class="ac_zltop">
+                        <span><b>发票管理</b></span>
+                    </div>
+                    
+                    
+                    <div class="ggmm">
+                	<div class="ac_mm">
+                    	<ul class="mima">
+                        	<li class="{if $show == 'send'}mi{else}ma{/if}"><a href="index.php?do=$do&view=$view&op=$op&show=send">已经申请</a></li>
+                            <li class="{if $show == 'rec'}mi{else}ma{/if}"><a href="index.php?do=$do&view=$view&op=$op&show=rec">已经受理</a></li>
+                            <li class="{if $show == 'refuse'}mi{else}ma{/if}"><a href="index.php?do=$do&view=$view&op=$op&show=refuse">拒绝受理</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="yhzh_aq">
+                        <div class="pad10">
+                            <div class="tab_jiaoyi">
+                               <form id="" method="post" action="index.php?do={$do}&view={$view}&op={$op}&show={$show}">
+                                               <div class="tab_r">
+                                               		<div class="mr_10 a0">
+                                                        <label class="">
+                                                            任务名称：
+                                                        </label>
+                                                        <input type="text" name="art_title" class="in_tou" value="">
+                                                    </div>
+                                                    
+                                                    <div class="mr_10 a0">
+                                                        <label class="">
+                                                            申请时间：
+                                                        </label>
+                                                        <input type="text" name="start_time" onclick="showcalendar(event, this, 0)" class="in_tou" value="" name="">-<input type="text" onclick="showcalendar(event, this, 0)" name="end_time" class="in_tou" value="" name="">
+                                                    </div>
+                                                    <div class="a1">
+                                                        <button value="搜索" name="sbt_search" type="submit" class="sub"><span></span>搜索</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                <div style="clear:both;" class="data_list_d8">
+                                    <table cellspacing="0" cellpadding="0" style=" " class="data_table_d8">
+                                        <thead>
+                                            <tr height="25">
+                                                <th width="75">任务编号</th>
+                                                <th width="214">任务标题</th>
+                                                <th width="89">开票金额</th>
+                                                <th width="80">手续</th>
+                                                <th width="92">开票状态</th>
+                                                <th width="85">申请时间</th>
+                                                <th width="63">操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        	{loop $bill_arr $k $v}
+                                            <tr class="odd" height="20" >
+                                                <th width="75" style="font-weight:normal;">{$v[vid]}</th>
+                                                <th width="214" style="font-weight:normal;">{$v[title]}</th>
+                                                <th width="89" style="font-weight:normal;">{$v[money]}</th>
+                                                <th width="80" style="font-weight:normal;">{$v[shouxu]}</th>
+                                                <th width="92" style="font-weight:normal;">{$v[status]}</th>
+                                                <th width="85" style="font-weight:normal;">{$v[pub_time]}</th>
+                                                <th width="63" style="font-weight:normal;">
+                                                {if $show == 'send'}<a href="#" style="color:#000;">同意</a> <a href="#" style="color:#000;">拒绝</a>
+                                                {else}<a href="#" style="color:#000;">查看</a>
+                                                {/if}
+                                                </th>
+                                            </tr>
+                                            {/loop}
+                                        </tbody>
+                                     </table>
+                                 </div>
+                             </div>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                </div>
+				</div>
+                <!-- 雇主 end -->
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        </div>
+
+           </div>
+           
+            
+
+    <!-- center end -->
+
+<!--contain end-->
+
+<!--{template user/user_footer}-->
+<!--{template footer_dou}-->

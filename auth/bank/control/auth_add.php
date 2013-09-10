@@ -1,7 +1,7 @@
 <?php
 defined ( 'IN_KEKE' ) or exit ( 'Access Denied' );
 $page_title = $_lang['bank_auth'];
-$step_arr = array ("step1" => array ($_lang['step_one'], $_lang['choose_account'] ), "step3" => array ($_lang['step_two'], $_lang['enter_throw_into_cash'] ), "step4" => array ($_lang['step_three'], $_lang['auth_pass'] ) );
+$step_arr = array ("1" => array ($_lang['step_one'], $_lang['choose_account'] ), "3" => array ($_lang['step_two'], $_lang['enter_throw_into_cash'] ), "4" => array ($_lang['step_three'], $_lang['auth_pass'] ) );
 $auth_step and $auth_step=$auth_step or $auth_step='step1';
 $verify = 0;
 $ac_url = $origin_url . "&op=$op&auth_code=$auth_code&ver=".intval($ver);

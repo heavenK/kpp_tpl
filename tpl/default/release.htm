@@ -1,114 +1,361 @@
-<!--{template header_user_top}-->
+<!--{template header_index_top}-->
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/T_fbrw.css">
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/base.css">
+<!--box样式-->
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/box.css">
 
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/public.css">
 
-    <!--页面头部-->
-    <header class="clearfix page_header">
-        <div class="container_24 clearfix  {$_K['theme']}_style">
-            <!--面包屑-->
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/newsimple_style2013.css">
+<link href="resource/js/jqplugins/tipsy/tipsy.css" rel="stylesheet">
+<script type="text/javascript" src="/tpl/default/d8/js/jQselect.js"></script>
+<script>
+$(document).ready(function () {
+	$(".SelectCity").selectbox();
+});
+</script> 
 
-            <!--end 面包屑-->
-            <div class="clear">
-            </div>
-            <!--页面子导航-->
-            <!--<nav class="clearfix page_nav po_re">
-                <ul>
-                    <li {if $pub_mode=='professional'}class="selected"{/if}>
-                        <a href="index.php?do=release&pub_mode=professional" title="{$_lang['specialty_model']}">{$_lang['specialty_model']}</a>
-                    </li>
-                 
-                    <li {if $pub_mode=='onekey'}class="selected"{/if}>
-                        <a href="index.php?do=release&pub_mode=onekey&target_task={$target_task}" class="{$_lang['onkey_release']}">{$_lang['onkey_release']}</a>
-                    </li>
-                </ul>
-            </nav> -->
-            <!--end 页面子导航-->
-            <div class="clear">
-            </div>
-        </div>
-    </header>
-    <!--end 页面头部--><!--详细内容区-->
-    <section class="content box">
-        <!--布局框-->
-        <div class="container_24 {$_K['theme']}_style">
-        <div class="content_d">
-            <!--step步骤 start-->
-            <div class="step_progress clearfix">
-                {loop $stage_nav $k $v}
-                <div class="step {$v['0']} {if $v['0']==$r_step}selected{/if}">
-                    <span class="icon32 pub">{$k}</span>
-                    <strong>{$v['1']}</strong>
-                    {$v['2']}
-                </div>
-                {/loop}
-            </div>
-            <!--step步骤 end--> 
-            <!--提示信息-->
-            <div class="messages m_infor">
-                <span class="icon16"></span>
-                <span>如在发布任务时遇到麻烦，请联系客服。</span>
-                <span style="width:71%" class="ws_break">电话：$kf_phone</span>
-            </div>
-            <!--end 提示信息-->
-           
+   <!-- 发布任务 -->
+    <div class="fbrw_xq">
+      <div class="fbrw_4"><img src="/tpl/default/d8/images/youjian.jpg" /> 发布任务</div>
+      <div class="fbrw_5">
+        <p class="ms">描述需求</p>
+        <p class="cg">发布成功</p>
+      </div>
+    </div>
+	
+    <!-- 立即发布任务 -->
+<form action="index.php?do=release&pub_mode={$pub_mode}&t_id={$t_id}&model_id={$model_id}&r_step=step3" method="post" name="frm_step3" id="frm_step3">
+	  	<input type="hidden" name="formhash" value="{FORMHASH}">
         
-            <!--步骤下所有内容-->
-            <div class="step1_detail">
-                {if $r_step=='step1'}<!--任务模式-->
-                <nav class="primary_nav primary_nav1 clearfix border_b_c">
-                    <ul>
-                        {loop $model_list $k $v}
-                        <li>
-                            <a href="index.php?do=release&pub_mode={$pub_mode}&model_id={$k}" {if $k==$model_id}class="selected"{/if}><span class="icon32 task_model"><!--{eval echo kekezu::cutstr($v['model_name'],0,2)}--></span><em>{$v['model_name']}</em><span class="arrow_b"></span></a>
-                        </li>
-                        {/loop}
-                    
-                    </ul>
-                    <div class="clear">
-                    </div>
-                </nav>
-				{/if}
-				<!--向前 向后-->
-				
-                {if $r_step=='step2'}
-	                <div class="clearfix border_b_c pad5">
-	                	<a href="{$basic_url}&r_step=step1" class="ml_10"><span class="icon16 arrow-left" title="{$_lang['return']}">{$_lang['return']}</span></a>
-						<a href="{if $release_info['step2']}{$basic_url}&r_step=step3{else}javascript:void(0);{/if}" class="{if $release_info['step2']}ml_10 mr_10{else}grey ml_10{/if}"><span class="icon16  arrow-right" title="{$_lang['forward']}">{$_lang['forward']}</span></a>
-						{if $user_info['pub_num']}
-						<a href="index.php?do=user&view=employer&op=task&model_id={$model_id}" class="ml_10 button fl_r">{$_lang['view_i_release_the_task']}</a>
-						{/if}
-					</div>
-                {/if} 
-                {if $r_step=='step3'}
-	                <div class="clearfix border_b_c pad5">
-	                	<a href="{$basic_url}&r_step=step2" class="ml_10 mr_10"><span class="icon16 arrow-left" title="{$_lang['return']}">{$_lang['return']}</span></a>
-						<a href="javascript:void(0);" class="grey"><span class="icon16 arrow-right" title="{$_lang['forward']}">{$_lang['forward']}</span></a>
-					</div>
-                {/if} 
-				<!--end 向前 向后-->
-				<!--end 任务模式-->
-                <!--任务模式下部内容-->
-                <div class="clearfix">
-                    <!--{eval require keke_tpl_class::template("task/{$model_info['model_dir']}/tpl/{$_K['template']}/release_$r_step") }-->
-                    <!--end 任务模式下部内容-->
-                </div>
-                <!--end 步骤下所有内容-->
-            </div>
+    <div class="ljfb1">
+      <div class="ljfb_left1">
+        <h2>选择您所需要的项目类型</h2>
+        <div class="yjxm">
+          <!--新增选项 开始-->
+          <div class="selectbox_dw">
+              <select name="indus_pid" id="indus_pid" title="{$_lang['select_industry']}"  onchange="showTaskIndus(this.value)" limit = "required:true;between:5-10" msg = '{$_lang['industry_no_choose']}' msgArea="span_indus">
+                      <option value="">{$_lang['select_industry']}</option>
+                      {loop $indus_p_arr $v}
+                           <option value="{$v['indus_id']}" {if $release_info['indus_pid']==$v['indus_id']}selected{/if}>{$v['indus_name']}</option>
+                      {/loop} 
+              </select>
+          </div>
+          <div class="selectbox_dw" style="margin-left:10px;">
+              <select name="indus_id" id="indus_id"  limit = "required:true;between:5-10" msg='{$_lang['industry_z_no_choose']}' title='{$_lang['choose_part']}' msgArea="span_indus">
+                            <option value="">{$_lang['choose_part']}</option>
+							{if $release_info['indus_id']}
+							{loop $indus_arr $k $v}
+                           		 <option value="{$v['indus_id']}" {if $release_info['indus_id']==$v['indus_id']}selected{/if}>{$v['indus_name']}</option>
+							{/loop}
+							{/if}
+                        </select>
+          </div>
         </div>
-        <!--end 布局框-->
+        <h3>用一句话来描述你的需求（<a href="#">如何写好任务标题？</a>）</h3>
+        <input name="txt_title" id="txt_title" type="text" value="<!--{eval echo kekezu::escape($release_info['txt_title'])}-->" title="{$_lang['txt_title']}" size="34" msgArea="span_title"
+                                limit="required:true;len:5-50" msg="{$_lang['msg_title']}" maxlength="50" class="input_6"/>
+        <p class="rwbt">任务标题最多50个字</p>
+        <h3>请把需求说的具体一些（<a href="#">看看别人怎么写？</a>）</h3>
+        <div class="wenben">
+        <textarea style=" width:613px; height:203px;"  name="tar_content" onchange="alert('12341234');" title="{$_lang['textarea_title']}" id="tar_content" msgArea="msg_content" 
+						class="xheditor {tools:'Bold,Fontface,FontColor,Italic,Underline,Strikethrough,Align,List,Outdent,Indent,Link,Unlink,Table',skin:'nostyle'}"><!--{eval echo kekezu::escape($release_info['tar_content'])}--></textarea>
+                       
+		<script type="text/javascript" src="resource/js/xheditor/xheditor.js"></script>
+        <script type="text/javascript">
+             $(function(){
+                editor = $("#tar_content").xheditor();
+				//editor.checkInner();
+				
+             })
+        </script>
+        
+        </div>
+        <p class="rwbt" id="length_show">&nbsp;</p>
+        <div class="rwbt_1">
+        <div class="mgdx"> 每个大小不超过{$basic_config['max_size']}MB，限制5个附件。<a href="###"  class="file_type" title="<ol class='t_l'><li>{$_lang['upload_title']}{$basic_config['max_size']}M.</li><li>{$_lang['upload_style']}<p class='ws_break'>{$ext_show}</p></li></ol>">无法正常上传？</a> </div>
+        
+        </div>
     
-    <!--end 详细内容区-->
-</div>
-</section>
+        <div class="mgdx_r">
+            <input type="file" class="filess" name="upload" id="upload">
 
+            <input type="hidden" name="file_ids" id="file_ids">
+            <script type="text/javascript">
+                                    $(function(){
+                                        uploadify({
+                                                auto:true,
+                                                size:"{$basic_config['max_size']}MB",
+                                                exts:'{$ext_types}',
+                                                limit:5}
+                                            );
+                                    })
+                            </script>
+                            <script src="resource/js/uploadify/jquery.uploadify-3.1.min.js" type="text/javascript"></script>
+							<link href="resource/js/uploadify/uploadify.css" rel="stylesheet">
+        </div>
+        
+        <div class="form_box clearfix box border_n">
+        <!--input type="hidden" name="step1" value="step1"-->
+        <div class="rowElem clearfix">
+          <label class="labl_row"><h3>真实的联系方式有助于一品客服及时与您沟通：</h3></label>
+        <div class="">
+        <div class="selectbox_dw" style="margin-right:20px;">
+            <select id="bbb" onchange="show_content();" style="height:30px;">
+              <option value="contact_mobile">手机</option>
+              <option value="contact_qq">QQ</option>
+              <option value="contact_email">Email</option>
+            </select>
+        </div>
+        <script>
+			function show_content(){
+				
+				var id = $("#bbb").val();
+				$(".input_7").hide();
+
+				$("#"+id).show();
+				
+			}
+		</script>
+        <input name="txt_mobile" id="contact_mobile" type="text" value="{if $release_info['txt_mobile']}$release_info['txt_mobile']{else}$user_info['mobile']{/if}" 
+						 title="{$_lang['mobile_title']}" size="34" msgArea="span_mobile"
+						limit="required:true;type:mobileCn" msg="{$_lang['mobile_msg']}" maxlength="50"  class="input_7"/>
+        <input name="txt_qq" id="contact_qq" type="text" value="{if $release_info['txt_qq']}$release_info['txt_qq']{else}$user_info['qq']{/if}" 
+
+						limit="required:false;type:int;len:5-13" msg="请填写正确的QQ号码" maxlength="50"  class="input_7" style="display:none"/>
+      	<input name="txt_email" id="contact_email" type="text" value="{if $release_info['txt_email']}$release_info['txt_email']{else}$user_info['email']{/if}" 
+
+						limit="required:false;type:email" msg="请填写正确的邮箱地址" maxlength="50"  class="input_7" style="display:none"/>
+        <span id="span_contact"></span>
+        <div class="clear"></div>
+        </div>
+        </div>
+        <br>
+    
+    <script type="text/javascript">
+    window.onload=function(){
+        document.getElementById('btn').onclick = function(){   
+            var obj = document.getElementById("xuans");
+      
+            if(obj.style.display == "block"){
+                                
+                obj.style.display = "none";
+      
+            }else{
+                                        
+                obj.style.display = "block";
+            }           
+            }   
+            document.getElementById('btn1').onclick = function(){   
+            var obj = document.getElementById("toub");
+      
+            if(obj.style.display == "block"){
+                                
+                obj.style.display = "none";
+      
+            }else{
+                                        
+                obj.style.display = "block";
+            }           
+            }      
+        }
+      
+    </script>
+    
+    
+    <div class="choosway">
+    <span class="radibox"><span class="stylcod" id="btn"><a href="#"></a></span></span>悬赏模式：先托管赏金，威客交稿后选中满意的付款</div>
+    <div style="display: block;" class="choswaybox pad20" id="xuans">
+    <div class="csw_tilex c960">您打算支付多少赏金呢？</div>
+    
+    ￥
+     <input name="txt_task_cash"  class="txt txt_input1" value="{if $release_info['txt_task_cash']}$release_info['txt_task_cash']{else}$task_config['min_cash']{/if}" type="text" id="txt_task_cash" msgArea="span_task_cash"  title="{$_lang['mtask_cash_title']}{$task_config['min_cash']}{$_lang['yuan']}" onkeyup="clearstr(this)"
+		    limit="required:true;type:float;between:{$task_config['min_cash']}-" msg="{$_lang['mtask_cash_msg']}{$task_config['min_cash']}{$_lang['yuan']}" onblur="getMaxDday(this.value)" />
+    
+    &nbsp;
+    <div class="csw_tilex c960">您打算如何分配该赏金呢？</div>
+    <!--单赏-->
+    <div class="styinput hadsubbox"><input original-title="" id="dandusj" class="styled" value="1" name="model_id" checked="checked" type="radio" onclick="change_id(1);"><label for="dandusj">单人悬赏，只设置一个中标者</label></div>
+    <!--多赏-->
+    <div class="styinput hadsubbox"><input original-title="" id="duorensj" class="styled" value="2" name="model_id" type="radio"  onclick="change_id(2);"><label for="duorensj">多人悬赏，设置多人中标分享赏金</label></div>
+    
+    <!--计件-->
+    <div class="styinput hadsubbox"></span><label for="jijiansj"><a href="###">计件悬赏，合格一稿，支付一稿</a></label></div>
+    
+    <script>
+		function change_id(val){
+			$("#frm_step3").attr("action","index.php?do=release&pub_mode={$pub_mode}&t_id={$t_id}&model_id="+val+"&r_step=step3");
+		}
+	
+	</script>
+    
+    
+    <div class="setmark">
+    <div class="csw_tilex c960">为增加投稿积极性，需设置2-5名入围者</div>
+    <select name="txt_prize1_num" id="slt_notice_count" title="选择入围人数">
+    <option selected="selected" value="2">&nbsp;2人&nbsp;</option>
+    <option value="3">&nbsp;3人&nbsp;</option>
+    <option value="4">&nbsp;4人&nbsp;</option>
+    <option value="5">&nbsp;5人&nbsp;</option>
+    </select>
+    入围，他们将分取<strong class="cc30">
+    
+    <input class="" name="txt_prize1_cash" value="{if $release_info[txt_prize1_cash]}$release_info[txt_prize1_cash]{/if}" type="text" size="8" id="txt_prize1_cash" msgArea="span_prize1_cash"  title="{$_lang['prize_cash_title']}" onkeyup="clearstr(this)" limit="required:true;type:int;between:0-" msg="{$_lang['prize_no_empty']}" />
+    
+    </strong>元赏金<span id="eachcash" style="display:none"></span>
+    </div>
+    <div class="csw_tilex c960">您希望用多长时间来完成这个任务？</div>
+    <div class="csw_tilex c960">
+    在&nbsp;
+    <input name="txt_task_day" onclick="showcalendar(event, this, 0)"
+					value="{if $release_info['txt_task_day']}$release_info['txt_task_day']{elseif $default_max_day}$default_max_day{else}$min{/if}"
+					type="text" id="txt_task_day" min_day="$task_config['min_day']"/>
+    
+    &nbsp;日截止投稿
+    </div>
+    </div>
+    <span class="blank10"></span>
+    <div class="choosway">
+    <span class="radibox"><span class="stylcod" id="btn1"><a href="#"></a></span></span>投标模式：威客先竞标，选中合适威客后再托管赏金。一对一工作，满意后付款
+    </div>
+    <div style="display: none;" class="choswaybox pad20" id="toub">
+    <div class="csw_tilex c960">您打算支付多少赏金呢？</div>
+    <div class="styinput hadsubbox"></span><input original-title="" id="jutisj" class="styled" name="shanging" value="4" type="radio"><label for="jutisj">我有具体的预算金额，直接填写赏金数目</label></div>
+    
+    <div class="styinput hadsubbox"><input original-title="" id="jujiansj" class="styled" name="shanging" value="5" type="radio"><label for="jujiansj">我没有具体的预算金额，选择价格区间</label></div>
+    
+    <div class="csw_tilex c960">您希望用多长时间来寻找满意的合作者？</div>
+    在&nbsp;<input  size="12" class="txt txt_input1" value="2013-08-21" name="end_time2" type="text">&nbsp;日截止报名
+    </div>
+    </div>
+        
+    </div>
+    
+      <div class="ljfb_right">
+        <h2>轻松快捷·更高效率·节省时间<br />客服帮您搞定一切</h2>
+        <h3><a href="T_about_kfzx.html">&nbsp;</a></h3>
+        <div class="telep"><img src="/tpl/default/d8/images/telephone.png" /> <span>400-850-5066</span></div>
+        <div class="qq"><img src="/tpl/default/d8/images/qq.png" /> <span><a href="tencent://message/?uin=27962130&Site=qq&Menu=yes" target="">27962130</a></span></div>
+      </div>
+      
+      <div class="ljfb_right">
+        <h5>豆8网承诺</h5>
+      </div>
+    </div>
+
+	<!--end 步骤下所有内容-->
+    <div class="fw_n">
+    <div class="post_box mt_10 pad20 clearfix">
+    <div class="xyfw">您可能还需要下面的服务：</div>
+    <div class="psllitable">
+    <table border="0" cellpadding="0" cellspacing="1" width="100%">
+    <tbody>
+    {if $item_list}
+    
+    {loop $item_list $k $v}
+    <input type="hidden" name="item_type" id="item_type_{$v['item_code']}" value="buy">
+    
+    
+    <tr class="odd">
+    <td width="85" height="40" valign="middle" bgcolor="#f9f9f9"><input original-title="" class="payitems" name="payitem_ids[{$v['item_code']}]" value="{if $v['item_code']=='top'}3{else}99{/if}" item_id="$v['item_id']" item_cash="$v['item_cash']" item_code="$v['item_code']" item_type="buy" onblur="edit_payitem('$v[item_code]');" item_name="$v['item_name']" onclick="ale();" type="checkbox"><label for="checkbox_urgent">&nbsp;{$v['item_name']}</label></td>
+    <td height="40" valign="middle"><span class="c999 font12"> {$v['item_desc']}                                                                        
+    </span></td>
+    <td width="110" height="40" valign="middle"><strong class="cf60 pad10">{c:$v['item_cash']}{if $v['item_code']=='top'}/3天{/if}</strong></td>
+    </tr>
+    {/loop}
+    {/if}
+    <input type="hidden" name="item_totle_cash" id="item_totle_cash" value="">
+    </tbody></table>
+    <div class="pad10">
+    <input original-title="" name="checkall" id="checkall" onclick="chkall('frm_step',this);" type="checkbox">全选
+    </div>
+    
+    <input original-title="" name="item_total_cash" id="item_total_cash" value="" type="hidden">
+    <input original-title="" name="item_total_credit" id="item_total_credit" value="" type="hidden">
+    <div class="font14b pb_10 pt_10 c333">结算清单：</div>
+    <div class="psllitable">
+    <table border="0" cellpadding="0" cellspacing="1" width="100%">
+    <tbody><tr class="odd">
+    <td>托管赏金：<a href="javascript:void(0);" class="cf60" original-title="付款后赏金暂由一品威客网保管，待您获得满意服务后，您再授权一品威客网付款给第三方。"><b>￥</b><b id="cash_task"  class="cc00">0</b></a></td>
+    </tr>
+    </tbody></table>
+    
+    <div class="r_list" id="item_show_box" style="display:none">
+    <h2>附加服务：</h2>
+    <div class="box default">
+    <div class="inner">
+    <div class="pad10" id="item_desc_box">
+    
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="pub_sum font14 clearfix mt_20">
+    <div class="fl_r">
+          应付总额： <font class="cf60">￥</font><span id="total">0</span>
+    </div>		  
+    </div>
+    </div>
+    <br><br>
+    <div class="step_button">
+    <button type="button"  name="is_submit" onclick="return stepCheck();" class="xyb">下一步</button>
+    </div>
+    </div>
+    </div>
+    </div>
+	</form>
+<script>
+	
+function ale(){
+	
+	var money = 0;
+	var strdesc = '';
+	$(".payitems").each(function(index, element) {
+		if($(this).attr("checked")){
+			money += parseInt($(this).attr("item_cash"));
+			strdesc += '<b>' + $(this).attr("item_name") + '</b>： ';
+			strdesc += '<span style="color:green">花 ￥' + $(this).attr("item_cash") + ' 购买</span>';
+			strdesc +='<br>';
+			add_payitem($("#payitem_"+$(this).attr('item_code')),'add',1); 
+		}
+	});
+	
+	if(money>0){
+		$('#item_show_box').show();
+		$('#item_totle_cash').val(money);
+		$("#total").text(parseInt($("#txt_task_cash").val()) + money);
+		
+	}else{
+		$('#item_show_box').hide();
+		$('#item_totle_cash').val(0);
+		$("#total").text(parseInt($("#txt_task_cash").val()));
+	}
+	
+	$('#item_desc_box').html(strdesc);
+}
+
+$(function(){
+	$("#cash_task").text($("#txt_task_cash").val());
+	$("#total").text($("#txt_task_cash").val());
+	$("#txt_task_cash").change(function(e) {
+        $("#cash_task").text($(this).val());
+		$("#total").text(parseInt($(this).val())+parseInt($("#item_totle_cash").val()));
+    });
+  
+})
+
+</script>
 <script type="text/javascript" src="resource/js/system/release.js"></script>
 <script type="text/javascript">
     var model_id = parseInt("{$model_id}") + 0;
     var uid = parseInt("{$uid}") + 0;
-    var r_step = "{$r_step}";
+    var r_step = "step3";
     var basic_url = "{$basic_url}";
     var min_day = parseInt("{$task_config['min_day']}");
 	
 	In('ajaxfileupload','form');
 </script>
-
+<script type="text/javascript">
+	In('calendar');
+</script>
 <!--{template footer_dou}-->

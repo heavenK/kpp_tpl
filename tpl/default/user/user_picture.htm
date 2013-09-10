@@ -14,7 +14,16 @@
                 	<span><b>头像设置</b></span>
                 </div>
                 <div class="ac_txbox">
+                	<div class="tx">
+                    	<dl>
+                        	<dd><img src="<!--{userpicurl($uid,larger)}-->" width=150 height=150/></dd>
+                            <dt>150*150像素</dt>
+                        </dl>
+                    </div>
+                    
                     <div class="tx_navbox">
+
+                    
                     	<div class="tx_nav">
                         	<ul class="tx_sz">
                             	<li class="{if $show=='upload'}mm{else}tt{/if}"><a href="index.php?do=user&view=setting&op=picture&show=choose">头像选择</a></li>
@@ -46,23 +55,6 @@
 									
 									<div class="clear"></div>
 								</div>
-                            
-                            	<h3 class=" mt_20 mb_10 border_b_c ">{$_lang['head_pic_view']}</h3>
-                                <ul class="clearfix">
-                                	<li class="fl_l mr_10">
-	                                    <!--{userpic($uid,larger)}-->
-										<p>150x150{$_lang['px']}</p>
-									</li>
-									<li class="fl_l mr_10">
-										<!--{userpic($uid,middle)}-->
-										<p>100x100{$_lang['px']}</p>
-									</li>
-									<li class="fl_l mr_10">
-										<!--{userpic($uid,small)}-->
-										<p>50x50{$_lang['px']}</p>
-									</li>
-									<li class="clear"></li>
-                                </ul>
 								
                             </div>
                             
@@ -79,22 +71,7 @@
                             <div class="clear">
                             </div>
                        
-                            <h3 class=" mb_10 border_b_c ">{$_lang['head_pic_view']}</h3>
-                                <ul class="clearfix">
-                                	<li class="fl_l mr_10">
-	                                    <!--{userpic($uid,larger)}-->
-										<p>150x150{$_lang['px']}</p>
-									</li>
-									<li class="fl_l mr_10">
-										<!--{userpic($uid,middle)}-->
-										<p>100x100{$_lang['px']}</p>
-									</li>
-									<li class="fl_l mr_10">
-										<!--{userpic($uid,small)}-->
-										<p>50x50{$_lang['px']}</p>
-									</li>
-									<li class="clear"></li>
-                                </ul>
+                            
                             
                         </div>
                         <!--头像选择end-->

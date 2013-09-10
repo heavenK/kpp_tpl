@@ -12,118 +12,121 @@
             <div class="yhzhright">
             	
 {if $verify}
-       <!--messages消息 start-->   
-           <div class="messages m_infor">
-             <div class="icon16">warning</div>
-                 {$_lang['customer_service_personnel_will']} {$auth_item[auth_day]}{$_lang['working_days_to_complete_certification']}{$_lang['zh_mh']}{$basic_config['kf_phone']}
-             <a href="###" class="close">&times;</a>
-           </div> 
-         <!--messages消息 end-->
+
 		<!--{template verify_secode}-->
 {else}
+
 	 	 <!--detail内容 start-->
-            <article class="box_detail last_step_three">
-               <!--messages消息 start-->   
-                   <div class="messages m_infor">
-                      <div class="icon16">warning</div>
-                     {$_lang['customer_service_personnel_will']} {$auth_item[auth_day]}{$_lang['working_days_to_complete_certification']}{$_lang['zh_mh']}{$basic_config['kf_phone']}
-                       <a href="###" class="close">&times;</a>
-                   </div> 
-                   <!--messages消息 end-->
-                   <div class="prefix_1 suffix_1 clearfix">
-                     <!--step步骤 start-->
-                       <div class="step_progress clearfix">
-                       	{loop $step_arr $k $v}
-						  <div class="step {$k} {if $k==$auth_step}selected{/if}">
-                           <span class="icon32">{$k}111111111</span>
-                           <strong>{$v[0]}</strong>{$v[1]}
-                         </div>
-						{/loop}
-                     </div>
+   <div class="ac_rztop">
+                   <span><b>认证中心</b></span>
+               </div>
+           <!-- 实名认证 -->
+                <div class="smrz">
+                <div class="smrz_nav">
+                    <ul>
+                    	{loop $step_arr $k $v}
+                            <li class="{if "step".$k==$auth_step}selectedLava{/if} sm"> <a title="填写手机号码"  {if "step".$k==$auth_step}style="color:#B80002"{/if}>{$k}.{$v[1]}</a> </li>
+                         {/loop}
+                    </ul>
+                </div>
+                
+                <div class="smrz_box">
+                <div class="smrz_ts">
+                    <p><b>友情提示</b> 手机认证成功后，您可以享有以下服务：<br>
+                      手机号码登录：可直接使用"手机号码"登录到一品威客网<br>
+                    重要事件提醒：进行（支付/提现/选稿/中标）时，可及时收到短信提醒 </p>
+                </div>
+                
                      <!--step步骤 end-->
                      {if $auth_step=='step1'}
 					 
-                      <form action="{$ac_url}&auth_step=step1" method="post" id="frm_auth" name="frm_auth">
-                      <div class="form_box pt_20">
-                      	<div class="rowElem clearfix">
-							<label class="grid_5 clearfix">
-								<div class="fl_r pr_10">
-									<img src="{$auth_item['auth_big_ico']}" alt="" />
-								</div>
-							</label>
-							<div class="grid_6"> <strong class="font14b">{$auth_item['auth_title']}</strong>
-							 <!--<span class="c999 block">{$auth_item['auth_desc']}</span> -->
-							 </div>
-   						</div>
-                         <div class="rowElem clearfix">
-                            <label class="grid_5 t_r">{$_lang['mobile']}{$_lang['zh_mh']}</label>
-                               <input type="text" name="fds[mobile]" id="mobile" size="40" msgArea="msg_mobile"
+                     <form action="{$ac_url}&auth_step=step1" method="post" id="frm_auth" name="frm_auth">
+                      
+                      <div style="zoom:1;">
+                      <div style="border: 1px solid #CCC;clear: both;margin: 20px auto 0;padding: 10px auto; padding-top: 20px;">
+                         <div style="clear:both; padding:5px 0px; zoom:1;">
+                            <label style=" float:left;width:150px; text-align:right; margin-top:4px;">手机号码：</label>
+                         	<input type="text" name="fds[mobile]" id="mobile"  style=" float:left; width:200px; height:20px; border:1px solid #ccc; " msgArea="msg_mobile"
 							    value="{$user_info[mobile]}" ajax="{$_K['siteurl']}/index.php?do=user&view=payitem&op=auth&auth_code=mobile&ver=0&check_mobile="
 							   limit="required:true;type:mobileCn" msg="{$_lang['msg_about_cellphone_num']}" title="{$_lang['title_about_cellphone_num']}"/>
 							  	<span class="red" id="msg_mobile"></span>
-							                                  
-                          </div>
-                           <div class="rowElem clearfix form_button">
-                           		  <input type="hidden" name="formhash" id="formhash" value="{FORMHASH}">
-                             	 <button type="button" name="sbt_add1" class="button" value="{$_lang['auth_now']}" onclick="user_auth();">{$_lang['auth_now']}</button>
-                   		   </div>  
-                       </div>
-                      </form >
-						 
-                     
+                         </div>
+                         
+                         <div style=" padding-top: 5px;padding-bottom: 5px;clear: both;zoom: 1; padding: 10px 0;margin-top: 10px;margin-left: 200px;">
+                         <input type="hidden" name="formhash" id="formhash" value="{FORMHASH}">
+                             <button value="立即认证" style=" width:100px; height:30px; cursor:pointer" name="sbt_add1" type="button" onclick="user_auth();">立即认证</button>
+                   		 </div>  
+                      </div>
+                      </form>  
+  					  </div>
+                    
 				 {elseif $auth_step=='step2'}
 				  <form action="{$ac_url}&auth_step=step2" method="post" name="frm_auth" id="frm_auth" enctype="multipart/form-data" >
-                      <div class="form_box pt_20">
-                      	 <input type="hidden" name="fds[mobile]" value="{$auth_info['mobile']}">
-                      	 <div class="rowElem clearfix">
-                            <label class="grid_5 t_r">手机号{$_lang['zh_mh']}</label>
-                              {$auth_info['mobile']}
-                          </div>
-                         <div class="rowElem clearfix">
-                            <label class="grid_5 t_r">{$_lang['verification_code']}{$_lang['zh_mh']}</label>
-                               <input type="text" name="fds[valid_code]" id="valid_code" size="40" style="color:#999" msgArea="msg_mobile"
+                  		<div style="zoom:1;">
+                          <div style="border: 1px solid #CCC;clear: both;margin: 20px auto 0;padding: 10px auto; padding-top: 20px;">
+                             <div style="clear:both; padding:5px 0px; zoom:1;">
+                                <label style=" float:left;width:150px; text-align:right; margin-top:4px;">手机验证码：</label>
+                                  
+                             	<input type="text" name="fds[valid_code]" id="valid_code"  style=" float:left; width:200px; height:20px; border:1px solid #ccc; " msgArea="msg_mobile"
 							    limit="required:true;len:4" msg="{$_lang['msg_about_verification_code']}" title="{$_lang['title_about_verification_code']}"/>
 							  	<span class="red" id="msg_mobile"></span>
-							                                  
+                             </div>
+                             
+                             <div style=" padding-top: 5px;padding-bottom: 5px;clear: both;zoom: 1; padding: 10px 0;margin-top: 10px;margin-left: 200px;">
+                             	<input type="hidden" name="formhash" id="formhash" value="{FORMHASH}">
+                                 <button value="立即认证" style=" width:100px; height:30px; cursor:pointer" name="sbt_add" type="button"  onclick="valid()">提交验证码</button>
+                             </div>  
                           </div>
-                           <div class="rowElem clearfix form_button">
-                           		 <input type="hidden" name="formhash" id="formhash" value="{FORMHASH}">
-                             	 <button type="button" name="sbt_add" class="button" value="{$_lang['confirm_verification_code']}" onclick="valid()">{$_lang['auth_now']}</button>
-                   		         <button type="button" id="reset" name="reset" value="reset">重新发送验证码</button>
-						   </div>  
-                       </div>
+                        </div>
                       </form >
 				 {elseif $auth_step=='step3'}
-				 
-			 		<div class="box complete form_box ml_40 mr_40">
-			        <div class="prefix_4 suffix_4 clearfix ">
-			          	<div class="last_success_step clearfix">
-			          	<div class="fl_l {$auth_style} po_re" style="top:30px; left:30px; _left:0px;">
-								<span class="tip_icon"></span>
-			            </div>
-			            <div class="completedata clearfix">                        		
-			               <ul>
-			               	<li class="clearfix">                        
-			                     <div class=" grid_2"><img src="{$auth_item['auth_big_ico']}" /></div>                                 
-			                      <div class="font14b">{$auth_item['auth_title']}<span class="font12">（{$auth_tips}）</span></div>
-			                      <!--<div class="c999 grid_3 alpha omega">{$auth_item['auth_desc']}</div>-->
-			                 </li>
-						 
-							<li class="clearfix">                          
-								<div class=" grid_2 ">{$_lang['mobile']}{$_lang['zh_mh']}</div>
-								 <div class="c999"> <!--{eval echo kekezu::set_star($auth_info['mobile'],3,3);}--></div>
-			               	 </li>
-					 
-			            </ul>
-			        </div>
-			       		<div class="fl_r pad10">
-							<a href="{$ac_url}&auth_step=step1" class="button">{$_lang['return_and_modify']}</a>
-						</div>
-					</div>
-				   </div>
-			     </div>
-             </div> 
+				 <div style="zoom:1;">
+                    <div style="width:740px; overflow:hidden;">
+                        <div style="padding-top:15px; ">
+                        	<p style=" color:#cc0000; font-size:14px; text-align:center;">恭喜，您已经通过了手机认证</p>
+                        </div>
+                        
+                      <div style="width:740px; overflow:hidden; border-bottom:1px #e9e9e9 solid; padding:15px 0px;">
+                        <ul style="float:left;width:50px; height:50px; border:2px #dfdfdf solid; padding:2px;">
+                                <img src="<!--{userpicurl($uid,small)}-->" width=50 height=50>
+                          </ul>
+                          <ul style=" float:left; padding-left:30px;">
+                              <p style="font-size:14px; line-height:30px;"><b>手机号码</b></p>
+                              <p style="font-size:13px; color:#999999; line-height:30px;"><!--{eval echo kekezu::set_star($auth_info['mobile'],3,3);}--></p>
+                          </ul>
+                        </div>
+                        <div style="width:740px; overflow:hidden; border-bottom:1px #e9e9e9 solid; padding:15px 0px;">
+                            <p>手机认证后，您可以享受以下服务</p>
+                        </div>
+                        
+                        <div style="width:740px; overflow:hidden; border-bottom:1px #e9e9e9 solid; padding:15px 0px;">
+                            <div style="float:left; width:100px;">手机号码登录：
+                            </div>
+                            <div style="float:left;">
+                                可以直接使用"手机号码"登录到一品威客
+                            </div>
+                        </div>
+                        <div style="width:740px; overflow:hidden; border-bottom:1px #e9e9e9 solid; padding:15px 0px;">
+                            <div style="float:left; width:100px;">
+                                重要事件提醒：
+                            </div>
+                            <div style="float:left;">
+                                <b style="color:#999;">进行(支付，提现，选搞，中标)时，及时提醒</b>
+                            </div>
+                        </div>
+                        <div style="width:740px; overflow:hidden; border-bottom:1px #e9e9e9 solid; padding:15px 0px;">
+                            <div style="float:left; width:100px;">
+                                找回账号密码：
+                            </div>
+                            <div style="float:left;">
+                                <b style="color:#999;">忘记密码时可以用手机短信找回</b>
+                            </div>
+                        </div>
+            		</div>
+            	</div>
+                
 		{/if}
+        </div>
             </div> 
             <div class="clear"></div> 
        </article>

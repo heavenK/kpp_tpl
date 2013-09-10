@@ -6,9 +6,9 @@ if($del_auth_id){
 	$email_obj->setWhere("email_a_id = " .intval($del_auth_id));
 	$email_obj->del_keke_witkey_auth_email(); 
 }
-$step_arr=array("step1"=>array($_lang['step_one'], $_lang['input_email_address']),
-				"step2"=>array($_lang['step_two'], $_lang['auth_email']),
-				"step3"=>array($_lang['step_three'], $_lang['auth_result']));
+$step_arr=array("1"=>array($_lang['step_one'], "填写邮箱地址"),
+				"2"=>array($_lang['step_two'], "验证邮箱"),
+				"3"=>array($_lang['step_three'], "认证成功"));
 $auth_step= keke_auth_email_class::get_auth_step($auth_step,$auth_info);
 $ac_url = $origin_url . "&op=$op&auth_code=$auth_code&ver=".intval($ver);
 switch ($auth_step){

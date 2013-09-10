@@ -9,7 +9,7 @@ if ($model_id) {
 		require "control/ajax/ajax_file.php";
 		die();
 	}
-	$task_count = kekezu::get_table_data ( "model_id,count(task_id) as count", "witkey_task", " uid = '$uid' ", '', 'model_id', '', 'model_id' );
+	$task_count1 = kekezu::get_table_data ( "model_id,count(task_id) as count", "witkey_task", " uid = '$uid' ", '', 'model_id', '', 'model_id' );
 	$cove_arr = kekezu::get_table_data ( "*", "witkey_task_cash_cove", "", "", "", "", "cash_rule_id" );
 	$model_id and $model_id = intval ( $model_id );
 	$where = " model_id = '$model_id' and uid='$uid' ";
@@ -51,7 +51,6 @@ if ($model_id) {
 		$page_obj = $kekezu->_page_obj;
 		$cls = $model_list [$model_id] ['model_code'] . "_task_class";
 		$status_arr = call_user_func ( array ($cls, "get_task_status" ) );
-		
 		$pub_count = intval ( db_factory::get_count ( sprintf ( "select count(task_id) pub_count from %switkey_task
  		where YEARWEEK(FROM_UNIXTIME(start_time)) = YEARWEEK('%s') and model_id='%d' and uid='%d'", TABLEPRE, date ( 'Y-m-d H:i:s', time () ), $model_id, $uid ) ) );
 		$sql = sprintf ( "select *,substring(
@@ -70,7 +69,6 @@ if ($model_id) {
 	}
 	$payitem_list = keke_payitem_class::get_payitem_config ();
 }
-
 $len = strlen($status);
 function master_opera($m_id, $t_id, $url,$task_cash) {
 	global $kekezu;
@@ -86,44 +84,4 @@ function master_opera($m_id, $t_id, $url,$task_cash) {
 	}
 	return $button;
 }
-
-$auth_item = keke_auth_base_class::get_auth_item ();
-$auth_temp = array_keys ( $auth_item );
-$user_info ['user_type'] == 2 and $un_code = 'realname' or $un_code = "enterprise";
-$t = implode ( ",", $auth_temp );
-$auth_info = db_factory::query ( " select a.auth_code,a.auth_status,b.auth_title,b.auth_small_ico,b.auth_small_n_ico from " . TABLEPRE . "witkey_auth_record a left join " . TABLEPRE . "witkey_auth_item b on a.auth_code=b.auth_code where a.uid ='$uid' and FIND_IN_SET(a.auth_code,'$t')", 1, - 1 );
-$auth_info = kekezu::get_arr_by_key ( $auth_info, "auth_code" );
-
-$task_info = db_factory::query ( " SELECT task_id,task_status FROM " . TABLEPRE . "witkey_task WHERE uid ='$uid' ", 1, - 1 );
-$task_list = kekezu::get_arr_by_key ( $task_info, "task_id" );
-$task_0 =0 ; $task_2=0 ; $task_3=0 ; $task_6 =0;
-foreach($task_list as $val){
-	if($val['task_status'] == 0 ) $task_0++;
-	if($val['task_status'] == 2 ) $task_2++;
-	if($val['task_status'] == 3 ) $task_3++;
-	if($val['task_status'] == 6 ) $task_6++;
-}
-
-
-$follow_obj = keke_table_class::get_instance('witkey_free_follow');
-$where = " 1 = 1 ";
-$limit = 5;
-$curpage or $curpage = 1;
-if(!$type||$type == 1){
-	$sql  = sprintf("select f.*,s.uid focus_uid,s.username focus_username,s.seller_level  from %switkey_free_follow as f left join %switkey_space as s on f.fuid = s.uid where ",TABLEPRE,TABLEPRE);
-	$where .= " and f.uid = ".$uid;
-}
-$order .= " order by f.on_time desc "; 
-$count = db_factory::execute($sql.$where);
-$pages = $kekezu->_page_obj->getPages($count, $limit, $curpage, $url);
-$follow_list = db_factory::query($sql.$where.$pages['where']);
-
-
-
-$sql = "select * from " . TABLEPRE . "witkey_article where art_cat_id=203 order by pub_time desc limit 0,5";
-$art_list_arr = db_factory::query ( $sql );
-
-$sql = "select * from " . TABLEPRE . "witkey_article where art_cat_id=5 order by pub_time desc limit 0,5";
-$art_list_arr_1 = db_factory::query ( $sql );
-
 require keke_tpl_class::template ( "user/" . $do . "_" . $view . "_" . $op );

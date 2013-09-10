@@ -1,5 +1,5 @@
 <?php	defined ( 'IN_KEKE' ) or exit('Access Denied');
-$ops = array ('pub', 'task', 'shop','credit','index');
+$ops = array ('pub', 'task', 'shop','credit','index','bill','fav');
 if($task_open==0){
 	unset($ops[1]);
 }
@@ -43,6 +43,15 @@ foreach ( $model_list1 as $v ) {
 	$third_nav [] = array ("1" => $v ['model_id'], "2" => $v ['model_name'], "3" => intval ( $task_count1 [$v ['model_id']] ['count'] ) );
 }
 $third_nav = ( array ) $third_nav;
+
+
+$sql = sprintf ( " select count(task_id) count from %switkey_task where uid = '$uid' and model_id in (1,2)", TABLEPRE );
+$task_xs_count = db_factory::get_one ($sql, 1, 600 ); 
+$sql = sprintf ( " select count(task_id) count from %switkey_task where uid = '$uid' and model_id = 4 ", TABLEPRE );
+$task_zb_count = db_factory::get_one ($sql, 1, 600 ); 
+$sql = sprintf ( " select count(f_id) count from %switkey_favorite where uid = '$uid' and keep_type = 'task' ", TABLEPRE );
+$task_gz_count = db_factory::get_one ($sql, 1, 600 ); 
+
 // end
 
 switch ($op){
@@ -61,5 +70,11 @@ switch ($op){
 	case "shop": 
 		$role = 2;
 		require 'user_finance_order.php';
+		break;
+	case "bill": 
+		require 'user_'.$view.'_'.$op.'.php';	
+		break;
+	case "fav":
+		require 'user_'.$op.'.php';	
 		break;
 }

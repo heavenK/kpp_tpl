@@ -1,6 +1,6 @@
 <!--{template header}-->
 <div class="winbody {$_K['theme']}_style">
- <div class="clearfix box pad10">
+ <div class="clearfix pad10">
     <!--from表单 start-->
     <form method="post" id="frm_suggest" name="frm_suggest" action=''>
      <div class="rowElem clearfix" id="upload_tip">
@@ -22,7 +22,7 @@
        <div class="rowElem clearfix" id="desc">
       		 <label class="fl_l t_r">详细描述： </label>
 			 <div class="fl_l">
-      		 <textarea cols="70" rows="5" name="tar_content" id="tar_content"  class="txt_input" onkeydown="checkInner(this,'100',event)"></textarea>
+      		 <textarea cols="70" rows="5" name="tar_content" id="tar_content"  class="txt_input" onkeydown="checkInner(this,'100',event)">{$tar_content}</textarea>
       		<div class="clear"></div>
              <div class="c999" id="length_show">{$_lang['input_cause_msg_notice']}</div>
 			 </div>

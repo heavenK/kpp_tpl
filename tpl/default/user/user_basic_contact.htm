@@ -22,10 +22,8 @@
                         <form action="{$ac_url}&opp={$opp}" method="post" id="frm" name="frm">
                         <input type="hidden" name="formhash" id="formhash" value="{FORMHASH}">
                         	<p>
-                            	<label>真实姓名：</label>
-                                <input class="txt_input " name="conf[truename]" size="39" {if $real_pass}disabled="disabled"  style="color:#999"{/if}  type="text" value="{$user_info['truename']}" title="{$_lang['real_name_tip']}"
-                                 id="truename" limit="required:false;len:2-10" msg="{if $user_type==1}{$_lang['realname_can_not_more_than_ten']}{else}{$_lang['contact_at_most_ten']}{/if}" msgArea="span_truename"/>
-                                
+                            	<label>性别：</label>
+                               
                                 <select name="conf[sex]" >
                                     <option value="{$_lang['man']}" {if $user_info['sex']==$_lang['man']||!$user_info['sex']}selected{/if}>
                                         {$_lang['man']}
@@ -37,8 +35,14 @@
                             </p>
                             <p>
 								<label>所在地区：</label>
-								<select name="province" style="float:left; margin:0 0 0 5px;"></select><select name="city" style="float:left; margin:0 0 0 5px;"></select><select name="area" style="float:left; margin:0 0 0 5px;"></select>
+								<select name="province" style="float:left;"></select><select name="city" style="float:left; margin:0 0 0 5px;"></select><select name="area" style="float:left; margin:0 0 0 5px;"></select>
 
+                            </p>
+                            <p>
+                            	<label>真实姓名：</label>
+                                <input class="txt_input " name="conf[truename]" size="39" {if $real_pass}disabled="disabled"  style="color:#999"{/if}  type="text" value="{$user_info['truename']}" title="{$_lang['real_name_tip']}"
+                                 id="truename" limit="required:false;len:2-10" msg="{if $user_type==1}{$_lang['realname_can_not_more_than_ten']}{else}{$_lang['contact_at_most_ten']}{/if}" msgArea="span_truename"/>
+                                
                             </p>
                             <p>
                             	<label>手机号：</label>

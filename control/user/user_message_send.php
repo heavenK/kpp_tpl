@@ -32,4 +32,12 @@ if (isset($formhash)&&kekezu::submitcheck($formhash)){
 		kekezu::show_msg ( $_lang['fail_to_send_instation_messages'], $url, 1, $_lang['fail_to_send_instation_messages'], 'alert_error' );
 	}
 }
+
+$task_count = db_factory::get_one ( sprintf ( " select count(task_id) count from %switkey_task", TABLEPRE ), 1, 600 ); 
+$task_in = db_factory::get_one ( sprintf ( " select sum(fina_cash) cash from %switkey_finance where fina_action='task_bid' and fina_type='in' ", TABLEPRE ), 1, 600 ); 
+$register = db_factory::get_one ( sprintf ( " select count(uid) count from %switkey_member ", TABLEPRE ), 1, 600 ); 
+
+$task_count =  intval ( $task_count ['count'] );
+$task_in = number_format ( $task_in ['cash'], 2, ".", "," );
+$register =  intval ( $register ['count'] );
 require keke_tpl_class::template ( "user/user_message_send" );

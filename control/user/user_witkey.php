@@ -1,6 +1,6 @@
 <?php
 defined ( 'IN_KEKE' ) or exit('Access Denied');
-$ops = array ('pub', 'task', 'shop','g_pub','credit','index');
+$ops = array ('pub', 'task', 'shop','g_pub','credit','index','ensure','fav');
 if($task_open==0){
 	unset($ops[1]);
 }
@@ -38,11 +38,18 @@ $op=='task' and $model_type='task' or $model_type='shop';
 
 // add by heavenK
 if($op == 'index') $model_type = 'task';
+if($op == 'ensure') $model_type = 'task';
+if($op == 'fav') $model_type = 'task';
 //	end
 
 $model_list=kekezu::get_table_data ( '*', 'witkey_model', " model_type = '$model_type' and model_status=1", 'model_id asc ', '', '', 'model_id', 3600 );
 $model_fds = array_keys($model_list);
 $model_id or $model_id = intval($model_fds['0']);
+
+
+$user_join = keke_task_config::get_user_join_task ();
+$sql = sprintf ( " select count(f_id) count from %switkey_favorite where uid = '$uid' and keep_type = 'task' ", TABLEPRE );
+$task_gz_count = db_factory::get_one ($sql, 1, 600 ); 
 
 
 switch ($op){
@@ -64,5 +71,11 @@ switch ($op){
 	case "shop":
 		$role = 1;
 		require 'user_finance_order.php';
+		break;
+	case "ensure":
+		require 'user_'.$view.'_'.$op.'.php';	
+		break;
+	case "fav":
+		require 'user_'.$op.'.php';	
 		break;
 }

@@ -206,6 +206,8 @@ abstract class keke_task_release_class {
 		$task_obj->setPayitem_time ( $payitem_time );
 		$task_obj->setAtt_cash ( floatval ( $std_obj->_att_cash )); 
 		$task_obj->setContact ( $release_info['txt_mobile'] );
+		$task_obj->setQq ( $release_info['txt_qq'] );
+		$task_obj->setEmail ( $release_info['txt_email'] );
 		$task_obj->setKf_uid ( $this->_kf_uid ); 
 		$file_arr = array_filter ( explode ( ',', $release_info ['file_ids'] ) );
 		$file_s = implode ( ',', $file_arr );

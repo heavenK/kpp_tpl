@@ -38,7 +38,10 @@ if ($model_id) {
 	$work_arr [0] = $_lang ['yet_deal_with'];
 	$join_count = intval ( db_factory::get_count ( sprintf ( "select count(task_id) from %s%s
  	where YEARWEEK(FROM_UNIXTIME(%d)) = YEARWEEK('%s') and uid='%d' ", TABLEPRE, $tab_name, $time_fds, date ( 'Y-m-d H:i:s', time () ), $uid ) ) );
-	$sql = " select a.$satus_fds,a.$time_fds,a.$id_fds,b.task_id,b.task_cash,b.task_title,b.model_id,b.task_cash_coverage,b.task_status from " . TABLEPRE . $tab_name . " a left join " . TABLEPRE . "witkey_task b on a .task_id=b.task_id where b.model_id = '$model_id' and a.uid='$uid'";
+	
+	if($model_id == 1)	$sql = " select a.$satus_fds,a.$time_fds,a.$id_fds,b.task_id,b.task_cash,b.task_title,b.model_id,b.task_cash_coverage,b.task_status from " . TABLEPRE . $tab_name . " a left join " . TABLEPRE . "witkey_task b on a .task_id=b.task_id where b.model_id in (1,2) and a.uid='$uid'";
+	else	$sql = " select a.$satus_fds,a.$time_fds,a.$id_fds,b.task_id,b.task_cash,b.task_title,b.model_id,b.task_cash_coverage,b.task_status from " . TABLEPRE . $tab_name . " a left join " . TABLEPRE . "witkey_task b on a .task_id=b.task_id where b.model_id = '$model_id' and a.uid='$uid'";
+	
 	$count_sql = "select a.$id_fds from " . TABLEPRE . $tab_name . " a left join " . TABLEPRE . "witkey_task b on a .task_id=b.task_id where b.model_id = '$model_id' and a.uid='$uid'";
 	if($task_status>-1){
 		($task_status === '0') and $where .= " and b.task_status='" . intval ( $task_status ) . "'" or ($task_status and $where .= " and b.task_status = '" . intval ( $task_status ) . "' ");

@@ -12,7 +12,8 @@ if ($model_id) {
 	$task_count1 = kekezu::get_table_data ( "model_id,count(task_id) as count", "witkey_task", " uid = '$uid' ", '', 'model_id', '', 'model_id' );
 	$cove_arr = kekezu::get_table_data ( "*", "witkey_task_cash_cove", "", "", "", "", "cash_rule_id" );
 	$model_id and $model_id = intval ( $model_id );
-	$where = " model_id = '$model_id' and uid='$uid' ";
+	if($model_id == 1)	$where = " model_id in (1,2) and uid='$uid' ";
+	else $where = " model_id = '$model_id' and uid='$uid' ";
 	intval ( $page_size ) or $page_size = '12';
 	intval ( $page ) or $page = '1';
 	$url = $origin_url . "&op=$op&model_id=$model_id&page_size=$page_size&status=$status&page=$page";

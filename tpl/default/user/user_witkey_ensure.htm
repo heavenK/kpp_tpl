@@ -1,0 +1,95 @@
+<!--{template header_user_top}-->
+
+<!--contain start-->
+<div class="yhcenter">
+    	<!--  账号设置 begin -->
+    	<div class="yhgzbox tabCon">
+        
+        	<!--{template user_witkey_left}-->
+        	
+            <div class="yhgzright">
+            	<div class="wswk">
+    <div class="wswktop">
+        <span><b>诚信保障</b></span>
+    </div>
+    <div class="gz_fpwsbox">
+        <div class="ac_wk">
+			<div class="_w">
+            	<p><b>功能开通信息：</b></p>
+            </div>       
+            <div class="_n">
+            	状态：{if $user_info['ensure']}已开通{else}未开通{/if}
+               	{if !$user_info['ensure']}<button type="button" onclick="open_ensure();" class="button">开通</button>{/if}
+            </div>
+        </div>     
+        <div class="ac_wks">
+        	<div class="ac_wkcx">
+            	<span><b>您需要提供什么？</b></span>
+                <div class="blank1"></div>
+                <div class="_cx">
+                	<p>诚信保障服务是由预先向一品威客网缴存2000元保证金，为交易中的雇主权益进行保障的服务。 </p>
+                </div>
+            </div>
+            <div class="ac_wkcx">
+            	<span><b>您需要提供什么？</b></span>
+                <div class="blank1"></div>
+                <div class="_cx">
+                	<p>诚信保障服务是由预先向一品威客网缴存2000元保证金，为交易中的雇主权益进行保障的服务。 </p>
+                </div>
+            </div>
+            <div class="ac_wkcx">
+            	<span><b>您需要提供什么？</b></span>
+                <div class="blank1"></div>
+                <div class="ws_wkbox">
+                  <div class="wkcx01">
+       		      <div class="mby">
+                                <div class="off_tt">
+                                        <span><img alt="未通过实名认证" src="/tpl/default/d8/images/cation_one.gif"><b>免费修改</b></span>
+                                </div>
+                            </div>
+                       		<p>邮箱认证后，可使用邮箱直接登录，邮箱找回密码，收到网站</p>
+                       	</div>
+                       	<div class="wkcx01">
+                            <div class="mby">
+                                <div class="off_tt">
+                                    <span><img alt="未通过邮箱认证" src="/tpl/default/d8/images/cation_one.gif"><b>保证完成</b></span>
+                              </div>
+                            </div>
+                            <p>邮箱认证后，可使用邮箱直接登录，邮箱找回密码，收到网</p>
+                		</div>
+          <div class="wkcx01">
+                            <div class="mby">
+                                <div class="off_tt">
+                                    <span><img alt="未通过邮箱认证" src="/tpl/default/d8/images/cation_one.gif"><b>原创保证</b></span>
+                              </div>
+                            </div>
+                            <p>邮箱认证后，使用邮箱直接登录，邮箱找回密码，收到网站</p>
+                		</div>
+            	</div>
+            </div>
+        </div>                  
+	</div>
+</div>
+            </div>
+        </div>
+        
+        
+    </div>
+    <!-- center end -->
+<!--contain end-->
+<script>
+function open_ensure(){
+
+		$.ajax({
+           type: "GET",
+           url: "index.php?do=user&view=witkey&op=ensure&submit=1",
+           success: function(data){
+               if(data ==1) location.reload();
+           }
+        })
+
+
+}	
+</script>
+<!--{template user/user_footer}-->
+<!--{template footer_dou}-->

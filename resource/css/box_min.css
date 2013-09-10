@@ -456,7 +456,7 @@ label:hover > input[type=radio]:not(:disabled) ~ span {
 			
 			
 			
-	.loading_bar .progress_bar{ left:0; color:#fff;  height:10px; width:1px;  text-align:center; font:10px/10px Verdana, Geneva, sans-serif;white-space:nowrap;
+	.loading_bar .progress_bar{ left:0; color:#fff;  height:15px; width:1px;  text-align:center; font:10px/10px Verdana, Geneva, sans-serif;white-space:nowrap;
 	 /*-webkit-animation-name: loading;
      -webkit-animation-duration: 4s;
 	 -webkit-animation-direction: linear;
@@ -670,9 +670,9 @@ progress::-moz-progress-value {background: #aadd6a;}
 	.messages .icon16{ background-image:url(../img/style/icon16_2.png); background-repeat:no-repeat; margin-right:5px;  cursor:default;}
 	.messages .icon16.fl_l{margin-top:7px; _margin:0;}
 	.messages.m_correct, .messages.m_correct a{ border-color:#B5E087; background-color:#EFFBE7; color:#326500;}
-	.messages.m_infor, .messages.m_infor a{ border-color:#A0CEFE; background-color:#DDECFF; color:#3253A0;}
+	.messages.m_infor, .messages.m_infor a{ border-color:#A0CEFE; background-color:#9F9; color:#000;}
 	 .messages.m_error, .messages.m_error a{ border-color:#FFB7B8; background-color:#FFEDED; color:#CE0000;}
-	 .messages.m_warn, .messages.m_warn a{ border-color:#E3C823; background-color:#FFF9D7; color:#CC6602;}
+	 .messages.m_warn, .messages.m_warn a{ border-color:#E3C823; background-color:#9F9; color:#CC6602;}
 	 .messages.m_warn .icon16{ display:inline-block; background-position:0 0;}
 	.messages.m_error .icon16{display:inline-block; background-position:0 -16px;}
 	.messages.m_infor .icon16{display:inline-block; background-position:0 -32px;}

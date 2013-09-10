@@ -17,6 +17,9 @@ switch ($r_step) {
 			case "getmaxday" : 
 				$release_obj->get_max_day ( $task_cash );
 				break;
+			case "show_indus" : 
+				$release_obj->get_task_indus ( $indus_pid,$ajax );
+				break;
 		}
 		if (kekezu::submitcheck($formhash)) {
 			$release_info and $_POST = array_merge ( $release_info, $_POST );
@@ -59,6 +62,9 @@ switch ($r_step) {
 			case "rm_payitem" :	
 				$release_obj->remove_pay_item ( $item_id, $std_cache_name );
 				break;
+			case "show_indus" : 
+				$release_obj->get_task_indus ( $indus_pid,$ajax );
+				break;
 		}
 		if (kekezu::submitcheck($formhash)) {
 			$release_info and $_POST = array_merge ( $release_info, $_POST );
@@ -66,12 +72,14 @@ switch ($r_step) {
 			$task_id = $release_obj->pub_task (); 
 			$release_obj->update_task_info ( $task_id, $std_cache_name ); 
 		} else {
+			
 			 $release_obj->check_access ( $r_step, $model_id, $release_info ); 
 			 $item_list = $payitem_arr; 
 			$standard = keke_payitem_class::payitem_standard ();
 			$total_cash = $release_obj->get_total_cash ( $release_info ['txt_task_cash'] ); 
 			$item_info = $release_obj->get_pay_item (); 
 			$item_detail = $release_obj->get_pay_item_info();
+			
 		}
 		break;
 	case "step4" :

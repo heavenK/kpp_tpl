@@ -52,7 +52,7 @@
                             
                             <div class="rr_yhgz01right" >
                             	<div class="_gzts">
-                                	<p><a>设“我是雇主”为首页</a></p>
+                                	<p><a onclick="setHomepage(this,window.location)">设“我是雇主”为首页</a></p>
                                 </div>
                             </div>
                         </div>
@@ -64,21 +64,18 @@
                 <div class="yhgzright_r">
                 	<!--公告 begin -->
                 	<div class="left_yhgz">
-                    	<div class="left_yhgzs">
-                        	<p><img src="/tpl/default/d8/grzx/gg.png" />&nbsp;&nbsp;最新公告：<a href="">豆8网服务器升级广告</a></p>
-                        </div>
-                        <div style="height:15px;"> </div>
                         
                         <div class="left_yhgzg">
                         	<div class="left_yhgzst">
                             	<div class="mz">人才关注</div>
-                                <div class="my">设置</div>
                             </div>
                             <div class="left_yhgzsm">
-                            	
+                            	{loop $follow_list $k $v}
+                            	<a href="index.php?do=space&member_id={$v[focus_uid]}"><img src="<!--{userpicurl($v[focus_uid],middle)}-->" width="80" height="80"></a>
+                                {/loop}	
                             </div>
                         </div>
-                        <div style="height:15px;"> </div>
+                        <div style="height:10px;"> </div>
                         <div class="left_yhgzg">
                         	<div class="left_yhgzst">
                             	<span>雇主帮助</span>
@@ -86,31 +83,29 @@
                             <div class="left_yhgzb">
                             	<div class="left_yhgzb01">
                                 	<div class="left_help">
-                                    	<p class="nb">购买产品/服务<br />发布任务<br />直接雇佣</p>
+                                    	<p class="nb">购买产品/服务<br>发布任务<br>直接雇佣</p>
                                     </div>
                                     <div class="jian">
-                                    	<p><img src="/tpl/default/d8/grzx/jian.png" /></p>
+                                    	<p><img src="/tpl/default/d8/images/jian.png"></p>
                                     </div>
                                     
                                     <div class="left_help">
                                     	<p class="nb01">托管赏金</p>
                                     </div>
                                     <div class="jian">
-                                    	<p><img src="/tpl/default/d8/grzx/jian.png" /></p>
+                                    	<p><img src="/tpl/default/d8/images/jian.png"></p>
                                     </div>
                                     <div class="left_help">
                                     	<p class="nb01">获得产品或服务</p>
                                     </div>
                                     <div class="jian">
-                                    	<p><img src="/tpl/default/d8/grzx/jian.png" /></p>
+                                    	<p><img src="/tpl/default/d8/images/jian.png"></p>
                                     </div>
                                     <div class="left_help">
                                     	<p class="nb01">验收并确定付款</p>
                                     </div>
                                 </div>
-                                <div class="left_yhgzb02">
-                            	
-                            	</div>
+                                
                             </div>
                             
                         </div>
@@ -118,52 +113,36 @@
                     <!-- 公告 end -->
                     <!-- right begin -->
                     <div class="right_yhgzm">
-                    	<div class="right_yhgzdy">
-                        	<div class="right_yhgzmm">
-                            	<div class="_m">
-                                	<img src="/tpl/default/d8/grzx/xin.png" />
-                                </div>
-                                <div class="_mt">
-                                	<span>任务订阅</span>
-                                    <p>每周五定时发送邮件</p>
-                                </div>
-                            </div>
-                            <div style="height:25px;"></div>
-                            <div class="right_yhgzmt">
-                            	<div class="right_yhgzmt0" >
-                            	<input type="text" style="padding:0;" name="k" id="search_key" class="" value="" onBlur="" autocomplete="off" onFocus="" x-webkit-speech="" x-webkit-grammar="" lang="" original-title="">
-                                </div>
-                                <div class="right_yhgzmt00" >
-                                <input name="" type="button" value="订阅"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div style="height:15px;"> </div>
+                    	
                     	<div class="right_yhgz">
                             <div class="right_yhgztop">
                                 <span>成功雇主说</span>
                             </div>
                             <div class="right_yhgzd">
-                                
+                              	{loop $art_list_arr_1 $k $v}
+                             	<i><a href="index.php?do=article&view=article_info&art_id={$v['art_id']}">{$v['art_title']}</a></i> 
+                                {/loop}
                             </div>
                         </div>
-                        <div style="height:15px;"> </div>
+                        <div style="height:10px;"> </div>
                         <div class="right_yhgz">
                             <div class="right_yhgztop">
                                 <span>交易安全</span>
                             </div>
                             <div class="right_yhgzd">
-                                
+                            	{loop $art_list_arr $k $v}
+                             	<i><a href="index.php?do=article&view=article_info&art_id={$v['art_id']}">{$v['art_title']}</a></i> 
+                                {/loop} 
                             </div>
                         </div>
-                        <div style="height:15px;"> </div>
+                        <div style="height:10px;"> </div>
                         <div class="right_yhgz">
                             <div class="right_yhgztop">
                                 <span>意见栏，给我们意见</span>
                             </div>
                             <div class="right_yhgzd">
-                                <textarea name="" cols="" rows=""></textarea>
-                                <input name="" type="button"  value="提交" />
+                                <textarea rows="" cols="" name="tar_content" id="tar_content" style="border:1px solid #ccc; padding:3px"></textarea>
+                                <input type="button" value="提交"  onclick="suggest_con($('#tar_content').val());" name="">
                             </div>
                         </div>
                         
@@ -177,7 +156,6 @@
         
     </div>
     <!-- center end -->
-
 <!--contain end-->
 
 <!--{template user/user_footer}-->
