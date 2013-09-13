@@ -140,9 +140,14 @@ $(document).ready(function () {
             if(obj.style.display == "block"){
                                 
                 obj.style.display = "none";
+				document.getElementById("toub").style.display = "block";
+				$("#txt_task_day_i_2").html($("#txt_task_day_i_1").html());
+				$("#txt_task_day_i_1").html('');
       
             }else{
-                                        
+				$("#txt_task_day_i_1").html($("#txt_task_day_i_2").html());
+				$("#txt_task_day_i_2").html('');
+                document.getElementById("toub").style.display = "none";                        
                 obj.style.display = "block";
             }           
             }   
@@ -150,11 +155,14 @@ $(document).ready(function () {
             var obj = document.getElementById("toub");
       
             if(obj.style.display == "block"){
-                                
                 obj.style.display = "none";
-      
+				document.getElementById("xuans").style.display = "block";
+      			$("#txt_task_day_i_1").html($("#txt_task_day_i_2").html());
+				$("#txt_task_day_i_2").html('');
             }else{
-                                        
+				$("#txt_task_day_i_2").html($("#txt_task_day_i_1").html());
+				$("#txt_task_day_i_1").html('');
+                document.getElementById("xuans").style.display = "none"; 
                 obj.style.display = "block";
             }           
             }      
@@ -168,23 +176,52 @@ $(document).ready(function () {
     <div style="display: block;" class="choswaybox pad20" id="xuans">
     <div class="csw_tilex c960">您打算支付多少赏金呢？</div>
     
-    ￥
-     <input name="txt_task_cash"  class="txt txt_input1" value="{if $release_info['txt_task_cash']}$release_info['txt_task_cash']{else}$task_config['min_cash']{/if}" type="text" id="txt_task_cash" msgArea="span_task_cash"  title="{$_lang['mtask_cash_title']}{$task_config['min_cash']}{$_lang['yuan']}" onkeyup="clearstr(this)"
+    ￥<i id="txt_task_cash_i">
+     <input name="txt_task_cash" onchange="modify_totle();" class="txt txt_input1" value="{if $release_info['txt_task_cash']}$release_info['txt_task_cash']{else}$task_config['min_cash']{/if}" type="text" id="txt_task_cash" msgArea="span_task_cash"  title="{$_lang['mtask_cash_title']}{$task_config['min_cash']}{$_lang['yuan']}" onkeyup="clearstr(this)"
 		    limit="required:true;type:float;between:{$task_config['min_cash']}-" msg="{$_lang['mtask_cash_msg']}{$task_config['min_cash']}{$_lang['yuan']}" onblur="getMaxDday(this.value)" />
-    
+    </i>
     &nbsp;
     <div class="csw_tilex c960">您打算如何分配该赏金呢？</div>
     <!--单赏-->
-    <div class="styinput hadsubbox"><input original-title="" id="dandusj" class="styled" value="1" name="model_id" checked="checked" type="radio" onclick="change_id(1);"><label for="dandusj">单人悬赏，只设置一个中标者</label></div>
+    <div class="styinput hadsubbox"><input original-title="" id="dandusj" class="styled" value="1" name="model_id" checked="checked" type="radio" onclick="change_id(1,1);"><label for="dandusj">单人悬赏，只设置一个中标者</label></div>
     <!--多赏-->
-    <div class="styinput hadsubbox"><input original-title="" id="duorensj" class="styled" value="2" name="model_id" type="radio"  onclick="change_id(2);"><label for="duorensj">多人悬赏，设置多人中标分享赏金</label></div>
+    <div class="styinput hadsubbox"><input original-title="" id="duorensj" class="styled" value="2" name="model_id" type="radio"  onclick="change_id(2,1);"><label for="duorensj">多人悬赏，设置多人中标分享赏金</label></div>
     
     <!--计件-->
     <div class="styinput hadsubbox"></span><label for="jijiansj"><a href="###">计件悬赏，合格一稿，支付一稿</a></label></div>
     
     <script>
-		function change_id(val){
+		function change_id(val,type){
 			$("#frm_step3").attr("action","index.php?do=release&pub_mode={$pub_mode}&t_id={$t_id}&model_id="+val+"&r_step=step3");
+			
+			if(val == 4){
+				if(type == 1){
+					$("#txt_task_cash").show();
+					$("#txt_task_cash").val("{if $release_info['txt_task_cash']}$release_info['txt_task_cash']{else}$task_config['min_cash']{/if}");
+					var obj = $("#txt_task_cash").clone();
+					$("#txt_task_cash").remove();
+					obj.prependTo($("#task_cash_cove_div"));
+					$("#task_cash_cove").hide();
+					$("#task_cash_cove").attr("disabled","disabled");
+					
+					$("#cash_types").text("支付手续费");
+					$("#cash_task").text("{$service_fee['config']['zb_fees']}");
+					ale();
+				}else{
+					$("#task_cash_cove").removeAttr("disabled");
+					$("#txt_task_cash").hide();
+					$("#txt_task_cash").val(0);
+					$("#task_cash_cove").show();
+				}
+			}else{
+				$("#txt_task_cash").show();
+				$("#txt_task_cash").val("{if $release_info['txt_task_cash']}$release_info['txt_task_cash']{else}$task_config['min_cash']{/if}");
+				var obj = $("#txt_task_cash").clone();
+				$("#txt_task_cash").remove();
+				obj.prependTo($("#txt_task_cash_i"));
+				$("#cash_types").text("托管赏金");
+				$("#cash_task").text("{if $release_info['txt_task_cash']}$release_info['txt_task_cash']{else}$task_config['min_cash']{/if}");
+			}
 		}
 	
 	</script>
@@ -206,10 +243,10 @@ $(document).ready(function () {
     </div>
     <div class="csw_tilex c960">您希望用多长时间来完成这个任务？</div>
     <div class="csw_tilex c960">
-    在&nbsp;
+    在&nbsp;<i id="txt_task_day_i_1">
     <input name="txt_task_day" onclick="showcalendar(event, this, 0)"
 					value="{if $release_info['txt_task_day']}$release_info['txt_task_day']{elseif $default_max_day}$default_max_day{else}$min{/if}"
-					type="text" id="txt_task_day" min_day="$task_config['min_day']"/>
+					type="text" id="txt_task_day" min_day="$task_config['min_day']"/></i>
     
     &nbsp;日截止投稿
     </div>
@@ -220,12 +257,19 @@ $(document).ready(function () {
     </div>
     <div style="display: none;" class="choswaybox pad20" id="toub">
     <div class="csw_tilex c960">您打算支付多少赏金呢？</div>
-    <div class="styinput hadsubbox"></span><input original-title="" id="jutisj" class="styled" name="shanging" value="4" type="radio"><label for="jutisj">我有具体的预算金额，直接填写赏金数目</label></div>
+    <div class="styinput hadsubbox"></span><input original-title="" id="jutisj" class="styled" name="model_id" value="4" type="radio"  onclick="change_id(4,1);"><label for="jutisj">我有具体的预算金额，直接填写赏金数目</label></div>
     
-    <div class="styinput hadsubbox"><input original-title="" id="jujiansj" class="styled" name="shanging" value="5" type="radio"><label for="jujiansj">我没有具体的预算金额，选择价格区间</label></div>
-    
+    <div class="styinput hadsubbox"><input original-title="" id="jujiansj" class="styled" name="model_id" value="4" type="radio"  onclick="change_id(4,2);"><label for="jujiansj">我没有具体的预算金额，选择价格区间</label></div>
+    <div class="csw_tilex c960" id="task_cash_cove_div">
+    <select name="task_cash_cove" id="task_cash_cove" title="{$_lang['choose_plan_area']}" style="width:190px;">
+           		<option value="">{$_lang['please_choose']}</option>
+				{loop $cove_arr $k $v}
+				<option value="$v[cash_rule_id]" {if $release_info['task_cash_cove']==$v['cash_rule_id']}selected{/if}>{$v[cove_desc]}</option>	
+				{/loop}	
+           	</select>
+    </div>
     <div class="csw_tilex c960">您希望用多长时间来寻找满意的合作者？</div>
-    在&nbsp;<input  size="12" class="txt txt_input1" value="2013-08-21" name="end_time2" type="text">&nbsp;日截止报名
+    在&nbsp;<i id="txt_task_day_i_2"></i>&nbsp;日截止报名
     </div>
     </div>
         
@@ -257,17 +301,21 @@ $(document).ready(function () {
     
     
     <tr class="odd">
-    <td width="85" height="40" valign="middle" bgcolor="#f9f9f9"><input original-title="" class="payitems" name="payitem_ids[{$v['item_code']}]" value="{if $v['item_code']=='top'}3{else}99{/if}" item_id="$v['item_id']" item_cash="$v['item_cash']" item_code="$v['item_code']" item_type="buy" onblur="edit_payitem('$v[item_code]');" item_name="$v['item_name']" onclick="ale();" type="checkbox"><label for="checkbox_urgent">&nbsp;{$v['item_name']}</label></td>
+    <td width="85" height="40" valign="middle" bgcolor="#f9f9f9">
+    <input  onclick="ale();" type="checkbox" class="payitems" name="payitem_ids[{$v['item_code']}]" value="{$item_info[$v['item_id']]['item_num']}" id="payitem_{$v['item_code']}" item_id="$v['item_id']" item_cash="$v['item_cash']"
+								   item_code="$v['item_code']" item_type="buy" item_name="$v['item_name']"
+									  size="4" onblur="edit_payitem('$v[item_code]');" limit="required:false;type:int;between:0-"  msg="{$_lang['payment_item_msg_error']}" msgarea="msg_$v['item_code']" >
+    <label for="checkbox_urgent">&nbsp;{$v['item_name']}</label></td>
     <td height="40" valign="middle"><span class="c999 font12"> {$v['item_desc']}                                                                        
     </span></td>
     <td width="110" height="40" valign="middle"><strong class="cf60 pad10">{c:$v['item_cash']}{if $v['item_code']=='top'}/3天{/if}</strong></td>
     </tr>
     {/loop}
     {/if}
-    <input type="hidden" name="item_totle_cash" id="item_totle_cash" value="">
+    <input type="hidden" name="item_totle_cash" id="item_totle_cash" value="0">
     </tbody></table>
     <div class="pad10">
-    <input original-title="" name="checkall" id="checkall" onclick="chkall('frm_step',this);" type="checkbox">全选
+    <input original-title="" name="checkall" id="checkall" onclick="ale_all(this);" type="checkbox">全选
     </div>
     
     <input original-title="" name="item_total_cash" id="item_total_cash" value="" type="hidden">
@@ -276,7 +324,7 @@ $(document).ready(function () {
     <div class="psllitable">
     <table border="0" cellpadding="0" cellspacing="1" width="100%">
     <tbody><tr class="odd">
-    <td>托管赏金：<a href="javascript:void(0);" class="cf60" original-title="付款后赏金暂由一品威客网保管，待您获得满意服务后，您再授权一品威客网付款给第三方。"><b>￥</b><b id="cash_task"  class="cc00">0</b></a></td>
+    <td><font id="cash_types">托管赏金</font>：<a href="javascript:void(0);" class="cf60" original-title="付款后赏金暂由一品威客网保管，待您获得满意服务后，您再授权一品威客网付款给第三方。"><b>￥</b><b id="cash_task"  class="cc00">0</b></a></td>
     </tr>
     </tbody></table>
     
@@ -292,7 +340,7 @@ $(document).ready(function () {
     </div>
     <div class="pub_sum font14 clearfix mt_20">
     <div class="fl_r">
-          应付总额： <font class="cf60">￥</font><span id="total">0</span>
+          应付总额： <font class="cf60">￥</font><span id="total_money">0</span>
     </div>		  
     </div>
     </div>
@@ -323,25 +371,36 @@ function ale(){
 	if(money>0){
 		$('#item_show_box').show();
 		$('#item_totle_cash').val(money);
-		$("#total").text(parseInt($("#txt_task_cash").val()) + money);
 		
+		if($("input[name='model_id']:checked").val() == 4)	$("#total_money").text(parseInt("{$service_fee['config']['zb_fees']}") + money);
+		else	$("#total_money").text(parseInt($("#txt_task_cash").val()) + money);
 	}else{
 		$('#item_show_box').hide();
 		$('#item_totle_cash').val(0);
-		$("#total").text(parseInt($("#txt_task_cash").val()));
+		
+		if($("input[name='model_id']:checked").val() == 4)	$("#total_money").text(parseInt("{$service_fee['config']['zb_fees']}"));
+		else	$("#total_money").text(parseInt($("#txt_task_cash").val()));
 	}
 	
 	$('#item_desc_box').html(strdesc);
 }
 
+function ale_all(obj){
+	$(".payitems").each(function(index, element) {
+		$(this).attr("checked",$(obj).attr("checked"));
+	});
+	ale();
+}
+
+function modify_totle(){
+	 $("#cash_task").text($("#txt_task_cash").val());
+	$("#total_money").text(parseInt($("#txt_task_cash").val())+parseInt($("#item_totle_cash").val()));
+}
+
 $(function(){
 	$("#cash_task").text($("#txt_task_cash").val());
-	$("#total").text($("#txt_task_cash").val());
-	$("#txt_task_cash").change(function(e) {
-        $("#cash_task").text($(this).val());
-		$("#total").text(parseInt($(this).val())+parseInt($("#item_totle_cash").val()));
-    });
-  
+	$("#total_money").text($("#txt_task_cash").val());
+
 })
 
 </script>

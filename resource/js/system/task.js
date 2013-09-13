@@ -118,7 +118,7 @@ function checkCommentInner(obj,e){
 		num<0?num=0:'';
 	var Remain = Math.abs(100-num);
 		if(num<=100){
-			$(obj).next().find(".answer_word").text(L.can_input+Remain+L.word);
+			$(".answer_word").text(L.can_input+Remain+L.word);
 		}else{
 			var nt = $(obj).val().toString().substr(0,100);
 			$(obj).val(nt);	

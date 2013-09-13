@@ -136,4 +136,43 @@ $register = db_factory::get_one ( sprintf ( " select count(uid) count from %swit
 $task_count =  intval ( $task_count ['count'] );
 $task_in = number_format ( $task_in ['cash'], 2, ".", "," );
 $register =  intval ( $register ['count'] );
+
+// 关注的人
+$where = " 1 = 1 ";
+$sql  = sprintf("select f.*,s.uid focus_uid,s.username focus_username,s.seller_level  from %switkey_free_follow as f left join %switkey_space as s on f.fuid = s.uid where ",TABLEPRE,TABLEPRE);
+$where .= " and f.uid = ".$uid;
+
+$order .= " order by f.on_time desc limit 0,8"; 
+
+$follow_list = db_factory::query($sql.$where.$order);
+//
+// 收支
+$sql = ' select a.fina_cash,a.fina_type from '.TABLEPRE.'witkey_finance a left join '
+				.TABLEPRE.'witkey_task b on a.obj_id=b.task_id left join '.TABLEPRE
+				.'witkey_service c on a.obj_id=c.service_id ';
+$where =" where a.uid=".intval($uid)." and a.fina_type='in' and a.fina_action not in ('withdraw','offline_recharge','offline_charge','online_charge','online_recharge','withdraw_fail')";
+$fina_arr = db_factory::query($sql.$where);
+$shouru = 0;
+$sum = 0;
+foreach($fina_arr as $val){
+	$shouru += $val['fina_cash'];
+	$sum ++;
+}
+//end 
+
+// 认证相关
+$auth_item = keke_auth_base_class::get_auth_item ();
+$auth_temp = array_keys ( $auth_item );
+$user_info ['user_type'] == 2 and $un_code = 'realname' or $un_code = "enterprise";
+$t = implode ( ",", $auth_temp );
+$auth_info = db_factory::query ( " select a.auth_code,a.auth_status,b.auth_title,b.auth_small_ico,b.auth_small_n_ico from " . TABLEPRE . "witkey_auth_record a left join " . TABLEPRE . "witkey_auth_item b on a.auth_code=b.auth_code where a.uid ='".$member_info['uid']."' and FIND_IN_SET(a.auth_code,'$t')", 1, - 1 );
+$auth_info = kekezu::get_arr_by_key ( $auth_info, "auth_code" );
+
+$good_rate  = get_witkey_good_rate($member_info);
+function get_witkey_good_rate($user_info){
+	$st = $user_info['seller_total_num'];
+	return $st?(number_format($user_info['seller_good_num']/$st,2)*100).'%':'0%'; 
+}
+// end
+
 require S_ROOT . "control/space/{$type}_{$view}.php";

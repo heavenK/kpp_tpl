@@ -1,0 +1,27 @@
+<!--{eval require keke_tpl_class::template(SKIN_PATH."/space/p_common")}--><!--页面内容-->
+            
+       	<div class="div_zs_rcsfw">案例展示<div class="clear"></div></div>
+        <div class="div_zs_rcsnr">
+            <ul>
+            	{loop $shop_arr $k $v}
+                <li>
+                    <h1><a href="{$v['case_url']}" target="_blank"><img src="{$v['case_pic']}" width="187" height="187"/></a></h1>
+                    <p>分类：{$indus_p_arr[$indus_c_arr[$v['indus_id']]['indus_pid']]['indus_name']}>{$indus_c_arr[$v['indus_id']]['indus_name']} </p>
+                    <p>标题：{$v['case_name']}</p>
+                    <p>详情：{$v[case_desc]}</p>
+                </li>
+                {/loop}
+
+                <div class="clear"></div>
+            </ul>
+            
+        </div>
+        
+        
+        
+        </div>
+        <div class="clear"></div>
+        
+        
+    </div>
+<!--{template footer_dou}-->

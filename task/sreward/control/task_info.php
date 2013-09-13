@@ -132,6 +132,87 @@ switch ($op) {
 		}
 		break;
 }
+
+
+
+// 稿件
+$search_condit = $task_obj->get_search_condit();
+$date_prv = date("Y-m-d",time());
+$work_status = $task_obj->get_work_status ();
+intval ( $page ) and $p ['page'] = intval ( $page ) or $p ['page']='1';
+intval ( $page_size ) and $p ['page_size'] = intval ( $page_size ) or $p['page_size']='10';
+$p['url'] = $basic_url."&view=work&page_size=".$p ['page_size']."&page=".$p ['page'];
+if($st){
+	$p['url'] .="&st=".$st;
+}
+if($ut){
+	$p['url'] .="&ut=".$ut;
+}
+$p ['anchor'] = '';
+$w['work_id'] = $work_id;
+$w['work_status'] = $st;
+$w['user_type']   = $ut;
+$work_arr = $task_obj->get_work_info ($w, " work_id asc ", $p ); 
+$pages = $work_arr ['pages'];
+$work_info = $work_arr ['work_info'];
+$mark      = $work_arr['mark'];
+$agree_id  = intval($task_obj->_agree_id);
+$has_new  = $task_obj->has_new_comment($p ['page'],$p ['page_size']);
+// end
+
+// 留言
+$comment_obj = keke_comment_class::get_instance('task'); 
+$url = $basic_url."&view=comment";
+intval($page) or $page = 1;
+$comment_arr = $comment_obj->get_comment_list($task_id, $url, $page); 
+$comment_data = $comment_arr['data'];
+$comment_page = $comment_arr['pages'];
+$reply_arr = $comment_obj->get_reply_info($task_id);
+
+foreach($comment_data as $key => $val){
+	if($key == 0) $ids = $val['uid'];
+	else $ids .= ','.$val['uid'];
+}
+
+if($ids){
+	$space_list = db_factory::query(' select * from '.TABLEPRE.'witkey_space where uid in ('.$ids.")");	
+	
+	foreach($space_list as $key=>$val){
+		$member_info[$val['uid']] = $val;
+	}
+	
+}
+//end
+
+
+$auth_html_sql = sprintf('select a.`auth_code`,a.`auth_title`,a.`auth_small_ico`,'
+		.' a.`auth_small_n_ico`,a.`auth_open`,a.`listorder`,b.`auth_status`,b.`uid` from %switkey_auth_item a '
+		.' left join %switkey_auth_record b on a.`auth_code`=b.`auth_code`  order by a.`listorder` ',TABLEPRE,TABLEPRE);
+$rs_rz = db_factory::query($auth_html_sql);
+function rz_show($uid){
+	global $rs_rz,$_lang;
+	$img_list='';
+	$first = $_lang['certification_status'].'：';
+	foreach ( $rs_rz as $c ) {
+		if(empty($c['uid'])||empty($c['auth_status'])||$c['uid']!=$uid||$c ['auth_open']==false)
+		{
+		}else{
+			$str = '';
+			$str .= '<img src="';
+			$str .= $c['auth_status'] ? $c ['auth_small_ico'] : $c ['auth_small_n_ico'];
+			$str .= '" align="absmiddle" title="' . $c ['auth_title'];
+			$str .= $c['auth_status'] ? $_lang['has_pass'] : $_lang['not_pass'];
+			$str .= '">&nbsp;';
+			$img_list .= $str;
+		}
+	}
+	if($img_list)
+	 $img_list =$img_list;
+	return $img_list;
+}
+
+
+
 switch ($view) {
 	case "work" :
 		$search_condit = $task_obj->get_search_condit();
@@ -231,6 +312,7 @@ switch ($view) {
 function bidcash(){
 	return ;
 }
+
 if($union_hand){
 require keke_tpl_class::template ( "task_info");
 }else{

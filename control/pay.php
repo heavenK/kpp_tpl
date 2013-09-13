@@ -75,4 +75,5 @@ static $bank = array(
 }
 $ten_bank_type_arr = get_ten_bank_type();
 $payment_list = get_pay_config();
+$offline_pay_list = get_pay_config('','offline');
 require $kekezu->_tpl_obj->template ( $do );

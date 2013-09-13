@@ -11,7 +11,7 @@
                                     <li><p><a href="index.php?do=user&view=employer&op=task&model_id=4" {if $model_id == 4} style="color:#48b78d"{/if}>招标任务（{$task_zb_count[count]}）</a></p></li>
                                     <!--<li><p><a href="T_grzx_wsgz_fw.html">服务需求（0）</a></p></li>
                                     <li><p><a href="T_grzx_wsgz_gy.html">雇佣任务（0）</a></p></li>-->
-                                    <li><p><a href="index.php?do=user&view=employer&op=zj_task" {if $op == 'zj_task'} style="color:#48b78d"{/if}>直接雇佣（0）</a></p></li>
+                                    <li><p><a href="index.php?do=user&view=employer&op=task&model_id=10" {if $model_id == 10} style="color:#48b78d"{/if}>直接雇佣（{$task_zj_count[count]}）</a></p></li>
                                     <li><p><a href="index.php?do=user&view=employer&op=fav" {if $op== 'fav'} style="color:#48b78d"{/if}>关注任务（{$task_gz_count[count]}）</a></p></li>
                                     
                                 </ul>

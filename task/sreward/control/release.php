@@ -11,6 +11,13 @@ $release_info = $release_obj->_std_obj->_release_info;
 $min =time()+ 24*3600*$task_config['min_day'];
 $min = date("Y-m-d",$min); 
 $ajax =='check_priv' and $release_obj->check_pub_priv('','json');
+
+
+
+$release_t_obj = tender_release_class::get_instance ( 4 ,$pub_mode);
+$cove_arr = $release_t_obj->_cash_cove;
+
+
 switch ($r_step) { 
 	case "step1" :
 		switch ($ajax) {
@@ -86,5 +93,40 @@ switch ($r_step) {
 		$release_obj->check_access ( $r_step, $model_id, $release_info,$task_id ); 
 		break;
 }
-require keke_tpl_class::template ( 'release' );
+
+
+if($to_uid){
+	$member_id = intval ( $to_uid );
+	$member_info = kekezu::get_user_info ( $member_id );
+	$shop_info = db_factory::get_one(sprintf("select * from %switkey_shop where uid = '%d'",TABLEPRE,$member_id));
+	$credit_level = unserialize($member_info['seller_level']);
+	
+	
+	$auth_item = keke_auth_base_class::get_auth_item ();
+	$auth_temp = array_keys ( $auth_item );
+	$user_info ['user_type'] == 2 and $un_code = 'realname' or $un_code = "enterprise";
+	$t = implode ( ",", $auth_temp );
+	$auth_info = db_factory::query ( " select a.auth_code,a.auth_status,b.auth_title,b.auth_small_ico,b.auth_small_n_ico from " . TABLEPRE . "witkey_auth_record a left join " . TABLEPRE . "witkey_auth_item b on a.auth_code=b.auth_code where a.uid ='$member_id' and FIND_IN_SET(a.auth_code,'$t')", 1, - 1 );
+	$auth_info = kekezu::get_arr_by_key ( $auth_info, "auth_code" );
+	
+	// 收支
+	$sql = ' select a.fina_cash,a.fina_type from '.TABLEPRE.'witkey_finance a left join '
+					.TABLEPRE.'witkey_task b on a.obj_id=b.task_id left join '.TABLEPRE
+					.'witkey_service c on a.obj_id=c.service_id ';
+	$where =" where a.uid=".intval($uid)." and a.fina_type='in' and a.fina_action not in ('withdraw','offline_recharge','offline_charge','online_charge','online_recharge','withdraw_fail')";
+	$fina_arr = db_factory::query($sql.$where);
+	$shouru = 0;
+	$sum = 0;
+	foreach($fina_arr as $val){
+		$shouru += $val['fina_cash'];
+		$sum ++;
+	}
+	//end 
+}
+
+
+
+
+if($to_uid)	require keke_tpl_class::template ( 'release_zj' );
+else require keke_tpl_class::template ( 'release' );
 		

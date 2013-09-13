@@ -49,6 +49,8 @@ $sql = sprintf ( " select count(task_id) count from %switkey_task where uid = '$
 $task_xs_count = db_factory::get_one ($sql, 1, 600 ); 
 $sql = sprintf ( " select count(task_id) count from %switkey_task where uid = '$uid' and model_id = 4 ", TABLEPRE );
 $task_zb_count = db_factory::get_one ($sql, 1, 600 ); 
+$sql = sprintf ( " select count(task_id) count from %switkey_task where uid = '$uid' and model_id = 10 ", TABLEPRE );
+$task_zj_count = db_factory::get_one ($sql, 1, 600 ); 
 $sql = sprintf ( " select count(f_id) count from %switkey_favorite where uid = '$uid' and keep_type = 'task' ", TABLEPRE );
 $task_gz_count = db_factory::get_one ($sql, 1, 600 ); 
 

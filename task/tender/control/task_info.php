@@ -87,6 +87,8 @@ switch ($op) {
 			if (CHARSET == 'gbk') {
 				$work_frm ['area'] = kekezu::utftogbk ( $province . "," . $city . ',' . $area );
 				$work_frm ['tar_content'] = kekezu::utftogbk ( $work_frm ['tar_content'] );
+			}else{
+				$work_frm ['area'] = $province . "," . $city . ',' . $area ;
 			}
 			$task_obj->tender_work_hand ( $work_frm );
 		} else {
@@ -147,6 +149,94 @@ switch ($op) {
 		}
 		break;
 }
+
+
+
+
+
+
+$search_condit = $task_obj->get_search_condit ();
+$date_prv = date ( "Y-m-d", time () ); 
+$work_status = $task_obj->get_work_status (); 
+$sql = sprintf ( "select a.*,b.* from %switkey_task_bid as a left join %switkey_space as b on a.uid=b.uid where a.task_id=%d", TABLEPRE, TABLEPRE, $task_id );
+$st = $st ? $st : "all";
+switch ($st) {
+	case "all" :
+		$sql .= " and 1=1";
+		break;
+	case 4 :
+		$sql .= " and a.bid_status=4";
+		break;
+	case 7 :
+		$sql .= " and a.bid_status=7";
+		break;
+}
+$ut == "my" and $sql .= " and a.uid=" . intval ( $uid );
+$url = "index.php?do=task&task_id=$task_id&view=work&ut=$ut&page_size=$page_size&$page=$page";
+$count = db_factory::execute ( $sql );
+$page = $page ? $page : 1;
+$page_size = intval ( $page_size ) ? intval ( $page_size ) : 5;
+$sql .= " order by (CASE WHEN  a.bid_status!=0 THEN a.bid_status ELSE 0 END) asc ,a.bid_time desc";
+$page_obj->setAjax ( 1 );
+$page_obj->setAjaxDom ( "gj_summery" );
+$pages = $page_obj->getPages ( $count, $page_size, $page, $url );
+$sql = $sql . $pages ['where'];
+$bid_info = db_factory::query ( $sql );
+$bid_info1 = kekezu::get_arr_by_key ( $bid_info, 'bid_id' );
+$bid_ids = implode ( ',', array_keys ( $bid_info1 ) );
+$bid_ids && $uid == $task_info ['uid'] and db_factory::execute ( 'update ' . TABLEPRE . 'witkey_task_bid set is_view=1 where bid_id in (' . $bid_ids . ') and is_view=0' );
+$has_new = $task_obj->has_new_comment ( $page, $page_size );
+
+$comment_obj = keke_comment_class::get_instance ( 'task' );
+$url = $basic_url . "&view=comment";
+intval ( $page ) or $page = 1;
+$comment_arr = $comment_obj->get_comment_list ( $task_id, $url, $page );
+$comment_data = $comment_arr ['data'];
+$comment_page = $comment_arr ['pages'];
+$reply_arr = $comment_obj->get_reply_info ( $task_id );
+
+foreach($comment_data as $key => $val){
+	if($key == 0) $ids = $val['uid'];
+	else $ids .= ','.$val['uid'];
+}
+
+if($ids){
+	$space_list = db_factory::query(' select * from '.TABLEPRE.'witkey_space where uid in ('.$ids.")");	
+	
+	foreach($space_list as $key=>$val){
+		$member_info[$val['uid']] = $val;
+	}
+	
+}
+
+
+$auth_html_sql = sprintf('select a.`auth_code`,a.`auth_title`,a.`auth_small_ico`,'
+		.' a.`auth_small_n_ico`,a.`auth_open`,a.`listorder`,b.`auth_status`,b.`uid` from %switkey_auth_item a '
+		.' left join %switkey_auth_record b on a.`auth_code`=b.`auth_code`  order by a.`listorder` ',TABLEPRE,TABLEPRE);
+$rs_rz = db_factory::query($auth_html_sql);
+function rz_show($uid){
+	global $rs_rz,$_lang;
+	$img_list='';
+	$first = $_lang['certification_status'].'：';
+	foreach ( $rs_rz as $c ) {
+		if(empty($c['uid'])||empty($c['auth_status'])||$c['uid']!=$uid||$c ['auth_open']==false)
+		{
+		}else{
+			$str = '';
+			$str .= '<img src="';
+			$str .= $c['auth_status'] ? $c ['auth_small_ico'] : $c ['auth_small_n_ico'];
+			$str .= '" align="absmiddle" title="' . $c ['auth_title'];
+			$str .= $c['auth_status'] ? $_lang['has_pass'] : $_lang['not_pass'];
+			$str .= '">&nbsp;';
+			$img_list .= $str;
+		}
+	}
+	if($img_list)
+	 $img_list =$img_list;
+	return $img_list;
+}
+
+
 switch ($view) {
 	case "work" :
 		$search_condit = $task_obj->get_search_condit ();

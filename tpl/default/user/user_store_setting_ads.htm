@@ -43,7 +43,7 @@
                         <td valign="middle" align="left" height="40">
                         <input type="file" name="pic" ext=".jpg,.gif,.png,.jpeg" onchange="isExtName(this,1);">
                         <input type="hidden" name="hdn_case_pic" id="hdn_case_pic" value="{$ads_info['case_pic']}" />
-                        {if $shop_info['pic']}<img src="{$ads_info['pic']}" width="50" height="50" />{/if}
+                        {if $ads_info['pic']}<a href="{$ads_info['pic']}">图片</a>{/if}
                         </td>
                       </tr>
                       <tr>

@@ -57,7 +57,7 @@
 		 public $_seo_desc; 
 		 public $_qq; 
 		 public $_email; 
-		 
+		 public $_to_uid; 
 		 
 		 
 		 
@@ -234,6 +234,9 @@
 		public function getEmail(){
 			 return $this->_email ;
 		}
+		public function getTo_uid(){
+			 return $this->_to_uid ;
+		}
 		
 		public function getWhere(){
 			 return $this->_where ;
@@ -403,6 +406,9 @@
 		}
 		public function setEmail($value){ 
 			 $this->_email = $value;
+		}
+		public function setTo_uid($value){ 
+			 $this->_to_uid = $value;
 		}
 		
 		public function setWhere($value){ 
@@ -592,6 +598,9 @@
 			if(!is_null($this->_email)){ 
 				 $data['email']=$this->_email;
 			}
+			if(!is_null($this->_to_uid)){ 
+				 $data['to_uid']=$this->_to_uid;
+			}
 
 			 return $this->_task_id = $this->_db->inserttable($this->_tablename,$data,1,$this->_replace); 
 		 } 
@@ -763,6 +772,9 @@
 			}
 			if(!is_null($this->_email)){ 
 				 $data['email']=$this->_email;
+			}
+			if(!is_null($this->_to_uid)){ 
+				 $data['to_uid']=$this->_to_uid;
 			}
 
 			if($this->_where){ 

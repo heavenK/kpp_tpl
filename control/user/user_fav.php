@@ -27,6 +27,9 @@ $count = db_factory::get_count ( $count_sql . $where );
 $pages = $page_obj->getPages ( $count, $page_size, $page, $url, '#userCenter' );
 $task_info = db_factory::query ( $sql . $where . $pages ['where'] );
 
+$model_list=kekezu::get_table_data ( '*', 'witkey_model', " model_type = 'task' and model_status=1", 'model_id asc ', '', '', 'model_id', 3600 );
+$cls = $model_list ['1'] ['model_code'] . "_task_class";
+$status_arr = call_user_func ( array ($cls, "get_task_status" ) );
 
 
 

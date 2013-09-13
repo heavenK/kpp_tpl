@@ -65,6 +65,26 @@
 		                    {/loop}
                     </ul>
                     </div>
+                    {if $payment_list['tenpay']['pay_status']}
+					<div class="clearfix form_box" style="width:95%;">
+						<table id="tbl_ten" cellspacing="0" border="0" cellpadding="0" width="100%" height="120" >
+							<caption class="bf7 pad5"><img src="resource/img/bank/logo.gif"/>{$_lang['provide_payment_service']}</caption>
+							<!--{eval $i=0;}-->
+							<tr>
+							{loop $ten_bank_type_arr $k $v}
+							<!--{eval $i++;}-->
+								<td class="pl_20 pt_10 pb_10"><input type="radio" name="bank_type" {if $i==1} checked="checked" {/if} value="{$k}" id="{$k}"><label for="{$k}" style="cursor:pointer;"><img src="resource/img/bank/{$v}.gif"/></label></td>
+								{if $i%4==0}
+								</tr>
+								<tr>
+								<!--{eval continue;}-->
+								{/if}
+							{/loop}
+							
+								<tr>
+						</table>
+					</div>
+					{/if}
                     {if $k>0}
 		               <input type="hidden" name="sbt_pay" value="1">
 		               <p><button type="submit" name="sbt_button" value={$_lang['pay']} class="but" onclick=" return user_pay();">{$_lang['pay']}</button>

@@ -86,7 +86,7 @@ abstract class keke_task_class {
 	public function get_search_condit() {
 		$search_condit = array ();
 		$fields_arr = $this->get_work_fields ();
-		$search_condit = kekezu::get_table_data ( " count($fields_arr[pk]) count,$fields_arr[st]", $fields_arr ['tab'], " task_id='" . $this->_task_id . "' ", "", $fields_arr ['st'], "", $fields_arr ['st'], 3600 );
+		$search_condit = kekezu::get_table_data ( " count($fields_arr[pk]) count,$fields_arr[st]", $fields_arr ['tab'], " task_id='" . $this->_task_id . "' ", "", $fields_arr ['st'], "", $fields_arr ['st'], 0 );
 		return $search_condit;
 	}
 	public function get_task_file() {

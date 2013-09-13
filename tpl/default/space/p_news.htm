@@ -1,0 +1,28 @@
+<!--{eval require keke_tpl_class::template(SKIN_PATH."/space/p_common")}--><!--页面内容-->
+            
+       	<div class="div_zs_rcsfw">新闻动态</div>
+        <div class="div_zs_news">
+            <ul>
+            	{loop $art_arr $k $v}
+                <li>
+                    <h1><img src="{$v[art_pic]}" width="185"  /></h1>
+                    <span><a href="index.php?do=article&view=article_info&art_id={$v[art_id]}">{$v[art_title]}</a>&nbsp;{$shop_info['shop_name']}&nbsp;&nbsp;<tt><!--{date('Y-m-d [H:i]', $v['pub_time'])}--></tt></span>
+                    <i>标签：{if $member_info['skill_ids']}<!--{eval echo str_replace(','," ",$member_info['skill_ids']);}-->{else}暂无数据{/if}</i>
+                    <em>
+                    <!--{eval echo htmlspecialchars_decode($v[content])}-->
+                    </em>
+                    <b><a href="index.php?do=article&view=article_info&art_id={$v[art_id]}">&gt;&gt;详细</a></b>
+                    <div class="clear"></div>
+                </li>
+                {/loop}
+            </ul>
+        </div>
+        
+        
+        
+        </div>
+        <div class="clear"></div>
+        
+        
+    </div>
+<!--{template footer_dou}-->

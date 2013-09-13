@@ -107,7 +107,7 @@ class sreward_task_class extends keke_task_class {
 	public function get_work_info($w = array(), $order = null, $p = array()) {
 		global $kekezu, $_K, $uid;
 		$work_arr = array ();
-		$sql = " select a.*,b.seller_credit,b.seller_good_num,b.residency,b.seller_total_num,b.seller_level from " . TABLEPRE . "witkey_task_work a left join " . TABLEPRE . "witkey_space b on a.uid=b.uid";
+		$sql = " select a.*,b.seller_credit,b.seller_good_num,b.residency,b.seller_total_num,b.seller_level,b.user_type,b.residency from " . TABLEPRE . "witkey_task_work a left join " . TABLEPRE . "witkey_space b on a.uid=b.uid";
 		$count_sql = " select count(a.work_id) from " . TABLEPRE . "witkey_task_work a left join " . TABLEPRE . "witkey_space b on a.uid=b.uid";
 		$where = " where a.task_id = '$this->_task_id' ";
 		if (! empty ( $w )) {

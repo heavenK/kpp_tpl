@@ -1,4 +1,23 @@
-<!--{template header}--><!--页面内容区-->
+<!--{template header_index_top}-->
+<script type="text/javascript">
+	var SITEURL= "{$_K['siteurl']}",
+	    SKIN_PATH = '{SKIN_PATH}',
+		LANG       = '{$language}',
+	    INDEX      = '{$do}',
+	    CHARSET    = "{$_K['charset']}";
+</script>
+
+
+<!--公用样式-->
+<link href="resource/css/base.css" rel="stylesheet" charset="utf-8">
+<!--布局样式-->
+<link rel="stylesheet" media="all" href="resource/css/layout/960.min.css" charset="utf-8">
+<!--box样式-->
+<link href="resource/css/box_min.css" rel="stylesheet" charset="utf-8">
+
+<link href="{SKIN_PATH}/css/common.css" rel="stylesheet" charset="utf-8">
+<link href="{SKIN_PATH}/theme/{$_K['theme']}/css/{$_K['theme']}_style.css" rel="stylesheet" charset="utf-8">
+
 <!--页面样式-->
 <link href="resource/css/public.css" rel="stylesheet" type="text/css" charset="utf-8">
 <div class="wrapper">
@@ -96,4 +115,4 @@
 <script type="text/javascript">
 	var basic_url = '{$basic_url}';
 </script>
-<!--{template footer}-->
+<!--{template footer_dou}-->

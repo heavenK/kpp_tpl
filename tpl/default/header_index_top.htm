@@ -15,7 +15,7 @@
 
 
 
-
+<link href="resource/js/jqplugins/tipsy/tipsy.css" rel="stylesheet">
 
 
 <script src="/tpl/default/d8/js/jquery-1.4.2.min.js" type="text/javascript"></script>
@@ -26,7 +26,6 @@
 
 
 <link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/T_header.css">
-<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/T_index.css">
 <link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/T_rwzx.css">
 <link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/T_footer.css">
 
@@ -194,7 +193,22 @@ $(document).ready(function (){
 
 
 </head>
-<body>
+<body id="{$do}">
+<div id="append_parent">
+</div>
+
+<!--无刷新临时替换层-->
+<div id="noflushwarper">
+    <div id="noflushwarper_sub"></div>
+</div>
+<div class="you_xia"><img src="/tpl/default/d8/images/360.png"  width="220" height="126" border="0" usemap="#Map"/>
+  <map name="Map" id="Map">
+    <area shape="rect" coords="1,1,222,48" href="#" />
+    <area shape="rect" coords="58,99,135,117" href="#" title="QQ客服" />
+  </map>
+</div>
+
+
 <div class="you_xia"><img src="/tpl/default/d8/images/360.png"  width="220" height="126" border="0" usemap="#Map"/>
   <map name="Map" id="Map">
     <area shape="rect" coords="1,1,222,48" href="#" />
@@ -204,14 +218,6 @@ $(document).ready(function (){
 
 
 <div class="box">
-
-<div id="append_parent">
-</div>
-
-<!--无刷新临时替换层-->
-<div id="noflushwarper">
-    <div id="noflushwarper_sub"></div>
-</div>
 
 	<div class="header"><!--顶部导航-->
         <div class="logo"><a href="index.php"><img src="/tpl/default/d8/images/logo.jpg"  width="159" height="188"/></a></div>

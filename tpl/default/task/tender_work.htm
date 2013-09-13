@@ -3,7 +3,7 @@
  	.file{position:absolute; font-size:20px;filter:alpha(opacity=0);-moz-opacity:0;opacity:0;z-index:1}
  </style>
 <div class="winbody">
- <div class="clearfix box  pad10">
+ <div class="clearfix pad10">
  <!--messages消息 start-->
   <div class="messages m_warn">
     <span class="icon16">warning</span>
@@ -19,7 +19,7 @@
 
       		<label class="fl_l">{$_lang['job_offer']}{$_lang['zh_mh']}</label>
 			 <div class="fl_l"> 
-				<input type="text" name="work_frm[txt_cash]" id="txt_cash" class="txt_input" limit="required:true;type:float" title={$_lang['input_amount_offer']} msgarea="msg_cash" msg={$_lang['you_input_offer_right_amount']}> {$_lang['yuan']}
+				<input type="text" name="work_frm[txt_cash]" id="txt_cash" limit="required:true;type:float" title={$_lang['input_amount_offer']} msgarea="msg_cash" msg={$_lang['you_input_offer_right_amount']}> {$_lang['yuan']}
 				<span id="msg_cash"></span> 
 				<span id="xxx" style="color:red"></span>
 			 </div>
@@ -30,7 +30,7 @@
 	  	 <div class="rowElem clearfix">
       		<label class="fl_l">{$_lang['work_cycle']}{$_lang['zh_mh']}</label>
 			 <div class="fl_l">
-			 	<input type="text" name="work_frm[task_over_time]" class="txt_input" title={$_lang['enter_work_cycle']} id="task_over_time" onkeyup="clearstr(this)" limit="required:true;type:int" msg={$_lang['enter_expected_complete_task_cycle']} tilte={$_lang['enter_expected_complete_task_cycle']} msgArea="span_qq"> {$_lang['day']}
+			 	<input type="text" name="work_frm[task_over_time]" title={$_lang['enter_work_cycle']} id="task_over_time" onkeyup="clearstr(this)" limit="required:true;type:int" msg={$_lang['enter_expected_complete_task_cycle']} tilte={$_lang['enter_expected_complete_task_cycle']} msgArea="span_qq"> {$_lang['day']}
                 <span id="span_qq"></span>
 			 </div>
      	 </div>
@@ -69,40 +69,7 @@
       		 	<textarea cols="68" rows="8" name="work_frm[tar_content]" id="tar_content"  class="txt_input" onkeydown="checkInner(this,'100',event)" style="width:350px;height:100px"></textarea>
       		 <div class="clear"></div>
              <div class="c999" id="length_show">{$_lang['enter_info']}</div>
-             {if !$workhide_exists}
-			  </div>
-			 	 <div class="tool_list">
-						 <label class="fl_l t_r">隐藏交稿：</label>
-						 <div class="fl_l">
-							 <div class="messages clearfix">
-								<p class="font_simsun ">
-									
-									{if $have_workhide}
-									 <span>
-									您已没有此工具，<a href="{$_K['siteurl']}/index.php?do=user&view=payitem&op=toolbox&show=buy#userCenter" target="_blank">立即去购买>></a> 
-									</span> 
-									{else}
-									<span>
-									您还未购买该工具，<a href="{$_K['siteurl']}/index.php?do=user&view=payitem&op=toolbox&show=buy#userCenter" target="_blank">立即去购买>></a> 
-									<a href="{$_K['siteurl']}/index.php?do=help&fpid=290&spid=301#pageTop" target="_blank">{$_lang['what_is_the_hidden_manuscripts']}?</a>
-									</span>
-									{/if}
-								</p>
-							</div>
-						</div>
-				</div>
-			 <!--
-                 <div class="messages">
-                      <span class="icon16"></span>{$_lang['hide_your_manuscript']}
-                     <p>
-                     	<span class="font_simsun">
-                     		<a href="{$_K['siteurl']}/index.php?do=user&view=payitem&op=toolbox&show=buy#userCenter" target="_blank">{$_lang['to_purchase']}&gt;&gt;</a>
-                     		<a href="{$_K['siteurl']}/index.php?do=help&fpid=290&spid=301#pageTop" target="_blank">{$_lang['what_is_the_hidden_manuscripts']}</a>
-						</span>
-						
-					 </p>
-                 </div>-->
-              {/if}   
+               
             
 
       </div>

@@ -1,0 +1,45 @@
+<!--{eval require keke_tpl_class::template(SKIN_PATH."/space/p_common")}--><!--页面内容-->
+            
+       	<div class="div_zs_rcsfw">关于我们</div>
+            <div class="div_zs_news">
+            	<div class="vip_about_pic"><img src="{$ad_info['pic']}" width="704" /></div>
+            	<div class="vip_about_tit">
+                	<span>工作室名称：<b>{$shop_info[shop_name]}</b></span>
+                    <em>$member_info[residency]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>成立时间：<!--{date('Y年m月d日', $shop_info['on_time'])}--></i></em>
+                    <tt>成员：{$member_count}名&nbsp;&nbsp;
+                    
+                    {loop $member_list $k $v}
+                    <a href="#member_{$v['member_id']}">{$v['truename']}</a>&nbsp;&nbsp;
+                    {/loop}
+                    
+                    </tt>
+                    <div class="clear"></div>
+                </div>
+                <div class="vip_about_info">
+                	<span>工作室简介</span>
+                    <em>{$shop_info[shop_slogans]}</em>
+                    <div class="clear"></div>
+                </div>
+                <div class="vip_about_info">
+                	<span>联系方式</span>
+                    <em>邮箱：{$member_info['email']}<br />手机：{$member_info['mobile']}</em>
+                    <div class="clear"></div>
+                </div>
+                <div class="vip_about_info" style="padding-top:0px;">
+                	{loop $member_list $k $v}
+                    <tt id="member_{$v['member_id']}">{$v['truename']}</tt>
+                	<span>职位</span>
+                    <em>{$v['member_job']}</em>
+                    <em><!--{eval echo htmlspecialchars_decode($v[member_desc])}--></em>
+                    {/loop}
+					<div class="clear"></div>
+                </div>
+                
+            </div>
+            
+        </div>
+        <div class="clear"></div>
+        
+        
+    </div>
+<!--{template footer_dou}-->

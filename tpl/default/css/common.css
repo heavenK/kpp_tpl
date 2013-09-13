@@ -4013,7 +4013,7 @@ blockquote {
 }
 #task .qualified_big1 {
   right: 0.1%;
-  top: 10%;
+  bottom: 40%;
   z-index: 1;
 }
 #task .face {

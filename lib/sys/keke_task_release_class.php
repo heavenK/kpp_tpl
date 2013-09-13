@@ -208,7 +208,10 @@ abstract class keke_task_release_class {
 		$task_obj->setContact ( $release_info['txt_mobile'] );
 		$task_obj->setQq ( $release_info['txt_qq'] );
 		$task_obj->setEmail ( $release_info['txt_email'] );
+		$task_obj->setTo_uid ( $release_info['to_uid'] ); 
+		
 		$task_obj->setKf_uid ( $this->_kf_uid ); 
+		
 		$file_arr = array_filter ( explode ( ',', $release_info ['file_ids'] ) );
 		$file_s = implode ( ',', $file_arr );
 		$task_obj->setTask_file ( $file_s );
@@ -401,9 +404,16 @@ abstract class keke_task_release_class {
 		empty ( $release_info ) or $this->_std_obj->_release_info = $release_info; 
 		if($release_info['txt_task_cash']<0){
 			kekezu::show_msg($_lang['operate_notice'],'index.php?do=release',3,$_lang['task_cash_negatvie'],'warning');
+		}else{
+			$this->_std_obj->_release_info ['txt_task_cash_tender'] = $release_info['txt_task_cash'];
 		}
+		
 		$this->_std_obj->_att_cash = $this->solve_pay_item ( $this->_std_obj->_att_info ); 
+		
 		$this->_model_info ['model_code'] == 'tender' and $this->_std_obj->_release_info ['txt_task_cash'] = $this->_task_config [zb_fees];
+		
+		
+		
 		$_SESSION [$obj_name] = serialize ( $this->_std_obj ); 
 	}
 	public function get_task_obj($obj_name) {

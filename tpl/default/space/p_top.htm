@@ -283,21 +283,21 @@ function ieGo(){
              
              <div class="menu">
                 <ul>
-                  <li class="h_r"><a href="index.php?do=space&member_id={$member_info[uid]}" class="hide">工作室首页</a></li>
+                  <li {if $view=='index'}class="h_r"{/if}><a href="index.php?do=space&member_id={$member_info[uid]}&view=index" class="hide">工作室首页</a></li>
                   <li>|</li>
-                  <li><a href="#" class="hide">关于我们</a></li>
+                  <li {if $view=='intr'}class="h_r"{/if}><a href="index.php?do=space&member_id={$member_info[uid]}&view=intr" class="hide">关于我们</a></li>
                    <li>|</li>
-                  <li><a href="#" class="hide">新闻中心</a></li>
+                  <li {if $view=='news'}class="h_r"{/if}><a href="index.php?do=space&member_id={$member_info[uid]}&view=news" class="hide">新闻中心</a></li>
                    <li>|</li>
-                  <li><a href="#" class="hide">案例展示</a></li>
+                  <li {if $view=='case'}class="h_r"{/if}><a href="index.php?do=space&member_id={$member_info[uid]}&view=case" class="hide">案例展示</a></li>
                    <li>|</li>
-                  <li><a href="#" class="hide">出售服务</a></li>
+                  <li {if $view=='service'}class="h_r"{/if}><a href="index.php?do=space&member_id={$member_info[uid]}&view=service" class="hide">出售服务</a></li>
                    <li>|</li>
-                   <li><a href="#" class="hide">交易记录</a></li>
+                   <li {if $view=='record'}class="h_r"{/if}><a href="index.php?do=space&member_id={$member_info[uid]}&view=record" class="hide">交易记录</a></li>
                    <li>|</li>
-                   <li><a href="#" class="hide">师徒关系</a></li>
+                   <li {if $view=='shitu'}class="h_r"{/if}><a href="index.php?do=space&member_id={$member_info[uid]}&view=shitu" class="hide">师徒关系</a></li>
                    <li>|</li>
-                   <li><a href="#" class="hide">联系我们</a></li>
+                   <li {if $view=='link'}class="h_r"{/if}><a href="index.php?do=space&member_id={$member_info[uid]}&view=link" class="hide">联系我们</a></li>
                    <li>|</li>
                 </ul>
              </div>

@@ -1,96 +1,105 @@
-<!--{template header}-->
- 
-<div class="wrapper">
-    <!--页面头部-->
-    <header class="clearfix page_header">
-        <div class="container_24 clearfix">
-            <!--面包屑-->
-            <div class="breadcrumbs clearfix">
-                <a href="{$_K['siteurl']}/index.php">{$_lang['home']}</a> &gt;
-            </div>
-            <!--end 面包屑-->
-             <div class="page_title">
-                <h2 class="title">{$_lang['pay']}</h2>
-            </div>
-            <div class="clear">
-            </div>
-        </div>
-    </header>
-    <!--end 页面头部--><!--详细内容区-->
-    <section class="content box clearfix">
-        <div class="container_24">
-            
-            <div class="grid_24 panel border_n">
-            <div class="prefix_1 suffix_1 mt_20">	
-				<!--date_table数据表格 start-->
-	            <div class="data_list">
-	                <table class="data_table">
-	                    <thead>
-	                        <tr>
-	                            <th scope="col">
-	                               {$_lang['order_name']} ({$_lang['order_id']}{$order_id})
-	                            </th>
-	                            <th scope="col">
-	                              	{$_lang['order_cash']}
-	                            </th>
-	                        </tr>
-	                    </thead>
-	                    <tbody>
-	                    	
-	                        <tr>
-	                            <td>
-	                                <a href="{$href}">{$order_info['order_name']}</a>
-	                               
-	                            </td>
-	                            <td class="red font14b">
-	                                {c:$order_amount}
-	                            </td>
-	                        </tr>
-	                        <tr>
-	                            <td class="flt">
-	                                <a href="#">{$_lang['user_remain_cach']}</a>
-	                                ({c:$user_balance})
-	                            </td>
-	                            <td class="red font14b">
-	                              	 {$_lang['you_should_pay_cach']}{c:$pay_amount}
-	                            </td>
-	                        </tr>
-	                         
-	                    </tbody>
-	                </table>
-	            </div>
-	            <!--data_table数据表格 end-->
-				
-				
-                <div class="">
+<!--{template header_index_top}-->
+<script type="text/javascript">
+	var SITEURL= "{$_K['siteurl']}",
+	    SKIN_PATH = '{SKIN_PATH}',
+		LANG       = '{$language}',
+	    INDEX      = '{$do}',
+	    CHARSET    = "{$_K['charset']}";
+</script>
+
+<!--公用样式-->
+<link href="resource/css/base.css" rel="stylesheet" charset="utf-8">
+<!--布局样式-->
+<link rel="stylesheet" media="all" href="resource/css/layout/960.min.css" charset="utf-8">
+<!--box样式-->
+<link href="resource/css/box_min.css" rel="stylesheet" charset="utf-8">
+
+
+<link href="{SKIN_PATH}/css/common.css" rel="stylesheet" charset="utf-8">
+<link href="{SKIN_PATH}/theme/{$_K['theme']}/css/{$_K['theme']}_style.css" rel="stylesheet" charset="utf-8">
+<link href="resource/js/jqplugins/tipsy/tipsy.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/T_grzx.css">
+
+<div class="yh_nav00"></div>
+	 
+	 <div class="yhcenter">
+    	<!--  账号设置 begin -->
+    	<div class="yhzhbox tabCon">
+        	
+            <div class="yhzhright" style="width:998px">
+                <div class="wdzbtop">
+                    <div class="fbrwxt">
+                        <div class="fbrwxtleft">
+                            <img src="/tpl/default/d8/images/jin.jpg" />
+                        </div>
+                        <div class="fbrwxtright">
+                            <p class="d0"><b>恭喜，您的任务已经提交成功，您还需要完成该订单的支付。</b></p>
+                            <p class="d1">赏金托管后，您的任务将成功发布，威客可以交稿。 <a href="{$href}"><span>任务预览</span></a></p>
+                        </div>
+                    </div>
+                    <div style="clear:both;height:15px; "></div>
+                    <div class="tabfb">
+                      <table width="978" border="0">
+                        <tr>
+                          <td width="129">订单号</td>
+                          <td width="493">订单名称</td>
+                          <td width="176">订单金额</td>
+                          <td width="176">用户余额</td>
+                        </tr>
+                        <tr class=" tabfb02">
+                          <td class="td01">{$order_id}</td>
+                          <td class="td02"><a href="{$href}">{$order_info['order_name']}</a></td>
+                          <td class="td03">{c:$order_amount}</td>
+                          <td class="td03">{c:$user_balance}</td>
+                        </tr>
+                      </table>
+                    </div>
+                </div>
+
+                <div class="xx_yh" style="float:left">
+                	<div class="xx_yhnav" style="width:970px">
+                    	<ul class="yhzxbtn" style="left:0">
+                        	<li class="{if $type != offline}mo{else}mt{/if}"><a href="index.php?do=pay&order_id={$order_id}&type=online">在线网上支付</a></li>
+                            <li class="{if $type == offline}mo{else}mt{/if}"><a href="index.php?do=pay&order_id={$order_id}&type=offline">线下银行付款</a></li>
+                        </ul>
+                    </div>
                     
+                    
+                    <div style="clear:both; height:10px;"></div>
+                    <div class="fbrwje" style="margin-bottom:10px; ">
+                                <p style="clear:both;"><b>应付金额：</b>&nbsp;<span>{c:$order_amount}</span>元，<b>您的账户余额</b>&nbsp;<span>{c:$user_balance}</span>&nbsp;<b>元；还需要支付</b>&nbsp;<span>{c:$pay_amount}</span>&nbsp;<b>元</b></p>
+                            </div>
+                    
+                   {if $type != offline}
+                    <div class="yhtab" style="display: block;">
+                    	<div class="wszf" style="width:950px">
+            	<!--支付1 begin -->
+            	<div class="wylo">
+                	<img src="/tpl/default/d8/images/wh.jpg">
+                    <h2>使用网上银行付款</h2>
+                    <p>选择网上银行付款不会动用您的账户余额</p>
+                </div>
+                <div class="wh_ws">
 					
-					<form action="" name="pay" id="pay" method="post">
-		          
-		            <input type="hidden" name="hdn_recharge" id="hdn_recharge" value="$pay_amount">
-		         
-				
-				<!--start 线上支付方式-->
-		           <div class="online">
-		              <div class=" account1 mt_20 clearfix">
-		                    <!--{eval $k=0;}-->
-							{loop $payment_list $pay}
-		                       {if $pay['pay_status']}<!--{eval $k++;}-->
-		                          
-		                              <label class="mr_20"> 
-									  <input class=" mt_10" type="radio" name="online" value="{$pay['payment']}" {if $k=='1'}checked="checked"{/if}/>
-									  <img class="ov_hide" style="width:110px; vertical-align:middle;"  src="payment/{$pay['payment']}/{$pay['payment']}.gif" align="absmiddle" >
-									  </label>
-		                          
-							   {/if} 
-		                    {/loop}
-							{if $k==0}
-							   <div>{$_lang['online_pay']}{$_lang['account_close']}{$_lang['contact_admin']}</div>
-							 {/if} 
-		               
-		               </div>
-					   {if $payment_list['tenpay']['pay_status']}
-					<div class="clearfix form_box">
+                    <div class="zfbk">
+                    <ul class="wsbank">
+                        <!--{eval $k=0;}-->
+                        {loop $payment_list $pay}
+                           {if $pay['pay_status']}<!--{eval $k++;}-->
+                                  
+                                  <li>
+                                    <input type="radio" value="{$pay['payment']}" name="online" class="yinhang" {if $k=='1'}checked="checked"{/if} >
+                                    <label for="bank_code_CMB">
+                                      <img class="ml_5"  src="payment/{$pay['payment']}/{$pay['payment']}.gif" width="93" height="20"> </label></li>
+                           {/if} 
+                        {/loop}
+                        {if $k==0}
+                           <div>{$_lang['online_pay']}{$_lang['account_close']}{$_lang['contact_admin']}</div>
+                        {/if} 
+                    </ul>
+                    </div>
+                    {if $payment_list['tenpay']['pay_status']}
+					<div class="clearfix form_box" style="width:95%;">
 						<table id="tbl_ten" cellspacing="0" border="0" cellpadding="0" width="100%" height="120" >
 							<caption class="bf7 pad5"><img src="resource/img/bank/logo.gif"/>{$_lang['provide_payment_service']}</caption>
 							<!--{eval $i=0;}-->
@@ -109,33 +118,69 @@
 						</table>
 					</div>
 					{/if}
-		            <div class="rowElem clearfix t_c">
-		            	{if $k>0}
-		               		<input type="hidden" name="sbt_pay" value="1">
-		               		<button type="submit" name="sbt_button" value={$_lang['pay']} style="width:100px" onclick=" return user_pay();">{$_lang['pay']}</button>
-					   {else}
-					     <div>在线支付方式未开启，请联系网站管理员开启后方可使用！</div>
-					   {/if}
-		            </div>
-					
-		            </div>
-					</form>
+                    <p>
+                    {if $k>0}
+                          <input type="hidden" name="sbt_pay" value="1">
+                          <button name="sbt_button" value={$_lang['pay']} onclick=" return user_pay();" class="but" style="color: #fff !important;" type="submit">下一步</button>
+                     {else}
+                       <div>在线支付方式未开启，请联系网站管理员开启后方可使用！</div>
+                     {/if}
+                    </p>
                 </div>
-				
-				</div>
-				
+                <!--支付1 end -->
+            </div>
+            </div>
+                   {else}
+                   <!-- 个人收信箱begin -->
+                   <div class="yhtab " style="display: block;">
+						<div class="zf_ts" style="width:940px"> 
+                            <b>豆8威客友情提醒：</b> 为识别汇款人，汇款时请多汇几分钱，冲值500元，可以汇500.01,500,02，并在附言上注明您的用户名，汇款完成后提交汇款记录或者第一时间联系我们，电话400 123 456 或者致电 0411-123456 
+                        </div>
+                        <table border="0" cellspacing="0" cellpadding="1" class="tabzf" style="width:970px">
+                            <tbody>
+                                <tr class="odd">
+                                    <td height="20" class="hk" colspan="3" scope="col"><strong>普通账户汇款</strong></td>
+                                </tr>
+                                <tr class="odd">
+                                {loop $offline_pay_list $k $v}
+								  	{if $v['pay_status']} 
+			                           <!--{eval $i++;}-->
+                                       	<td>
+                                            <div class="a0 mt_10"> <img width="100" alt="" src="resource/img/system/kppw_2.0_{$v['payment']}.png" original-title=""> </div>
+                                            <ul class="ml_10 a0">
+                                                <li><b>开户行：</b>{$v['pay_name']}</li>
+                                                <li><b>账&#12288;号：</b>{$v['pay_account']}</li>
+                                                <li><b>户&#12288;名：</b>{$v['pay_user']}</li>
+                                            </ul>
+                                        </td>
+										   {if $i%3==0}
+										</tr>
+										<tr>
+										<!--{eval continue;}-->
+										{/if}
+			                            
+			                          {/if} 
+			                    {/loop}
+                                
+                                </tr>
+                            </tbody>
+                        </table>
+                   </div>
+                   
+                   {/if}
+                   
+                </div>
+                
             </div>
         </div>
-    </section>
-    <!--end 详细内容区-->
-</div>
-
+    </div>
 <script type="text/javascript">
 	
 	$(function(){
 		//如果是财富通，就隐藏网银列表	
 		$(":radio[name='online']").click(function(){
 			if($(this).val()=='tenpay'){
+				
 				$("#tbl_ten").parent().show();
 			}else{
 				$("#tbl_ten").parent().hide();
@@ -161,10 +206,9 @@
 		if(bank_type){
 			url += "&bank_type="+bank_type;	
 		}
-		
 	    showWindow("pay",url,'get',0,{cover:1});return false;
 	} 
  
 	
 </script>
-<!--{template footer}-->
+<!--{template footer_dou}-->

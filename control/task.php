@@ -3,6 +3,18 @@ defined ( 'IN_KEKE' ) or exit ( 'Access Denied' );
 $rs_indus  = kekezu::get_classify_indus('task','total');
 $nav_active_index = "task";
 $page_title = $_lang ['task_index'] . '-' . $_K ['html_title'];
+
+// add by heavenk
+$task_count = db_factory::get_one ( sprintf ( " select count(task_id) count from %switkey_task", TABLEPRE ), 1, 600 ); 
+$task_in = db_factory::get_one ( sprintf ( " select sum(fina_cash) cash from %switkey_finance where fina_action='task_bid' and fina_type='in' ", TABLEPRE ), 1, 600 ); 
+$register = db_factory::get_one ( sprintf ( " select count(uid) count from %switkey_member ", TABLEPRE ), 1, 600 ); 
+
+$task_count =  intval ( $task_count ['count'] );
+$task_in = number_format ( $task_in ['cash'], 2, ".", "," );
+$register =  intval ( $register ['count'] );
+// end
+
+
 if (isset ( $task_id )) {
 	$task_ext_obj = new Keke_witkey_task_ext_class ();
 	$task_ext_obj->setWhere ( 'a.task_id=' . intval ( $task_id ) );

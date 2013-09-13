@@ -59,7 +59,10 @@ class tender_release_class extends keke_task_release_class {
 		$this->set_task_status ( $this->get_total_cash ( $task_cash ), $task_cash);
 		$cash_cove = $this->_cash_cove;
 		$cove = $cash_cove [$release_info['task_cash_cove']];
-		$task_cash = $cove ['end_cove'];
+		
+		if($task_cash > 0)$task_cash = $this->_std_obj->_release_info ['txt_task_cash_tender']; 
+		else $task_cash = $cove ['end_cove'];
+		
 		$task_cash or $task_cash = $cove ['start_cove'];
 		$task_obj->setTask_cash ( $task_cash );
 		$task_obj->setTask_cash_coverage($release_info['task_cash_cove']); 

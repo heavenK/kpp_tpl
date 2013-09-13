@@ -109,8 +109,8 @@ DIV.selectbox-wrapper UL LI 	{ PADDING-BOTTOM: 3px; WIDTH: 96%; padding-left:3px
 .fl_r {float: right !important;}
 
 .zhuangt { width:120px; height:22px; border:1px #ccc solid; padding:1px}
-.data_list_d8{clear:both; padding-top:10px}
-.data_list_d8 .data_table_d8 thead tr th{ color:#666;}
+.data_list{clear:both; padding-top:10px}
+.data_list .data_table thead tr th{ color:#666;}
 table {border-collapse: collapse; border-spacing: 0px;}
 .t_c{ text-align:center;background:#f9f9f9; padding:15px 0px; }
 .sub{width:50px; height:25px; margin-right:30px; cursor:pointer}
@@ -272,7 +272,7 @@ table {border-collapse: collapse; border-spacing: 0px;}
 	.yhgzr_tright{ float:left; width:560px; height:157px; padding-left:15px; }
 	
 	.rr_yhgz01{ width:560px; height:157px;}
-	.rr_yhgz01left{ float:left; width:372px; height:157px;}
+	.rr_yhgz01left{ float:left; width:372px; height:157px; font-size:14px;}
 	.rr_yhgz01left p{ line-height:25px;}
 	.rr_yhgz01left p span{ color:#ff0000;}
 	/*.rr_yhgz01left p a{ color:#ff0000;}*/
@@ -838,10 +838,28 @@ input#old_passworld.txt_input{width:214px; height:29px;}
 
 
 
+.fbrwxt{ width:935px; margin:0 auto; height:60px;  padding:10px 0; }
+.fbrwxtleft{ float:left; width:42px; height:47px; }
+.fbrwxtright { float:left; width:880px; margin-left:10px;}
+.fbrwxtright .d0{ font-size:14px; line-height:30px; color:#3e362b;}
+.fbrwxtright .d1{ font-size:12px; color:#573c0f; line-height:28px; }
+.fbrwxtright .d1 a{ text-decoration:none; font-size:14px; color:#716c59; }
+.fbrwxtright .d1 a span{ width:80px; height:26px; line-height:26px; background:#f9fafe; border:1px #d3d3d3 solid; text-align:center; }
 
 
+.tabfb{ width:978px; clear:both;background:#f9f9f9; margin-bottom:15px; }
+.tabfb table{ border:1px #d3d3d3 solid;}
+.tabfb table tr{ border-bottom:1px #d3d3d3 solid;}
+.tabfb table tr td{ border-right:1px #d3d3d3 solid;}
+.tabfb tr td{ padding:10px 5px;}
+.tabfb .tabfb02 .td01{ font-size:12px; color:#515151;}
+.tabfb .tabfb02 .td02{font-size:12px; color:#2f5a84;}
+.tabfb .tabfb02 .td03{font-size:12px;color:#da640a;}
 
 
+.fbrwje{ width:966px; margin:0 auto; }
+.fbrwje p{ font-size:14px;  line-height:35px;}
+.fbrwje p span{ font-size:16px; color:#d66640;}
 
 
 
