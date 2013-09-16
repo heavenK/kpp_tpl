@@ -192,7 +192,7 @@ $lang = array (
 		'trans_rights'=>'交易维权',
 		'now_status'=>'当前状态',
 		/**web**/
-		'keke_official_website'=>'kekezu官方网站',  
+		'keke_official_website'=>'d8网站',  
 		/**其它**/
 		'bind' => '绑定',
 		'article'=>'文章',

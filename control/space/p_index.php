@@ -3,7 +3,7 @@ $credit_level = unserialize($member_info['seller_level']);
 $indus_arr = $kekezu->_indus_arr;
 if($shop_open){
 	 $service_obj = new Keke_witkey_service_class();
-	 $service_obj->setWhere("uid = ".intval($member_id)." order by on_time desc limit 0,6 ");
+	 $service_obj->setWhere("uid = ".intval($member_id)." and model_id = 7 and service_status='2' order by on_time desc limit 0,5");
 	 $service_arr = $service_obj->query_keke_witkey_service();
 }
 
@@ -21,14 +21,14 @@ if($task_open){
 
 
 
-
-
 // 成功案例
 $sql_c = "select a.*,a.indus_id in_id,b.* from " . TABLEPRE . "witkey_shop_case as a
 		left join " . TABLEPRE . "witkey_service as b
 				on a.service_id = b.service_id
-					where  a.shop_id = " . intval($shop_info ['shop_id']) . " order by b.service_id desc limit 0,4";
+					where  a.shop_id = " . intval($shop_info ['shop_id']) . " order by b.service_id desc limit 0,5";
 $shop_arr = db_factory::query ( $sql_c );
+
+
 
 
 $sql = "select * from " . TABLEPRE . "witkey_task order by task_id desc limit 0,10";

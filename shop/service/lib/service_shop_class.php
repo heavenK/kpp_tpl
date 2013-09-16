@@ -234,7 +234,7 @@ class service_shop_class {
 	}
 	public static function get_order_status() {
 		global $_lang;
-		return array ('wait' => $_lang ['wait_buyer_pay'], 'ok' => $_lang ['buyer_haved_pay'], 'accept' => $_lang ['seller_haved_recept'], 'send' => $_lang ['seller_haved_service'], 'confirm' => $_lang ['trade_complete'], 'close' => $_lang ['trade_close'], 'arbitral' => $_lang ['order_arbitrate'], 'arb_confirm' => $_lang ['trade_complete'] );
+		return array ('wait' => $_lang ['wait_buyer_pay'], 'ok' => $_lang ['buyer_haved_pay'], 'accept' => $_lang ['seller_haved_recept'], 'send' => $_lang ['seller_haved_service'], 'confirm' => $_lang ['trade_complete'], 'close' => $_lang ['trade_close'], 'arbitral' => $_lang ['order_arbitrate'], 'arb_confirm' => $_lang ['trade_complete'], 'complete' => '交易完成' );
 	}
 	public static function get_order_step($order_info){
 		if($order_info['order_status']=='arbitral'){

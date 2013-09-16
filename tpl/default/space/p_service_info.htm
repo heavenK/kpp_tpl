@@ -1,0 +1,225 @@
+<!--{eval require keke_tpl_class::template(SKIN_PATH."/space/p_common")}--><!--页面内容-->
+
+
+       	<div class="div_zs_rcsfw">产品详细<div class="clear"></div></div>
+            <div class="yhzhright" style="border:0px;">
+            	<div class="sqxx_top">
+                	<div class="sqxx_top_l">
+                    {if is_array($cover_list)}
+                      <img alt="{$service_info[title]}" src="{$cover_list['0']}"  width="325" height="231"  onerror='$(this).attr("src","tpl/default/img/shop/shop_default.gif")'>
+
+                    {else}
+                      <img alt="{$service_info[title]}" src="{$v}" width="325" height="231"  onerror='$(this).attr("src","tpl/default/img/shop/shop_default.gif")' >
+                    {/if}
+                    
+                    
+                    </div>
+                    <div class="sqxx_top_r">
+                    	<div class="sqxx_top_rlist">名称：{$service_info['title']}</div>
+                        <div class="sqxx_top_rlist">价格：{c:$service_info[price]}/{$service_info['unite_price']}</div>
+                        <div class="sqxx_top_rlist">工时：{$service_info['service_time']}{$service_info['unit_time']}</div>
+                        <div class="sqxx_top_rlist">销量：{$service_info['sale_num']}</div>
+                        <div class="sqxx_top_rlist">浏览人数：{$service_info['views']}</div>
+                        <div class="sqxx_top_rlist">地区：{if $owner_info['residency']}$owner_info['residency']{else}{$_lang['now_no']}{/if}</div>
+                        <div class="sqxx_top_rlist">{if $uid!=$owner_info[uid]}<input type="button" onclick="location='index.php?do=shop_order&sid=$sid&steps=step1&op=buy'" class="sqxx_btn" value="立即购买" />{/if}</div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="sqxx_bom">
+                	<div class="effect">
+                        <div class="slideTxtBox">
+                            <div class="hd">
+                                <ul><li style=""><a>产品详情</a></li><li><a>产品评价</a></li><li><a>交易记录</a></li></ul>
+                            </div>
+                            <div class="bd">
+                                
+                                <ul class="infoList">
+                                    <!--{eval echo htmlspecialchars_decode($service_info['content'])}-->                        
+                                </ul>
+                                <ul class="infoList">
+                                    <div class="prefix_1 suffix_1">
+                                    {if $mark_info} <!--评价-->
+                                        {loop $mark_info $v}
+                                        <div class="ly1 mt_20 mb_10">
+                                            <div class="top1 clearfix mt_10">
+                                                <div class="fl_l mr_10">
+                                                    <a href="index.php?do=space&member_id={$v[by_uid]}" title="{$v[by_username]}"><!--{userpic($v[by_username],'small')}--></a>
+                                                    对<a href="index.php?do=space&member_id={$v[uid]}" class="ml_10 mr_10">{$v[username]}</a>{$_lang['de']}
+                                                    {if $v[mark_status]==1}{$_lang['good_value']}{elseif $v[mark_status]==2}{$_lang['mid_evaluation']}{elseif $v[mark_status]=='3'}{$_lang['bad_value']}{else}{$_lang['no_reply_evaluation']}{/if}<img src="resource/img/ico/ico_mark_{$v[mark_status]}.gif" alt=''>
+                                                </div>
+                                            </div>
+                                            <div class="pl_10 grid_16">
+                                                <p class="mt_10 font14">{$v[mark_content]}
+                                                </p>
+                                            </div>
+                                            <!--{eval $aid_info=keke_user_mark_class::get_user_aid($v[by_uid],$v[mark_type],$v[mark_status],2,$v['model_code'],$v['obj_id']);}-->
+                                            
+                                            <div class="fl_r">
+                                                {loop $aid_info $k2 $v2}
+                                                    <div class="grid_3 omega">
+                                                         <b>{$v2['aid_name']}</b>&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">{$v2['avg']}</font>{$_lang['fen']}
+                                                      </div>
+                                                   <div class="grid_2 alpha">
+                                                    <div class="clearfix">
+                                                         <!--{eval echo keke_user_mark_class::gen_star2($v2['avg']);}-->
+                                                     </div>
+                                                     </div>
+                                                    <div class="clear"></div>
+                                                {/loop}
+                                            </div>
+                                        </div>
+                                        <div class="clear"></div>
+                                        {/loop}<!--end评价-->
+                                    {else}
+                                        <div class="t_c"><span class="c999">{$_lang['now_no_record']}</span></div>
+                                    {/if}
+                                        
+                                        
+                                    </div>
+                                    <!--page 翻页 start-->
+                                    <div class="page">
+                                        <p class="clearfix">{$pages[page]} </p>
+                                        <div class="clear">
+                                        </div>
+                                    </div>
+                                </ul>
+                                <ul class="infoList">
+                                    <table cellspacing="1" style="text-align:left; width:700px;" class="tab1">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:20%">买家</th>
+                                            <th style="width:20%">出价</th>
+                                            <th style="width:40%">成交时间</th>
+                                            <th style="width:20%">状态</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {if $sale_list}
+                                        {loop $sale_list $v}
+                                    		<tr>
+                                                 <td>
+                                                    {if $uid}
+                                                     <a href="index.php?do=space&member_id={$v[order_uid]}" target="_blank">{$v[order_username]}</a>
+                                                    {else}
+                                                        {$_lang['not_can_view']}
+                                                    {/if}
+                                                 </td>
+                                                 <td>
+                                                   {c:$v[order_amount]}
+                                                  </td>
+                                                 <td>
+                                                     <!--{date('Y-m-d H:i:s',$v[order_time])}-->
+                                                 </td>
+                                                 <td>
+                                                               {$status_arr[$v[order_status]]}
+                                                 </td>
+                                            </tr>
+                                       {/loop}
+                                    {else}
+                                       <dd class="bf7 clearfix t_c font14b">
+                                                                {$_lang['now_no_deal_record']}
+                                        </dd>
+                                    {/if}
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="_j_02">
+                                            <td align="right" colspan="8">
+                                            <div class="page_count fl_r mar10">
+                                        		{$pages_s['page']}
+                                    		</div>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                 </table>
+                                    
+                                    
+                                    
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                        <script type="text/javascript">jQuery(".slideTxtBox").slide();</script>
+                    </div>
+                </div>
+                <div class="vip_pic_nr">
+            	<div id="demoContent">
+                    <div class="effect">
+                                <div id="leftMarquee" class="leftLoop1">
+                                    <div class="hd">
+                                        <a class="next"></a>
+                                        <a class="prev"></a>
+                                    </div>
+                                    <div class="bd">
+                                        <ul class="picList1">
+                                        	{if $more_list}
+                                                 {loop $more_list $v}
+                                                    <li style="width:135px;">
+                                                        <div class="pic"><a href="index.php?do=service&sid={$v[service_id]}"><img src="<!--{eval echo keke_shop_class::output_pics($v['pic'],100,1);}-->" /></a></div>
+                                                        <div class="vip_biaozhi"></div>
+                                                    </li>
+                                                    
+                                                {/loop}
+                                            {/if}
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+                                <script type="text/javascript">jQuery("#leftMarquee").slide({ mainCell:".bd ul",effect:"leftMarquee",vis:5,interTime:40,autoPlay:true });</script>
+                    </div>
+            
+                </div>
+            </div>
+            </div>
+        
+        
+        </div>
+        <div class="clear"></div>
+        
+        
+    </div>
+<style>
+/*** 防止冲突 ***/
+.g_zx						{ width:100%; height:321px; border:0px solid #bababa; float:left;  background:#fff;}
+.effect						{ width:100%; display:inline-block; *display:inline; zoom:1; text-align:left;  margin:0 auto;   }
+.slideTxtBox				{ width:100%; text-align:left;}
+.slideTxtBox .hd			{ height:35px; line-height:30px; background:none; position:relative; margin-bottom:0px;}
+.slideTxtBox .hd ul			{ float:left;position:absolute;left:0px;top:-1px;height:35px;width: 100%;margin-top:1px; background:none;}
+.slideTxtBox .hd ul li		{ float:left;width:120px; height:30px; border-right:1px solid #D5D5D5; border-top:1px solid #D5D5D5; color:#000; margin-top:5px;border-left:1px solid #D5D5D5; margin-left:5px; display:inline; border-bottom:0px; text-align:center;}
+.slideTxtBox .hd ul li a 	{ font-size:14px; color:#000;}
+.slideTxtBox .hd ul li.on	{ height:35px; cursor:pointer; border:none; margin-top:1px; border-right:1px solid #D5D5D5; background:#f2f2f2;border-left:1px solid #D5D5D5;}
+.slideTxtBox .hd ul li.on a { height:30px; width:120px; float:left; border-top:5px solid #48b78d; font-size:15px; font-weight:bold;}
+.vip_jiaoyi_tit				{ height:43px; background:#f2f2f2; padding:0 10px; border:1px solid #D5D5D5}
+.vip_jiaoyi_tit span		{ float:left; margin-top:10px;}
+.vip_jiaoyi_tit span a		{ float:left; margin-right:10px; display:inline; padding:0 3px; height:22px; line-height:22px; color:#000;}
+.vip_jiaoyi_tit span a.xz	{ background:#48b78d; color:#fff;}
+.vip_jiaoyi_tit span a:hover{ background:#48b78d; color:#fff;}
+.vip_jiaoyi_tit em			{ float:right; height:24px; margin-top:10px; line-height:24px;}
+.vip_jiaoyi_tit em a		{ height:22px; border:1px solid #ccc; width:71px; float:right; line-height:22px; background:url(images/vip52.jpg) no-repeat; color:#999999;}			
+.hd a 						{ cursor:pointer;}
+.slideTxtBox .bd			{ padding:0; border:1px solid #ccc;}
+.slideTxtBox .bd ul			{ padding:15px;; font-size:12px; min-height:400px;}
+.sqxx_jyjl					{ line-height:24px;}
+.vip_pic_nr					{ border:1px solid #ccc; margin-top:10px; padding:0px}
+/*** 图片轮换 防止冲突 ***/
+.rczl_lunhuan{width:958px; overflow:hidden;}
+.leftLoop1{ overflow:hidden; position:relative;}
+.leftLoop1 .hd{ overflow:hidden;}
+.leftLoop1 .hd .prev,.leftLoop1 .hd .next{display:block;  width:35px; height:38px; float:right; overflow:hidden;  
+ cursor:pointer; background:url(images/icoLeft.png) no-repeat; position:absolute; z-index:1000; top:65px; right:0}
+.leftLoop1 .hd .next{ background:url(images/icoright.png) no-repeat; position:absolute; z-index:1000; top:65px; left:0}
+.leftLoop1 .hd ul{ float:right; overflow:hidden; zoom:1; margin-top:10px;  }
+.leftLoop1 .hd ul li{ position:relative; _display:inline; float:left;  width:10px; height:10px; overflow:hidden; background:#ccc; margin-right:10px; text-indent:-999px; cursor:pointer;
+	-webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; behavior: url(../PIE.htc);}
+.leftLoop1 .hd ul li.on{ background:#f00;  }
+.leftLoop1 .bd{width:670px; padding:10px; margin:0 auto; overflow:hidden; height:140px;  }
+.leftLoop1 .bd ul{ overflow:hidden; zoom:1; }
+.leftLoop1 .bd ul li{ margin:0 18px; text-align:center; float:left; _display:inline; overflow:hidden; width:135px;  }
+.picList1{width:860px;}
+.picList1 li{ position:relative;}
+.picList1 .pic{ text-align:center; line-height:0px; padding:10px; border:1px solid #e8e8e8; float:left; }
+.picList1 .pic img{ width:113px; height:113px;}
+.picList1 .title{ line-height:24px;}
+.picList1 .title a{ line-height:24px; color:#000;}
+.vip_biaozhi{position:absolute; left:0; top:0;}
+</style>
+<!--{template footer_dou}-->

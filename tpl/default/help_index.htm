@@ -1,0 +1,132 @@
+<!--{template header_index_top}-->
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/T_index.css">
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/bzzx.css">
+<div class="clear" style="clear:both"></div>
+<div class="help_center">
+   	<div class="bzzx_left">
+    <form action="index.php?do=help&op=list" method="post">
+    <input type="hidden" name="sbt" value="1" />
+    <div class="bzzx_ywt">
+      <p class="sr">
+
+          <input name="key_word" type="text" id="keyword" value="输入您想搜索的帮助主题关键词" class="bzzx_input" />
+          <input type="submit" value="搜索" name="" class="bzzx_submit" />
+      </p>
+      <p class="rm">热门搜索：<a href="help_jieda.html">忘记密码</a> <a href="help_jieda.html">认证</a> <a href="help_jieda.html">任务速配</a> <a href="help_jieda.html">发布任务</a></p>
+    </div>
+    </form>
+    <div class="bzzx_lh">
+      <div class="lh">
+        <!-- content S -->
+	      <div id="demoContent">
+		<div class="effect" style="width:340px">
+					<div class="leftLoop_j">
+						<div class="hd">
+							<a class="next"></a>
+							<ul><li>1</li><li>2</li><li>3</li></ul>
+							<a class="prev"></a>
+						</div>
+						<div class="bd">
+							<ul class="picList_j">
+                                <!--{ad_show(HELPCENTER_SEARCH,1)}-->
+							</ul>
+						</div>
+					</div>
+					<script type="text/javascript">jQuery(".leftLoop_j").slide({ mainCell:".bd ul",effect:"leftLoop",vis:1,scroll:1,autoPlay:true});</script>
+		</div>
+
+	</div>
+        <!-- content E -->
+      </div>
+      <div class="zcybz">
+        <h2>最常用帮助</h2>
+        <ul>
+          {loop $art_list_arr $k $v}
+          <li><span>•&nbsp;</span><a href="index.php?do=help&op=info&art_id={$v[art_id]}">{$v[art_title]}</a></li>
+          {/loop}
+        </ul>
+      </div>
+    </div>
+    
+    <div class="gzfw">
+      <h2>各种服务渠道，为您解决各种疑问</h2>
+      <div class="gzfw_qq">
+        <div class="help">
+          <p><img src="/tpl/default/d8/images/help_search.gif" /></p>
+          <h3>常见问题解答</h3>
+          <p>常见问题和官方解答，能解决您的大部分问题。</p>
+          <p>&nbsp;</p>
+          <p><a href="index.php?do=help&op=list&art_cat_id=293">进入>></a></p>
+        </div>
+        <div class="help">
+          <p><img src="/tpl/default/d8/images/self_ser.gif" /></p>
+          <h3>会员自助服务</h3>
+          <p>无需等待，自己就可以操作完成，比找客服更快！</p>
+          <p>&nbsp;</p>
+          <p><a href="index.php?do=help&op=list&art_cat_id=370">进入>></a></p>
+        </div>
+        <div class="help">
+          <p><img src="/tpl/default/d8/images/help_onlineqq.gif" /></p>
+          <h3>在线QQ服务</h3>
+          <p>一品专业客服为您在线实时解决问题。</p>
+          <p>服务时间：<span>周一至周五早上8：30至晚上20：30  周六周日早上8：30至晚上18：00</span></p>
+          <p>&nbsp;</p>
+          <p><a href="index.php?do=help&op=info&art_id=320">进入>></a></p>
+        </div>
+        <div class="help" style="border:none;">
+          <p><img src="/tpl/default/d8/images/hotline.gif" /></p>
+          <h3>客服400热线</h3>
+          <p>更好更贴心的服务热线，用声音来传达一品的专业。</p>
+          <p>服务时间：<span>周一至周五早上8：30至晚上20：30  周六周日早上8：30至晚上18：00</span></p>
+          <p>&nbsp;</p>
+          <p><a href="index.php?do=help&op=info&art_id=321">进入>></a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bzzx_right">
+    <div class="dh">
+      <h2>轻松快捷·更高效率·节省时间<br />客服帮您搞定一切</h2>
+      <h3><a href="index.php?do=360">&nbsp;</a></h3>
+      <div class="telep"><img src="/tpl/default/d8/images/telephone.png" /> <span>400-850-5066</span></div>
+      <div class="qq"><img src="/tpl/default/d8/images/qq.png" /> <span>4008505066</span></div>
+    </div>
+    
+    <div class="cyzz">
+      <h2><span class="cyfw">常用自助服务</span><span class="gd"><a href="index.php?do=help&op=list&art_cat_id=369">更多>></a></span></h2>
+      <dl>
+        <dt><a href="index.php?do=help&op=list&art_cat_id=296"><img src="/tpl/default/d8/images/zhmm.jpg" /></a></dt>
+        <dd><a href="index.php?do=help&op=list&art_cat_id=296">找回登录密码</a></dd>
+      </dl>
+      <dl>
+        <dt><a href="index.php?do=help&op=list&art_cat_id=296"><img src="/tpl/default/d8/images/zhmm_1.jpg" /></a></dt>
+        <dd><a href="index.php?do=help&op=list&art_cat_id=296">找回安全密码</a></dd>
+      </dl>
+      <dl>
+        <dt><a href="index.php?do=help&op=list&art_cat_id=297"><img src="/tpl/default/d8/images/zhmm_2.jpg" /></a></dt>
+        <dd><a href="index.php?do=help&op=list&art_cat_id=297">在线冲值</a></dd>
+      </dl>
+      <dl>
+        <dt><a href="index.php?do=help&op=list&art_cat_id=310"><img src="/tpl/default/d8/images/zhmm_3.jpg" /></a></dt>
+        <dd><a href="index.php?do=help&op=list&art_cat_id=310">账号认证</a></dd>
+      </dl>
+    </div>
+    
+    <div class="cyzz">
+      <h2><span class="cyfw">最新添加帮助</span><span class="gd"><a href="index.php?do=help&op=list">更多>></a></span></h2>
+      <ul>
+      	{loop $art_list_arr_new $k $v}
+        <li><a href="index.php?do=help&op=info&art_id={$v[art_id]}">{$v[art_title]}</a></li>
+        {/loop}
+      </ul>
+    </div>
+  </div>
+  <div class="clear" style="clear:both"></div>
+   </div>
+
+<script type="text/javascript">
+	
+	In.add('help',{path:"{$style_path}/js/help.js",type:'js'});
+	In('help');
+</script>
+<!--{template footer_dou}-->

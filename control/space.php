@@ -119,6 +119,13 @@ $ip = kekezu::get_ip ();
 
 if ($_COOKIE ['ip'] != 1) {
 	db_factory::execute ( sprintf ( " update %switkey_shop set views=views+1 where uid=%d", TABLEPRE, $member_id ) );
+	
+	if($uid){
+		$visit_log = db_factory::query ( sprintf ( " select *  from %switkey_shop_visit where shop_id=%d and uid=%d", TABLEPRE, $shop_info['shop_id'], $uid)); 
+		if(!$visit_log) db_factory::execute ( sprintf ( " insert into %switkey_shop_visit values('',".$shop_info['shop_id'].",".$uid.",'".$ip."',".time().")", TABLEPRE) );
+		else db_factory::execute ( sprintf ( " update %switkey_shop_visit set on_time=%d where uid=%d and shop_id=%d", TABLEPRE, time(), $uid, $shop_info['shop_id'] ) );
+	}
+	
 	setcookie ( "ip", 1, time () + 3600 * 24, COOKIE_PATH, COOKIE_DOMAIN,NULL,TRUE );
 }
 keke_lang_class::package_init ( "space" );
@@ -140,17 +147,20 @@ $register =  intval ( $register ['count'] );
 // 关注的人
 $where = " 1 = 1 ";
 $sql  = sprintf("select f.*,s.uid focus_uid,s.username focus_username,s.seller_level  from %switkey_free_follow as f left join %switkey_space as s on f.fuid = s.uid where ",TABLEPRE,TABLEPRE);
-$where .= " and f.uid = ".$uid;
+$where .= " and f.uid = ".$member_id;
 
 $order .= " order by f.on_time desc limit 0,8"; 
 
 $follow_list = db_factory::query($sql.$where.$order);
 //
+//	来访人员
+$visit_list = db_factory::query ( sprintf ( " select *  from %switkey_shop_visit where shop_id=%d order by on_time desc limit 0,4", TABLEPRE, $shop_info['shop_id'])); 
+//
 // 收支
 $sql = ' select a.fina_cash,a.fina_type from '.TABLEPRE.'witkey_finance a left join '
 				.TABLEPRE.'witkey_task b on a.obj_id=b.task_id left join '.TABLEPRE
 				.'witkey_service c on a.obj_id=c.service_id ';
-$where =" where a.uid=".intval($uid)." and a.fina_type='in' and a.fina_action not in ('withdraw','offline_recharge','offline_charge','online_charge','online_recharge','withdraw_fail')";
+$where =" where a.uid=".intval($member_id)." and a.fina_type='in' and a.fina_action not in ('withdraw','offline_recharge','offline_charge','online_charge','online_recharge','withdraw_fail')";
 $fina_arr = db_factory::query($sql.$where);
 $shouru = 0;
 $sum = 0;
@@ -174,5 +184,13 @@ function get_witkey_good_rate($user_info){
 	return $st?(number_format($user_info['seller_good_num']/$st,2)*100).'%':'0%'; 
 }
 // end
+
+
+// 成功案例
+$sql_c = "select a.*,a.indus_id in_id,b.* from " . TABLEPRE . "witkey_shop_case as a
+		left join " . TABLEPRE . "witkey_service as b
+				on a.service_id = b.service_id
+					where  a.shop_id = " . intval($shop_info ['shop_id']) . " order by b.service_id desc limit 0,4";
+$shop_arr_left = db_factory::query ( $sql_c );
 
 require S_ROOT . "control/space/{$type}_{$view}.php";

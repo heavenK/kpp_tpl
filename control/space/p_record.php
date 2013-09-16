@@ -7,61 +7,44 @@ if($shop_open){
 	 $service_arr = $service_obj->query_keke_witkey_service();
 }
 
-$auth_item = keke_auth_base_class::get_auth_item ();
-$auth_temp = array_keys ( $auth_item );
-$user_info ['user_type'] == 2 and $un_code = 'realname' or $un_code = "enterprise";
-$t = implode ( ",", $auth_temp );
-$auth_info = db_factory::query ( " select a.auth_code,a.auth_status,b.auth_title,b.auth_small_ico,b.auth_small_n_ico from " . TABLEPRE . "witkey_auth_record a left join " . TABLEPRE . "witkey_auth_item b on a.auth_code=b.auth_code where a.uid ='".$member_info['uid']."' and FIND_IN_SET(a.auth_code,'$t')", 1, - 1 );
-$auth_info = kekezu::get_arr_by_key ( $auth_info, "auth_code" );
 
-$good_rate  = get_witkey_good_rate($member_info);
-function get_witkey_good_rate($user_info){
-	$st = $user_info['seller_total_num'];
-	return $st?(number_format($user_info['seller_good_num']/$st,2)*100).'%':'0%'; 
+
+$status_arr   = service_shop_class::get_order_status();
+intval ( $page ) and $p ['page'] = intval ( $page ) or $p ['page']='1';
+intval ( $page_size ) and $p ['page_size'] = intval ( $page_size ) or $p['page_size']='10';
+$p['url'] = $basic_url."&view=sale&page_size=".$p ['page_size']."&page=".$p ['page'];
+$p ['anchor']	  = '#pageTop';
+$w=array();
+$w['a.order_status']="complete";
+
+
+$order = " a.order_time desc";
+$where = " select a.order_status,a.order_name,a.order_uid,a.order_username,a.seller_uid,a.seller_username,a.order_amount,a.order_time from " . TABLEPRE . "witkey_order a left join " . TABLEPRE . "witkey_order_detail b on a.order_id=b.order_id where
+1=1 and b.obj_type = 'service' and (a.order_uid = ".$member_info['uid'] . " or a.seller_uid = ".$member_info['uid'].")";
+$ext_condit and $where .= " and " . $ext_condit;
+$arr = keke_table_class::format_condit_data ( $where, $order, $w, $p );
+$sale_info = db_factory::query ( $arr ['where'] );
+$sale_arr ['sale_info'] = $sale_info;
+$sale_arr ['pages'] = $arr ['pages'];
+$sale_list   = $sale_arr['sale_info'];
+$pages      = $sale_arr['pages'];
+
+$i = 0;
+$j = 0;
+$m = 0;
+$order_list = array();
+$seller_list = array();
+
+foreach($sale_list as $key => $val){
+	$i++;
+	if($val['order_uid'] == $member_id) {
+		$order_list[$key] = $val;
+		$m++;
+	}
+	if($val['seller_uid'] == $member_id) {
+		$seller_list[$key] = $val;
+		$j++;
+	}
 }
-if($task_open){
-	$task_obj = keke_table_class::get_instance('witkey_task');
-	$w = sprintf(' uid = %d',$member_id);
-	$page or $page = 1;
-	$limit=10;
-	$task = $task_obj->get_grid($w,$p_url, $page,$limit,' order by start_time desc',1,'task_list');
-	$count = $task_obj->_count;
-	$task_list = $task['data'];
-	$pages     = $task['pages'];
-	$cash_cove = kekezu::get_cash_cove('',true);
-}
-
-
-// 收支
-$sql = ' select a.fina_cash,a.fina_type from '.TABLEPRE.'witkey_finance a left join '
-				.TABLEPRE.'witkey_task b on a.obj_id=b.task_id left join '.TABLEPRE
-				.'witkey_service c on a.obj_id=c.service_id ';
-$where =" where a.uid=".intval($uid)." and a.fina_type='in' and a.fina_action not in ('withdraw','offline_recharge','offline_charge','online_charge','online_recharge','withdraw_fail')";
-$fina_arr = db_factory::query($sql.$where);
-$shouru = 0;
-$sum = 0;
-foreach($fina_arr as $val){
-	$shouru += $val['fina_cash'];
-	$sum ++;
-}
-//end 
-
-
-// 成功案例
-$sql_c = "select a.*,a.indus_id in_id,b.* from " . TABLEPRE . "witkey_shop_case as a
-		left join " . TABLEPRE . "witkey_service as b
-				on a.service_id = b.service_id
-					where  a.shop_id = " . intval($shop_info ['shop_id']) . " order by b.service_id desc limit 0,4";
-$shop_arr = db_factory::query ( $sql_c );
-
-
-$sql = "select * from " . TABLEPRE . "witkey_task order by task_id desc limit 0,10";
-$task_list_arr = db_factory::query ( $sql );
-
-$sql = "select * from " . TABLEPRE . "witkey_article where art_cat_id=5 order by pub_time desc limit 0,10";
-$art_list_arr = db_factory::query ( $sql );
-
-$sql = "select * from " . TABLEPRE . "witkey_article where art_cat_id=366 order by pub_time desc limit 0,10";
-$art_list_arr_366 = db_factory::query ( $sql );
 
 require keke_tpl_class::template(SKIN_PATH."/space/{$type}_{$view}");

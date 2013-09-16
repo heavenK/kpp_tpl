@@ -10,6 +10,7 @@ $time_obj =new  service_time_class();
 $time_obj->validtaskstatus();
 $seller_goods_num = db_factory::get_count(sprintf("select count(service_id) from %switkey_service where model_id=7 and uid=%d and service_status=2",TABLEPRE,$owner_info['uid']));
 $shop_aid = keke_user_mark_class::get_user_aid ( $owner_info['uid'], 2, null, 1 );
+
 switch ($op){
 	case "report" : 
 		$transname = keke_report_class::get_transrights_name($type);
@@ -105,4 +106,5 @@ $comment_obj = keke_comment_class::get_instance('service');
 		$pages     = $mark_arr['pages'];
 		break;
 }
+
 require keke_tpl_class::template ( "shop/" . $model_info ['model_code'] . "/tpl/" . $_K ['template'] . "/service_info" );

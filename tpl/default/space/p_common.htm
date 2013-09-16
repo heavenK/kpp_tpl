@@ -1,4 +1,5 @@
 <!--{eval require keke_tpl_class::template(SKIN_PATH."/space/{$type}_top")}--><!--页面内容-->
+<link href="/tpl/default/d8/css/style.css" type="text/css" rel="stylesheet" />
 {if $member_info['isvip'] == 1}
 <style>
 .menu ul li.h_r a.hide{color:#fff;}
@@ -64,8 +65,8 @@
             <div class="vip_zs_lzs">
             	<h1>案例展示</h1>
                 <ul>
-                	{if $shop_arr}
-			            {loop $shop_arr $k $v}
+                	{if $shop_arr_left}
+			            {loop $shop_arr_left $k $v}
                         <li>
                         	{if $v['case_type']==1}
                                 <a href="index.php?do=service&sid=$v['service_id']" target="_blank">
@@ -87,10 +88,9 @@
             <div class="vip_zs_lzs">
             	<h1>最近访客</h1>
                 <ul>
-                	<li><h2><a href="#"><img src="/tpl/default/d8/images/dad2.jpg" width="95" height="95" /></a></h2><p>13:30</p></li>
-                    <li><h2><a href="#"><img src="/tpl/default/d8/images/dad2.jpg" width="95" height="95" /></a></h2><p>13:30</p></li>
-                    <li><h2><a href="#"><img src="/tpl/default/d8/images/dad2.jpg" width="95" height="95" /></a></h2><p>13:30</p></li>
-                    <li><h2><a href="#"><img src="/tpl/default/d8/images/dad2.jpg" width="95" height="95" /></a></h2><p>13:30</p></li>
+                	{loop $visit_list $k $v}
+                	<li><h2><a href="index.php?do=space&member_id={$v[uid]}"><img src="<!--{userpicurl($v[uid],middle)}-->" width="95" height="95" /></a></h2><p><!--{date('m-d H:i',$v['on_time'])}--></p></li>
+                    {/loop}
                     <div class="clear"></div>
                 </ul>
             </div>

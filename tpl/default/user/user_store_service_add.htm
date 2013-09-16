@@ -133,6 +133,14 @@
                         </td>
                       </tr>
                       <tr>
+                        <td width="80" valign="middle" align="right" height="40">有效期：</td>
+                        <td width="20" valign="middle" height="40">&nbsp;</td>
+                        <td valign="middle" align="left" height="40">
+                        <input name="txt_exist_day"   onclick="showcalendar(event, this, 0)" size="30" value="{if $release_info['txt_exist_day']}$release_info['txt_exist_day']{/if}" type="text" id="txt_exist_day"   msgArea="span_exist_day" onkeyup="clearstr(this)"
+			         	limit="required:true;type:date;than:min" msg="有效期时间选择不正确" max="" class="nr_input_1"/>
+                        </td>
+                      </tr>
+                      <tr>
                         <td width="80" valign="middle" align="right" height="40">&nbsp;</td>
                         <td width="20" valign="middle" height="40">&nbsp;</td>
                         <td valign="middle" align="left" height="40">&nbsp;</td>

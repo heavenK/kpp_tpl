@@ -23,7 +23,7 @@ body
 #box									{width:1000px; margin:0 auto;}
 
 /*师徒关系--shitu.html*/
-.teacher_zl								{margin-top:35px; border:1px solid #f4f5f5; background:#f0fffa; padding:0px 0 26px 29px;}
+.teacher_zl								{margin-top:10px; border:1px solid #f4f5f5; background:#f0fffa; padding:0px 0 26px 29px;}
 .teacher_zl_tx							{width:165px; height:205px; float:left; border:2px solid #d5dcda; background:#f7f7f7; margin-right:50px; display:inline; margin-top:27px;}
 .teacher_zl_tx h1						{padding:9px; border-bottom:2px solid #d5dcda;}
 .teacher_zl_btn							{width:165px; height:38px; background:url(../images/teacher01.jpg) repeat-x; border:0px; font-size:14px;}
@@ -148,7 +148,7 @@ body
 .vip_zs_lzs ul li						{width:101px; float:left; margin:0 3px; display:inline;}
 .vip_zs_lzs ul li p						{line-height:24px; margin-bottom:5px; text-align:center; color:#000;}
 .vip_zs_right							{width:747px; float:right; margin-top:18px;}
-.vip_zs_rtop							{margin-bottom:40px;}
+.vip_zs_rtop							{margin-bottom:10px;}
 .vip_zs_rtopl							{border:1px solid #d5d5d5; width:491px; height:272px; float:left;}
 .vip_zs_rtopl p							{padding:25px 15px 0 18px; float:left; width:455px;}
 .vip_zs_rtopl p i						{width:67px; float:left; line-height:17px; font-weight:bold;}
@@ -196,7 +196,11 @@ body
 .vip_about_info em						{line-height:24px; width:100%; float:left; color:#8a8a8a;}
 .vip_about_info tt						{padding-top:15px; color:#71c6ed; width:100%; line-height:30px; float:left; font-size:15px;}
 
-
+.sqxx_top_l					{width:325px; height:231px; float:left; margin-left:5px; display:inline;}
+.sqxx_top_r					{width:414px; height:222px; float:right; border:1px solid #ccc; padding-top:7px;}
+.sqxx_top_rlist				{line-height:29px; font-size:15px; padding-left:15px;}
+.sqxx_btn					{width:72px; height:21px; background:url(../images/gu01.jpg) no-repeat; color:#fff; border:0px; line-height:21px; margin-top:5px;}
+.sqxx_bom					{margin-top:10px;}
 
 
 

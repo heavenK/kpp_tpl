@@ -1,0 +1,101 @@
+<!--{template header_index_top}-->
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/T_index.css">
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/gzs_gl.css">
+
+<div class="clear" style="clear:both"></div>
+    
+   <div class="help_center">
+
+    <div class="cygl_left">
+      <div class="yhzhbox tabCon">
+        	<div class="yhzhleft">
+            	<div class="yh_list">
+                    <div class="yhzhleftnav">
+                        <p><b>问题解答分类</b></p>
+                    </div>
+                    <div class="yhzhlefttree">
+                        <ul>
+                            {loop $tree_list $k $v}
+                            <li class="m"><p>{$v['cat_name']}</p>
+                                <ul style="display:none">
+                                    {loop $v['subtree'] $k2 $v2}
+                                    <li><p><a href="index.php?do=help&op=list&art_cat_id={$v2['art_cat_id']}" {if $k2==$tpid}style="color:#48b78d"{/if}>{$v2['cat_name']}</a></p></li>
+                                    {/loop}
+                                </ul>
+                            </li>
+                            {/loop}
+                        </ul>
+                    </div>
+                    <script>
+					$(function(){
+						$("li:has(ul)").addClass("p");
+						$("ul:eq(0)>li ul").hide();
+						$("p").click(function(){
+							$(this).parent(":has(ul)").find(">ul").slideToggle().end().toggleClass("p");
+						});
+					})
+					</script>
+                </div>
+                <div style="height:10px;"></div>
+                <div class="ke_fu">
+                	<span><!--{eval $p_arr = explode(',',$basic_config['kf_phone']) }-->{$p_arr['0']}</span>
+                    <p>免长途客服服务热线</p>
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+    <div class="wtjd_right">
+      <div class="wtjd_top">
+        <div class="wt_left"><img src="/tpl/default/d8/images/help_search.gif" /></div>
+        <div class="wt_right">
+          <form action="index.php?do=help&op=list" method="post">
+          <input type="hidden" name="sbt" value="1" />
+          <p class="sr"><input type="text" value="输入您想搜索的帮助主题关键词" name="key_word" class="bzzx_input" /> <input type="submit" value="搜索" name="" class="bzzx_submit" /></p>
+          <p class="rm">热门搜索：<a href="index.php?do=help&op=list&key_word=忘记密码">忘记密码</a> <a href="index.php?do=help&op=list&key_word=认证">认证</a> <a href="index.php?do=help&op=list&key_word=任务速配">任务速配</a> <a href="index.php?do=help&op=list&key_word=发布任务">发布任务</a></p></div>
+          </form>
+      </div>
+      {if $op == 'info'}
+      <div class="wt_center">
+      	<!--{eval echo htmlspecialchars_decode($art_info[content])}-->
+      </div>
+      {else}
+          {if $art_list}
+          <div class="zcybz_z">
+            <ul>
+              {loop $art_list $k $v}
+              <li><span>• </span><a href="index.php?do=help&op=info&art_id={$v[art_id]}" target="_blank">{$v['art_title']}</a></li>
+              {/loop}
+            </ul>
+          </div>
+          {else}
+          无结果
+          {/if}
+      {/if}
+      <div class="zcybz_z">
+        <div class="zcybz_left">
+        <h2>最常用帮助</h2>
+        <ul>
+          {loop $art_list_arr $k $v}
+          <li><span>• </span><a href="index.php?do=help&op=info&art_id={$v[art_id]}" target="_blank">{$v['art_title']}</a></li>
+          {/loop}
+        </ul>
+      </div>
+      <div class="zcybz">
+        <h2>最新添加帮助</h2>
+        <ul>
+          {loop $art_list_arr_new $k $v}
+          <li><span>• </span><a href="index.php?do=help&op=info&art_id={$v[art_id]}" target="_blank">{$v['art_title']}</a></li>
+          {/loop}
+        </ul>
+      </div>
+      </div>
+    </div>
+
+  	<div class="clear" style="clear:both"></div>
+   </div>
+	
+
+
+<!--{template footer_dou}-->

@@ -291,7 +291,7 @@ function ieGo(){
                    <li>|</li>
                   <li {if $view=='case'}class="h_r"{/if}><a href="index.php?do=space&member_id={$member_info[uid]}&view=case" class="hide">案例展示</a></li>
                    <li>|</li>
-                  <li {if $view=='service'}class="h_r"{/if}><a href="index.php?do=space&member_id={$member_info[uid]}&view=service" class="hide">出售服务</a></li>
+                  <li {if $view=='service' || $view=='service_info'}class="h_r"{/if}><a href="index.php?do=space&member_id={$member_info[uid]}&view=service" class="hide">出售服务</a></li>
                    <li>|</li>
                    <li {if $view=='record'}class="h_r"{/if}><a href="index.php?do=space&member_id={$member_info[uid]}&view=record" class="hide">交易记录</a></li>
                    <li>|</li>
