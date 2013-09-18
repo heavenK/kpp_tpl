@@ -8,7 +8,7 @@ if($shop_open){
 }
 
 $sql = sprintf ( "select distinct(uid) from %switkey_msg where ", TABLEPRE);
-$where = " title = '申请拜师' and to_uid = " . $uid . " and on_time >= " .strtotime("today");
+$where = " title = '申请拜师' and to_uid = " . $member_id . " and on_time >= " .strtotime("today");
 $req_count = count(db_factory::query ( $sql . $where ));
 
 
@@ -21,8 +21,9 @@ $req_count = count(db_factory::query ( $sql . $where ));
 	$where = " pid = " . $member_id . " ";
 	$count = db_factory::get_count ( sprintf ( "select count(uid) from %switkey_space where %s", TABLEPRE, $where ) );
 	$sql = sprintf ( "select distinct(uid) from %switkey_msg where ", TABLEPRE);
-	$where = " title = '申请拜师' and to_uid = " . $uid . " ";
+	$where = " title = '申请拜师' and to_uid = " . $member_id . " ";
 	$uid_list = db_factory::query ( $sql . $where );
+	
 	
 	foreach($uid_list as $key => $val){
 		if($key == 0) $uids = $val['uid'];

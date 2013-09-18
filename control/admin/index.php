@@ -49,6 +49,7 @@ $dos = array (
 		'trans',
 		'keke',
 		'payitem' ,
+		'xtang',
 		'store'
 );
 (! empty ( $do ) && in_array ( $do, $dos )) or $do = 'index';
@@ -73,6 +74,7 @@ $menu_arr = array (
 		'shop' => $_lang ['shop_manage'],
 		'finance' => $_lang ['finance_manage'],
 		'user' => $_lang ['user_manage'],
+		'xtang' => "D8学堂" ,
 		'tool' => $_lang ['system_tool'],
 		'app' => $_lang ['app_center'] 
 );

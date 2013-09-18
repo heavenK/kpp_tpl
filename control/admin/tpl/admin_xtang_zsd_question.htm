@@ -1,0 +1,71 @@
+<!--{template control/admin/tpl/admin_header}-->
+ <script type="text/javascript" src="../../resource/js/system/keke.js"></script>
+ <script type="text/javascript" src="../../resource/js/system/ajaxfileupload.js"></script>
+
+	<div class="page_title">
+   <h1>选题</h1>
+
+	</div>
+    
+<div class="box post">
+    <div class="tabcon">
+        	<div class="title"><h2>选题</h2></div>
+            <div class="detail">
+                <form method="post" action="index.php?do={$do}&view={$view}" id="frm_cat_edit" >
+                <input type="hidden" name="do" value="{$do}">
+                <input type="hidden" name="view" value="{$view}">
+                <input type="hidden" name="sid" value="{$zsd_info['sid']}">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <th scope="row" width="130">标题{$_lang['zh_mh']}</th>
+                        <td>
+	                        <input disabled="disabled" type="text" class="txt" style=" width:260px;" name="title" id="title" value="{$zsd_info['title']}" maxlength="20" 
+                         limit="required:true;len:2-20" 
+                         msg="{$_lang['cat_name_limit']}" 
+                         msgArea="zsd_name_msg" 
+                         title="{$_lang['input_cat_name']}"/><span id="zsd_name_msg"></span>
+                        </td>
+                      </tr>
+                    
+                      <tr>
+                        <th scope="row" width="130">分类{$_lang['zh_mh']}</th>
+                        <td>
+	                        <select disabled="disabled" id="type_id" name="type_id" style=" width:270px;"
+	                        		 limit = "required:true;type:int" 
+                                     msg = '{$_lang['select_father_cat']}' 
+                                     title='{$_lang['cat_what']}{$_lang['zh_wh']}' 
+                                     msgArea="msg_cat_id">
+	                        {loop $cat_arr $v}
+	                        <option value="{$v[id]}" {if $zsd_info['type_id']==$v[id]} selected="selected"{/if}>$v['type_name']</option>
+	                        {/loop}
+	                   		 </select>
+	                        <span id="msg_cat_id"></span>
+                        </td>
+                      </tr>
+                      
+                      <tr>
+                        <th scope="row">题目{$_lang['zh_mh']}</th>
+                        <td>
+                        	{loop $question_arr $k $v}
+                            	<input type="checkbox" name="question[]" value="{$v['qid']}" id="{$v['qid']}" {if $v[sid] == $sid} checked="checked" {/if}/><label for="{$v['qid']}">{$v['q_title']}</label>&nbsp;&nbsp;&nbsp;&nbsp;{if ($k+1)%3 == 0}<br />{/if}
+                            {/loop}
+                        </td>
+                      </tr>
+                    
+                    <tr>
+                        <th scope="row">&nbsp;</th>
+                    	<td>
+                    	<button name="sbt_edit" value="1" class="pill positive primary  button" type="submit"><span class="check icon"></span>{$_lang['submit']}</button>
+                    	</td>
+                    </tr>
+                    
+                    </table>
+                </form>
+             </div>
+       </div>
+</div>
+<!--主体结束-->
+
+ 
+
+<!--{template control/admin/tpl/admin_footer}-->

@@ -1,5 +1,26 @@
 <!--{eval require keke_tpl_class::template(SKIN_PATH."/space/{$type}_top")}--><!--页面内容-->
 <link href="/tpl/default/d8/css/style.css" type="text/css" rel="stylesheet" />
+
+
+
+<script type="text/javascript" src="/tpl/default/d8/js/jquery.modal.js"></script>
+<script type="text/javascript" src="/tpl/default/d8/js/site.js"></script>
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/shitu.css">
+
+<div class="overlay"></div>
+<div id="modal1" class="modal">
+	<h1><p class="closeBtn"><img width="16" border="0" height="16" src="/tpl/default/d8/images/close.png"></p></h1>
+    <div class="baibai">
+      	<h2>拜师需扣除1000豆币</h2>
+        <h3>是否拜{$member_info['username']}为师</h3>
+        <h4><a href="###" class="guanbi" onclick="send_req_zj({$member_info['uid']})" style=" color:#00F">是</a><a href="#" class="guanbi" style=" color:#00F">否</a></h4>
+        <h5><a href="#">《师徒关系规则》</a></h5>
+    </div>
+    
+</div>
+
+
+
 {if $member_info['isvip'] == 1}
 <style>
 .menu ul li.h_r a.hide{color:#fff;}
@@ -58,7 +79,7 @@
                 {/loop}
             </tt><div class="clear"></div></div>
             <div class="vip_zs_lbz"><p>已加入 <i>诚信保障</i></p><p>交纳保证金 {$member_info['balance']}</p></div>
-            <div class="vip_zs_lbs"><a href="###" onclick="send_req({$member_info['uid']})">我要拜师</a><div class="clear"></div></div>
+            <div class="vip_zs_lbs"><a  class="modalLink" href="#modal1" >我要拜师</a><div class="clear"></div></div>
             <div class="vip_zs_lrz">好评：<i><!--{eval echo round(($member_info['seller_good_num']/$member_info['seller_total_num'])*100).'%';}--></i></div>
             <div class="vip_zs_lrz">交易信息<br />交易总收入：{$shouru}元<br />交易总次数：{$sum}</div>
             <div class="vip_zs_lrz">商铺统计<br />收藏人数：{$shop_info[focus_num]}<br />访问人数：{$shop_info[views]}<br />开通时间：<!--{date('Y-m-d',$shop_info['on_time'])}--></div>

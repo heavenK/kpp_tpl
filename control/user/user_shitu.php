@@ -10,8 +10,19 @@ if($ajax == 1){
 }
 if($ajax == 2){
 	$to_user_info = keke_user_class::get_user_info($to_uid);
+	
+	if($username == $to_user_info[username]) {
+		echo 2;
+		exit;	
+	}
+	
+	$res = db_factory::get_one ( sprintf ( " select * from %switkey_space where uid=%d", TABLEPRE, $uid )); 
+	if($res['pid']) {
+		echo 1;
+		exit;	
+	}
+	
 	keke_msg_class::send_private_message ("申请拜师","威客".$username."要拜您为师，是否<a href=\"index.php?do=user&view=shitu&op=req\">同意</a>", $to_user_info[uid], $to_user_info[username],'','','ajax');
- 
 	exit;
 }
 if($ajax == 3){
@@ -40,6 +51,9 @@ $task_in = number_format ( $task_in ['cash'], 2, ".", "," );
 $register =  intval ( $register ['count'] );
 // end
 
+if($user_info['pid']){
+	$master_info = db_factory::get_one ( sprintf ( " select * from %switkey_space where uid=%d", TABLEPRE, $user_info['pid'] )); 
+}
 
 $ops = array ('list','req');
 if(!$op) $op = 'list';

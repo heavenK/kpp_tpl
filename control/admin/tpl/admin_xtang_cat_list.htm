@@ -1,0 +1,138 @@
+<!--{template control/admin/tpl/admin_header}-->
+<style type="text/css">
+.jia {background: url(tpl/img/plus.gif)}
+.jian {background: url(tpl/img/minus.gif) }
+</style>
+<div class="page_title">
+    	<h1>分类管理</h1>
+        <div class="tool">
+            <a href="index.php?do=$do&view=cat_list&type={$type}" class="here">分类管理</a>
+          <a href="index.php?do=$do&view=cat_edit&type=$type" {if $view=='cat_edit'}class="here"{/if} {if $view=='edit'}class="here" {/if}>分类添加</a>           
+		</div>
+</div>
+
+<div class="box search p_relative">
+    	<div class="title"><h2>{$_lang['search']}</h2></div>
+        <div class="detail" id="detail">
+           
+		   
+			
+        </div>
+    </div>
+    <!--搜索结束-->
+	<div class="box list">
+    	<div class="title"><h2>{$_lang['cat_list']}</h2></div>
+        <div class="detail">
+              <table cellpadding="0" cellspacing="0">
+                <tbody>
+                <tr>
+                 <!--   <th width="8%">ID</th>-->
+                    <th width="7%">显示顺序</th>
+                    <th width="30%">{$_lang['category']}{$_lang['name']}</th>             
+                   <th width="13%">{$_lang['operate']}</th>
+                </tr>
+                
+                {loop $cat_show_arr $k $v}
+				 <tbody>
+                  <tr class="item" align="left">
+                    <td class="td28">
+                    	$v['list_order']</td>
+                    <td align="left">
+						{$v['type_name']}
+					</td>                                
+                    <td>
+						<a href="index.php?do={$do}&view=cat_edit&type_id={$v['id']}&pid={$v['pid']}&type={$type}" class="button dbl_target"><span class="pen icon"></span>编辑</a>
+						{if $v[pid]!=0}
+						<a href="index.php?do=$do&view=cat_list&type_id=$v['id']&ac=del" class="button"><span class="trash icon"></span>删除</a>
+						{/if}
+						
+					</td>
+                  </tr>
+				  </tbody>
+                  {loop $v['sub'] $k1 $v1}
+                  <tbody>
+                  <tr class="item" align="left">
+                    <td class="td28">
+                    	$v1['list_order']</td>
+                    <td align="left">
+						|--{$v1['type_name']}
+					</td>                                
+                    <td>
+						<a href="index.php?do={$do}&view=cat_edit&type_id={$v1['id']}&pid={$v1['pid']}&type={$type}" class="button dbl_target"><span class="pen icon"></span>编辑</a>
+						{if $v1[pid]!=0}
+						<a href="index.php?do=$do&view=cat_list&type_id=$v1['id']&ac=del" class="button"><span class="trash icon"></span>删除</a>
+						{/if}
+					</td>
+                  </tr>
+				  </tbody>
+                  {/loop}
+                  {/loop}
+               <tr>
+               	<td>&nbsp;</td>
+                    <td colspan="6">
+	                   
+	                    
+	                    <div class="clearfix">
+	                  		<div class="clearfix">	
+	                    </div>
+	                    </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>       
+    </div>
+<script type="text/javascript">
+
+    	function edit_listorder(iid,v){
+    		$.get('index.php?do={$do}&view={$view}&ac=editlistorder',{iid:iid,val:v});
+    	}
+    	
+    	var newindus_c = 0;
+    	function addchild(pid,ext){
+    		newindus_c++;
+    		if(ext=='')
+    		{ext = '|';}
+    		if(ext!=' ')
+    		{ext = '&nbsp;&nbsp;&nbsp;'+ext+'---';}
+    		var mod = '<tr class="item" id="newindus_c_'+newindus_c+'">';
+    		  	mod+='<td class="td28">'+'<input type=text size=3 class="txt" name="add_cat_name_listarr['+pid+']['+newindus_c+']" size=3>';+'</td>';
+    		  	mod+='<td>'+ext;
+    			mod+='<input type=text class="txt" name="add_cat_name_arr['+pid+']['+newindus_c+']">';
+    			mod+='</td>';
+    		   
+    	 
+    		    mod+='<td>&nbsp;</td>';
+    			mod+='<td>';
+    			mod+='<a href="javascript:;" onclick="$(\'#newindus_c_'+newindus_c+'\').remove()">';
+    			mod+='{$_lang['delete']}';
+    			mod+='</a>';
+    			mod+='</td>';
+    		  	mod+='</tr>	';
+    			
+    			$('#indus_item_l_'+pid).append(mod); 
+    		
+    	}
+    	
+       {loop $cat_index_arr $k $v}
+      	function showids_{$k}(op){
+    		if(op=='show'){
+    			{loop $cat_index_arr[$k] $ik $iv}
+    			$('#indus_item_l_{$ik}').show();
+    			{/loop}
+    		}
+    		else{
+    			{loop $cat_index_arr[$k] $ik $iv}
+    			$('#indus_item_l_{$ik}').hide();
+    			{/loop}
+    		}
+    		
+    		{if $cat_index_arr[$v['art_cat_id']]}
+    			showids_{$v['task']}(op);
+    		{/if}
+    		
+    	}
+    	{/loop}
+      
+</script>	
+<!--{template control/admin/tpl/admin_footer}-->

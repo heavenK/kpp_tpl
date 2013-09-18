@@ -468,6 +468,26 @@ function leave(uid) {
 	}
 }
 /**
+ * 离开师门
+ * 
+ * @param int
+ *            uid 离开人
+ */
+function leave_master(uid) {
+	if(check_user_login()){
+                            $.ajax({
+							   type: "GET",
+							   url: "index.php?do=user&view=shitu&ajax=1&to_uid="+uid,
+							   async: true,
+							   success: function(data){
+								   if(data == 1)	history.go(0);
+								   else	showDialog("操作失败！", 'error', L.operate_notice);
+							   }
+							})
+		
+	}
+}
+/**
  * 申请拜师
  * 
  * @param int
@@ -486,6 +506,23 @@ function send_req(to_uid) {
 							   }
 							})
                         });
+		
+	}
+}
+function send_req_zj(to_uid) {
+	if(check_user_login()){
+		$.ajax({
+							   type: "GET",
+							   url: "index.php?do=user&view=shitu&ajax=2&from_uid="+uid+"&to_uid="+to_uid,
+							   async: true,
+							   success: function(data){
+								   if(data > 2)	showDialog("申请成功！", 'notice', L.operate_notice);
+								   else if(data == 2)	showDialog("不可以对自己拜师！", 'notice', L.operate_notice);
+								   else	if(data == 1)showDialog("您已经拜过师了，请耐心等待！", 'error', L.operate_notice);
+								   else	showDialog("暂时无法拜师！", 'error', L.operate_notice);
+								   
+							   }
+				})
 		
 	}
 }

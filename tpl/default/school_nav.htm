@@ -1,0 +1,17 @@
+<div class="learn_l">
+        	<div class="learn_ltop">
+            	<ul>
+                	{loop $cat_arr $k $v}
+                	<li><a href="index.php?do=school&pid={$v['id']}">{$v['type_name']}</a></li>
+                    {/loop}
+                </ul>
+            </div>
+            <div class="learn_lend">
+                <div class="learn_lend_tit">推荐知识点</div>
+                <ul>
+                	{loop $art_top_arr $k $v}
+                    <li><a href="index.php?do=school&view=art_show&sid={$v[sid]}">$v[title]</a></li>
+                    {/loop}
+                </ul>
+            </div>
+        </div>

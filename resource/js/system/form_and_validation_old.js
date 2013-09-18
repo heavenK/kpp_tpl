@@ -146,6 +146,7 @@ function checkForm(form,checkAll){
 						}else{
 							if(!validElement(eles[i])||valid==1){
 								//eles[i].type!='checkbox'?eles[i].focus():'';
+								
 								return false;
 							}
 						}
@@ -176,9 +177,9 @@ function validElement(ele){
 	
 	
     //隐藏标签不验收，直接返回通过
-	var a = test_hidden(ele);
+	var aa = test_hidden(ele);
 
-	if(a==1){
+	if(aa==1){
 	
 		 return true;
 	}
@@ -875,7 +876,7 @@ function judgePattrnAndLen(){
 		return false;
 	}
 }
-Array.prototype.in_array = function(e) 
+/*Array.prototype.in_array = function(e) 
 { 
     for(i=0;i<this.length;i++)
     {
@@ -883,7 +884,7 @@ Array.prototype.in_array = function(e)
         return true;
     }
     return false;
-}
+}*/
 String.prototype.Trim     =   function(){return   this.replace(/(^\s*)|(\s*$)/g,   " ");} 
 /**
  * obj input_obj

@@ -1,0 +1,97 @@
+<!--{template control/admin/tpl/admin_header}-->
+<style type="text/css">
+.jia {background: url(tpl/img/plus.gif)}
+.jian {background: url(tpl/img/minus.gif) }
+</style>
+<div class="page_title">
+    	<h1>知识点管理</h1>
+        <div class="tool">
+            <a href="index.php?do=$do&view=zsd_list" class="here">知识点管理</a>
+          <a href="index.php?do=$do&view=zsd_edit" {if $view=='cat_edit'}class="here"{/if} {if $view=='edit'}class="here" {/if}>知识点添加</a>           
+		</div>
+</div>
+
+    <!--搜索结束-->
+	<div class="box list">
+    	<div class="title"><h2>知识点列表</h2></div>
+        <div class="detail">
+        		<div id="ajax_dom">
+
+              <table cellpadding="0" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th width="40">
+编号
+</th>
+                    <th width="60">{$_lang['category']}</th>
+                    <th width="30%" >标题</th>
+                    <th width="60">访问量</th>
+                    <th width="60">{$_lang['pub_name']}</th>
+                    <th width="60">{$_lang['pub_time']}</th>
+					
+                    <th width="25%">{$_lang['operate']}</th>
+                  </tr>
+				  </thead>
+                  <tbody>
+                  {loop $art_arr $k $v}
+                  <tr class="item">
+                  	<td>{$v['sid']}</td>
+                    <td class="td28 wraphide">
+                    	{$type_arr[$v[type_id]]}
+                    </td>
+                    <td>
+                    	<a href="index.php?do={$do}&view=zsd_edit&sid={$v['sid']}" >
+							<!--{eval echo(kekezu::cutstr($v['title'],50));}-->
+						</a>
+					</td>
+                    <td class="wraphide">$v['views']</td>
+                    <td class="wraphide">{$v['username']}</td>
+                    <td class="ws_break"><!--{date('Y-m-d',$v['pub_time'])}--></td>
+                    <td>
+                    	 
+						<a href="index.php?do={$do}&view=zsd_question&sid={$v['sid']}" class="button"><span class="book icon"></span>选题</a> 
+						<a href="index.php?do={$do}&view=zsd_edit&sid={$v['sid']}" class="button dbl_target"><span class="pen icon"></span>{$_lang['edit']}</a>
+						<a href="index.php?do={$do}&view={$view}&sid={$v['sid']}&ac=del" class="button"><span class="trash icon"></span>{$_lang['delete']}</a>
+					</td>
+                  </tr>
+                  {/loop}
+                  </tbody>
+				  <tfoot>
+                  <tr>
+                    <td colspan="7">
+	                    <div class="clearfix">
+	                    </div>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+			  <div class="page">{$pages['page']}</div>
+			  </div>
+
+        </div>       
+    </div>
+<script type="text/javascript">
+	function createHtml(writedir,filename){
+		var url = "index.php?do=static&view=update&sbt_edit=1&write_dir="+writedir+"&file_name="+filename;
+			ajaxDialog(url);
+	}
+ function ajaxDialog(url){
+ 	 art.dialog({
+			title: "{$_lang['static_file_update']}",
+			content: "{$_lang['start_update_static_file']}",
+			yesFn: function(){
+				var dia = this;
+				dia.content("{$_lang['static_file_update_not_operation']}").lock();
+						$.getJSON(url,function(json){
+							if(json.status==1){dia.close();
+								art.dialog({icon: 'succeed',content: json.msg,time:3});
+							}else{art.dialog.alert(json.msg);}
+							return false;
+						})
+						 return false;
+				},
+				noFn :function(){this.close();return false;}
+		})
+ }
+</script>
+<!--{template control/admin/tpl/admin_footer}-->

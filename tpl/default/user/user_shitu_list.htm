@@ -1,5 +1,23 @@
 <!--{template header_user_top}-->
 
+
+<script type="text/javascript" src="/tpl/default/d8/js/jquery.modal.js"></script>
+<script type="text/javascript" src="/tpl/default/d8/js/site.js"></script>
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/shitu.css">
+
+
+<div class="overlay"></div>
+<div id="modal1" class="modal">
+	<h1><p class="closeBtn"><img width="16" border="0" height="16" src="/tpl/default/d8/images/close.png"></p></h1>
+    <div class="baibai">
+      	<h2>拜师需扣除1000豆币</h2>
+        <h3>是否与{$master_info['username']}解除师徒关系</h3>
+        <h4><a href="###" class="guanbi" onclick="leave_master({$uid})" style=" color:#00F">是</a><a href="#" class="guanbi" style=" color:#00F">否</a></h4>
+        <h5><a href="#">《师徒关系规则》</a></h5>
+    </div>
+    
+</div>
+
 <!--contain start-->
 <div class="yhcenter">
     	<!--  账号设置 begin -->
@@ -55,7 +73,7 @@
                         </ul>
                     </div>
                     <div class="teacher_zl_hua">50</div>
-                    <div class="teacher_zl_tuichu"><input type="button" value="离开师门" name="" class="sm_tuichu"></div>
+                    <div class="teacher_zl_tuichu">{if $user_info['pid']}<input type="button" value="离开师门" name="" href="#modal1" class="modalLink sm_tuichu">{/if}</div>
                     <div class="clear"></div>
                 </div>
                 
