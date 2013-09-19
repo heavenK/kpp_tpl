@@ -135,15 +135,10 @@
                         	<div id="search_select" class="search_options">
                         	{if $task_open}
                            		 <a href="javascript:void(0);" class="selected" rel="task_list"><span>{$_lang['task']}</span>▼</a>
-                            {elseif !$task_open&&$shop_open}
-								 <a href="javascript:void(0);" class="selected" rel="shop_list"><span>{$_lang['goods']}</span>▼</a>
                             {/if}
 							{if $task_open}
 						   		 <a href="javascript:void(0);" class="hidden"   rel="task_list">{$_lang['task']}</a>
 							{/if}
-							{if $shop_open}
-                           	 	<a href="javascript:void(0);" class="hidden"   rel="shop_list">{$_lang['goods']}</a>
-							 {/if}
                             </div>
                         </div>
 						<input type="text" name="search_key" onkeydown="search_keydown(event);" id="search_key" class="fl_l search_input txt_input togg c999"
@@ -199,7 +194,7 @@
 												<li class="clearfix"><a href="index.php?do=release" title="{$_lang['pub_task']}" class="selected" ><div class="icon16 doc-new reverse"></div>{$_lang['pub_task']}</a></li>
 											{/if}
 											{if $shop_open}
-												<li class="clearfix"><a href="index.php?do=shop_release" title="{$_lang['pub_goods']}" class="selected"><div class="icon16 doc-new reverse"></div>{$_lang['pub_goods']}</a></li>
+												<li class="clearfix"><a href="index.php?do=user&view=store&op=service&model_id=7&opp=add" title="发布服务" class="selected"><div class="icon16 doc-new reverse"></div>发布服务</a></li>
 											{/if}
 											<li class="clearfix {if $uid ==ADMIN_UID || $user_info['group_id']>0}{else}hidden{/if}" id="manage_center"><a href="control/admin/index.php" title="{$_lang['manage_center']}" ><div class="icon16 key reverse"></div>{$_lang['manage_center']}</a></li>
 											<li class="clearfix"><a href="index.php?do=user&view=index" title="{$_lang['user_center']}"><div class="icon16 cog reverse"></div>{$_lang['user_center']}</a></li>

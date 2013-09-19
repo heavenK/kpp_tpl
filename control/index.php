@@ -7,8 +7,8 @@ $cur_info = $_currencies[$now_cur];
 $cash_coverage = kekezu::get_cash_cove ( '', true );
 if ($task_open) {
 	$final_task = kekezu::get_classify_indus();
-	$indus_recomm_task = db_factory::query(sprintf("select task_id,task_title,task_cash,task_cash_coverage,indus_pid,task_status,start_time from %switkey_task where task_status=2 order by start_time desc limit 0,10",TABLEPRE));
-	$indus_recomm_task_1 = db_factory::query(sprintf("select task_id,task_title,task_cash,task_cash_coverage,indus_pid,task_status,start_time from %switkey_task where task_status=2 and model_id=1 order by start_time desc limit 0,10",TABLEPRE));
+	$indus_recomm_task = db_factory::query(sprintf("select task_id,task_title,task_cash,task_cash_coverage,indus_pid,task_status,start_time from %switkey_task where task_status=2 order by start_time desc limit 0,9",TABLEPRE));
+	$indus_recomm_task_1 = db_factory::query(sprintf("select task_id,task_title,task_cash,task_cash_coverage,indus_pid,task_status,start_time from %switkey_task where task_status=2 and model_id=1 or model_id=2 order by start_time desc limit 0,9",TABLEPRE));
 	$task_array = array();
 	if($indus_recomm_task){
 		foreach($indus_recomm_task as $k=>$v){
@@ -43,6 +43,27 @@ if ($shop_open) {
 	$range = range ( 0, 11);
 	$recomm_service = db_factory::query ( sprintf ( "select service_id,price,unite_price,pic,ad_pic,title from %switkey_service where  service_status='2' order by on_time desc limit 0,12", TABLEPRE ), 1, 600 );
 }
+
+$dynamic_arr = kekezu::get_feed ( "feedtype='work_accept'", "feed_time desc", 4 ); 
+$indus_all_arr = $kekezu->_indus_arr;
+// 设计
+	$sj_member = db_factory::query(sprintf("select *  from %switkey_member m left join %switkey_space s on m.uid=s.uid where s.indus_pid=441 order by m.uid desc limit 0,8",TABLEPRE,TABLEPRE));
+	$sj_member_2 = db_factory::query(sprintf("select *  from %switkey_member m left join %switkey_space s on m.uid=s.uid where s.indus_pid=441 order by m.uid desc limit 8,8",TABLEPRE,TABLEPRE));
+// 开发
+	$kf_member = db_factory::query(sprintf("select *  from %switkey_member m left join %switkey_space s on m.uid=s.uid where s.indus_pid=2 order by m.uid desc limit 0,8",TABLEPRE,TABLEPRE));
+	$kf_member_2 = db_factory::query(sprintf("select *  from %switkey_member m left join %switkey_space s on m.uid=s.uid where s.indus_pid=2 order by m.uid desc limit 8,8",TABLEPRE,TABLEPRE));
+// 策划
+	$ch_member = db_factory::query(sprintf("select *  from %switkey_member m left join %switkey_space s on m.uid=s.uid where s.indus_pid=3 order by m.uid desc limit 0,8",TABLEPRE,TABLEPRE));
+	$ch_member_2 = db_factory::query(sprintf("select *  from %switkey_member m left join %switkey_space s on m.uid=s.uid where s.indus_pid=3 order by m.uid desc limit 8,8",TABLEPRE,TABLEPRE));
+// 装修
+	$zx_member = db_factory::query(sprintf("select *  from %switkey_member m left join %switkey_space s on m.uid=s.uid where s.indus_pid=335 order by m.uid desc limit 0,8",TABLEPRE,TABLEPRE));
+	$zx_member_2 = db_factory::query(sprintf("select *  from %switkey_member m left join %switkey_space s on m.uid=s.uid where s.indus_pid=335 order by m.uid desc limit 8,8",TABLEPRE,TABLEPRE));
+// 服务
+	$fw_member = db_factory::query(sprintf("select *  from %switkey_member m left join %switkey_space s on m.uid=s.uid where s.indus_pid=192 order by m.uid desc limit 0,8",TABLEPRE,TABLEPRE));
+	$fw_member_2 = db_factory::query(sprintf("select *  from %switkey_member m left join %switkey_space s on m.uid=s.uid where s.indus_pid=192 order by m.uid desc limit 8,8",TABLEPRE,TABLEPRE));
+
+
+
 // 最新威客
 	$new_member = db_factory::query(sprintf("select *  from %switkey_member m left join %switkey_space s on m.uid=s.uid order by m.uid desc limit 0,10",TABLEPRE,TABLEPRE));
 	foreach($new_member as $key => $val){
@@ -71,6 +92,23 @@ if ($shop_open) {
 	$life_task_end = db_factory::query(sprintf("select *  from %switkey_task where task_status=8 and indus_pid=192 order by task_id desc limit 0,4",TABLEPRE));
 	$life_task = db_factory::query(sprintf("select *  from %switkey_task where task_status=2 and indus_pid=192  order by task_id desc limit 0,4",TABLEPRE));
 // end
+
+
+// vip
+	$vip_shop1 = db_factory::query(sprintf("select *  from %switkey_space s left join %switkey_shop m on m.uid=s.uid where s.recommend=1 order by s.uid desc limit 0,5",TABLEPRE,TABLEPRE));
+	$vip_shop2 = db_factory::query(sprintf("select *  from %switkey_space s left join %switkey_shop m on m.uid=s.uid where s.recommend=1 order by s.uid desc limit 5,5",TABLEPRE,TABLEPRE));
+	$vip_shop3 = db_factory::query(sprintf("select *  from %switkey_space s left join %switkey_shop m on m.uid=s.uid where s.recommend=1 order by s.uid desc limit 10,5",TABLEPRE,TABLEPRE));
+	$vip_shop4 = db_factory::query(sprintf("select *  from %switkey_space s left join %switkey_shop m on m.uid=s.uid where s.recommend=1 order by s.uid desc limit 15,5",TABLEPRE,TABLEPRE));
+/*	foreach($new_member as $key => $val){
+		$new_member[$key]['seller_level'] = unserialize($val['seller_level']);
+	}*/
+// end
+
+
+
+
+
+
 if(isset($op)&&$op == 'suggest'){
 		$title='我有话要说';
 		if($sbt_edit){
@@ -113,7 +151,9 @@ $register = db_factory::get_one ( sprintf ( " select count(uid) count from %swit
 $register =  intval ( $register ['count'] );
 $all_auth = db_factory::get_one ( sprintf ( " select count(record_id) count from %switkey_auth_record where auth_status='1'", TABLEPRE ), 1, 600 ); 
 $all_auth =  intval ( $all_auth ['count'] );
-$bulletin_arr = db_factory::query(sprintf("select art_id,art_title,listorder,is_recommend,pub_time from %switkey_article where cat_type='bulletin' order by is_recommend desc, listorder asc, pub_time desc limit 0,4",TABLEPRE));
+$bulletin_arr = db_factory::query(sprintf("select art_id,art_title,listorder,is_recommend,pub_time from %switkey_article where art_cat_id=5 order by is_recommend desc, listorder asc, pub_time desc limit 0,9",TABLEPRE));
+$shaishi_arr = db_factory::query(sprintf("select art_id,art_title,listorder,is_recommend,pub_time from %switkey_article where art_cat_id=7 order by is_recommend desc, listorder asc, pub_time desc limit 0,9",TABLEPRE));
+
 $feed_list = db_factory::query ( "select uid,username,title,feed_time from " . TABLEPRE . "witkey_feed order by feed_time desc limit 0,4", 1, 3600 );
 $mode_list = $kekezu->_model_list;
 $news_list = kekezu::get_table_data ( "art_id,art_title,listorder,is_recommend,art_pic,content,pub_time", "witkey_article", " cat_type='article' ", "is_recommend desc, listorder asc, pub_time desc", "", "9", "", 3600 );

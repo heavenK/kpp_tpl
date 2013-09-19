@@ -1,0 +1,144 @@
+<!--{template control/admin/tpl/admin_header}-->
+ <script type="text/javascript" src="../../resource/js/system/keke.js"></script>
+ <script type="text/javascript" src="../../resource/js/system/ajaxfileupload.js"></script>
+
+	<div class="page_title">
+   <h1>知识点管理</h1>
+         <div class="tool"> 
+            <a href="index.php?do=$do&view=zsd_list" {if $view=='zsd_list'}class="here"{/if} {if $view=='list'}class="here" {/if}>知识点管理</a>
+            <a href="index.php?do=$do&view=zsd_edit" {if $view=='zsd_edit'}class="here"{/if} {if $view=='edit'}class="here" {/if}>知识点添加</a>
+    	</div>
+	</div>
+	<!--页头结束-->
+    
+<div class="box post">
+    <div class="tabcon">
+        	<div class="title"><h2>添加知识点</h2></div>
+            <div class="detail">
+                <form method="post" action="index.php?do={$do}&view={$view}" id="frm_cat_edit" >
+                <input type="hidden" name="do" value="{$do}">
+                <input type="hidden" name="view" value="{$view}">
+                <input type="hidden" name="sid" value="{$zsd_info['sid']}">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <th scope="row" width="130">标题{$_lang['zh_mh']}</th>
+                        <td>
+	                        <input type="text" class="txt" style=" width:260px;" name="title" id="title" value="{$zsd_info['title']}" maxlength="20" 
+                         limit="required:true;len:2-20" 
+                         msg="{$_lang['cat_name_limit']}" 
+                         msgArea="zsd_name_msg" 
+                         title="{$_lang['input_cat_name']}"/><span id="zsd_name_msg"></span>
+                        </td>
+                      </tr>
+                    
+                      <tr>
+                        <th scope="row" width="130">分类{$_lang['zh_mh']}</th>
+                        <td>
+	                        <select id="type_id" name="type_id" style=" width:270px;"
+	                        		 limit = "required:true;type:int" 
+                                     msg = '{$_lang['select_father_cat']}' 
+                                     title='{$_lang['cat_what']}{$_lang['zh_wh']}' 
+                                     msgArea="msg_cat_id">
+	                        {loop $cat_arr $v}
+	                        <option value="{$v[id]}" {if $zsd_info['type_id']==$v[id]} selected="selected"{/if}>$v['type_name']</option>
+	                        {/loop}
+	                   		 </select>
+	                        <span id="msg_cat_id"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">图片:</th>
+                        <td id="t_pic" class=" p_relative"> 
+                        	<!--<input type="file" name="art_pic"  id="art_pic" size="50" onchange="isExtName(this,1)" ext=".jpg,.png,.gif,.jpeg,.bmp">-->
+							
+							<input type="file" id="art_pic" class="file" name="art_pic"  size="50" ext=".jpg,.png,.gif,.jpeg,.bmp" >
+							<input type="button" id="btn_updata" onclick="pic_upload('art_pic');" value="{$_lang['upload']}">
+						
+                        	<input type="hidden" name="fields[art_pic]"  value="$zsd_info['pic']" id="hdn_art_pic">
+							<span id="file_span"> 
+								{if $zsd_info['pic']}
+								<img src="../../$zsd_info['pic']" height="80" alt=''/>
+								{/if}
+							</span>
+                        </td>
+                      </tr> 	  
+ <script>
+//图片上传	  	
+	function pic_upload(id){
+		var o  = document.getElementById(id);
+		if(!isExtName(o)){
+			art.dialog.alert("{$_lang['file_format_error']}");
+			return false;
+		}else{
+			var art_id = '$art_id';
+        $.ajaxFileUpload({
+            url: '../../index.php?do=ajax&view=upload&file_name='+id+'&file_type=att&obj_id='+art_id,
+            fileElementId: id,
+            dataType: 'json',
+            success: function(json){ 
+                if (json.err) {
+                    art.dialog.alert("{$_lang['upload_fail_file_too_large']}"+ json.err);
+                }else {
+                    var hf = $("#hdn_"+id);
+                   $("#hdn_art_pic").val(json.msg.up_file);
+                   $("#fid").val(json.fid);
+					$("#file_span").html("<span id=\"file_"+json.fid+"\" > <img src='../../"+json.msg.up_file+"' height=\"80\" /> <a title=\"{$_lang['delete']}\" href=\"javascript:void(0);\" onclick=\"del_file('"+json.msg.up_file+"');\"><strong>{$_lang['delete']}×</strong></a></span>");
+                }
+            },
+            error: function(json, status, e){
+                if(e){
+					art.dialog.alert(e);	
+				}
+            }
+        });
+		}
+    }
+	</script>
+    				<tr>
+                        <th scope="row" width="130">关键字{$_lang['zh_mh']}</th>
+                        <td>
+	                        <input type="text" class="txt" style=" width:260px;" name="keyword" id="keyword" value="{$zsd_info['keyword']}" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" width="130">描述{$_lang['zh_mh']}</th>
+                        <td>
+	                        <textarea rows="10" name="fields[description]" style="width:45%;" id="tar_content"   cols="30">{$zsd_info['description']}</textarea>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" width="130">内容{$_lang['zh_mh']}</th>
+                        <td>
+                        	<textarea rows="30" name="fields[content]" style="width:75%;" id="tar_content"  class="xheditor {urlBase:'$_K['siteurl']/',tools:'simple',admin:'../../',html5Upload:false,emotMark:false,upImgUrl:'../../index.php?do=ajax&view=upload&file_type=att'}" cols="70">{$zsd_info['content']}</textarea>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">置顶{$_lang['zh_mh']}</th>
+                        <td>
+                        	<input type="checkbox" name="isTop" value="1" {if $zsd_info['isTop']}checked="checked"{/if}/>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">显示{$_lang['zh_mh']}</th>
+                        <td>
+                        	<input type="checkbox" name="isShow" value="1" {if $zsd_info['isShow'] === 0}{else} checked="checked"{/if}/>
+                        </td>
+                      </tr>
+                    
+                    <tr>
+                        <th scope="row">&nbsp;</th>
+                    	<td>
+                    	<button name="sbt_edit" value="1" class="pill positive primary  button" type="submit"><span class="check icon"></span>{$_lang['submit']}</button>
+                    	</td>
+                    </tr>
+                    
+                    </table>
+                </form>
+             </div>
+       </div>
+</div>
+<!--主体结束-->
+
+ 
+
+<!--{template control/admin/tpl/admin_footer}-->

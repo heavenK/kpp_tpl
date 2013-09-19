@@ -1,5 +1,8 @@
 <?php
 defined ( 'IN_KEKE' ) or exit ( 'Access Denied' );
+
+header("Location: index.php?do=user&view=setting");
+
 $res = kekezu::get_table_data ( "art_cat_id", 'witkey_article_category', "art_index like '%{294}%'", '', '', '', 'art_cat_id', 3600 );
 $model_list = $kekezu->_model_list;
 $model_ids = implode(',',array_keys($model_list));

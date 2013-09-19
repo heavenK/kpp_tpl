@@ -1,0 +1,179 @@
+<!--{template control/admin/tpl/admin_header}-->
+<style type="text/css">
+.jia {background: url(tpl/img/plus.gif)}
+.jian {background: url(tpl/img/minus.gif) }
+</style>
+<div class="page_title">
+    	<h1>帖子管理</h1>
+        <div class="tool">
+            <a href="index.php?do=$do&view=$view&op=$op&type=thread" {if $type == 'thread'}class="here"{/if}>主题管理</a>
+          	<a href="index.php?do=$do&view=$view&op=$op&type=post" {if $type == 'post'}class="here"{/if}>回复管理</a>           
+		</div>
+</div>
+
+    <!--搜索结束-->
+    {if $type == 'thread'}
+	<div class="box list">
+    	<div class="title"><h2>主题列表</h2></div>
+        <div class="detail">
+        		<div id="ajax_dom">
+
+              <table cellpadding="0" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th width="40">
+编号
+</th>
+                    <th width="60">{$_lang['category']}</th>
+                    <th width="30%" >标题</th>
+                    <th width="60" >标签</th>
+                    <th width="60">访问量</th>
+                    <th width="60">回复数</th>
+                    <th width="60">{$_lang['pub_name']}</th>
+                    <th width="60">{$_lang['pub_time']}</th>
+					
+                    <th width="25%">{$_lang['operate']}</th>
+                  </tr>
+				  </thead>
+                  <tbody>
+                  {loop $thread_arr $k $v}
+                  <tr class="item">
+                  	<td>{$v['tid']}</td>
+                    <td class="td28 wraphide">
+                    	{$type_arr[$v[type_id]]}
+                    </td>
+                    <td>
+                    	<a href="../../index.php?do=forum&view=show&tid={$v['tid']}" target="_blank" >
+							<!--{eval echo(kekezu::cutstr($v['title'],50));}-->
+						</a>
+					</td>
+                    <td class="wraphide">
+                    {if strstr($v[flag],'h')}荐&nbsp;{/if}
+                    {if strstr($v[flag],'c')}首&nbsp;{/if}
+                    {if strstr($v[flag],'t')}顶&nbsp;{/if}
+                    </td>
+                    <td class="wraphide">$v['views']</td>
+                    <td class="wraphide">$v['reply']</td>
+                    <td class="wraphide">{$v['username']}</td>
+                    <td class="ws_break"><!--{date('Y-m-d',$v['pub_time'])}--></td>
+                    <td>
+                    {if $op == 'list'}
+						<a href="index.php?do={$do}&view=$view&ac=c&tid={$v['tid']}" class="button"><span class="book icon"></span>{if strstr($v[flag],'c')}取消首页{else}首页{/if}</a>
+                        <a href="index.php?do={$do}&view=$view&ac=h&tid={$v['tid']}" class="button"><span class="book icon"></span>{if strstr($v[flag],'h')}取消推荐{else}推荐{/if}</a>
+                        <a href="index.php?do={$do}&view=$view&ac=r&tid={$v['tid']}" class="button"><span class="book icon"></span>{if strstr($v[flag],'r')}取消右推{else}右推{/if}</a>
+                        <a href="index.php?do={$do}&view=$view&ac=t&tid={$v['tid']}" class="button"><span class="book icon"></span>{if strstr($v[flag],'t')}取消置顶{else}版块置顶{/if}</a>
+                    {/if}
+                    {if $op == 'check'}
+                        <a href="index.php?do={$do}&view=$view&op=$op&ac=pass&tid={$v['tid']}" class="button"><span class="book icon"></span>审核通过</a>
+                        <a href="index.php?do={$do}&view=$view&op=$op&ac=nopass&tid={$v['tid']}" class="button"><span class="book icon"></span>审核不通过</a>
+                    {/if}
+						<a href="index.php?do={$do}&view={$view}&tid={$v['tid']}&ac=del&type=thread" class="button"><span class="trash icon"></span>{$_lang['delete']}</a>
+					</td>
+                  </tr>
+                  {/loop}
+                  </tbody>
+				  <tfoot>
+                  <tr>
+                    <td colspan="7">
+	                    <div class="clearfix">
+	                    </div>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+			  <div class="page">{$pages['page']}</div>
+			  </div>
+
+        </div>       
+    </div>
+    
+    {else}
+    <div class="box list">
+    	<div class="title"><h2>回复列表</h2></div>
+        <div class="detail">
+        		<div id="ajax_dom">
+
+              <table cellpadding="0" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th width="40">
+编号
+</th>
+                    <th width="60">{$_lang['category']}</th>
+                    <th width="80" >标题</th>
+                    <th width="30%" >内容</th>
+                    <th width="60">{$_lang['pub_name']}</th>
+                    <th width="60">{$_lang['pub_time']}</th>
+					
+                    <th width="25%">{$_lang['operate']}</th>
+                  </tr>
+				  </thead>
+                  <tbody>
+                  {loop $thread_arr $k $v}
+                  <tr class="item">
+                  	<td>{$v['pid']}</td>
+                    <td class="td28 wraphide">
+                    	{$type_arr[$v[type_id]]}
+                    </td>
+                    <td>
+                    	<a href="../../index.php?do=forum&view=show&tid={$v['tid']}" target="_blank" >
+							<!--{eval echo(getTitle($v['tid']));}-->
+						</a>
+					</td>
+                    <td>
+                    	<a href="../../index.php?do=forum&view=show&tid={$v['tid']}" title="$v['content']" target="_blank" >
+							<!--{eval echo(kekezu::cutstr($v['content'],50));}-->
+						</a>
+					</td>
+                    <td class="wraphide">{$v['username']}</td>
+                    <td class="ws_break"><!--{date('Y-m-d',$v['pub_time'])}--></td>
+                    <td>
+                    {if $op == 'check'}
+                        <a href="index.php?do={$do}&view=$view&op=$op&ac=pass&pid={$v['pid']}" class="button"><span class="book icon"></span>审核通过</a>
+                        <a href="index.php?do={$do}&view=$view&op=$op&ac=nopass&pid={$v['pid']}" class="button"><span class="book icon"></span>审核不通过</a>
+                    {/if}
+						<a href="index.php?do={$do}&view={$view}&pid={$v['pid']}&ac=del&type=post" class="button"><span class="trash icon"></span>{$_lang['delete']}</a>
+					</td>
+                  </tr>
+                  {/loop}
+                  </tbody>
+				  <tfoot>
+                  <tr>
+                    <td colspan="7">
+	                    <div class="clearfix">
+	                    </div>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+			  <div class="page">{$pages['page']}</div>
+			  </div>
+
+        </div>       
+    </div>
+    {/if}
+<script type="text/javascript">
+	function createHtml(writedir,filename){
+		var url = "index.php?do=static&view=update&sbt_edit=1&write_dir="+writedir+"&file_name="+filename;
+			ajaxDialog(url);
+	}
+ function ajaxDialog(url){
+ 	 art.dialog({
+			title: "{$_lang['static_file_update']}",
+			content: "{$_lang['start_update_static_file']}",
+			yesFn: function(){
+				var dia = this;
+				dia.content("{$_lang['static_file_update_not_operation']}").lock();
+						$.getJSON(url,function(json){
+							if(json.status==1){dia.close();
+								art.dialog({icon: 'succeed',content: json.msg,time:3});
+							}else{art.dialog.alert(json.msg);}
+							return false;
+						})
+						 return false;
+				},
+				noFn :function(){this.close();return false;}
+		})
+ }
+</script>
+<!--{template control/admin/tpl/admin_footer}-->

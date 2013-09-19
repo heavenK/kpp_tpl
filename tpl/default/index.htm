@@ -33,31 +33,25 @@
                             {loop $indus_recomm_task $k $v}
                             <li><span class="date"><!--{date('Y-m-d',$v['start_time'])}--></span><a href="index.php?do=task&task_id={$v['task_id']}"><!--{eval echo kekezu::cutstr($v['task_title'],24);}--></a></li>
                             {/loop}
-                            <li class="gengduo" style="background:none;"><a href="index.php?do=task">查看更多>>></a></li>
+                            <li class="gengduo" style="background:none;"><a href="index.php?do=task_list">查看更多>>></a></li>
                         </ul>
                         <ul class="infoList">
                             {loop $bulletin_arr $v}
                                 <li><span class="date"><!--{date('Y-m-d',$v['pub_date'])}--></span><a href="index.php?do=single&art_id={$v['art_id']}">{$v['art_title']}</a></li>
                             {/loop}
-                            <li class="gengduo" style="background:none;"><a href="index.php?do=article&view=article_list&art_cat_id=17">查看更多>>></a></li>
+                            <li class="gengduo" style="background:none;"><a href="index.php?do=article&view=article_list&art_cat_id=5">查看更多>>></a></li>
                         </ul>
                         <ul class="infoList">
                             {loop $indus_recomm_task_1 $k $v}
                             <li><span class="date"><!--{date('Y-m-d',$v['start_time'])}--></span><a href="index.php?do=task&task_id={$v['task_id']}"><!--{eval echo kekezu::cutstr($v['task_title'],24);}--></a></li>
                             {/loop}
-                            <li class="gengduo" style="background:none;"><a href="index.php?do=task">查看更多>>></a></li>
+                            <li class="gengduo" style="background:none;"><a href="index.php?do=task_list">查看更多>>></a></li>
                         </ul>
                         <ul class="infoList">
-                            <li><span class="date">2011-11-11</span><a href="">澳大利亚八大名校招生说明会</a></li>
-                            <li><span class="date">2011-11-11</span><a href="">2012世界大学排名新鲜出炉</a></li>
-                            <li><span class="date">2011-11-11</span><a href="">新加坡留学，国际双语课程</a></li>
-                            <li><span class="date">2011-11-11</span><a href="">高考后留学日本名校随你选</a></li>
-                            <li><span class="date">2011-11-11</span><a href="">教育培训行业优势资源推介</a></li>
-                            <li><span class="date">2011-11-11</span><a href="">即刻预约今年最后一场教育展</a></li>
-                            <li><span class="date">2011-11-11</span><a href="">数理化老师竟也看学习资料？</a></li>
-                            <li><span class="date">2011-11-11</span><a href="">学英语送ipad2,45天突破听说</a></li>
-                            <li><span class="date">2011-11-11</span><a href="">学外语，上北外！</a></li>
-                            <li class="gengduo" style="background:none;"><a href="#">查看更多>></a></li>
+                            {loop $shaishi_arr $v}
+                                <li><span class="date"><!--{date('Y-m-d',$v['pub_date'])}--></span><a href="index.php?do=single&art_id={$v['art_id']}">{$v['art_title']}</a></li>
+                            {/loop}
+                            <li class="gengduo" style="background:none;"><a href="index.php?do=article&view=article_list&art_cat_id=7">查看更多>>></a></li>
                         </ul>
                     </div>
                 </div>
@@ -153,201 +147,32 @@
                         </div>
                          
                         <div class="ban_stuy">
+                        	{loop $sj_member $k $v}
                             <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
+                                    <a href="index.php?do=space&member_id={$v[uid]}"><img src="<!--{userpicurl($v['uid'],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
-                                    <span>LOGO设计</span>
-                                    <p>1271位设计师</p>
-                                    <p class="ban_m"><a href="#">我有需求</a></p>
+                                    <span>{if !empty($indus_all_arr[$v['indus_pid']]['indus_name'])}  $indus_all_arr[$v['indus_pid']]['indus_name']|$indus_all_arr[$v['indus_id']]['indus_name']{else}无{/if}</span>
+                                    
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                             </div>
-                            <div class="ban_stu00">
-                                <div class="ban_stu00left">
-                                    <a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-                                </div>
-                                <div class="ban_stu00right">
-                                    <span>LOGO设计</span>
-                                    <p>1271位设计师</p>
-                                    <p class="ban_m"><a href="#">我有需求</a></p>
-                                </div>
-                            </div>
-                            <div class="ban_stu00">
-                                <div class="ban_stu00left">
-                                    <a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-                                </div>
-                                <div class="ban_stu00right">
-                                    <span>LOGO设计</span>
-                                    <p>1271位设计师</p>
-                                    <p class="ban_m"><a href="#">我有需求</a></p>
-                                </div>
-                            </div>
-                            <div class="ban_stu00">
-                                <div class="ban_stu00left">
-                                    <a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-                                </div>
-                                <div class="ban_stu00right">
-                                    <span>LOGO设计</span>
-                                    <p>1271位设计师</p>
-                                    <p class="ban_m"><a href="#">我有需求</a></p>
-                                </div>
-                            </div>
-                            <div class="ban_stu00">
-                                <div class="ban_stu00left">
-                                    <a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-                                </div>
-                                <div class="ban_stu00right">
-                                    <span>LOGO设计</span>
-                                    <p>1271位设计师</p>
-                                    <p class="ban_m"><a href="#">我有需求</a></p>
-                                </div>
-                            </div>
-                            <div class="ban_stu00">
-                                <div class="ban_stu00left">
-                                    <a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-                                </div>
-                                <div class="ban_stu00right">
-                                    <span>LOGO设计</span>
-                                    <p>1271位设计师</p>
-                                    <p class="ban_m"><a href="#">我有需求</a></p>
-                                </div>
-                            </div>
-                            <div class="ban_stu00">
-                                <div class="ban_stu00left">
-                                    <a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-                                </div>
-                                <div class="ban_stu00right">
-                                    <span>LOGO设计</span>
-                                    <p>1271位设计师</p>
-                                    <p class="ban_m"><a href="#">我有需求</a></p>
-                                </div>
-                            </div>
-                            <div class="ban_stu00">
-                                <div class="ban_stu00left">
-                                    <a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-                                </div>
-                                <div class="ban_stu00right">
-                                    <span>LOGO设计</span>
-                                    <p>1271位设计师</p>
-                                    <p class="ban_m"><a href="#">我有需求</a></p>
-                                </div>
-                            </div>
+                            {/loop}
                         </div> 
                         <div name="aaaaa">
+                            {loop $sj_member_2 $k $v}
                             <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
+                                    <a href="index.php?do=space&member_id={$v[uid]}"><img src="<!--{userpicurl($v['uid'],middle)}-->"  width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
-                                    <span>LOGO设计</span>
-                                    <p>1271位设计师</p>
-                                    <p class="ban_m"><a href="#">我有需求</a></p>
+                                    <span>{if !empty($indus_all_arr[$v['indus_pid']]['indus_name'])}  $indus_all_arr[$v['indus_pid']]['indus_name']|$indus_all_arr[$v['indus_id']]['indus_name']{else}无{/if}</span>
+                                    
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                             </div>
-                            <div class="ban_stu00">
-                                <div class="ban_stu00left">
-                                    <a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-                                </div>
-                                <div class="ban_stu00right">
-                                    <span>LOGO设计</span>
-                                    <p>1271位设计师</p>
-                                    <p class="ban_m"><a href="#">我有需求</a></p>
-                                </div>
-                            </div>
-                            <div class="ban_stu00">
-                                <div class="ban_stu00left">
-                                    <a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-                                </div>
-                                <div class="ban_stu00right">
-                                    <span>LOGO设计</span>
-                                    <p>1271位设计师</p>
-                                    <p class="ban_m"><a href="#">我有需求</a></p>
-                                </div>
-                            </div>
-                            <div class="ban_stu00">
-                                <div class="ban_stu00left">
-                                    <a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-                                </div>
-                                <div class="ban_stu00right">
-                                    <span>LOGO设计</span>
-                                    <p>1271位设计师</p>
-                                    <p class="ban_m"><a href="#">我有需求</a></p>
-                                </div>
-                            </div>
-                            <div class="ban_stu00">
-                                <div class="ban_stu00left">
-                                    <a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-                                </div>
-                                <div class="ban_stu00right">
-                                    <span>LOGO设计</span>
-                                    <p>1271位设计师</p>
-                                    <p class="ban_m"><a href="#">我有需求</a></p>
-                                </div>
-                            </div>
-                            <div class="ban_stu00">
-                                <div class="ban_stu00left">
-                                    <a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-                                </div>
-                                <div class="ban_stu00right">
-                                    <span>LOGO设计</span>
-                                    <p>1271位设计师</p>
-                                    <p class="ban_m"><a href="#">我有需求</a></p>
-                                </div>
-                            </div>
-                            <div class="ban_stu00">
-                                <div class="ban_stu00left">
-                                    <a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-                                </div>
-                                <div class="ban_stu00right">
-                                    <span>LOGO设计</span>
-                                    <p>1271位设计师</p>
-                                    <p class="ban_m"><a href="#">我有需求</a></p>
-                                </div>
-                            </div>
-                            <div class="ban_stu00">
-                                <div class="ban_stu00left">
-                                    <a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-                                </div>
-                                <div class="ban_stu00right">
-                                    <span>LOGO设计</span>
-                                    <p>1271位设计师</p>
-                                    <p class="ban_m"><a href="#">我有需求</a></p>
-                                </div>
-                            </div>
-                            <!--<div class="ban_snav1">
-                            <ul>
-                                <li><a href="" target="_blank">3D模型设计</a></li>
-                                <li>\</li>
-                                <li><a href="" target="_blank">导视系统设计</a></li>
-                                <li>\</li>
-                                <li><a href="" target="_blank">雕塑设计</a></li>
-                                <li>\</li>
-                                <li><a href="" target="_blank">庭院景观设计</a></li>
-                                <li>\</li>
-                                <li><a href="" target="_blank">小区规划</a></li>
-                                <li>\</li>
-                                <li><a href="" target="_blank">CBD规划设计</a></li>
-                                <li>\</li>
-                                <li><a href="" target="_blank">展会装修</a></li>
-                                <li>\</li>
-                                <li><a href="" target="_blank">酒店会所装潢</a></li>
-                                <li>\</li>
-                                <li><a href="" target="_blank">精装房设计</a></li>
-                                <li>\</li>
-                                <li><a href="" target="_blank">样板间设计</a></li>
-                                <li>\</li>
-                                <li><a href="" target="_blank">白建房装修</a></li>
-                                <li>\</li>
-                                <li><a href="" target="_blank">定制橱柜设计</a></li>
-                                <li>\</li>
-                                <li><a href="" target="_blank">定制衣柜设计</a></li>
-                                <li>\</li>
-                                <li><a href="" target="_blank">智能家居系统规划</a></li>
-                                <li>\</li>
-                                <li><a href="" target="_blank">电视墙设计</a></li>
-                            </ul>
-                        </div>-->
+                            {/loop}
                         </div>
                         </div>
                     </div>
@@ -373,168 +198,32 @@
 					</div>
 					 
 					<div class="ban_stuy">
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
+						{loop $kf_member $k $v}
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=space&member_id={$v[uid]}"><img src="<!--{userpicurl($v['uid'],middle)}-->"  width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>{if !empty($indus_all_arr[$v['indus_pid']]['indus_name'])}  $indus_all_arr[$v['indus_pid']]['indus_name']|$indus_all_arr[$v['indus_id']]['indus_name']{else}无{/if}</span>
+                                    
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                            </div>
+                            {/loop}
 					</div> 
 					<div name="aaaaa">
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
+						{loop $kf_member_2 $k $v}
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=space&member_id={$v[uid]}"><img src="<!--{userpicurl($v['uid'],middle)}-->"  width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>{if !empty($indus_all_arr[$v['indus_pid']]['indus_name'])}  $indus_all_arr[$v['indus_pid']]['indus_name']|$indus_all_arr[$v['indus_id']]['indus_name']{else}无{/if}</span>
+                                    
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                            </div>
+                            {/loop}
                         </div>
 					</div>
 				</div>
@@ -561,168 +250,32 @@
 					</div>
 					 
 					<div class="ban_stuy">
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
+						{loop $ch_member $k $v}
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=space&member_id={$v[uid]}"><img src="<!--{userpicurl($v['uid'],middle)}-->"  width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>{if !empty($indus_all_arr[$v['indus_pid']]['indus_name'])}  $indus_all_arr[$v['indus_pid']]['indus_name']|$indus_all_arr[$v['indus_id']]['indus_name']{else}无{/if}</span>
+                                    
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                            </div>
+                            {/loop}
 					</div> 
 					<div name="aaaaa">
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
+						{loop $ch_member_2 $k $v}
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=space&member_id={$v[uid]}"><img src="<!--{userpicurl($v['uid'],middle)}-->"  width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>{if !empty($indus_all_arr[$v['indus_pid']]['indus_name'])}  $indus_all_arr[$v['indus_pid']]['indus_name']|$indus_all_arr[$v['indus_id']]['indus_name']{else}无{/if}</span>
+                                    
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                            </div>
+                            {/loop}
 					</div>
 					</div>
 				</div>
@@ -750,168 +303,32 @@
 					</div>
 					 
 					<div class="ban_stuy">
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
+						{loop $zx_member $k $v}
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=space&member_id={$v[uid]}"><img src="<!--{userpicurl($v['uid'],middle)}-->"  width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>{if !empty($indus_all_arr[$v['indus_pid']]['indus_name'])}  $indus_all_arr[$v['indus_pid']]['indus_name']|$indus_all_arr[$v['indus_id']]['indus_name']{else}无{/if}</span>
+                                    
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                            </div>
+                            {/loop}
 					</div> 
 					<div name="aaaaa">
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
+						{loop $zx_member_2 $k $v}
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=space&member_id={$v[uid]}"><img src="<!--{userpicurl($v['uid'],middle)}-->"  width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>{if !empty($indus_all_arr[$v['indus_pid']]['indus_name'])}  $indus_all_arr[$v['indus_pid']]['indus_name']|$indus_all_arr[$v['indus_id']]['indus_name']{else}无{/if}</span>
+                                    
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                            </div>
+                            {/loop}
                         
                        
 					</div>
@@ -943,168 +360,32 @@
 					</div>
 					 
 					<div class="ban_stuy">
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
+						{loop $fw_member $k $v}
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=space&member_id={$v[uid]}"><img src="<!--{userpicurl($v['uid'],middle)}-->"  width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>{if !empty($indus_all_arr[$v['indus_pid']]['indus_name'])}  $indus_all_arr[$v['indus_pid']]['indus_name']|$indus_all_arr[$v['indus_id']]['indus_name']{else}无{/if}</span>
+                                    
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                            </div>
+                            {/loop}
 					</div> 
 					<div name="aaaaa">
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
-						<div class="ban_stu00">
-							<div class="ban_stu00left">
-								<a href="#"><img src="/tpl/default/d8/images/bangtu01.gif" /></a>
-							</div>
-							<div class="ban_stu00right">
-								<span>LOGO设计</span>
-								<p>1271位设计师</p>
-								<p class="ban_m"><a href="#">我有需求</a></p>
-							</div>
-						</div>
+						{loop $fw_member_2 $k $v}
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=space&member_id={$v[uid]}"><img src="<!--{userpicurl($v['uid'],middle)}-->"  width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>{if !empty($indus_all_arr[$v['indus_pid']]['indus_name'])}  $indus_all_arr[$v['indus_pid']]['indus_name']|$indus_all_arr[$v['indus_id']]['indus_name']{else}无{/if}</span>
+                                    
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                            </div>
+                            {/loop}
                         
                        
 					</div>
@@ -1161,8 +442,8 @@
           <div class="bnsj_l">
             <div class="b_bnsj">
               <h2>创意设计<br />求您帮忙</h2>
-              <h3><a href="#">更多任务</a></h3>
-              <h4><a href="#">发布任务</a></h4>
+              <h3><a href="index.php?do=task_list&path=A441">更多任务</a></h3>
+              <h4><a href="index.php?do=release">发布任务</a></h4>
             </div>
             <div class="b1_bnsj">
               <div class="text_bnsj">
@@ -1186,8 +467,8 @@
           <div class="bnsj_r1">
             <div class="b_bnsj">
               <h2>程序开发<br />求您帮忙</h2>
-              <h3><a href="#">更多任务</a></h3>
-              <h4><a href="#">发布任务</a></h4>
+              <h3><a href="index.php?do=task_list&path=A2">更多任务</a></h3>
+              <h4><a href="index.php?do=release">发布任务</a></h4>
             </div>
             <div class="b1_bnsj">
               <div class="text_bnsj">
@@ -1211,8 +492,8 @@
           <div class="bnsj_l">
             <div class="b_bnsj">
               <h2>营销推广<br />求您帮忙</h2>
-              <h3><a href="#">更多任务</a></h3>
-              <h4><a href="#">发布任务</a></h4>
+              <h3><a href="index.php?do=task_list&path=A442">更多任务</a></h3>
+              <h4><a href="index.php?do=release">发布任务</a></h4>
             </div>
             <div class="b1_bnsj">
               <div class="text_bnsj">
@@ -1236,8 +517,8 @@
           <div class="bnsj_r1">
             <div class="b_bnsj">
               <h2>生活服务<br />求您帮忙</h2>
-              <h3><a href="#">更多任务</a></h3>
-              <h4><a href="#">发布任务</a></h4>
+              <h3><a href="index.php?do=task_list&path=A192">更多任务</a></h3>
+              <h4><a href="index.php?do=release">发布任务</a></h4>
             </div>
             <div class="b1_bnsj">
               <div class="text_bnsj">
@@ -1268,258 +549,118 @@
        <div class="bnsj_r">
             <div class="bnsj_r003">
              	<div class="slider_box" id="slider_name">
-  <div class="silder_tip" id="movie_tip"><a href="#">更<br />
+  <div class="silder_tip" id="movie_tip"><a href="index.php?do=seller_list">更<br />
     多<br />
     人<br />
     才<br />
     ><br />
     ></a></div>
   <ul class="silder_con">
-    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/3427.jpg" width="230" height="151" /></a>
+  	{loop $vip_shop1 $k $v}
+    <li class="silder_panel clearfix"> <a href="index.php?do=space&member_id={$v['uid']}" class="f_l"><img src="<!--{userpicurl($v['uid'],large)}-->" width="230" height="151" /></a>
       <div class="bg1">
-        <h1>关于程序开发</h1>
-        <h2><a href="#">我要雇佣</a></h2>
-        <h3>23345667<br />
-          诚信保障：2000<br />
-          能力等级：豆芽</h3>
+        <h1><!--{eval echo kekezu::cutstr($v['shop_name'],16);}--></h1>
+        <h2><a href="index.php?do=release&to_uid=19999999">我要雇佣</a></h2>
+        <h3>{$v[uid]}<br />
+          诚信保障：{$v['balance']}<br />
+          <!--{eval $v['seller_level']=unserialize($v['seller_level'])}-->
+          能力等级：{$v['seller_level']["title"]}</h3>
       </div>
     </li>
-    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/3247.jpg" width="230" height="151" /></a>
-      <div class="bg1">
-        <h1>关于程序开发</h1>
-        <h2><a href="#">我要雇佣</a></h2>
-        <h3>23345667<br />
-          诚信保障：2000<br />
-          能力等级：豆芽</h3>
-      </div>
-    </li>
-    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/23463.jpg" width="230" height="151" /></a>
-      <div class="bg1">
-        <h1>关于程序开发</h1>
-        <h2><a href="#">我要雇佣</a></h2>
-        <h3>23345667<br />
-          诚信保障：2000<br />
-          能力等级：豆芽</h3>
-      </div>
-    </li>
-    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/26547.jpg" width="230" height="151" /></a>
-      <div class="bg1">
-        <h1>关于程序开发</h1>
-        <h2><a href="#">我要雇佣</a></h2>
-        <h3>23345667<br />
-          诚信保障：2000<br />
-          能力等级：豆芽</h3>
-      </div>
-    </li>
-    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/2153.jpg" width="230" height="151" /></a>
-      <div class="bg1">
-        <h1>关于程序开发</h1>
-        <h2><a href="#">我要雇佣</a></h2>
-        <h3>23345667<br />
-          诚信保障：2000<br />
-          能力等级：豆芽</h3>
-      </div>
-    </li>
+    {/loop}
   </ul>
   <div class="bobobo" style="width:485px; height:2px; background:#ccc; position:absolute; bottom:105px;"></div>
   <ul class="silder_nav clearfix">
-    <li><a href="#" ><img src="/tpl/default/d8/images/3427.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸01" /></a></li>
-    <li><a href="#" ><img src="/tpl/default/d8/images/3247.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸02" /></a></li>
-    <li><a href="#" ><img src="/tpl/default/d8/images/23463.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸03" /></a></li>
-    <li><a href="#" ><img src="/tpl/default/d8/images/26547.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸04" /></a></li>
-    <li><a href="#" ><img src="/tpl/default/d8/images/2153.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸05" /></a></li>
+  	{loop $vip_shop1 $k $v}
+    <li><a href="index.php?do=space&member_id={$v['uid']}" ><img src="<!--{userpicurl($v['uid'],middle)}-->" width="80" height="80" alt="$v['shop_name']" /></a></li>
+    {/loop}
   </ul>
 </div>
 
           		<div class="slider_box" id="slider_name_02">
-  <div class="silder_tip" id="movie_tip"><a href="#">更<br />
+  <div class="silder_tip" id="movie_tip"><a href="index.php?do=seller_list">更<br />
     多<br />
     人<br />
     才<br />
     ><br />
     ></a></div>
   <ul class="silder_con">
-    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/3427.jpg" width="230" height="151" /></a>
+    {loop $vip_shop2 $k $v}
+    <li class="silder_panel clearfix"> <a href="index.php?do=space&member_id={$v['uid']}" class="f_l"><img src="<!--{userpicurl($v['uid'],large)}-->" width="230" height="151" /></a>
       <div class="bg1">
-        <h1>关于程序开发</h1>
-        <h2><a href="#">我要雇佣</a></h2>
-        <h3>23345667<br />
-          诚信保障：2000<br />
-          能力等级：豆芽</h3>
+        <h1><!--{eval echo kekezu::cutstr($v['shop_name'],16);}--></h1>
+        <h2><a href="index.php?do=release&to_uid=19999999">我要雇佣</a></h2>
+        <h3>{$v[uid]}<br />
+          诚信保障：{$v['balance']}<br />
+          <!--{eval $v['seller_level']=unserialize($v['seller_level'])}-->
+          能力等级：{$v['seller_level']["title"]}</h3>
       </div>
     </li>
-    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/3247.jpg" width="230" height="151" /></a>
-      <div class="bg1">
-        <h1>关于程序开发</h1>
-        <h2><a href="#">我要雇佣</a></h2>
-        <h3>23345667<br />
-          诚信保障：2000<br />
-          能力等级：豆芽</h3>
-      </div>
-    </li>
-    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/23463.jpg" width="230" height="151" /></a>
-      <div class="bg1">
-        <h1>关于程序开发</h1>
-        <h2><a href="#">我要雇佣</a></h2>
-        <h3>23345667<br />
-          诚信保障：2000<br />
-          能力等级：豆芽</h3>
-      </div>
-    </li>
-    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/26547.jpg" width="230" height="151" /></a>
-      <div class="bg1">
-        <h1>关于程序开发</h1>
-        <h2><a href="#">我要雇佣</a></h2>
-        <h3>23345667<br />
-          诚信保障：2000<br />
-          能力等级：豆芽</h3>
-      </div>
-    </li>
-    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/2153.jpg" width="230" height="151" /></a>
-      <div class="bg1">
-        <h1>关于程序开发</h1>
-        <h2><a href="#">我要雇佣</a></h2>
-        <h3>23345667<br />
-          诚信保障：2000<br />
-          能力等级：豆芽</h3>
-      </div>
-    </li>
+    {/loop}
   </ul>
   <div class="bobobo" style="width:485px; height:2px; background:#ccc; position:absolute; bottom:105px;"></div>
   <ul class="silder_nav clearfix">
-    <li><a href="#" ><img src="/tpl/default/d8/images/3427.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸01" /></a></li>
-    <li><a href="#" ><img src="/tpl/default/d8/images/3247.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸02" /></a></li>
-    <li><a href="#" ><img src="/tpl/default/d8/images/23463.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸03" /></a></li>
-    <li><a href="#" ><img src="/tpl/default/d8/images/26547.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸04" /></a></li>
-    <li><a href="#" ><img src="/tpl/default/d8/images/2153.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸05" /></a></li>
+    {loop $vip_shop2 $k $v}
+    <li><a href="index.php?do=space&member_id={$v['uid']}" ><img src="<!--{userpicurl($v['uid'],middle)}-->" width="80" height="80" alt="$v['shop_name']" /></a></li>
+    {/loop}
   </ul>
 </div>
 
 				<div class="slider_box" id="slider_name_03">
-  <div class="silder_tip" id="movie_tip"><a href="#">更<br />
+  <div class="silder_tip" id="movie_tip"><a href="index.php?do=seller_list">更<br />
     多<br />
     人<br />
     才<br />
     ><br />
     ></a></div>
   <ul class="silder_con">
-    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/3427.jpg" width="230" height="151" /></a>
+    {loop $vip_shop3 $k $v}
+    <li class="silder_panel clearfix"> <a href="index.php?do=space&member_id={$v['uid']}" class="f_l"><img src="<!--{userpicurl($v['uid'],large)}-->" width="230" height="151" /></a>
       <div class="bg1">
-        <h1>关于程序开发</h1>
-        <h2><a href="#">我要雇佣</a></h2>
-        <h3>23345667<br />
-          诚信保障：2000<br />
-          能力等级：豆芽</h3>
+        <h1><!--{eval echo kekezu::cutstr($v['shop_name'],16);}--></h1>
+        <h2><a href="index.php?do=release&to_uid=19999999">我要雇佣</a></h2>
+        <h3>{$v[uid]}<br />
+          诚信保障：{$v['balance']}<br />
+          <!--{eval $v['seller_level']=unserialize($v['seller_level'])}-->
+          能力等级：{$v['seller_level']["title"]}</h3>
       </div>
     </li>
-    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/3247.jpg" width="230" height="151" /></a>
-      <div class="bg1">
-        <h1>关于程序开发</h1>
-        <h2><a href="#">我要雇佣</a></h2>
-        <h3>23345667<br />
-          诚信保障：2000<br />
-          能力等级：豆芽</h3>
-      </div>
-    </li>
-    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/23463.jpg" width="230" height="151" /></a>
-      <div class="bg1">
-        <h1>关于程序开发</h1>
-        <h2><a href="#">我要雇佣</a></h2>
-        <h3>23345667<br />
-          诚信保障：2000<br />
-          能力等级：豆芽</h3>
-      </div>
-    </li>
-    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/26547.jpg" width="230" height="151" /></a>
-      <div class="bg1">
-        <h1>关于程序开发</h1>
-        <h2><a href="#">我要雇佣</a></h2>
-        <h3>23345667<br />
-          诚信保障：2000<br />
-          能力等级：豆芽</h3>
-      </div>
-    </li>
-    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/2153.jpg" width="230" height="151" /></a>
-      <div class="bg1">
-        <h1>关于程序开发</h1>
-        <h2><a href="#">我要雇佣</a></h2>
-        <h3>23345667<br />
-          诚信保障：2000<br />
-          能力等级：豆芽</h3>
-      </div>
-    </li>
+    {/loop}
   </ul>
   <div class="bobobo" style="width:485px; height:2px; background:#ccc; position:absolute; bottom:105px;"></div>
   <ul class="silder_nav clearfix">
-    <li><a href="#" ><img src="/tpl/default/d8/images/3427.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸01" /></a></li>
-    <li><a href="#" ><img src="/tpl/default/d8/images/3247.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸02" /></a></li>
-    <li><a href="#" ><img src="/tpl/default/d8/images/23463.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸03" /></a></li>
-    <li><a href="#" ><img src="/tpl/default/d8/images/26547.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸04" /></a></li>
-    <li><a href="#" ><img src="/tpl/default/d8/images/2153.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸05" /></a></li>
+    {loop $vip_shop3 $k $v}
+    <li><a href="index.php?do=space&member_id={$v['uid']}" ><img src="<!--{userpicurl($v['uid'],middle)}-->" width="80" height="80" alt="$v['shop_name']" /></a></li>
+    {/loop}
   </ul>
 </div>
 
 				<div class="slider_box" id="slider_name_04">
-  <div class="silder_tip" id="movie_tip"><a href="#">更<br />
+  <div class="silder_tip" id="movie_tip"><a href="index.php?do=seller_list">更<br />
     多<br />
     人<br />
     才<br />
     ><br />
     ></a></div>
   <ul class="silder_con">
-    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/3427.jpg" width="230" height="151" /></a>
+    {loop $vip_shop4 $k $v}
+    <li class="silder_panel clearfix"> <a href="index.php?do=space&member_id={$v['uid']}" class="f_l"><img src="<!--{userpicurl($v['uid'],large)}-->" width="230" height="151" /></a>
       <div class="bg1">
-        <h1>关于程序开发</h1>
-        <h2><a href="#">我要雇佣</a></h2>
-        <h3>23345667<br />
-          诚信保障：2000<br />
-          能力等级：豆芽</h3>
+        <h1><!--{eval echo kekezu::cutstr($v['shop_name'],16);}--></h1>
+        <h2><a href="index.php?do=release&to_uid=19999999">我要雇佣</a></h2>
+        <h3>{$v[uid]}<br />
+          诚信保障：{$v['balance']}<br />
+          <!--{eval $v['seller_level']=unserialize($v['seller_level'])}-->
+          能力等级：{$v['seller_level']["title"]}</h3>
       </div>
     </li>
-    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/3247.jpg" width="230" height="151" /></a>
-      <div class="bg1">
-        <h1>关于程序开发</h1>
-        <h2><a href="#">我要雇佣</a></h2>
-        <h3>23345667<br />
-          诚信保障：2000<br />
-          能力等级：豆芽</h3>
-      </div>
-    </li>
-    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/23463.jpg" width="230" height="151" /></a>
-      <div class="bg1">
-        <h1>关于程序开发</h1>
-        <h2><a href="#">我要雇佣</a></h2>
-        <h3>23345667<br />
-          诚信保障：2000<br />
-          能力等级：豆芽</h3>
-      </div>
-    </li>
-    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/26547.jpg" width="230" height="151" /></a>
-      <div class="bg1">
-        <h1>关于程序开发</h1>
-        <h2><a href="#">我要雇佣</a></h2>
-        <h3>23345667<br />
-          诚信保障：2000<br />
-          能力等级：豆芽</h3>
-      </div>
-    </li>
-    <li class="silder_panel clearfix"> <a href="#" class="f_l"><img src="/tpl/default/d8/images/2153.jpg" width="230" height="151" /></a>
-      <div class="bg1">
-        <h1>关于程序开发</h1>
-        <h2><a href="#">我要雇佣</a></h2>
-        <h3>23345667<br />
-          诚信保障：2000<br />
-          能力等级：豆芽</h3>
-      </div>
-    </li>
+    {/loop}
   </ul>
   <div class="bobobo" style="width:485px; height:2px; background:#ccc; position:absolute; bottom:105px;"></div>
   <ul class="silder_nav clearfix">
-    <li><a href="#" ><img src="/tpl/default/d8/images/3427.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸01" /></a></li>
-    <li><a href="#" ><img src="/tpl/default/d8/images/3247.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸02" /></a></li>
-    <li><a href="#" ><img src="/tpl/default/d8/images/23463.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸03" /></a></li>
-    <li><a href="#" ><img src="/tpl/default/d8/images/26547.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸04" /></a></li>
-    <li><a href="#" ><img src="/tpl/default/d8/images/2153.jpg" width="80" height="80" alt="美女配奥迪A4L墙纸05" /></a></li>
+    {loop $vip_shop4 $k $v}
+    <li><a href="index.php?do=space&member_id={$v['uid']}" ><img src="<!--{userpicurl($v['uid'],middle)}-->" width="80" height="80" alt="$v['shop_name']" /></a></li>
+    {/loop}
   </ul>
 </div>
             </div>
@@ -1543,29 +684,29 @@
           </div>
           <div class="re_l">
             <div class="re_tu1">
-              <div class="xuetang"><a href="#"></a></div>
+              <div class="xuetang"><a href="index.php?do=school"></a></div>
             </div>
             <div class="re_text1">
               <p>我特别喜欢斗地主一类的棋牌游戏，以前常常泡在各种娱乐平台一玩就忘了时间，耽搁好多工作。常常告诉自己不应该在玩游戏了。但偶然的一次机会，我在浏览任务的时候发现豆8网竟然也有游戏区...</p>
-              <p><span><a href="#">查看更多>></a></span></p>
+              <p><span><a href="index.php?do=school">查看更多>></a></span></p>
             </div>
           </div>
           <div class="re_l">
             <div class="re_tu2">
-              <div class="jianghu"><a href="#"></a></div>
+              <div class="jianghu"><a href="index.php?do=forum"></a></div>
             </div>
             <div class="re_text">
               <p>我特别喜欢斗地主一类的棋牌游戏，以前常常泡在各种娱乐平台一玩就忘了时间，耽搁好多工作。常常告诉自己不应该在玩游戏了。但偶然的一次机会，我在浏览任务的时候发现豆8网竟然也有游戏区...</p>
-              <p><span><a href="#">查看更多>></a></span></p>
+              <p><span><a href="index.php?do=forum">查看更多>></a></span></p>
             </div>
           </div>
           <div class="re_l">
             <div class="re_tu3">
-              <div class="shangquan"><a href="#"></a></div>
+              <div class="shangquan"><a href="index.php?do=shop_list&path=C7"></a></div>
             </div>
             <div class="re_text">
               <p>我特别喜欢斗地主一类的棋牌游戏，以前常常泡在各种娱乐平台一玩就忘了时间，耽搁好多工作。常常告诉自己不应该在玩游戏了。但偶然的一次机会，我在浏览任务的时候发现豆8网竟然也有游戏区...</p>
-              <p><span><a href="#">查看更多>></a></span></p>
+              <p><span><a href="index.php?do=shop">查看更多>></a></span></p>
             </div>
           </div>
         </div>
@@ -1612,5 +753,5 @@
       </div>
     
     </div>
-   
+   <script src="/tpl/default/d8/js/jquery.slides.js" type="text/javascript"></script>
  	<!--{template footer_dou}-->

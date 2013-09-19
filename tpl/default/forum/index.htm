@@ -1,0 +1,244 @@
+<!--{template header_index_top}-->
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/T_bbs.css">
+
+<div class="cont_bbs">
+		<div class="cont_01">
+			<div class="cont_01_left">	
+				<h1>最新公告</h1>
+				<ul>
+                	{loop $gonggao_arr $v}
+                        <li><i>&middot;</i><a href="index.php?do=single&art_id={$v['art_id']}" title="$v['art_title']"><!--{eval echo kekezu::cutstr($v['art_title'],22);}--></a></li>
+                    {/loop}
+            	</ul>
+            </div>
+			<div class="cont_01_middle"><!--{ad_show(FORUM_TOP,1)}--></div>
+			<div class="cont_01_right">	
+				<a href="index.php?do=forum&view=list&type_id=12">雇主</a>
+        		<a href="index.php?do=forum&view=list&type_id=13">威客</a>
+            	<a href="index.php?do=forum&view=list&type_id=14">赛事</a>
+            	<a href="index.php?do=forum&view=list&type_id=15">游戏</a>
+            	<a href="index.php?do=forum&view=list&type_id=16">投诉</a>
+            	<a href="index.php?do=forum&view=list&type_id=17">投票</a>
+                <a href="index.php?do=forum&view=list&type_id=18">最新话题</a>
+                <a href="index.php?do=forum&view=list&type_id=19">活动状态</a>
+                <a href="index.php?do=forum&view=list&type_id=20">八卦</a>
+            </div>
+        </div>
+
+		<div class="cont_02">
+			<h1>最新精彩评论</h1>
+        	<div class="gundong">
+        		<ul>
+                <marquee scrollAmount="2" width="760" onmouseover="stop()" onmouseout="start()"><!--{ad_show(FORUM_ROLL,江湖首页_滚动广告)}--></marquee>
+              </ul>
+        	</div>
+        </div>
+
+		<div class="cont_03">
+        	<div class="cont_03_tt">
+                <dl>
+                    <dd>
+                    	{loop $thread_top[12] $k $v}
+                        <h1><a href="index.php?do=forum&view=show&tid=$v[tid]"><img src="{$v[pic]}"  width="133" height="133"/></a></h1>
+                        <h2>{$v[title]}</h2>
+                        {/loop}
+                        {loop $thread_part1_arr[12] $k $v}
+                        <li><i>&middot;</i><a href="index.php?do=forum&view=show&tid=$v[tid]">{$v[title]}</a></li>
+                        {/loop}
+                    </dd>
+                    <dt>
+                        {loop $thread_part2_arr[12] $k $v}
+                        <li><i>&middot;</i><a href="index.php?do=forum&view=show&tid=$v[tid]">{$v[title]}</a></li>
+                        {/loop}   
+                    </dt>
+                </dl>
+                <h3><a href="index.php?do=forum&view=list&type_id=12">更多>></a></h3>
+            </div>
+        	<div class="cont_03_tt">
+                <dl>
+                    <dd>
+                    	{loop $thread_top[13] $k $v}
+                        <h1><a href="index.php?do=forum&view=show&tid=$v[tid]"><img src="{$v[pic]}"  width="133" height="133"/></a></h1>
+                        <h2>{$v[title]}</h2>
+                        {/loop}
+                        {loop $thread_part1_arr[13] $k $v}
+                        <li><i>&middot;</i><a href="index.php?do=forum&view=show&tid=$v[tid]">{$v[title]}</a></li>
+                        {/loop}
+                    </dd>
+                    <dt>
+                        {loop $thread_part2_arr[13] $k $v}
+                        <li><i>&middot;</i><a href="index.php?do=forum&view=show&tid=$v[tid]">{$v[title]}</a></li>
+                        {/loop}   
+                    </dt>
+                </dl>
+                <h3><a href="index.php?do=forum&view=list&type_id=13">更多>></a></h3>
+            </div>
+        	<div class="cont_03_tt">
+                <dl>
+                    <dd>
+                    	{loop $thread_top[14] $k $v}
+                        <h1><a href="index.php?do=forum&view=show&tid=$v[tid]"><img src="{$v[pic]}"  width="133" height="133"/></a></h1>
+                        <h2>{$v[title]}</h2>
+                        {/loop}
+                        {loop $thread_part1_arr[14] $k $v}
+                        <li><i>&middot;</i><a href="index.php?do=forum&view=show&tid=$v[tid]">{$v[title]}</a></li>
+                        {/loop}
+                    </dd>
+                    <dt>
+                        {loop $thread_part2_arr[14] $k $v}
+                        <li><i>&middot;</i><a href="index.php?do=forum&view=show&tid=$v[tid]">{$v[title]}</a></li>
+                        {/loop}   
+                    </dt>
+                </dl>
+                <h3><a href="index.php?do=forum&view=list&type_id=14">更多>></a></h3>
+            </div>
+        </div>
+        
+        <div class="ad_00">
+        	<!--{ad_show(FORUM_MIDDLE,江湖首页_中间广告)}-->
+        </div>
+        
+        <div class="cont_03">
+        	<div class="cont_03_tt">
+                <dl>
+                    <dd>
+                    	{loop $thread_top[15] $k $v}
+                        <h1><a href="index.php?do=forum&view=show&tid=$v[tid]"><img src="{$v[pic]}"  width="133" height="133"/></a></h1>
+                        <h2>{$v[title]}</h2>
+                        {/loop}
+                        {loop $thread_part1_arr[15] $k $v}
+                        <li><i>&middot;</i><a href="index.php?do=forum&view=show&tid=$v[tid]">{$v[title]}</a></li>
+                        {/loop}
+                    </dd>
+                    <dt>
+                        {loop $thread_part2_arr[15] $k $v}
+                        <li><i>&middot;</i><a href="index.php?do=forum&view=show&tid=$v[tid]">{$v[title]}</a></li>
+                        {/loop}   
+                    </dt>
+                </dl>
+                <h3><a href="index.php?do=forum&view=list&type_id=15">更多>></a></h3>
+            </div>
+        	<div class="cont_03_tt">
+                <dl>
+                    <dd>
+                    	{loop $thread_top[16] $k $v}
+                        <h1><a href="index.php?do=forum&view=show&tid=$v[tid]"><img src="{$v[pic]}"  width="133" height="133"/></a></h1>
+                        <h2>{$v[title]}</h2>
+                        {/loop}
+                        {loop $thread_part1_arr[16] $k $v}
+                        <li><i>&middot;</i><a href="index.php?do=forum&view=show&tid=$v[tid]">{$v[title]}</a></li>
+                        {/loop}
+                    </dd>
+                    <dt>
+                        {loop $thread_part2_arr[16] $k $v}
+                        <li><i>&middot;</i><a href="index.php?do=forum&view=show&tid=$v[tid]">{$v[title]}</a></li>
+                        {/loop}   
+                    </dt>
+                </dl>
+                <h3><a href="index.php?do=forum&view=list&type_id=16">更多>></a></h3>
+            </div>
+        	<div class="cont_03_tt">
+                <dl>
+                    <dd>
+                    	{loop $thread_top[17] $k $v}
+                        <h1><a href="index.php?do=forum&view=show&tid=$v[tid]"><img src="{$v[pic]}"  width="133" height="133"/></a></h1>
+                        <h2>{$v[title]}</h2>
+                        {/loop}
+                        {loop $thread_part1_arr[17] $k $v}
+                        <li><i>&middot;</i><a href="index.php?do=forum&view=show&tid=$v[tid]">{$v[title]}</a></li>
+                        {/loop}
+                    </dd>
+                    <dt>
+                        {loop $thread_part2_arr[17] $k $v}
+                        <li><i>&middot;</i><a href="index.php?do=forum&view=show&tid=$v[tid]">{$v[title]}</a></li>
+                        {/loop}   
+                    </dt>
+                </dl>
+                <h3><a href="index.php?do=forum&view=list&type_id=17">更多>></a></h3>
+            </div>
+        </div>
+        
+        <div class="ad_00">
+        	<!--{ad_show(FORUM_BOTTOM,江湖首页_底部广告)}-->
+        </div>
+        
+       	<div class="cont_03">
+        	<div class="cont_03_tt">
+                <dl>
+                    <dd>
+                    	{loop $thread_top[18] $k $v}
+                        <h1><a href="index.php?do=forum&view=show&tid=$v[tid]"><img src="{$v[pic]}"  width="133" height="133"/></a></h1>
+                        <h2>{$v[title]}</h2>
+                        {/loop}
+                        {loop $thread_part1_arr[18] $k $v}
+                        <li><i>&middot;</i><a href="index.php?do=forum&view=show&tid=$v[tid]">{$v[title]}</a></li>
+                        {/loop}
+                    </dd>
+                    <dt>
+                        {loop $thread_part2_arr[18] $k $v}
+                        <li><i>&middot;</i><a href="index.php?do=forum&view=show&tid=$v[tid]">{$v[title]}</a></li>
+                        {/loop}   
+                    </dt>
+                </dl>
+                <h3><a href="index.php?do=forum&view=list&type_id=18">更多>></a></h3>
+            </div>
+        	<div class="cont_03_tt">
+                <dl>
+                    <dd>
+                    	{loop $thread_top[19] $k $v}
+                        <h1><a href="index.php?do=forum&view=show&tid=$v[tid]"><img src="{$v[pic]}"  width="133" height="133"/></a></h1>
+                        <h2>{$v[title]}</h2>
+                        {/loop}
+                        {loop $thread_part1_arr[19] $k $v}
+                        <li><i>&middot;</i><a href="index.php?do=forum&view=show&tid=$v[tid]">{$v[title]}</a></li>
+                        {/loop}
+                    </dd>
+                    <dt>
+                        {loop $thread_part2_arr[19] $k $v}
+                        <li><i>&middot;</i><a href="index.php?do=forum&view=show&tid=$v[tid]">{$v[title]}</a></li>
+                        {/loop}   
+                    </dt>
+                </dl>
+                <h3><a href="index.php?do=forum&view=list&type_id=19">更多>></a></h3>
+            </div>
+        	<div class="cont_03_tt">
+                <dl>
+                    <dd>
+                    	{loop $thread_top[20] $k $v}
+                        <h1><a href="index.php?do=forum&view=show&tid=$v[tid]"><img src="{$v[pic]}"  width="133" height="133"/></a></h1>
+                        <h2>{$v[title]}</h2>
+                        {/loop}
+                        {loop $thread_part1_arr[20] $k $v}
+                        <li><i>&middot;</i><a href="index.php?do=forum&view=show&tid=$v[tid]">{$v[title]}</a></li>
+                        {/loop}
+                    </dd>
+                    <dt>
+                        {loop $thread_part2_arr[20] $k $v}
+                        <li><i>&middot;</i><a href="index.php?do=forum&view=show&tid=$v[tid]">{$v[title]}</a></li>
+                        {/loop}   
+                    </dt>
+                </dl>
+                <h3><a href="index.php?do=forum&view=list&type_id=20">更多>></a></h3>
+            </div>
+        </div>
+        
+       	<div class="cont_04">
+        	<h1><i>VIP工作室展示</i></h1>
+        	<ul>
+            	{loop $shop_info $k $v}
+        		<li>
+        			<b><a href="index.php?do=space&member_id={$v['uid']}"><img src="<!--{userpicurl($v['uid'],middle)}-->"  width="106" height="106"/></a></b>
+        			<span><!--{eval echo kekezu::cutstr($v['shop_name'],14);}--></span>
+        			<i>{$v['residency']}</i>
+                    <i>工作室商铺 VIP拓展</i>
+        		</li>
+                {/loop}
+        	</ul>
+        </div> 
+	</div>
+
+    <script type="text/javascript">
+		var uid 		= parseInt('{$uid}')+0;
+	</script>
+<!--{template footer_dou}-->
+    

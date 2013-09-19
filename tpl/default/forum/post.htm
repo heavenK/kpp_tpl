@@ -1,0 +1,77 @@
+<!--{template header_index_top}-->
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/T_bbs.css">
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/T_grzx.css">
+<style>
+.page_count a.selected, .page_count a.selected:hover{background-color: #49b68d;border-color: #49b68d;}
+.page_count a:hover {background: none repeat scroll 0 0 #49b68d;border-color: #49b68d;color: #FFFFFF;}
+</style>
+<style>
+.bbs_zhuti00 { width:743px; float:left; border:1px solid #d0d0d0}
+</style>
+
+	<div class="cont_bbs">
+		<div class="bbs_zhuti00">
+        	<div class="bbs_zhuti_onetit">您的位置：<a href="index.php">首页</a>&nbsp;&gt;&nbsp;<a href="index.php?do=forum">豆豆论坛</a>&nbsp;&gt;&nbsp;{if $type != 'post'}发新话题{else}回复{/if}</div>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <form action="" method="post">
+            <input type="hidden" name="sbt_edit" value="1" />
+            {if $type != 'post'}
+            <div class="bbs_zhuti_onetit">
+            	<input type="text" class="txt" style=" width:260px;" name="title" id="title" value="{$zsd_info['title']}" maxlength="20" 
+                         limit="required:true;len:2-20" 
+                         msg="{$_lang['cat_name_limit']}" 
+                         msgArea="zsd_name_msg" 
+                         title="{$_lang['input_cat_name']}"/><span id="zsd_name_msg">标题长度2-20</span>
+            </div>
+            {/if}
+            <div class="bbs_zhuti_onetit">
+            	<!--<textarea class="nr_text  xheditor-simple {skin:'nostyle'}" cols="70" rows="20" name="content" style="width:645px"></textarea>-->
+            	<textarea class="nr_text" cols="70" rows="20" name="content" style="width:645px"></textarea>
+            </div>
+            <div class="bbs_zhuti_onetit">
+            	<input type="submit" class="nr_input_3"  name="" value="发&nbsp;布">
+            </div>
+            </form>
+        </div>
+		<div class="bbs_zhutir">
+        	<div class="bbs_zhutir_ad"><!--{ad_show(FORUM_RIGHT,江湖内页_右侧广告)}--></div>
+            <div class="bbs_zhutir_rdht">
+            	<h1>热点话题推荐</h1>
+                <ul>
+                	{loop $thread_right_arr $k $v}
+                	<li><span><!--{eval echo($k+1);}--></span><em><a href="index.php?do=forum&view=show&tid={$v['tid']}" target="_blank">{$v['title']}（共{$v['views']}人参与）</a></em><div class="clear" style="clear:both;"></div></li>
+                    {/loop}
+                </ul>
+            </div>
+        </div>
+
+
+
+
+
+
+
+	</div>
+	<div class="clear" style="clear:both;"></div>
+
+<script type="text/javascript">
+   In('form','xheditor');                    
+   /**
+    * 表单提交 编辑空间
+    * @param  obj
+  */
+              function check123(obj){
+						if(contentCheck('tar_content',"{$_lang['shop_sign']}",20,1000,1,'slogans','editor')){						
+							formSub('frm','form',true);
+                               // return true;
+                        }else {
+	                     	return false;
+	                	}
+            }
+        
+  </script>
+    <script type="text/javascript">
+		var uid 		= parseInt('{$uid}')+0;
+	</script>
+<!--{template footer_dou}-->
+    

@@ -119,4 +119,20 @@ function get_where_arr(){
 		;
 	return $where_arr;
 }
+
+// add by heavenk
+$task_count = db_factory::get_one ( sprintf ( " select count(task_id) count from %switkey_task", TABLEPRE ), 1, 600 ); 
+$task_in = db_factory::get_one ( sprintf ( " select sum(fina_cash) cash from %switkey_finance where fina_action='task_bid' and fina_type='in' ", TABLEPRE ), 1, 600 ); 
+$register = db_factory::get_one ( sprintf ( " select count(uid) count from %switkey_member ", TABLEPRE ), 1, 600 ); 
+
+$task_count =  intval ( $task_count ['count'] );
+$task_in = number_format ( $task_in ['cash'], 2, ".", "," );
+$register =  intval ( $register ['count'] );
+// end
+$top_s_6 = db_factory::query ( sprintf ( "select a.username,a.uid,a.indus_id,a.indus_pid,a.isvip,a.seller_good_num,a.seller_total_num,b.shop_name from %switkey_shop b "
+		." left join %switkey_space a on a.uid=b.uid  where a.isvip>0 and a.recommend=1 and IFNULL(b.is_close,0)=0 and shop_status=1 order by a.uid desc limit 0,6", TABLEPRE,TABLEPRE ));
+
+
+$final_task = kekezu::get_classify_indus();
+
 require $kekezu->_tpl_obj->template ( $do );

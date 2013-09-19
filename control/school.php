@@ -26,7 +26,6 @@ if($view == 'art'){
 	
 	$where = "where type_id=".$type_id;
 	
-	$art_arr = db_factory::query ( sprintf ( "select * from %sxtang_article ".$where." order by pub_time desc", TABLEPRE ) );
 	
 	
 	$count = db_factory::get_count ( sprintf ( "select count(sid) count from %sxtang_article ".$where, TABLEPRE ) );
@@ -36,6 +35,8 @@ if($view == 'art'){
 	$page and $page = intval ( $page ) or $page = 1;
 	$pages = $kekezu->_page_obj->getPages ( $count, $page_size, $page, $url );
 	
+	$where .= " order by pub_time desc".$pages['where'];
+	$art_arr = db_factory::query ( sprintf ( "select * from %sxtang_article ".$where, TABLEPRE ) );
 	
 	require $kekezu->_tpl_obj->template ( $do."_".$view );
 }
@@ -93,7 +94,7 @@ if($view == 'index'){
 	
 	if(!isset($pid)) $where = 'where pid >0';
 	else $where = "where pid=".$pid;
-	$cat_sub_arr = db_factory::query ( sprintf ( "select * from %sxtang_type ".$where." order by id asc, list_order asc", TABLEPRE ) );
+	
 	
 	$count = db_factory::get_count ( sprintf ( "select count(id) count from %sxtang_type ".$where." order by id asc, list_order asc", TABLEPRE ) );
 	
@@ -101,6 +102,10 @@ if($view == 'index'){
 	$page_size  and $page_size = intval ( $page_size ) or $page_size = 10;
 	$page and $page = intval ( $page ) or $page = 1;
 	$pages = $kekezu->_page_obj->getPages ( $count, $page_size, $page, $url );
+	
+	
+	$where .= " order by id asc, list_order asc".$pages['where'];
+	$cat_sub_arr = db_factory::query ( sprintf ( "select * from %sxtang_type ".$where, TABLEPRE ) );
 	
 	require $kekezu->_tpl_obj->template ( $do );
 }

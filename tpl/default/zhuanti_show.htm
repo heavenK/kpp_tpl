@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>豆8网</title>
+
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/login.css">
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/T_header.css">
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/T_fbrw.css">
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/T_footer.css">
+
+
+<!--公用样式-->
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/base.css">
+<!--box样式-->
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/box.css">
+
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/public.css">
+
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/newsimple_style2013.css">
+
+
+<script type="text/javascript" src="/tpl/default/d8/js/jquery_003.js"></script>
+
+<script type="text/javascript" src="/tpl/default/d8/js/jquery.pack.js"></script>
+<script type="text/javascript" src="/tpl/default/d8/js/jQuery.blockUI.js"></script>
+<script type="text/javascript" src="/tpl/default/d8/js/jquery.SuperSlide.js"></script>
+
+
+<!--点击IE6浏览器弹出升级页JS-->
+<script language="javascript">
+ieGo();
+function ieGo(){ 
+		var ie = !-[1,];  
+		if(ie == true) {
+			var ua = navigator.userAgent.toLowerCase();
+			var version = parseInt(ua.match(/msie ([\d.]+)/)[1]);
+			if(version <= 6) {
+				location.href='default.html'; 
+			}
+		}
+}
+</script>
+
+<!--豆豆导航JS-->
+<script language="javascript">
+	$(function(){
+	  //当鼠标滑入时将div的class换成divOver
+	  $('#daohang,.rukou_nav').hover(function(){
+		$("#daohang").addClass('rukouOver');
+		$(".rukou_nav").show();  
+	   },
+	   function(){
+		//鼠标离开时移除divOver样式
+		$("#daohang").removeClass('rukouOver'); 
+		$(".rukou_nav").hide();
+	   }
+	  );
+	});
+</script> 
+
+<!--会员登陆JS-->
+<script language="javascript">
+	$(function(){
+	  //当鼠标滑入时将div的class换成divOver
+	  $('.huiyuan,.dl_t').hover(function(){
+		$(".huiyuan").addClass('rukouOver2');
+		$(".dl_t").show();  
+	   },
+	   function(){
+		//鼠标离开时移除divOver样式
+		$(".huiyuan").removeClass('rukouOver2'); 
+		$(".dl_t").hide();
+	   }
+	  );
+	});
+</script>
+       
+
+<!--下拉框JS-->
+<script type="text/javascript" src="js/jQselect.js"></script>
+<script>
+$(document).ready(function () {
+	$(".SelectCity").selectbox();
+});
+</script> 
+
+
+<style type="text/css">
+#upload-queue.uploadify-queue{ margin-bottom:0;}
+.tipsy{ z-index:9999;}
+.tipsy-inner{ max-width:450px;}
+.tipsy p{ margin:5px; text-align:left;}
+</style>
+        
+
+
+</head>
+
+<body style="text-align:center; background:none #53c1d2">
+<div class="you_xia"><a href="index.php?do=360"><img src="/tpl/default/d8/images/360.png"  width="220" height="126" border="0"/></a>
+  <map name="Map" id="Map">
+    <area shape="rect" coords="1,1,222,48" href="#" />
+    <area shape="rect" coords="58,99,135,117" href="#" title="QQ客服" />
+  </map>
+</div>
+
+<!--{eval echo kekezu::filter_input($art_info[content])}-->
+<div class="box">
+
+<!--{template footer_dou}-->

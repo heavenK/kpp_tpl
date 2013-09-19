@@ -1,0 +1,94 @@
+<!--{template header_index_top}-->
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/T_bbs.css">
+
+<style>
+.page_count a.selected, .page_count a.selected:hover{background-color: #49b68d;border-color: #49b68d;}
+.page_count a:hover {background: none repeat scroll 0 0 #49b68d;border-color: #49b68d;color: #FFFFFF;}
+</style>
+<style>
+.bbs_zhuti00 { width:743px; float:left; border:1px solid #d0d0d0}
+</style>
+
+<div class="cont_bbs">
+		<div class="cont_01">
+			<div class="cont_01_left">	
+				<h1>最新公告</h1>
+				<ul>
+					{loop $gonggao_arr $v}
+                        <li><i>&middot;</i><a href="index.php?do=single&art_id={$v['art_id']}" title="$v['art_title']"><!--{eval echo kekezu::cutstr($v['art_title'],22);}--></a></li>
+                    {/loop}
+            	</ul>
+            </div>
+			<div class="cont_01_middle"><!--{ad_show(FORUM_TOP,1)}--></div>
+			<div class="cont_01_right">	
+				<a href="index.php?do=forum&view=list&type_id=12">雇主</a>
+        		<a href="index.php?do=forum&view=list&type_id=13">威客</a>
+            	<a href="index.php?do=forum&view=list&type_id=14">赛事</a>
+            	<a href="index.php?do=forum&view=list&type_id=15">游戏</a>
+            	<a href="index.php?do=forum&view=list&type_id=16">投诉</a>
+            	<a href="index.php?do=forum&view=list&type_id=17">投票</a>
+                <a href="index.php?do=forum&view=list&type_id=18">最新话题</a>
+                <a href="index.php?do=forum&view=list&type_id=19">活动状态</a>
+                <a href="index.php?do=forum&view=list&type_id=20">八卦</a>
+            </div>
+        </div>
+		<div class="clear" style="clear:both;"></div>
+        <div class="bbs_list">
+        	<div class="bbs_list_l">
+            	<div class="bbs_list_ltit">最精彩的评论</div>
+                <div class="bbs_list_lnr">
+                	<ul>
+                    	{loop $thread_top_arr $k $v}
+                    	<li>
+                        	<em>{$v['username']}&nbsp;发表&nbsp;原创作品：</em><span>&lt;<a href="index.php?do=forum&view=show&tid=$v['tid']" target="_blank">{$v['title']}</a>&gt;</span><tt><!--{date('Y-m-d H:i:s',$v['pub_time'])}--> 发表&nbsp;&nbsp;{$v[views]}人</tt><i>浏览</i><tt>{$v[reply]}人</tt><i>回复</i>
+                            <input type="button" class="bbs_xin" value="" /><input type="button" class="bbs_zan" value="" />
+                        </li>
+                        {/loop}
+                    </ul>
+                </div>
+            </div>
+            <div class="bbs_list_r">
+            	<ul>
+                	{loop $art_arr $k $v}
+                	<li>•&nbsp;&nbsp;<a href="index.php?do=single&art_id={$v['art_id']}" title="$v['art_title']"><!--{eval echo kekezu::cutstr($v['art_title'],22);}--></a></li>
+                    {/loop}
+                </ul>
+            </div>
+            <div class="clear" style="clear:both;"></div>
+        </div>
+        <div class="bbs_ad"><!--{ad_show(FORUM_MIDDLE,江湖首页_中间广告)}--></div>
+        <div class="bbs_newpl">
+        	
+        	<div class="bbs_list_ltit">最新评论</div>
+            <div class="bbs_list_ltit01"><a href="index.php?do=forum&view=post&type=thread&type_id=$type_id">发表新话题</a></div>
+            <div class="clear" style="clear:both;"></div>
+            <div class="bbs_list_rnr">
+            	<div class="bbs_list_rnr_tit"><span>Hi，{$username}，喜欢这 <tt>{$count}</tt> 条精彩评论吗？你的认真点评也会出现在这里哦~</span><div class="clear" style="clear:both;"></div></div>
+                <ul>
+                	<li><span style="font-size:16px; color:#000;">发表评论</span><em style="font-size:16px; color:#000;">发帖者</em><tt style="font-size:16px; color:#000;">回复/浏览</tt><i style="font-size:16px; color:#000;">发表时间</i></li>
+                    {loop $thread_arr $k $v}
+                    <li><span><a href="index.php?do=forum&view=show&tid=$v['tid']" target="_blank"><!--{eval echo kekezu::cutstr($v['title'],60);}--></a></span><em>{$v[username]}</em><tt>{$v[reply]}/{$v[views]}</tt><i><!--{date('Y-m-d',$v['pub_time'])}--></i></li>
+                    {/loop}
+                </ul>
+                
+            </div>
+            <div class="page_count fl_r mar10">
+                {$pages['page']}
+            </div>
+            <div class="clear" style="clear:both;"></div>
+        </div>
+
+
+
+
+
+
+
+
+	</div>
+
+    <script type="text/javascript">
+		var uid 		= parseInt('{$uid}')+0;
+	</script>
+<!--{template footer_dou}-->
+    

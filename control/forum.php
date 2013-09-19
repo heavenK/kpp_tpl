@@ -1,5 +1,7 @@
 <?php	defined ( 'IN_KEKE' ) or exit ( 'Access Denied' );
 
+$views = array ('index', 'list', 'post', 'show');
+in_array ( $view, $views ) or $view = "index";
 
 // add by heavenk
 $task_count = db_factory::get_one ( sprintf ( " select count(task_id) count from %switkey_task", TABLEPRE ), 1, 600 ); 
@@ -11,5 +13,4 @@ $task_in = number_format ( $task_in ['cash'], 2, ".", "," );
 $register =  intval ( $register ['count'] );
 // end
 
-if($view)	require $kekezu->_tpl_obj->template ( "360/".$view );
-else	require $kekezu->_tpl_obj->template ( $do );
+require S_ROOT . "control/forum/{$view}.php";

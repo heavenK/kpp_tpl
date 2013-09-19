@@ -1,0 +1,167 @@
+<!--{template header_index_top}-->
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/T_bbs.css">
+
+<style>
+.page_count a.selected, .page_count a.selected:hover{background-color: #49b68d;border-color: #49b68d;}
+.page_count a:hover {background: none repeat scroll 0 0 #49b68d;border-color: #49b68d;color: #FFFFFF;}
+</style>
+<style>
+.bbs_zhuti00 { width:743px; float:left; border:1px solid #d0d0d0}
+</style>
+
+	<div class="cont_bbs">
+		<div class="bbs_zhutil">
+        	<div class="bbs_zhutil_one">
+            	<div class="bbs_zhuti_onetit">您的位置：<a href="index.php">首页</a>&nbsp;&gt;&nbsp;<a href="index.php?do=forum">豆豆论坛</a>&nbsp;&gt;&nbsp;{$thread_info['title']}</div>
+                <div class="bbs_zhuti_onebt"><span>{$thread_info['title']}</span><a href="index.php?do=forum&view=post&type=thread&type_id={$thread_info['type_id']}">发新话题</a><a href="index.php?do=forum&view=post&type=post&type_id={$thread_info['type_id']}&tid={$thread_info['tid']}">我要回帖</a><div class="clear" style="clear:both;"></div></div>
+                <div class="bbs_zhuti_onenr">
+                	{$thread_info['content']}
+                </div>
+            </div>
+            {if $post_ganfang_list}
+            <div class="bbs_zhutil_two">
+            	<div class="bbs_zhutil_twotit"><h1>官方评论</h1></div>
+                {loop $post_ganfang_list $k $v}
+                <div class="bbs_zhutil_twonr">
+                	<div class="bbs_zhutil_twonr_tx">
+                    	<h1><img src="<!--{userpicurl($v['uid'],middle)}-->" width="80" height="80" /></h1>
+                        <h2>{$v['username']}</h2>
+                        <h2>{$v['uid']}</h2>
+                        <!--{eval $member_info = kekezu::get_user_info($v[uid]);}-->
+                        <p>诚信保障：无</p>
+                        <p>豆币数量：<!--{eval echo(intval($member_info['credit']));}--></p>
+                         <!--{eval $member_info['seller_level']=unserialize($member_info['seller_level'])}-->
+                        <p>能力等级：{$member_info['seller_level']['pic']}</p>
+                    </div>
+                    <div class="bbs_zhutil_twonr_pl">
+                    	<div class="bbs_zhutil_twonr_pl01">{$v['content']}</div>
+                        <div class="bbs_zhutil_twonr_pl02">&nbsp;&nbsp;&nbsp;支持[11452]</div>
+                    </div>
+                    <div class="clear" style="clear:both;"></div>
+                </div>
+                {/loop}
+                
+                
+            </div>
+            {/if}
+            {if $post_jinghua_list}
+            <div class="bbs_zhutil_two">
+            	<div class="bbs_zhutil_twotit"><h1 style="background:url(images/bbs_tai.jpg) no-repeat;">精华评论</h1></div>
+                {loop $post_jinghua_list $k $v}
+                <div class="bbs_zhutil_twonr">
+                	<div class="bbs_zhutil_twonr_tx">
+                    	<h1><img src="<!--{userpicurl($v['uid'],middle)}-->" width="80" height="80" /></h1>
+                        <h2>{$v['username']}</h2>
+                        <h2>{$v['uid']}</h2>
+                        <!--{eval $member_info = kekezu::get_user_info($v[uid]);}-->
+                        <p>诚信保障：无</p>
+                        <p>豆币数量：<!--{eval echo(intval($member_info['credit']));}--></p>
+                         <!--{eval $member_info['seller_level']=unserialize($member_info['seller_level'])}-->
+                        <p>能力等级：{$member_info['seller_level']['pic']}</p>
+                    </div>
+                    <div class="bbs_zhutil_twonr_pl">
+                    	<div class="bbs_zhutil_twonr_pl01">{$v['content']}</div>
+                        <div class="bbs_zhutil_twonr_pl02">&nbsp;&nbsp;&nbsp;支持[11452]</div>
+                    </div>
+                    <div class="clear" style="clear:both;"></div>
+                </div>
+                {/loop}
+            </div>
+            {/if}
+            <div class="bbs_zhutil_three">
+            	<div class="bbs_zhuti_three_one">
+                    <em><a href="index.php?do=forum&view=post&type=post&type_id={$thread_info['type_id']}&tid={$thread_info['tid']}">我要回帖</a></em>
+                    <em><a href="index.php?do=forum&view=post&type=thread&type_id={$thread_info['type_id']}">发新话题</a></em>
+                    
+                    <div class="page_count fl_r mar10" style="margin:0px !important;"> 
+                        {$pages['page']}
+                    </div>
+                    <div class="clear" style="clear:both;"></div>
+                </div>
+                <div class="bbs_zhuti_three_two">
+                
+                {loop $post_list $k $v}
+                	<div class="bbs_zhutil_twonr">
+                	<div class="bbs_zhutil_twonr_tx">
+                    	<h1><img src="<!--{userpicurl($v['uid'],middle)}-->" width="80" height="80" /></h1>
+                        <h2>{$v['username']}</h2>
+                        <h2>{$v['uid']}</h2>
+                        <!--{eval $member_info = kekezu::get_user_info($v[uid]);}-->
+                        <p>诚信保障：无</p>
+                        <p>豆币数量：<!--{eval echo(intval($member_info['credit']));}--></p>
+                         <!--{eval $member_info['seller_level']=unserialize($member_info['seller_level'])}-->
+                        <p>能力等级：{$member_info['seller_level']['pic']}</p>
+                    </div>
+                    <div class="bbs_zhutil_twonr_pl">
+                    	<div class="bbs_zhutil_twonr_pl01">{if $v[status] != 2}内容正在审核中！{else}{$v[content]}{/if}</div>
+                        <div class="bbs_zhutil_twonr_pl02">&nbsp;&nbsp;&nbsp;<a href="###">支持[{$v['good']}]</a></div>
+                    </div>
+                    <div class="clear" style="clear:both;"></div>
+                </div>
+                {/loop}
+                
+                </div>
+                <div class="page_count fl_r mar10" > 
+                    {$pages['page']}
+                </div>
+                <div class="clear" style="clear:both;"></div>
+                <div class="bbs_zhuti_ksht">
+                	<div class="bbs_zhuti_ksht_tit">快速回帖</div>
+                    <div class="bbs_zhuti_ksht_nr">
+                    	<div class="bbs_zhuti_ksht_tit01">回复内容</div>
+                        <div class="bbs_zhuti_ksht_text">
+                        	<form action="index.php?do=forum&view=post&type=post&type_id={$thread_info['type_id']}&tid={$thread_info['tid']}" method="post">
+                            <input type="hidden" name="sbt_edit" value="1" />
+                        	<textarea class="bbs_zhuti_kshf_area" name="content"></textarea>
+                            <input type="submit" class="bbs_zhuti_ksht_btn" value="确认回帖" />
+                            <span>[完成后可按 Ctrl+Enter 发布]</span>
+                            </form>
+                        </div>
+                        <div class="bbs_zhuti_ksht_bq">
+                        	<h1>表情</h1>
+                            <div class="bbs_zhuti_ksht_bqlist">
+                            	<span><img src="/tpl/default/d8/images/qq_t.gif" width="20" height="20" /></span>
+                                <span><img src="/tpl/default/d8/images/qq_t.gif" width="20" height="20" /></span>
+                                <span><img src="/tpl/default/d8/images/qq_t.gif" width="20" height="20" /></span>
+                                <span><img src="/tpl/default/d8/images/qq_t.gif" width="20" height="20" /></span>
+                                <span><img src="/tpl/default/d8/images/qq_t.gif" width="20" height="20" /></span>
+                                <span><img src="/tpl/default/d8/images/qq_t.gif" width="20" height="20" /></span>
+                                <span><img src="/tpl/default/d8/images/qq_t.gif" width="20" height="20" /></span>
+                                <span><img src="/tpl/default/d8/images/qq_t.gif" width="20" height="20" /></span>
+                                <span><img src="/tpl/default/d8/images/qq_t.gif" width="20" height="20" /></span>
+                                <span><img src="/tpl/default/d8/images/qq_t.gif" width="20" height="20" /></span>
+                                <div class="clear" style="clear:both;"></div>
+                            </div>
+                        </div>
+                        <div class="clear" style="clear:both;"></div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+		<div class="bbs_zhutir">
+        	<div class="bbs_zhutir_ad"><!--{ad_show(FORUM_RIGHT,江湖内页_右侧广告)}--></div>
+            <div class="bbs_zhutir_rdht">
+            	<h1>热点话题推荐</h1>
+                <ul>
+                	{loop $thread_right_arr $k $v}
+                	<li><span><!--{eval echo($k+1);}--></span><em><a href="index.php?do=forum&view=show&tid={$v['tid']}" target="_blank">{$v['title']}（共{$v['views']}人参与）</a></em><div class="clear" style="clear:both;"></div></li>
+                    {/loop}
+                </ul>
+            </div>
+        </div>
+
+
+
+
+
+
+
+	</div>
+	<div class="clear" style="clear:both;"></div>
+    
+    <script type="text/javascript">
+		var uid 		= parseInt('{$uid}')+0;
+	</script>
+<!--{template footer_dou}-->
+    

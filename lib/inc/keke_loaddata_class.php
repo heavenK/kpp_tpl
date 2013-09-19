@@ -450,7 +450,6 @@ class keke_loaddata_class {
 		$datalist = kekezu::get_table_data ( '*', 'witkey_ad', '1=1 and is_allow=1 and target_id = '.intval($target_id), 'listorder', '', $ad_list_num, '', 3600 );
 		$tag_arr = $kekezu->_tag;
 		$tag_info = $tag_arr [$target_name];
-		var_dump($target_name);
 		require keke_tpl_class::parse_code ( htmlspecialchars_decode ( $tag_info ['tag_code'] ), $tag_info ['tag_id'] );
 	}
 }

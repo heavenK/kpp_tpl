@@ -1,0 +1,70 @@
+<!--{template header_index_top}-->
+<style>
+				.dzhuanti{float: right;width: 762px;}
+				.dzhuanti ul li {background: none repeat scroll 0 0 #EFEFEF;border: 1px solid #DFDFDF;float: left;margin-right: 8px;margin-bottom: 8px;width: 244px; height:172px;}
+				.dzhuanti ul li h1 {display: inline-block;height: 120px;padding-left: 12px;padding-right: 12px;padding-top: 12px;width: 220px;}
+				.dzhuanti ul li p{line-height:40px; text-align:center;}
+			</style>
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/T_grzx.css">
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/T_rwzx.css">
+<div class="yh_nav00">
+          
+     </div>
+	 
+	 <div class="yhcenter">
+    	<!--  账号设置 begin -->
+    	<div class="yhzhbox tabCon">
+        	<div class="yhzhleft">
+            	
+                <div class="yh_gy">
+                	<span>雇佣任务</span>
+                    <p>无抽佣，赏金不打折！</p>
+                </div>
+                <div style="height:10px;"></div>
+                <div class="yh_list">
+                    <div class="yh_side">
+                        <span>故事分享</span>
+                        <p>分享故事赢ipad</p>
+                        <img src="/tpl/default/d8/images/gs.png" />
+                    </div>
+                   <div class="yh_side t0">
+                        <span>免抽佣</span>
+                        <p>免抽佣免提现手续费</p>
+                        <img src="/tpl/default/d8/images/cy.png" />
+                    </div>
+                    <div class="yh_side t1">
+                        <span>入站威客支持</span>
+                        <p>威客入站扶持奖励</p>
+                        <img src="/tpl/default/d8/images/rz.png" />
+                    </div>
+                    <div class="yh_side t2">
+                        <span>意见建议</span>
+                        <p>期待您的宝贵建议</p>
+                        <img src="/tpl/default/d8/images/yj.png" />
+                    </div>
+                    <div class="yh_side t3">
+                        <span>帮助中心</span>
+                        <p>疑难问题 再次化解</p>
+                        <img src="/tpl/default/d8/images/bz.png" />
+                    </div> 
+                </div>
+            </div>
+            
+            
+            <div class="dzhuanti">
+            	<ul>
+                	{loop $article_arr $k $v}
+                	<li>
+                        <h1><a target="_blank" href="index.php?do=zhuanti&view=show&art_id=$v['art_id']"><img alt="{$v['art_title']}" src="{$v[art_pic]}" width="220" height="120"></a></h1>
+                        <p><a title="{$v['art_title']}" target="_blank" href="index.php?do=zhuanti&view=show&art_id=$v['art_id']">{$v['art_title']}</a></p>
+                    </li>
+                    {/loop}
+                </ul>
+                <div class="page_count fl_r mar10">
+                    {$pages['page']}
+                </div>
+           </div>
+        </div>
+    </div>
+	
+<!--{template footer_dou}-->
