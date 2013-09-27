@@ -1,5 +1,27 @@
 <!--{template header_user_top}-->
+<style>
+.xuanqu { width:640px; padding-top:20px; float:left; padding-bottom:10px; padding-left:37px; font-size:14px;}
+.xuanqu i { font-style:normal; font-size:16px; line-height:20px; margin-left:5px; margin-right:5px;}
 
+
+.qiaoqian_00 {
+    background: none repeat scroll 0 0 #FEF3E6;
+    border: 1px solid #FFDEBE;
+    color: #ED7423;
+    display: inline;
+    float: left;
+	font-size:16px;
+	padding-left:10px;
+    padding-right:15px;	
+	position:relative;
+	margin-bottom:5px;
+	margin-right:5px;
+	height:24px;
+	line-height:24px;
+	white-space:nowrap;
+}
+.qiaoqian_00 a { cursor:pointer; position:absolute; right:2px; top:-8px; font-size:12px;}
+</style>
 <!--contain start-->
 <div class="yhcenter">
     	<!--  账号设置 begin -->
@@ -18,7 +40,17 @@
 					<input type="hidden" name="pk[shop_id]" id="shop_id" value="{$shop_info['shop_id']}"><!--基本资料start-->
 					<input type="hidden" name="ac" value="open"/>
                     <div class="xuanqu">已经选取<i id="indus_sum">{$skill_count}</i>项（最多选取10项）</div>
-                    <div class="xuanqu">已经选取项：<i id="indus_list">{$skill_ids}</i></div>
+                    <div class="xuanqu" style="margin-left:28px"><em style="float:left; font-style:normal; margin-top:6px;">已经选取项：</em>
+                    <i id="indus_list">
+                    	{loop $skill_list $k $v}
+                        <div class="qiaoqian_00">
+                            <p>$v</p>
+                            <a href="###" onclick="re_del('$v')">x</a>
+                        </div>
+                        {/loop}
+                    </i>
+                    </div>
+                    
                     <div class="xuanqu" style="margin-left:28px">选择您擅长的项目：</div>  
                     <div class="jineng">
                         <ul class="idTabs">
@@ -81,7 +113,7 @@
 			var str = '';
 			var n = 0;
 			$("input[@type=checkbox][checked]").each(function(){   
-				str+=$(this).val()+" ";
+				str+='<div class="qiaoqian_00"><p>'+$(this).val()+'</p><a href="###" onclick="re_del(\''+ $(this).val() +'\')">x</a></div> ';
 				n++;
 				
 				if(n > 10) {
@@ -92,7 +124,25 @@
 			})
 			
 			$("#indus_sum").text(n);
-			$("#indus_list").text(str);
+			$("#indus_list").html(str);
+		}
+		function re_del(v){
+			var str = '';
+			var n = 0;
+			$("input[@type=checkbox][checked]").each(function(){ 
+			
+				if($(this).val() == v){
+					$(this).removeAttr('checked');
+					
+				}else{
+			  
+					str+='<div class="qiaoqian_00"><p>'+$(this).val()+'</p><a href="###" onclick="re_del(\''+ $(this).val() +'\')">x</a></div> ';
+					n++;
+				}
+			})
+			
+			$("#indus_sum").text(n);
+			$("#indus_list").html(str);
 		}
   </script>
 <!--contain end-->

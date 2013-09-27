@@ -68,7 +68,7 @@
                                     	{loop $task_info $v}
                                         <tr>
                                             <th style="font-weight:normal">$v['task_id']</th>
-                                            <th style="font-weight:normal">$v['task_title']</th>
+                                            <th style="font-weight:normal" title="$v['task_title']"><!--{eval echo kekezu::cutstr($v['task_title'],30);}--></th>
                                             <th style="font-weight:normal">
                                             {if $v[model_id]==4||$v[model_id]==5}
                                             	{if !$v[task_cash_coverage]}

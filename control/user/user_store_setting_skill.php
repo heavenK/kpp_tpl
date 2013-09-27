@@ -23,5 +23,8 @@ $skill_count = substr_count($user_info['skill_ids'],',');
 if($skill_count < 1) $skill_count = 0;
 else $skill_count++;
 
+
+$skill_list = explode(',',$user_info['skill_ids']);
+
 $skill_ids = str_replace(',',' ',$user_info['skill_ids']).' ';
 require keke_tpl_class::template ( "user/user_".$view."_".$op."_".$opp );

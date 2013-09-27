@@ -125,6 +125,21 @@ function edit_payitem(item_code){
 	add_payitem($("#payitem_"+item_code),'add',payitem_num); 
 }
 
+//编辑增值服务
+function edit_payitem_new(item_code){
+	var item_code = item_code;
+	if($("#payitem_"+item_code).attr('checked')){
+		var payitem_num = 1;
+	}else{
+		var payitem_num = 0;
+	}
+	
+	var item_cash = parseFloat($("#item_cash_"+item_code).val());
+	var total_cash = parseInt( $("#ago_total").val()); 
+//	alert(payitem_num);return false;
+	add_payitem($("#payitem_"+item_code),'add',payitem_num); 
+}
+
 //删除增值服务
 function del_payitem(item_code){
 	var item_code = item_code;
@@ -158,6 +173,7 @@ function stepCheck(model_id){
 	//alert(1);return false;
 	var i 	 = checkForm(document.getElementById('frm_'+r_step));
 	var pass = false;
+
 	switch(r_step){
 		case "step1":
 			if(checkDay()){
@@ -177,11 +193,12 @@ function stepCheck(model_id){
 			}
 			break;
 		case "step3":
-		if(checkDay()){
+			if(checkDay()){
 				if(i){
 					pass=true;
 				}
 			}
+			
 			if($("input[id=payitem_map][item_type=buy]").val()!=0&&$("#payitem_map").attr("item_type")=='buy'&&$.trim($("#point").val())==''){
 				showDialog('您没有设置地图','alert','操作提示');return false;
 			}else{
@@ -234,6 +251,7 @@ function add_payitem(obj,action,item_num){
 	var item_type = $(obj).attr("item_type");
 	var exist_num = $(obj).attr("exist_num");
 	var total_cash = parseFloat($("#total").text().toString());//总金
+	
 	//alert(exist_num);
     //return false;
 	if(item_code=='map'&&item_type=='buy'){

@@ -31,9 +31,6 @@
             </div>
 <script>
 					$(function(){
-						$("li:has(ul)").addClass("p");
-						$("li:has(ul):eq(0)").removeClass("p");
-						$(".teng_ul:eq(0)").show();
 						$("p").click(function(){
 							$(this).parent(":has(ul)").find(">ul").slideToggle().end().toggleClass("p");
 						});

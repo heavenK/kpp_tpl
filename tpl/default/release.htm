@@ -27,7 +27,8 @@ $(document).ready(function () {
     <!-- 立即发布任务 -->
 <form action="index.php?do=release&pub_mode={$pub_mode}&t_id={$t_id}&model_id={$model_id}&r_step=step3" method="post" name="frm_step3" id="frm_step3">
 	  	<input type="hidden" name="formhash" value="{FORMHASH}">
-        
+        <input type="hidden" name="min" value="$min" id="min">
+		<input type="hidden" name="max" value="{if $release_info['max']}{$release_info['max']}{else}{$default_max_day}{/if}" id="max">
     <div class="ljfb1">
       <div class="ljfb_left1">
         <h2>选择您所需要的项目类型</h2>
@@ -52,11 +53,11 @@ $(document).ready(function () {
                         </select>
           </div>
         </div>
-        <h3>用一句话来描述你的需求（<a href="#">如何写好任务标题？</a>）</h3>
+        <h3>用一句话来描述你的需求（<a href="###" onclick="name_des();">如何写好任务标题？</a>）</h3>
         <input name="txt_title" id="txt_title" type="text" value="{$txt_title}" title="{$_lang['txt_title']}" size="34" msgArea="span_title"
                                 limit="required:true;len:5-50" msg="{$_lang['msg_title']}" maxlength="50" class="input_6"/>
         <p class="rwbt">任务标题最多50个字</p>
-        <h3>请把需求说的具体一些（<a href="#">看看别人怎么写？</a>）</h3>
+        <h3>请把需求说的具体一些（<a href="###" onclick="kk_des();">看看别人怎么写？</a>）</h3>
         <div class="wenben">
         <textarea style=" width:613px; height:203px;"  name="tar_content" onchange="alert('12341234');" title="{$_lang['textarea_title']}" id="tar_content" msgArea="msg_content" 
 						class="xheditor {tools:'Bold,Fontface,FontColor,Italic,Underline,Strikethrough,Align,List,Outdent,Indent,Link,Unlink,Table',skin:'nostyle'}"><!--{eval echo kekezu::escape($release_info['tar_content'])}--></textarea>
@@ -73,10 +74,14 @@ $(document).ready(function () {
         </div>
         <p class="rwbt" id="length_show">&nbsp;</p>
         <div class="rwbt_1">
-        <div class="mgdx"> 每个大小不超过{$basic_config['max_size']}MB，限制5个附件。<a href="###"  class="file_type" title="<ol class='t_l'><li>{$_lang['upload_title']}{$basic_config['max_size']}M.</li><li>{$_lang['upload_style']}<p class='ws_break'>{$ext_show}</p></li></ol>">无法正常上传？</a> </div>
+        <div class="mgdx"> 每个大小不超过{$basic_config['max_size']}MB，限制5个附件。<a href="###"  class="file_type" title="<ul class='des_pic'><li>1. 上传附件支持常见的办公软件文档格式(office文档格式)，常见的压缩文件格式(rar,zip,7z)，常见的图片格式(jpg,png,gif)等，其他不常见的格式建议压缩成RAR文档再上传。</li><li>2. 最多可上传附件5个附件，每个文件大小不得超过2M。</li><li>3. 图形文件不支持CMYK模式(将无法正常显示)。
+</li><li>4. 文件名称须符合正常规范(勿在文件名中包含其他符号，如点号等)</li></ul>">无法正常上传？</a> </div>
         
         </div>
-    
+    <style>
+		.des_pic { width:400px;}
+		.tipsy-inner { max-width:400px; text-align:left;}
+	</style>
         <div class="mgdx_r">
             <input type="file" class="filess" name="upload" id="upload">
 
@@ -279,18 +284,20 @@ $(document).ready(function () {
     <div class="csw_tilex c960">您希望用多长时间来完成这个任务？</div>
     <div class="csw_tilex c960">
     在&nbsp;<i id="txt_task_day_i_1">
-    <input name="txt_task_day" onclick="showcalendar(event, this, 0)"
+<!--    <input name="txt_task_day" onclick="showcalendar(event, this, 0)"
 					value="{if $release_info['txt_task_day']}$release_info['txt_task_day']{elseif $default_max_day}$default_max_day{else}$min{/if}"
-					type="text" id="txt_task_day" /></i>
-<!--                    <input name="txt_task_day" onclick="showcalendar(event, this, 0)"
+					type="text" id="txt_task_day" />-->
+                    <input name="txt_task_day" readonly="readonly" onclick="showcalendar(event, this, 0)"
 					value="{if $release_info['txt_task_day']}$release_info['txt_task_day']{elseif $default_max_day}$default_max_day{else}$min{/if}"
 					type="text" id="txt_task_day" min_day="$task_config['min_day']" 
+                    title="{$_lang['task_round_title']}:{$task_config['min_day']}{$_lang['day']},{$_lang['max_day']}{if $release_info['max']}{$release_info['max']}{elseif $max_day}{else}$default_max_day{/if}"
 					msgArea="span_task_day" onkeyup="clearstr(this)"
 					limit="required:true;type:date;than:min;less:max"
-					msg="{$_lang['task_round_msg']}" max="" />-->
-    
-    &nbsp;日截止投稿  <span id="span_task_day" class="ml_5"></span>
+					msg="{$_lang['task_round_msg']}" max="" />
+    </i>
+    &nbsp;截止投稿  
     </div>
+    <span id="span_task_day" class="ml_5"></span>
     </div>
     <span class="blank10"></span>
     <div class="choosway">
@@ -310,7 +317,7 @@ $(document).ready(function () {
            	</select>
     </div>
     <div class="csw_tilex c960">您希望用多长时间来寻找满意的合作者？</div>
-    在&nbsp;<i id="txt_task_day_i_2"></i>&nbsp;日截止报名
+    在&nbsp;<i id="txt_task_day_i_2"></i>&nbsp;截止报名
     </div>
     </div>
         
@@ -343,9 +350,9 @@ $(document).ready(function () {
     
     <tr class="odd">
     <td width="85" height="40" valign="middle" bgcolor="#f9f9f9">
-    <input  onclick="ale();" type="checkbox" class="payitems" name="payitem_ids[{$v['item_code']}]" value="{$item_info[$v['item_id']]['item_num']}" id="payitem_{$v['item_code']}" item_id="$v['item_id']" item_cash="$v['item_cash']"
+    <input  onclick="ale_item('$v[item_code]');" type="checkbox" class="payitems" name="payitem_ids[{$v['item_code']}]" value="{$item_info[$v['item_id']]['item_num']}" id="payitem_{$v['item_code']}" item_id="$v['item_id']" item_cash="$v['item_cash']"
 								   item_code="$v['item_code']" item_type="buy" item_name="$v['item_name']"
-									  size="4" onblur="edit_payitem('$v[item_code]');" limit="required:false;type:int;between:0-"  msg="{$_lang['payment_item_msg_error']}" msgarea="msg_$v['item_code']" >
+									  size="4" />
     <label for="checkbox_urgent">&nbsp;{$v['item_name']}</label></td>
     <td height="40" valign="middle"><span class="c999 font12"> {$v['item_desc']}                                                                        
     </span></td>
@@ -394,6 +401,49 @@ $(document).ready(function () {
     </div>
 	</form>
 <script>
+/** 说明 */
+function name_des() {
+
+	showWindow("asdfasdf", 'index.php?do=360&view=name&title=如何写好任务标题?', "get", '0');
+
+}
+function kk_des() {
+
+	showWindow("asdfasdf", 'index.php?do=360&view=kk&title=看看别人是如何发布的?', "get", '0');
+
+}
+	
+function ale_item(v_code){
+	
+	var money = 0;
+	var strdesc = '';
+	$(".payitems").each(function(index, element) {
+		if($(this).attr("checked")){
+			money += parseInt($(this).attr("item_cash"));
+			strdesc += '<b>' + $(this).attr("item_name") + '</b>： ';
+			strdesc += '<span style="color:green">花 ￥' + $(this).attr("item_cash") + ' 购买</span>';
+			strdesc +='<br>';
+			add_payitem($("#payitem_"+$(this).attr('item_code')),'add',1); 
+		}
+	});
+	
+	if(money>0){
+		$('#item_show_box').show();
+		$('#item_totle_cash').val(money);
+		
+		if($("input[name='model_id']:checked").val() == 4)	$("#total_money").text(parseInt("{$service_fee['config']['zb_fees']}") + money);
+		else	$("#total_money").text(parseInt($("#txt_task_cash").val()) + money);
+	}else{
+		$('#item_show_box').hide();
+		$('#item_totle_cash').val(0);
+		
+		if($("input[name='model_id']:checked").val() == 4)	$("#total_money").text(parseInt("{$service_fee['config']['zb_fees']}"));
+		else	$("#total_money").text(parseInt($("#txt_task_cash").val()));
+	}
+	
+	$('#item_desc_box').html(strdesc);
+	edit_payitem_new(v_code);
+}	
 	
 function ale(){
 	
@@ -429,7 +479,11 @@ function ale(){
 function ale_all(obj){
 	$(".payitems").each(function(index, element) {
 		$(this).attr("checked",$(obj).attr("checked"));
+		//$(this).click();
 	});
+	{loop $item_list $k $v}
+	edit_payitem_new('{$v[item_code]}');
+	{/loop}
 	ale();
 }
 
@@ -454,8 +508,12 @@ $(function(){
     var min_day = parseInt("{$task_config['min_day']}");
 	
 	In('ajaxfileupload','form');
+	
+	
+	
 </script>
 <script type="text/javascript">
 	In('calendar');
 </script>
+
 <!--{template footer_dou}-->

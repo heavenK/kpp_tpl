@@ -26,6 +26,9 @@ $(document).ready(function () {
 	
     <!-- 立即发布任务 -->
 <form action="index.php?do=release&pub_mode={$pub_mode}&t_id={$t_id}&model_id=10&r_step=step3" method="post" name="frm_step3" id="frm_step3">
+
+        <input type="hidden" name="min" value="$min" id="min">
+		<input type="hidden" name="max" value="{if $release_info['max']}{$release_info['max']}{else}{$default_max_day}{/if}" id="max">
 	  	<input type="hidden" name="formhash" value="{FORMHASH}">
         <input type="hidden" name="to_uid" value="{$to_uid}">
     <div class="ljfb1">
@@ -52,7 +55,7 @@ $(document).ready(function () {
                         </select>
           </div>
         </div>
-        <h3>用一句话来描述你的需求（<a href="#">如何写好任务标题？</a>）</h3>
+        <h3>用一句话来描述你的需求（<a href="###" onclick="name_des();">如何写好任务标题？</a>）</h3>
         <input name="txt_title" id="txt_title" type="text" value="<!--{eval echo kekezu::escape($release_info['txt_title'])}-->" title="{$_lang['txt_title']}" size="34" msgArea="span_title"
                                 limit="required:true;len:5-50" msg="{$_lang['msg_title']}" maxlength="50" class="input_6"/>
         <p class="rwbt">任务标题最多50个字</p>
@@ -134,7 +137,7 @@ $(document).ready(function () {
     <style>
 			.gy_shangjin{line-height:40px; font-size:15px; font-weight:bold;}
 			.gy_sj{margin:10px; width:653px;padding-bottom: 90px;}
-			.gy_sj_l{float:left; width:30%;}
+			.gy_sj_l{float:left; width:45%;}
 			.gy_sj_l h1{ font-size:12px; font-weight:100; margin-bottom:3px; line-height:18px;}
 			.gy_sj_l p{line-height:24px;}
 			.gy_sj_text{width:100px; height:24px; border:1px solid #ccc;}
@@ -151,8 +154,15 @@ $(document).ready(function () {
             	<h1>您希望用多长时间来完成这个任务？</h1>
                 <p>在&nbsp;<input name="txt_task_day" onclick="showcalendar(event, this, 0)"
 					value="{if $release_info['txt_task_day']}$release_info['txt_task_day']{elseif $default_max_day}$default_max_day{else}$min{/if}"
-					type="text" id="txt_task_day" min_day="$task_config['min_day']" class="gy_sj_text"/>&nbsp;天完成工作</p>
+					 readonly="readonly" type="text" id="txt_task_day" min_day="$task_config['min_day']" 
+                    title="{$_lang['task_round_title']}:{$task_config['min_day']}{$_lang['day']},{$_lang['max_day']}{if $release_info['max']}{$release_info['max']}{elseif $max_day}{else}$default_max_day{/if}"
+					msgArea="span_task_day" onkeyup="clearstr(this)"
+					limit="required:true;type:date;than:min;less:max"
+					msg="{$_lang['task_round_msg']}" max="" />
+                    &nbsp;完成工作</p>
+                     <span id="span_task_day" class="ml_5"></span>
             </div>
+           
             <div class="clear"></div>
         </div>
         <br>
@@ -205,7 +215,12 @@ $(document).ready(function () {
 	<!--end 步骤下所有内容-->
 	</form>
 <script>
-	
+	/** 说明 */
+function name_des() {
+
+	showWindow("asdfasdf", 'index.php?do=360&view=name&title=如何写好任务标题?', "get", '0');
+
+}
 function ale(){
 	
 	var money = 0;

@@ -75,6 +75,7 @@ function master_opera($m_id, $t_id, $url,$task_cash) {
 	global $kekezu;
 	$button = array ();
 	$model_code = $kekezu->_model_list [$m_id] ['model_code'];
+	
 	$c = $model_code . '_task_class';
 	if ($model_code && method_exists ( $c, 'master_opera' )) {
 		$button = call_user_func_array ( array ($c, 'master_opera' ), array ($m_id, $t_id, $url ,$task_cash) );
@@ -83,6 +84,7 @@ function master_opera($m_id, $t_id, $url,$task_cash) {
 		$button = call_user_func_array ( array ('sreward_task_class', 'master_opera' ), array ($m_id, $t_id, $url,$task_cash ) );
 		unset($button['onkey']);
 	}
+	unset($button['tool']);
 	return $button;
 }
 require keke_tpl_class::template ( "user/" . $do . "_" . $view . "_" . $op );

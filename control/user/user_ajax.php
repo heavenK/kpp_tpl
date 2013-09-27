@@ -95,3 +95,27 @@ if($type == 4){
 	}
 	
 }
+
+if($type == 'index'){
+	
+	
+		$res = db_factory::execute ( " update ".TABLEPRE."witkey_space set index_page='".$mtype."' where uid =".$uid);
+		
+		if($res) {
+			echo 1;
+			exit;
+		}else{
+			echo 0;
+			exit;
+		}
+	
+}
+
+
+
+
+
+
+
+
+

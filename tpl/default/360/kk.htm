@@ -1,0 +1,148 @@
+<!--{template header}-->
+<style type="text/css">
+body{padding:0;margin:0;font-size:12px;}
+span a { color:white;} 
+h1,h2,h3,h4,h5,h6 {font-size:12px; margin:0; padding:0}
+.container {width: 500px; margin: 10px auto;}
+ul.tabs {
+	margin: 0;
+	padding: 0;
+	float: left;
+	list-style: none;
+	height: 32px;
+	border-left: 1px solid #ccc;
+	width: 100%;
+	margin-left:10px;
+}
+ul.tabs li {
+	float: left;
+	margin: 0;
+	padding: 0;
+	height: 31px;
+	line-height: 31px;
+	border: 1px solid #ccc;
+	border-left: none;
+	margin-bottom: -1px;
+	background: #F3F3F3;
+	overflow: hidden;
+	position: relative;
+}
+ul.tabs li a {
+	text-decoration: none;
+	color: #666;
+	display: block;
+	font-size: 12px;
+	padding: 0 15px;
+	border: 1px solid #fff;
+	outline: none;
+}
+ul.tabs li a:hover {
+	background: #fff;
+}	
+html ul.tabs li.active, html ul.tabs li.active a:hover  {
+	background: #fff;
+	border-bottom: 1px solid #fff;
+}
+.tab_container {
+	border: 1px solid #ccc;
+	border-top: 1px solid #ccc;
+	clear: both;
+	float: left; 
+	width: 100%;
+	background: #fff;
+	-moz-border-radius-bottomright: 5px;
+	-khtml-border-radius-bottomright: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	-khtml-border-radius-bottomleft: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+}
+.tab_content {
+	padding-left:10px;
+	font-size: 12px;line-height:20px; padding-top:10px; padding-bottom:20px; padding-right:10px;
+}
+.tab_content h3,h4 { font-weight:normal; }
+.tab_content h4  { margin-left:16px;}
+</style>
+<script type="text/javascript">
+$(document).ready(function() {
+	//Default Action
+	$(".tab_content").hide(); //Hide all content
+	$("ul.tabs li:first").addClass("active").show(); //Activate first tab
+	$(".tab_content:first").show(); //Show first tab content
+	
+	//On Click Event
+	$("ul.tabs li").click(function() {
+		$("ul.tabs li").removeClass("active"); //Remove any "active" class
+		$(this).addClass("active"); //Add "active" class to selected tab
+		$(".tab_content").hide(); //Hide all tab content
+		var activeTab = $(this).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
+		$(activeTab).fadeIn(); //Fade in the active content
+		return false;
+	});
+});
+</script>
+
+<div class="container">
+
+    <ul class="tabs">
+        <li><a href="#tab1">设计类</a></li>
+        <li><a href="#tab2">文案类</a></li>
+        <li><a href="#tab3">开发类</a></li>
+        <li><a href="#tab4">取名类</a></li>
+
+    </ul>
+    <div class="tab_container">
+        <div id="tab1" class="tab_content">
+            <h2>北京憩园仙山茶叶有限公司   LOGO设计及简单应用</h2>
+           	<h3><b>经营介绍：</b>北京憩园仙山茶叶有限公司是一家集产、销于一体的专业化茶叶销售企业，初创于1991年，其主打品牌"憩园牌"茶叶，在京城发展已有十几年的历史，口碑良好。</h3>
+            <h3><b>VI应用内容：</b>设计LOGO、店面招牌设计(竖排，横排)、名片、茶叶外包装、礼品盒包装、员工胸牌、服装设计。</h3>
+            <h3><b>设计要求：</b></h3>
+            <h4>1、大气、简洁、明快;</h4>
+            <h4>2、有视觉冲击力，醒目易识别，突出茶叶品牌元素;</h4>
+            <h4>3、能体现特色，LOGO已有，但如限制了设计师的创意，可重新设计。</h4>
+            <h4>4、附上创意说明。</h4>
+            <h3><b>知识产权说明：</b></h3>
+            <h4>1、所设计的作品为原创，为第一次发布，未侵犯他人的著作权，如有侵犯他人著作权，由设计者承担所有法律责任;</h4>
+            <h4>2、中标的设计作品，我方支付设计制作费，即拥有该作品的知识产权，包括著作权,使用权和发布权等,有权对设计作品进行修改,组合和应用;设计者不得再向其他任何地方使用该设计作品;</h4>
+        </div>
+       
+        <div id="tab2" class="tab_content">
+            <h3>软文主要围绕"××××"来写，要以消费者(可以是公司、网吧、酒店、工厂、超市，学校任意)需求来讲述通过使用该产品的效果，不能太过于做作.要有针对性。考虑到很多威客对我们公司不熟悉，了解产品请登录公司网站：www.******.com，如需有其它方面沟通可以请联系：QQ：123456789</h3>
+            <h3><b>软文要求：</b></h3>
+            <h4>1、软文将用于发布在各种行业论坛及博客，标题和内容绝对不能有广告味，要能引起点击和共鸣，能吸引网友参与讨论或点击浏览。</h4>
+            <h4>2、文章要有吸引力，有趣味性， 要站在用户的角度来描写，帖子内容与标题给人感觉以个人感受、经验分享或消费经历为表现形式,以宣传推广我司业务。</h4>
+            <h4>3、要求原创(不能在网上搜了抄袭)，文笔或专业，或幽默，或结合时事，具备新闻性皆可。不要做的太像推广。</h4>
+            <h4>4、附上创意说明。</h4>
+			<h3><b>知识产权说明：</b></h3>
+            <h4>1、所设计的作品为原创，为第一次发布，未侵犯他人的著作权，如有侵犯他人著作权，由设计者承担所有法律责任;</h4>
+            <h4>2、中标的设计作品，我方支付设计制作费，即拥有该作品的知识产权，包括著作权,使用权和发布权等,有权对设计作品进行修改,组合和应用;设计者不得再向其他任何地方使用该设计作品;</h4>
+        </div>
+       
+        <div id="tab3" class="tab_content">
+            <h3>想找一个熟悉Microchip芯片12F系列的朋友，在读懂程序功能的基础上，写出功能流程说明和注解，整理出流程合理的汇编源码，已有Microchip 8位 mcus的hex文件。这是一个比较简单的小程序。希望高手帮忙。提交物分两部分：</h3>
+            <h2>1. 程序功能说明：</h2>
+            <h4>这个程序在芯片中的工作流程说明和流程图，针脚的定义，输入输出信息。</h4>
+            <h2>2.汇编源码</h2>
+            <h2>特别注意:</h2>
+            <h4>a.要求的不是简单的反汇编，而是在读懂程序功能基础上，给出设计合理的汇编源码。</h4>
+            <h4>b.说明如何修改代码控制芯片管脚输入输出值。</h4>
+            <h4>c.要求必须对每行加以注释，使新手可以读懂。</h4>
+            <h3>附件中是hex文件和配置字，如果有不清楚的地方，随时联系。谢谢。</h3>
+        </div>
+       
+        <div id="tab4" class="tab_content">
+            <h2>茶叶公司名称征集，本公司位于北京。</h2>
+            <h3>其主营的产品有乌龙茶、花茶、绿茶、代用茶礼品、茶具等十几个品类，并开设有营业性的茶艺馆，环境幽雅，别具一格。现需要为旗下茶艺馆取名。</h3>
+			<h2>要求：</h2>
+            <h4>1、名称响亮，易记，文雅，有创意但不失稳重；</h4>
+            <h4>2、茶艺馆名称有所关联；</h4>
+            <h4>2、最好有中、英文两种名称，并可注册商标；</h4>
+            <h4>3、附上创意说明。</h4>
+			<h2>知识产权说明：</h2>
+            <h4>1、所设计的作品为原创，为第一次发布，未侵犯他人的著作权，如有侵犯他人著作权，由设计者承担所有法律责任;</h4>
+            <h4>2、中标的设计作品，我方支付设计制作费，即拥有该作品的知识产权，包括著作权,使用权和发布权等,有权对设计作品进行修改,组合和应用;设计者不得再向其他任何地方使用该设计作品;</h4>
+        </div>
+    </div>
+</div>
+<!--{template footer}

@@ -98,20 +98,20 @@ $indus_all_arr = $kekezu->_indus_arr;
 
 
 // 最新创意任务
-	$logo_task_end = db_factory::query(sprintf("select *  from %switkey_task where task_status=8 and indus_pid=441 order by task_id desc limit 0,4",TABLEPRE));
-	$logo_task = db_factory::query(sprintf("select *  from %switkey_task where task_status=2 and indus_pid=441  order by task_id desc limit 0,4",TABLEPRE));
+	$logo_task_end = db_factory::query(sprintf("select *  from %switkey_task where task_status=8 and indus_pid in (441,457,357,458,459,460) order by task_id desc limit 0,4",TABLEPRE));
+	$logo_task = db_factory::query(sprintf("select *  from %switkey_task where task_status=2 and indus_pid in (441,457,357,458,459,460)  order by task_id desc limit 0,4",TABLEPRE));
 // end
 // 最新程序开发
-	$web_task_end = db_factory::query(sprintf("select *  from %switkey_task where task_status=8 and indus_pid=2 order by task_id desc limit 0,4",TABLEPRE));
-	$web_task = db_factory::query(sprintf("select *  from %switkey_task where task_status=2 and indus_pid=2  order by task_id desc limit 0,4",TABLEPRE));
+	$web_task_end = db_factory::query(sprintf("select *  from %switkey_task where task_status=8 and indus_pid in (2,455,456,249) order by task_id desc limit 0,4",TABLEPRE));
+	$web_task = db_factory::query(sprintf("select *  from %switkey_task where task_status=2 and indus_pid in (2,455,456,249)  order by task_id desc limit 0,4",TABLEPRE));
 // end
 // 最新营销推广
 	$tg_task_end = db_factory::query(sprintf("select *  from %switkey_task where task_status=8 and indus_pid=442 order by task_id desc limit 0,4",TABLEPRE));
 	$tg_task = db_factory::query(sprintf("select *  from %switkey_task where task_status=2 and indus_pid=442  order by task_id desc limit 0,4",TABLEPRE));
 // end
 // 最新生活服务
-	$life_task_end = db_factory::query(sprintf("select *  from %switkey_task where task_status=8 and indus_pid=192 order by task_id desc limit 0,4",TABLEPRE));
-	$life_task = db_factory::query(sprintf("select *  from %switkey_task where task_status=2 and indus_pid=192  order by task_id desc limit 0,4",TABLEPRE));
+	$life_task_end = db_factory::query(sprintf("select *  from %switkey_task where task_status=8 and indus_pid in (498,499,500) order by task_id desc limit 0,4",TABLEPRE));
+	$life_task = db_factory::query(sprintf("select *  from %switkey_task where task_status=2 and indus_pid in (498,499,500)  order by task_id desc limit 0,4",TABLEPRE));
 // end
 
 

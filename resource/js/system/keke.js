@@ -667,7 +667,26 @@ function send_flower(){
 		
 	}
 }
-
+/**
+ * 设首页
+ * 
+ * @param int
+ */
+function set_index(mtype){
+	if(check_user_login()){
+		$.ajax({
+							   type: "GET",
+							   url: "index.php?do=user&view=ajax&type=index&mtype="+mtype,
+							   async: true,
+							   success: function(data){
+								   if(data > 0)	showDialog("操作成功！", 'notice', L.operate_notice);
+								   else	showDialog("操作失败！", 'error', L.operate_notice);
+								   
+							   }
+				})
+		
+	}
+}
 /**
  * 交易维权 *请在外部定义basic_url参数
  * 

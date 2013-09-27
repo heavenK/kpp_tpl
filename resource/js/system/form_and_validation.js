@@ -129,6 +129,7 @@ function checkForm(form,checkAll){
 	 		var eleType = eles[i].type.toLowerCase();
 	 		if(eleType!='button'&&eleType!='sbumit' &&eleType!='application/x-shockwave-flash' && typeof eleType != 'undefined'){
 	        //取出元素declare
+			
 	 		var ignore= eles[i].getAttribute("ignore");
 		 		if(ignore==null||ignore!='true'){
 					var limit = eles[i].getAttribute("limit");
@@ -252,7 +253,6 @@ function validElement(ele){
 	if(required&&ele.type=='checkbox'&&ele.checked==false){
 		return setErrMessage(ele," must be choose.");
 	}
-	
 	//值
 	var valu = $.trim(ele.value);
 			ele.value = valu;
@@ -351,10 +351,12 @@ function validElement(ele){
 		}
 		//=============================类型检验结束========================//
 		//============================其它限制检验=======================//
+
 		if(lims != null){
 			var i;
 			for(i = 0;i<lims.length;i++){
 				var lim = lims[i].split(":");
+
 				if(lim.length != 2){
 					alert("attrribute limit config error.");
 					return false;
@@ -438,6 +440,7 @@ function validElement(ele){
 					var oevalue = eval("document." + formName + "." + lim[1] + ".value");
 					od = toDate(oevalue);
 					cd =  toDate(valu);
+					
 					if(cd<od){
 						return setErrMessage(ele," "+lim[0]+"  date  must than " + lim[1] );
 					}
@@ -585,7 +588,7 @@ function isTel(s){
 * 校验普通电话，除数字外，可用"-"或空格分开
 **/
 function isMobileCN(s){
-	var patrn = /^1[0-9]{1}[0-9]{1}[-| ]?\d{8}$/;
+	var patrn = /^1[358]{1}[0-9]{1}[-| ]?\d{8}$/;
 	var patrn2 = /^(00852)?[-| ]?[6|9]{1}\d{7}$/;
 
 	return patrn.test(s)||patrn2.test(s);

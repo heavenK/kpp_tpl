@@ -33,12 +33,12 @@
                 	<h1>特权</h1>
                 	<!--{tag VIP开创版协议}-->
                     <h1>结算清单</h1>
-                    <form action="" method="post">
+                    <form action="" method="post" id="form1">
                     <input type="hidden" name="sbt" value="1" />
                     <div class="vip_r_jiesuan"><img src="/tpl/default/d8/images/vip19.jpg" /><b>开创版</b>（一年）：1800元 + 同城速配手机短信通知（一年） ： 0元</div>
                     <div class="vip_r_zonge">应付总额：<tt>1800.00</tt> 元</div>
-                    <div class="vip_r_xieyi"><input type="checkbox" checked="checked" />我已阅读并同意 <a href="#">豆8网VIP工作室服务协议</a></div>
-                    <input type="submit" class="vip_r_btn_kc" value="确认付款" />
+                    <div class="vip_r_xieyi"><input id="check_flag" value="1" type="checkbox" checked="checked" />我已阅读并同意 <a href="#">豆8网VIP工作室服务协议</a></div>
+                    <input type="button" class="vip_r_btn_kc" onclick="sub_form()" value="确认付款" />
                     </form>
                 </div>
             </div>
@@ -49,17 +49,21 @@
                 	<h1>特权</h1>
                 	<!--{tag VIP尊享版协议}-->
                     <h1>结算清单</h1>
-                    <form action="" method="post">
+                    <form action="" method="post" id="form1">
                     <input type="hidden" name="sbt" value="1" />
                     <div class="vip_r_jiesuan"><img src="/tpl/default/d8/images/vip10.jpg" /><b>尊享版</b>（一年）：3600元 + 同城速配手机短信通知（一年） ： 0元</div>
                     <div class="vip_r_zonge">应付总额：<tt>3600.00</tt> 元</div>
-                    <div class="vip_r_xieyi"><input type="checkbox" checked="checked"/>我已阅读并同意 <a href="#">豆8网VIP工作室服务协议</a></div>
-                    <input type="submit" class="vip_r_btn" value="确认付款" />
+                    <div class="vip_r_xieyi"><input id="check_flag" value="1" type="checkbox" checked="checked"/>我已阅读并同意 <a href="#">豆8网VIP工作室服务协议</a></div>
+                    <input type="button" class="vip_r_btn" onclick="sub_form()"  value="确认付款" />
                     </form>
                 </div>
             </div>
 			{/if}
-            
+            <script>
+				function sub_form(){
+					if($("#check_flag").attr('checked')) $("#form1").submit();	
+				}
+			</script>
             <div class="clear"></div>
         </div>
         <div class="vip_top01"><img src="/tpl/default/d8/images/vip04.jpg" /></div>

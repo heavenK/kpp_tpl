@@ -174,7 +174,7 @@ function ieGo(){
         <div class="logo_r">
 			<div class="logo_top_nav">
             	<div class="logo_top_nav_t">
-                    <a href="index.php?do=user&view=setting">个人中心</a>
+                    <a href="index.php?do=user&view={if $user_info['index_page']}$user_info['index_page']{else}setting{/if}">个人中心</a>
                     <a href="index.php?do=release">发布任务</a>
                     <a href="#" id="daohang">豆豆导航</a>
                     <a href="#">豆豆游戏</a>
@@ -194,7 +194,7 @@ function ieGo(){
                     <div class="gz">
                         <ul>
                             <li><a href="index.php?do=task_list">任务广场</a></li>
-                            <li><a href="index.php?do=user&view=setting">个人中心</a></li>
+                            <li><a href="index.php?do=user&view={if $user_info['index_page']}$user_info['index_page']{else}setting{/if}">个人中心</a></li>
                             <li><a href="index.php?do=user&view=finance&op=withdraw">我要提现</a></li>
                             <li><a href="index.php?do=vip_info">VIP工作室</a></li>
                         </ul>
