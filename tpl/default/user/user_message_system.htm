@@ -80,7 +80,8 @@
                             </div>
                             <div class="_gztt00 ">
                                 <div class="yh_xxnav yh_xxbutton">
-                                    <input type="button"   onclick="checkall(this.id)" value="全选" class="xx_button" name="">
+                                    <input type="button"   onclick="check_all()" value="全选"  id="checkbox" class="xx_button" name="">
+                                    <input type="hidden" value="0" id="check_value_all" />
                                     <input onclick="return mulit_del();" value="{$_lang['delete_selected']}" type="button" name="sbt_action" class="xx_button00">
                                 </div>
                                 <div class="pages fanye">
@@ -129,7 +130,17 @@
 		}
 		return false;
 	}
-	
+	function check_all(){
+		
+		if($("#check_value_all").val()>0) {
+			$("input[type=checkbox]").attr("checked",false);
+			$("#check_value_all").val(0);
+		}
+		else {
+			$("input[type=checkbox]").attr("checked","checked");
+			$("#check_value_all").val(1);
+		}
+	}
 	
    </script>
 <!--contain end-->

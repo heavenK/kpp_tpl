@@ -53,7 +53,7 @@ $(document).ready(function () {
           </div>
         </div>
         <h3>用一句话来描述你的需求（<a href="#">如何写好任务标题？</a>）</h3>
-        <input name="txt_title" id="txt_title" type="text" value="<!--{eval echo kekezu::escape($release_info['txt_title'])}-->" title="{$_lang['txt_title']}" size="34" msgArea="span_title"
+        <input name="txt_title" id="txt_title" type="text" value="{$txt_title}" title="{$_lang['txt_title']}" size="34" msgArea="span_title"
                                 limit="required:true;len:5-50" msg="{$_lang['msg_title']}" maxlength="50" class="input_6"/>
         <p class="rwbt">任务标题最多50个字</p>
         <h3>请把需求说的具体一些（<a href="#">看看别人怎么写？</a>）</h3>
@@ -98,7 +98,7 @@ $(document).ready(function () {
         <div class="form_box clearfix box border_n">
         <!--input type="hidden" name="step1" value="step1"-->
         <div class="rowElem clearfix">
-          <label class="labl_row"><h3>真实的联系方式有助于一品客服及时与您沟通：</h3></label>
+          <label class="labl_row"><h3>真实的联系方式有助于豆8网客服及时与您沟通：</h3></label>
         <div class="">
         <div class="selectbox_dw" style="margin-right:20px;">
             <select id="bbb" onchange="show_content();" style="height:30px;">
@@ -186,13 +186,18 @@ $(document).ready(function () {
     <div class="styinput hadsubbox"><input original-title="" id="dandusj" class="styled" value="1" name="model_id" checked="checked" type="radio" onclick="change_id(1,1);"><label for="dandusj">单人悬赏，只设置一个中标者</label></div>
     <!--多赏-->
     <div class="styinput hadsubbox"><input original-title="" id="duorensj" class="styled" value="2" name="model_id" type="radio"  onclick="change_id(2,1);"><label for="duorensj">多人悬赏，设置多人中标分享赏金</label></div>
-    
+
     <!--计件-->
     <div class="styinput hadsubbox"></span><label for="jijiansj"><a href="###">计件悬赏，合格一稿，支付一稿</a></label></div>
     
     <script>
 		function change_id(val,type){
 			$("#frm_step3").attr("action","index.php?do=release&pub_mode={$pub_mode}&t_id={$t_id}&model_id="+val+"&r_step=step3");
+			if(val == 2){
+					$(".setmark").show();
+			}else{
+				$(".setmark").hide();
+			}
 			
 			if(val == 4){
 				if(type == 1){
@@ -208,10 +213,14 @@ $(document).ready(function () {
 					$("#cash_task").text("{$service_fee['config']['zb_fees']}");
 					ale();
 				}else{
+					
 					$("#task_cash_cove").removeAttr("disabled");
 					$("#txt_task_cash").hide();
 					$("#txt_task_cash").val(0);
 					$("#task_cash_cove").show();
+					$("#cash_types").text("支付手续费");
+					$("#cash_task").text("{$service_fee['config']['zb_fees']}");
+					ale();
 				}
 			}else{
 				$("#txt_task_cash").show();
@@ -221,34 +230,66 @@ $(document).ready(function () {
 				obj.prependTo($("#txt_task_cash_i"));
 				$("#cash_types").text("托管赏金");
 				$("#cash_task").text("{if $release_info['txt_task_cash']}$release_info['txt_task_cash']{else}$task_config['min_cash']{/if}");
+				ale();
 			}
 		}
 	
 	</script>
+        <div class="choslitcbox setmark" style="background:#fff; border:1px solid #ccc;display:none;">
+                      <div class="costobg">&nbsp;</div>
+                      <div class="coscentbg">
+                        <select name="txt_prize_count" id="txt_prize_count" onchange="task_prizeset(this.value);" title="选择中标人数" msg = '选择中标人数'>
+                          <option value="2" >&nbsp;2&nbsp;</option>
+                          <option value="3" >&nbsp;3&nbsp;</option>
+                        </select>
+                        <!--input type="text" size="12" class="txt txt_input" value=""-->&nbsp;共享该赏金￥<strong class="cc30" id="str_cash">0</strong> ，请设定赏金分配金额
+                        <div id="prize_1_li" class="mb_10">一等奖1人，赏金&nbsp;
+                          <input  name="txt_prize1_num" value="1" type="hidden" id="txt_prize1_num"  />
+                          <input class="txc_1" name="txt_prize1_cash" value="{if $release_info[txt_prize1_cash]}$release_info[txt_prize1_cash]{/if}" type="text" size="8" id="txt_prize1_cash" msgArea="span_prize1_cash"  title="{$_lang['prize_cash_title']}" onkeyup="clearstr(this)" limit="required:true;type:int;between:0-" msg="{$_lang['prize_no_empty']}" />
+                        </div>
+                        <div id="prize_2_li" class="mb_10">二等奖1人，赏金&nbsp;
+                        <input  name="txt_prize2_num" value="1" type="hidden" id="txt_prize2_num"  />
+                          <input class="txc_1" name="txt_prize2_cash" value="{if $release_info[txt_prize2_cash]}$release_info[txt_prize2_cash]{/if}" type="text" size="8" id="txt_prize2_cash" msgArea="span_prize2_cash"  title="{$_lang['prize_cash_title']}" onkeyup="clearstr(this)" limit="required:true;type:int;between:0-" msg="{$_lang['prize_no_empty']}" />
+                        </div>
+                        <div id="prize_3_li" class="mb_10" style='display:none' >三等奖1人，赏金&nbsp;
+                        	<input  disabled="disabled" name="txt_prize3_num" value="1" type="hidden" id="txt_prize3_num"  />
+                          <input class="txc_1" name="txt_prize3_cash" value="{if $release_info[txt_prize3_cash]}$release_info[txt_prize3_cash]{/if}" type="text" size="8" id="txt_prize3_cash" msgArea="span_prize3_cash"  title="{$_lang['prize_cash_title']}" onkeyup="clearstr(this)" limit="required:true;type:int;between:0-" msg="{$_lang['prize_no_empty']}" />
+                        </div>
+                        <div id="msg_prize_valid" class="red"></div>
+                      </div>
+                      <div class="cosbotonbg clearfix">&nbsp;</div>
+                    </div>
     
     
-    <div class="setmark">
-    <div class="csw_tilex c960">为增加投稿积极性，需设置2-5名入围者</div>
-    <select name="txt_prize1_num" id="slt_notice_count" title="选择入围人数">
-    <option selected="selected" value="2">&nbsp;2人&nbsp;</option>
-    <option value="3">&nbsp;3人&nbsp;</option>
-    <option value="4">&nbsp;4人&nbsp;</option>
-    <option value="5">&nbsp;5人&nbsp;</option>
-    </select>
-    入围，他们将分取<strong class="cc30">
+    <script>
+		function task_prizeset(val){
+			if(val == 3){
+				$("#prize_3_li").show();
+				$("#txt_prize3_num").removeAttr('disabled');
+				$("#txt_prize3_cash").removeAttr('disabled');
+			}else{
+				$("#prize_3_li").hide();
+				$("#txt_prize3_num").attr('disabled','disabled');
+				$("#txt_prize3_cash").attr('disabled','disabled');
+			}
+		}
+	</script>
     
-    <input class="" name="txt_prize1_cash" value="{if $release_info[txt_prize1_cash]}$release_info[txt_prize1_cash]{/if}" type="text" size="8" id="txt_prize1_cash" msgArea="span_prize1_cash"  title="{$_lang['prize_cash_title']}" onkeyup="clearstr(this)" limit="required:true;type:int;between:0-" msg="{$_lang['prize_no_empty']}" />
     
-    </strong>元赏金<span id="eachcash" style="display:none"></span>
-    </div>
     <div class="csw_tilex c960">您希望用多长时间来完成这个任务？</div>
     <div class="csw_tilex c960">
     在&nbsp;<i id="txt_task_day_i_1">
     <input name="txt_task_day" onclick="showcalendar(event, this, 0)"
 					value="{if $release_info['txt_task_day']}$release_info['txt_task_day']{elseif $default_max_day}$default_max_day{else}$min{/if}"
-					type="text" id="txt_task_day" min_day="$task_config['min_day']"/></i>
+					type="text" id="txt_task_day" /></i>
+<!--                    <input name="txt_task_day" onclick="showcalendar(event, this, 0)"
+					value="{if $release_info['txt_task_day']}$release_info['txt_task_day']{elseif $default_max_day}$default_max_day{else}$min{/if}"
+					type="text" id="txt_task_day" min_day="$task_config['min_day']" 
+					msgArea="span_task_day" onkeyup="clearstr(this)"
+					limit="required:true;type:date;than:min;less:max"
+					msg="{$_lang['task_round_msg']}" max="" />-->
     
-    &nbsp;日截止投稿
+    &nbsp;日截止投稿  <span id="span_task_day" class="ml_5"></span>
     </div>
     </div>
     <span class="blank10"></span>
@@ -279,7 +320,7 @@ $(document).ready(function () {
         <h2>轻松快捷·更高效率·节省时间<br />客服帮您搞定一切</h2>
         <h3><a href="T_about_kfzx.html">&nbsp;</a></h3>
         <div class="telep"><img src="/tpl/default/d8/images/telephone.png" /> <span>400-850-5066</span></div>
-        <div class="qq"><img src="/tpl/default/d8/images/qq.png" /> <span><a href="tencent://message/?uin=27962130&Site=qq&Menu=yes" target="">27962130</a></span></div>
+        <div class="qq"><img src="/tpl/default/d8/images/qq.png" /> <span><a href="tencent://message/?uin=4008505066&Site=qq&Menu=yes" target="">4008505066</a></span></div>
       </div>
       
       <div class="ljfb_right">
@@ -324,7 +365,7 @@ $(document).ready(function () {
     <div class="psllitable">
     <table border="0" cellpadding="0" cellspacing="1" width="100%">
     <tbody><tr class="odd">
-    <td><font id="cash_types">托管赏金</font>：<a href="javascript:void(0);" class="cf60" original-title="付款后赏金暂由一品威客网保管，待您获得满意服务后，您再授权一品威客网付款给第三方。"><b>￥</b><b id="cash_task"  class="cc00">0</b></a></td>
+    <td><font id="cash_types">托管赏金</font>：<a href="javascript:void(0);" class="cf60" original-title="付款后赏金暂由豆8网保管，待您获得满意服务后，您再授权豆8网付款给第三方。"><b>￥</b><b id="cash_task"  class="cc00">0</b></a></td>
     </tr>
     </tbody></table>
     

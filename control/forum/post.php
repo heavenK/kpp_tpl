@@ -8,15 +8,18 @@ $thread_right_arr = db_factory::query ( "select * from ".TABLEPRE."forum_thread 
 if($sbt_edit){
 	
 	$url = 'index.php?do=forum&view=post&type=thread&type_id='.$type_id;
+	
+	if($type == 'post') $url = 'index.php?do=forum&view=show&tid='.$tid;
+	
 	$url_success = 'index.php?do=forum&view=show&tid=';
 	
 	if(!isset($type_id) || !isset($type)) kekezu::show_msg("来路不正确！",$url,3,'','error');
 	
-	if(!isset($content))	kekezu::show_msg("内容不可以为空！",$url,3,'','error');
+	if(!$content)	kekezu::show_msg("内容不可以为空！",$url,3,'','error');
 	
 	
 	if($type == 'thread'){
-		if(!isset($title)) kekezu::show_msg("标题不可以为空！",$url,3,'','error');
+		if(!$title) kekezu::show_msg("标题不可以为空！",$url,3,'','error');
 		
 		$thread = db_factory::get_one(" select * from ".TABLEPRE."forum_thread order by tid desc limit 0,1");
 		

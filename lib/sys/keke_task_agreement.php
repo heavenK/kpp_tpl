@@ -193,7 +193,7 @@ abstract class keke_task_agreement {
 		$trust_info = $this->_trust_info;
 		if ($this->_agree_status == 2 && $this->_seller_status == 3 && $this->_buyer_status == 3) {
 				$res = db_factory::execute ( sprintf ( " update %switkey_agreement set buyer_confirmtime = UNIX_TIMESTAMP() where agree_id ='%d'", TABLEPRE, $this->_agree_id ) );
-				db_factory::execute ( sprintf ( " update %switkey_task set task_status = '8' where task_id ='%d'", TABLEPRE, $this->_task_id ) );
+				db_factory::execute ( sprintf ( " update %switkey_task set task_status = '8' , is_vote=2 ,vote_start=%d where task_id ='%d'", TABLEPRE, time(), $this->_task_id ) );
 				
 				$cash_info = db_factory::get_one ( sprintf ( " select task_cash,task_union,real_cash from %switkey_task where task_id = '%d'", TABLEPRE, $this->_task_id ) );
 				

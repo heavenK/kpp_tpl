@@ -135,6 +135,7 @@ class keke_register_class {
 		}
 	}
 	function save_userinfo($reg_username, $reg_email, $reg_uid = null) {
+		global $basic_config;
 		$slt = kekezu::randomkeys ( 6 );
 		$pwd = keke_user_class::get_password ( $this->_reg_pwd, $slt );
 		$this->_member_obj->setUid ( $reg_uid );
@@ -162,12 +163,14 @@ class keke_register_class {
 			$this->_space_obj->setPassword ( $this->_reg_pwd );
 			$this->_space_obj->setSec_code ( $pwd );
 			$this->_space_obj->setEmail ( $reg_email );
+			$this->_space_obj->setCredit ( 0 );
 			$this->_space_obj->setReg_time ( time () );
 			$this->_space_obj->setReg_ip ( $this->_reg_ip );
 			$this->_space_obj->setBuyer_level ( serialize ( $buyer_level ) );
 			$this->_space_obj->setSeller_level ( serialize ( $seller_level ) );
 			$space_id = $this->_space_obj->create_keke_witkey_space ();
 		}
+		keke_finance_class::cash_in($reg_member_uid, floatval(0),intval($basic_config['reg_credit']),'admin_charge','','admin_charge');
 		$info = array ('uid' => $reg_member_uid, 'username' => $reg_username, 'email' => $reg_email );
 		$this->_sys_config ['allow_reg_action'] == 1 and keke_user_class::send_email_action_user ( $info );
 		return $reg_member_uid;

@@ -9,7 +9,7 @@
                 </div>
                 <div class="teacher_zl_list">
                     <ul>
-                        <li><em>欢&nbsp;&nbsp;迎&nbsp;&nbsp;您：</em><span>{$member_info['username']}&nbsp;师傅</span><div class="clear"></div></li>
+                        <li><em>欢&nbsp;&nbsp;迎&nbsp;&nbsp;您：</em><span>{$member_info['username']}&nbsp;</span><div class="clear"></div></li>
                         <li><span>今日拜师申请（{$req_count}）</span><div class="clear"></div></li>
                         <li><em>认证状况：</em><span>
                         
@@ -27,9 +27,10 @@
                         </span><div class="clear"></div></li>
                         <li><em>能力等级：</em><span>{$credit_level['pic']}&nbsp;</span><tt></tt><div class="clear"></div></li>
                         <li><em>徒弟数量：</em><span>{$count}</span><div class="clear"></div></li>
+                        <li><em>我的师傅：</em><span>{$shifu_info[username]}</span><div class="clear"></div></li>
                     </ul>
                 </div>
-                <div class="teacher_zl_hua">50</div>
+                <div class="teacher_zl_hua">{$member_info['flower']}</div>
                 <div class="clear"></div>
             </div>
             

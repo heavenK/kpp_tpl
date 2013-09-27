@@ -30,9 +30,10 @@
                              <li class="nr_3">成员头像</li>
                              <li class="nr_4">操作</li>
                            </ul>
-                           {loop $member_list $v}
+                           {loop $member_list $k $v}
                            <ul class="yuan_list">
-                             <li class="nr_1">{$v['member_id']}</li>
+                           <!--{eval $i = $k+1;}-->
+                             <li class="nr_1">{$i}</li>
                              <li class="nr_2">{$v['truename']}</li>
                              <li class="nr_3">
                              	<!--{if $v['member_pic']}<img src="{$_K['siteurl']}/{$v['member_pic']}" class="block mar_auto pic_img" alt="{$_lang['display_picture']}" title="{$_lang['display_picture']}" width="50" height="50">{else}<img src="data/avatar/default/man_big.jpg" class="block mar_auto pic_img" alt="{$_lang['default_picture']}" title="{$_lang['default_picture']}" width="50" height="50">{/if}-->

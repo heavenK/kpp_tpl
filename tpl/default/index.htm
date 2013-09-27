@@ -22,7 +22,7 @@
     </div>
 
 	<div class="g_zt"><!--最新动态-->
-        <div class="g_zx">
+        <div class="g_zx" style="position:relative">
             <div class="effect">
                 <div class="slideTxtBox">
                     <div class="hd">
@@ -33,25 +33,27 @@
                             {loop $indus_recomm_task $k $v}
                             <li><span class="date"><!--{date('Y-m-d',$v['start_time'])}--></span><a href="index.php?do=task&task_id={$v['task_id']}"><!--{eval echo kekezu::cutstr($v['task_title'],24);}--></a></li>
                             {/loop}
-                            <li class="gengduo" style="background:none;"><a href="index.php?do=task_list">查看更多>>></a></li>
+                            
+                            <li class="gengduo" style="background:none;position:absolute; bottom:5px; right:10px"><a href="index.php?do=task_list">查看更多>>></a></li>
+                            
                         </ul>
                         <ul class="infoList">
                             {loop $bulletin_arr $v}
                                 <li><span class="date"><!--{date('Y-m-d',$v['pub_date'])}--></span><a href="index.php?do=single&art_id={$v['art_id']}">{$v['art_title']}</a></li>
                             {/loop}
-                            <li class="gengduo" style="background:none;"><a href="index.php?do=article&view=article_list&art_cat_id=5">查看更多>>></a></li>
+                            <li class="gengduo" style="background:none;position:absolute; bottom:5px; right:10px"><a href="index.php?do=article&view=article_list&art_cat_id=5">查看更多>>></a></li>
                         </ul>
                         <ul class="infoList">
                             {loop $indus_recomm_task_1 $k $v}
                             <li><span class="date"><!--{date('Y-m-d',$v['start_time'])}--></span><a href="index.php?do=task&task_id={$v['task_id']}"><!--{eval echo kekezu::cutstr($v['task_title'],24);}--></a></li>
                             {/loop}
-                            <li class="gengduo" style="background:none;"><a href="index.php?do=task_list">查看更多>>></a></li>
+                            <li class="gengduo" style="background:none;position:absolute; bottom:5px; right:10px"><a href="index.php?do=task_list">查看更多>>></a></li>
                         </ul>
                         <ul class="infoList">
                             {loop $shaishi_arr $v}
                                 <li><span class="date"><!--{date('Y-m-d',$v['pub_date'])}--></span><a href="index.php?do=single&art_id={$v['art_id']}">{$v['art_title']}</a></li>
                             {/loop}
-                            <li class="gengduo" style="background:none;"><a href="index.php?do=article&view=article_list&art_cat_id=7">查看更多>>></a></li>
+                            <li class="gengduo" style="background:none;position:absolute; bottom:5px; right:10px"><a href="index.php?do=article&view=article_list&art_cat_id=7">查看更多>>></a></li>
                         </ul>
                     </div>
                 </div>
@@ -100,10 +102,10 @@
                           {/loop}
                         </ul>
                         <ul class="infoListImg">
-                          {loop $new_member $k $v}
+                          {loop $accept_member $k $v}
                           <li>
                               <div id="div3{$k}" onMouseOver="show('div3{$k}');" onMouseOut="hide('div3{$k}');" style="display:none; cursor:pointer;">
-                              <div class="text"><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><p>{$v['username']}</p><p>诚信保障：{$v['balance']}</p><p>能力等级：{$credit_level[$k]["title"]}</p></a></div>
+                              <div class="text"><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><p>{$v['username']}</p><p>诚信保障：{$v['balance']}</p><p>能力等级：{$v['seller_level']["title"]}</p></a></div>
                               <div class="bg"></div>
                               </div>
                               <a href="#"><img src="<!--{userpicurl($v['uid'],middle)}-->" onMouseOver="show('div3{$k}')" onMouseOut="hide('div3{$k}')" /></a><span><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->">{$v['username']}</a></span>
@@ -135,44 +137,178 @@
                     <div class="ban_sright">
                         <div class="ban_snav">
                             <ul>
-                                <li><a href="" target="_blank">商标/VI设计</a></li>
-                                <li><a href="" target="_blank">服装设计</a></li>
-                                <li><a href="" target="_blank">动漫设计</a></li>
-                                <li><a href="" target="_blank">卡片设计</a></li>
-                                <li><a href="" target="_blank">照片处理</a></li>
-                                <li><a href="" target="_blank">多媒体设计</a></li>
-                                <li><a href="" target="_blank">网页设计</a></li>
-                                <li><a href="" target="_blank">应用设计</a></li>
+                            	<li><a href="index.php?do=seller_list&path=A441" target="_blank">平面设计</a></li>
+                                <li><a href="index.php?do=seller_list&path=A457" target="_blank">网页设计</a></li>
+                                <li><a href="index.php?do=seller_list&path=A357" target="_blank">影音媒体</a></li>
+                                <li><a href="index.php?do=seller_list&path=A458" target="_blank">动漫设计</a></li>
+                                <li><a href="index.php?do=seller_list&path=A459" target="_blank">照片处理</a></li>
+                                <li><a href="index.php?do=seller_list&path=A460" target="_blank">应用设计</a></li>
                             </ul>
                         </div>
                          
                         <div class="ban_stuy">
-                        	{loop $sj_member $k $v}
                             <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=space&member_id={$v[uid]}"><img src="<!--{userpicurl($v['uid'],middle)}-->" width="84" height="85"/></a>
+                                    <a href="index.php?do=seller_list&path=A441&indus_id=348"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
-                                    <span>{if !empty($indus_all_arr[$v['indus_pid']]['indus_name'])}  $indus_all_arr[$v['indus_pid']]['indus_name']|$indus_all_arr[$v['indus_id']]['indus_name']{else}无{/if}</span>
-                                    
+                                    <span>LOGO设计</span>
+                                    <p>{$rencai_count[348]}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                             </div>
-                            {/loop}
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A441&indus_id=349"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>VI设计</span>
+                                    <p>{$rencai_count[349]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                            </div>
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A441&indus_id=370"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>封面设计</span>
+                                    <p>{$rencai_count[370]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                            </div>
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A457&indus_id=27"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>网页设计</span>
+                                    <p>{$rencai_count[27]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                            </div>
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A457&indus_id=448"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>淘宝网店装修</span>
+                                    <p>{$rencai_count[448]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                            </div>
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A357&indus_id=359"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>视频制作</span>
+                                    <p>{$rencai_count[359]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                            </div>
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A357&indus_id=461"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>音频剪辑</span>
+                                    <p>{$rencai_count[461]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                            </div>
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A441&indus_id=133"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>QQ表情</span>
+                                    <p>{$rencai_count[133]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                            </div>
                         </div> 
                         <div name="aaaaa">
-                            {loop $sj_member_2 $k $v}
                             <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=space&member_id={$v[uid]}"><img src="<!--{userpicurl($v['uid'],middle)}-->"  width="84" height="85"/></a>
+                                    <a href="index.php?do=seller_list&path=A458&indus_id=135"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
-                                    <span>{if !empty($indus_all_arr[$v['indus_pid']]['indus_name'])}  $indus_all_arr[$v['indus_pid']]['indus_name']|$indus_all_arr[$v['indus_id']]['indus_name']{else}无{/if}</span>
-                                    
+                                    <span>动漫原型</span>
+                                    <p>{$rencai_count[135]}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                             </div>
-                            {/loop}
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A459&indus_id=351"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>艺术照处理</span>
+                                    <p>{$rencai_count[351]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                            </div>
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A459&indus_id=446"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>照片处理</span>
+                                    <p>{$rencai_count[446]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                            </div>
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A441&indus_id=452"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>包装设计</span>
+                                    <p>{$rencai_count[452]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                            </div>
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A460&indus_id=453"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>机械设计</span>
+                                    <p>{$rencai_count[453]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                            </div>
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A460&indus_id=454"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>工程用图</span>
+                                    <p>{$rencai_count[454]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                            </div>
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A441&indus_id=10"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>名片设计</span>
+                                    <p>{$rencai_count[10]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                            </div>
+                            <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A441&indus_id=349"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>UI设计</span>
+                                    <p>{$rencai_count[349]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                            </div>
                         </div>
                         </div>
                     </div>
@@ -190,40 +326,178 @@
 					<div class="ban_sright">
 					<div class="ban_snav">
 						<ul>
-							<li><a href="" target="_blank">移动应用</a></li>
-							<li><a href="" target="_blank">网站开发</a></li>
-							<li><a href="" target="_blank">软件开发</a></li>
-							<li><a href="" target="_blank">网游服务</a></li>
+							<li><a href="index.php?do=seller_list&path=A455" target="_blank">移动应用</a></li>
+							<li><a href="index.php?do=seller_list&path=A2" target="_blank">网站开发</a></li>
+							<li><a href="index.php?do=seller_list&path=A456" target="_blank">软件开发</a></li>
+							<li><a href="index.php?do=seller_list&path=A249" target="_blank">网游服务</a></li>
 						</ul>
 					</div>
 					 
 					<div class="ban_stuy">
-						{loop $kf_member $k $v}
-                            <div class="ban_stu00">
+						<div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=space&member_id={$v[uid]}"><img src="<!--{userpicurl($v['uid'],middle)}-->"  width="84" height="85"/></a>
+                                    <a href="index.php?do=seller_list&path=A455&indus_id=222"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
-                                    <span>{if !empty($indus_all_arr[$v['indus_pid']]['indus_name'])}  $indus_all_arr[$v['indus_pid']]['indus_name']|$indus_all_arr[$v['indus_id']]['indus_name']{else}无{/if}</span>
-                                    
+                                    <span>Android开发</span>
+                                    <p>{$rencai_count[222]}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
-                            </div>
-                            {/loop}
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A455&indus_id=462"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>APP开发</span>
+                                    <p>{$rencai_count[462]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A2&indus_id=463"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>门户网站开发</span>
+                                    <p>{$rencai_count[463]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A455&indus_id=464"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>手机网站开发</span>
+                                    <p>{$rencai_count[464]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A2&indus_id=465"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>网站改版</span>
+                                    <p>{$rencai_count[465]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A456&indus_id=122"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>软件测试</span>
+                                    <p>{$rencai_count[122]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A456&indus_id=466"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>多媒体开发</span>
+                                    <p>{$rencai_count[466]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A249&indus_id=467"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>游戏代练</span>
+                                    <p>{$rencai_count[467]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         
 					</div> 
 					<div name="aaaaa">
-						{loop $kf_member_2 $k $v}
-                            <div class="ban_stu00">
+						<div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=space&member_id={$v[uid]}"><img src="<!--{userpicurl($v['uid'],middle)}-->"  width="84" height="85"/></a>
+                                    <a href="index.php?do=seller_list&path=A249&indus_id=251"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
-                                    <span>{if !empty($indus_all_arr[$v['indus_pid']]['indus_name'])}  $indus_all_arr[$v['indus_pid']]['indus_name']|$indus_all_arr[$v['indus_id']]['indus_name']{else}无{/if}</span>
-                                    
+                                    <span>游戏试玩</span>
+                                    <p>{$rencai_count[251]}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
-                            </div>
-                            {/loop}
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A455&indus_id=225"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>塞班系统开发</span>
+                                    <p>{$rencai_count[225]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A455&indus_id=231"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>手游开发</span>
+                                    <p>{$rencai_count[231]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A2&indus_id=468"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>商务网站开发</span>
+                                    <p>{$rencai_count[468]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A2&indus_id=469"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>团购网站开发</span>
+                                    <p>{$rencai_count[469]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A2&indus_id=470"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>程度修改</span>
+                                    <p>{$rencai_count[470]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A456&indus_id=324"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>软件汉化</span>
+                                    <p>{$rencai_count[324]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A456&indus_id=471"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>办公软件开发</span>
+                                    <p>{$rencai_count[471]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                        
                         </div>
 					</div>
 				</div>
@@ -242,40 +516,176 @@
 					<div class="ban_sright">
 					<div class="ban_snav">
 						<ul>
-							<li><a href="" target="_blank">移动应用</a></li>
-							<li><a href="" target="_blank">网站开发</a></li>
-							<li><a href="" target="_blank">软件开发</a></li>
-							<li><a href="" target="_blank">网游服务</a></li>
+							<li><a href="index.php?do=seller_list&path=A3" target="_blank">方案策划</a></li>
+							<li><a href="index.php?do=seller_list&path=A160" target="_blank">起名取名</a></li>
+							<li><a href="index.php?do=seller_list&path=A472" target="_blank">活动策划</a></li>
+							<li><a href="index.php?do=seller_list&path=A473" target="_blank">写作创意</a></li>
 						</ul>
 					</div>
 					 
 					<div class="ban_stuy">
-						{loop $ch_member $k $v}
-                            <div class="ban_stu00">
+						<div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=space&member_id={$v[uid]}"><img src="<!--{userpicurl($v['uid'],middle)}-->"  width="84" height="85"/></a>
+                                    <a href="index.php?do=seller_list&path=A3&indus_id=41"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
-                                    <span>{if !empty($indus_all_arr[$v['indus_pid']]['indus_name'])}  $indus_all_arr[$v['indus_pid']]['indus_name']|$indus_all_arr[$v['indus_id']]['indus_name']{else}无{/if}</span>
-                                    
+                                    <span>宣传文案</span>
+                                    <p>{$rencai_count[41]}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
-                            </div>
-                            {/loop}
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A3&indus_id=47"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>产品说明</span>
+                                    <p>{$rencai_count[47]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A160&indus_id=163"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>公司取名</span>
+                                    <p>{$rencai_count[163]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A160&indus_id=162"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>成人改名</span>
+                                    <p>{$rencai_count[162]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A473&indus_id=474"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>求婚创意</span>
+                                    <p>{$rencai_count[474]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A472&indus_id=475"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>会展策划</span>
+                                    <p>{$rencai_count[475]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A3&indus_id=48"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>剧本创作</span>
+                                    <p>{$rencai_count[48]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A3&indus_id=52"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>演讲稿</span>
+                                    <p>{$rencai_count[52]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
 					</div> 
 					<div name="aaaaa">
-						{loop $ch_member_2 $k $v}
-                            <div class="ban_stu00">
+						<div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=space&member_id={$v[uid]}"><img src="<!--{userpicurl($v['uid'],middle)}-->"  width="84" height="85"/></a>
+                                    <a href="index.php?do=seller_list&path=A160&indus_id=165"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
-                                    <span>{if !empty($indus_all_arr[$v['indus_pid']]['indus_name'])}  $indus_all_arr[$v['indus_pid']]['indus_name']|$indus_all_arr[$v['indus_id']]['indus_name']{else}无{/if}</span>
-                                    
+                                    <span>品牌取名</span>
+                                    <p>{$rencai_count[165]}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
-                            </div>
-                            {/loop}
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A160&indus_id=476"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>产品起名</span>
+                                    <p>{$rencai_count[476]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A472&indus_id=477"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>婚庆策划</span>
+                                    <p>{$rencai_count[477]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A473&indus_id=474"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>征集创意</span>
+                                    <p>{$rencai_count[474]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A3&indus_id=479"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>歌词曲谱</span>
+                                    <p>{$rencai_count[479]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A3&indus_id=42"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>广告语</span>
+                                    <p>{$rencai_count[42]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A160&indus_id=161"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>宝宝取名</span>
+                                    <p>{$rencai_count[161]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A472&indus_id=480"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>演出策划</span>
+                                    <p>{$rencai_count[480]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
 					</div>
 					</div>
 				</div>
@@ -295,41 +705,178 @@
 					<div class="ban_sright">
 					<div class="ban_snav">
 						<ul>
-							<li><a href="" target="_blank">移动应用</a></li>
-							<li><a href="" target="_blank">网站开发</a></li>
-							<li><a href="" target="_blank">软件开发</a></li>
-							<li><a href="" target="_blank">网游服务</a></li>
+							<li><a href="index.php?do=seller_list&path=A481" target="_blank">家居装修</a></li>
+							<li><a href="index.php?do=seller_list&path=A482" target="_blank">局部装修</a></li>
+							<li><a href="index.php?do=seller_list&path=A483" target="_blank">办公装修</a></li>
+							<li><a href="index.php?do=seller_list&path=A484" target="_blank">装修风格</a></li>
+                            <li><a href="index.php?do=seller_list&path=A485" target="_blank">家具设计</a></li>
+							<li><a href="index.php?do=seller_list&path=A486" target="_blank">户外装修</a></li>
 						</ul>
 					</div>
 					 
 					<div class="ban_stuy">
-						{loop $zx_member $k $v}
-                            <div class="ban_stu00">
+						<div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=space&member_id={$v[uid]}"><img src="<!--{userpicurl($v['uid'],middle)}-->"  width="84" height="85"/></a>
+                                    <a href="index.php?do=seller_list&path=A481&indus_id=337"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
-                                    <span>{if !empty($indus_all_arr[$v['indus_pid']]['indus_name'])}  $indus_all_arr[$v['indus_pid']]['indus_name']|$indus_all_arr[$v['indus_id']]['indus_name']{else}无{/if}</span>
-                                    
+                                    <span>二手房装修</span>
+                                    <p>{$rencai_count[337]}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
-                            </div>
-                            {/loop}
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A481&indus_id=487"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>效果图设计</span>
+                                    <p>{$rencai_count[487]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A482&indus_id=488"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>阳台</span>
+                                    <p>{$rencai_count[488]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A482&indus_id=489"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>客厅</span>
+                                    <p>{$rencai_count[489]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A483&indus_id=152"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>办公室装修</span>
+                                    <p>{$rencai_count[152]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A486&indus_id=151"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>展会装修</span>
+                                    <p>{$rencai_count[151]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A484&indus_id=490"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>中式风格</span>
+                                    <p>{$rencai_count[490]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A484&indus_id=491"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>波斯风格</span>
+                                    <p>{$rencai_count[491]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
 					</div> 
 					<div name="aaaaa">
-						{loop $zx_member_2 $k $v}
-                            <div class="ban_stu00">
+						<div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=space&member_id={$v[uid]}"><img src="<!--{userpicurl($v['uid'],middle)}-->"  width="84" height="85"/></a>
+                                    <a href="index.php?do=seller_list&path=A485&indus_id=493"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
-                                    <span>{if !empty($indus_all_arr[$v['indus_pid']]['indus_name'])}  $indus_all_arr[$v['indus_pid']]['indus_name']|$indus_all_arr[$v['indus_id']]['indus_name']{else}无{/if}</span>
-                                    
+                                    <span>书柜设计</span>
+                                    <p>{$rencai_count[493]}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
-                            </div>
-                            {/loop}
-                        
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A485&indus_id=496"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>厨卫设计</span>
+                                    <p>{$rencai_count[496]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A486&indus_id=153"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>园林设计</span>
+                                    <p>{$rencai_count[153]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A481&indus_id=487"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>效果图设计</span>
+                                    <p>{$rencai_count[487]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A481&indus_id=494"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>草坯房装修</span>
+                                    <p>{$rencai_count[494]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A484&indus_id=495"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>家居配色</span>
+                                    <p>{$rencai_count[495]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A482&indus_id=492"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>厨卫</span>
+                                    <p>{$rencai_count[492]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                        <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A481&indus_id=497"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>水电改造</span>
+                                    <p>{$rencai_count[497]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
                        
 					</div>
                         
@@ -352,40 +899,176 @@
 					<div class="ban_sright">
 					<div class="ban_snav">
 						<ul>
-							<li><a href="" target="_blank">移动应用</a></li>
-							<li><a href="" target="_blank">网站开发</a></li>
-							<li><a href="" target="_blank">软件开发</a></li>
-							<li><a href="" target="_blank">网游服务</a></li>
+							<li><a href="index.php?do=seller_list&path=A498" target="_blank">搬家租赁</a></li>
+							<li><a href="index.php?do=seller_list&path=A499" target="_blank">家政保洁</a></li>
+							<li><a href="index.php?do=seller_list&path=A500" target="_blank">家教陪练</a></li>
 						</ul>
 					</div>
 					 
 					<div class="ban_stuy">
-						{loop $fw_member $k $v}
-                            <div class="ban_stu00">
+						<div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=space&member_id={$v[uid]}"><img src="<!--{userpicurl($v['uid'],middle)}-->"  width="84" height="85"/></a>
+                                    <a href="index.php?do=seller_list&path=A498&indus_id=501"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
-                                    <span>{if !empty($indus_all_arr[$v['indus_pid']]['indus_name'])}  $indus_all_arr[$v['indus_pid']]['indus_name']|$indus_all_arr[$v['indus_id']]['indus_name']{else}无{/if}</span>
-                                    
+                                    <span>居民搬家</span>
+                                    <p>{$rencai_count[501]}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
-                            </div>
-                            {/loop}
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A498&indus_id=502"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>机械设备租赁</span>
+                                    <p>{$rencai_count[502]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A499&indus_id=507"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>月嫂保姆</span>
+                                    <p>{$rencai_count[507]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A499&indus_id=508"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>器械清洗</span>
+                                    <p>{$rencai_count[508]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A500&indus_id=511"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>学前辅导</span>
+                                    <p>{$rencai_count[511]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A500&indus_id=512"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>私人舞蹈教练</span>
+                                    <p>{$rencai_count[512]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A500&indus_id=513"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>美术辅导</span>
+                                    <p>{$rencai_count[513]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A498&indus_id=503"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>办公搬家</span>
+                                    <p>{$rencai_count[503]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         
 					</div> 
 					<div name="aaaaa">
-						{loop $fw_member_2 $k $v}
-                            <div class="ban_stu00">
+						<div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=space&member_id={$v[uid]}"><img src="<!--{userpicurl($v['uid'],middle)}-->"  width="84" height="85"/></a>
+                                    <a href="index.php?do=seller_list&path=A498&indus_id=504"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
-                                    <span>{if !empty($indus_all_arr[$v['indus_pid']]['indus_name'])}  $indus_all_arr[$v['indus_pid']]['indus_name']|$indus_all_arr[$v['indus_id']]['indus_name']{else}无{/if}</span>
-                                    
+                                    <span>音响灯光租赁</span>
+                                    <p>{$rencai_count[504]}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
-                            </div>
-                            {/loop}
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A499&indus_id=509"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>钟点工</span>
+                                    <p>{$rencai_count[509]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A500&indus_id=514"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>小学辅导</span>
+                                    <p>{$rencai_count[514]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A500&indus_id=515"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>私人瑜伽教练</span>
+                                    <p>{$rencai_count[515]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A500&indus_id=516"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>声乐辅导</span>
+                                    <p>{$rencai_count[516]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A498&indus_id=505"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>起重吊装</span>
+                                    <p>{$rencai_count[505]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A498&indus_id=506"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>庆典展会租赁</span>
+                                    <p>{$rencai_count[506]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
+                         <div class="ban_stu00">
+                                <div class="ban_stu00left">
+                                    <a href="index.php?do=seller_list&path=A499&indus_id=510"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                </div>
+                                <div class="ban_stu00right">
+                                    <span>涉外家政</span>
+                                    <p>{$rencai_count[510]}位设计师</p>
+                                    <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
+                                </div>
+                         </div>
                         
                        
 					</div>
@@ -557,7 +1240,7 @@
     ></a></div>
   <ul class="silder_con">
   	{loop $vip_shop1 $k $v}
-    <li class="silder_panel clearfix"> <a href="index.php?do=space&member_id={$v['uid']}" class="f_l"><img src="<!--{userpicurl($v['uid'],large)}-->" width="230" height="151" /></a>
+    <li class="silder_panel clearfix"> <a href="index.php?do=space&member_id={$v['uid']}" class="f_l"><img src="<!--{userpicurl($v['uid'],larger)}-->" width="230" height="151" /></a>
       <div class="bg1">
         <h1><!--{eval echo kekezu::cutstr($v['shop_name'],16);}--></h1>
         <h2><a href="index.php?do=release&to_uid=19999999">我要雇佣</a></h2>
@@ -586,7 +1269,7 @@
     ></a></div>
   <ul class="silder_con">
     {loop $vip_shop2 $k $v}
-    <li class="silder_panel clearfix"> <a href="index.php?do=space&member_id={$v['uid']}" class="f_l"><img src="<!--{userpicurl($v['uid'],large)}-->" width="230" height="151" /></a>
+    <li class="silder_panel clearfix"> <a href="index.php?do=space&member_id={$v['uid']}" class="f_l"><img src="<!--{userpicurl($v['uid'],larger)}-->" width="230" height="151" /></a>
       <div class="bg1">
         <h1><!--{eval echo kekezu::cutstr($v['shop_name'],16);}--></h1>
         <h2><a href="index.php?do=release&to_uid=19999999">我要雇佣</a></h2>
@@ -615,7 +1298,7 @@
     ></a></div>
   <ul class="silder_con">
     {loop $vip_shop3 $k $v}
-    <li class="silder_panel clearfix"> <a href="index.php?do=space&member_id={$v['uid']}" class="f_l"><img src="<!--{userpicurl($v['uid'],large)}-->" width="230" height="151" /></a>
+    <li class="silder_panel clearfix"> <a href="index.php?do=space&member_id={$v['uid']}" class="f_l"><img src="<!--{userpicurl($v['uid'],larger)}-->" width="230" height="151" /></a>
       <div class="bg1">
         <h1><!--{eval echo kekezu::cutstr($v['shop_name'],16);}--></h1>
         <h2><a href="index.php?do=release&to_uid=19999999">我要雇佣</a></h2>
@@ -644,7 +1327,7 @@
     ></a></div>
   <ul class="silder_con">
     {loop $vip_shop4 $k $v}
-    <li class="silder_panel clearfix"> <a href="index.php?do=space&member_id={$v['uid']}" class="f_l"><img src="<!--{userpicurl($v['uid'],large)}-->" width="230" height="151" /></a>
+    <li class="silder_panel clearfix"> <a href="index.php?do=space&member_id={$v['uid']}" class="f_l"><img src="<!--{userpicurl($v['uid'],larger)}-->" width="230" height="151" /></a>
       <div class="bg1">
         <h1><!--{eval echo kekezu::cutstr($v['shop_name'],16);}--></h1>
         <h2><a href="index.php?do=release&to_uid=19999999">我要雇佣</a></h2>

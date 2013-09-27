@@ -55,23 +55,23 @@ body {
   background: linear-gradient(#f6f5f7 0%, #eaeaea 300px);
 }
 .blue_style .header {
-  background: #2f549f;
+  background: #48B78D;
 }
 .blue_style .header #search {
-  background: #2f549f;
+  background: #48B78D;
 }
 .blue_style .header .search .search_box {
-  border: 1px solid #123989;
+  border: 1px solid #48B78D;
 }
 .blue_style .header .search .search_options {
   background: #e3ecfa;
 }
 .blue_style .header .search .search_selcecter a:hover {
-  background: #2F549F;
+  background: #48B78D;
 }
 .blue_style .header .search .search_selcecter a.selected,
 .blue_style .header .search .search_selcecter a.selected:hover {
-  color: #2F549F;
+  color: #48B78D;
   background: transparent;
 }
 .blue_style .header .login_pop {
@@ -89,14 +89,9 @@ body {
   border-top: 1px solid #395B9D;
 }
 .blue_style .header .user_logined {
-  border: 1px solid #123989;
-  background-color: #2C55A8;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#2c55a8), to(#274b94));
-  background-image: -webkit-linear-gradient(top, #2c55a8, #274b94);
-  background-image: -moz-linear-gradient(top, #2c55a8, #274b94);
-  background-image: -ms-linear-gradient(top, #2c55a8, #274b94);
-  background-image: -o-linear-gradient(top, #2c55a8, #274b94);
-  background-image: linear-gradient(top, #2c55a8, #274b94);
+  border: 1px solid #48B78D;
+  background-color: #48B78D;
+
 }
 .blue_style .header .user_logined .nav_list a:hover {
   color: #fff;
@@ -111,7 +106,7 @@ body {
 }
 .blue_style .header .user_nav_pop {
   left: 0;
-  background: #1d3e7f;
+  background: #48B78D;
   background-color: rgba(29, 62, 127, 0.8);
   zoom: 1;
 }

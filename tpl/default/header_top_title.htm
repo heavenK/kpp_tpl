@@ -65,7 +65,10 @@
  	In.add('mouseDelay',{path:"resource/js/jqplugins/jQuery.mouseDelay.js",type:'js'});
 	In.add('waypoints',{path:"resource/js/jqplugins/waypoints/waypoints.min.js",type:'js'});
 	In.add('custom',{path:"resource/js/system/custom_min.js",type:'js',rely:['waypoints']});
- 	In.add('form',{path:"resource/js/system/form_and_validation.js",type:'js'});
+ 	{if $do=='user' && $view=='store' && $op=='setting' && $opp == 'skill'}
+	{else}
+	In.add('form',{path:"resource/js/system/form_and_validation.js",type:'js'});
+	{/if}
 	In.add('print',{path:"resource/js/jqplugins/jquery.print.js",type:'js'});
 	In.add('task',{path:"resource/js/system/task.js",type:'js'});
  	In.add('calendar',{path:"resource/js/system/script_calendar.js",type:'js'}); 
@@ -93,9 +96,18 @@ function ieGo(){
 			var ua = navigator.userAgent.toLowerCase();
 			var version = parseInt(ua.match(/msie ([\d.]+)/)[1]);
 			if(version <= 6) {
-				location.href='default.html'; 
+				location.href='default.php'; 
 			}
 		}
+		var userAgent = navigator.userAgent.toLowerCase(); 
+
+		if(userAgent.indexOf('se 2.x') != -1){ 
+			
+			var browser=navigator.appName;
+			if (browser != 'Netscape'){  
+				alert("您使用的是搜狗浏览器，请使用高速模式或者换其它浏览器来获取更好的体验！");
+ 			}
+		} 
 }
 </script>
 

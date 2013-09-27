@@ -410,7 +410,7 @@ abstract class keke_task_release_class {
 		
 		$this->_std_obj->_att_cash = $this->solve_pay_item ( $this->_std_obj->_att_info ); 
 		
-		$this->_model_info ['model_code'] == 'tender' and $this->_std_obj->_release_info ['txt_task_cash'] = $this->_task_config [zb_fees];
+		($this->_model_info ['model_code'] == 'tender' && !$release_info['txt_task_cash']) and $this->_std_obj->_release_info ['txt_task_cash'] = $this->_task_config [zb_fees];
 		
 		
 		

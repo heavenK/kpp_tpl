@@ -78,8 +78,15 @@ if($view == 'question'){
 		}
 		if($result)	{
 			
-			$sqlplus = "update %switkey_space set credit = credit+10 where uid = %d";
-			db_factory::execute(sprintf($sqlplus,TABLEPRE,$uid));
+			$sidUid = db_factory::get_one ( sprintf ( " select * from %sxtang_artUid where sid=".$sid." and uid=".$uid, TABLEPRE )); 
+			if(!$sidUid){
+				keke_finance_class::cash_in($uid, floatval(0),intval($basic_config['answer_credit']),'answer_credit','','answer_credit');
+				
+				$sqlplus = "insert into %sxtang_artUid values(%d,%d)";
+				db_factory::execute(sprintf($sqlplus,TABLEPRE,$sid,$uid));
+			}
+
+			
 			
 			require $kekezu->_tpl_obj->template ( $do."_success" );
 		}

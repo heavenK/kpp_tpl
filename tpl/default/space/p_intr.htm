@@ -22,7 +22,7 @@
                 </div>
                 <div class="vip_about_info">
                 	<span>联系方式</span>
-                    <em>邮箱：{$member_info['email']}<br />手机：{$member_info['mobile']}</em>
+                    <em>邮箱：<!--{eval echo kekezu::set_star($member_info['email'],3,6);}--><br />手机：<!--{eval echo kekezu::set_star($member_info['mobile'],3,3);}--></em>
                     <div class="clear"></div>
                 </div>
                 <div class="vip_about_info" style="padding-top:0px;">

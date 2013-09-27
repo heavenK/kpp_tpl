@@ -666,7 +666,7 @@ input#old_passworld.txt_input{width:214px; height:29px;}
 .x_btn{width:80px; height:30px; border:1px #dedede solid;}
 .x_t{background:#F90;}
 .a0{ float:left !important;}
-._bb{ float:left; font-size:12px; margin-left:125px; line-height:20px;}
+._bb{ float:left; font-size:12px; line-height:20px; *float:none !important;}
 
 /*工作室管理*/
 .xuanqu { width:600px; padding-top:20px; padding-bottom:10px; padding-left:37px; font-size:14px;}

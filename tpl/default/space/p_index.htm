@@ -20,12 +20,12 @@
                         <div class="bd">
                             <ul class="infoList">
                             	{loop $task_list_arr $k $v}
-                                <li><span class="date"><!--{date('Y-m-d', $v['start_time'])}--></span><a href="index.php?do=task&task_id={$v['task_id']}" target="_blank">{$v['task_title']}</a></li>
+                                <li><span class="date"><!--{date('Y-m-d', $v['start_time'])}--></span><a href="index.php?do=task&task_id={$v['task_id']}" target="_blank"><!--{eval echo kekezu::cutstr($v['task_title'],60);}--></a></li>
                                 {/loop}
                             </ul>
                             <ul class="infoList">
                                 {loop $art_list_arr $k $v}
-                                <li><span class="date"><!--{date('Y-m-d', $v['pub_time'])}--></span><a href="index.php?do=article&view=article_info&art_id={$v['art_id']}" target="_blank">{$v['art_title']}</a></li>
+                                <li><span class="date"><!--{date('Y-m-d', $v['pub_time'])}--></span><a href="index.php?do=article&view=article_info&art_id={$v['art_id']}" target="_blank"><!--{eval echo kekezu::cutstr($v['art_title'],60);}--></a></li>
                                 {/loop}
                             </ul>
                           </div>

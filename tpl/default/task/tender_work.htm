@@ -7,14 +7,14 @@
  <!--messages消息 start-->
   <div class="messages m_warn">
     <span class="icon16">warning</span>
-     {$_lang['please_fill_in_content']}.
+     投标将扣除您&nbsp;{$basic_config[tender_credit]}&nbsp;豆币。
    </div>
   <!--messages消息 end-->
 
     <!--from表单 start-->
     <form method="post" id="frm_tender" name="frm_tender" action="">
  	
-				
+		<input type="hidden" name="hand_credit" id="hand_credit" value="{$basic_config[tender_credit]}">
 		 <div class="rowElem clearfix">
 
       		<label class="fl_l">{$_lang['job_offer']}{$_lang['zh_mh']}</label>
@@ -66,7 +66,7 @@
 
       		 <label class="fl_l">{$_lang['manuscript_description']}{$_lang['zh_mh']}</label>
              <div class="fl_l">
-      		 	<textarea cols="68" rows="8" name="work_frm[tar_content]" id="tar_content"  class="txt_input" onkeydown="checkInner(this,'100',event)" style="width:350px;height:100px"></textarea>
+      		 	<textarea cols="68" rows="8" name="work_frm[tar_content]" id="tar_content"  class="txt_input" onkeydown="checkInner(this,'100',event)" style="width:350px;height:100px;color:#000"></textarea>
       		 <div class="clear"></div>
              <div class="c999" id="length_show">{$_lang['enter_info']}</div>
                

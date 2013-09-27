@@ -24,10 +24,11 @@ class keke_finance_class {
 			}
 		}
 	}
-	public static function cash_out($uid, $cash, $action, $profit = 0, $obj_type = null, $obj_id = null) {
+	public static function cash_out($uid, $cash, $action, $profit = 0, $obj_type = null, $obj_id = null, $types = null) {
 		$user_info = db_factory::get_one ("select * from ".TABLEPRE."witkey_space where uid = ".intval($uid));
 		$res = false;
-		$sys_config = self::$_basic_config;
+		global $basic_config;
+		$sys_config = $basic_config;
 		$fo = new Keke_witkey_finance_class ();
 		$fo->setFina_action ( $action );
 		$fo->setFina_type ( "out" );
@@ -44,19 +45,38 @@ class keke_finance_class {
 		$user_balance = $user_info ['balance'];
 		$user_credit = $user_info ['credit'];
 		$credit_allow = intval ( $sys_config ['credit_is_allow'] ) + 0;
+		
 		if ($cash && $action) {
 			try{
 			$credit_allow==2 and $user_credit = 0;
+			
+			if($types) {
+				$user_credit = $user_info ['credit'];
+			}
+			
 			if ($user_balance + $user_credit < $cash) {
 				return false;
 			}
+			
 			if ($action == 'withdraw') {
 				db_factory::execute ( "update " . TABLEPRE . "witkey_space set balance = balance-" . abs ( floatval ( $cash ) ) . " where uid ='{$user_info['uid']}'" );
 				$fo->setFina_cash ( $cash );
 				$fo->setFina_credit ( 0 );
 				$fo->setUser_balance ( $user_balance - abs ( $cash ) );
-			} else {
+			}elseif($types) {
+				$user_credit = $user_info ['credit'];
+				
 				$sy_credit = $user_credit - $cash;
+				
+				db_factory::execute ( "update " . TABLEPRE . "witkey_space set credit = credit-{$cash} where uid ='{$user_info['uid']}'" );
+				$fo->setFina_credit ( $cash );
+				$fo->setFina_cash ( 0 );
+				$fo->setUser_balance ( $user_balance );
+				$fo->setUser_credit ( $user_credit - $cash );
+				
+			}else {
+				$sy_credit = $user_credit - $cash;
+				
 				if ($sy_credit > 0) {
 					db_factory::execute ( "update " . TABLEPRE . "witkey_space set credit = credit-{$cash} where uid ='{$user_info['uid']}'" );
 					$fo->setFina_credit ( $cash );

@@ -120,7 +120,7 @@ $ip = kekezu::get_ip ();
 if ($_COOKIE ['ip'] != 1) {
 	db_factory::execute ( sprintf ( " update %switkey_shop set views=views+1 where uid=%d", TABLEPRE, $member_id ) );
 	
-	if($uid){
+	if($uid && $uid != $shop_info['uid']){
 		$visit_log = db_factory::query ( sprintf ( " select *  from %switkey_shop_visit where shop_id=%d and uid=%d", TABLEPRE, $shop_info['shop_id'], $uid)); 
 		if(!$visit_log) db_factory::execute ( sprintf ( " insert into %switkey_shop_visit values('',".$shop_info['shop_id'].",".$uid.",'".$ip."',".time().")", TABLEPRE) );
 		else db_factory::execute ( sprintf ( " update %switkey_shop_visit set on_time=%d where uid=%d and shop_id=%d", TABLEPRE, time(), $uid, $shop_info['shop_id'] ) );
@@ -154,7 +154,7 @@ $order .= " order by f.on_time desc limit 0,8";
 $follow_list = db_factory::query($sql.$where.$order);
 //
 //	来访人员
-$visit_list = db_factory::query ( sprintf ( " select *  from %switkey_shop_visit where shop_id=%d order by on_time desc limit 0,4", TABLEPRE, $shop_info['shop_id'])); 
+$visit_list = db_factory::query ( sprintf ( " select *  from %switkey_shop_visit v left join %switkey_member m on v.uid=m.uid where v.shop_id=%d order by on_time desc limit 0,4", TABLEPRE, TABLEPRE, $shop_info['shop_id'])); 
 //
 // 收支
 $sql = ' select a.fina_cash,a.fina_type from '.TABLEPRE.'witkey_finance a left join '

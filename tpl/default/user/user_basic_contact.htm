@@ -22,7 +22,7 @@
                         <form action="{$ac_url}&opp={$opp}" method="post" id="frm" name="frm">
                         <input type="hidden" name="formhash" id="formhash" value="{FORMHASH}">
                         	<p>
-                            	<label>性别：</label>
+                            	<label><span>*</span>&nbsp;性别：</label>
                                
                                 <select name="conf[sex]" >
                                     <option value="{$_lang['man']}" {if $user_info['sex']==$_lang['man']||!$user_info['sex']}selected{/if}>
@@ -34,25 +34,25 @@
                                 </select>
                             </p>
                             <p>
-								<label>所在地区：</label>
+								<label><span>*</span>&nbsp;所在地区：</label>
 								<select name="province" style="float:left;"></select><select name="city" style="float:left; margin:0 0 0 5px;"></select><select name="area" style="float:left; margin:0 0 0 5px;"></select>
 
                             </p>
                             <p>
-                            	<label>真实姓名：</label>
+                            	<label><span>*</span>&nbsp;真实姓名：</label>
                                 <input class="txt_input " name="conf[truename]" size="39" {if $real_pass}disabled="disabled"  style="color:#999"{/if}  type="text" value="{$user_info['truename']}" title="{$_lang['real_name_tip']}"
-                                 id="truename" limit="required:false;len:2-10" msg="{if $user_type==1}{$_lang['realname_can_not_more_than_ten']}{else}{$_lang['contact_at_most_ten']}{/if}" msgArea="span_truename"/>
+                                 id="truename" limit="required:true;len:2-10" msg="{if $user_type==1}{$_lang['realname_can_not_more_than_ten']}{else}{$_lang['contact_at_most_ten']}{/if}" msgArea="span_truename"/>
                                 
                             </p>
                             <p>
-                            	<label>手机号：</label>
+                            	<label><span>*</span>&nbsp;手机号：</label>
                                 {if $auth['mobile']}
                                 <span>
                                 <!--{eval echo(substr($user_info['mobile'],0,4).'****'.substr($user_info['mobile'],7,4));}-->
                                 </span>
                                 {else}
                                   <input class="txt_input" name="conf[mobile]" id="mobile" type="text" value="{$user_info['mobile']}" title="{$_lang['fill_in_your_own_phonenum']}"
-                                   limit="required:false;type:mobileCn" msg="{$_lang['wrong_format_about_phonenum']}" msgArea="span_mobile"
+                                   limit="required:true;type:mobileCn" msg="{$_lang['wrong_format_about_phonenum']}" msgArea="span_mobile"
                                     size="37">
                                 {/if}
                                 &nbsp;&nbsp;
@@ -69,11 +69,11 @@
                                     <option value="2" {if $sect_info['mobile']['v1']==2||!$sect_info['mobile']['v1']}selected="selected"{/if}>{$_lang['user_public']}&nbsp;</option>
                                 </select>
                                 </div>
-                                <p style="font-size:12px; padding-left:75px; line-height:25px;">用于接收重要提醒（仅方便用于一品威客网客服联系您，请放心填写）</p>
+                                <p style="font-size:12px; padding-left:75px; line-height:25px;">用于接收重要提醒（仅方便用于豆8网客服联系您，请放心填写）</p>
                             </p>
                             <p>
-                            	<label>QQ：</label>
-                                <input class="txt_input" name="conf[qq]" id="qq" type="text" value="{$user_info['qq']}" title="{$_lang['fill_in_your_own_qqnum']}" limit="required:false;type:int;len:5-13" msg="{$_lang['wrong_format_about_qqnum']}" msgArea="span_qq" size="37" />
+                            	<label><span>*</span>&nbsp;QQ：</label>
+                                <input class="txt_input" name="conf[qq]" id="qq" type="text" value="{$user_info['qq']}" title="{$_lang['fill_in_your_own_qqnum']}" limit="required:true;type:int;len:5-13" msg="{$_lang['wrong_format_about_qqnum']}" msgArea="span_qq" size="37" />
                              	<div class="selectbox_dw">
                                 <select name="sect[qq]" style="width:70px; float:right; margin-right:5px; height:27px;">
                                     <option value="1" {if $sect_info['qq']['v1']==1}selected="selected"{/if}>{$_lang['user_private']}&nbsp;</option>
@@ -82,7 +82,7 @@
                                 </div>
                             </p>
                             <p>
-                            	<label>电子邮箱：</label>
+                            	<label><span>*</span>&nbsp;电子邮箱：</label>
                                 {if $auth['email']}
                                 <span>
                                 <!--{eval $t_length = strlen($user_info[email]);
@@ -93,7 +93,7 @@
                                     echo($start_str.$middle_str.$end_str);}-->
                                 </span>
                                 {else}
-                                <input class="txt_input" name="conf[email]" id="email" type="text" value="{$user_info['email']}" title="{$_lang['fill_in_your_own_email']}" limit="required:false;type:email"
+                                <input class="txt_input" name="conf[email]" id="email" type="text" value="{$user_info['email']}" title="{$_lang['fill_in_your_own_email']}" limit="required:true;type:email"
                                  msg="{$_lang['wrong_format_about_mailaddress']}" msgArea="span_email" size="37" />
                                  {/if}
                                  &nbsp;&nbsp;
@@ -116,7 +116,7 @@
                            </p>
                            <p>
                             	<label><span>*</span>&nbsp;学历：</label>
-                                <input type="text" name="conf[xueli]" id="xueli"  value="{$user_info['xueli']}" class="texts4" />
+                                <input type="text" name="conf[xueli]" id="xueli" limit="required:true;len:1-50" value="{$user_info['xueli']}" class="texts4" />
                                 <label style="width:56px;">身高：</label>
                                 <input type="text" name="conf[shengao]" id="shengao"  value="{$user_info['shengao']}" class="texts4" />
                                 <label style="width:50px;">体重：</label>
@@ -134,11 +134,11 @@
                            </p>
                            <p>
                             	<label><span>*</span>&nbsp;爱好：</label>
-                                <textarea name="conf[aihao]" id="aihao"  cols="70" rows="5" style="width:252px; height:100px; border:1px solid #ccc " >{$user_info['aihao']}</textarea>
+                                <textarea name="conf[aihao]" id="aihao" limit="required:true;len:1-500" cols="70" rows="5" style="width:252px; height:100px; border:1px solid #ccc " >{$user_info['aihao']}</textarea>
                            </p>
                            <p>
                             	<label><span>*</span>&nbsp;职业：</label>
-                                <input type="text" name="conf[zhiye]" id="zhiye"  value="{$user_info['zhiye']}" class="texts1" />
+                                <input type="text" name="conf[zhiye]" id="zhiye" limit="required:true;len:1-50" value="{$user_info['zhiye']}" class="texts1" />
                            </p>
                            <p>
                             	<label>个人才艺：</label>
@@ -146,7 +146,7 @@
                            </p>
                            <p>
                             	<label><span>*</span>&nbsp;毕业院校：</label>
-                                <input type="text" name="conf[biyeyuanxiao]" id="biyeyuanxiao"  value="{$user_info['biyeyuanxiao']}" class="texts1" />
+                                <input type="text" name="conf[biyeyuanxiao]" id="biyeyuanxiao" limit="required:true;len:1-200" value="{$user_info['biyeyuanxiao']}" class="texts1" />
                            </p>
                            <p>
                             	<label>休闲方式：</label>
@@ -154,7 +154,15 @@
                            </p>
                            <p>
                             	<label><span>*</span>&nbsp;自我介绍：</label>
-                                <textarea name="conf[ziwojieshao]" id="ziwojieshao" cols="70" rows="5" style="width:252px; height:100px; border:1px solid #ccc">{$user_info['ziwojieshao']}</textarea>
+                                <textarea name="conf[ziwojieshao]" id="ziwojieshao" cols="70" rows="5" limit="required:true;len:1-500" style="width:252px; height:100px; border:1px solid #ccc">{$user_info['ziwojieshao']}</textarea>
+                           </p>
+                           <p>
+                            	<label >详细需求豆币：</label>
+                                <select  name="conf[look_credit]" title="进入我的店铺详细页需要支付豆币的数量" id="look_credit" >
+                                	<option value="0" {if $user_info['look_credit'] == 0} selected="selected"{/if}>0</option>
+                                    <option value="50" {if $user_info['look_credit'] == 50} selected="selected"{/if}>50</option>
+                                    <option value="100" {if $user_info['look_credit'] == 100} selected="selected"{/if}>100</option>
+                                </select>
                            </p>
                             <p>
                             <input name="" type="button" value="提交保存" onclick="formSub('frm','form',true);" style="text-align:center;  width:100px; height:30px;margin-top:15px; margin-left:75px;" />

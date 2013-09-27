@@ -1,27 +1,11 @@
 <!--{template header_index_top}-->
-
 <script type="text/javascript">
 $(document).ready(function(){
-	//$("div[name=aaaaa]").slideToggle("slow");
-	$("div[name=aaaaa]").hide();
-	$("#btn-bs").click(function(){
-		$("div[name=aaaaa]").eq($(this).attr('num')).slideToggle("slow").toggleClass("highlight");
-		$("div[name=panel]").eq($(this).attr('num')).slideToggle("slow");
-		$(this).toggleClass("active5"); return;
+
+	$(".btn-slide").click(function(){
+		var id = $(this).attr('id');
+		$("div[name="+id+"]").slideToggle("slow").toggleClass("highlight");
 	});	
-	$("div[name=bbbbb]").hide();
-	$("#btn-bs1").click(function(){
-		$("div[name=bbbbb]").eq($(this).attr('num')).slideToggle("slow").toggleClass("highlight");
-		$("div[name=panel]").eq($(this).attr('num')).slideToggle("slow");
-		$(this).toggleClass("active5"); return;
-	});
-	$("div[name=ccccc]").hide();
-	$("#btn-bs2").click(function(){
-		$("div[name=ccccc]").eq($(this).attr('num')).slideToggle("slow").toggleClass("highlight");
-		$("div[name=panel]").eq($(this).attr('num')).slideToggle("slow");
-		$(this).toggleClass("active5"); return;
-	});
-	
 });
 </script>
 <!-- 立即发布任务 -->
@@ -35,25 +19,25 @@ $(document).ready(function(){
       </ul>
     </div>
     <div class="ljfb_bg">
-      <p class="fbrw"><span>1</span><br /> 发布任务</p>
-      <p class="fbrw1"><span>2</span><br /> 
-      威客响应</p>
-      <p class="fbrw2"><span>3</span><br /> 
-      解决方案</p>
-      <p class="fbrw3"><span>4</span><br /> 发布任务</p>
     </div>
     
     <div class="usenecdis">
 
 <input type="text" value="在这里用一句话来描述你的需求"  onfocus="if(this.value=='在这里用一句话来描述你的需求'){this.value='';}"  onblur="if(this.value==''){this.value='在这里用一句话来描述你的需求'}"; id="discripneed" name="task_title" class="txt_input" >
-<input type="submit" value="&nbsp;提交我的任务&nbsp;" class="combotton" onclick="location='index.php?do=release'">
+<input type="submit" value="&nbsp;提交我的任务&nbsp;" class="combotton" onclick="fa_bu();">
 </div>
 </div>
+<script>
+function fa_bu(){
+	var title = $("#discripneed").val();
+	if(title == '在这里用一句话来描述你的需求') title = '';
+	location='index.php?do=release&txt_title='+title;
+	}
 
+</script>
     
   
   <div class="ljfb_right">
-    <h2>轻松快捷·更高效率·节省时间<br />客服帮您搞定一切</h2>
     <h3><a href="#">&nbsp;</a></h3>
     <div class="telep"><img src="/tpl/default/d8/images/telephone.png" /> <span>400-850-5066</span></div>
     <div class="qq"><img src="/tpl/default/d8/images/qq.png" /> <span>4008505066</span></div>
@@ -65,20 +49,43 @@ $(document).ready(function(){
   <div class="rwzl_rw">
     <table width="958px" border="0" cellpadding="0" cellspacing="0">
     
-	{loop $final_task $k $v}
-     {if $is<20||($is==20&&$s==21)}
-     <tr>
-        <td width="100" height="35" align="center" valign="middle"><a href="index.php?do=seller_list&path=A$v['indus_id']" {if $path == "A".$v['indus_id'] && !$indus_id}style="background:#52c79b; color:#fff"{/if}>$v['indus_name']</a></td>
+    {if strstr($path,'A')}
+      <tr>
+        <td width="100" height="35" align="center" valign="middle"><a href="index.php?do=seller_list&path={$path}" {if !$indus_id }style="background:#52c79b; color:#fff"{/if}>$final_task[$type_infos['A']]['indus_name']</a></td>
         <td height="35" valign="middle" class="sb">
         {loop $indus_c_arr $k1 $v1}
-         {if $k==$v1['indus_pid']}
+         {if $type_infos['A']==$v1['indus_pid']}
              <a href="index.php?do=seller_list&path=A{$v1['indus_pid']}&indus_id={$v1['indus_id']}" {if $indus_id == $v1['indus_id']}style="background:#52c79b; color:#fff"{/if}>$v1['indus_name']</a>
          {/if} 
         {/loop}
         </td>
       </tr>
-     {/if}
-	{/loop}
+    {else}
+  <tr>
+    <td width="100" height="35" align="center" valign="middle"><a href="###">创意设计</a></td>
+    <td height="35" valign="middle" class="sb"><a href="index.php?do=seller_list&path=A441">平面设计</a> <a href="index.php?do=seller_list&path=A457">网页设计</a> <a href="index.php?do=seller_list&path=A357">影音媒体</a> <a href="index.php?do=seller_list&path=A458">动漫设计</a> <a href="index.php?do=seller_list&path=A459">照片处理</a> <a href="index.php?do=seller_list&path=A460">应用设计</a></td>
+  </tr>
+  <tr>
+    <td width="100" height="35" align="center" valign="middle"><a href="###">程序开发</a></td>
+    <td height="35" valign="middle" class="sb"><a href="index.php?do=seller_list&path=A455">移动应用</a> <a href="index.php?do=seller_list&path=A2">网站开发</a> <a href="index.php?do=seller_list&path=A456">软件开发</a> <a href="index.php?do=seller_list&path=A249">网游服务</a> </td>
+  </tr>
+  <tr>
+    <td width="100" height="35" align="center" valign="middle"><a href="###">文案策划</a></td>
+    <td height="35" valign="middle" class="sb"><a href="index.php?do=seller_list&path=A3">文案策划</a> <a href="index.php?do=seller_list&path=A160">起名取名</a> <a href="index.php?do=seller_list&path=A472">活动策划</a> <a href="index.php?do=seller_list&path=A473">写作创意</a></td>
+  </tr>
+  <tr>
+    <td width="100" height="35" align="center" valign="middle"><a href="###">装饰装修</a></td>
+    <td height="35" valign="middle" class="sb"><a href="index.php?do=seller_list&path=A481">家居装修</a> <a href="index.php?do=seller_list&path=A482">局部装修</a> <a href="index.php?do=seller_list&path=A483">办公装修</a> <a href="index.php?do=seller_list&path=A484">装修风格</a> <a href="index.php?do=seller_list&path=A485">家具设计</a> <a href="index.php?do=seller_list&path=A486">户外装修</a></td>
+  </tr>
+  <tr>
+    <td width="100" height="35" align="center" valign="middle"><a href="###">商务服务</a></td>
+    <td height="35" valign="middle" class="sb"><a href="index.php?do=seller_list&path=A517">翻译服务</a> <a href="index.php?do=seller_list&path=A518">市场调查</a> <a href="index.php?do=seller_list&path=A234">法律咨询</a> <a href="index.php?do=seller_list&path=A519">商业服务</a> <a href="index.php?do=seller_list&path=A240">求职招聘</a></td>
+  </tr>
+  <tr>
+    <td width="100" height="35" align="center" valign="middle"><a href="###">生活服务</a></td>
+    <td height="35" valign="middle" class="sb"><a href="index.php?do=seller_list&path=A498">搬家租赁</a> <a href="index.php?do=seller_list&path=A499">家政保洁</a> <a href="index.php?do=seller_list&path=A500">家教陪练</a> </td>
+  </tr>
+    {/if}
 </table>
 
   </div>
@@ -166,6 +173,7 @@ $(document).ready(function(){
             
             <script>
 			$("#store_category").change(function(e) {
+					
 					location.href=$(this).val()+"#official";
 				});
 			</script>
@@ -194,13 +202,13 @@ $(document).ready(function(){
             	{loop $service_arr $k $v}
             
            		<li class="shsh">
-            		<div class="shsh_top">	
+            		<div class="shsh_top" style="height:165px;">	
             			<div class="shsh_top_tx">
             				<b><a href="index.php?do=space&member_id={$v['uid']}&view=index"><img src="<!--{userpicurl($v['uid'],middle)}-->" width="98" height="98" /></a></b>
-            				<span><a href="javascript:void(0)">查看服务和案例</a></span>
+            				<span><a href="javascript:void(0)" num=0 class="btn-slide" id="{$v['shop_id']}">查看服务和案例</a></span>
                         </div>
             			<div class="shsh_top_xx">
-                        	<h1>$v['shop_name']</h1>
+                        	<h1>{if $v['shop_name']}$v['shop_name']{else}$v['username']{/if}</h1>
                         	<h2 style="margin-bottom:0;">
                             	<!--{eval echo rz_show($v['uid']);}-->
                             </h2>
@@ -234,7 +242,7 @@ $(document).ready(function(){
                         </div>
             		</div>
             
-            		<div class="ppll" name="aaaaa">
+            		<div class="ppll" name="{$v['shop_id']}" style="display:none;">
                     {if $v['shop_arr']}
                         {loop $v['shop_arr'] $k1 $v1}
                         	{if $v1['case_type']==1}

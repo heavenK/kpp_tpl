@@ -1,5 +1,30 @@
 <!--{template header_index_top}-->
+<style>
+.box	{ position:static;}
+</style>
+<link href="resource/css/base.css" rel="stylesheet" charset="utf-8">
 <link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/shops.css">
+
+
+
+<script type="text/javascript" src="/tpl/default/d8/js/jquery.modal.js"></script>
+<script type="text/javascript" src="/tpl/default/d8/js/site.js"></script>
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/shitu.css">
+
+
+<div class="overlay"></div>
+<div id="modal1" class="modal">
+	<h1><p class="closeBtn"><img width="16" border="0" height="16" src="/tpl/default/d8/images/close.png"></p></h1>
+    <div class="baibai">
+      	<h2>送花需扣除{$basic_config['flower_credit']}豆币</h2>
+        <h3>是否继续</h3>
+        <h4><a href="###" class="guanbi" onclick="send_flower()" >是</a><a href="#" class="guanbi" >否</a></h4>
+    </div>
+    
+</div>
+
+
+
     <div class="clear"></div>
     
     
@@ -7,13 +32,13 @@
     	<div class="sq_top">
         	<div class="sq_top_left">
             	<ul>
-                	<li><a href="index.php?do=shop_list&path=A441">设计</a></li>
-                    <li><a href="index.php?do=shop_list&path=A2">开发</a></li>
-                    <li><a href="index.php?do=shop_list&path=A3">文案</a></li>
-                    <li><a href="index.php?do=shop_list&path=A335">装修</a></li>
-                    <li><a href="index.php?do=shop_list&path=A442">营销</a></li>
-                    <li><a href="index.php?do=shop_list&path=A121">商务</a></li>
-                    <li><a href="index.php?do=shop_list&path=A192">生活</a></li>
+                	<li><a href="index.php?do=shop_list"><i>1</i><em>设计</em></a></li>
+                    <li><a href="index.php?do=shop_list"><i>2</i><em>开发</em></a></li>
+                    <li><a href="index.php?do=shop_list"><i>3</i><em>文案</em></a></li>
+                    <li><a href="index.php?do=shop_list"><i>4</i><em>装修</em></a></li>
+                    <li><a href="index.php?do=shop_list"><i>5</i><em>营销</em></a></li>
+                    <li><a href="index.php?do=shop_list"><i>6</i><em>商务</em></a></li>
+                    <li><a href="index.php?do=shop_list"><i>7</i><em>生活</em></a></li>
                 </ul>
             </div>
             <div class="sq_top_right">
@@ -50,7 +75,7 @@
             		<div class="clear"></div>
                 </div>
                 <div class="sq_top_rtwo">
-                	<div class="sq_top_rad"><img src="/tpl/default/d8/images/jion3.jpg" width="197" height="144" /><img src="/tpl/default/d8/images/jion3.jpg" width="197" height="144" /><img src="/tpl/default/d8/images/jion3.jpg" width="197" height="144" /></div>
+                	<div class="sq_top_rad"><a  class="modalLink" href="#modal1" ><img src="/tpl/default/d8/images/jion3.jpg" width="197" height="144" /></a><img src="/tpl/default/d8/images/jion3.jpg" width="197" height="144" /><img src="/tpl/default/d8/images/jion3.jpg" width="197" height="144" /></div>
                     <div class="sq_top_rfabu"><h1>寻求帮助</h1><input type="button" value="发布任务" class="sq_fabu" onclick="location='index.php?do=release'" /></div>
                     <div class="clear"></div>
                 </div>
@@ -58,15 +83,17 @@
             <div class="clear"></div>
         </div>
         <div class="sq_zhanshi">
-        	<h1>开发新品展示<a href="index.php?do=shop_list&path=A2">更多&gt;&gt;&gt;</a><div class="clear"></div></h1>
+            <h1><div style="float:left">开发新品展示</div><a href="index.php?do=shop_list&path=A2">更多&gt;&gt;&gt;</a><div class="clear"></div></h1>
             <ul>
             	{loop $services_list_kf $k $v}
-                <!--{eval $pic_arr = explode(",", $v['pic']);}-->
-            	<li><a href="index.php?do=space&member_id={$v['uid']}&view=service_info&sid={$v['service_id']}"><img src="{$pic_arr[0]}" width="198.8" height="175" /></a></li>
-                {if $k == 4}
-                	</ul>
-            		<ul>
-                {/if}
+                <li>
+                	<!--{eval $pic_arr = explode(",", $v['pic']);}-->
+                	<a href="index.php?do=space&member_id={$v['uid']}&view=service_info&sid={$v['service_id']}"><img src="{$pic_arr[0]}" width="180" height="120" /></a>
+                	<h2>原创作品：<!--{eval echo kekezu::cutstr($v['title'],16)}--></h2>
+                	<h3>{if !empty($indus_all_arr[$v['indus_pid']]['indus_name'])}  $indus_all_arr[$v['indus_pid']]['indus_name']/$indus_all_arr[$v['indus_id']]['indus_name']{else}{/if}</h3>
+                	<h3><!--{eval echo kekezu::feed_time ($v['on_time'] );}-->上传</h3>
+                	<h3><i>{$v[views]}</i>人气/<i>{$v[mark_num]}</i>评论/<i>{$v[sale_num]}</i>销量</h3>
+                </li>
                 {/loop}
             </ul>
             <div class="clear"></div>
@@ -75,12 +102,14 @@
         	<h1>设计新品展示<a href="index.php?do=shop_list&path=A441">更多&gt;&gt;&gt;</a><div class="clear"></div></h1>
             <ul>
             	{loop $services_list_sj $k $v}
-                <!--{eval $pic_arr = explode(",", $v['pic']);}-->
-            	<li><a href="index.php?do=space&member_id={$v['uid']}&view=service_info&sid={$v['service_id']}"><img src="{$pic_arr[0]}" width="198.8" height="175" /></a></li>
-                {if $k == 4}
-                	</ul>
-            		<ul>
-                {/if}
+                <li>
+                	<!--{eval $pic_arr = explode(",", $v['pic']);}-->
+                	<a href="index.php?do=space&member_id={$v['uid']}&view=service_info&sid={$v['service_id']}"><img src="{$pic_arr[0]}" width="180" height="120" /></a>
+                	<h2>原创作品：<!--{eval echo kekezu::cutstr($v['title'],16)}--></h2>
+                	<h3>{if !empty($indus_all_arr[$v['indus_pid']]['indus_name'])}  $indus_all_arr[$v['indus_pid']]['indus_name']/$indus_all_arr[$v['indus_id']]['indus_name']{else}{/if}</h3>
+                	<h3><!--{eval echo kekezu::feed_time ($v['on_time'] );}-->上传</h3>
+                	<h3><i>{$v[views]}</i>人气/<i>{$v[mark_num]}</i>评论/<i>{$v[sale_num]}</i>销量</h3>
+                </li>
                 {/loop}
             </ul>
             <div class="clear"></div>
@@ -89,12 +118,14 @@
         	<h1>策划新品展示<a href="index.php?do=shop_list&path=A3">更多&gt;&gt;&gt;</a><div class="clear"></div></h1>
             <ul>
             	{loop $services_list_ch $k $v}
-                <!--{eval $pic_arr = explode(",", $v['pic']);}-->
-            	<li><a href="index.php?do=space&member_id={$v['uid']}&view=service_info&sid={$v['service_id']}"><img src="{$pic_arr[0]}" width="198.8" height="175" /></a></li>
-                {if $k == 4}
-                	</ul>
-            		<ul>
-                {/if}
+                <li>
+                	<!--{eval $pic_arr = explode(",", $v['pic']);}-->
+                	<a href="index.php?do=space&member_id={$v['uid']}&view=service_info&sid={$v['service_id']}"><img src="{$pic_arr[0]}" width="180" height="120" /></a>
+                	<h2>原创作品：<!--{eval echo kekezu::cutstr($v['title'],16)}--></h2>
+                	<h3>{if !empty($indus_all_arr[$v['indus_pid']]['indus_name'])}  $indus_all_arr[$v['indus_pid']]['indus_name']/$indus_all_arr[$v['indus_id']]['indus_name']{else}{/if}</h3>
+                	<h3><!--{eval echo kekezu::feed_time ($v['on_time'] );}-->上传</h3>
+                	<h3><i>{$v[views]}</i>人气/<i>{$v[mark_num]}</i>评论/<i>{$v[sale_num]}</i>销量</h3>
+                </li>
                 {/loop}
             </ul>
             <div class="clear"></div>
@@ -103,12 +134,14 @@
         	<h1>装修新品展示<a href="index.php?do=shop_list&path=A335">更多&gt;&gt;&gt;</a><div class="clear"></div></h1>
             <ul>
             	{loop $services_list_zx $k $v}
-                <!--{eval $pic_arr = explode(",", $v['pic']);}-->
-            	<li><a href="index.php?do=space&member_id={$v['uid']}&view=service_info&sid={$v['service_id']}"><img src="{$pic_arr[0]}" width="198.8" height="175" /></a></li>
-                {if $k == 4}
-                	</ul>
-            		<ul>
-                {/if}
+                <li>
+                	<!--{eval $pic_arr = explode(",", $v['pic']);}-->
+                	<a href="index.php?do=space&member_id={$v['uid']}&view=service_info&sid={$v['service_id']}"><img src="{$pic_arr[0]}" width="180" height="120" /></a>
+                	<h2>原创作品：<!--{eval echo kekezu::cutstr($v['title'],16)}--></h2>
+                	<h3>{if !empty($indus_all_arr[$v['indus_pid']]['indus_name'])}  $indus_all_arr[$v['indus_pid']]['indus_name']/$indus_all_arr[$v['indus_id']]['indus_name']{else}{/if}</h3>
+                	<h3><!--{eval echo kekezu::feed_time ($v['on_time'] );}-->上传</h3>
+                	<h3><i>{$v[views]}</i>人气/<i>{$v[mark_num]}</i>评论/<i>{$v[sale_num]}</i>销量</h3>
+                </li>
                 {/loop}
             </ul>
             <div class="clear"></div>
@@ -117,12 +150,14 @@
         	<h1>服务新品展示<a href="index.php?do=shop_list&path=A192">更多&gt;&gt;&gt;</a><div class="clear"></div></h1>
             <ul>
             	{loop $services_list_fw $k $v}
-                <!--{eval $pic_arr = explode(",", $v['pic']);}-->
-            	<li><a href="index.php?do=space&member_id={$v['uid']}&view=service_info&sid={$v['service_id']}"><img src="{$pic_arr[0]}" width="198.8" height="175" /></a></li>
-                {if $k == 4}
-                	</ul>
-            		<ul>
-                {/if}
+                <li>
+                	<!--{eval $pic_arr = explode(",", $v['pic']);}-->
+                	<a href="index.php?do=space&member_id={$v['uid']}&view=service_info&sid={$v['service_id']}"><img src="{$pic_arr[0]}" width="180" height="120" /></a>
+                	<h2>原创作品：<!--{eval echo kekezu::cutstr($v['title'],16)}--></h2>
+                	<h3>{if !empty($indus_all_arr[$v['indus_pid']]['indus_name'])}  $indus_all_arr[$v['indus_pid']]['indus_name']/$indus_all_arr[$v['indus_id']]['indus_name']{else}{/if}</h3>
+                	<h3><!--{eval echo kekezu::feed_time ($v['on_time'] );}-->上传</h3>
+                	<h3><i>{$v[views]}</i>人气/<i>{$v[mark_num]}</i>评论/<i>{$v[sale_num]}</i>销量</h3>
+                </li>
                 {/loop}
             </ul>
             <div class="clear"></div>
@@ -131,11 +166,15 @@
         	<h1>VIP展示<a href="index.php?do=seller_list">更多&gt;&gt;&gt;</a><div class="clear"></div></h1>
             <ul>
             	{loop $new_member_vip $k $v}
-            	<li><a href="index.php?do=space&member_id={$v['uid']}"><img src="<!--{userpicurl($v['uid'],larger)}-->" width="198.8" height="175" /></a></li>
-                {if $k == 4}
-                	</ul>
-            		<ul>
-                {/if}
+
+                <li>
+                	<a href="index.php?do=space&member_id={$v['uid']}"><img src="<!--{userpicurl($v['uid'],larger)}-->" width="180" height="160" /></a>
+                    <h3></h3>
+                    <h3></h3>
+                	<h2>{$v[username]}</h2>
+                	<h3>{if !empty($indus_all_arr[$v['indus_pid']]['indus_name'])}  $indus_all_arr[$v['indus_pid']]['indus_name']/$indus_all_arr[$v['indus_id']]['indus_name']{else}{/if}</h3>
+
+                </li>
                 {/loop}
             </ul>
             <div class="clear"></div>

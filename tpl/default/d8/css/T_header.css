@@ -1,9 +1,26 @@
 .you                { width:222px; height:220px; top:0; right:0; position: fixed; z-index:999999}
-.you_xia                { width:220px; height:126px; top:316px; right:0; position:fixed; z-index:999999}
+.you_xia                { width:180px; height:280px; background:url(../images/fanhui.png) no-repeat; top:316px; right:0; position:fixed; z-index:999999}
+.you_xia h1     { float:left; width:180px; font-size:14px; margin-top:90px; margin-left:30px}
+.you_xia h2     { float:left; width:180px; font-size:14px; margin-top:43px; margin-left:30px}
+.you_xia h2 a   { color:#000}
+.you_xia h2 a:hover   { color:#666}
+.you_xia h3     { float:left; width:180px; font-size:14px; margin-top:10px; margin-left:32px}
+.you_xia h3 a   { color:#000}
+.you_xia h3 a:hover   { color:#666}
+.you_xia h4     { float:left; width:180px; font-size:12px; margin-top:10px; margin-left:32px}
+.you_xia h4 i { width:47px; height:36px; float:left; margin-top:14px; margin-left:3px; color:#48b68d; font-style:normal}
+.you_xia h4 i a { width:47px; height:36px; color:#48b68d;}
+.you_xia h4 i a:hover { color:#000}
+.you_xia h4 em { width:18px; height:13px; float:left;  margin-top:14px; margin-left:20px; color:#48b68d; font-style:normal}
+.you_xia h4 em a { float:left; width:18px; height:13px; background:url(../images/up.png) no-repeat;}
+.you_xia h4 em a:hover { background:url(../images/up02.png) no-repeat;}
+
+
+
 .weweima            { width:101px; height:101px; position:fixed; top:250px; left:0;}
 .header				{width:1000px; float:left; position:relative;}
 .logo				{width:159px; height:188px; float:left; position:absolute; left:-5px;}
-.logo img			{width:159px; height:188px;}
+.logo img			{width:160px; height:188px;}
 .logo_r				{width:845px; float:right;}
 .logo_top_nav		{width:487px; height:26px; background:url(../images/logo_nav.jpg) no-repeat; float:right; position:relative;}
 .logo_top_nav_t 	{ height:26px; line-height:20px; float:left;}
@@ -49,7 +66,7 @@
 .menu ul li.h_r a:hover	{ width:118px;color:#fff; background:url(../images/nav_bg.jpg) no-repeat;}
 .menu .hide				{ width:118px; height:34px; line-height:34px; font-weight:500;}
 .menu ul li a,.menu ul li a:visited{ display:block; text-align:center; font-size:14px; color:#fff;}
-.top_tit			{ float:left; line-height:59px; font-size:27px; padding-left:23px;}
+.top_tit			{ float:left; line-height:59px;margin-top:0; font-size:27px; padding-left:23px;}
 .slide a { cursor:pointer}
 
 .qq span a { color:#000}

@@ -111,12 +111,32 @@ function rz_show($uid){
 
 
 
+// 允许报名
+$allow_baomings = array();
+foreach($work_info as $key => $val){
+	$allow_baomings[$key] = $val['uid'];
+}
+//
+//报名人员
+$baoming_list = db_factory::query(' select uid from '.TABLEPRE.'witkey_task_baoming where task_id ='.$task_id);	
+$baomings = array();
+foreach($baoming_list as $key => $val){
+	$baomings[$key] = $val['uid'];
+}
+//
 
+$vote_times = time()-$task_info['vote_start'];
+$days=round(($vote_times)/3600/24) ;
 
+if($day > $basic_config['vote_time']){
+	
+	db_factory::execute ( sprintf ( " update %switkey_task set is_vote=1 where task_id ='%d'", TABLEPRE, $task_id ) );
 
-
-
-
+	$works_list = db_factory::query ( sprintf ( "select * from %switkey_task_work where task_id=%d and vote_num > 0 order by vote_num desc limit 0,3", TABLEPRE, $task_id) );
+	foreach($works_list as $key => $val){
+		keke_finance_class::cash_in($val['uid'], floatval(0),intval($basic_config['baoming_credit']),'vote_win','','vote_win');
+	}
+}
 
 switch ($op) {
 	case "reqedit" : 
@@ -150,7 +170,8 @@ switch ($op) {
 	case "work_hand" : 
 		$title = $_lang['hand_work'];
 		if($sbt_edit){
-			$task_obj->work_hand ( $tar_content, $file_ids,$workhide,$qq,$mobile);
+			if($user_info['credit'] < $hand_credit)	kekezu::show_msg ( "您的豆币不足，无法提交稿件！", "index.php?do=task&task_id=" . $task_info[task_id], 3, "提交失败", "alert_error" );
+			$task_obj->work_hand ( $tar_content, $file_ids,$workhide,$qq,$mobile,$hand_credit);
 		}else {
 			$workhide_exists = keke_payitem_class::payitem_exists($uid,'workhide','work');
 			$have_workhide = $task_obj->check_work_hide();
@@ -162,7 +183,9 @@ switch ($op) {
 		$work_status = $task_obj->get_work_status();
 		$title = '选择'.$work_status[$to_status];
 		if($sbt_edit){
-			$task_obj->work_choose ( $work_id, $to_status);
+			$hand_credit = $basic_config['hand_credit']*$task_info['task_cash']*$basic_config['selected_credit'];
+			$get_credit = $basic_config['selected_suc_credit']*$task_info['task_cash'];
+			$task_obj->work_choose ( $work_id, $to_status, false, $hand_credit, $get_credit);
 		}else{
 			$work_info = $task_obj->get_task_work($work_id,'');
 			require keke_tpl_class::template ( 'task/work_choose' );

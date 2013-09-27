@@ -22,7 +22,7 @@
                       <tbody><tr>
                         <td width="80" valign="middle" align="right" height="40">工作室名称：</td>
                         <td width="20" valign="middle" height="40">&nbsp;</td>
-                        <td width="562" valign="middle" align="left" height="40"><input type="text" class="nr_input_1" name="shop_name" value="{$shop_info['shop_name']}" title="{$_lang['tips_about_shop_name']}" id="shop_name" limit="required:true;len:2-30" msg="{$_lang['input_shop_name_correct_format']}"></td>
+                        <td width="562" valign="middle" align="left" height="40"><input type="text" class="nr_input_1" name="shop_name" value="{$shop_info['shop_name']}" title="店铺名称，2-20个字" id="shop_name" limit="required:true;len:2-20" msg="请正确填写店铺名称，2-20个字"></td>
                       </tr>
                       <tr>
                         <td width="80" valign="top" align="right" height="240">工作室简介：</td>
@@ -41,7 +41,7 @@
                         <td valign="middle" align="left" height="40">&nbsp;</td>
                       </tr>
                       <tr>
-                        <td valign="middle" align="center" height="40" colspan="3"><input type="submit" onclick="check123('frm');" class="nr_input_3" name="" value="开&nbsp;通"></td>
+                        <td valign="middle" align="center" height="40" colspan="3"><input type="button" onclick="check123('frm');" class="nr_input_3" name="" value="开&nbsp;通"></td>
                         </tr>
                     </tbody></table>
                     
@@ -67,12 +67,9 @@
     * @param  obj
   */
               function check123(obj){
-						if(contentCheck('tar_content',"{$_lang['shop_sign']}",20,1000,1,'slogans','editor')){						
+				 				
 							formSub('frm','form',true);
-                               // return true;
-                        }else {
-	                     	return false;
-	                	}
+                        
             }
         
   </script>

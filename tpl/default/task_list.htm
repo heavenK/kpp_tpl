@@ -1,6 +1,5 @@
 <!--{template header_index_top}-->
 
-
 <!-- 立即发布任务 -->
 
 <div class="ljfb">
@@ -12,25 +11,25 @@
       </ul>
     </div>
     <div class="ljfb_bg">
-      <p class="fbrw"><span>1</span><br /> 发布任务</p>
-      <p class="fbrw1"><span>2</span><br /> 
-      威客响应</p>
-      <p class="fbrw2"><span>3</span><br /> 
-      解决方案</p>
-      <p class="fbrw3"><span>4</span><br /> 发布任务</p>
     </div>
     
     <div class="usenecdis">
 
 <input type="text" value="在这里用一句话来描述你的需求"  onfocus="if(this.value=='在这里用一句话来描述你的需求'){this.value='';}"  onblur="if(this.value==''){this.value='在这里用一句话来描述你的需求'}"; id="discripneed" name="task_title" class="txt_input" >
-<input type="submit" value="&nbsp;提交我的任务&nbsp;" class="combotton" onclick="location='index.php?do=release'">
+<input type="submit" value="&nbsp;提交我的任务&nbsp;" class="combotton" onclick="fa_bu();">
 </div>
 </div>
+<script>
+function fa_bu(){
+	var title = $("#discripneed").val();
+	if(title == '在这里用一句话来描述你的需求') title = '';
+	location='index.php?do=release&txt_title='+title;
+	}
 
+</script>
     
   
   <div class="ljfb_right">
-    <h2>轻松快捷·更高效率·节省时间<br />客服帮您搞定一切</h2>
     <h3><a href="#">&nbsp;</a></h3>
     <div class="telep"><img src="/tpl/default/d8/images/telephone.png" /> <span>400-850-5066</span></div>
     <div class="qq"><img src="/tpl/default/d8/images/qq.png" /> <span>4008505066</span></div>
@@ -42,20 +41,43 @@
   <div class="rwzl_rw">
     <table width="958px" border="0" cellpadding="0" cellspacing="0">
     
-	{loop $final_task $k $v}
-     {if $is<20||($is==20&&$s==21)}
-     <tr>
-        <td width="100" height="35" align="center" valign="middle"><a href="index.php?do=task_list&path=A$v['indus_id']" {if $path == "A".$v['indus_id'] && !$indus_id}style="background:#52c79b; color:#fff"{/if}>$v['indus_name']</a></td>
+    {if strstr($path,'A')}
+      <tr>
+        <td width="100" height="35" align="center" valign="middle"><a href="index.php?do=task_list&path={$path}" {if !$indus_id }style="background:#52c79b; color:#fff"{/if}>$final_task[$type_infos['A']]['indus_name']</a></td>
         <td height="35" valign="middle" class="sb">
         {loop $indus_c_arr $k1 $v1}
-         {if $k==$v1['indus_pid']}
+         {if $type_infos['A']==$v1['indus_pid']}
              <a href="index.php?do=task_list&path=A{$v1['indus_pid']}&indus_id={$v1['indus_id']}" {if $indus_id == $v1['indus_id']}style="background:#52c79b; color:#fff"{/if}>$v1['indus_name']</a>
          {/if} 
         {/loop}
         </td>
       </tr>
-     {/if}
-	{/loop}
+    {else}
+  <tr>
+    <td width="100" height="35" align="center" valign="middle"><a href="###">创意设计</a></td>
+    <td height="35" valign="middle" class="sb"><a href="index.php?do=task_list&path=A441">平面设计</a> <a href="index.php?do=task_list&path=A457">网页设计</a> <a href="index.php?do=task_list&path=A357">影音媒体</a> <a href="index.php?do=task_list&path=A458">动漫设计</a> <a href="index.php?do=task_list&path=A459">照片处理</a> <a href="index.php?do=task_list&path=A460">应用设计</a></td>
+  </tr>
+  <tr>
+    <td width="100" height="35" align="center" valign="middle"><a href="###">程序开发</a></td>
+    <td height="35" valign="middle" class="sb"><a href="index.php?do=task_list&path=A455">移动应用</a> <a href="index.php?do=task_list&path=A2">网站开发</a> <a href="index.php?do=task_list&path=A456">软件开发</a> <a href="index.php?do=task_list&path=A249">网游服务</a> </td>
+  </tr>
+  <tr>
+    <td width="100" height="35" align="center" valign="middle"><a href="###">文案策划</a></td>
+    <td height="35" valign="middle" class="sb"><a href="index.php?do=task_list&path=A3">文案策划</a> <a href="index.php?do=task_list&path=A160">起名取名</a> <a href="index.php?do=task_list&path=A472">活动策划</a> <a href="index.php?do=task_list&path=A473">写作创意</a></td>
+  </tr>
+  <tr>
+    <td width="100" height="35" align="center" valign="middle"><a href="###">装饰装修</a></td>
+    <td height="35" valign="middle" class="sb"><a href="index.php?do=task_list&path=A481">家居装修</a> <a href="index.php?do=task_list&path=A482">局部装修</a> <a href="index.php?do=task_list&path=A483">办公装修</a> <a href="index.php?do=task_list&path=A484">装修风格</a> <a href="index.php?do=task_list&path=A485">家具设计</a> <a href="index.php?do=task_list&path=A486">户外装修</a></td>
+  </tr>
+  <tr>
+    <td width="100" height="35" align="center" valign="middle"><a href="###">商务服务</a></td>
+    <td height="35" valign="middle" class="sb"><a href="index.php?do=task_list&path=A517">翻译服务</a> <a href="index.php?do=task_list&path=A518">市场调查</a> <a href="index.php?do=task_list&path=A234">法律咨询</a> <a href="index.php?do=task_list&path=A519">商业服务</a> <a href="index.php?do=task_list&path=A240">求职招聘</a></td>
+  </tr>
+  <tr>
+    <td width="100" height="35" align="center" valign="middle"><a href="###">生活服务</a></td>
+    <td height="35" valign="middle" class="sb"><a href="index.php?do=task_list&path=A498">搬家租赁</a> <a href="index.php?do=task_list&path=A499">家政保洁</a> <a href="index.php?do=task_list&path=A500">家教陪练</a> </td>
+  </tr>
+    {/if}
 </table>
 
   </div>
@@ -176,8 +198,16 @@
             
             <script>
 			$("#task_model,#task_reward,#task_status").change(function(e) {
-					location.href=$(this).val()+"#jquery";
-				});
+				var s_url = $(this).val();
+				var p = $("#province").val();
+				var c = $("#city").val();
+				var a = $("#area").val();
+
+				var new_url = "province=" + p +"&city=" + c +"&area=" + a;
+				s_url = s_url.replace(/province=[%A-Z0-9&=#a-z]*/, new_url);
+				
+				location.href=s_url+"#jquery";
+			});
 			</script>
     	</div>
                     
@@ -224,7 +254,7 @@
 														 {/if}
                                                          </p>
                                                         <p class="ws_hide ws_title">
-                                                           <a href="index.php?do=task&task_id={$v['task_id']}" class="font14" target="_blank">{$v['task_title']}</a> 
+                                                           <a href="index.php?do=task&task_id={$v['task_id']}" title="$v['task_title']" class="font14" target="_blank"><!--{eval echo kekezu::cutstr($v['task_title'],24);}--></a> 
                                                        &nbsp;
                                                        		<!-- <span class="block m_h">[#{$v['task_id']}]</span> -->
 															<!--{eval $time = time();}-->

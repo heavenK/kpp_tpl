@@ -39,7 +39,7 @@
         			<dl>
         				<dd><a href="vip_shops.html"><img src="<!--{userpicurl($task_info['uid'],'small')}-->"  width="67" height="67"/></a></dd>
         				<dt>
-        					<h1><a href="index.php?do=space&member_id={$task_info['uid']}" target="_blank">{$task_info[username]}</a>：{$task_info['task_title']}</h1>
+        					<h1><a href="index.php?do=space&member_id={$task_info['uid']}" target="_blank">{$task_info[username]}</a>：{$task_info['task_title']}<i>任务编号：{$task_info[task_id]}</i></h1>
                 			<h2><b>招标金额</b><span><i>{c:$task_info['task_cash']}</i><em>已托管：{c:$task_info['task_cash']}</em></span></h2>
                         </dt>
                 	</dl>
@@ -52,7 +52,6 @@
                 </div>
         
         		<div class="fabu_03">
-                	<h1>三级项目名称：任务名称与标题发布时自定</h1>
                 	<h2>所属行业：</h2>
                 	<h3><a href="{$_K['siteurl']}/index.php?do=task_list&path=A{$task_info['indus_pid']}B{$model_id}">{$indus_p_arr[$task_info['indus_pid']]['indus_name']}</a>/<a href="{$_K['siteurl']}/index.php?do=task_list&path=A{$task_info['indus_pid']}B{$model_id}">{$indus_arr[$task_info['indus_id']]['indus_name']}</a></h3>
                 </div>
@@ -84,13 +83,16 @@
                       <li>
                       {if $process_can['work_hand']}
                         {if $union_hand}
-                            <a href="{$union_hand}">投稿投标</a>
+                            <a class="selected" href="{$union_hand}">投稿投标</a>
                         {else}
-                            <a href="javascript:void(0)" onclick="workHand();">投稿投标</a>
+                            <a  class="selected" href="javascript:void(0)" onclick="workHand();">投稿投标</a>
                         {/if}
                       {/if}
                       {if $process_can['delay']}
-                            <a href="javascript:void(0)" onclick="taskDelay();">{$process_desc['delay']}</a>
+                            <a class="selected" href="javascript:void(0)" onclick="taskDelay();">{$process_desc['delay']}</a>
+                      {/if}
+                      {if in_array($uid, $allow_baomings) && $task_info['is_vote'] == 2}
+                      	<a  class="selected" href="javascript:void(0)" onclick="choose_vote({$task_id},{$uid});">报名投票</a>
                       {/if}
                       </li>
                       <li><a class="selected" href="#official">任务留言</a></li>
@@ -151,11 +153,16 @@
                                             <div class="vip_zs_lrz"><i>身份认证：</i><tt style="margin-top:0px;"><!--{eval echo rz_show($v['uid']);}--></tt><div class="clear"></div></div>
                                             <div class="gaojiao">
                                                 <h3>稿件</h3>
+                                                <!--{eval $payitems = explode(',',$task_info[pay_item])}-->
+                                                {if in_array(1,$payitems) && $uid != $task_info['uid'] && $uid != $v[uid]}
+                                                	稿件隐藏
+                                                {else}
                                                 {if $v['work_pic']}
                                                     <!--{eval $pic = explode(',',$v['work_pic']);}-->
                                                     {loop $pic $vc}
                                                         <a href="{$vc}"><img src="{$vc}"  width="84" height="84"/></a>
                                                     {/loop}
+                                                {/if}
                                                 {/if}
                                             </div>
                                             <div class="baojia">
@@ -191,6 +198,9 @@
                                                             <a href="javascript:void(0);" onclick="mark('{$basic_url}&op=mark&role_type=1&obj_id={$v[work_id]}&task_id={$task_id}');">{if $mark[$v[work_id]][mark_status]}{$_lang['modify_mark_info']}{else}{$_lang['mark_to_g']}{/if}</a>
                                                     {/if}
                                                 {/if}
+                                             {if $task_info['is_vote'] == 2 && $v['work_status'] != 4 && $uid != $v[uid] && in_array($uid,$baomings)}
+                                             	<a href="javascript:void(0);" onclick="task_votes({$task_id},'{$v[work_id]}')">投此稿一票</a>
+                                             {/if}
                                         </div>
                                     </div>
                                    	{/loop}
@@ -230,9 +240,11 @@
                                             </div>
                                         </div>
                                         <div class="anniu">
+                                        {if $uid != $v['uid']}
                                             <a href="index.php?do=release&to_uid={$v['uid']}">直接雇佣</a>
-                                            <a href="#" target="_blank">邀请投标</a>
+                                            <!--<a href="#" target="_blank">邀请投标</a>-->
                                             <a href="index.php?do=space&member_id={$v['uid']}">进入工作室</a>
+                                        {/if}
                                         </div>
                                     </div>
                                     {/loop}
@@ -255,11 +267,21 @@
         </div>
 
 		<div class="rwxx_right">
-			<div class="ljfb_right">
-                <h2>轻松快捷·更高效率·节省时间<br>客服帮您搞定一切</h2>
-                <h3><a href="#">&nbsp;</a></h3>
-                <div class="telep"><img src="/tpl/default/d8/images/telephone.png"> <span>400-850-5066</span></div>
-                <div class="qq"><img src="/tpl/default/d8/images/qq.png"> <span>4008505066</span></div>
+        	<div class="ljfb_right_jiao">
+              	<h1>
+                	<span><p>浏览人次</p><p style="color:#e16414">{$task_info[view_num]}</p></span>
+                    <b></b>
+                	<span><p>交稿数量</p><p style="color:#e16414">{$task_info['work_num']}</p></span>
+                </h1> 
+                <h2><i><img src="/tpl/default/d8/images/tiao.png" /></i><em style="line-height:12px;">此任务{$status_arr[$task_status]}</em></h2> 
+                {if $process_can['work_hand']}
+                  {if $union_hand}
+                      <a href="{$union_hand}"></a>
+                  {else}
+                      <a href="javascript:void(0)" onclick="workHand();"></a>
+                  {/if}
+                {/if}
+                
             </div>
 			<div class="ljfb_right_02">
                 <h5>豆8网承诺</h5>

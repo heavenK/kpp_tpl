@@ -89,9 +89,18 @@ function ieGo(){
 			var version = parseInt(ua.match(/msie ([\d.]+)/)[1]);
 			if(version <= 6) {
 				alert("请更新更高级版本")
-				location.href='black'; 
+				location.href='default.php'; 
 			}
 		}
+		var userAgent = navigator.userAgent.toLowerCase(); 
+
+		if(userAgent.indexOf('se 2.x') != -1){ 
+			
+			var browser=navigator.appName;
+			if (browser != 'Netscape'){  
+				alert("您使用的是搜狗浏览器，请使用高速模式或者换其它浏览器来获取更好的体验！");
+ 			}
+		} 
 }
 </script>
 <!--豆豆导航JS-->
@@ -152,6 +161,13 @@ function ieGo(){
     <div id="noflushwarper">
         <div id="noflushwarper_sub"></div>
     </div>
+    
+    <div class="you_xia">
+        <h1 style="line-height:19px">400-850-5066</h1>
+        <h2 style="line-height:19px"><a href="tencent://message/?uin=4008505066&Site=qq&Menu=yes" target="">4008505066</a></h2> 
+        <h3><a href="index.php?do=release" target="_blank">发布任务</a></h3>
+        <h4><i><a href="index.php">首页</a></i><em><a href="#" title="返回顶部"></a></em></h4>  
+    </div>
 
 	<div class="header"><!--顶部导航-->
         <div class="logo"><a href="index.php"><img src="/tpl/default/d8/images/logo.jpg"  width="159" height="188"/></a></div>
@@ -171,7 +187,7 @@ function ieGo(){
                             <li><a href="index.php?do=release">发布任务</a></li>
                             <li><a href="index.php?do=seller_list">人才宝库</a></li>
                             <li><a href="index.php?do=360">客服中心</a></li>
-                            <li><a href="index.php?do=task_list&path=B10">直接雇佣</a></li>
+                            <li><a href="index.php?do=seller_list">直接雇佣</a></li>
                         </ul>
                     </div>
                     <h2>威客服务</h2>
@@ -186,7 +202,7 @@ function ieGo(){
                     <h2>豆豆服务</h2>
                     <div class="gz" style="border:none;">
                         <ul>
-                            <li><a href="index.php?do=zhuanti&view=show&art_id=323">玩转豆币</a></li>
+                            <li><a href="index.php?do=zhuanti&view=show&art_id=323" target="_blank">玩转豆币</a></li>
                             <li><a href="index.php?do=user&view=shitu">师徒关系</a></li>
                             <li><a href="index.php?do=school">豆豆学堂</a></li>
                             <li><a href="index.php?do=shop">豆豆商圈</a></li>
@@ -201,7 +217,7 @@ function ieGo(){
 			</div>
           
             <div class="top_b">
-            	<div class="top_tit">$shop_info[shop_name]</div>
+            	<div class="top_tit" style="margin-top:12px;">{if $member_info[isvip]==1}<img src="/tpl/default/d8/images/VIPhuang.png" width="200" height="32" />{elseif $member_info[isvip] == 2}<img src="/tpl/default/d8/images/kcban.png" width="200" height="32" />{else}{/if}</div>
                 <div class="denglu">
                		{if !$uid&&!$oauth_user_info}
                 	<div class="hydl">

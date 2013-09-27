@@ -51,14 +51,14 @@ body
 
 
 /*VIP专区--vip_zq.html*/
-.vip_nr									{margin-top:40px;}
+.vip_nr									{margin-top:10px;}
 .vip_bg									{background:url(../images/vip03.jpg) repeat-y;}
 .vip_left								{width:316px; float:left;}
-.vip_top01								{padding:0px; margin:0px; height:5px;}
+.vip_top01								{padding:0px; margin:0px; height:5px;background:url(../images/vip13.jpg) no-repeat;}
 .vip_right								{width:677px; float:left; }
 .vip_mp									{width:275px; height:130px; float:left; border:1px solid #e3e3e3;-moz-box-shadow:2px 2px 2px #333333; -webkit-box-shadow:2px 2px 2px #333333; box-shadow:2px 2px 2px #333333;}
 .vip_mp h1								{width:70px; height:70px; padding:3px; border:1px solid #dedede; float:left; margin:12px 0 0 12px; display:inline;}
-.vip_mp ul								{height:130px; float:left; padding-left:15px; width:170px; margin-top:12px;}
+.vip_mp ul								{height:130px; float:left; padding-left:15px; width:170px; margin-top:12px; font-size:14px;}
 .vip_mp ul li							{line-height:24px;}
 .vip_mp ul li em						{color:#fa3f36;}
 .vip_left_one							{float:left; margin-top:50px;}
@@ -115,7 +115,7 @@ body
 .vip_jstop_rfw a						{ width:193px; height:54px; float:left;-moz-box-shadow:2px 2px 2px #333333; -webkit-box-shadow:2px 2px 2px #333333; box-shadow:2px 2px 2px #333333;border-radius:6px; overflow:hidden;}
 .vip_jsnr								{border:1px solid #b6b6b6; margin-top:19px; padding:0 94px 34px 108px}
 .vip_jsnr_pic							{text-align:center; margin:54px 0 42px 0}
-.vip_jsnr_pic1							{margin-bottom:46px;}
+.vip_jsnr_pic1							{margin-bottom:46px; margin-left:35px;}
 .vip_jsnr_l								{width:377px; float:left; margin:6px 0 0 10px; display:inline;}
 .vip_jsnr_l h1							{text-align:center;}
 .vip_jsnr_list							{border:1px solid #ebece3; background:#fcfaee; margin-top:15px; padding-bottom:40px;}
@@ -128,7 +128,7 @@ body
 
 
 /*VIP专区--vip_shops.html*/
-.vip_zs_left							{width:244px; border:1px solid #d5d5d5; float:left; margin-top:18px;}
+.vip_zs_left							{width:244px; border:1px solid #d5d5d5; float:left; margin-top:10px;}
 .vip_zs_lpic							{padding:23px; padding-bottom:0px;}
 .vip_zs_lpic p							{height:49px; line-height:49px; margin-top:3px; text-align:center; font-size:15px;}
 .vip_zs_lrz								{border-top:1px solid #d5d5d5; line-height:37px; padding-left:22px; font-size:19px;}
@@ -147,17 +147,17 @@ body
 .vip_zs_lzs	ul							{padding:15px 15px 0 15px;}
 .vip_zs_lzs ul li						{width:101px; float:left; margin:0 3px; display:inline;}
 .vip_zs_lzs ul li p						{line-height:24px; margin-bottom:5px; text-align:center; color:#000;}
-.vip_zs_right							{width:747px; float:right; margin-top:18px;}
+.vip_zs_right							{width:747px; float:right; margin-top:10px;}
 .vip_zs_rtop							{margin-bottom:10px;}
-.vip_zs_rtopl							{border:1px solid #d5d5d5; width:491px; height:272px; float:left;}
+.vip_zs_rtopl							{border:1px solid #d5d5d5; width:491px; height:272px; word-break: break-all; float:left;}
 .vip_zs_rtopl p							{padding:25px 15px 0 18px; float:left; width:455px;}
 .vip_zs_rtopl p i						{width:67px; float:left; line-height:17px; font-weight:bold;}
 .vip_zs_rtopl p span					{width:387px; float:left;}
 .vip_zs_rtopl p span tt					{background:#fef3e6; border:1px solid #ffdebe; color:#ed7423; padding:0 5px; line-height:19px; margin:0 9px 8px 0; display:inline; float:left;}
 .vip_zs_rtopr							{width:244px; height:272px; float:right; border:1px solid #d5d5d5;}
-.vip_zs_rtopr h1						{line-height:38px; margin-top:15px; font-size:20px; height:38px; padding-left:34px; font-weight:100;}
+.vip_zs_rtopr h1						{line-height:38px; margin-top:15px; font-size:20px; padding-left:34px; font-weight:100;}
 .vip_zs_rtopr p							{line-height:31px; font-size:13px; height:31px; padding-left:34px;}
-.vip_zs_rtopbom							{width:184px; height:101px; float:left; margin:41px 0 0 28px; display:inline;border:1px solid #d5d5d5;}
+.vip_zs_rtopbom							{width:184px; height:101px; float:left; margin:5px 0 0 28px; display:inline;border:1px solid #d5d5d5;}
 .vip_zs_rtopbom span					{width:60px; height:53px; float:left; line-height:53px; text-align:center;}
 .vip_zs_rtopbom span a					{color:#000;}
 .vip_zs_rtopbom em						{width:159px; height:44px; float:left; background:url(../images/vip35.jpg) repeat-x; margin-left:13px; display:inline; line-height:44px; text-align:center;}
@@ -191,7 +191,7 @@ body
 .vip_about_tit em i						{background:url(../images/vip49.jpg) no-repeat; padding-left:20px;}
 .vip_about_tit tt						{line-height:24px; width:100%; float:left; color:#8a8a8a;}
 .vip_about_tit tt a						{color:#28abe3; text-decoration:underline;}
-.vip_about_info							{border-bottom:1px dashed #c8c8c8; padding:15px 10px; font-size:13px;}
+.vip_about_info							{border-bottom:1px dashed #c8c8c8; padding:15px 10px; font-size:13px;word-break: break-all;}
 .vip_about_info span					{width:100%; line-height:30px; float:left; font-size:13px;}
 .vip_about_info em						{line-height:24px; width:100%; float:left; color:#8a8a8a;}
 .vip_about_info tt						{padding-top:15px; color:#71c6ed; width:100%; line-height:30px; float:left; font-size:15px;}

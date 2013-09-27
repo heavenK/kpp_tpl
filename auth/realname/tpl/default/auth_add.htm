@@ -79,10 +79,10 @@
                                     <div class="_rzdq">
                                     <p>
                                       <label>
-                                        <input type="radio" name="user_type" value="1" checked="checked" id="RadioGroup1_0" />
+                                        <input type="radio" name="member_type" value="1" checked="checked" id="RadioGroup1_0" />
                                         个人</label>
                                       <label>
-                                        <input type="radio" name="user_type" value="2" id="RadioGroup1_1" />
+                                        <input type="radio" name="member_type" value="2" id="RadioGroup1_1" />
                                         企业</label>
                                     </p>
                                     </div>
@@ -95,9 +95,9 @@
 							  	function jump_next(){
 										
 									var zone = $("input[name='zone']:checked").val();
-									var user_type = $("input[name='user_type']:checked").val();
-										
-									location='index.php?do=user&view=payitem&op=auth&auth_code=realname&ver=0&auth_step=step2&zone='+zone+'&user_type='+user_type;
+									var member_type = $("input[name='member_type']:checked").val();
+										//alert('index.php?do=user&view=payitem&op=auth&auth_code=realname&ver=0&auth_step=step2&zone='+zone+'&user_type='+user_type);
+									location='index.php?do=user&view=payitem&op=auth&auth_code=realname&ver=0&auth_step=step2&zone='+zone+'&member_type='+member_type;
 								}
 							  </script>       
                      {elseif $auth_step=='step2'}
@@ -107,7 +107,7 @@
                   <div class="smrz_box">
                     <div class="smrz_er">
                         <p><label style=" float:left; width:150px; text-align:right;">用户名：</label>{$user_info[username]}</p>
-                        <p><label style=" float:left; width:150px; text-align:right;">身份类型：</label>{if $user_type==1}个人{else}企业{/if}</p>
+                        <p><label style=" float:left; width:150px; text-align:right;">身份类型：</label>{if $member_type==1}个人{else}企业{/if}</p>
                        <div style="width:700px; overflow:hidden; ">
                             <label style=" float:left; width:150px; text-align:right; line-height:28px;">真实身份：</label>
                             <div style="float:left;height:30px;">

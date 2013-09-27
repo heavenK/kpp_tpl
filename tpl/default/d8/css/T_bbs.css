@@ -8,7 +8,7 @@ h1,h2,h3 { font-size:14px; font-weight:normal;}
 
 .box { width:1000px; margin:0 auto; position:relative; }
 
-.cont_bbs { width:1000px; float:left; margin-top:40px}
+.cont_bbs { width:1000px; float:left; margin-top:10px}
 .cont_01 { width:1000px; height:388px; float:left;}
 .cont_01_left { width:204px; height:386px; float:left; border:1px solid #aeaeac}
 .cont_01_left h1 { width:204px; height:42px; border-bottom:1px solid #aeaeac; text-align:center; line-height:40px; font-size:20px;}
@@ -17,10 +17,19 @@ h1,h2,h3 { font-size:14px; font-weight:normal;}
 .cont_01_left ul li i { font-size:14px; font-weight:bold; font-style:normal; margin-right:6px;}
 .cont_01_left ul li a { color:#000}
 .cont_01_left ul li a:hover { color:#48b78d;}
-.cont_01_middle { width:584px; height:386px; margin:0 4px 0 4px; float:left; border:1px solid #aeaeac}
-.cont_01_right { width:198px; height:386px; float:left; border:1px solid #aeaeac; border-bottom:none}
-.cont_01_right a { width:198px; height:42px; float:left; text-align:center; font-size:20px; line-height:40px; border-bottom:1px solid #aeaeac; color:#000}
-.cont_01_right a:hover { background:#48b78d; color:#fff}
+.cont_01_middle { width:605px; height:386px; margin:0 4px 0 4px; float:left; border:1px solid #aeaeac}
+.cont_01_right { width:161px; height:388px; padding-left:16px; float:left; background:url(../images/bbsbg.png) no-repeat; border-bottom:none}
+.cont_01_right a { width:161px; cursor:pointer; height:43px; float:left; font-size:18px; line-height:42px;  color:#000}
+.cont_01_right a:hover { background:url(../images/bbsbg02.png) no-repeat; color:#000}
+.cont_01_right i { float:left; width:30px; padding-left:39px; font-style:normal; color:#fff}
+.cont_01_right em { float:left; width:83px; font-style:normal; text-align:center;}
+.bianse { background:url(../images/bbsbg02.png) no-repeat; color:#000}
+
+
+
+
+
+
 .cont_02 { width:1000px; height:43px; float:left; margin-top:5px; display:inline}
 .cont_02 h1 { width:204px; height:40px; border-top:3px solid #40b387; border-left:1px solid #aeaeac; border-right:1px solid #aeaeac; float:left; text-align:center; line-height:40px; font-size:18px;}
 .gundong { background:#000; font-size:18px; color:#fff; line-height:40px; width:788px; overflow:hidden; height:42px; border-top:1px solid #aeaeac; margin-left:4px; border-left:1px solid #aeaeac; border-right:1px solid #aeaeac; float:left;}
@@ -54,7 +63,9 @@ h1,h2,h3 { font-size:14px; font-weight:normal;}
 em,span,tt,i{ font-style:normal;font-family:"微软雅黑", "宋体";}
 .bbs_list_l{width:795px; float:left;}
 .bbs_list_ltit{width:204px; height:39px; float:left; border-top:4px solid #40b388; border-left:1px solid #d0d0d0; border-right:1px solid #d0d0d0; margin-top:6px; text-align:center; font-size:16px; line-height:39px;}
-.bbs_list_lnr{width:793px; float:left; border:1px solid #d0d0d0; background:#f7f7f7; height:396px; border-bottom:0px;}
+.bbs_list_ltit00{width:588px; height:42px; float:left; border-top:1px solid #40b388; border-right:1px solid #d0d0d0; margin-top:6px; font-size:16px; line-height:39px;}
+
+.bbs_list_lnr{width:793px; float:left; border:1px solid #d0d0d0; background:#f7f7f7; height:396px;}
 .bbs_list_lnr ul li{height:65px; border-bottom:1px solid #d0d0d0; line-height:65px; font-size:15px; padding-left:40px;}
 .bbs_list_lnr ul li em{color:#e62278;}
 .bbs_list_lnr ul li span{color:#49b68f;}
@@ -62,7 +73,7 @@ em,span,tt,i{ font-style:normal;font-family:"微软雅黑", "宋体";}
 .bbs_list_lnr ul li i{color:#969696;}
 .bbs_xin{width:17px; height:18px; border:0px; background:url(../images/bbs_xin.jpg) no-repeat; cursor:pointer; margin-left:13px; display:inline;}
 .bbs_zan{width:17px; height:18px; border:0px; background:url(../images/bbs_zan.jpg) no-repeat; cursor:pointer; margin-left:13px; display:inline;}
-.bbs_list_r{width:199px; height:386px; border:1px solid #d0d0d0; float:right; margin-top:48px; padding:5px 0;}
+.bbs_list_r{width:199px; height:386px; border:1px solid #d0d0d0; float:right;  padding:5px 0;}
 .bbs_list_r ul li{line-height:24px; padding-left:9px;}
 .bbs_list_r ul li a{color:#000;}
 .bbs_ad{height:90px; margin:20px 0}

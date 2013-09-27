@@ -1,0 +1,244 @@
+<!--{template control/admin/tpl/admin_header}-->
+<div class="page_title">
+</div>
+
+<div class="box post">
+        <div class="tabcon">
+        	<div class="title"><h2>{if $op == 'info'}{$_lang['website_config']}{elseif $op == 'conf'}{$_lang['basic_config']}{/if}</h2></div>
+            <div class="detail">
+                 <form name="frm_config_basic" id="frm_config_basic" action="index.php?do=payitem&view=credit&op={$op}" method="post" accept-charset="{$_K['charset']}" enctype='multipart/form-data'>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                     {if $op=='credit'}
+					  <tr>
+                        <th scope="row" width="130">注册赠送值{$_lang['zh_mh']}</th>
+                        <td>
+						<input type="text" size="50" class="txt" name="reg_credit"  
+						 value="$config_arr['reg_credit']" maxlength="100" 
+						 limit="required:true;type:int" 
+						 msg="不可以为空，只能为整数" title='请输入注册时赠送的豆币'
+						 msgArea="web_name_msg" />
+                    	<span id="web_name_msg"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" width="130">开通店铺赠送值{$_lang['zh_mh']}</th>
+                        <td>
+						<input type="text" size="50" class="txt" name="shop_open_credit"  
+						 value="$config_arr['shop_open_credit']" maxlength="100" 
+						 limit="required:true;type:int" 
+						 msg="不可以为空，只能为整数" title='请输入开通店铺时赠送的豆币'
+						 msgArea="web_name_msg1" />
+                    	<span id="web_name_msg1"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" width="130">投标时扣的比率{$_lang['zh_mh']}</th>
+                        <td>
+						<input type="text" size="50" class="txt" name="hand_credit"  
+						 value="$config_arr['hand_credit']" maxlength="100" 
+						 limit="required:true;type:float" 
+						 msg="不可以为空" title='投标时扣的比率'
+						 msgArea="web_name_msg2" />
+                    	<span id="web_name_msg2"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" width="130">投稿招标时扣的豆币{$_lang['zh_mh']}</th>
+                        <td>
+						<input type="text" size="50" class="txt" name="tender_credit"  
+						 value="$config_arr['tender_credit']" maxlength="100" 
+						 limit="required:true;type:int" 
+						 msg="不可以为空" title='投稿招标时扣的豆币'
+						 msgArea="web_name_msg2" />
+                    	<span id="web_name_msg2"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" width="130">中标时返还的比率{$_lang['zh_mh']}</th>
+                        <td>
+						<input type="text" size="50" class="txt" name="selected_credit"  
+						 value="$config_arr['selected_credit']" maxlength="100" 
+						 limit="required:true;type:float" 
+						 msg="不可以为空" title='中标时返还的比率'
+						 msgArea="web_name_msg3" />
+                    	<span id="web_name_msg3"></span>
+                        </td>
+                      </tr>
+                      
+                      <tr>
+                        <th scope="row" width="130">报名投票扣除的豆币{$_lang['zh_mh']}</th>
+                        <td>
+						<input type="text" size="50" class="txt" name="baoming_credit"  
+						 value="$config_arr['baoming_credit']" maxlength="100" 
+						 limit="required:true;type:int" 
+						 msg="不可以为空" title='报名投票扣除的豆币'
+						 msgArea="web_name_msg4" />
+                    	<span id="web_name_msg4"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" width="130">成功选标返还比率{$_lang['zh_mh']}</th>
+                        <td>
+						<input type="text" size="50" class="txt" name="selected_suc_credit"  
+						 value="$config_arr['selected_suc_credit']" maxlength="100" 
+						 limit="required:true;type:float" 
+						 msg="不可以为空" title='成功选标返还比率'
+						 msgArea="web_name_msg5" />
+                    	<span id="web_name_msg5"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" width="130">成功选标招标任务返回豆币{$_lang['zh_mh']}</th>
+                        <td>
+						<input type="text" size="50" class="txt" name="tender_sel_credit"  
+						 value="$config_arr['tender_sel_credit']" maxlength="100" 
+						 limit="required:true;type:int" 
+						 msg="不可以为空" title='成功选标招标任务返回豆币'
+						 msgArea="web_name_msg2" />
+                    	<span id="web_name_msg2"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" width="130">答题赠送豆币值{$_lang['zh_mh']}</th>
+                        <td>
+						<input type="text" size="50" class="txt" name="answer_credit"  
+						 value="$config_arr['answer_credit']" maxlength="100" 
+						 limit="required:true;type:int" 
+						 msg="不可以为空" title='答题赠送豆币值'
+						 msgArea="web_name_msg6" />
+                    	<span id="web_name_msg6"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" width="130">拜师时豆币值{$_lang['zh_mh']}</th>
+                        <td>
+						<input type="text" size="50" class="txt" name="baishi_credit"  
+						 value="$config_arr['baishi_credit']" maxlength="100" 
+						 limit="required:true;type:int" 
+						 msg="不可以为空" title='拜师时豆币值'
+						 msgArea="web_name_msg7" />
+                    	<span id="web_name_msg7"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" width="130">解除拜师豆币值{$_lang['zh_mh']}</th>
+                        <td>
+						<input type="text" size="50" class="txt" name="jiechu_credit"  
+						 value="$config_arr['jiechu_credit']" maxlength="100" 
+						 limit="required:true;type:int" 
+						 msg="不可以为空" title='解除拜师豆币值'
+						 msgArea="web_name_msg8" />
+                    	<span id="web_name_msg8"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" width="130">中标威客的师傅获取比率{$_lang['zh_mh']}</th>
+                        <td>
+						<input type="text" size="50" class="txt" name="shifu_get_credit"  
+						 value="$config_arr['shifu_get_credit']" maxlength="100" 
+						 limit="required:true;type:float" 
+						 msg="不可以为空" title='中标威客的师傅获取比率'
+						 msgArea="web_name_msg9" />
+                    	<span id="web_name_msg9"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" width="130">店主详细资料豆币获取率{$_lang['zh_mh']}</th>
+                        <td>
+						<input type="text" size="50" class="txt" name="look_get_credit"  
+						 value="$config_arr['look_get_credit']" maxlength="100" 
+						 limit="required:true;type:float" 
+						 msg="不可以为空" title='店主详细资料豆币获取率'
+						 msgArea="web_name_msg20" />
+                    	<span id="web_name_msg20"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" width="130">悬赏投票时长，单位，天{$_lang['zh_mh']}</th>
+                        <td>
+						<input type="text" size="50" class="txt" name="vote_time"  
+						 value="$config_arr['vote_time']" maxlength="100" 
+						 limit="required:true;type:int" 
+						 msg="不可以为空" title='悬赏投票时长，单位，天'
+						 msgArea="web_name_msg21" />
+                    	<span id="web_name_msg21"></span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" width="130">小红花的价格{$_lang['zh_mh']}</th>
+                        <td>
+						<input type="text" size="50" class="txt" name="flower_credit"  
+						 value="$config_arr['flower_credit']" maxlength="100" 
+						 limit="required:true;type:int" 
+						 msg="不可以为空" title='小红花的价格'
+						 msgArea="web_name_msg22" />
+                    	<span id="web_name_msg22"></span>
+                        </td>
+                      </tr>
+			{/if}
+			<th scope="row">&nbsp;</th>
+			<td>
+				<div class="clearfix padt10">
+                                <button class="positive pill primary button" type="submit" name='submit' value="{$_lang['submit']}"><span class="check icon"></span>{$_lang['submit']}</button>
+                                
+                </div>
+			</td>
+                    
+                    </table>
+                    
+                      
+                    
+        </form>
+            </div>
+        </div>
+        
+        
+    </div>
+
+
+<script type="text/javascript">
+    $(function(){
+    	$("#rdo_second_domain_2").click(function(){
+			$("#t_domain").show();
+		})
+		if($("#rdo_second_domain_2").is(":checked")){
+			$("#t_domain").show();
+		}
+    	$("#rdo_second_domain_1").click(function(){
+			$("#t_domain").hide();
+		})
+        $("#frm_config_basic").submit(function(){
+            var value = $("#fle_web_logo").val();
+            if (value) {
+                s = value.lastIndexOf(".");
+                lastname = value.substring(s, value.length);
+                if (lastname.toLowerCase() != ".gif" && lastname.toLowerCase() != ".jpg" && lastname.toLowerCase() != ".png" && lastname.toLowerCase() != ".jpeg") {
+                    alert("{$_lang['file_type_error']}")
+                    $(this).focus();
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            }
+            
+            
+        })
+        if ($("#checkclose1").attr("checked")) {
+            $("#close_true").show();
+        }
+        else {
+            $("#close_true").hide();
+        }
+        $("#checkclose1").click(function(){
+            $("#close_true").show();
+        })
+        $("#checkclose2").click(function(){
+            $("#close_true").hide();
+        })
+        
+        
+        
+    })
+</script>
+<!--{template control/admin/tpl/admin_footer}-->

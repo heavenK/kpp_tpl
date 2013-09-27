@@ -22,12 +22,16 @@ body
 }
 #box									{width:1000px; margin:0 auto;}
 /*shops01*/
-.sq_main{width:1000px; margin:0 auto;}
-.sq_top{margin-top:50px;}
-.sq_top_left{width:203px; height:422px; float:left; border:1px solid #ccc;}
-.sq_top_left ul{padding-top:15px;}
-.sq_top_left ul li{line-height:55px; font-size:34px; text-align:center;}
-.sq_top_right{width:788px; height:425px; float:right;}
+.sq_main{width:1000px; margin:0 auto; float:left; margin-top:10px;}
+.sq_top_left{width:205px; height:414px; float:left; background:url(../images/squan.png) no-repeat;}
+.sq_top_left ul{}
+
+.sq_top_left ul a { width:205px; cursor:pointer; height:59px; float:left; font-size:18px; line-height:58px;  color:#000}
+.sq_top_left ul a:hover { background:url(../images/squan02.jpg) no-repeat scroll 15px 0; color:#000}
+.sq_top_left ul i { float:left; width:30px; padding-left:53px; font-style:normal; color:#fff}
+.sq_top_left ul em { float:left; width:83px; font-style:normal; text-align:center;}
+
+.sq_top_right{width:788px; height:414px; float:right;}
 .sq_top_rone{height:259px;}
 .vip_jstop_c{border: 1px solid #DCDCDC; box-shadow: 2px 2px 2px #333333; display: inline; float: left; height: 256px; width: 566px;}
 /*****焦点图轮换 *****/
@@ -58,16 +62,23 @@ body
 .vip_jstop_r ul li			{line-height:24px;}
 .vip_jstop_r ul li span		{width:120px; float:left;}
 .vip_jstop_r ul li em		{width:70px; float:left;}
-.sq_top_rtwo				{height:143px; border:1px solid #ccc; margin-top:20px;}
+.sq_top_rtwo				{height:143px; border:1px solid #ccc; margin-top:10px;}
 .sq_top_rfabu				{width:195px; height:143px; float:left;}
 .sq_top_rad					{float:left;}
 .sq_top_rfabu h1			{padding-top:8px; line-height:63px; font-size:29px; text-align:center;}
 .sq_fabu					{width:117px; height:33px; background:url(../images/shang01.jpg) no-repeat; border:1px; font-size:16px; color:#fff; text-align:center; margin-left:40px; display:inline;}
-.sq_zhanshi					{padding-bottom:18px; margin-top:19px;}
-.sq_zhanshi h1				{font-size:22px; line-height:36px; font-weight:100; padding:0 17px 0 20px;border:1px solid #ccc; border-bottom:0px;}
+.sq_zhanshi					{ margin-top:10px; float:left}
+.sq_zhanshi h1				{font-size:20px; line-height:36px; font-weight:100; padding:0 17px 0 20px;border:1px solid #ccc; }
 .sq_zhanshi h1 a			{float:right; color:#000; width:100px; text-align:right;}
-.sq_zhanshi ul				{border:1px solid #ccc; border-right:0px; float:left; margin-bottom:13px;}
-.sq_zhanshi ul li			{border-right:1px solid #ccc; float:left; width:198.8px; height:175px;}
+.sq_zhanshi ul				{ width:1000px; border-left:1px solid #ccc; border-bottom:1px solid #ccc; border-right:0px; border-top:0; float:left; }
+.sq_zhanshi ul li			{border-right:1px solid #ccc; float:left; width:199px; height:210px;}
+.sq_zhanshi ul li a         { width:180px; height:120px; float:left; margin-left:10px; margin-top:10px }
+.sq_zhanshi ul li h2        { width:180px; float:left; height:18px; font-size:14px; margin-left:10px; margin-top:5px; overflow:hidden}
+.sq_zhanshi ul li h3        { width:180px; float:left; font-weight: normal; height:18px; font-size:12px; margin-left:10px; color:#666; overflow:hidden}
+.sq_zhanshi ul li h3 i      { font-style:normal; color:#F00;}
+
+
+
 .sq_list_top				{margin-top:50px; border:1px solid #ccc; border-bottom:0px;}
 .sq_list_top ul li			{border-bottom:1px solid #ccc; font-size:15px;}
 .sq_list_top ul li em		{width:105px; height:54px; float:left; line-height:54px; text-align:center; color:#002520; font-weight:bold;}

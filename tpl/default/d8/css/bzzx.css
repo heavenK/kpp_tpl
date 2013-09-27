@@ -10,7 +10,7 @@ ul,li{list-style:none;}
 a{text-decoration:none;}
 
 
-.help_center{margin-top:50px;}
+.help_center{margin-top:10px;}
 
 .dddh h2{ width:115px; margin:0 auto; font-size:14px; line-height:20px; color:#00251e; padding:5px 0;}
 
@@ -159,7 +159,7 @@ display: block;
 
 .help h3{font-size:23px; color:#51444b; line-height:35px; font-weight:normal; padding:0 8px;}
 
-.help p img{width:79px; height:69px; margin:0 auto; display:block}
+.help p img{height:69px; margin:0 auto; display:block}
 
 .help p a{color:#265686;}
 

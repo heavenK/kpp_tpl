@@ -10,7 +10,7 @@
 
 $language = $kekezu->_lang;
 keke_lang_class::package_init ( $do );
-$shop_info = db_factory::get_one(sprintf("select * from %switkey_shop where uid = '%d'",TABLEPRE,$uid));
+$shop_info = db_factory::get_one(sprintf("select * from %switkey_shop s left join %switkey_space p on s.uid=p.uid where s.uid = '%d'",TABLEPRE,TABLEPRE,$uid));
 
 $level_pic = unserialize($user_info['seller_level']);
 

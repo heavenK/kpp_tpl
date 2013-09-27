@@ -1,0 +1,97 @@
+<!--{eval require keke_tpl_class::template(SKIN_PATH."/space/p_common")}--><!--页面内容-->
+        <div class="div_zs_rcsfw">详细资料<div class="clear"></div></div>
+            <div class="div_zs_rcsnr">
+            	<p>
+                	<label>性别：</label>
+                	{$member_info['sex']}
+                </p>
+                <br />
+                <p>
+					<label>所在地区：</label>
+					{$member_info['residency']}
+               </p>
+                <br />
+               <p>
+               		<label>真实姓名：</label>
+                    {$member_info['truename']}
+               </p>
+                <br />
+               <p>
+               		<label>手机号：</label>
+                    {if $sect_info['mobile'] == 1}
+                    威客没有公开手机号
+                    {else}
+                    {$member_info['mobile']}
+                    {/if}
+               </p> <br />
+               <p>
+               		<label>QQ：</label>
+                    {if $sect_info['qq'] == 1}
+                    威客没有公开QQ号
+                    {else}
+                    {$member_info['qq']}
+                    {/if}
+               </p> <br />
+               <p>
+               		<label>电子邮箱：</label>
+                    {if $sect_info['email'] == 1}
+                    威客没有公开电子邮箱
+                    {else}
+                    {$member_info['email']}
+                    {/if}
+               </p> <br />
+               <p>
+               		<label>出生地：</label>
+                    {$member_info['hometown']}
+               </p> <br />
+               <p>
+                    <label>学历：</label>
+                    {$member_info['xueli']}
+                    <label>身高：</label>
+                    {$member_info['shengao']}
+                    <label>体重：</label>
+                    {$member_info['tizhong']}
+               </p> <br />
+               <p>
+                    <label>星座：</label>
+                    {$member_info['xingzuo']}
+                    <label>血型：</label>
+                    {$member_info['xuexing']}
+               </p> <br />
+               <p>
+                    <label>语言：</label>
+                    {$member_info['yuyan']}
+               </p> <br />
+               <p>
+                    <label>爱好：</label>
+                    {$member_info['aihao']}
+               </p> <br />
+               <p>
+                    <label>职业：</label>
+                    {$member_info['zhiye']}
+               </p> <br />
+               <p>
+                    <label>个人才艺：</label>
+                    {$member_info['gerencaiyi']}
+               </p> <br />
+               <p>
+                    <label>毕业院校：</label>
+                    {$member_info['biyeyuanxiao']}
+               </p> <br />
+               <p>
+                    <label>休闲方式：</label>
+                    {$member_info['xiuxianfangshi']}
+               </p> <br />
+               <p>
+                    <label>自我介绍：</label>
+                    {$member_info['ziwojieshao']}
+               </p> <br />
+            </div>    
+
+        </div>
+        <div class="clear"></div>
+        
+        
+    </div>
+
+<!--{template footer_dou}-->

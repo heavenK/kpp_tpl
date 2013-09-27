@@ -7,9 +7,9 @@ a{text-decoration:none;}
 
 /*首页 T_index.html*/
 .box { width:1000px; margin:0 auto; position:relative}
-
+.silder_tp{ padding-top:5px;}
 /*****焦点图轮换 *****/
-.banner						{ width:1000px; height:494px; margin:0 auto; margin-top:34px; _margin-top:0; display:inline; float:left;}
+.banner						{ width:1000px; height:494px; margin:0 auto; margin-top:10px; _margin-top:0; display:inline; float:left;}
 .picList li					{ width:1000px; margin:0 auto;}
 .picList img				{ width:1000px; height:494px; }
 .picList a:hover img		{ border-color:#f00;}
@@ -216,7 +216,7 @@ a{text-decoration:none;}
 .re_tu2{width:440px; height:202px; background:url(../images/r_tu3.jpg) no-repeat; margin:0 auto; margin-top:2px;}
 .re_tu3{width:440px; height:202px; background:url(../images/r_tu4.jpg) no-repeat; margin:0 auto; margin-top:2px;}
 .re_text{width:425px; height:108px; background:url(../images/re_text_bg.jpg) no-repeat; margin-left:25px;}
-.re_text p{font-size:13px; line-height:24px; padding:0 5px;}
+.re_text p{font-size:13px; line-height:24px; padding:1px 15px;}
 .re_text p span a{width:410px; height:25px; display:block; text-align:center; color:#b9b9ba; font-size:14px;}
 .re_text1{width:425px; height:108px; background:url(../images/re_text_bg.jpg) no-repeat; margin-left:36px;}
 .re_text1 p{font-size:13px; line-height:24px; padding:0 5px;}

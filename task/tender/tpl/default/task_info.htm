@@ -36,7 +36,7 @@
         			<dl>
         				<dd><a href="vip_shops.html"><img src="<!--{userpicurl($task_info['uid'],'small')}-->"  width="67" height="67"/></a></dd>
         				<dt>
-        					<h1><a href="index.php?do=space&member_id={$task_info['uid']}" target="_blank">{$task_info[username]}</a>：{$task_info['task_title']}</h1>
+        					<h1><a href="index.php?do=space&member_id={$task_info['uid']}" target="_blank">{$task_info[username]}</a>：{$task_info['task_title']}<i>任务编号：{$task_info[task_id]}</i></h1>
                 			<h2><b>招标金额</b><span><i>{if $task_info['task_cash_coverage']}{c:$cover_cash[$cover_id]['start_cove']}-{c:$cover_cash[$cover_id]['end_cove']}{else}{c:$task_info['task_cash']}{/if}</i></span></h2>
                         </dt>
                 	</dl>
@@ -49,7 +49,6 @@
                 </div>
         
         		<div class="fabu_03">
-                	<h1>三级项目名称：任务名称与标题发布时自定</h1>
                 	<h2>所属行业：</h2>
                 	<h3><a href="{$_K['siteurl']}/index.php?do=task_list&path=A{$task_info['indus_pid']}B{$model_id}">{$indus_p_arr[$task_info['indus_pid']]['indus_name']}</a>/<a href="{$_K['siteurl']}/index.php?do=task_list&path=A{$task_info['indus_pid']}B{$model_id}">{$indus_arr[$task_info['indus_id']]['indus_name']}</a></h3>
                 </div>
@@ -81,9 +80,9 @@
                       <li>
                       {if $process_can['work_hand']}
                         {if $union_hand}
-                            <a href="{$union_hand}">投稿投标</a>
+                            <a class="selected" href="{$union_hand}">投稿投标</a>
                         {else}
-                            <a href="javascript:void(0)" onclick="workHand();">投稿投标</a>
+                            <a  class="selected" href="javascript:void(0)" onclick="workHand();">投稿投标</a>
                         {/if}
                       {/if}
                       {if $process_can['delay']}
@@ -211,9 +210,11 @@
                                             </div>
                                         </div>
                                         <div class="anniu">
+                                        {if $uid != $v['uid']}
                                             <a href="index.php?do=release&to_uid={$v['uid']}">直接雇佣</a>
-                                            <a href="#" target="_blank">邀请投标</a>
+                                            <!--<a href="#" target="_blank">邀请投标</a>-->
                                             <a href="index.php?do=space&member_id={$v['uid']}">进入工作室</a>
+                                        {/if}
                                         </div>
                                     </div>
                                     {/loop}
@@ -236,11 +237,20 @@
         </div>
 
 		<div class="rwxx_right">
-			<div class="ljfb_right">
-                <h2>轻松快捷·更高效率·节省时间<br>客服帮您搞定一切</h2>
-                <h3><a href="#">&nbsp;</a></h3>
-                <div class="telep"><img src="/tpl/default/d8/images/telephone.png"> <span>400-850-5066</span></div>
-                <div class="qq"><img src="/tpl/default/d8/images/qq.png"> <span>4008505066</span></div>
+        	<div class="ljfb_right_jiao">
+              	<h1>
+                	<span><p>浏览人次</p><p style="color:#e16414">{$task_info[view_num]}</p></span>
+                    <b></b>
+                	<span><p>交稿数量</p><p style="color:#e16414">{$task_info['work_num']}</p></span>
+                </h1> 
+                <h2><i><img src="/tpl/default/d8/images/tiao.png" /></i><em style="line-height:12px;">此任务{$status_arr[$task_status]}</em></h2> 
+                {if $process_can['work_hand']}
+                  {if $union_hand}
+                      <a href="{$union_hand}"></a>
+                  {else}
+                      <a href="javascript:void(0)" onclick="workHand();"></a>
+                  {/if}
+                {/if}
             </div>
 			<div class="ljfb_right_02">
                 <h5>豆8网承诺</h5>

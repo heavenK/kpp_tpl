@@ -134,7 +134,7 @@ class sreward_task_class extends keke_task_class {
 		$work_ids && $uid == $this->_task_info ['uid'] and db_factory::execute ( 'update ' . TABLEPRE . 'witkey_task_work set is_view=1 where work_id in (' . $work_ids . ') and is_view=0' );
 		return $work_arr;
 	}
-	public function work_hand($work_desc, $file_ids, $hidework = '2') {
+	public function work_hand($work_desc, $file_ids, $hidework = '2', $hand_credit = 0) {
 		global $_K;
 		global $_lang;
 		if ($this->check_if_can_hand ()) {
@@ -157,6 +157,11 @@ class sreward_task_class extends keke_task_class {
 				$work_obj->setWork_pic ( $this->work_pic ( $f_ids ) );
 			}
 			$work_id = $work_obj->create_keke_witkey_task_work ();
+			
+			if($work_id){
+				keke_finance_class::cash_out ($this->_uid, $hand_credit, 'pub_word', 0, 'task', $this->_task_id, 1 ); 
+			}
+			
 			$hidework == '1' and keke_payitem_class::payitem_cost ( "workhide", '1', 'work', 'spend', $work_id, $this->_task_id );
 			if ($work_id) {
 				$f_ids and db_factory::execute ( sprintf ( " update %switkey_file set work_id='%d',task_title='%s',obj_id='%d' where file_id in (%s)", TABLEPRE, $work_id, $this->_task_title, $work_id, $f_ids ) );
@@ -176,14 +181,25 @@ class sreward_task_class extends keke_task_class {
 			}
 		}
 	}
-	public function work_choose($work_id, $to_status, $trust_response = false) {
+	public function work_choose($work_id, $to_status, $trust_response = false, $hand_credit = 0, $get_credit = 0) {
 		global $kekezu, $_K;
 		global $_lang;
+		global $basic_config;
 		kekezu::check_login ( $url, $output );
 		$this->check_if_operated ( $work_id, $to_status );
 		$status_arr = $this->get_work_status ();
 		$task_info = $this->_task_info;
 		$work_info = $this->get_task_work ( $work_id );
+		
+		if($work_info){
+			keke_finance_class::cash_in($work_info['uid'], floatval(0),intval($hand_credit),'choose_back','','task', $task_info['task_id']);
+			
+			$tudi_info = db_factory::get_one ( " select * from ".TABLEPRE."witkey_space where uid=".$work_info['uid']); 
+			if($tudi_info['pid'])	keke_finance_class::cash_in($tudi_info['pid'], floatval(0),intval($hand_credit*$basic_config['shifu_get_credit']),'tudi_choose','','task', $task_info['task_id']);
+			
+			keke_finance_class::cash_in($task_info['uid'], floatval(0),intval($get_credit),'choose_sucess','','task', $task_info['task_id']);
+		}
+		
 		if ($to_status == 4) {
 			if ($this->_task_status == 7) {
 				$cash_info = db_factory::get_one ( sprintf ( " select task_cash,task_union,real_cash from %switkey_task where task_id = '%d'", TABLEPRE, $this->_task_id ) );

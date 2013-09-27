@@ -22,7 +22,7 @@ body
 }
 #box									{width:1000px; margin:0 auto;}
 /*learn01*/
-.learn									{margin-top:50px;}
+.learn									{margin-top:10px;}
 .learn_l								{width: 218px; float:left;  }
 .learn_r								{width: 746px; float:right;}
 .learn_ltop								{border: 1px solid #D1D1D1; padding:10px;}

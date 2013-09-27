@@ -11,14 +11,22 @@
 <div id="modal1" class="modal">
 	<h1><p class="closeBtn"><img width="16" border="0" height="16" src="/tpl/default/d8/images/close.png"></p></h1>
     <div class="baibai">
-      	<h2>拜师需扣除1000豆币</h2>
+      	<h2>拜师需扣除{$basic_config['baishi_credit']}豆币</h2>
         <h3>是否拜{$member_info['username']}为师</h3>
-        <h4><a href="###" class="guanbi" onclick="send_req_zj({$member_info['uid']})" style=" color:#00F">是</a><a href="#" class="guanbi" style=" color:#00F">否</a></h4>
+        <h4><a href="###" class="guanbi" onclick="send_req_zj({$member_info['uid']})" >是</a><a href="#" class="guanbi" >否</a></h4>
         <h5><a href="#">《师徒关系规则》</a></h5>
     </div>
     
 </div>
-
+<div id="modal2" class="modal">
+	<h1><p class="closeBtn"><img width="16" border="0" height="16" src="/tpl/default/d8/images/close.png"></p></h1>
+    <div class="baibai">
+      	<h2>查看详细需扣除{$member_info['look_credit']}豆币</h2>
+        <h3>是否继续</h3>
+        <h4><a href="###" class="guanbi"  onclick="window.location.href='index.php?do=space&member_id={$member_info[uid]}&view=detail';">是</a><a href="#" class="guanbi">否</a></h4>
+    </div>
+    
+</div>
 
 
 {if $member_info['isvip'] == 1}
@@ -31,10 +39,11 @@
 </style>
 <link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/vip.css">
 {elseif $member_info['isvip'] == 2}
+<link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/vip_yin.css">
 {else}
 <link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/vip_pu.css">
 {/if}
-<div class="vip_nr" style="margin-top:5px;">
+<div class="vip_nr" style="margin-top:0;">
 		{if $view== 'index'}
         <div class="banner"><!--焦点图轮换-->
             <div id="demoContent">
@@ -73,13 +82,13 @@
                   {if $k!=$un_code}
                       {if $auth_info[$k]['auth_status']==1}
                       <img src="{$v['auth_small_ico']}" width="16px" height="16px" alt="" title="{$v['auth_title']}">
-                      {/if}
+                      {else}<img src="{$v['auth_small_n_ico']}" width="16px" height="16px" title="{$v['auth_title']}">{/if}
                   {/if}					
                   {/if}			
                 {/loop}
             </tt><div class="clear"></div></div>
-            <div class="vip_zs_lbz"><p>已加入 <i>诚信保障</i></p><p>交纳保证金 {$member_info['balance']}</p></div>
-            <div class="vip_zs_lbs"><a  class="modalLink" href="#modal1" >我要拜师</a><div class="clear"></div></div>
+            <div class="vip_zs_lbz"><p>{if $member_info[ensure]}已加入{else}未加入{/if} <i>诚信保障</i></p><p>交纳保证金 {if $member_info[ensure]}2000{else}0{/if}</p></div>
+            <div class="vip_zs_lbs">{if $member_info[uid] != $uid}<a  class="modalLink" href="#modal1" >我要拜师</a>{/if}<div class="clear"></div></div>
             <div class="vip_zs_lrz">好评：<i><!--{eval echo round(($member_info['seller_good_num']/$member_info['seller_total_num'])*100).'%';}--></i></div>
             <div class="vip_zs_lrz">交易信息<br />交易总收入：{$shouru}元<br />交易总次数：{$sum}</div>
             <div class="vip_zs_lrz">商铺统计<br />收藏人数：{$shop_info[focus_num]}<br />访问人数：{$shop_info[views]}<br />开通时间：<!--{date('Y-m-d',$shop_info['on_time'])}--></div>
@@ -110,7 +119,7 @@
             	<h1>最近访客</h1>
                 <ul>
                 	{loop $visit_list $k $v}
-                	<li><h2><a href="index.php?do=space&member_id={$v[uid]}"><img src="<!--{userpicurl($v[uid],middle)}-->" width="95" height="95" /></a></h2><p><!--{date('m-d H:i',$v['on_time'])}--></p></li>
+                	<li><h2><a href="index.php?do=space&member_id={$v[uid]}"><img src="<!--{userpicurl($v[uid],middle)}-->" width="95" height="95" /></a></h2><p style="margin-bottom:0; line-height:20px">{$v['username']} </p><p style="margin-bottom:0; line-height:20px"><!--{date('Y-m-d',$v['on_time'])}--></p></li>
                     {/loop}
                     <div class="clear"></div>
                 </ul>
@@ -134,24 +143,35 @@
                         {if $member_info['skill_ids']}<!--{eval echo "<tt>".str_replace(',',"</tt><tt>",$member_info['skill_ids'])."</tt>";}-->{else}暂无数据{/if}
                         </span>
                     </p>
-                    <p><b>工作室介绍：</b>{$shop_info[shop_slogans]}</p>
+                    <p><b>工作室介绍：</b><!--{eval echo kekezu::cutstr($shop_info['shop_slogans'],500);}-->...【<a href="index.php?do=space&member_id={$member_info[uid]}&view=intr">更多</a>】</p>
                 </div>
                 <div class="vip_zs_rtopr">
-                	<h1>$shop_info[shop_name]</h1>
+                	<h1 title="$shop_info['shop_name']"><!--{eval echo kekezu::cutstr($shop_info['shop_name'],36);}--></h1>
                     <p>$member_info[residency]</p>
-                    <p>工作室商铺 VIP拓展</p>
+                    <p>工作室 {if $member_info[isvip] == 1}VIP尊享版{elseif $member_info[isvip] == 2}VIP开创版{else}基础版{/if}</p>
                     <div class="vip_zs_rtopbom">
-                    	<span style="border-right:1px solid #d5d5d5; line-height:26px;"><a href="###">查看详<br />细资料</a></span>
+                    	<span style="border-right:1px solid #d5d5d5; line-height:52px;">{if $uid == $member_info[uid]}<a href="index.php?do=space&member_id={$member_info[uid]}&view=detail">{else}<a class="modalLink" href="#modal2">{/if}详细资料</a></span>
+                        
                         <span style="border-right:1px solid #d5d5d5;">
+                        {if $member_info[uid] != $uid}
                         <!--{eval $weth = kekezu::get_if_focus($uid,$member_info['uid']);}-->
                         {if !$weth}
                         <a href="javascript:void(0);"  onclick="add_follow('add_focus','{$member_info[uid]}');"  id="add_follow_{$member_info['uid']}">关注他</a>
                         {else}
                         <a href="javascript:void(0);"  onclick="follow('remove_focus','{$member_info[uid]}');" id="add_follow_{$member_info['uid']}">取消关注</a>
                         {/if}
+                        {/if}
                         </span>
+                        
                         <span><a href="index.php?do=user&view=message">豆豆邮局</a></span>
-                        <em><a href="index.php?do=release&to_uid={$member_info['uid']}">我要雇佣</a></em>
+                        
+                        <em>
+                        {if $member_info[uid] != $uid}
+                        	<a href="index.php?do=release&to_uid={$member_info['uid']}">我要雇佣</a>
+                        {else}
+                        	<a href="index.php?do=release">发布任务</a>
+                        {/if}
+                        </em>
                     </div>
                     <div class="clear"></div>
                 </div>

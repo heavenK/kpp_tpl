@@ -5,7 +5,7 @@
  */
 global $config, $_K;
 
-$config ['application'] = 0; //联盟应用是否启用
+$config ['application'] = 1; //联盟应用是否启用
 $config ['auto_commit'] = 0; //是否使用自动提交，若使用则在任务发布时任务会自动提交至联盟平台
 $config ['log'] = 'gt'; //唯一前缀标识、请自行更改
 $config ['keke_app_id'] = ''; //

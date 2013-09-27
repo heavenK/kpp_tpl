@@ -21,11 +21,14 @@ DIV.selectbox-wrapper UL LI.selected{ BACKGROUND-COLOR: #97f6d6;}
 DIV.selectbox-wrapper UL LI.current	{ COLOR: #fff;BACKGROUND-COLOR: #69cfa8;}
 DIV.selectbox-wrapper UL LI 	{ PADDING-BOTTOM: 3px; WIDTH: 83px; padding-left:3px; CURSOR: pointer; LINE-HEIGHT: 22px; list-style:none; z-index:10001; }
 .box2{border:1px solid #F4F4F4;width:90px;height:24px;clip:rect(0px,179px,16px,0px);overflow:hidden;float:left;} 
-.fabu_01 dl { width:700px; float:left; margin-top:18px;}
+.fabu_01 dl { width:700px; float:left; margin-top:18px; position:relative}
 .fabu_01 dl dd { width:67px; height:67px; float:left;}
 .fabu_01 dl dt { width:570px; float:left; margin-left:25px; display:inline;}
-.fabu_01 dl dt h1 { font-size:20px; font-weight:normal; float:left; width:570px; line-height:20px;}
+.fabu_01 dl dt h1 { font-size:20px; font-weight:normal; float:left; width:505px; line-height:20px;}
 .fabu_01 dl dt h2 { border:1px solid #47af8a; margin-top:12px; float:left;}
+.fabu_01 dl dt h1 i { font-size:12px; font-style:normal; color:#666; right:20px; top:0; position:absolute}
+.fabu_01 dl dt h2 p { font-size:12px; font-style:normal; color:#F30; right:20px; top:45px; position:absolute}
+
 .fabu_01 dl dt h2 b { width:66px; height:27px; background:#47af8a; font-size:14px; color:#fff; text-align:center; line-height:26px; float:left; }
 .fabu_01 dl dt h2 span { padding:7px 24px 0 6px;}
 .fabu_01 dl dt h2 span i { font-size:14px; color:#b80002; font-style:normal; line-height:26px;}
@@ -47,7 +50,7 @@ DIV.selectbox-wrapper UL LI 	{ PADDING-BOTTOM: 3px; WIDTH: 83px; padding-left:3p
 .fabu_04 { width:702px; padding:14px 0 0 16px; float:left; border-bottom:1px solid #ccc;}
 .fabu_04 h1 { color:#000; font-weight:bold; font-size:14px; margin-bottom:13px;}
 .fabu_04 a { margin-right:3px;}
-.fabu_05 { width:680px; padding:14px 22px 15px 16px; float:left; border-bottom:1px solid #ccc;}
+.fabu_05 { width:680px; padding:14px 22px 15px 16px; float:left; border-bottom:1px solid #ccc;word-break: break-all;}
 .fabu_05 h1 { color:#000; font-weight:bold; font-size:14px; margin-bottom:8px;}
 .fabu_05 h2 { color:#666; font-weight:normal; font-size:12px; line-height:20px; margin-bottom:8px}
 .fabu_05 h3 { color:#000; font-weight:bold; font-size:14px; margin-top:30px; margin-bottom:8px;}
@@ -225,3 +228,20 @@ DIV.selectbox-wrapper UL LI 	{ PADDING-BOTTOM: 3px; WIDTH: 83px; padding-left:3p
     width: 273px; margin-top:10px;
 }
 .ljfb_right_03 h5 { width:273px; text-align:center; line-height:30px; font-size:16px; }
+
+
+.ljfb_right_jiao {
+    border: 1px solid #DEE0DF;
+    float: right;
+    height: 168px;
+    width: 273px;
+}
+.ljfb_right_jiao h1 { width:273px; height:60px; float:left;}
+.ljfb_right_jiao h1 span { width:133px; height:60; float:left; text-align:center; line-height:60px;} 
+.ljfb_right_jiao h1 span p { width:133px; float:left; height:20px; color:#666666}
+.ljfb_right_jiao h1 b { width:1px; height:30px; margin-top:25px; border-left:1px solid #ccc; float:left}
+.ljfb_right_jiao h2 { width:273px; height:20px; margin-left:40px; margin-top:15px; float:left;}
+.ljfb_right_jiao h2 i { float:left}
+.ljfb_right_jiao h2 em { font-style:normal; margin-left:5px; float:left; color:#303030}
+.ljfb_right_jiao a { width:150px; height:36px; float:left;background:url(../images/jiao.png) no-repeat; margin-left:60px; margin-top:15px;}
+.ljfb_right_jiao a:hover { background:url(../images/jiao01.png) no-repeat;}

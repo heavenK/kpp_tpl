@@ -77,6 +77,7 @@ class Keke_witkey_space_class{
 	public $_xiuxianfangshi;
 	public $_ziwojieshao;
 	public $_pid;
+	public $_look_credit;
 
 	
 	
@@ -314,6 +315,9 @@ class Keke_witkey_space_class{
 	public function getPid(){
 		return $this->_pid ;
 	}
+	public function getLook_credit(){
+		return $this->_look_credit ;
+	}
 
 
 	public function getCache_config() {
@@ -545,7 +549,9 @@ class Keke_witkey_space_class{
 	public function setPid($value){
 		$this->_pid = $value;
 	}
-	
+	public function setLook_credit($value){
+		$this->_look_credit = $value;
+	}
 	
 	
 	
@@ -803,7 +809,9 @@ class Keke_witkey_space_class{
 		if(!is_null($this->_pid)){
 			$data['_pid']=$this->_pid;
 		}
-		
+		if(!is_null($this->_look_credit)){
+			$data['_look_credit']=$this->_look_credit;
+		}
 
 		return $this->_uid = $this->_db->inserttable($this->_tablename,$data,1,$this->_replace);
 	}
@@ -1034,6 +1042,9 @@ class Keke_witkey_space_class{
 		}
 		if(!is_null($this->_pid)){
 			$data['pid']=$this->_pid;
+		}
+		if(!is_null($this->_look_credit)){
+			$data['look_credit']=$this->_look_credit;
 		}
 
 		if($this->_where){

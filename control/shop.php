@@ -13,7 +13,7 @@ $rs_indus  = kekezu::get_classify_indus('shop','total');
  
  !$status && $status = 'latest' ;
  
- $fields = 'service_id,pic,ad_pic,leave_num,title,content,price,sale_num,uid';
+ $fields = 'service_id,pic,ad_pic,leave_num,title,content,price,sale_num,uid,views,mark_num,on_time,indus_pid,indus_id';
  $table = 'witkey_service';
  $where = 'service_status=2';
  switch ($status){
@@ -42,12 +42,12 @@ $register =  intval ( $register ['count'] );
 $where .= " and indus_pid=";
 $order = 'on_time desc';
 // 分类服务
-
-$services_list_kf = $kekezu -> get_table_data($fields, $table, $where."2", $order, '', '0,16', 'service_id');
-$services_list_sj = $kekezu -> get_table_data($fields, $table, $where."441", $order, '', '0,16', 'service_id');
-$services_list_ch = $kekezu -> get_table_data($fields, $table, $where."3", $order, '', '0,16', 'service_id');
-$services_list_zx = $kekezu -> get_table_data($fields, $table, $where."335", $order, '', '0,16', 'service_id');
-$services_list_fw = $kekezu -> get_table_data($fields, $table, $where."192", $order, '', '0,16', 'service_id');
+$indus_all_arr = $kekezu->_indus_arr;
+$services_list_kf = $kekezu -> get_table_data($fields, $table, $where."2", $order, '', '0,5', 'service_id');
+$services_list_sj = $kekezu -> get_table_data($fields, $table, $where."441", $order, '', '0,5', 'service_id');
+$services_list_ch = $kekezu -> get_table_data($fields, $table, $where."3", $order, '', '0,5', 'service_id');
+$services_list_zx = $kekezu -> get_table_data($fields, $table, $where."335", $order, '', '0,5', 'service_id');
+$services_list_fw = $kekezu -> get_table_data($fields, $table, $where."192", $order, '', '0,5', 'service_id');
 
 
 $sql = " select * from %switkey_order where model_id=7 and order_status ='complete' limit 0,8";
@@ -55,7 +55,7 @@ $success_res = db_factory::query ( sprintf($sql,TABLEPRE));
 
 
 // 最新VIP威客
-$new_member_vip = db_factory::query(sprintf("select *  from %switkey_member m left join %switkey_space s on m.uid=s.uid where s.isvip>0 order by m.uid desc limit 0,10",TABLEPRE,TABLEPRE));
+$new_member_vip = db_factory::query(sprintf("select *  from %switkey_member m left join %switkey_space s on m.uid=s.uid where s.isvip>0 order by m.uid desc limit 0,5",TABLEPRE,TABLEPRE));
 // end
 
  //统计_交易中选稿中

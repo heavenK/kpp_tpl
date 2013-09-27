@@ -9,7 +9,7 @@ $third_nav=array(
 $where = " uid = ".intval($uid);
 intval ( $page_size ) or $page_size = '10';
 intval ( $page ) or $page = '1';
-$url = $origin_url . "&op=$op&action=$action&page_size=$page_size&page=$page";
+$url = $origin_url . "&op=$op&action=$action&page_size=$page_size&page=$page&type=$type";
 $config = $kekezu->_sys_config;
 switch ($action) {
 	case "basic" :
@@ -23,10 +23,13 @@ switch ($action) {
 		$where =" where a.uid=".intval($uid)."  and a.fina_action not in ('withdraw','offline_recharge','offline_charge','online_charge','online_recharge','withdraw_fail')";
 		intval($fina_id) and $where .= " and a.fina_id = $fina_id ";
 		$fina_type and $where .= " and a.fina_type = '$fina_type' ";
+		if($type == 'dou')	$where .= " and a.fina_credit > 0";
+		else	$where .= " and a.fina_cash > 0";
 		$ord and $where .= " order by $ord " or $where .= " order by a.fina_id desc ";
 		$count = intval(db_factory::get_count(sprintf(' select count(fina_id) from %switkey_finance where uid=%d and fina_action not in ("withdraw","offline_recharge","offline_charge","online_charge","online_recharge","withdraw_fail")',TABLEPRE,intval($uid))));
 		$pages = $page_obj->getPages ( $count, $page_size, $page, $url, '#userCenter' );
 		$fina_arr = db_factory::query($sql.$where.$pages['where']);
+
 		break;
 	case "charge" :
 		$charge_obj=new Keke_witkey_order_charge_class();
@@ -64,4 +67,5 @@ switch ($action) {
 		$bank_auth = keke_auth_fac_class::auth_check ( 'bank', $uid );
 		break;
 }
+
 require keke_tpl_class::template ( "user/" . $do . "_" . $view . "_" . $op );

@@ -135,4 +135,6 @@ $top_s_6 = db_factory::query ( sprintf ( "select a.username,a.uid,a.indus_id,a.i
 
 $final_task = kekezu::get_classify_indus();
 
+$type_infos = keke_search_class::get_analytic_url ( $path );
+
 require $kekezu->_tpl_obj->template ( $do );

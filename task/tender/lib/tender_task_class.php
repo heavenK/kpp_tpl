@@ -49,7 +49,7 @@ class tender_task_class extends keke_task_class {
 	}
 	public function work_hand($work_desc, $hdn_att_file, $hidework = '2', $url = '', $output = 'normal') {
 	}
-	public function tender_work_hand($work_info) {
+	public function tender_work_hand($work_info, $hand_credit) {
 		global $kekezu, $_K;
 		global $_lang;
 		if ($this->check_if_can_hand ( $url, $output )) {
@@ -66,6 +66,11 @@ class tender_task_class extends keke_task_class {
 			$this->_task_bid_obj->setHidden_status ( $work_info ['workhide'] );
 			$this->_task_bid_obj->setMessage ( $work_info ['tar_content'] );
 			$res = $this->_task_bid_obj->create_keke_witkey_task_bid ();
+			
+			if($res){
+				keke_finance_class::cash_out ($this->_uid, $hand_credit, 'pub_word', 0, 'task', $this->_task_id, 1 ); 
+			}
+			
 			$work_info ['workhide'] == 1 and keke_payitem_class::payitem_cost ( "workhide", '1', 'work', 'spend', $res, $this->_task_id );
 			$this->plus_work_num (); 
 			$this->plus_take_num ();
@@ -76,7 +81,7 @@ class tender_task_class extends keke_task_class {
 			kekezu::show_msg($_lang['operate_tips'],"index.php?do=task&task_id=".$this->_task_id."&view=work&ut=my",1, $_lang['tender_success'],"alert_right");
 		}
 	}
-	public function work_choose($work_id, $to_status, $trust_response = false) {
+	public function work_choose($work_id, $to_status, $trust_response = false,  $hand_credit = 0, $get_credit=0) {
 		global $_K;
 		global $_lang;
 		$bid_info = $this->select_bid_check ( $work_id, $url );
@@ -95,6 +100,16 @@ class tender_task_class extends keke_task_class {
                      $_lang['bid_cash']=>$bid_info['quote']
 					);
 			$this->notify_user ( $action, $_lang['work'] . $status_arr [$to_status], $v, '1', $bid_info ['uid'] ); 
+			
+			if($work_id){
+				keke_finance_class::cash_in($bid_info['uid'], floatval(0),intval($hand_credit),'choose_back','','task', $task_info['task_id']);
+				
+				$tudi_info = db_factory::get_one ( " select * from ".TABLEPRE."witkey_space where uid=".$bid_info['uid']); 
+				if($tudi_info['pid'])	keke_finance_class::cash_in($tudi_info['pid'], floatval(0),intval($hand_credit*$basic_config['shifu_get_credit']),'tudi_choose','','task', $task_info['task_id']);
+				
+				keke_finance_class::cash_in($this->_uid, floatval(0),intval($get_credit),'choose_sucess','','task', $task_info['task_id']);
+			}
+			
 			kekezu::show_msg($_lang['operate_tips'],"index.php?do=task&task_id=".$this->_task_id."&view=work",1, $_lang['choose_tender_success'],"alert_right");
 		} else {
 			kekezu::show_msg($_lang['operate_tips'],"index.php?do=task&task_id=".$this->_task_id."view=work",1,$_lang['choose_tender_fail'],"alert_error");

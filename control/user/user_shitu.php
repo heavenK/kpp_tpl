@@ -3,13 +3,36 @@ defined ( 'IN_KEKE' ) or exit('Access Denied');
 
 
 if($ajax == 1){
-	$sql = sprintf ( "update %switkey_space set pid = NULL where uid = '%d'", TABLEPRE, $to_uid );
+	$to_user_info = keke_user_class::get_user_info($to_uid);
+	
+	$sql = sprintf ( "update %switkey_space set pid = NULL, send_flower=0 where uid = '%d'", TABLEPRE, $to_uid );
 	$res = db_factory::execute ( $sql );
+
+	
+	if($user_info['credit'] < $basic_config['jiechu_credit']){
+		echo "fail";
+		exit;
+	}
 	echo $res;
+	if($uid == $to_uid){
+		$r = keke_finance_class::cash_out ($uid, $basic_config['jiechu_credit'], 'leave_master','','','',1); 
+		$r = keke_finance_class::cash_in($to_user_info['pid'], floatval(0),intval($basic_config['jiechu_credit']),'tude_leave','','tude_leave');
+		keke_msg_class::send_private_message ("您离开师门了","您已经离开师门了。", $to_user_info[uid], $to_user_info[username],'','','ajax');
+	}else{
+		$r = keke_finance_class::cash_out ($uid, $basic_config['jiechu_credit'], 'throw_tudi','','','',1); 
+		$r = keke_finance_class::cash_in($to_uid, floatval(0),intval($basic_config['jiechu_credit']),'leaved_master','','leaved_master');
+		keke_msg_class::send_private_message ("您被逐出师门了","您已经被威客".$username."逐出师门了。", $to_user_info[uid], $to_user_info[username],'','','ajax');
+	}
+	
 	exit;
 }
 if($ajax == 2){
 	$to_user_info = keke_user_class::get_user_info($to_uid);
+	
+	if($to_user_info['pid']){
+		echo 5;
+		exit;	
+	}
 	
 	if($username == $to_user_info[username]) {
 		echo 2;
@@ -21,6 +44,16 @@ if($ajax == 2){
 		echo 1;
 		exit;	
 	}
+	if($res['credit'] < $basic_config['baishi_credit']){
+		echo 3;
+		exit;
+	}
+	if(db_factory::get_one ( sprintf ( " select * from %switkey_space where pid=%d", TABLEPRE, $uid ))){
+		echo 4;
+		exit;
+	} 
+	
+	keke_finance_class::cash_out ($uid, $basic_config['baishi_credit'], 'baishi_sucess', '', '' ,'' ,1); 
 	
 	keke_msg_class::send_private_message ("申请拜师","威客".$username."要拜您为师，是否<a href=\"index.php?do=user&view=shitu&op=req\">同意</a>", $to_user_info[uid], $to_user_info[username],'','','ajax');
 	exit;
@@ -30,6 +63,8 @@ if($ajax == 3){
 	$res = db_factory::execute ( $sql );
 	echo $res;
 	
+	$r = keke_finance_class::cash_in($uid, floatval(0),intval($basic_config['baishi_credit']),'become_shifu','','become_shifu');
+	
 	$sql = sprintf ( "delete from %switkey_msg where title = '申请拜师' and uid = '%d'", TABLEPRE,$f_uid);
 	$res = db_factory::execute ( $sql );
 	exit;
@@ -38,6 +73,9 @@ if($ajax == 4){
 	$sql = sprintf ( "delete from %switkey_msg where title = '申请拜师' and uid = '%d'", TABLEPRE,$f_uid);
 	$res = db_factory::execute ( $sql );
 	echo $res;
+	
+	$r = keke_finance_class::cash_in($f_uid, floatval(0),intval($basic_config['baishi_credit']),'baishi_fail','','baishi_fail');
+	
 	exit;
 }
 // add by heavenK
@@ -79,42 +117,49 @@ if($op == 'list'){
 	
 	$page_obj = $kekezu->_page_obj;
 	$sql = sprintf ( "select * from %switkey_space s left join %switkey_shop p on s.uid=p.uid where ", TABLEPRE, TABLEPRE );
-	$where = " pid = " . $uid . " ";
+	
+	if($user_info['pid'])	$where = " pid = " . $user_info['pid'] . " ";
+	else $where = " pid = " . $uid . " ";
 	$count = db_factory::get_count ( sprintf ( "select count(uid) from %switkey_space where %s", TABLEPRE, $where ) );
 	$page_obj->setStyle("Pagetype1");
 	$pages = $page_obj->getPages ( $count, $page_size, $page, $url, '#userCenter' );
 	$shitu_info = db_factory::query ( $sql . $where . $pages ['where'] );
 
 }elseif($op == 'req'){
-	$where = " pid = " . $uid . " ";
-	$count = db_factory::get_count ( sprintf ( "select count(uid) from %switkey_space where %s", TABLEPRE, $where ) );
 	
-	
-	
-	$sql = sprintf ( "select distinct(uid) from %switkey_msg where ", TABLEPRE);
-	$where = " title = '申请拜师' and to_uid = " . $uid . " ";
-
-	$uid_list = db_factory::query ( $sql . $where );
-	
-	foreach($uid_list as $key => $val){
-		if($key == 0) $uids = $val['uid'];
-		else $uids .= ','.$val['uid'];
-	}
-	
-	if($uids){
+	if($user_info['pid']){
+		$shitu_info = db_factory::query ("select * from ".TABLEPRE."witkey_space s left join ".TABLEPRE."witkey_shop p on s.uid=p.uid where s.uid=".$user_info['pid']);
+	}else{
+		$where = " pid = " . $uid . " ";
+		$count = db_factory::get_count ( sprintf ( "select count(uid) from %switkey_space where %s", TABLEPRE, $where ) );
 		
-		intval ( $page_size ) or $page_size = '6';
-		intval ( $page ) or $page = '1';
-		$url = $origin_url . "&op=$op&page_size=$page_size&page=$page";
 		
-		$page_obj = $kekezu->_page_obj;
-		$sql = sprintf ("select * from %switkey_space s left join %switkey_shop p on s.uid=p.uid where ", TABLEPRE, TABLEPRE );
-		$where = " s.uid IN (" . $uids . ")";
 		
-		$page_obj->setStyle("Pagetype1");
-		$pages = $page_obj->getPages ( $count, $page_size, $page, $url, '#userCenter' );
-		$shitu_info = db_factory::query ( $sql . $where . $pages ['where'] );
+		$sql = sprintf ( "select distinct(uid) from %switkey_msg where ", TABLEPRE);
+		$where = " title = '申请拜师' and to_uid = " . $uid . " ";
+	
+		$uid_list = db_factory::query ( $sql . $where );
 		
+		foreach($uid_list as $key => $val){
+			if($key == 0) $uids = $val['uid'];
+			else $uids .= ','.$val['uid'];
+		}
+		
+		if($uids){
+			
+			intval ( $page_size ) or $page_size = '6';
+			intval ( $page ) or $page = '1';
+			$url = $origin_url . "&op=$op&page_size=$page_size&page=$page";
+			
+			$page_obj = $kekezu->_page_obj;
+			$sql = sprintf ("select * from %switkey_space s left join %switkey_shop p on s.uid=p.uid where ", TABLEPRE, TABLEPRE );
+			$where = " s.uid IN (" . $uids . ")";
+			
+			$page_obj->setStyle("Pagetype1");
+			$pages = $page_obj->getPages ( $count, $page_size, $page, $url, '#userCenter' );
+			$shitu_info = db_factory::query ( $sql . $where . $pages ['where'] );
+			
+		}
 	}
 }
 

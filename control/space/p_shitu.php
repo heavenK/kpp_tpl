@@ -1,4 +1,5 @@
 <?php	defined ( 'IN_KEKE' ) or exit ( 'Access Denied' );
+
 $credit_level = unserialize($member_info['seller_level']);
 $indus_arr = $kekezu->_indus_arr;
 if($shop_open){
@@ -41,5 +42,6 @@ $req_count = count(db_factory::query ( $sql . $where ));
 
 
 $user_leve=unserialize($user_info['seller_level']);
+if($member_info['pid'])	$shifu_info = db_factory::get_one ( "select * from ".TABLEPRE."witkey_space where uid=".$member_info['pid'] );
 
 require keke_tpl_class::template(SKIN_PATH."/space/{$type}_{$view}");

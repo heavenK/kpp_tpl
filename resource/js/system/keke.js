@@ -459,7 +459,8 @@ function leave(uid) {
 							   url: "index.php?do=user&view=shitu&ajax=1&to_uid="+uid,
 							   async: true,
 							   success: function(data){
-								   if(data == 1)	history.go(0);
+								   if(data == 'fail') showDialog("您的豆币不足，无法操作！", 'error', L.operate_notice);
+								   else if(data > 0)	history.go(0);
 								   else	showDialog("操作失败！", 'error', L.operate_notice);
 							   }
 							})
@@ -480,7 +481,8 @@ function leave_master(uid) {
 							   url: "index.php?do=user&view=shitu&ajax=1&to_uid="+uid,
 							   async: true,
 							   success: function(data){
-								   if(data == 1)	history.go(0);
+								   if(data == 'fail') showDialog("您的豆币不足，无法操作！", 'error', L.operate_notice);
+								   else if(data == 1)	history.go(0);
 								   else	showDialog("操作失败！", 'error', L.operate_notice);
 							   }
 							})
@@ -516,9 +518,12 @@ function send_req_zj(to_uid) {
 							   url: "index.php?do=user&view=shitu&ajax=2&from_uid="+uid+"&to_uid="+to_uid,
 							   async: true,
 							   success: function(data){
-								   if(data > 2)	showDialog("申请成功！", 'notice', L.operate_notice);
+								   if(data > 5)	showDialog("申请成功！", 'notice', L.operate_notice);
 								   else if(data == 2)	showDialog("不可以对自己拜师！", 'notice', L.operate_notice);
 								   else	if(data == 1)showDialog("您已经拜过师了，请耐心等待！", 'error', L.operate_notice);
+								   else	if(data == 3)showDialog("您的豆币不足，无法拜师！", 'error', L.operate_notice);
+								   else	if(data == 4)showDialog("您已经是师傅了，无法拜别人！", 'error', L.operate_notice);
+								   else	if(data == 5)showDialog("对方是别人的徒弟，您无法拜他！", 'error', L.operate_notice);
 								   else	showDialog("暂时无法拜师！", 'error', L.operate_notice);
 								   
 							   }
@@ -570,6 +575,99 @@ function deny_req(f_uid) {
 		
 	}
 }
+/**
+ * 报名投票
+ * 
+ * @param int
+ *            task_id 任务ID
+ *			  v_uid 报名人ID
+ */
+function choose_vote(task_id, v_uid){
+	if(check_user_login()){
+		$.ajax({
+							   type: "GET",
+							   url: "index.php?do=user&view=ajax&type=1&task_id="+task_id+"&v_uid="+v_uid,
+							   async: true,
+							   success: function(data){
+								   if(data == 'fail')	showDialog("您已经报过名了！", 'error', L.operate_notice);
+								   else if(data > 0)	showDialog("报名成功！", 'notice', L.operate_notice);
+								   else	showDialog("暂时无法报名！", 'error', L.operate_notice);
+								   
+							   }
+				})
+		
+	}
+}
+/**
+ * 结束投票
+ * 
+ * @param int
+ *            task_id 任务ID
+ *			  v_uid 报名人ID
+ */
+function end_vote(task_id){
+	if(check_user_login()){
+		$.ajax({
+							   type: "GET",
+							   url: "index.php?do=user&view=ajax&type=3&task_id="+task_id,
+							   async: true,
+							   success: function(data){
+								   if(data == 'fail')	showDialog("您没有权限结束！", 'error', L.operate_notice);
+								   else if(data > 0)	showDialog("操作成功！", 'notice', L.operate_notice);
+								   else	showDialog("操作失败！", 'error', L.operate_notice);
+								   
+							   }
+				})
+		
+	}
+}
+/**
+ * 投票
+ * 
+ * @param int
+ *            task_id 任务ID
+ *			  work_id 稿件ID
+ */
+function task_votes(task_id, work_id){
+	if(check_user_login()){
+		$.ajax({
+							   type: "GET",
+							   url: "index.php?do=user&view=ajax&type=2&task_id="+task_id+"&work_id="+work_id,
+							   async: true,
+							   success: function(data){
+								   if(data == 'fail')	showDialog("您已经投过票了！", 'error', L.operate_notice);
+								   else if(data > 0)	showDialog("投票成功！", 'notice', L.operate_notice);
+								   else	showDialog("投票失败！", 'error', L.operate_notice);
+								   
+							   }
+				})
+		
+	}
+}
+/**
+ * 送花
+ * 
+ * @param int
+ */
+function send_flower(){
+	if(check_user_login()){
+		$.ajax({
+							   type: "GET",
+							   url: "index.php?do=user&view=ajax&type=4",
+							   async: true,
+							   success: function(data){
+								   if(data == 'sended')	showDialog("您已经送过了！", 'error', L.operate_notice);
+								   else if(data == 'fail')	showDialog("您的豆币不够！", 'error', L.operate_notice);
+								    else if(data == 'no')	showDialog("您没有师傅！", 'error', L.operate_notice);
+								   else if(data > 0)	showDialog("送花成功！", 'notice', L.operate_notice);
+								   else	showDialog("操作失败！", 'error', L.operate_notice);
+								   
+							   }
+				})
+		
+	}
+}
+
 /**
  * 交易维权 *请在外部定义basic_url参数
  * 
@@ -1459,7 +1557,7 @@ function showDialog(msg, mode, t, func, cover, funccancel) {
 	if(mode == 'info') {
 		s += msg ? msg : '';
 	} else {
-		s += '<div class="c' + (mode == 'info' ? '' : ' altw') + '"><div class="' + (mode == 'alert' ? 'alert_error' :mode=='confirm'?'confirm_info':mode=='right'?'alert_right':'alert_info') + '"><p>' + msg + '</p></div></div>';
+		s += '<div class="c' + (mode == 'info' ? '' : ' altw') + '"><div class="' + (mode == 'alert' ? 'alert_error' :mode=='confirm'?'confirm_info':mode=='right'?'alert_right':'alert_info') + '"><p>' + msg + '</p><br/></div></div>';
 		s += '<p class="o pns"><button id="fwin_dialog_submit" value="true" class="pn pnc"><strong>'+L.submit+'</strong></button>';
 		s += mode == 'confirm' ? '<button id="fwin_dialog_cancel" value="true" class="pn" onclick="hideMenu(\'' + menuid + '\', \'dialog\')"><strong>'+L.cancel+'</strong></button>' : '';
 		s += '</p>';

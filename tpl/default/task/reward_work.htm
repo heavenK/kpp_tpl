@@ -6,7 +6,7 @@
  
   <div class="messages m_infor" id="notice_id">
     <span class="icon16">warning</span>
-                 {$_lang['please_fill_manuscript_content']}.
+                 投标将扣除您&nbsp;<!--{eval echo $task_info[task_cash]*$basic_config[hand_credit]}-->&nbsp;豆币。
    </div>
 
    
@@ -21,6 +21,7 @@
 			 <div class="fl_l" style="width:350px">
 			 	<!--{eval $flie_types = kekezu::get_ext_type();}-->
 			 	<input type="hidden" name="file_ids" id="file_ids">
+                <input type="hidden" name="hand_credit" id="hand_credit" value="<!--{eval echo $task_info[task_cash]*$basic_config[hand_credit]}-->">
 			 	<input type="file" class="file" name="upload" id="upload">
 		  	 	{$_lang['a_maximum_of_5']}{$basic_config['max_size']}M,{$_lang['format']}:
 			<div class="upfile ws_break">
@@ -36,7 +37,7 @@
 
       		 <label class="fl_l t_r">{$_lang['manuscript_description']}{$_lang['zh_mh']} </label>
 			 <div class="fl_l">
-	      		 <textarea cols="68" rows="8" name="tar_content" id="tar_content" class="txt_input" onkeydown="checkInner(this,'100',event)" style="width:95%;height:100px"></textarea>
+	      		 <textarea cols="68" rows="8" name="tar_content" id="tar_content" class="txt_input" onkeydown="checkInner(this,'100',event)" style="width:95%;height:100px;color:#000"></textarea>
 	      		 <div class="clear"></div>
 	             <div class="c999" id="length_show">{$_lang['enter_info']}</div>
 			

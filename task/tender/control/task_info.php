@@ -90,7 +90,8 @@ switch ($op) {
 			}else{
 				$work_frm ['area'] = $province . "," . $city . ',' . $area ;
 			}
-			$task_obj->tender_work_hand ( $work_frm );
+			if($user_info['credit'] < $hand_credit)	kekezu::show_msg ( "您的豆币不足，无法提交稿件！", "index.php?do=task&task_id=" . $task_info[task_id], 3, "提交失败", "alert_error" );
+			$task_obj->tender_work_hand ( $work_frm , $hand_credit);
 		} else {
 			$loca = explode ( ",", $user_info ['residency'] );
 			$workhide_exists = keke_payitem_class::payitem_exists ( $uid, 'workhide', 'work' ); 
@@ -102,7 +103,11 @@ switch ($op) {
 		$work_status = $task_obj->get_work_status();
 		$title = '选择'.$work_status[$to_status];
 		if($sbt_edit){
-			$task_obj->work_choose ( $work_id, $to_status);
+			
+			$hand_credit = $basic_config['tender_credit']*$basic_config['selected_credit'];
+			$get_credit = $basic_config['tender_sel_credit'];
+			
+			$task_obj->work_choose ( $work_id, $to_status, false, $hand_credit, $get_credit);
 		}else{
 			$work_info = $task_obj->get_task_work($work_id,'');
 			require keke_tpl_class::template ( 'task/work_choose' );
@@ -160,17 +165,7 @@ $date_prv = date ( "Y-m-d", time () );
 $work_status = $task_obj->get_work_status (); 
 $sql = sprintf ( "select a.*,b.* from %switkey_task_bid as a left join %switkey_space as b on a.uid=b.uid where a.task_id=%d", TABLEPRE, TABLEPRE, $task_id );
 $st = $st ? $st : "all";
-switch ($st) {
-	case "all" :
-		$sql .= " and 1=1";
-		break;
-	case 4 :
-		$sql .= " and a.bid_status=4";
-		break;
-	case 7 :
-		$sql .= " and a.bid_status=7";
-		break;
-}
+$sql .= " and 1=1";
 $ut == "my" and $sql .= " and a.uid=" . intval ( $uid );
 $url = "index.php?do=task&task_id=$task_id&view=work&ut=$ut&page_size=$page_size&$page=$page";
 $count = db_factory::execute ( $sql );
@@ -186,6 +181,11 @@ $bid_info1 = kekezu::get_arr_by_key ( $bid_info, 'bid_id' );
 $bid_ids = implode ( ',', array_keys ( $bid_info1 ) );
 $bid_ids && $uid == $task_info ['uid'] and db_factory::execute ( 'update ' . TABLEPRE . 'witkey_task_bid set is_view=1 where bid_id in (' . $bid_ids . ') and is_view=0' );
 $has_new = $task_obj->has_new_comment ( $page, $page_size );
+
+
+
+
+
 
 $comment_obj = keke_comment_class::get_instance ( 'task' );
 $url = $basic_url . "&view=comment";
@@ -319,8 +319,8 @@ switch ($view) {
 	default :
 		$task_file = $task_obj->get_task_file (); 
 		if ($task_info ['task_status'] == 8) {
-			$bid_info = db_factory::get_one ( ' select uid,username from ' . TABLEPRE . 'witkey_task_bid where task_id=' . $task_id . ' and bid_status =4' );
-			$w_info = kekezu::get_user_info ( $bid_info ['uid'] );
+			$bid_info5 = db_factory::get_one ( ' select uid,username from ' . TABLEPRE . 'witkey_task_bid where task_id=' . $task_id . ' and bid_status =4' );
+			$w_info = kekezu::get_user_info ( $bid_info5 ['uid'] );
 		}
 		if ($task_info ['task_status'] == 2 && $task_info ['uid'] == $uid) {
 			$item_list = keke_payitem_class::get_payitem_config ( 'employer', null, null, 'item_id' );

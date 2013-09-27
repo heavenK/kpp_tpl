@@ -177,6 +177,11 @@ function stepCheck(model_id){
 			}
 			break;
 		case "step3":
+		if(checkDay()){
+				if(i){
+					pass=true;
+				}
+			}
 			if($("input[id=payitem_map][item_type=buy]").val()!=0&&$("#payitem_map").attr("item_type")=='buy'&&$.trim($("#point").val())==''){
 				showDialog('您没有设置地图','alert','操作提示');return false;
 			}else{

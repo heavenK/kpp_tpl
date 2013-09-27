@@ -121,4 +121,5 @@ $art_list_arr = db_factory::query ( $sql );
 $sql = "select * from " . TABLEPRE . "witkey_article where art_cat_id=5 order by pub_time desc limit 0,5";
 $art_list_arr_1 = db_factory::query ( $sql );
 
+
 require keke_tpl_class::template ( "user/" . $do . "_" . $view . "_" . $op );

@@ -158,4 +158,7 @@ foreach($service_arr as $key => $val){
 }
 
 // end
+
+
+$type_infos = keke_search_class::get_analytic_url ( $path );
 require $kekezu->_tpl_obj->template ( $do );
