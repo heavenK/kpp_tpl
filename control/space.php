@@ -184,7 +184,9 @@ function get_witkey_good_rate($user_info){
 	return $st?(number_format($user_info['seller_good_num']/$st,2)*100).'%':'0%'; 
 }
 // end
-
+// baozhang
+	$ensure = array('无',500,1000,2000);
+// end
 
 // 成功案例
 $sql_c = "select a.*,a.indus_id in_id,b.* from " . TABLEPRE . "witkey_shop_case as a

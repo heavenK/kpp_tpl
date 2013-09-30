@@ -7,6 +7,7 @@
  * @version v 2.0
  * 2010-6-13早上11:25:00
  */
+$uid or header ( "location:index.php?do=login" ); 
 
 $language = $kekezu->_lang;
 keke_lang_class::package_init ( $do );

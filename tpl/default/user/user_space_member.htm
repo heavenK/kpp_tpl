@@ -31,7 +31,7 @@
                              <li class="nr_4">操作</li>
                            </ul>
                            {loop $member_list $k $v}
-                           <ul class="yuan_list">
+                           <ul class="yuan_list member{$v['member_id']}" style="margin-top:10px;" >
                            <!--{eval $i = $k+1;}-->
                              <li class="nr_1">{$i}</li>
                              <li class="nr_2">{$v['truename']}</li>
@@ -42,7 +42,7 @@
                            </ul>
                            {/loop}
                          </div>
-                        <div class="cy_di">共3个</div>
+                        <div class="cy_di">{$pages['page']}</div>
                         </div>
                     </div>
                     {else}
@@ -133,11 +133,9 @@
 			var url = '$ac_url&show=list&ac=del&member_id=' + member_id;
             $.getJSON(url, function(json){
                 if (json.status == '1') {
-                    tipsAppend(member_id, json.msg, 'successful', 'green');
-                    $(".member" + member_id).slideUp(2000).remove();
-                    if ($("dl dt").length == 0) {
-                        $("dl").append("<dt class='bf7 mt_10 clearfix t_c font14b'>{$_lang['no_member']}</dt>");
-                    }
+					//alert(".member" + member_id);
+                   // tipsAppend(member_id, json.msg, 'successful', 'green');
+                    $(".member" + member_id).remove();
                 }
                 else {
                     tipsAppend(member_id, json.msg, 'error', 'red');

@@ -111,6 +111,36 @@ if($type == 'index'){
 	
 }
 
+if($type == 'good'){
+	
+	
+		$res = db_factory::execute ( " update ".TABLEPRE."forum_post set good=good+1 where pid =".$pid);
+		
+		if($res) {
+			echo 1;
+			exit;
+		}else{
+			echo 0;
+			exit;
+		}
+	
+}
+
+if($type == 'zan' || $type == 'ding'){
+	
+	
+		$res = db_factory::execute ( " update ".TABLEPRE."forum_thread set ".$type."=".$type."+1 where tid =".$tid);
+		
+		if($res) {
+			echo 1;
+			exit;
+		}else{
+			echo 0;
+			exit;
+		}
+	
+}
+
 
 
 

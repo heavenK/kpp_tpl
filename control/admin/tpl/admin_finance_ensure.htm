@@ -1,0 +1,82 @@
+<!--{template control/admin/tpl/admin_header}-->
+<style type="text/css">
+.jia {background: url(tpl/img/plus.gif)}
+.jian {background: url(tpl/img/minus.gif) }
+</style>
+<div class="page_title">
+    	<h1>诚信审核</h1>
+</div>
+
+    <!--搜索结束-->
+	<div class="box list">
+    	<div class="title"><h2>用户列表</h2></div>
+        <div class="detail">
+        		<div id="ajax_dom">
+
+              <table cellpadding="0" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th width="60">用户ID</th>
+                    <th width="30%" >用户名</th>
+                    <th width="60" >开通等级</th>
+					
+                    <th width="25%">{$_lang['operate']}</th>
+                  </tr>
+				  </thead>
+                  <tbody>
+                  {loop $user_arr $k $v}
+                  <tr class="item">
+                  	<td>{$v['uid']}</td>
+                    <td class="td28 wraphide">
+                    	{$v[username]}
+                    </td>
+                    <td>
+                    	{$v['bz_status']}
+					</td>
+                    <td>
+                        <a href="index.php?do={$do}&view=$view&ac=pass&t_uid={$v['uid']}&bz_status={$v[bz_status]}" class="button"><span class="book icon"></span>审核通过</a>
+					</td>
+                  </tr>
+                  {/loop}
+                  </tbody>
+				  <tfoot>
+                  <tr>
+                    <td colspan="7">
+	                    <div class="clearfix">
+	                    </div>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+			  <div class="page">{$pages['page']}</div>
+			  </div>
+
+        </div>       
+    </div>
+    
+   
+<script type="text/javascript">
+	function createHtml(writedir,filename){
+		var url = "index.php?do=static&view=update&sbt_edit=1&write_dir="+writedir+"&file_name="+filename;
+			ajaxDialog(url);
+	}
+ function ajaxDialog(url){
+ 	 art.dialog({
+			title: "{$_lang['static_file_update']}",
+			content: "{$_lang['start_update_static_file']}",
+			yesFn: function(){
+				var dia = this;
+				dia.content("{$_lang['static_file_update_not_operation']}").lock();
+						$.getJSON(url,function(json){
+							if(json.status==1){dia.close();
+								art.dialog({icon: 'succeed',content: json.msg,time:3});
+							}else{art.dialog.alert(json.msg);}
+							return false;
+						})
+						 return false;
+				},
+				noFn :function(){this.close();return false;}
+		})
+ }
+</script>
+<!--{template control/admin/tpl/admin_footer}-->

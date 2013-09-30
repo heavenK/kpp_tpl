@@ -182,7 +182,7 @@ label{ display:inline;}
 	.step_progress .step3{ width:150px;}
 	.step_progress .step4{ width:150px;}
 	.step_progress .step5{ width:150px;}
-	.step_progress .step{ float: left;font-size: 12px; margin-right: 20px; white-space: nowrap; line-height:20px;}
+	.step_progress .step{ float: left;font-size: 12px; margin-left:10px; margin-right: 20px; white-space: nowrap; line-height:40px;}
 		.step_progress .step strong,.step_progress .step em{ display:block; font-weight:normal; font-style:normal;}
 		.step_progress .step .icon32{ float:left; margin-right:10px;  margin-top:5px; vertical-align:top; border-radius:20px;}
 

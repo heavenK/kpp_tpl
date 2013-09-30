@@ -74,9 +74,11 @@ switch ($r_step) {
 				break;
 		}
 		if (kekezu::submitcheck($formhash)) {
-			
-			
-			if(time()-$_SESSION[$uid.'_release'] < 5) kekezu::show_msg ( "您点的太快了，休息一下！", "index.php?do=user&view=employer&op=task", 3,"您点的太快了，休息一下！" , 'warning' );
+
+			$last_time = $_SESSION[$uid.'_release'];
+			if((time()- $last_time) < 2)	{
+				kekezu::show_msg ( "您点的太快了，休息一下！", "index.php?do=user&view=employer&op=task", 3,"您点的太快了，休息一下！" , 'warning' );
+			}
 			$_SESSION[$uid.'_release'] = time();
 			$release_info and $_POST = array_merge ( $release_info, $_POST );
 			$release_obj->save_task_obj ( $_POST, $std_cache_name ); 

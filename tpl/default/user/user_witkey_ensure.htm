@@ -19,7 +19,7 @@
             </div>       
             <div class="_n">
             	状态：{if $user_info['ensure']}已开通{else}未开通{/if}
-               	{if !$user_info['ensure']}<button type="button" onclick="open_ensure();" class="button">开通</button>{/if}
+               	{if !$user_info['ensure']}<button type="button" onclick="location.href='index.php?do=user&view=witkey&op=ensure&action=choose'" class="button">开通</button>{/if}
             </div>
         </div>     
         <div class="ac_wks">

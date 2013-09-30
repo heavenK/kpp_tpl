@@ -72,7 +72,7 @@
                           {loop $new_member $k $v}
                           <li>
                               <div id="div4{$k}" onMouseOver="show('div4{$k}');" onMouseOut="hide('div4{$k}');" style="display:none; cursor:pointer;">
-                              <div class="text"><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><p>{$v['username']}</p><p>诚信保障：{if $v['ensure']}2000{else}无{/if}</p><p>能力等级：{$credit_level[$k]["title"]}</p></a></div>
+                              <div class="text"><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><p>{$v['username']}</p><p>诚信保障：{$ensure[$v['ensure']]}</p><p>能力等级：{$credit_level[$k]["title"]}</p></a></div>
                               <div class="bg"></div>
                               </div>
                               <a href=""><img src="<!--{userpicurl($v['uid'],middle)}-->" onMouseOver="show('div4{$k}')" onMouseOut="hide('div4{$k}')" /></a><span><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->">{$v['username']}</a></span>
@@ -83,7 +83,7 @@
                           {loop $new_member_vip $k $v}
                           <li>
                               <div id="div1{$k}" onMouseOver="show('div1{$k}');" onMouseOut="hide('div1{$k}');" style="display:none; cursor:pointer;">
-                              <div class="text"><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><p>{$v['username']}</p><p>诚信保障：{if $v['ensure']}2000{else}无{/if}</p><p>能力等级：{$v['seller_level']["title"]}</p></a></div>
+                              <div class="text"><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><p>{$v['username']}</p><p>诚信保障：{$ensure[$v['ensure']]}</p><p>能力等级：{$v['seller_level']["title"]}</p></a></div>
                               <div class="bg"></div>
                               </div>
                               <a href=""><img src="<!--{userpicurl($v['uid'],middle)}-->" onMouseOver="show('div1{$k}')" onMouseOut="hide('div1{$k}')" /></a><span><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->">{$v['username']}</a></span>
@@ -94,7 +94,7 @@
                           {loop $new_member $k $v}
                           <li>
                               <div id="div2{$k}" onMouseOver="show('div2{$k}');" onMouseOut="hide('div2{$k}');" style="display:none; cursor:pointer;">
-                              <div class="text"><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><p>{$v['username']}</p><p>诚信保障：{if $v['ensure']}2000{else}无{/if}</p><p>能力等级：{$credit_level[$k]["title"]}</p></a></div>
+                              <div class="text"><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><p>{$v['username']}</p><p>诚信保障：{$ensure[$v['ensure']]}</p><p>能力等级：{$credit_level[$k]["title"]}</p></a></div>
                               <div class="bg"></div>
                               </div>
                               <a href="#"><img src="<!--{userpicurl($v['uid'],middle)}-->" onMouseOver="show('div2{$k}')" onMouseOut="hide('div2{$k}')" /></a><span><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->">{$v['username']}</a></span>
@@ -105,7 +105,7 @@
                           {loop $accept_member $k $v}
                           <li>
                               <div id="div3{$k}" onMouseOver="show('div3{$k}');" onMouseOut="hide('div3{$k}');" style="display:none; cursor:pointer;">
-                              <div class="text"><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><p>{$v['username']}</p><p>诚信保障：{if $v['ensure']}2000{else}无{/if}</p><p>能力等级：{$v['seller_level']["title"]}</p></a></div>
+                              <div class="text"><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><p>{$v['username']}</p><p>诚信保障：{$ensure[$v['ensure']]}</p><p>能力等级：{$v['seller_level']["title"]}</p></a></div>
                               <div class="bg"></div>
                               </div>
                               <a href="#"><img src="<!--{userpicurl($v['uid'],middle)}-->" onMouseOver="show('div3{$k}')" onMouseOut="hide('div3{$k}')" /></a><span><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->">{$v['username']}</a></span>
@@ -1245,7 +1245,7 @@
         <h1><!--{eval echo kekezu::cutstr($v['shop_name'],16);}--></h1>
         <h2><a href="index.php?do=release&to_uid={$v[uid]}">我要雇佣</a></h2>
         <h3>{$v[uid]}<br />
-          诚信保障：{if $v['ensure']}2000{else}无{/if}<br />
+          诚信保障：{$ensure[$v['ensure']]}<br />
           <!--{eval $v['seller_level']=unserialize($v['seller_level'])}-->
           能力等级：{$v['seller_level']["title"]}</h3>
       </div>
@@ -1274,7 +1274,7 @@
         <h1><!--{eval echo kekezu::cutstr($v['shop_name'],16);}--></h1>
         <h2><a href="index.php?do=release&to_uid={$v[uid]}">我要雇佣</a></h2>
         <h3>{$v[uid]}<br />
-          诚信保障：{if $v['ensure']}2000{else}无{/if}<br />
+          诚信保障：{$ensure[$v['ensure']]}<br />
           <!--{eval $v['seller_level']=unserialize($v['seller_level'])}-->
           能力等级：{$v['seller_level']["title"]}</h3>
       </div>
@@ -1303,7 +1303,7 @@
         <h1><!--{eval echo kekezu::cutstr($v['shop_name'],16);}--></h1>
         <h2><a href="index.php?do=release&to_uid={$v[uid]}">我要雇佣</a></h2>
         <h3>{$v[uid]}<br />
-          诚信保障：{if $v['ensure']}2000{else}无{/if}<br />
+          诚信保障：{$ensure[$v['ensure']]}<br />
           <!--{eval $v['seller_level']=unserialize($v['seller_level'])}-->
           能力等级：{$v['seller_level']["title"]}</h3>
       </div>
@@ -1332,7 +1332,7 @@
         <h1><!--{eval echo kekezu::cutstr($v['shop_name'],16);}--></h1>
         <h2><a href="index.php?do=release&to_uid={$v[uid]}">我要雇佣</a></h2>
         <h3>{$v[uid]}<br />
-          诚信保障：{if $v['ensure']}2000{else}无{/if}<br />
+          诚信保障：{$ensure[$v['ensure']]}<br />
           <!--{eval $v['seller_level']=unserialize($v['seller_level'])}-->
           能力等级：{$v['seller_level']["title"]}</h3>
       </div>
@@ -1421,12 +1421,12 @@
                 <li><a href="#"><img src="/tpl/default/d8/images/anli_6.jpg" title="红星·美凯龙" /></a></li>
               </ul>
             </div>
-            <div class="rk"><a href="#" title="豆8网秘书全程服务，品牌合作入口">豆8网秘书全程服务，品牌合作入口> ></a></div>
+            <div class="rk"><a href="index.php?do=zhuanti" title="豆8网秘书全程服务，品牌合作入口">豆8网秘书全程服务，品牌合作入口> ></a></div>
           </div>
           
           <div class="te_l1">
             <ul>
-              <li class="w_1"><a href="#"></a></li>
+              <li class="w_1"><a href="index.php?do=zhuanti&view=show&art_id=323" target="_blank"></a></li>
               <li class="w_2"><a href="#"></a></li>
               <li class="w_3"><a href="#"></a></li>
             </ul>

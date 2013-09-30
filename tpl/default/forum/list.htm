@@ -1,4 +1,7 @@
 <!--{template header_index_top}-->
+
+<!--公用样式-->
+<link href="resource/css/base.css" rel="stylesheet" charset="utf-8">
 <link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/T_bbs.css">
 
 <style>
@@ -41,7 +44,7 @@
                     	{loop $thread_top_arr $k $v}
                     	<li>
                         	<em>{$v['username']}&nbsp;发表&nbsp;原创作品：</em><span>&lt;<a href="index.php?do=forum&view=show&tid=$v['tid']" target="_blank">{$v['title']}</a>&gt;</span><tt><!--{date('Y-m-d H:i:s',$v['pub_time'])}--> 发表&nbsp;&nbsp;{$v[views]}人</tt><i>浏览</i><tt>{$v[reply]}人</tt><i>回复</i>
-                            <input type="button" class="bbs_xin" value="" /><input type="button" class="bbs_zan" value="" />
+                            <input type="button" class="bbs_xin" onclick="send_tid({$v['tid']},'zan')" value="" /><input type="button" class="bbs_zan" onclick="send_tid({$v['tid']},'ding')" value="" />
                         </li>
                         {/loop}
                     </ul>

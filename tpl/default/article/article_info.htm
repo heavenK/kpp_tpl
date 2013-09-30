@@ -75,13 +75,7 @@
                             <div class=" clearfix pad5" >
                             	<div class="fl_l mr_20">
                             		 本文链接：
-									<span id="article_url"  >
-									{if $static}
-											{$_K['siteurl']}/html/article/info/{$art_info['art_cat_id']}_{$art_info['art_id']}.htm
-					                   {else}
-					                      {$_K['siteurl']}/index.php?do={$do}&view={$view}&art_cat_id={$art_info['art_cat_id']}&art_id={$art_info['art_id']}
-					                   {/if}
-									   </span>
+									<span id="article_url"  >{if $static}{$_K['siteurl']}/html/article/info/{$art_info['art_cat_id']}_{$art_info['art_id']}.htm{else}{$_K['siteurl']}/index.php?do={$do}&view={$view}&art_cat_id={$art_info['art_cat_id']}&art_id={$art_info['art_id']}{/if}</span>
 									<a href="javascript:void(0);" class="button" onclick="copytext('article_url')">复制给朋友</a>
 									<!-- Baidu Button BEGIN -->
 									<div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">

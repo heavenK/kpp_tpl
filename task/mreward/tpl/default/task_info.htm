@@ -330,13 +330,13 @@
 					$("#comment_page").before(text_val); 
 					comment();
 					notice_comment();
+					alert("留言成功！");
+					history.go(0);
 				}
 			 },'text');
 			 $("#tar_comment").val(''); 
 			}
 		}
-		alert("留言成功！");
-		history.go(0);
 	}
 	
 		//删除评论

@@ -10,6 +10,9 @@ $where = " uid = ".intval($uid);
 intval ( $page_size ) or $page_size = '10';
 intval ( $page ) or $page = '1';
 $url = $origin_url . "&op=$op&action=$action&page_size=$page_size&page=$page&type=$type";
+if($fina_type) $url .= "&fina_type=$fina_type";
+if($start_time) $url .= "&start_time=$start_time";
+if($end_time) $url .= "&end_time=$end_time";
 $config = $kekezu->_sys_config;
 switch ($action) {
 	case "basic" :
@@ -20,13 +23,27 @@ switch ($action) {
 		$sql = ' select a.*,b.task_title,c.title from '.TABLEPRE.'witkey_finance a left join '
 				.TABLEPRE.'witkey_task b on a.obj_id=b.task_id left join '.TABLEPRE
 				.'witkey_service c on a.obj_id=c.service_id ';
+		
+		$sql_count = ' select count(a.fina_id) from '.TABLEPRE.'witkey_finance a left join '
+				.TABLEPRE.'witkey_task b on a.obj_id=b.task_id left join '.TABLEPRE
+				.'witkey_service c on a.obj_id=c.service_id ';		
+		
 		$where =" where a.uid=".intval($uid)."  and a.fina_action not in ('withdraw','offline_recharge','offline_charge','online_charge','online_recharge','withdraw_fail')";
 		intval($fina_id) and $where .= " and a.fina_id = $fina_id ";
 		$fina_type and $where .= " and a.fina_type = '$fina_type' ";
+		
+		if($start_time || $end_time){
+			if($start_time) $where .= " and fina_time > ".strtotime($start_time);
+			if($end_time) $where .= " and fina_time < ".strtotime($end_time);
+		}
+		
 		if($type == 'dou')	$where .= " and a.fina_credit > 0";
 		else	$where .= " and a.fina_cash > 0";
 		$ord and $where .= " order by $ord " or $where .= " order by a.fina_id desc ";
-		$count = intval(db_factory::get_count(sprintf(' select count(fina_id) from %switkey_finance where uid=%d and fina_action not in ("withdraw","offline_recharge","offline_charge","online_charge","online_recharge","withdraw_fail")',TABLEPRE,intval($uid))));
+		
+		$count = intval(db_factory::get_count($sql_count.$where));
+		
+		
 		$pages = $page_obj->getPages ( $count, $page_size, $page, $url, '#userCenter' );
 		$fina_arr = db_factory::query($sql.$where.$pages['where']);
 

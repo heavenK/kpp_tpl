@@ -102,7 +102,7 @@ em,span,tt,i{ font-style:normal;font-family:"微软雅黑", "宋体";}
 .bbs_zhutil_twotit{padding-left:42px; height:69px; border-bottom:1px solid #d0d0d0;}
 .bbs_zhutil_twotit h1{padding-left:73px; height:69px; line-height:69px; background:url(../images/bbs_ren.jpg) no-repeat; padding-left:73px; font-size:26px; color:#021710;}
 .bbs_zhutil_twonr{border-bottom:1px solid #d0d0d0;}
-.bbs_zhutil_twonr_tx{width:114px; height:221px; float:left; padding:35px 0 0 22px;}
+.bbs_zhutil_twonr_tx{width:114px; height:221px; float:left; padding:20px 0 0 22px;}
 .bbs_zhutil_twonr_tx h1{width:80px; height:80px; padding:6px; background:#d1eae4; margin-bottom:6px;}
 .bbs_zhutil_twonr_tx h2{width:100px; line-height:23px; color:#17352d;}
 .bbs_zhutil_twonr_tx p{line-height:16px;}
@@ -133,7 +133,7 @@ em,span,tt,i{ font-style:normal;font-family:"微软雅黑", "宋体";}
 .bbs_zhutir_rdht h1{height:39px; font-size:16px; color:#fff; background:#48b78d; line-height:39px; text-align:center;}
 .bbs_zhutir_rdht ul li{padding:17px 15px 17px 5px; border-bottom:1px dashed #d0d0d0;}
 .bbs_zhutir_rdht ul li span{width:35px; height:32px; color:#48b78d; font-size:22px; float:left; text-align:center;}
-.bbs_zhutir_rdht ul li em{width:190px; line-height:16px; font-size:14px; color:#1c3633;}
+.bbs_zhutir_rdht ul li em{width:190px; line-height:28px; font-size:14px; color:#1c3633;}
 
 
 

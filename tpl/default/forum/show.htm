@@ -1,4 +1,7 @@
 <!--{template header_index_top}-->
+
+<!--公用样式-->
+<link href="resource/css/base.css" rel="stylesheet" charset="utf-8">
 <link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/T_bbs.css">
 
 <style>
@@ -14,9 +17,26 @@
         	<div class="bbs_zhutil_one">
             	<div class="bbs_zhuti_onetit">您的位置：<a href="index.php">首页</a>&nbsp;&gt;&nbsp;<a href="index.php?do=forum">豆豆论坛</a>&nbsp;&gt;&nbsp;<a href="index.php?do=forum&view=list&type_id={$thread_info['type_id']}">{$type_info['type_name']}</a>&nbsp;&gt;&nbsp;{$thread_info['title']}</div>
                 <div class="bbs_zhuti_onebt"><span>{$thread_info['title']}</span><a href="index.php?do=forum&view=post&type=thread&type_id={$thread_info['type_id']}">发新话题</a><a href="index.php?do=forum&view=post&type=post&type_id={$thread_info['type_id']}&tid={$thread_info['tid']}">我要回帖</a><div class="clear" style="clear:both;"></div></div>
-                <div class="bbs_zhuti_onenr">
+                <div class="bbs_zhuti_onenr" style="position:relative">
                 	{$thread_info['content']}
+                    <!-- Baidu Button BEGIN -->
+                    <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare" style="float:right; position:absolute; bottom:5px; right:5px;">
+                    <span class="bds_more">分享到：</span>
+                    <a class="bds_qzone"></a>
+                    <a class="bds_tsina"></a>
+                    <a class="bds_tqq"></a>
+                    <a class="bds_renren"></a>
+                    <a class="bds_t163"></a>
+                    <a class="shareCount"></a>
+                    </div>
+                    <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6662790" ></script>
+                    <script type="text/javascript" id="bdshell_js"></script>
+                    <script type="text/javascript">
+                    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+                    </script>
+                    <!-- Baidu Button END -->
                 </div>
+                
             </div>
             {if $post_ganfang_list}
             <div class="bbs_zhutil_two">
@@ -29,7 +49,7 @@
                         <h2>{$v['uid']}</h2>
                         <!--{eval $member_info = kekezu::get_user_info($v[uid]);}-->
                         <p>诚信保障：无</p>
-                        <p>豆币数量：<!--{eval echo(intval($member_info['credit']));}--></p>
+                        <p>豆币：<!--{eval echo(intval($member_info['credit']));}--></p>
                          <!--{eval $member_info['seller_level']=unserialize($member_info['seller_level'])}-->
                         <p>能力等级：{$member_info['seller_level']['pic']}</p>
                     </div>
@@ -55,7 +75,7 @@
                         <h2>{$v['uid']}</h2>
                         <!--{eval $member_info = kekezu::get_user_info($v[uid]);}-->
                         <p>诚信保障：无</p>
-                        <p>豆币数量：<!--{eval echo(intval($member_info['credit']));}--></p>
+                        <p>豆币：<!--{eval echo(intval($member_info['credit']));}--></p>
                          <!--{eval $member_info['seller_level']=unserialize($member_info['seller_level'])}-->
                         <p>能力等级：{$member_info['seller_level']['pic']}</p>
                     </div>
@@ -88,13 +108,13 @@
                         <h2>{$v['uid']}</h2>
                         <!--{eval $member_info = kekezu::get_user_info($v[uid]);}-->
                         <p>诚信保障：无</p>
-                        <p>豆币数量：<!--{eval echo(intval($member_info['credit']));}--></p>
+                        <p>豆币：<!--{eval echo(intval($member_info['credit']));}--></p>
                          <!--{eval $member_info['seller_level']=unserialize($member_info['seller_level'])}-->
                         <p>能力等级：{$member_info['seller_level']['pic']}</p>
                     </div>
                     <div class="bbs_zhutil_twonr_pl">
                     	<div class="bbs_zhutil_twonr_pl01">{if $v[status] != 2}内容正在审核中！{else}{$v[content]}{/if}</div>
-                        <div class="bbs_zhutil_twonr_pl02">&nbsp;&nbsp;&nbsp;<a href="###">支持[{$v['good']}]</a></div>
+                        <div class="bbs_zhutil_twonr_pl02">&nbsp;&nbsp;&nbsp;<a href="###" onclick="post_good({$v['pid']})" style="color:#F00">支持[<i id="good{$v[pid]}">{$v['good']}</i>]</a></div>
                     </div>
                     <div class="clear" style="clear:both;"></div>
                 </div>
@@ -110,14 +130,14 @@
                     <div class="bbs_zhuti_ksht_nr">
                     	<div class="bbs_zhuti_ksht_tit01">回复内容</div>
                         <div class="bbs_zhuti_ksht_text">
-                        	<form action="index.php?do=forum&view=post&type=post&type_id={$thread_info['type_id']}&tid={$thread_info['tid']}" method="post">
+                        	<form action="index.php?do=forum&view=post&type=post&type_id={$thread_info['type_id']}&tid={$thread_info['tid']}" method="post" id="form1">
                             <input type="hidden" name="sbt_edit" value="1" />
-                        	<textarea class="bbs_zhuti_kshf_area" name="content"></textarea>
+                        	<textarea class="bbs_zhuti_kshf_area" name="content" id="textareaId"></textarea>
                             <input type="submit" class="bbs_zhuti_ksht_btn" value="确认回帖" />
                             <span>[完成后可按 Ctrl+Enter 发布]</span>
                             </form>
                         </div>
-                        <div class="bbs_zhuti_ksht_bq">
+                        <!--<div class="bbs_zhuti_ksht_bq">
                         	<h1>表情</h1>
                             <div class="bbs_zhuti_ksht_bqlist">
                             	<span><img src="/tpl/default/d8/images/qq_t.gif" width="20" height="20" /></span>
@@ -132,7 +152,7 @@
                                 <span><img src="/tpl/default/d8/images/qq_t.gif" width="20" height="20" /></span>
                                 <div class="clear" style="clear:both;"></div>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="clear" style="clear:both;"></div>
                     </div>
                 </div>
@@ -145,7 +165,8 @@
             	<h1>热点话题推荐</h1>
                 <ul>
                 	{loop $thread_right_arr $k $v}
-                	<li><span><!--{eval echo($k+1);}--></span><em><a href="index.php?do=forum&view=show&tid={$v['tid']}" target="_blank">{$v['title']}（共{$v['views']}人参与）</a></em><div class="clear" style="clear:both;"></div></li>
+                	<li><span><!--{eval echo($k+1);}--></span><em style="color:#333 "><a href="index.php?do=forum&view=show&tid={$v['tid']}" target="_blank" style="color:#333
+">{$v['title']}（共{$v['views']}人参与）</a></em><div class="clear" style="clear:both;"></div></li>
                     {/loop}
                 </ul>
             </div>
@@ -162,6 +183,16 @@
     
     <script type="text/javascript">
 		var uid 		= parseInt('{$uid}')+0;
+		
+		
+		$('#textareaId').keydown(function (e) {
+			if(e.ctrlKey && e.which == 13 || e.which == 10) { 
+					$("#form1").submit();
+			} else if (e.shiftKey && e.which==13 || e.which == 10) {
+					$("#form1").submit();
+			} 
+		});
+
 	</script>
 <!--{template footer_dou}-->
     

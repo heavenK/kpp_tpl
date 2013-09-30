@@ -87,7 +87,7 @@
                   {/if}			
                 {/loop}
             </tt><div class="clear"></div></div>
-            <div class="vip_zs_lbz"><p>{if $member_info[ensure]}已加入{else}未加入{/if} <i>诚信保障</i></p><p>交纳保证金 {if $member_info[ensure]}2000{else}0{/if}</p></div>
+            <div class="vip_zs_lbz"><p>{if $member_info[ensure]}已加入{else}未加入{/if} <i>诚信保障</i></p><p>交纳保证金 {$ensure[$member_info['ensure']]}</p></div>
             <div class="vip_zs_lbs">{if $member_info[uid] != $uid}<a  class="modalLink" href="#modal1" >我要拜师</a>{/if}<div class="clear"></div></div>
             <div class="vip_zs_lrz">好评：<i><!--{eval echo round(($member_info['seller_good_num']/$member_info['seller_total_num'])*100).'%';}--></i></div>
             <div class="vip_zs_lrz">交易信息<br />交易总收入：{$shouru}元<br />交易总次数：{$sum}</div>
@@ -150,7 +150,7 @@
                     <p>$member_info[residency]</p>
                     <p>工作室 {if $member_info[isvip] == 1}VIP尊享版{elseif $member_info[isvip] == 2}VIP开创版{else}基础版{/if}</p>
                     <div class="vip_zs_rtopbom">
-                    	<span style="border-right:1px solid #d5d5d5; line-height:52px;">{if $uid == $member_info[uid]}<a href="index.php?do=space&member_id={$member_info[uid]}&view=detail">{else}<a class="modalLink" href="#modal2">{/if}详细资料</a></span>
+                    	<span style="border-right:1px solid #d5d5d5; line-height:52px;">{if $uid == $member_info[uid]}<a href="index.php?do=space&member_id={$member_info[uid]}&view=detail">{else}<a class="modalLink" href="#modal2" style="margin-left:6px;">{/if}详细资料</a></span>
                         
                         <span style="border-right:1px solid #d5d5d5;">
                         {if $member_info[uid] != $uid}

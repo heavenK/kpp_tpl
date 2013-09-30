@@ -78,7 +78,7 @@ $menu_arr = array (
 		'xtang' => "D8学堂" ,
 		'forum' => "豆豆江湖" ,
 		'tool' => $_lang ['system_tool'],
-		'app' => $_lang ['app_center'] 
+		//'app' => $_lang ['app_center'] 
 );
 $admin_obj=new keke_admin_class();
 require ADMIN_ROOT . 'admin_' . $do . '.php';

@@ -394,7 +394,7 @@ $(document).ready(function () {
     </div>
     <br><br>
     <div class="step_button">
-    <button type="button"  name="is_submit" onclick="return stepCheck();" class="xyb">下一步</button>
+    <button type="button"  name="is_submit" onclick="return stepCheck_ext();" class="xyb">下一步</button>
     </div>
     </div>
     </div>
@@ -512,6 +512,49 @@ $(function(){
 	
 	
 </script>
+<script type="text/javascript"> 
+
+	function stepCheck_ext(){ 	
+		
+		if($("#duorensj").attr('checked')){
+			
+			var prize_1_price = Number($("#txt_prize1_cash").val()); 
+			var total_prize =prize_1_price ;
+			if($("#txt_prize2_cash").is(":hidden")){
+				//$("#prize_2").remove();  
+			}	 
+			if($("#txt_prize3_cash").is(":hidden")){
+				//$("#prize_3").remove();  
+			}	 
+			
+			if ($("#txt_prize2_cash").is(":visible")) {
+				var prize_2_price = Number($("#txt_prize2_cash").val()); 
+					total_prize += prize_2_price;
+			}
+			 
+			if ($("#txt_prize3_cash").is(":visible")) { 
+					var prize_3_price = Number($("#txt_prize3_cash").val()); 
+					total_prize +=prize_3_price;
+			}
+			
+			var total_cash = $("#txt_task_cash").val();
+		
+			if(total_prize != total_cash){
+				//$("#txt_prize1_cash").focus();
+				$("#span_prize2_cash").removeClass("msg msg_ok");
+				$("#span_prize3_cash").removeClass("msg msg_ok");
+				$("#span_prize1_cash").removeClass("msg msg_ok").addClass("msg msg_error").html("<i></i><span>{$_lang['no_equal']}</span>");
+				alert("{$_lang['no_equal']}");			
+				return false;
+			}else{
+				$("#span_prize1_cash").removeClass("msg msg_error").html(" ");			
+			}
+		}
+		stepCheck();
+	}
+	
+
+	</script>
 <script type="text/javascript">
 	In('calendar');
 </script>

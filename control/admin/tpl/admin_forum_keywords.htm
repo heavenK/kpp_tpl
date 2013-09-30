@@ -1,0 +1,84 @@
+<!--{template control/admin/tpl/admin_header}-->
+<div class="page_title">
+</div>
+
+<div class="box post">
+        <div class="tabcon">
+        	<div class="title"><h2>{if $op == 'info'}{$_lang['website_config']}{elseif $op == 'conf'}{$_lang['basic_config']}{/if}</h2></div>
+            <div class="detail">
+                 <form name="frm_config_basic" id="frm_config_basic" action="index.php?do=forum&view=keywords" method="post" accept-charset="{$_K['charset']}" enctype='multipart/form-data'>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+					  <tr>
+                        <th scope="row" width="130">帖子关键字{$_lang['zh_mh']}</th>
+                        <td>
+                         <textarea cols="70" rows="10" name="no_keywords" title='请输入发贴关键字' msgArea="web_name_msg">$config_arr['no_keywords']</textarea>
+                    	<span id="web_name_msg">多个关键字请用|分隔</span>
+                        </td>
+                      </tr>
+			<th scope="row">&nbsp;</th>
+			<td>
+				<div class="clearfix padt10">
+                                <button class="positive pill primary button" type="submit" name='submit' value="{$_lang['submit']}"><span class="check icon"></span>{$_lang['submit']}</button>
+                                
+                </div>
+			</td>
+                    
+                    </table>
+                    
+                      
+                    
+        </form>
+            </div>
+        </div>
+        
+        
+    </div>
+
+
+<script type="text/javascript">
+    $(function(){
+    	$("#rdo_second_domain_2").click(function(){
+			$("#t_domain").show();
+		})
+		if($("#rdo_second_domain_2").is(":checked")){
+			$("#t_domain").show();
+		}
+    	$("#rdo_second_domain_1").click(function(){
+			$("#t_domain").hide();
+		})
+        $("#frm_config_basic").submit(function(){
+            var value = $("#fle_web_logo").val();
+            if (value) {
+                s = value.lastIndexOf(".");
+                lastname = value.substring(s, value.length);
+                if (lastname.toLowerCase() != ".gif" && lastname.toLowerCase() != ".jpg" && lastname.toLowerCase() != ".png" && lastname.toLowerCase() != ".jpeg") {
+                    alert("{$_lang['file_type_error']}")
+                    $(this).focus();
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            }
+            
+            
+        })
+        if ($("#checkclose1").attr("checked")) {
+            $("#close_true").show();
+        }
+        else {
+            $("#close_true").hide();
+        }
+        $("#checkclose1").click(function(){
+            $("#close_true").show();
+        })
+        $("#checkclose2").click(function(){
+            $("#close_true").hide();
+        })
+        
+        
+        
+    })
+</script>
+<!--{template control/admin/tpl/admin_footer}-->

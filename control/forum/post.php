@@ -17,6 +17,14 @@ if($sbt_edit){
 	
 	if(!$content)	kekezu::show_msg("内容不可以为空！",$url,3,'','error');
 	
+	$no_keywords = explode('|',$basic_config['no_keywords']);
+	
+	foreach($no_keywords as $val){
+		
+		$title = str_replace($val,'***',$title);
+		$content = str_replace($val,'***',$content);
+	}
+	
 	
 	if($type == 'thread'){
 		if(!$title) kekezu::show_msg("标题不可以为空！",$url,3,'','error');
@@ -26,9 +34,9 @@ if($sbt_edit){
 		if($thread) $tid = $thread['tid']+1;
 		else $tid = 1;
 		
-		$res = db_factory::execute(" insert into ".TABLEPRE."forum_thread (tid,type_id, title, content, uid, username, pub_time, views, reply, isShow, status) value(".$tid.",".$type_id.",'".$title."','".$content."',".$uid.",'".$username."',".time().",0,0,1,1)");
+		$res = db_factory::execute(" insert into ".TABLEPRE."forum_thread (tid,type_id, title, content, uid, username, pub_time, views, reply, isShow, status) value(".$tid.",".$type_id.",'".$title."','".$content."',".$uid.",'".$username."',".time().",0,0,1,2)");
 			
-		if($res)	$res1 = db_factory::execute(" insert into ".TABLEPRE."forum_post (tid, type_id, title, content, uid, username, pub_time, status, floor) value(".$tid.",".$type_id.",'".$title."','".$content."',".$uid.",'".$username."',".time().",1, 1)");
+		if($res)	$res1 = db_factory::execute(" insert into ".TABLEPRE."forum_post (tid, type_id, title, content, uid, username, pub_time, status, floor) value(".$tid.",".$type_id.",'".$title."','".$content."',".$uid.",'".$username."',".time().",2, 1)");
 		else	kekezu::show_msg("发布失败！",$url,3,'','error');
 		
 		if($res1)	kekezu::show_msg("发布成功！",$url_success.$tid,3,'','success');
@@ -38,7 +46,7 @@ if($sbt_edit){
 		
 		$thread_first = db_factory::get_one(" select * from ".TABLEPRE."forum_post where tid=".$tid ." order by floor desc limit 0,1");
 		
-		if($thread_first)	$res1 = db_factory::execute(" insert into ".TABLEPRE."forum_post (tid, type_id, content, uid, username, pub_time, status, floor) value(".$tid.",".$type_id.",'".$content."',".$uid.",'".$username."',".time().",1, ".($thread_first['floor']+1).")");
+		if($thread_first)	$res1 = db_factory::execute(" insert into ".TABLEPRE."forum_post (tid, type_id, content, uid, username, pub_time, status, floor) value(".$tid.",".$type_id.",'".$content."',".$uid.",'".$username."',".time().",2, ".($thread_first['floor']+1).")");
 		else	kekezu::show_msg("主题不存在！",$url,3,'','error');
 		
 		if($res1)	{

@@ -518,12 +518,13 @@ function send_req_zj(to_uid) {
 							   url: "index.php?do=user&view=shitu&ajax=2&from_uid="+uid+"&to_uid="+to_uid,
 							   async: true,
 							   success: function(data){
-								   if(data > 5)	showDialog("申请成功！", 'notice', L.operate_notice);
+								   if(data > 6)	showDialog("申请成功！", 'notice', L.operate_notice);
 								   else if(data == 2)	showDialog("不可以对自己拜师！", 'notice', L.operate_notice);
 								   else	if(data == 1)showDialog("您已经拜过师了，请耐心等待！", 'error', L.operate_notice);
 								   else	if(data == 3)showDialog("您的豆币不足，无法拜师！", 'error', L.operate_notice);
 								   else	if(data == 4)showDialog("您已经是师傅了，无法拜别人！", 'error', L.operate_notice);
 								   else	if(data == 5)showDialog("对方是别人的徒弟，您无法拜他！", 'error', L.operate_notice);
+								   else	if(data == 6)showDialog("对方的徒弟数已满，您无法拜他！", 'error', L.operate_notice);
 								   else	showDialog("暂时无法拜师！", 'error', L.operate_notice);
 								   
 							   }
@@ -680,6 +681,52 @@ function set_index(mtype){
 							   async: true,
 							   success: function(data){
 								   if(data > 0)	showDialog("操作成功！", 'notice', L.operate_notice);
+								   else	showDialog("操作失败！", 'error', L.operate_notice);
+								   
+							   }
+				})
+		
+	}
+}
+/**
+ * 支持点击
+ * 
+ * @param int
+ */
+function post_good(pid,obj){
+	if(check_user_login()){
+		$.ajax({
+							   type: "GET",
+							   url: "index.php?do=user&view=ajax&type=good&pid="+pid,
+							   async: true,
+							   success: function(data){
+								   if(data > 0)	{
+									   showDialog("操作成功！", 'notice', L.operate_notice);
+									   $("#good"+pid).text(parseInt($("#good"+pid).text())+1);
+								   }
+								   else	showDialog("操作失败！", 'error', L.operate_notice);
+								   
+							   }
+				})
+		
+	}
+}
+/**
+ * 赞，顶点击
+ * 
+ * @param int
+ */
+function send_tid(tid,type){
+	if(check_user_login()){
+		$.ajax({
+							   type: "GET",
+							   url: "index.php?do=user&view=ajax&type="+type+"&tid="+tid,
+							   async: true,
+							   success: function(data){
+								   if(data > 0)	{
+									   showDialog("操作成功！", 'notice', L.operate_notice);
+									   $("#good"+pid).text(parseInt($("#good"+pid).text())+1);
+								   }
 								   else	showDialog("操作失败！", 'error', L.operate_notice);
 								   
 							   }

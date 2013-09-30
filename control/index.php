@@ -125,6 +125,9 @@ $indus_all_arr = $kekezu->_indus_arr;
 	}*/
 // end
 
+// baozhang
+	$ensure = array('无',500,1000,2000);
+// end
 
 
 

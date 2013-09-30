@@ -51,7 +51,13 @@ if($ajax == 2){
 	if(db_factory::get_one ( sprintf ( " select * from %switkey_space where pid=%d", TABLEPRE, $uid ))){
 		echo 4;
 		exit;
-	} 
+	}
+	
+	$res_count = db_factory::get_count ( sprintf ( " select count(uid) count from %switkey_space where pid=%d", TABLEPRE, $to_uid )); 
+	if(($to_user_info[isvip] == 1 && $res_count >= 100) || ($to_user_info[isvip] == 2 && $res_count >= 20) || (!$to_user_info[isvip] && $res_count >= 5)) {
+		echo 6;
+		exit;	
+	}
 	
 	keke_finance_class::cash_out ($uid, $basic_config['baishi_credit'], 'baishi_sucess', '', '' ,'' ,1); 
 	
