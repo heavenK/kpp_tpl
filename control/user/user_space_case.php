@@ -1,6 +1,8 @@
 <?php	defined ( 'IN_KEKE' ) or exit ( 'Access Denied' );
 $shows = array("list","add");
 in_array($show,$shows) or $show="list";
+$sql_type = "select * from ".TABLEPRE."witkey_indus_type";
+$type_arr = db_factory::query($sql_type);
 switch ($show){
 	case "add":
 		$indus_arr = kekezu::get_indus_by_index ( 1 ); 

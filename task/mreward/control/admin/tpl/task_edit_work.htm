@@ -38,6 +38,15 @@
                                             <font color="red">
                                                 <i>{$satus_arr[$v['work_status']]}</i>
                                             </font>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                            {if $v['vote_position']}
+                                            
+                                                投票结果{$_lang['zh_mh']}
+                                                <font color="red">
+                                                    <i>第{$v['vote_position']}名</i>
+                                                </font>
+                                            
+                                            {/if}
                                         </td>
                                         <td width="200">
                                             {$_lang['hand_time']}{$_lang['zh_mh']}<!--{date('Y-m-d H:i:s',$v['work_time'])}-->
@@ -55,19 +64,10 @@
                                             </div>
 											<div id="c_{$v['work_id']}" style="display:none;width:80%;border-top:1px solid black"></div>
 											<div id="f_{$v['work_id']}" style="display:none;width:80%;border-top:1px solid black"></div>
+                                            <div id="v_{$v['work_id']}" style="display:none;width:80%;border-top:1px solid black"></div>
                                         </td>
                                         <td align="left" style="border:1px solid black">
                                             <ul>
-                                                <li>
-                                                    {$_lang['hide_work']}{$_lang['zh_mh']}
-                                                    <font color="red">
-                                                        {if $v['hide_work']!=1}
-                                                        {$_lang['no']}
-                                                        {else}
-                                                        {$_lang['yes']} 
-                                                        {/if} 
-                                                    </font>
-                                                </li>
                                                 <li>
                                                     {$_lang['vote']}{$_lang['zh_mh']}{$v['vote_num']} {$_lang['piao']}
                                                 </li>
@@ -90,6 +90,23 @@
 													</a>
                                                     {else}{$_lang['not_exists']}
                                                     {/if}
+                                                </li>
+                                                <li>
+                                                    查看投票人{$_lang['zh_mh']}
+													{if $v['vote_num']}
+													
+													<a class="button" href="javascript:void(0)" onclick="show_votes('{$v[work_id]}');">
+														<span class="loop icon"></span>显示({$v['vote_num']})
+													</a>
+                                                    {else}无人投票
+                                                    {/if}
+                                                </li>
+                                                <li>
+                                                    调票{$_lang['zh_mh']}
+													<input type="text" id="vote_nums_{$v[work_id]}" style="width:40px;" value="{$v['vote_num']}" />
+													<a class="button" href="javascript:void(0)" onclick="modi_vote('{$v[work_id]}');">
+														<span class="loop icon"></span>确定
+													</a>
                                                 </li>
                                             </ul>
                                         </td>
@@ -148,7 +165,27 @@
 				$('#f_'+i).load(url+'&ac=file&work_id='+i).slideDown();
 			}
 	}
-    
+	function show_votes(i){
+		var s = $.trim($('#v_'+i).html());
+		
+			if(!s){
+				$('#v_'+i).load(url+'&ac=voter&work_id='+i).slideDown();
+			}
+	}
+    function modi_vote(i){
+		var num = $("#vote_nums_"+i).val();
+		
+		$.getJSON(url,{ac:'modi_vote',work_id:i, nums:num},function(json){
+				
+					if(json.status==1){
+						art.dialog.tips("修改成功",1.5);
+						history.go(0);
+					}else{
+						art.dialog.tips("修改失败",1.5);
+					}
+				})
+		
+	}
 </script>
 <!--主体结束-->
 <!--{template control/admin/tpl/admin_footer}-->

@@ -17,6 +17,7 @@
                   	<div class="gz_rw">
                         <div class="blank1"></div>
                         <div class="zpzwgl" style="background:#fff; padding-bottom:30px">
+                        	{if $op=='task'}
                             {loop $favor_arr_new $k $v}
                             <div class="renren_01">
                                 <h1>
@@ -29,6 +30,20 @@
                                 <h4>任务编号：<i>{$v['obj_id']}</i></h4>
                             </div>
                             {/loop}
+                            {/if}
+                            {if $op=='service'}
+                            {loop $favor_arr_new $k $v}
+                            <div class="renren_01">
+                                <h1>
+                                    <i>名称：</i><a href="index.php?do=space&view=service_info&sid={$v['obj_id']}" title="$v['obj_name']" target="_blank">$v['obj_name']</a>
+                                    <em><b><img width="15" height="15" src="/tpl/default/d8/images/zanyu.png"></b><tt><!--{date('Y-m-d',$v['on_date'])}--></tt></em> 
+                                </h1>
+                                <h2><b>价格</b><span><i>￥{$task_arr_new[$k]['price']}/{$task_arr_new[$k]['unite_price']}</i></span></h2>
+                                <h3>{$task_arr_new[$k]['views']}个人浏览|收藏（{$task_arr_new[$k]['focus_num']}）</h3>
+                                <h4>任务编号：<i>{$v['obj_id']}</i></h4>
+                            </div>
+                            {/loop}
+                            {/if}
                             <div style="clear:both; ">
                                 <div class="page_count fl_r mar10">
                                         		{$pages['page']}

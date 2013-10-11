@@ -66,7 +66,7 @@
                                         <thead>
                                             <tr>
                                                 <th width="120" style="margin-left:10px; line-height:20px;">交易号/日期</th>
-                                                <th width="148">任务编号</th>
+                                                <th width="148">财务编号</th>
                                                 <th width="200">交易明细</th>
                                                 <th width="91">类型</th>
                                                 <th width="91">{if $type != 'dou'}金额{else}{CREDIT_NAME}{/if}</th>
@@ -77,7 +77,7 @@
                                             <tr class="odd">
                                                 <th style="width:120; margin-left:10px; line-height:20px; font-weight:normal"><!--{date('Y-m-d',$v['fina_time'])}--></th>
                                                 <th style="width:148; font-weight:normal">$v['fina_id']</th>
-                                                <th style="width:200; font-weight:normal">
+                                                <th style="width:200; font-weight:normal; text-align:left;">
                                                 {$action_arr[$v['fina_action']]}
 														   {if $v['task_title']&&$v['obj_type']=='task'}
 														   		<a href="{$_K['siteurl']}/index.php?do=task&task_id={$v['obj_id']}" target="_blank">{$v['task_title']}</a>
@@ -92,7 +92,7 @@
                                         </tbody>
                                      </table>
                                  </div>
-                                 <div class="page_count fl_r mar10" style="margin-top:10px; margin-bottom:5px;">
+                                 <div class="pages" style="margin-top:10px; margin-bottom:5px;">
                                       {$pages['page']}
                                   </div>
                              </div>

@@ -116,7 +116,7 @@
                            </p>
                            <p>
                             	<label><span>*</span>&nbsp;学历：</label>
-                                <input type="text" name="conf[xueli]" id="xueli" limit="required:true;len:1-50" value="{$user_info['xueli']}" class="texts4" />
+                                <input type="text" name="conf[xueli]" id="xueli" limit="required:true;len:1-50" msg="学历不可以为空，长度1-50" value="{$user_info['xueli']}" class="texts4" />
                                 <label style="width:56px;">身高：</label>
                                 <input type="text" name="conf[shengao]" id="shengao"  value="{$user_info['shengao']}" class="texts4" />
                                 <label style="width:50px;">体重：</label>
@@ -134,11 +134,11 @@
                            </p>
                            <p>
                             	<label><span>*</span>&nbsp;爱好：</label>
-                                <textarea name="conf[aihao]" id="aihao" limit="required:true;len:1-500" cols="70" rows="5" style="width:252px; height:100px; border:1px solid #ccc " >{$user_info['aihao']}</textarea>
+                                <textarea name="conf[aihao]" id="aihao" limit="required:true;len:1-500" cols="70" msg="爱好不可以为空，长度1-500" rows="5" style="width:252px; height:100px; border:1px solid #ccc " >{$user_info['aihao']}</textarea>
                            </p>
                            <p>
                             	<label><span>*</span>&nbsp;职业：</label>
-                                <input type="text" name="conf[zhiye]" id="zhiye" limit="required:true;len:1-50" value="{$user_info['zhiye']}" class="texts1" />
+                                <input type="text" name="conf[zhiye]" id="zhiye" limit="required:true;len:1-50" msg="职业不可以为空，长度1-50" value="{$user_info['zhiye']}" class="texts1" />
                            </p>
                            <p>
                             	<label>个人才艺：</label>
@@ -146,7 +146,7 @@
                            </p>
                            <p>
                             	<label><span>*</span>&nbsp;毕业院校：</label>
-                                <input type="text" name="conf[biyeyuanxiao]" id="biyeyuanxiao" limit="required:true;len:1-200" value="{$user_info['biyeyuanxiao']}" class="texts1" />
+                                <input type="text" name="conf[biyeyuanxiao]" id="biyeyuanxiao" msg="院校不可以为空，长度1-200" limit="required:true;len:1-200" value="{$user_info['biyeyuanxiao']}" class="texts1" />
                            </p>
                            <p>
                             	<label>休闲方式：</label>
@@ -154,7 +154,7 @@
                            </p>
                            <p>
                             	<label><span>*</span>&nbsp;自我介绍：</label>
-                                <textarea name="conf[ziwojieshao]" id="ziwojieshao" cols="70" rows="5" limit="required:true;len:1-500" style="width:252px; height:100px; border:1px solid #ccc">{$user_info['ziwojieshao']}</textarea>
+                                <textarea name="conf[ziwojieshao]" id="ziwojieshao" msg="自我介绍不可以为空，长度1-500" cols="70" rows="5" limit="required:true;len:1-500" style="width:252px; height:100px; border:1px solid #ccc">{$user_info['ziwojieshao']}</textarea>
                            </p>
                            <p>
                             	<label >详细需求豆币：</label>

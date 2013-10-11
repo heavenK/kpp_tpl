@@ -42,7 +42,7 @@ $lang = array(
 	'work_resource_file_complete'=>'稿件源文件交付完成',
 	'wait_resource_file_upload'=>'等待源文件上传',
 	'confirm_resource_file_upload'=>'确认源文件上传',
-	'confirm_recept_source_file'=>'确认接收源文件',
+	'confirm_recept_source_file'=>'确认并做出评价',
 	'wait_resource_file_recept'=>'等待源文件接收',
 
 );

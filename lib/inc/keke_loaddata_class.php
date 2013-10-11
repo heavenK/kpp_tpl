@@ -380,10 +380,12 @@ class keke_loaddata_class {
 			   return self::get_adgroup_by_target($ad_target['target_id'],$ad_target['name'],$ad_target ['ad_num']);
 			}
 			$sql = " select a.ad_id,a.ad_name,a.ad_file,a.ad_content,a.ad_url,a.width,a.height,
-			a.ad_type,a.ad_position,a.on_time from %switkey_ad a left join %switkey_ad_target b on a.target_id=b.target_id 
+			a.ad_type,a.ad_position,a.on_time,a.start_time,a.end_time from %switkey_ad a left join %switkey_ad_target b on a.target_id=b.target_id 
 			where b.code='%s' and a.is_allow='1' order by a.ad_id desc limit 0,%d";
 			$ad_info = db_factory::get_one( sprintf ( $sql, TABLEPRE, TABLEPRE, $code, $ad_target ['ad_num'] ),true,$_K['timespan'] );
 			if($ad_info){
+				if($ad_info['start_time'] && $ad_info['start_time'] > time()) return;
+				if($ad_info['end_time'] && $ad_info['end_time'] < time()) return;
 					$ad_str .= "<div class='adv'>";
 					switch ($ad_info ['ad_type']) {
 						case "flash" :

@@ -16,8 +16,13 @@
                                     
                                 </ul>
                             </li>
-                            
-                            <li class="c"><a href="index.php?do=user&view=collect&op=task" {if $view=='collect'} style="color:#48b78d"{/if}>> 我的收藏</a></li>
+                            <li class="c"><a href="index.php?do=user&view=witkey&op=shop&model_id=7" {if $op=='shop'} style="color:#48b78d"{/if}>> 威客服务</a></li>
+                            <li class="m"><p>我的收藏</p>
+                                <ul>
+                                    <li><p><a href="index.php?do=user&view=collect&op=task" {if $view=='collect' && $op == 'task'} style="color:#48b78d"{/if}>收藏的任务</a></p></li>
+                                    <li><p><a href="index.php?do=user&view=collect&op=service" {if $view=='collect' && $op == 'service'} style="color:#48b78d"{/if}>收藏的服务</a></p></li>
+                                </ul>
+                            </li>
                             <li class="m"><p>能力评价</p>
                                 <ul>
                                     <li><p><a href="index.php?do=user&view=witkey&op=credit"  {if $op=='credit' && !$part} style="color:#48b78d"{/if}>信誉等级成长</a></p></li>

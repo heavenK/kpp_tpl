@@ -1,5 +1,5 @@
 <!--{template header_index_top}-->
-
+<link href="resource/css/base.css" rel="stylesheet" charset="utf-8">
 <link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/T_index.css">
 <div class="banner"><!--焦点图轮换-->
         <div id="demoContent">
@@ -51,9 +51,9 @@
                         </ul>
                         <ul class="infoList">
                             {loop $shaishi_arr $v}
-                                <li><span class="date"><!--{date('Y-m-d',$v['pub_date'])}--></span><a href="index.php?do=single&art_id={$v['art_id']}">{$v['art_title']}</a></li>
+                                <li><span class="date"><!--{date('Y-m-d',$v['pub_time'])}--></span><a href="index.php?do=forum&view=show&tid={$v['tid']}">{$v['title']}</a></li>
                             {/loop}
-                            <li class="gengduo" style="background:none;position:absolute; bottom:5px; right:10px"><a href="index.php?do=article&view=article_list&art_cat_id=7">查看更多>>></a></li>
+                            <li class="gengduo" style="background:none;position:absolute; bottom:5px; right:10px"><a href="index.php?do=forum&view=list&type_id=14">查看更多>>></a></li>
                         </ul>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
                               <div class="text"><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><p>{$v['username']}</p><p>诚信保障：{$ensure[$v['ensure']]}</p><p>能力等级：{$credit_level[$k]["title"]}</p></a></div>
                               <div class="bg"></div>
                               </div>
-                              <a href=""><img src="<!--{userpicurl($v['uid'],middle)}-->" onMouseOver="show('div4{$k}')" onMouseOut="hide('div4{$k}')" /></a><span><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->">{$v['username']}</a></span>
+                              <a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><img src="<!--{userpicurl($v['uid'],middle)}-->" onMouseOver="show('div4{$k}')" onMouseOut="hide('div4{$k}')" /></a><span><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->">{$v['username']}</a></span>
                             </li>
                           {/loop}
                         </ul>
@@ -86,7 +86,7 @@
                               <div class="text"><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><p>{$v['username']}</p><p>诚信保障：{$ensure[$v['ensure']]}</p><p>能力等级：{$v['seller_level']["title"]}</p></a></div>
                               <div class="bg"></div>
                               </div>
-                              <a href=""><img src="<!--{userpicurl($v['uid'],middle)}-->" onMouseOver="show('div1{$k}')" onMouseOut="hide('div1{$k}')" /></a><span><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->">{$v['username']}</a></span>
+                              <a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><img src="<!--{userpicurl($v['uid'],middle)}-->" onMouseOver="show('div1{$k}')" onMouseOut="hide('div1{$k}')" /></a><span><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->">{$v['username']}</a></span>
                             </li>
                           {/loop}
                         </ul>
@@ -97,7 +97,7 @@
                               <div class="text"><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><p>{$v['username']}</p><p>诚信保障：{$ensure[$v['ensure']]}</p><p>能力等级：{$credit_level[$k]["title"]}</p></a></div>
                               <div class="bg"></div>
                               </div>
-                              <a href="#"><img src="<!--{userpicurl($v['uid'],middle)}-->" onMouseOver="show('div2{$k}')" onMouseOut="hide('div2{$k}')" /></a><span><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->">{$v['username']}</a></span>
+                              <a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><img src="<!--{userpicurl($v['uid'],middle)}-->" onMouseOver="show('div2{$k}')" onMouseOut="hide('div2{$k}')" /></a><span><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->">{$v['username']}</a></span>
                             </li>
                           {/loop}
                         </ul>
@@ -108,7 +108,7 @@
                               <div class="text"><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><p>{$v['username']}</p><p>诚信保障：{$ensure[$v['ensure']]}</p><p>能力等级：{$v['seller_level']["title"]}</p></a></div>
                               <div class="bg"></div>
                               </div>
-                              <a href="#"><img src="<!--{userpicurl($v['uid'],middle)}-->" onMouseOver="show('div3{$k}')" onMouseOut="hide('div3{$k}')" /></a><span><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->">{$v['username']}</a></span>
+                              <a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><img src="<!--{userpicurl($v['uid'],middle)}-->" onMouseOver="show('div3{$k}')" onMouseOut="hide('div3{$k}')" /></a><span><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->">{$v['username']}</a></span>
                             </li>
                           {/loop}
                         </ul>
@@ -149,81 +149,81 @@
                         <div class="ban_stuy">
                             <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A441&indus_id=348"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user1[0]"><img src="<!--{userpicurl($user1[0],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>LOGO设计</span>
-                                    <p>{$rencai_count[348]}位设计师</p>
+                                    <p>{if $rencai_count1['LOGO设计']}$rencai_count1['LOGO设计']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                             </div>
                             <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A441&indus_id=349"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user1[1]"><img src="<!--{userpicurl($user1[1],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>VI设计</span>
-                                    <p>{$rencai_count[349]}位设计师</p>
+                                    <p>{if $rencai_count1['VI设计']}$rencai_count1['VI设计']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                             </div>
                             <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A441&indus_id=370"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user1[2]"><img src="<!--{userpicurl($user1[2],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>封面设计</span>
-                                    <p>{$rencai_count[370]}位设计师</p>
+                                    <p>{if $rencai_count1['封面设计']}$rencai_count1['封面设计']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                             </div>
                             <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A457&indus_id=27"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user1[3]"><img src="<!--{userpicurl($user1[3],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>网页设计</span>
-                                    <p>{$rencai_count[27]}位设计师</p>
+                                    <p>{if $rencai_count1['网页设计']}$rencai_count1['网页设计']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                             </div>
                             <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A457&indus_id=448"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user1[4]"><img src="<!--{userpicurl($user1[4],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>淘宝网店装修</span>
-                                    <p>{$rencai_count[448]}位设计师</p>
+                                    <p>{if $rencai_count1['淘宝网店装修']}$rencai_count1['淘宝网店装修']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                             </div>
                             <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A357&indus_id=359"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user1[5]"><img src="<!--{userpicurl($user1[5],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>视频制作</span>
-                                    <p>{$rencai_count[359]}位设计师</p>
+                                    <p>{if $rencai_count1['视频制作']}$rencai_count1['视频制作']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                             </div>
                             <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A357&indus_id=461"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user1[6]"><img src="<!--{userpicurl($user1[6],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>音频剪辑</span>
-                                    <p>{$rencai_count[461]}位设计师</p>
+                                    <p>{if $rencai_count1['音频剪辑']}$rencai_count1['音频剪辑']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                             </div>
                             <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A441&indus_id=133"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user1[7]"><img src="<!--{userpicurl($user1[7],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>QQ表情</span>
-                                    <p>{$rencai_count[133]}位设计师</p>
+                                    <p>{if $rencai_count1['QQ表情']}$rencai_count1['QQ表情']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                             </div>
@@ -231,81 +231,81 @@
                         <div name="aaaaa">
                             <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A458&indus_id=135"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user1[8]"><img src="<!--{userpicurl($user1[8],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>动漫原型</span>
-                                    <p>{$rencai_count[135]}位设计师</p>
+                                    <p>{if $rencai_count1['动漫原型']}$rencai_count1['动漫原型']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                             </div>
                             <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A459&indus_id=351"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user1[9]"><img src="<!--{userpicurl($user1[9],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>艺术照处理</span>
-                                    <p>{$rencai_count[351]}位设计师</p>
+                                    <p>{if $rencai_count1['艺术照处理']}$rencai_count1['艺术照处理']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                             </div>
                             <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A459&indus_id=446"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user1[10]"><img src="<!--{userpicurl($user1[10],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>照片处理</span>
-                                    <p>{$rencai_count[446]}位设计师</p>
+                                    <p>{if $rencai_count1['照片处理']}$rencai_count1['照片处理']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                             </div>
                             <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A441&indus_id=452"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user1[11]"><img src="<!--{userpicurl($user1[11],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>包装设计</span>
-                                    <p>{$rencai_count[452]}位设计师</p>
+                                    <p>{if $rencai_count1['包装设计']}$rencai_count1['包装设计']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                             </div>
                             <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A460&indus_id=453"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user1[12]"><img src="<!--{userpicurl($user1[12],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>机械设计</span>
-                                    <p>{$rencai_count[453]}位设计师</p>
+                                    <p>{if $rencai_count1['机械设计']}$rencai_count1['机械设计']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                             </div>
                             <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A460&indus_id=454"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user1[13]"><img src="<!--{userpicurl($user1[13],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>工程用图</span>
-                                    <p>{$rencai_count[454]}位设计师</p>
+                                    <p>{if $rencai_count1['工程用图']}$rencai_count1['工程用图']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                             </div>
                             <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A441&indus_id=10"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user1[14]"><img src="<!--{userpicurl($user1[14],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>名片设计</span>
-                                    <p>{$rencai_count[10]}位设计师</p>
+                                    <p>{if $rencai_count1['名片设计']}$rencai_count1['名片设计']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                             </div>
                             <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A441&indus_id=349"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user1[15]"><img src="<!--{userpicurl($user1[15],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>UI设计</span>
-                                    <p>{$rencai_count[349]}位设计师</p>
+                                    <p>{if $rencai_count1['UI设计']}$rencai_count1['UI设计']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                             </div>
@@ -336,81 +336,81 @@
 					<div class="ban_stuy">
 						<div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A455&indus_id=222"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user2[0]"><img src="<!--{userpicurl($user2[0],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>Android开发</span>
-                                    <p>{$rencai_count[222]}位设计师</p>
+                                    <p>{if $rencai_count1['Android开发']}$rencai_count1['Android开发']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A455&indus_id=462"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user2[1]"><img src="<!--{userpicurl($user2[1],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>APP开发</span>
-                                    <p>{$rencai_count[462]}位设计师</p>
+                                    <p>{if $rencai_count1['APP开发']}$rencai_count1['APP开发']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A2&indus_id=463"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user2[2]"><img src="<!--{userpicurl($user2[2],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>门户网站开发</span>
-                                    <p>{$rencai_count[463]}位设计师</p>
+                                    <p>{if $rencai_count1['门户网站开发']}$rencai_count1['门户网站开发']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A455&indus_id=464"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user2[3]"><img src="<!--{userpicurl($user2[3],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>手机网站开发</span>
-                                    <p>{$rencai_count[464]}位设计师</p>
+                                    <p>{if $rencai_count1['手机网站开发']}$rencai_count1['手机网站开发']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A2&indus_id=465"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user2[4]"><img src="<!--{userpicurl($user2[4],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>网站改版</span>
-                                    <p>{$rencai_count[465]}位设计师</p>
+                                    <p>{if $rencai_count1['网站改版']}$rencai_count1['网站改版']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A456&indus_id=122"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user2[5]"><img src="<!--{userpicurl($user2[5],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>软件测试</span>
-                                    <p>{$rencai_count[122]}位设计师</p>
+                                    <p>{if $rencai_count1['软件测试']}$rencai_count1['软件测试']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A456&indus_id=466"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user2[6]"><img src="<!--{userpicurl($user2[6],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>多媒体开发</span>
-                                    <p>{$rencai_count[466]}位设计师</p>
+                                    <p>{if $rencai_count1['多媒体开发']}$rencai_count1['多媒体开发']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A249&indus_id=467"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user2[7]"><img src="<!--{userpicurl($user2[7],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>游戏代练</span>
-                                    <p>{$rencai_count[467]}位设计师</p>
+                                    <p>{if $rencai_count1['游戏代练']}$rencai_count1['游戏代练']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
@@ -419,81 +419,81 @@
 					<div name="aaaaa">
 						<div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A249&indus_id=251"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user2[8]"><img src="<!--{userpicurl($user2[8],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>游戏试玩</span>
-                                    <p>{$rencai_count[251]}位设计师</p>
+                                    <p>{if $rencai_count1['游戏试玩']}$rencai_count1['游戏试玩']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A455&indus_id=225"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user2[9]"><img src="<!--{userpicurl($user2[9],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>塞班系统开发</span>
-                                    <p>{$rencai_count[225]}位设计师</p>
+                                    <p>{if $rencai_count1['塞班系统开发']}$rencai_count1['塞班系统开发']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A455&indus_id=231"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user2[10]"><img src="<!--{userpicurl($user2[10],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>手游开发</span>
-                                    <p>{$rencai_count[231]}位设计师</p>
+                                    <p>{if $rencai_count1['手游开发']}$rencai_count1['手游开发']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A2&indus_id=468"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user2[11]"><img src="<!--{userpicurl($user2[11],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>商务网站开发</span>
-                                    <p>{$rencai_count[468]}位设计师</p>
+                                    <p>{if $rencai_count1['商务网站开发']}$rencai_count1['商务网站开发']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A2&indus_id=469"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user2[12]"><img src="<!--{userpicurl($user2[12],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>团购网站开发</span>
-                                    <p>{$rencai_count[469]}位设计师</p>
+                                    <p>{if $rencai_count1['团购网站开发']}$rencai_count1['团购网站开发']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A2&indus_id=470"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user2[13]"><img src="<!--{userpicurl($user2[13],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>程度修改</span>
-                                    <p>{$rencai_count[470]}位设计师</p>
+                                    <p>{if $rencai_count1['程度修改']}$rencai_count1['程度修改']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A456&indus_id=324"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user2[14]"><img src="<!--{userpicurl($user2[14],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>软件汉化</span>
-                                    <p>{$rencai_count[324]}位设计师</p>
+                                    <p>{if $rencai_count1['软件汉化']}$rencai_count1['软件汉化']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A456&indus_id=471"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user2[15]"><img src="<!--{userpicurl($user2[15],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>办公软件开发</span>
-                                    <p>{$rencai_count[471]}位设计师</p>
+                                    <p>{if $rencai_count1['办公软件开发']}$rencai_count1['办公软件开发']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
@@ -526,81 +526,81 @@
 					<div class="ban_stuy">
 						<div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A3&indus_id=41"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user3[0]"><img src="<!--{userpicurl($user3[0],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>宣传文案</span>
-                                    <p>{$rencai_count[41]}位设计师</p>
+                                    <p>{if $rencai_count1['宣传文案']}$rencai_count1['宣传文案']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A3&indus_id=47"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user3[1]"><img src="<!--{userpicurl($user3[1],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>产品说明</span>
-                                    <p>{$rencai_count[47]}位设计师</p>
+                                    <p>{if $rencai_count1['产品说明']}$rencai_count1['产品说明']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A160&indus_id=163"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user3[2]"><img src="<!--{userpicurl($user3[2],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>公司取名</span>
-                                    <p>{$rencai_count[163]}位设计师</p>
+                                    <p>{if $rencai_count1['公司取名']}$rencai_count1['公司取名']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A160&indus_id=162"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user3[3]"><img src="<!--{userpicurl($user3[3],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>成人改名</span>
-                                    <p>{$rencai_count[162]}位设计师</p>
+                                    <p>{if $rencai_count1['成人改名']}$rencai_count1['成人改名']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A473&indus_id=474"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user3[4]"><img src="<!--{userpicurl($user3[4],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>求婚创意</span>
-                                    <p>{$rencai_count[474]}位设计师</p>
+                                    <p>{if $rencai_count1['求婚创意']}$rencai_count1['求婚创意']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A472&indus_id=475"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user3[5]"><img src="<!--{userpicurl($user3[5],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>会展策划</span>
-                                    <p>{$rencai_count[475]}位设计师</p>
+                                    <p>{if $rencai_count1['会展策划']}$rencai_count1['会展策划']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A3&indus_id=48"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user3[6]"><img src="<!--{userpicurl($user3[6],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>剧本创作</span>
-                                    <p>{$rencai_count[48]}位设计师</p>
+                                    <p>{if $rencai_count1['剧本创作']}$rencai_count1['剧本创作']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A3&indus_id=52"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user3[7]"><img src="<!--{userpicurl($user3[7],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>演讲稿</span>
-                                    <p>{$rencai_count[52]}位设计师</p>
+                                    <p>{if $rencai_count1['演讲稿']}$rencai_count1['演讲稿']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
@@ -608,81 +608,81 @@
 					<div name="aaaaa">
 						<div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A160&indus_id=165"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user3[8]"><img src="<!--{userpicurl($user3[8],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>品牌取名</span>
-                                    <p>{$rencai_count[165]}位设计师</p>
+                                    <p>{if $rencai_count1['品牌取名']}$rencai_count1['品牌取名']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A160&indus_id=476"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user3[9]"><img src="<!--{userpicurl($user3[9],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>产品起名</span>
-                                    <p>{$rencai_count[476]}位设计师</p>
+                                    <p>{if $rencai_count1['产品起名']}$rencai_count1['产品起名']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A472&indus_id=477"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user3[10]"><img src="<!--{userpicurl($user3[10],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>婚庆策划</span>
-                                    <p>{$rencai_count[477]}位设计师</p>
+                                    <p>{if $rencai_count1['婚庆策划']}$rencai_count1['婚庆策划']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A473&indus_id=474"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user3[11]"><img src="<!--{userpicurl($user3[11],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>征集创意</span>
-                                    <p>{$rencai_count[474]}位设计师</p>
+                                    <p>{if $rencai_count1['征集创意']}$rencai_count1['征集创意']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A3&indus_id=479"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user3[12]"><img src="<!--{userpicurl($user3[12],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>歌词曲谱</span>
-                                    <p>{$rencai_count[479]}位设计师</p>
+                                    <p>{if $rencai_count1['歌词曲谱']}$rencai_count1['歌词曲谱']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A3&indus_id=42"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user3[13]"><img src="<!--{userpicurl($user3[13],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>广告语</span>
-                                    <p>{$rencai_count[42]}位设计师</p>
+                                    <p>{if $rencai_count1['广告语']}$rencai_count1['广告语']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A160&indus_id=161"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user3[14]"><img src="<!--{userpicurl($user3[14],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>宝宝取名</span>
-                                    <p>{$rencai_count[161]}位设计师</p>
+                                    <p>{if $rencai_count1['宝宝取名']}$rencai_count1['宝宝取名']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A472&indus_id=480"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user3[15]"><img src="<!--{userpicurl($user3[15],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>演出策划</span>
-                                    <p>{$rencai_count[480]}位设计师</p>
+                                    <p>{if $rencai_count1['演出策划']}$rencai_count1['演出策划']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
@@ -717,81 +717,81 @@
 					<div class="ban_stuy">
 						<div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A481&indus_id=337"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user4[0]"><img src="<!--{userpicurl($user4[0],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>二手房装修</span>
-                                    <p>{$rencai_count[337]}位设计师</p>
+                                    <p>{if $rencai_count1['二手房装修']}$rencai_count1['二手房装修']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A481&indus_id=487"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user4[1]"><img src="<!--{userpicurl($user4[1],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>效果图设计</span>
-                                    <p>{$rencai_count[487]}位设计师</p>
+                                    <p>{if $rencai_count1['效果图设计']}$rencai_count1['效果图设计']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A482&indus_id=488"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user4[2]"><img src="<!--{userpicurl($user4[2],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>阳台</span>
-                                    <p>{$rencai_count[488]}位设计师</p>
+                                    <p>{if $rencai_count1['阳台']}$rencai_count1['阳台']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A482&indus_id=489"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user4[3]"><img src="<!--{userpicurl($user4[3],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>客厅</span>
-                                    <p>{$rencai_count[489]}位设计师</p>
+                                    <p>{if $rencai_count1['客厅']}$rencai_count1['客厅']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A483&indus_id=152"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user4[4]"><img src="<!--{userpicurl($user4[4],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>办公室装修</span>
-                                    <p>{$rencai_count[152]}位设计师</p>
+                                    <p>{if $rencai_count1['办公室装修']}$rencai_count1['办公室装修']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A486&indus_id=151"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user4[5]"><img src="<!--{userpicurl($user4[5],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>展会装修</span>
-                                    <p>{$rencai_count[151]}位设计师</p>
+                                    <p>{if $rencai_count1['展会装修']}$rencai_count1['展会装修']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A484&indus_id=490"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user4[6]"><img src="<!--{userpicurl($user4[6],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>中式风格</span>
-                                    <p>{$rencai_count[490]}位设计师</p>
+                                    <p>{if $rencai_count1['中式风格']}$rencai_count1['中式风格']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A484&indus_id=491"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user4[7]"><img src="<!--{userpicurl($user4[7],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>波斯风格</span>
-                                    <p>{$rencai_count[491]}位设计师</p>
+                                    <p>{if $rencai_count1['波斯风格']}$rencai_count1['波斯风格']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
@@ -799,81 +799,81 @@
 					<div name="aaaaa">
 						<div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A485&indus_id=493"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user4[8]"><img src="<!--{userpicurl($user4[8],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>书柜设计</span>
-                                    <p>{$rencai_count[493]}位设计师</p>
+                                    <p>{if $rencai_count1['书柜设计']}$rencai_count1['书柜设计']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A485&indus_id=496"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user4[9]"><img src="<!--{userpicurl($user4[9],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>厨卫设计</span>
-                                    <p>{$rencai_count[496]}位设计师</p>
+                                    <p>{if $rencai_count1['厨卫设计']}$rencai_count1['厨卫设计']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A486&indus_id=153"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user4[10]"><img src="<!--{userpicurl($user4[10],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>园林设计</span>
-                                    <p>{$rencai_count[153]}位设计师</p>
+                                    <p>{if $rencai_count1['园林设计']}$rencai_count1['园林设计']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A481&indus_id=487"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user4[11]"><img src="<!--{userpicurl($user4[11],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>效果图设计</span>
-                                    <p>{$rencai_count[487]}位设计师</p>
+                                    <p>{if $rencai_count1['效果图设计']}$rencai_count1['效果图设计']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A481&indus_id=494"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user4[12]"><img src="<!--{userpicurl($user4[12],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
-                                    <span>草坯房装修</span>
-                                    <p>{$rencai_count[494]}位设计师</p>
+                                    <span>毛坯房装修</span>
+                                    <p>{if $rencai_count1['毛坯房装修']}$rencai_count1['毛坯房装修']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A484&indus_id=495"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user4[13]"><img src="<!--{userpicurl($user4[13],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>家居配色</span>
-                                    <p>{$rencai_count[495]}位设计师</p>
+                                    <p>{if $rencai_count1['家居配色']}$rencai_count1['家居配色']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A482&indus_id=492"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user4[14]"><img src="<!--{userpicurl($user4[14],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>厨卫</span>
-                                    <p>{$rencai_count[492]}位设计师</p>
+                                    <p>{if $rencai_count1['厨卫']}$rencai_count1['厨卫']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                         <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A481&indus_id=497"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user4[15]"><img src="<!--{userpicurl($user4[15],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>水电改造</span>
-                                    <p>{$rencai_count[497]}位设计师</p>
+                                    <p>{if $rencai_count1['水电改造']}$rencai_count1['水电改造']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
@@ -908,81 +908,81 @@
 					<div class="ban_stuy">
 						<div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A498&indus_id=501"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user5[0]"><img src="<!--{userpicurl($user5[0],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>居民搬家</span>
-                                    <p>{$rencai_count[501]}位设计师</p>
+                                    <p>{if $rencai_count1['居民搬家']}$rencai_count1['居民搬家']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A498&indus_id=502"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user5[1]"><img src="<!--{userpicurl($user5[1],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>机械设备租赁</span>
-                                    <p>{$rencai_count[502]}位设计师</p>
+                                    <p>{if $rencai_count1['机械设备租赁']}$rencai_count1['机械设备租赁']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A499&indus_id=507"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user5[2]"><img src="<!--{userpicurl($user5[2],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>月嫂保姆</span>
-                                    <p>{$rencai_count[507]}位设计师</p>
+                                    <p>{if $rencai_count1['月嫂保姆']}$rencai_count1['月嫂保姆']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A499&indus_id=508"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user5[3]"><img src="<!--{userpicurl($user5[3],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>器械清洗</span>
-                                    <p>{$rencai_count[508]}位设计师</p>
+                                    <p>{if $rencai_count1['器械清洗']}$rencai_count1['器械清洗']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A500&indus_id=511"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user5[4]"><img src="<!--{userpicurl($user5[4],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>学前辅导</span>
-                                    <p>{$rencai_count[511]}位设计师</p>
+                                    <p>{if $rencai_count1['学前辅导']}$rencai_count1['学前辅导']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A500&indus_id=512"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user5[5]"><img src="<!--{userpicurl($user5[5],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>私人舞蹈教练</span>
-                                    <p>{$rencai_count[512]}位设计师</p>
+                                    <p>{if $rencai_count1['私人舞蹈教练']}$rencai_count1['私人舞蹈教练']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A500&indus_id=513"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user5[6]"><img src="<!--{userpicurl($user5[6],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>美术辅导</span>
-                                    <p>{$rencai_count[513]}位设计师</p>
+                                    <p>{if $rencai_count1['美术辅导']}$rencai_count1['美术辅导']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A498&indus_id=503"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user5[7]"><img src="<!--{userpicurl($user5[7],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>办公搬家</span>
-                                    <p>{$rencai_count[503]}位设计师</p>
+                                    <p>{if $rencai_count1['办公搬家']}$rencai_count1['办公搬家']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
@@ -991,81 +991,81 @@
 					<div name="aaaaa">
 						<div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A498&indus_id=504"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user5[8]"><img src="<!--{userpicurl($user5[8],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>音响灯光租赁</span>
-                                    <p>{$rencai_count[504]}位设计师</p>
+                                    <p>{if $rencai_count1['音响灯光租赁']}$rencai_count1['音响灯光租赁']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A499&indus_id=509"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user5[9]"><img src="<!--{userpicurl($user5[9],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>钟点工</span>
-                                    <p>{$rencai_count[509]}位设计师</p>
+                                    <p>{if $rencai_count1['钟点工']}$rencai_count1['钟点工']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A500&indus_id=514"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user5[10]"><img src="<!--{userpicurl($user5[10],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>小学辅导</span>
-                                    <p>{$rencai_count[514]}位设计师</p>
+                                    <p>{if $rencai_count1['小学辅导']}$rencai_count1['小学辅导']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A500&indus_id=515"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user5[11]"><img src="<!--{userpicurl($user5[11],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>私人瑜伽教练</span>
-                                    <p>{$rencai_count[515]}位设计师</p>
+                                    <p>{if $rencai_count1['私人瑜伽教练']}$rencai_count1['私人瑜伽教练']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A500&indus_id=516"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user5[12]"><img src="<!--{userpicurl($user5[12],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>声乐辅导</span>
-                                    <p>{$rencai_count[516]}位设计师</p>
+                                    <p>{if $rencai_count1['声乐辅导']}$rencai_count1['声乐辅导']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A498&indus_id=505"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user5[13]"><img src="<!--{userpicurl($user5[13],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>起重吊装</span>
-                                    <p>{$rencai_count[505]}位设计师</p>
+                                    <p>{if $rencai_count1['起重吊装']}$rencai_count1['起重吊装']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A498&indus_id=506"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user5[14]"><img src="<!--{userpicurl($user5[14],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>庆典展会租赁</span>
-                                    <p>{$rencai_count[506]}位设计师</p>
+                                    <p>{if $rencai_count1['庆典展会租赁']}$rencai_count1['庆典展会租赁']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
                          <div class="ban_stu00">
                                 <div class="ban_stu00left">
-                                    <a href="index.php?do=seller_list&path=A499&indus_id=510"><img src="/tpl/default/d8/images/bangtu01.gif" width="84" height="85"/></a>
+                                    <a href="index.php?do=space&member_id=$user5[15]"><img src="<!--{userpicurl($user5[15],middle)}-->" width="84" height="85"/></a>
                                 </div>
                                 <div class="ban_stu00right">
                                     <span>涉外家政</span>
-                                    <p>{$rencai_count[510]}位设计师</p>
+                                    <p>{if $rencai_count1['涉外家政']}$rencai_count1['涉外家政']{else}0{/if}位设计师</p>
                                     <p class="ban_m"><a href="index.php?do=release">我有需求</a></p>
                                 </div>
                          </div>
@@ -1242,7 +1242,7 @@
   	{loop $vip_shop1 $k $v}
     <li class="silder_panel clearfix"> <a href="index.php?do=space&member_id={$v['uid']}" class="f_l"><img src="<!--{userpicurl($v['uid'],larger)}-->" width="230" height="151" /></a>
       <div class="bg1">
-        <h1><!--{eval echo kekezu::cutstr($v['shop_name'],16);}--></h1>
+        <h1>{if $v['shop_name']}<!--{eval echo kekezu::cutstr($v['shop_name'],16);}-->{else}$v['username']{/if}</h1>
         <h2><a href="index.php?do=release&to_uid={$v[uid]}">我要雇佣</a></h2>
         <h3>{$v[uid]}<br />
           诚信保障：{$ensure[$v['ensure']]}<br />
@@ -1271,7 +1271,7 @@
     {loop $vip_shop2 $k $v}
     <li class="silder_panel clearfix"> <a href="index.php?do=space&member_id={$v['uid']}" class="f_l"><img src="<!--{userpicurl($v['uid'],larger)}-->" width="230" height="151" /></a>
       <div class="bg1">
-        <h1><!--{eval echo kekezu::cutstr($v['shop_name'],16);}--></h1>
+        <h1>{if $v['shop_name']}<!--{eval echo kekezu::cutstr($v['shop_name'],16);}-->{else}$v['username']{/if}</h1>
         <h2><a href="index.php?do=release&to_uid={$v[uid]}">我要雇佣</a></h2>
         <h3>{$v[uid]}<br />
           诚信保障：{$ensure[$v['ensure']]}<br />
@@ -1300,7 +1300,7 @@
     {loop $vip_shop3 $k $v}
     <li class="silder_panel clearfix"> <a href="index.php?do=space&member_id={$v['uid']}" class="f_l"><img src="<!--{userpicurl($v['uid'],larger)}-->" width="230" height="151" /></a>
       <div class="bg1">
-        <h1><!--{eval echo kekezu::cutstr($v['shop_name'],16);}--></h1>
+        <h1>{if $v['shop_name']}<!--{eval echo kekezu::cutstr($v['shop_name'],16);}-->{else}$v['username']{/if}</h1>
         <h2><a href="index.php?do=release&to_uid={$v[uid]}">我要雇佣</a></h2>
         <h3>{$v[uid]}<br />
           诚信保障：{$ensure[$v['ensure']]}<br />
@@ -1329,7 +1329,7 @@
     {loop $vip_shop4 $k $v}
     <li class="silder_panel clearfix"> <a href="index.php?do=space&member_id={$v['uid']}" class="f_l"><img src="<!--{userpicurl($v['uid'],larger)}-->" width="230" height="151" /></a>
       <div class="bg1">
-        <h1><!--{eval echo kekezu::cutstr($v['shop_name'],16);}--></h1>
+        <h1>{if $v['shop_name']}<!--{eval echo kekezu::cutstr($v['shop_name'],16);}-->{else}$v['username']{/if}</h1>
         <h2><a href="index.php?do=release&to_uid={$v[uid]}">我要雇佣</a></h2>
         <h3>{$v[uid]}<br />
           诚信保障：{$ensure[$v['ensure']]}<br />
@@ -1385,7 +1385,7 @@
           </div>
           <div class="re_l">
             <div class="re_tu3">
-              <div class="shangquan"><a href="index.php?do=shop_list&path=C7"></a></div>
+              <div class="shangquan"><a href="index.php?do=shop"></a></div>
             </div>
             <div class="re_text">
               <p>我特别喜欢斗地主一类的棋牌游戏，以前常常泡在各种娱乐平台一玩就忘了时间，耽搁好多工作。常常告诉自己不应该在玩游戏了。但偶然的一次机会，我在浏览任务的时候发现豆8网竟然也有游戏区...</p>
@@ -1410,7 +1410,7 @@
           </div>
           
           <div class="te_l">
-            <h2>大品牌案例：</h2>
+            <h2>大品牌案例：<a href="index.php?do=360&view=logo" title="查看" style="color:#000; font-size:12px; position:absolute; right:365px;">查看更多</a></h2>
             <div class="te_t1">
               <ul>
                 <li><a href="#"><img src="/tpl/default/d8/images/anli_1.jpg" title="中国移动通信" /></a></li>
@@ -1421,7 +1421,7 @@
                 <li><a href="#"><img src="/tpl/default/d8/images/anli_6.jpg" title="红星·美凯龙" /></a></li>
               </ul>
             </div>
-            <div class="rk"><a href="index.php?do=zhuanti" title="豆8网秘书全程服务，品牌合作入口">豆8网秘书全程服务，品牌合作入口> ></a></div>
+            <div class="rk"><a href="index.php?do=360&view=logo" title="豆8网秘书全程服务，品牌合作入口">豆8网秘书全程服务，品牌合作入口> ></a></div>
           </div>
           
           <div class="te_l1">

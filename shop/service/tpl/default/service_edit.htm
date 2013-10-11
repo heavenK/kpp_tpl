@@ -157,7 +157,8 @@
 		var i = checkForm(document.getElementById('frm_service_edit'));		
 		if(i){
 		var shtml 	 =  editor.getSource(); /// contentCheck('tar_content','{$title}',50,500,1,'upload_tip');
-			if(shtml){
+		
+			
 				var data= $("#frm_service_edit").serialize();
 				var url = '{$url}';
 				$.post(url,{data},function(json){
@@ -169,7 +170,7 @@
 						showDialog("{$_lang['edit_fail']}","alert","{$_lang['operate_notice']}");
 					}
 				},'json')
-		}
+		
 	}
 	}
 	/**

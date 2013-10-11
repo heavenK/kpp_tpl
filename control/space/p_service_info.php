@@ -1,4 +1,5 @@
 <?php	defined ( 'IN_KEKE' ) or exit ( 'Access Denied' );
+
 $credit_level = unserialize($member_info['seller_level']);
 $indus_arr = $kekezu->_indus_arr;
 
@@ -140,6 +141,7 @@ $w['model_code']  = $model_code;
 $w['origin_id']   = $sid;
 $w['mark_status'] = $st;
 $w['mark_type'] = $ut;
+$w['uid'] = $uid;
 $ut=='my' and $w['uid'] = $uid;
 
 $mark_arr = keke_user_mark_class::get_mark_info($w,$p,' mark_id desc ','mark_status>0');

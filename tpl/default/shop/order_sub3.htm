@@ -49,7 +49,7 @@
                          <div class="prefix_1">
                         <div class="pt_20 pb_20">
                             <div class="t_r pb_10">
-                            	{if $order_info['order_status']!='arbitral'}
+                            	{if $order_info['order_status']!='arbitral' && $uid == $buyer_info['uid']}
                                 <button type="button" onclick="orderReport('{$order_id}')">交易维权</button>
 								{/if}
                             </div>
@@ -76,7 +76,6 @@
                                                     <span>电话：{if $seller_info['phone']}{$seller_info['phone']}{else}暂无{/if}</span>
                                                     <span>手机号码：{if $seller_info['mobile']}{$seller_info['mobile']}{else}暂无{/if}</span>
                                                     <span>Q  Q：{if $seller_info['qq']}{$seller_info['qq']}{else}暂无{/if}</span>
-                                                    <span>MSN：{if $seller_info['msn']}{$seller_info['msn']}{else}暂无{/if} </span>
                                                     <span>邮箱：{if $seller_info['email']}{$seller_info['email']}{else}暂无{/if}</span>
                                                 </div>
                                                 <div class="border_t_c t_c pt_10 pb_10 c333"> 
@@ -139,7 +138,6 @@
                                                 <span>电话：{if $buyer_info['phone']}{$buyer_info['phone']}{else}暂无{/if}</span>
                                                 <span>手机号码：{if $buyer_info['mobile']}{$buyer_info['mobile']}{else}暂无{/if}</span>
                                                 <span>Q  Q:{if $buyer_info['qq']}{$buyer_info['qq']}{else}暂无{/if}</span>
-                                                <span>MSN：{if $buyer_info['msn']}{$buyer_info['msn']}{else}暂无{/if} </span>
                                                 <span>邮箱：{if $buyer_info['email']}{$buyer_info['email']}{else}暂无{/if}</span>
                                                                                     
                                             </div>

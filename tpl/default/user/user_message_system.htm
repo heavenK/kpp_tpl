@@ -13,7 +13,7 @@
                 <!--main content-->
                     <div class="_gztt _gztt0 " style="height:44px">
                         <div class="yh_xxnav">
-                            <span style=" font-size:16px; font-weight:bold; line-height:46px">发件箱</span>
+                            <span style=" font-size:16px; font-weight:bold; line-height:46px">{if $op=='inbox'}{$_lang['inbox']}{else}{$_lang['outbox']}{/if}</span>
                         </div>
                         
                     </div>
@@ -34,7 +34,7 @@
                                         <span>标题</span>
                                     </div>
                                     <div class="yh_yhtab02">
-                                        <span>来自</span>
+                                        <span>{if $op == 'output'}收件人{else}来自{/if}</span>
                                     </div>
                                     <div class="yh_yhtab03">
                                         <span>时间</span>
@@ -56,9 +56,9 @@
                                     <div class="yh_yhtab01">
                                         <p>
                                         	<!--{eval if($v['uid']){$type='inbox';}else{$type="system";}}-->
-                                                    <a {if $v['view_status']!=1&&$msg_type!='output'}style="font-weight: bold"{/if} title="$v['title']"
+                                                    <a {if $v['view_status']!=1&&$msg_type!='output'}style="font-weight: bold; font-size:14px;"{/if} title="$v['title']"
 														 href="index.php?do=$do&view=$view&op=views&ac=view&msg_id=$v['msg_id']&msg_type=$msg_type">
-														$v['title'] </a>
+														<!--{eval echo kekezu::cutstr($v['title'],48);}--> </a>
                                         </p>
                                     </div>
                                     <div class="yh_yhtab02">

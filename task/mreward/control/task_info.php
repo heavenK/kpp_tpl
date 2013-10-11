@@ -8,6 +8,7 @@ $payitem_str = $task_obj->get_payitem_str();
 if(!$uid&&strstr(' '.$payitem_str,'seohide')){
 	kekezu::show_msg("拒绝访问",$back_url,3,"该任务在您登录后才可以访问");
 }
+if(strstr($payitem_str,'search')) banspider();
 $cover_cash = kekezu::get_cash_cove('',true);
 $task_config =$task_obj->_task_config;
 $model_id = $task_info ['model_id'];
@@ -113,8 +114,17 @@ function rz_show($uid){
 
 // 允许报名
 $allow_baomings = array();
+$work_lists = db_factory::query("select * from ".TABLEPRE."witkey_task_work where task_id=".$task_id." and work_status>0 ");
+
 foreach($work_info as $key => $val){
+	
 	$allow_baomings[$key] = $val['uid'];
+	foreach($work_lists as $key1 => $val1){
+		if($val['uid'] == $val1['uid']) {
+			unset($allow_baomings[$key]);
+			break;
+		}
+	}
 }
 //
 //报名人员
@@ -128,13 +138,15 @@ foreach($baoming_list as $key => $val){
 $vote_times = time()-$task_info['vote_start'];
 $days=round(($vote_times)/3600/24) ;
 
-if($day > $basic_config['vote_time']){
+if($days > $basic_config['vote_time'] && $task_info['is_vote'] == 2){
 	
 	db_factory::execute ( sprintf ( " update %switkey_task set is_vote=1 where task_id ='%d'", TABLEPRE, $task_id ) );
 
 	$works_list = db_factory::query ( sprintf ( "select * from %switkey_task_work where task_id=%d and vote_num > 0 order by vote_num desc limit 0,3", TABLEPRE, $task_id) );
 	foreach($works_list as $key => $val){
 		keke_finance_class::cash_in($val['uid'], floatval(0),intval($basic_config['baoming_credit']),'vote_win','','vote_win');
+		
+		db_factory::execute ( 'update ' . TABLEPRE . 'witkey_task_work set vote_position='.($key+1).' where work_id ='.$val['work_id'] );
 	}
 }
 

@@ -89,7 +89,7 @@
                        </div>
                            <ul class="intor">
                               <li class="font14b">{$_lang['pub_name']}{if $uid==$buyer_uid}({$_lang['me']}){/if}</li>
-                              <li>{$buyer_username}</li>
+                              <li><a href="###" onclick="sendMessage({$buyer_uid},'{$buyer_username}')">{$buyer_username}</a></li>
                            </ul>
                       </div>
                       <div class="pad10 contact">
@@ -97,7 +97,6 @@
                         <span>{$_lang['tel']}{$_lang['zh_mh']}{if $buyer_contact['phone']}$buyer_contact['phone']{else}{$_lang['now_no']}{/if}</span>
                         <span>{$_lang['mobile']}{$_lang['zh_mh']}{if $buyer_contact['mobile']}$buyer_contact['mobile']{else}{$_lang['now_no']}{/if}</span>
                         <span>Q  Q{$_lang['zh_mh']}{if $buyer_contact['qq']}$buyer_contact['qq']{else}{$_lang['now_no']}{/if}</span>
-                        <span>MSN{$_lang['zh_mh']}  {if $buyer_contact['msn']}$buyer_contact['msn']{else}{$_lang['now_no']}{/if}</span>
                         <span>{$_lang['email']}{$_lang['zh_mh']}{if $buyer_contact['email']}$buyer_contact['email']{else}{$_lang['now_no']}{/if}</span>
                       </div>
 					  {if $task_status!=9}
@@ -139,7 +138,7 @@
                         </div>
                          <ul class="intor">
                             <li class="font14b">{$_lang['bidder']}{if $uid==$seller_uid}({$_lang['me']}){/if}</li>
-                            <li>{$seller_username}</li>
+                            <li><a href="###" onclick="sendMessage({$seller_uid},'{$seller_username}')">{$seller_username}</a></li>
                           </ul>
                       </div>
                       <div class="pad10 contact">
@@ -147,7 +146,6 @@
                         <span>{$_lang['tel']}{$_lang['zh_mh']}{if $seller_contact['phone']}$seller_contact['phone']{else}{$_lang['now_no']}{/if}</span>
                         <span>{$_lang['mobile']}{$_lang['zh_mh']}{if $seller_contact['mobile']}$seller_contact['mobile']{else}{$_lang['now_no']}{/if}</span>
                         <span>Q  Q{$_lang['zh_mh']}{if $seller_contact['qq']}$seller_contact['qq']{else}{$_lang['now_no']}{/if}</span>
-                        <span>MSN{$_lang['zh_mh']}  {if $seller_contact['msn']}$seller_contact['msn']{else}{$_lang['now_no']}{/if}</span>
                         <span>{$_lang['email']}{$_lang['zh_mh']}{if $seller_contact['email']}$seller_contact['email']{else}{$_lang['now_no']}{/if}</span>
                                                             
                       </div>

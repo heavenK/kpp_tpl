@@ -25,8 +25,14 @@
             </div>
             {/if}
             <div class="bbs_zhuti_onetit">
-            	<!--<textarea class="nr_text  xheditor-simple {skin:'nostyle'}" cols="70" rows="20" name="content" style="width:645px"></textarea>-->
-            	<textarea class="nr_text" cols="70" rows="20" name="content" style="width:645px"></textarea>
+            	<textarea id="elm2" class="nr_text" cols="70" rows="20" name="content" style="width:645px"></textarea>
+            	<!--<textarea class="nr_text" cols="70" rows="20" name="content" style="width:645px"></textarea>-->
+                <script type="text/javascript" src="resource/js/xheditor/xheditor.js"></script>
+                <script>
+				$(function(){
+							 editor = $("#elm2").xheditor({tools:'Bold,Fontface,FontSize,FontColor,Italic,Underline,Strikethrough,Align,List,Outdent,Indent,Link,Img,Unlink,Table',skin:'nostyle',upImgUrl:"upload.php",upImgExt:"jpg,jpeg,gif,png",});
+					 })
+				</script>
             </div>
             <div class="bbs_zhuti_onetit">
             	<input type="submit" class="nr_input_3"  name="" value="发&nbsp;布">

@@ -65,7 +65,7 @@
 				<th>{$_lang['realname']}</th>
 				<th>{$_lang['id_card']}</th>
 				<th>{$_lang['id_card_copy']}</th>
-				<!--<th>{$_lang['cash']}</th>-->
+				<th>营业执照</th>
 				<th>{$_lang['validity']}</th>
 				<th>{$_lang['auth_status']}</th>
 				<!--<th>{$_lang['operate']}</th>-->
@@ -74,11 +74,11 @@
 			<tr class="item">
 				<td><input type="checkbox" name="ckb[]" id="cbk_selected" value="{$v[realname_a_id]}"></td>
 				<td>{$v[realname_a_id]}</td>
-				<td>{$v[username]}</td>
+				<td>{$v[username]}（{if $v[user_type] == 2}企业{else}个人{/if}）</td>
 				<td>{$v[realname]}</td>
 				<td>{$v[id_card]}</td>
 				<td><a target="_blank" href="../../{$v[id_pic]}"><img src="../../{$v[id_pic]}" width="40" height="40"></a></td>
- 
+ 				<td>{if $v[licen_pic]}<a target="_blank" href="../../{$v[licen_pic]}"><img src="../../{$v[licen_pic]}" width="40" height="40"></a>{/if}</td>
 				<!--<td class="wraphide"><font color="#ff7700">{$_lang['free']}</font></td>-->
 				<td>{if $v[start_time]==$v[end_time]}{$_lang['lifetime_validity']}{else}<!--{date('Y-m-d',$v[start_time])}-->{$_lang['to']}<!--{date('Y-m-d',$v[end_time])}-->{/if}</td>
 				<td>

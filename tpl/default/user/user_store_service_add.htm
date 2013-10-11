@@ -23,7 +23,7 @@
                     <div class="yhzh_aq">
                     	
                     	<div class="cy_nr_d">
-                        		<form action="{$basic_url}" method="post" name="frm_step2" id="frm_step1" enctype="multipart/form-data">
+              <form action="{$basic_url}" method="post" name="frm_step1" id="frm_step1" enctype="multipart/form-data">
                                 <input type="hidden" name="step1" value="step1">
                                 <input type="hidden" name="p_step" value="step1">
                                 <input type="hidden" name="min" value="$min" id="min">
@@ -33,6 +33,32 @@
                                   <!--新增选项 开始-->
                                   <div class="fenlei">分类：</div>
                                   <div class="selectbox_dw_tyt">
+              <select name="indus_type" id="indus_type" title="{$_lang['select_industry']}"  onchange="showIndusPid(this.value)" limit = "required:true;between:5-10" msg = '分类没有选择' msgArea="span_indus">
+                      <option value="">{$_lang['please_choose_class']}</option>
+                      {loop $type_arr $v}
+                           <option value="{$v['type_id']}">{$v['type_name']}</option>
+                      {/loop} 
+              </select>
+          </div>
+          <script>
+		   function showIndusPid(val){
+			   		$.ajax({
+							   type: "GET",
+							   url: "index.php?do=user&view=ajax&type=release&type_id="+val,
+							   async: true,
+							   success: function(data){
+								   if(data)	{
+									   data = "<option value=''>{$_lang['please_choose_class']}</option>"+data;
+									   //alert(data);
+									   $("#indus_pid").html(data);
+									}
+								   
+								   
+							   }
+					})
+			   }
+		  </script>
+                                  <div class="selectbox_dw_tyt" style="margin-left:5px;">
                                   	<select name="indus_pid" id="indus_pid" onchange="showTaskIndus(this.value)" >
                                         <option value="">{$_lang['please_choose_class']}</option>
                                           {loop $indus_p_arr $v}
@@ -146,7 +172,7 @@
                         <td valign="middle" align="left" height="40">&nbsp;</td>
                       </tr>
                       <tr>
-                        <td valign="middle" align="center" height="40" colspan="3"><input type="submit" onclick="stepCheck();"  class="nr_input_2" name="" value="保&nbsp;存"></td>
+                        <td valign="middle" align="center" height="40" colspan="3"><input type="button" onclick="stepCheck_11();"  class="nr_input_2" name="" value="保&nbsp;存"></td>
                         </tr>
                     </tbody></table>
 					</form>
@@ -182,6 +208,50 @@
 
   	 In.add('shelves',{path:"resource/js/system/shelves.js",type:'js'});
 	 In('shelves','ajaxfileupload','form','script_city'); 
+	 
+	 
+function stepCheck_11(){
+	//alert(1111); return false;
+	var i 	 = checkForm(document.getElementById('frm_'+r_step));
+	var pass = false;
+
+	if(i){
+		switch(r_step){
+	//		case "step1":
+	//					pass=true;
+	//			break;
+			case "step1":
+				
+					if(contentCheck('tar_content',L.s_description,5,1000,0,'',editor)&&checkAgreement()){
+						pass=true;
+					}else{
+						pass=false;
+					}
+				
+				break;
+			case "step2":
+				//if($("#item_map").attr("checked")==true&&$.trim($("#point").val())==''){
+				//set_map();pass=false;
+				//alert(111);return false;
+				if($("input[id=payitem_map][item_type=buy]").val()!=0&&$("#payitem_map").attr("item_type")=='buy'&&$.trim($("#point").val())==''){
+					showDialog('您没有设置地图','alert','操作提示');return false;
+				}else{
+					pass=true;
+				}
+				
+				break;
+			case "step3":
+				
+				break;
+		}
+	}
+	if(pass==true){
+		
+		$("#frm_"+r_step).submit();
+	}else{
+		return false;	
+	}
+}
 </script> 
 <!--contain end-->
 

@@ -37,15 +37,15 @@
         				<dd><a href="vip_shops.html"><img src="<!--{userpicurl($task_info['uid'],'small')}-->"  width="67" height="67"/></a></dd>
         				<dt>
         					<h1><a href="index.php?do=space&member_id={$task_info['uid']}" target="_blank">{$task_info[username]}</a>：{$task_info['task_title']}<i>任务编号：{$task_info[task_id]}</i></h1>
-                			<h2><b>招标金额</b><span><i>{if $task_info['task_cash_coverage']}{c:$cover_cash[$cover_id]['start_cove']}-{c:$cover_cash[$cover_id]['end_cove']}{else}{c:$task_info['task_cash']}{/if}</i></span></h2>
+                			<h2><b>招标金额</b><span><i>{if $task_info['task_cash_coverage']}{c:$cover_cash[$cover_id]['start_cove']}-{c:$cover_cash[$cover_id]['end_cove']}{else}{c:$task_info['task_cash']}{/if}</i><em>已托管：{if $task_info['true_cash']> 0}{c:$task_info['true_cash']}{else}0元{/if}</em></span></h2>
                         </dt>
                 	</dl>
                 </div>
         
         		<div class="fabu_02">
-        			<h1><i><img src="/tpl/default/d8/images/zanyu.png"  width="20" height="20"/></i>参与进行中：剩余<em class="red d_time" ed="{$time_desc['time']}" title="{$time_desc[desc]}"></em></h1>
+        			<h1><i><img src="/tpl/default/d8/images/zanyu.png"  width="20" height="20"/></i>参与进行中：{if $task_info['task_status'] == 5}<em class="red d_time">公示中</em>{else}剩余<em class="red d_time" ed="{$time_desc['time']}" title="{$time_desc[desc]}"></em>{/if}</h1>
         			<h1><i><img src="/tpl/default/d8/images/shangjin.png"  width="20" height="20"/></i>赏金分配：<b> <a class="mre_task_kind c333" href="javascript:void(0);" title="<p class='pad5'>{$_lang['employer_confirmed_the_task_is_completed']}</p>">{$model_list[$task_info['model_id']]['model_name']}{$_lang['model']}</a></b></h1>
-        			<h3><i>发布需求</i><i style="margin-right:55px">威客投标</i><em>雇主选标</em><em style="margin-right:55px">托管赏金</em><em style="margin-right:55px">威客工作</em><em style="margin:0">验收付款</em></h3>
+        			<h3 {if $task_info['task_status']==2}class="step4"{elseif $task_info['task_status']==3}class="step5"{elseif $task_info['task_status']==4}class="step6"{elseif $task_info['task_status']==5}class="step6"{elseif $task_info['task_status']==8}class="step7"{else}class="step1"{/if}><i {if $task_info['task_status'] != 2 &&$task_info['task_status'] != 3 && $task_info['task_status'] != 4&& $task_info['task_status'] != 5 && $task_info['task_status'] != 8}class="no_sel"{/if}>发布需求</i><i {if $task_info['task_status'] != 2 &&$task_info['task_status'] != 3 && $task_info['task_status'] != 4 && $task_info['task_status'] != 5 && $task_info['task_status'] != 8}class="no_sel"{/if} style="margin-right:55px">威客投标</i><i {if $task_info['task_status'] != 2 &&$task_info['task_status'] != 3 && $task_info['task_status'] != 4 && $task_info['task_status'] != 5 && $task_info['task_status'] != 8}class="no_sel"{/if}>雇主选标</i><em {if !$task_info['true_cash']}class="no_sel"{/if} style="margin-right:55px">托管赏金</em><i {if $task_info['task_status'] != 4 && $task_info['task_status'] != 5 && $task_info['task_status'] != 8}class="no_sel"{/if} style="margin-right:55px">威客工作</i><i {if $task_info['task_status'] != 6 && $task_info['task_status'] != 8}class="no_sel"{/if} style="margin:0">验收付款</i></h3>
                 </div>
         
         		<div class="fabu_03">
@@ -88,7 +88,10 @@
                       {if $process_can['delay']}
                             <a href="javascript:void(0)" onclick="taskDelay();">{$process_desc['delay']}</a>
                       {/if}
-                      {if $process_can[pub_agreement]} 
+                      {if $task_info['task_status']==4 && $uid == $task_info['uid'] && !$task_info['true_cash']}
+                      	<a href="javascript:void(0)" onclick="send_money({$task_info['task_id']});" >托管赏金</a>
+                      {/if}
+                      	  {if $process_can[pub_agreement]} 
 						  	<a href="javascript:void(0)" onclick="work_over('pub_agreement');" >确认完工</a>
 						  {/if}			  
 						  {if $process_can[work_over]} 
@@ -98,12 +101,25 @@
                       <li><a class="selected" href="#official">任务留言</a></li>
                     </ul>
                 	<div class="tab-border"></div>
-
+<script>
+/** 托管赏金 */
+function send_money(task_id) {
+	if (check_user_login()) {
+		if (uid == guid) {
+			showWindow("work_hand", basic_url + '&op=send_money&task_id='+task_id, "get", '0');			
+			return false;
+		} else {
+			showDialog('alert', 'alert', '您不是雇主，不需要付钱！', '', 0);
+			return false;
+		}
+	}
+}
+</script>
                     <div style="display: block;" id="official">
                 		<div class="jiantou_02"><img src="/tpl/default/d8/images/jiantou.png"  width="16" height="10"/></div>
                     	<div class="official03">
                             <h1 style="line-height:15px;">快来留言吧</h1>
-                            <textarea class="juwenben" id="tar_comment" onkeydown="checkCommentInner(this,event)">说点什么...</textarea>
+                            <textarea class="juwenben" id="tar_comment" onkeydown="checkCommentInner(this,event)" onfocus="if(this.value=='说点什么...'){this.value='';}"  onblur="if(this.value==''){this.value='说点什么...'}">说点什么...</textarea>
 						</div>
                         <b class="answer_word">{$_lang['you_can_input']}</b>
                        	<h3 style="float:right;"><button class="titi" value="{$_lang['send_comment']}" onclick="comment_add()">提交</button></h3>
@@ -123,12 +139,12 @@
                                 <ul class="infoList">
                                     <div class="vip_jiaoyi_tit">
                                         <span>
-                                        	<a href="{$basic_url}&view=work">{$_lang['all_works']}[{if $task_info[work_num]}$task_info[work_num]{else}0{/if}]</a>
-                                            <a href="{$basic_url}&view=work&st=4">{$_lang['bided_work']}[{if $search_condit[4][count]}$search_condit[4][count]{else}0{/if}]</a>
-                                            <a href="{$basic_url}&view=work&st=7">{$_lang['out_work']}[{if $search_condit[7][count]}$search_condit[7][count]{else}0{/if}]</a>
+                                        	<a href="{$basic_url}&view=work" {if !isset($st)&& !isset($ut)}class="xz"{/if}>{$_lang['all_works']}[{if $task_info[work_num]}$task_info[work_num]{else}0{/if}]</a>
+                                            <a href="{$basic_url}&view=work&st=4" {if $st=='4'}class="xz"{/if}>{$_lang['bided_work']}[{if $search_condit[4][count]}$search_condit[4][count]{else}0{/if}]</a>
+                                            <a href="{$basic_url}&view=work&st=7" {if $st=='7'}class="xz"{/if}>{$_lang['out_work']}[{if $search_condit[7][count]}$search_condit[7][count]{else}0{/if}]</a>
                          
                                              {if $task_obj->_guid != $uid}
-                                            <a href="{$basic_url}&view=work&ut=my">{$_lang['my_works']}</a>
+                                            <a href="{$basic_url}&view=work&ut=my" {if $ut=='my'}class="xz"{/if}>{$_lang['my_works']}</a>
                                             {/if}
                                            
                                         </span>
@@ -165,7 +181,6 @@
                                         	{if $process_can['work_choose']}
                                               {if !in_array($v['bid_status'],array('4','7','8'))}<a href="javascript:void(0);" onclick="workBid('{$v[bid_id]}','4',this)">{$_lang['bid']}</a>{/if}
                                             
-                                              {if !in_array($v['bid_status'],array('4','7','8'))}<a href="javascript:void(0);" onclick="workBid('{$v[bid_id]}','7',this)">{$_lang['out']}</a>{/if}
                                             {/if} 
                                             
                                             
@@ -176,7 +191,7 @@
                                    	{/loop}
                                     
                                     
-                                    <div class="page_count">
+                                    <div class="page page_count">
                                         {$pages['page']}
                                     </div> 
                                 	<div class="clear"></div> 
@@ -275,6 +290,8 @@
 
 
 <script type="text/javascript">
+	var flags = "{if !$user_info['on_time']}2{else}1{/if}";
+
 	$(function (){ 
 		notice_comment();
 	})

@@ -248,7 +248,7 @@ function ieGo(){
                     </div>
                     {else}
                     <div class="hydl">
-                    	<a href="index.php?do=user&view=setting"  class="huiyuan">{if $username}{$username}{elseif $oauth_user_info}{$oauth_user_info['account']}{/if}</a>
+                    	<a href="index.php?do=space&member_id={$uid}"  class="huiyuan">{if $username}<!--{eval echo kekezu::cutstr($username,14);}-->{elseif $oauth_user_info}{$oauth_user_info['account']}{/if}</a>
                         <i></i>
                     	<a href="index.php?do=logout"  class="zhuce">{$_lang['logout']}</a>
                     </div>
@@ -270,7 +270,7 @@ function ieGo(){
                             
                             <li class="dl_btn0" style="width:155px; height:30px; padding-top:15px; padding-left:30px;">
                                 <input name="" type="submit" onclick="return user_login();"  value="登录"/>
-                                <a href="">忘记密码？</a>
+                                <a href="index.php?do=get_password">忘记密码？</a>
                             </li> 
                         </ul>
                     </form>
@@ -330,7 +330,7 @@ function ieGo(){
                   <li {if $view=='question'}class="h_r"{/if}><a href="index.php?do=vip_info&view=question" class="hide">常见问题</a></li>
                    <li>|</li>
                   <li><a href="index.php?do=vip_info&view=info" class="hide">开通和管理</a></li>
-                   <li>|</li>
+                   
                 </ul>
              </div>
              

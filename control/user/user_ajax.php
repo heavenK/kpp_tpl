@@ -11,6 +11,11 @@ if($type == 1){
 		exit;
 	}else{
 	
+		if($user_info['credit'] < $basic_config['baoming_credit']){
+			echo "no_credit";
+			exit;	
+		}
+	
 		$sql = sprintf ( "insert into %switkey_task_baoming value(%d,%d,%d)", TABLEPRE, $task_id, $v_uid, time());
 		$res = db_factory::execute ( $sql );
 		echo $res;
@@ -69,6 +74,7 @@ if($type ==3){
 
 if($type == 4){
 	
+	
 	if($user_info['send_flower'] > 0){
 		echo "sended";
 		exit;
@@ -83,10 +89,12 @@ if($type == 4){
 		db_factory::execute ( sprintf ( " update %switkey_space set send_flower=1 where uid ='%d'", TABLEPRE, $uid ) );
 		
 		if($res) {
+			echo 1;
+			$to_user_info = keke_user_class::get_user_info($user_info['pid']);
 			
 			keke_finance_class::cash_out ($uid, $basic_config['flower_credit'], 'send_flower','','','',1); 
+			keke_msg_class::send_private_message ("您收到红花了","您收到来自于威客".$user_info['username']."的红花了。", $to_user_info[uid], $to_user_info[username],'','','no_echo');
 			
-			echo 1;
 			exit;
 		}else{
 			echo 0;
@@ -113,22 +121,33 @@ if($type == 'index'){
 
 if($type == 'good'){
 	
+		$info = db_factory::get_one(" select * from ".TABLEPRE."forum_send where pid=".$pid." and uid=".$uid);
 	
-		$res = db_factory::execute ( " update ".TABLEPRE."forum_post set good=good+1 where pid =".$pid);
-		
-		if($res) {
-			echo 1;
-			exit;
+		if($info) {
+			echo -1;
+			exit;	
 		}else{
-			echo 0;
-			exit;
+		
+			$res = db_factory::execute ( " update ".TABLEPRE."forum_post set good=good+1 where pid =".$pid);
+			
+			if($res) {
+				echo 1;
+				exit;
+			}else{
+				echo 0;
+				exit;
+			}
 		}
-	
 }
 
 if($type == 'zan' || $type == 'ding'){
 	
+	$info = db_factory::get_one(" select * from ".TABLEPRE."forum_send where tid=".$tid." and uid=".$uid);
 	
+	if($info){
+		echo -1;
+		exit;
+	}else{
 		$res = db_factory::execute ( " update ".TABLEPRE."forum_thread set ".$type."=".$type."+1 where tid =".$tid);
 		
 		if($res) {
@@ -138,10 +157,22 @@ if($type == 'zan' || $type == 'ding'){
 			echo 0;
 			exit;
 		}
-	
+	}
 }
 
-
+if($type == 'release'){
+	$info = db_factory::get_one("select * from ".TABLEPRE."witkey_indus_type where type_id=".$type_id);	
+	
+	if($info){
+		$indus_pid = db_factory::query("select * from ".TABLEPRE."witkey_industry where indus_id in (".$info['indus_ids'].")");	
+		
+		foreach($indus_pid as $key=> $val){
+			echo "<option value=".$val['indus_id']." >".$val['indus_name']."</option>";
+		}
+		exit;
+	}else	echo 0;
+	exit;
+}
 
 
 

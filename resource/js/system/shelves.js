@@ -69,7 +69,7 @@ function stepCheck(){
 	//alert(1111); return false;
 	var i 	 = checkForm(document.getElementById('frm_'+r_step));
 	var pass = false;
-    
+
 	switch(r_step){
 //		case "step1":
 //					pass=true;

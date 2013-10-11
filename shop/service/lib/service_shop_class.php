@@ -101,8 +101,8 @@ class service_shop_class {
 								$res = keke_order_class::order_cancel_return ( $order_id ); 
 								if ($res) {
 									keke_order_class::set_order_status ( $order_id, $action ); 
-									$v_arr = array ($_lang ['user_msg'] => $order_info ['order_username'], $_lang ['action'] => $_lang ['close_order_have'], $_lang ['order_id'] => $order_id, $_lang ['order_link'] => $s_order_link );
-									keke_shop_class::notify_user ( $order_info ['seller_uid'], $order_info ['seller_username'], "order_change", $_lang ['goods_order_close'], $v_arr );
+									$v_arr = array ($_lang ['user_msg'] => $order_info ['seller_username'], $_lang ['action'] => $_lang ['close_order_have'], $_lang ['order_id'] => $order_id, $_lang ['order_link'] => $b_order_link );
+									keke_shop_class::notify_user ( $order_info ['order_uid'], $order_info ['order_username'], "order_change", $_lang ['goods_order_close'], $v_arr );
 									kekezu::show_msg ( $_lang['system prompt'],  "index.php?do=user&view=employer&op=shop&model_id=".$service_info['model_id'], '1',$_lang ['order_deal_complete_and_close'], 'alert_right' ) ;
 								} else {
 									kekezu::show_msg ( $_lang['system prompt'],  "index.php?do=user&view=employer&op=shop&model_id=".$service_info['model_id'], '1',$_lang ['order_deal_fail_and_link_kf'], 'alert_error' ) ;

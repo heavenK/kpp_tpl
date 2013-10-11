@@ -2,6 +2,9 @@
 defined ( 'IN_KEKE' ) or exit ( 'Access Denied' );
 $nav_active_index = 'shop';
 $basic_url = $_K['siteurl']."/index.php?do=service&sid=".$sid;
+
+header("location:index.php?do=space&view=service_info&sid=".$sid);
+
 keke_shop_class::plus_view_num($sid, $owner_info['uid']);
 $payitem_arr = unserialize($service_info[payitem_time]);
 $item_config = keke_payitem_class::get_payitem_config ( null, null, null, 'item_id' );
@@ -30,14 +33,14 @@ switch ($view) {
 		$status_arr   = service_shop_class::get_order_status();
 		$sql =" select count(a.order_id) from %switkey_order a left join %switkey_order_detail b
 				 on a.order_id=b.order_id where b.obj_id='$sid' and b.obj_type='service' 
-				 and day(date(from_unixtime(a.order_time)))=day(curdate()) and order_status='confirm'";
+				 and day(date(from_unixtime(a.order_time)))=day(curdate()) and order_status='complete'";
 		$today_sale   = db_factory::get_count(sprintf($sql,TABLEPRE,TABLEPRE,$sid));
 		intval ( $page ) and $p ['page'] = intval ( $page ) or $p ['page']='1';
 		intval ( $page_size ) and $p ['page_size'] = intval ( $page_size ) or $p['page_size']='10';
 		$p['url'] = $basic_url."&view=sale&page_size=".$p ['page_size']."&page=".$p ['page'];
 		$p ['anchor']	  = '#pageTop';
 		$w=array();
-		$w['a.order_status']="confirm";
+		$w['a.order_status']="complete";
 		$t=='today'   and $ext_condit = 'day(date(from_unixtime(a.order_time)))=day(curdate())';
 		$sale_arr    = keke_shop_class::get_sale_info($sid,$w,$p," a.order_time desc",$ext_condit);
 		$sale_list   = $sale_arr['sale_info'];

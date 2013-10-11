@@ -3,7 +3,7 @@ keke_lang_class::load_lang_class('keke_user_class');
 class keke_user_class {
 	static function get_user_info($uid, $isusername = false) {
 		$isusername and $where = " a.username = '$uid'" or $where = " a.uid = '$uid'";
-		$sql = "select a.*,b.rand_code from " . TABLEPRE . "witkey_space a left join " . TABLEPRE . "witkey_member b on a.uid=b.uid where $where";
+		$sql = "select a.*,b.rand_code,p.on_time from " . TABLEPRE . "witkey_space a left join " . TABLEPRE . "witkey_member b on a.uid=b.uid left join " . TABLEPRE . "witkey_shop p on a.uid=p.uid where $where";
 		return db_factory::get_one ( $sql );
 	}
 	static function user_register($username, $password, $email) {

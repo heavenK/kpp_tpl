@@ -10,7 +10,51 @@
           	<a href="index.php?do=$do&view=$view&op=$op&type=post" {if $type == 'post'}class="here"{/if}>回复管理</a>           
 		</div>
 </div>
-
+	<div class="box search p_relative">
+    	<div class="title"><h2>{$_lang['search']}</h2></div>
+        <div class="detail" id="detail">
+           
+		    <form action="#" method="get" name="s" id="sl">
+            	<input type="hidden" name="do" value="$do">
+				<input type="hidden" name="view" value="$view">
+				<input type="hidden" name="type" value="$type">
+				<input type="hidden" name="page" value="$page">
+                <table cellspacing="0" cellpadding="0">
+					<tbody>
+                        <tr>
+                            <th>分类</th>
+                            <td>
+                            	<select class="ps vm" name="type_id" id="catid">
+                                {if $type_id}
+                                	<option value="$type_id">$type_arr[$type_id]</option>
+                                {/if}
+                                <option value="">--</option>
+                            	{loop $type_arr $k $v}
+									<option value="$k">$v</option>
+								{/loop}
+								
+								</select>
+                            </td>
+                            <th>标题</th>
+                            <td colspan="3"><input type="text" value="$title" name="title" class="txt"/>*{$_lang['search_by_like']}</td>
+						</tr>
+                        <tr> 
+                        	<th></th>
+                            <td>
+								</td>
+                            <th></th>
+                            <td>
+                              	<button class="pill" type="submit" value="{$_lang['search']}" name="sbt_search">
+                            		<span class="icon magnifier"></span>{$_lang['search']}
+								</button>
+								</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+			
+        </div>
+    </div>
     <!--搜索结束-->
     {if $type == 'thread'}
 	<div class="box list">

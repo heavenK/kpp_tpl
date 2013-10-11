@@ -905,4 +905,11 @@ function step1_key($str = '') {
 	! $str and $res = 'str';
 	return $res;
 }
+
+function banspider() {
+	if(preg_match("/(baiduspider)/i",$_SERVER['HTTP_USER_AGENT'])) exit;
+	if(preg_match("/(googlebot)/i",$_SERVER['HTTP_USER_AGENT'])) exit;
+	if(preg_match("/(sogou)/i",$_SERVER['HTTP_USER_AGENT'])) exit;
+	if(preg_match("/(SOSOsosospider)/i",$_SERVER['HTTP_USER_AGENT'])) exit;
+}
 ?>

@@ -18,17 +18,17 @@
                             <li class="sydl_btn">
                                 <label class="sydl_btnz">账&nbsp;&nbsp;&nbsp;&nbsp;户&nbsp;:</label>
                                 <!--{eval $inter==1 and $v=$_lang['you_can_user_phone_eamil'] or $v=$_lang['input_your_user_name'];}-->
-                                <input style="width:200px;" type="text" value="{$v}" class="txt txt_input" size="20" autocomplete="off" name="txt_account" id="txt_account" limit="required:true;len:2-20" msg="{$_lang['user_error']}" title="{$_lang['username_can_chinese']}" msgArea="login_account_msg" />
-                                <span class="msg" id="login_account_msg"></span>
+                                <input style="width:200px;" type="text" value="{$v}" class="txt txt_input" size="20" autocomplete="off" name="txt_account" id="txt_account" limit="required:true;len:2-20" msg="用户名格式不正确" title="{$_lang['username_can_chinese']}" />
+                                
                             </li>
                             <li class="sydl_btn">
                                 <label class="sydl_btnz">密&nbsp;&nbsp;&nbsp;&nbsp;码&nbsp;:</label>
                                 <input type="text" style="width:200px;" id="txt_password" name="txt_password" value="{$_lang['password_is_not_null']}" style="" class="txt_input txt" original-title="">
-                                <input class="txt_input txt" style="width:200px;display:none;" type="password" name="pwd_password" id="pwd_password" maxlength="20" limit="required:true;len:6-20" msg="{$_lang['password_length_limit']}" title="{$_lang['password_length']}" msgArea="login_password_msg" />
-                                <span class="msg" id="login_password_msg"></span>
+                                <input class="txt_input txt" style="width:200px;display:none;" type="password" name="pwd_password" id="pwd_password" maxlength="20" limit="required:true;len:6-20" msg="密码格式不正确" title="{$_lang['password_length']}" />
+                                
                             </li>
                             <li class="sydl_btn01">
-                            	<input name="" type="checkbox" value="" />&nbsp;一周内自动登录&nbsp;&nbsp;&nbsp;<a class="sydl_btn01wz" href="index.php?do=get_password" style="color:#F60;">忘记密码？</a>
+                            	<input name="remember" type="checkbox" value="1" />&nbsp;一周内自动登录&nbsp;&nbsp;&nbsp;<a class="sydl_btn01wz" href="index.php?do=get_password" style="color:#F60;">忘记密码？</a>
                             </li>
                             <li class="sydl_btn0" style="width:328px; height:37px; padding-top:0px; padding-left:60px;">
                                 <input name="" onclick="return user_login();" type="submit"  value="登录"/>

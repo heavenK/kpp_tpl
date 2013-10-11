@@ -945,6 +945,7 @@ function ele_valid(id){
 	if(tips==null) tips='&nbsp;';
 	
 	$("#"+id).blur(function(){
+		
 		var url = obj.getAttribute('ajax');
 		var value="";
 		var aa = validElement(obj);

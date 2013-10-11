@@ -29,10 +29,11 @@ class keke_glob_class {
 		'prom_enterprise_auth'=>$_lang['prom_mobile_auth'],'enterprise_auth'=>$_lang['enterprise_auth'],
 		'task_remain_return'=>$_lang['task_remain_return'],'task_hosted_return'=>$_lang['task_hosted_return'],
 		'admin_charge'=>$_lang['admin_charge'],'host_deposit'=>$_lang['host_deposit'],
-		'deposit_return'=>$_lang['deposit_return'],'host_return'=>$_lang['host_return'],'cancel_bid'=>'撤销中标','pub_word'=>'提交稿件','choose_back'=>'中标返还','choose_sucess'=>'成功选稿',
+		'deposit_return'=>$_lang['deposit_return'],'host_return'=>$_lang['host_return'],'cancel_bid'=>'撤销中标','pub_word'=>'提交稿件','choose_back'=>'中标返还奖励','choose_sucess'=>'成功选稿奖励',
 		'tudi_choose'=>'徒弟中标','answer_credit'=>'回答知识点','look_credit'=>'查看详细','open_baozhang'=>'开通诚信保障','open_vip'=>'开通VIP',
 		'baishi_sucess'=>'申请拜师','become_shifu'=>'成为师傅','baishi_fail'=>'拜师失败','leave_master'=>'离开师门','tude_leave'=>'徒弟离开',
 		'throw_tudi'=>'逐出徒弟','leaved_master'=>'被逐出师门','baoming_vote'=>'报名投票','vote_win'=>'投票胜利','send_flower'=>'送花',
+		'send_money'=>'托管赏金',
 		'host_split'=>$_lang['host_split']);
 	}
 

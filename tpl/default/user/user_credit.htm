@@ -15,7 +15,7 @@
                 <!--main content-->
                 <div class="gz_xs">
                     <div class="ac_zltop">
-                        <span><b>{if $part!=pj}信誉等级成长{else}评价管理{/if}</b></span>
+                        <span><b>{if $part!=pj}{if $user_type==2}信誉{else}能力{/if}等级成长{else}评价管理{/if}</b></span>
                     </div>
                     
                         <!--信誉等级成长 begin  -->
@@ -24,7 +24,7 @@
                    <div class="xypjbox">
                       <div class="xy_gl">
                             <div class="xy_cz">
-                                <p><i>信誉等级</i>{$credit_level['pic']} <i>{$_lang['next_level_need']}</i></p>
+                                <p><i>信誉等级</i>{$credit_level['pic']} <i>{$_lang['next_level_need']}{$credit_level['level_up']}{$_lang['reputation_value']}</i></p>
                                 <div class="xy_dj loading_bar load_green">
                                     <div class="progress_bar shine" grade="{$credit_level['grade_rate']}">
                                           {$credit_level['title']} 
@@ -50,14 +50,15 @@
                      <div class="xypjbox">
                       <div class="xy_gl">
                             <div class="xy_cz">
-                                <p><i>信誉等级</i>{$able_level['pic']} <i>{$_lang['next_level_need']}</i></p>
+                                <p><i>能力等级</i>{$able_level['pic']} <i>{$_lang['next_level_need']}{$able_level['level_up']}{$_lang['reputation_value']}</i></p>
                                 <div class="xy_dj loading_bar load_green">
                                     <div class="progress_bar shine" grade="{$able_level['grade_rate']}">
                                           {$able_level['title']} 
                                           
                                       </div>
                                       <div class="tipsy tipsy-s"  style="left:{$able_level['grade_rate']}%;  line-height:15px; display:none;">
-                                       
+                                       <div class="tipsy-arrow tipsy-arrow-s"></div>
+													
                                       </div>
                                 </div>
                             </div>
@@ -107,7 +108,7 @@
                                             {/if}
                                             
                                             </th>
-                                            <th style="font-weight:normal">{$v['by_username']}</th>
+                                            <th style="font-weight:normal">{if $show == 'rec'}{$v['by_username']}{else}{$v['username']}{/if}</th>
                                             <th style="font-weight:normal">
                                             {if $v['mark_status']=='1'}
 												<!--好中差图片-->

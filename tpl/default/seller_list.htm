@@ -1,4 +1,5 @@
 <!--{template header_index_top}-->
+<link href="resource/css/base.css" rel="stylesheet" charset="utf-8">
 <script type="text/javascript">
 $(document).ready(function(){
 
@@ -61,30 +62,17 @@ function fa_bu(){
         </td>
       </tr>
     {else}
-  <tr>
-    <td width="100" height="35" align="center" valign="middle"><a href="###">创意设计</a></td>
-    <td height="35" valign="middle" class="sb"><a href="index.php?do=seller_list&path=A441">平面设计</a> <a href="index.php?do=seller_list&path=A457">网页设计</a> <a href="index.php?do=seller_list&path=A357">影音媒体</a> <a href="index.php?do=seller_list&path=A458">动漫设计</a> <a href="index.php?do=seller_list&path=A459">照片处理</a> <a href="index.php?do=seller_list&path=A460">应用设计</a></td>
-  </tr>
-  <tr>
-    <td width="100" height="35" align="center" valign="middle"><a href="###">程序开发</a></td>
-    <td height="35" valign="middle" class="sb"><a href="index.php?do=seller_list&path=A455">移动应用</a> <a href="index.php?do=seller_list&path=A2">网站开发</a> <a href="index.php?do=seller_list&path=A456">软件开发</a> <a href="index.php?do=seller_list&path=A249">网游服务</a> </td>
-  </tr>
-  <tr>
-    <td width="100" height="35" align="center" valign="middle"><a href="###">文案策划</a></td>
-    <td height="35" valign="middle" class="sb"><a href="index.php?do=seller_list&path=A3">文案策划</a> <a href="index.php?do=seller_list&path=A160">起名取名</a> <a href="index.php?do=seller_list&path=A472">活动策划</a> <a href="index.php?do=seller_list&path=A473">写作创意</a></td>
-  </tr>
-  <tr>
-    <td width="100" height="35" align="center" valign="middle"><a href="###">装饰装修</a></td>
-    <td height="35" valign="middle" class="sb"><a href="index.php?do=seller_list&path=A481">家居装修</a> <a href="index.php?do=seller_list&path=A482">局部装修</a> <a href="index.php?do=seller_list&path=A483">办公装修</a> <a href="index.php?do=seller_list&path=A484">装修风格</a> <a href="index.php?do=seller_list&path=A485">家具设计</a> <a href="index.php?do=seller_list&path=A486">户外装修</a></td>
-  </tr>
-  <tr>
-    <td width="100" height="35" align="center" valign="middle"><a href="###">商务服务</a></td>
-    <td height="35" valign="middle" class="sb"><a href="index.php?do=seller_list&path=A517">翻译服务</a> <a href="index.php?do=seller_list&path=A518">市场调查</a> <a href="index.php?do=seller_list&path=A234">法律咨询</a> <a href="index.php?do=seller_list&path=A519">商业服务</a> <a href="index.php?do=seller_list&path=A240">求职招聘</a></td>
-  </tr>
-  <tr>
-    <td width="100" height="35" align="center" valign="middle"><a href="###">生活服务</a></td>
-    <td height="35" valign="middle" class="sb"><a href="index.php?do=seller_list&path=A498">搬家租赁</a> <a href="index.php?do=seller_list&path=A499">家政保洁</a> <a href="index.php?do=seller_list&path=A500">家教陪练</a> </td>
-  </tr>
+  {loop $first_type_list $k $v}
+   		<tr>
+            <td width="100" height="35" align="center" valign="middle"><a href="###">{$v['type_name']}</a></td>
+            <td height="35" valign="middle" class="sb">
+            {loop $v['indus'] $k1 $v1}
+            <a href="index.php?do=seller_list&path=A{$v1['indus_id']}">{$v1['indus_name']}</a> 
+            {/loop}
+            </td>
+		</tr> 
+   
+    {/loop}
     {/if}
 </table>
 
@@ -151,6 +139,18 @@ function fa_bu(){
                 </div>
             </div>
             
+           <div class="rclx">
+                <em>能力等级</em>
+                <div class="selectbox_dw">
+                    <select class="SelectCity" name="level_info" id="level_category" >
+                        <option value="">不限</option>
+                        {loop $level_arr $k $v}  
+                        <option value="$v['m_title']" {if $level == $v['m_title']}selected="selected"{/if}>$v['m_title']</option>
+                        {/loop}
+                    </select>
+                </div>
+            </div>
+            
             <div class="rclx" style="width:600px;">
                 <em>所在地区：</em>
                 <div class="selectbox_dw">
@@ -164,10 +164,15 @@ function fa_bu(){
                 {loop $select_arr $k $v}
                 <a href="$v['url']" class="selected">$v['name'] <font class="close">&times;</font></a>
                 {/loop}
+                {if $level}
+                <a href="index.php?do=seller_list&path={$path}">{$level} <font class="close">&times;</font></a>
+                {/if}
                 {if $province&&$city&&$area}<a href="index.php?do=seller_list&path={$path}&min={$min}&max={$max}" class="selected">{$province},{$city},{$area} <font class="close">&times;</font></a>{/if}
-                {if $select_arr||$max||$province}<a href="index.php?do=seller_list" class="button"><span class="icon reload"></span>{$_lang['reset']}　</a>
+                
+                {if $select_arr||$max||$province||$level}<a href="index.php?do=seller_list" class="button"><span class="icon reload"></span>{$_lang['reset']}　</a>
                 {else}{$_lang['no_selected_terms']}
                 {/if}
+                
                 </div>
             </div>
             
@@ -175,6 +180,19 @@ function fa_bu(){
 			$("#store_category").change(function(e) {
 					
 					location.href=$(this).val()+"#official";
+				});
+				
+			$("#level_category").change(function(e) {
+					//alert($(this).val());
+					
+					var level= $(this).val();
+					  if(level){
+						  window.location.href = "index.php?do=seller_list&path=$path&province=$province&city=$city&area=$area&level="+level+"#official";
+					  }else{
+						  window.location.href = "index.php?do=seller_list&path=$path&province=$province&city=$city&area=$area#official";
+						 }
+					
+					//location.href=$(this).val()+"#official";
 				});
 			</script>
         </div>
@@ -219,11 +237,11 @@ function fa_bu(){
                             	<i>地址：</i><em>$v['residency']</em>
                             </h2>
                             <h2 style="margin-bottom:0;">
-                            	<i>诚信保障：</i><em>$v['balance']元</em>
+                            	<i>诚信保障：</i><em>{$ensure[$v['ensure']]}</em>
                             </h2>
                             <h2 style="margin-bottom:0;">
                             
-                            	<i>服务项目：</i><em>{if !empty($indus_all_arr[$v['indus_pid']]['indus_name'])}  $indus_all_arr[$v['indus_pid']]['indus_name']|$indus_all_arr[$v['indus_id']]['indus_name']{else}无{/if}</em>
+                            	<i>服务项目：</i><em title="$v['skill_ids']">{if !empty($v['skill_ids'])}  <!--{eval echo kekezu::cutstr($v['skill_ids'],60);}-->{else}无{/if}</em>
                             </h2>
                             <h2 style="margin-bottom:0;">
                             	{if $v[shop_type]==1}
@@ -232,7 +250,7 @@ function fa_bu(){
                                 <tt>公司</tt>
                                 {/if}
                             	
-                            	<strong>{if $v[isvip]==1}<img src="/tpl/default/d8/images/vz.jpg" width="62" height="18" />{/if}</strong>
+                            	<strong>{if $v[isvip]==1}<img src="/tpl/default/d8/images/vz.jpg" width="62" height="18" />{elseif $v[isvip] ==2}<img src="/tpl/default/d8/images/vk.jpg" width="62" height="18" />{/if}</strong>
                             </h2>
                         </div>
             			<div class="shsh_top_hp">

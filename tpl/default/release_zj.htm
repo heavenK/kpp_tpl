@@ -37,6 +37,32 @@ $(document).ready(function () {
         <div class="yjxm">
           <!--新增选项 开始-->
           <div class="selectbox_dw">
+              <select name="indus_type" id="indus_type" title="{$_lang['select_industry']}"  onchange="showIndusPid(this.value)" limit = "required:true;between:5-10" msg = '{$_lang['industry_no_choose']}' msgArea="span_indus">
+                      <option value="">{$_lang['select_industry']}</option>
+                      {loop $type_arr $v}
+                           <option value="{$v['type_id']}">{$v['type_name']}</option>
+                      {/loop} 
+              </select>
+          </div>
+          <script>
+		   function showIndusPid(val){
+			   		$.ajax({
+							   type: "GET",
+							   url: "index.php?do=user&view=ajax&type=release&type_id="+val,
+							   async: true,
+							   success: function(data){
+								   if(data)	{
+									   data = "<option value=''>{$_lang['select_industry']}</option>"+data;
+									   //alert(data);
+									   $("#indus_pid").html(data);
+									}
+								   
+								   
+							   }
+					})
+			   }
+		  </script>
+          <div class="selectbox_dw" style="margin-left:10px;">
               <select name="indus_pid" id="indus_pid" title="{$_lang['select_industry']}"  onchange="showTaskIndus(this.value)" limit = "required:true;between:5-10" msg = '{$_lang['industry_no_choose']}' msgArea="span_indus">
                       <option value="">{$_lang['select_industry']}</option>
                       {loop $indus_p_arr $v}

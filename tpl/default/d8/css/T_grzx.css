@@ -136,7 +136,7 @@ table {border-collapse: collapse; border-spacing: 0px;}
 .zpzwgl h2 { font-size:12px; font-style:normal; font-weight:normal; margin-bottom:5px; float:left}
 .zpzwgl h2 i { font-style:normal;}
 .zpzwgl h2 { border: 1px solid #47AF8A; float: left;}
-.zpzwgl h2 b { background: none repeat scroll 0 0 #47AF8A;  color: #FFFFFF; float: left;  font-size: 12px;  height: 27px; line-height: 26px; text-align: center; width: 60px;}
+.zpzwgl h2 b { background: none repeat scroll 0 0 #47AF8A;  color: #FFFFFF; float: left;  font-size: 12px;  height: 32px; line-height: 26px; text-align: center; width: 60px;}
 .zpzwgl h2 span { padding: 7px 20px 0 6px;}
 .zpzwgl h2 span i {color: #B80002; font-size: 12px;font-style: normal; line-height: 26px;}
 .zpzwgl h2 span em { color: #47AF8A; font-size: 12px; font-style: normal; margin-left: 30px;}
@@ -365,8 +365,9 @@ table {border-collapse: collapse; border-spacing: 0px;}
 	
 	.pages{ float:right; line-height:30px; margin-right:0px  !important; margin-right:15px; display:inline;}
 	
-		.pages a{ height:25px; text-decoration:none; border:1px #dedede solid; padding:0px 5px;color:#000; }
+		.pages a{ height:25px; text-decoration:none; border:1px #dedede solid; padding:0px 5px; }
 		
+		.pages .selected { color:#0C0; margin:0 2px;}
 			.pages a:hover{ color:#C00;}
 			
 			.ls{  background:#48b68d;}
@@ -446,7 +447,7 @@ table {border-collapse: collapse; border-spacing: 0px;}
 
 .jbzl{ width:710px; padding:25px 0px 0px 20px;}
 .jbzl_se{ width:644px; overflow:hidden; padding-left:10px; }
-.jbzl_se p{clear:left; padding:7px 0px 0 0; float:left;}
+.jbzl_se p{clear:left; padding:7px 0px 0 0; float:left;*float: none !important;}
 .jbzl_se p label{display:block; float:left; width:90px; height:25px; line-height:25px; font-size:14px; text-align:right;}
 .jbzl_se p label span{ color:#F30;}
 .texts{ float:left; width:160px;}
@@ -703,7 +704,7 @@ input#old_passworld.txt_input{width:214px; height:29px;}
 
 
 /*师徒关系--shitu.html*/
-.teacher_zl								{border:1px solid #f4f5f5; background:#f0fffa; padding:0px 0 26px 10px; position:relative}
+.teacher_zl								{border:1px solid #f4f5f5; background:#f0fffa; padding:0px 0 26px 10px;}
 .teacher_zl_tx							{width:130px; height:130px; float:left; border:1px solid #D0D5D1; background:#f7f7f7; margin-right:20px; display:inline; margin-top:10px;}
 .teacher_zl_tx h1						{padding:9px; }
 .teacher_zl_btn							{width:165px; height:38px; background:url(../images/teacher01.jpg) repeat-x; border:0px; font-size:14px;}

@@ -96,7 +96,7 @@
 					</td>
 					<td>{c:$v[task_cash]}</td>
                     <td>$v[username]</td>
-				    <td>$task_status[$v[task_status]]</td>
+				    <td>$task_status[$v[task_status]]{if $v['task_status']==8} {if $v['is_vote'] == 2}(投票中){elseif $v['is_vote']==1}(投票结束){/if}{/if}</td>
                   
                     <td>
                        <!-- 

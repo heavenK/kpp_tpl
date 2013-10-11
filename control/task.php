@@ -15,7 +15,10 @@ $register =  intval ( $register ['count'] );
 // end
 
 
+
 if (isset ( $task_id )) {
+	//店铺信息
+	$shop_info = db_factory::get_one(sprintf("select * from %switkey_shop where uid = '%d'",TABLEPRE,$uid));
 	$task_ext_obj = new Keke_witkey_task_ext_class ();
 	$task_ext_obj->setWhere ( 'a.task_id=' . intval ( $task_id ) );
 	$task_info = $task_ext_obj->query_keke_witkey_task ();

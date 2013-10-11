@@ -15,8 +15,8 @@ switch ($auth_step){
 	case "step2":
 		break;
 	case "step3":
-		if(name_exists($fds['id_pic'])){
-			kekezu::show_msg($_lang['operate_notice'],$ac_url,1,'this mobile exists!','alert_error');
+		if(name_exists($fds['id_card'])){
+			kekezu::show_msg("身份证号码已经认证过了!",$ac_url,2,'身份证号码已经认证过了!','alert_error');
 		}
 		isset($formhash)&&kekezu::submitcheck($formhash) and $auth_obj->add_auth($fds,'id_pic');	
 		break;

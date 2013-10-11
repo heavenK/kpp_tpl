@@ -73,7 +73,7 @@
                     </div>
                     {else}
                     <div class="hydl">
-                    	<a href="index.php?do=user&view=setting" class="huiyuan">{if $username}{$username}{elseif $oauth_user_info}{$oauth_user_info['account']}{/if}</a>
+                    	<a href="index.php?do=space&member_id={$uid}" class="huiyuan">{if $username}<!--{eval echo kekezu::cutstr($username,14);}-->{elseif $oauth_user_info}{$oauth_user_info['account']}{/if}</a>
                         <i></i>
                     	<a href="index.php?do=logout" class="zhuce" >{$_lang['logout']}</a>
                     </div>
@@ -95,7 +95,7 @@
                             
                             <li class="dl_btn0" style="width:155px; height:30px; padding-top:15px; padding-left:30px;">
                                 <input name="" type="button" onClick="return user_login();"  value="登录"/>
-                                <a href="">忘记密码？</a>
+                                <a href="index.php?do=get_password">忘记密码？</a>
                             </li> 
                         </ul>
                     </form>
@@ -150,7 +150,7 @@
                   <li {if $view=='shitu'}class="h_r"{/if}><a href="index.php?do=user&view=shitu" class="hide">师徒关系</a></li>
                   <li>|</li>
                   {if $messagecount>0}
-                  <i style=" width:15px; height:15px; background:#F00; color:#fff; text-align:center; line-height:15px; font-style:normal; position:absolute; top:5px; left:460px">{$messagecount}</i>
+                  <i style="height:15px; background:#F00; color:#fff; text-align:center; line-height:15px; font-style:normal; position:absolute; top:5px; left:460px">{$messagecount}</i>
                   {/if}
                 </ul>
              </div>

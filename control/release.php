@@ -13,9 +13,13 @@ $task_in = number_format ( $task_in ['cash'], 2, ".", "," );
 $register =  intval ( $register ['count'] );
 // end
 
+$sql_type = "select * from ".TABLEPRE."witkey_indus_type";
+$type_arr = db_factory::query($sql_type);
+
 $mode_arr  = array("professional","guide","onekey");
 in_array($pub_mode,$mode_arr) or $pub_mode='professional';
-if($r_step == 'step4') kekezu::show_msg("发布成功","index.php?do=user&view=employer&op=task",3,"发布成功","success");
+
+if($r_step == 'step4') kekezu::show_msg("发布成功","index.php?do=user&view=employer&op=task&model_id=".$model_id,3,"发布成功","success");
 switch($pub_mode){
 	case "professional":
 		break;

@@ -200,7 +200,7 @@ abstract class keke_auth_base_class {
 		}elseif($this->_auth_code=='realname'){
 		    $user_role='1';
 		}
-		db_factory::execute(sprintf(" update %switkey_space set user_type='%d' where uid='%d'",TABLEPRE,$user_role,$uid));
+		//db_factory::execute(sprintf(" update %switkey_space set user_type='%d' where uid='%d'",TABLEPRE,$user_role,$uid));
 	}
 	private function extract_birth($uid,$idcard){
 		switch (strlen($idcard)){

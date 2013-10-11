@@ -40,15 +40,15 @@
         				<dd><a href="vip_shops.html"><img src="<!--{userpicurl($task_info['uid'],'small')}-->"  width="67" height="67"/></a></dd>
         				<dt>
         					<h1><a href="index.php?do=space&member_id={$task_info['uid']}" target="_blank">{$task_info[username]}</a>：{$task_info['task_title']}<i>任务编号：{$task_info[task_id]}</i></h1>
-                			<h2><b>招标金额</b><span><i>{c:$task_info['task_cash']}</i><em>已托管：{c:$task_info['task_cash']}</em></span></h2>
+                			<h2><b>金额</b><span><i>{c:$task_info['task_cash']}</i><em>已托管：{if $task_info['task_status']> 0}{c:$task_info['task_cash']}{else}0{/if}</em></span></h2>
                         </dt>
                 	</dl>
                 </div>
         
         		<div class="fabu_02">
-        			<h1><i><img src="/tpl/default/d8/images/zanyu.png"  width="20" height="20"/></i>参与进行中：剩余<em class="red d_time" ed="{$time_desc['time']}" title="{$time_desc[desc]}"></em></h1>
+        			<h1><i><img src="/tpl/default/d8/images/zanyu.png"  width="20" height="20"/></i>参与进行中：{if $task_info['task_status'] == 5}<em class="red d_time">公示中</em>{else}剩余<em class="red d_time" ed="{$time_desc['time']}" title="{$time_desc[desc]}"></em>{/if}</h1>
         			<h1><i><img src="/tpl/default/d8/images/shangjin.png"  width="20" height="20"/></i>赏金分配：<b> <a class="mre_task_kind c333" href="javascript:void(0);" title="{$_lang['only_one_can_bid']},威客中标后将得到：{c:$cash};">{$model_list[$task_info['model_id']]['model_name']}{$_lang['model']}</a></b></h1>
-        			<h3><i>发布需求</i><i style="margin-right:55px">威客投标</i><em>雇主选标</em><em style="margin-right:55px">托管赏金</em><em style="margin-right:55px">威客工作</em><em style="margin:0">验收付款</em></h3>
+        			<h3 {if $task_info['task_status']==2}class="step4"{elseif $task_info['task_status']==3}class="step5"{elseif $task_info['task_status']==6}class="step6"{elseif $task_info['task_status']==8}class="step7"{else}class="step1"{/if}><i {if $task_info['task_status'] != 2 &&$task_info['task_status'] != 3 && $task_info['task_status'] != 6 && $task_info['task_status'] != 8}class="no_sel"{/if}>发布需求</i><i {if $task_info['task_status'] != 2 &&$task_info['task_status'] != 3 && $task_info['task_status'] != 6 && $task_info['task_status'] != 8}class="no_sel"{/if} style="margin-right:55px">托管赏金</i><i {if $task_info['task_status'] != 2 &&$task_info['task_status'] != 3 && $task_info['task_status'] != 6 && $task_info['task_status'] != 8}class="no_sel"{/if}>威客投标</i><em {if $task_info['task_status'] != 3 && $task_info['task_status'] != 6 && $task_info['task_status'] != 8}class="no_sel"{/if} style="margin-right:55px">雇主选标</em><i {if $task_info['task_status'] != 6 && $task_info['task_status'] != 8}class="no_sel"{/if} style="margin-right:55px">威客工作</i><i {if $task_info['task_status'] != 6 && $task_info['task_status'] != 8}class="no_sel"{/if} style="margin:0">验收付款</i></h3>
                 </div>
         
         		<div class="fabu_03">
@@ -92,7 +92,7 @@
                             <a class="selected" href="javascript:void(0)" onclick="taskDelay();">{$process_desc['delay']}</a>
                       {/if}
                       {if in_array($uid, $allow_baomings) && $task_info['is_vote'] == 2}
-                      	<a  class="selected" href="javascript:void(0)" onclick="choose_vote({$task_id},{$uid});">报名投票</a>
+                      	<a  class="selected" href="javascript:void(0)" onclick="choose_vote({$task_id},{$uid},{$basic_config['baoming_credit']});">报名投票</a>
                       {/if}
                       </li>
                       <li><a class="selected" href="#official">任务留言</a></li>
@@ -103,7 +103,7 @@
                 		<div class="jiantou_02"><img src="/tpl/default/d8/images/jiantou.png"  width="16" height="10"/></div>
                     	<div class="official03">
                             <h1 style="line-height:15px;">快来留言吧</h1>
-                            <textarea class="juwenben" id="tar_comment" onkeydown="checkCommentInner(this,event)">说点什么...</textarea>
+                            <textarea class="juwenben" id="tar_comment" onkeydown="checkCommentInner(this,event)" onfocus="if(this.value=='说点什么...'){this.value='';}"  onblur="if(this.value==''){this.value='说点什么...'}";>说点什么...</textarea>
 						</div>
                         <b class="answer_word">{$_lang['you_can_input']}</b>
                        	<h3 style="float:right;"><button class="titi" value="{$_lang['send_comment']}" onclick="comment_add()">提交</button></h3>
@@ -123,7 +123,7 @@
                                 <ul class="infoList">
                                     <div class="vip_jiaoyi_tit">
                                         <span>
-                                        	<a href="{$basic_url}&view=work" {if !isset($st)}class="xz"{/if}>{$_lang['all_works']}[{$task_info['work_num']}]</a>
+                                        	<a href="{$basic_url}&view=work" {if !isset($st) && !isset($ut)}class="xz"{/if}>{$_lang['all_works']}[{$task_info['work_num']}]</a>
                                             <a href="{$basic_url}&view=work&st=4" {if $st==4}class="xz"{/if}>{$_lang['bided_work']}[<!--{eval echo intval($search_condit['4']['count'])}-->]</a>
                                             <a href="{$basic_url}&view=work&st=7" {if $st==7}class="xz"{/if}>{$_lang['out_work']}[<!--{eval echo intval($search_condit['7']['count'])}-->]</a>
                                             <a href="{$basic_url}&view=work&st=5" {if $st==5}class="xz"{/if}>{$_lang['in_work']}[<!--{eval echo intval($search_condit['5']['count'])}-->]</a>
@@ -151,8 +151,10 @@
                                             <div class="vip_zs_lrz"><em>认证状况：</em><span>{if $v['user_type'] == 2}公司认证{else}个人认证{/if}</span><div class="clear"></div></div>
                                             <div class="vip_zs_lrz" style="margin-bottom:2px;"><em>能力等级：</em><tt>{$user_leve['pic']}</tt><div class="clear"></div></div>
                                             <div class="vip_zs_lrz"><i>身份认证：</i><tt style="margin-top:0px;"><!--{eval echo rz_show($v['uid']);}--></tt><div class="clear"></div></div>
+                                            <div class="ws_prewrap ws_break"><!--{eval echo kekezu::escape($v['work_desc'])}--></div>
                                             <div class="gaojiao">
                                                 <h3>稿件</h3>
+                                                
                                                 <!--{eval $payitems = explode(',',$task_info[pay_item])}-->
                                                 {if in_array(1,$payitems) && $uid != $task_info['uid'] && $uid != $v[uid]}
                                                 	稿件隐藏
@@ -163,12 +165,21 @@
                                                         <a href="{$vc}"><img src="{$vc}"  width="84" height="84"/></a>
                                                     {/loop}
                                                 {/if}
+                                                 <!--稿件附件-->
+                                                {if $v['work_file']}
+                                                  <details open id="file">
+                                                     <!--标题-->
+                                                     <!--{eval $file_count = sizeof(explode(",",$v['work_file']))}-->
+                                                    <summary class="pad5 fontb"><a href="javascript:void(0);" onclick="loadFile('{$v[work_id]}')">{$_lang['see_attachment']}($file_count)</a></summary>
+                                                    <div class="affix pl_10" id="work_{$v['work_id']}_file"></div>
+                                                 </details>
+                                               {/if}
                                                 {/if}
                                             </div>
                                             <div class="baojia">
                                                 <h4>报价：<b>{c:$task_info['task_cash']}</b> <span>&nbsp;</span></h4>
                                                 <h4><i><img src="/tpl/default/d8/images/zanyu.png"  width="15" height="15"/></i><em><!--{date('Y-m-d H:i:s',$v['work_time'])}--></em></h4>
-                                                <h4><i><img src="/tpl/default/d8/images/diqu.png"  width="10" height="15"/></i><em>{$v['residency']}</em></h4>
+                                                <h4><em>所得的票数：<tt>{$v['vote_num']}</tt></em></h4>
                                                 <h4><em>任务编号：<tt>{$task_id}</tt></em></h4>
                                             </div>
                                         </div>
@@ -177,12 +188,8 @@
                                               {if !in_array($v['work_status'],array('4','7','8'))}
                                                 <a href="javascript:void(0);" onclick="workBid('{$v[work_id]}','4',this)">{$_lang['bid']}</a>
                                               {/if}
-                                              {if !in_array($v['work_status'],array('4','5','7','8'))}
-                                                <a href="javascript:void(0);" onclick="workBid('{$v[work_id]}','5',this)">{$_lang['in']}</a>
-                                              {/if}
-                                              {if !in_array($v['work_status'],array('4','7','8'))}
-                                                    <a href="javascript:void(0);" onclick="workBid('{$v[work_id]}','7',this)">{$_lang['no_qualified']}</a>
-                                                {/if}
+                                             
+                                              
                                             {/if}
                                             {if $process_can['task_agree']&&$v['work_status']=='4'&&($uid==$task_info['uid']||$v['uid']==$uid)}
                                                     <a href="javascript:taskAgree({$agree_id});">{$_lang['deliver_agreement']}</a>
@@ -281,7 +288,9 @@
                       <a href="javascript:void(0)" onclick="workHand();"></a>
                   {/if}
                 {/if}
-                
+                {if in_array($uid, $allow_baomings) && $task_info['is_vote'] == 2}
+                      <a class="tou" href="javascript:void(0)" onclick="choose_vote({$task_id},{$uid},{$basic_config['baoming_credit']});"></a>
+                 {/if}
             </div>
 			<div class="ljfb_right_02">
                 <h5>豆8网承诺</h5>
@@ -311,6 +320,8 @@
 
 
 <script type="text/javascript">
+	var flags = "{if !$user_info['on_time']}2{else}1{/if}";
+	
 	$(function (){ 
 		notice_comment();
 	})

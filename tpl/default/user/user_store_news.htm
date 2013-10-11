@@ -119,7 +119,16 @@
                                      msgArea="msg_art_source"/><span id="msg_art_source"></span>
                         </td>
                       </tr>
-                      
+                      <tr>
+                        <td width="80" valign="middle" align="right" height="40">图片：</td>
+                        <td width="20" valign="middle" height="40">&nbsp;</td>
+                        <td valign="middle" align="left" height="40">
+                        <input type="file" name="art_pic" id="art_pic" ext=".jpg,.gif,.png,.jpeg" onchange="isExtName(this,1)">
+                        {if $art_info['art_pic']}
+                        <a href="{$_K['siteurl']}/{$art_info['art_pic']}" target="_blank"><!--{eval echo ltrim(strrchr($art_info['art_pic'],'/'),'/')}--></a>
+                        {/if}
+                        </td>
+                      </tr>
                       <tr>
                         <td width="80" valign="top" align="right" height="240">文章内容：</td>
                         <td width="20" valign="top" height="240">&nbsp;</td>

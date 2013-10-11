@@ -65,7 +65,7 @@
 							{if $uid==$order_info['order_uid']}
                             <div class="pad20 c333 clearfix">
                                 <div>
-                                    <p><span style="width:430px;display:inline-block;" class="t_r">您的订单需要支付：</span><span class="cc00 font18">{c:$service_info['price']}</span></p>
+                                    <p><span style="width:430px;display:inline-block;" class="t_r">您的订单需要支付：</span><span class="cc00 font18">{c:$order_info['order_amount']}</span></p>
                                     <p><span style="width:430px;display:inline-block;" class="t_r">账户余额：</span><span class="cc00 font18">{c:$buyer_info['balance']}</span></p>
                                  </div>
                                 <div class="t_c mt_20">

@@ -103,7 +103,7 @@
                      {elseif $auth_step=='step2'}
 				  <form action="{$ac_url}&auth_step=step3" method="post" id="frm_auth" enctype="multipart/form-data" name="frm_auth">
                   <input type="hidden" name="fds[zone]" id="zone" value="{$zone}">
-                  <input type="hidden" name="fds[user_type]" id="user_type" value="{$user_type}">
+                  <input type="hidden" name="fds[user_type]" id="user_type" value="{$member_type}">
                   <div class="smrz_box">
                     <div class="smrz_er">
                         <p><label style=" float:left; width:150px; text-align:right;">用户名：</label>{$user_info[username]}</p>
@@ -132,7 +132,14 @@
                                <span style="margin-left:50px; font-size:12px;">证件的扫描件或证件照片</span>
                             </div>
                         </div>
-                        
+                        {if $member_type ==2}
+                        <div style="width:700px; overflow:hidden; padding-top:15px;">
+                            <label style=" float:left; width:150px; line-height:24px;  text-align:right;">营业执照复印件：</label>
+                            <div style="float:left;height:30px;">
+                               <input type="file" name="licen_pic" ext='.gif,.jpg,.png' onchange="isExtName(this);" style="width:100px; height:30px; cursor:pointer " id="licen_pic"/>
+                            </div>
+                        </div>
+                        {/if}
                      <div class="ben">
                      	{if $auth_info&&!$auth_info['auth_status']}
                             <button  style="width:100px" type="button" class="button" value="{$_lang['waiting_for_approval']}"><span class="icon"></span>{$_lang['waiting_for_approval']}</button>
@@ -161,8 +168,8 @@
                             <img src="<!--{userpicurl($uid,small)}-->" width=50 height=50>
                         </ul>
                         <ul style=" float:left; padding-left:30px;">
-                            <p style="font-size:14px; line-height:30px;"><b>个人</b></p>
-                            <p style="font-size:13px; color:#999999; line-height:30px;">以个人身份进行认证</p>
+                            <p style="font-size:14px; line-height:30px;"><b>{if $user_info['user_type']==2}企业{else}个人{/if}</b></p>
+                            <p style="font-size:13px; color:#999999; line-height:30px;">以{if $user_info['user_type']==2}企业{else}个人{/if}身份进行认证</p>
                         </ul>
                     </div>
                     <div style="width:740px; overflow:hidden; border-bottom:1px #e9e9e9 solid; padding:15px 0px;">
@@ -230,7 +237,13 @@
 			return false;
 			
 		}
-		
+		{if $member_type ==2}
+		if(!$("#licen_pic").val()){
+			showDialog("请上传营业执照",'alert',"请上传营业执照");
+			return false;
+			
+		}
+		{/if}
 		var i=checkForm(document.getElementById("frm_auth"));
 		if(i){
 				form_sbt();

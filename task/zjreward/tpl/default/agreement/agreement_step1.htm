@@ -1,0 +1,118 @@
+<!--{template header_index_top}-->
+<script type="text/javascript">
+	var SITEURL= "{$_K['siteurl']}",
+	    SKIN_PATH = '{SKIN_PATH}',
+		LANG       = '{$language}',
+	    INDEX      = '{$do}',
+	    CHARSET    = "{$_K['charset']}";
+</script>
+
+
+<!--公用样式-->
+<link href="resource/css/base.css" rel="stylesheet" charset="utf-8">
+<!--布局样式-->
+<link rel="stylesheet" media="all" href="resource/css/layout/960.min.css" charset="utf-8">
+<!--box样式-->
+<link href="resource/css/box_min.css" rel="stylesheet" charset="utf-8">
+
+<link href="{SKIN_PATH}/css/common.css" rel="stylesheet" charset="utf-8">
+<link href="{SKIN_PATH}/theme/{$_K['theme']}/css/{$_K['theme']}_style.css" rel="stylesheet" charset="utf-8">
+
+<!--页面样式-->
+<link href="resource/css/public.css" rel="stylesheet" type="text/css" charset="utf-8">
+<div class="wrapper">
+<!--页面头部-->
+ <header class="clearfix page_header">
+   <div class="container_24 clearfix">
+     <div class="page_title">
+        <h2 class="title">$agree_info['agree_title']</h2>
+     </div>
+     <div class="clear"></div>
+   </div>
+ </header>
+<!--end 页面头部-->
+<!--详细内容区-->
+ <section class="content box">
+ <!--布局框-->  
+  <div class="container_24">
+    <div class=" mt_10">
+   	<!--step步骤 start-->
+      <div class="step_progress clearfix">
+       {loop $stage_nav $k $v}
+         <div class="step {$v['0']} {if $v['0']==$step}selected{/if}">
+            <span class="icon32 pub">{$k}</span>
+            <strong>{$v['1']}</strong><em>{$v['2']}</em>
+         </div>
+	  {/loop}
+      </div>
+   <!--step步骤 end-->
+   
+    
+                    
+   <!--步骤下部所有内容-->
+   <div class="step1_detail">
+   	<!--  帮助 start -->
+    <div class="help_center" >
+     	
+     	<div id="help_center" class="help_detail hidden">
+	     		<h3>任务交付协议简介</h3>
+		        <p><!--{tag 任务交付协议简介}--></p>
+      	</div>
+  
+      	<div class="help_down ">
+			<a href="#" class="action_show">交付说明<span class="arrow_b"></span></a>
+		</div>
+	</div>
+ <!--  帮助 end -->
+	<div class="clearfix pt_30">
+
+
+         <div class="pad20">
+           <!--源文件协议内容-->
+             
+             <div class="source_content clearfix" id="agreement">
+               <div class="source_agreement">
+                 <h5 class="font16b t_c">{$_lang['work_source_deliver_agreement']}</h5>
+                   <div class="mutual mt_10 clearfix">
+                     <div class="grid_10">
+                       <span class=" font14">{$_lang['pub_name']} <strong style="color:#2f549f">{$buyer_username}</strong></span>
+                       <span>{$_lang['later_short_issuer']}</span>
+                     </div>
+                     <div class="grid_10">
+                        <span class=" font14">{$_lang['bidder']} <strong style="color:#2f549f">{$seller_username}</strong></span>
+                        <span>{$_lang['later_short_bidder']}</span>
+                     </div>
+                  </div>
+				  <div class="clearfix">
+                	  <!--{tag 交付协议}-->
+				  </div>
+              </div>
+            </div>
+           <!--end 源文件协议内容-->
+		   <div class="operate t_r">
+                <a href="javascript:setprint('agreement');"><span class="icon16 print"></span></a>
+             </div>
+		   {if ($process_can['buyer_sign']&&$user_type=='2')||($process_can['seller_sign']&&$user_type=='1')}
+		   		 <div class="step_button"> <a href="javascript:void(0);" onclick="taskAgree('{$user_type}')" class="button"><span class="check icon"></span>{$_lang['agree_and_deliver']}</a></div>
+    	   {/if}
+          </div>
+ 
+
+    </div>
+   </div> 
+   <!--end 步骤下部所有内容--> 
+  </div>
+ </div>
+  <!--end 布局框-->     	
+ </section>
+<!--end 详细内容区-->
+</div>
+<!--end 页面内容区-->
+<script type="text/javascript" >
+	In.add('sreward_agreement',{path:"task/sreward/{SKIN_PATH}/sreward_agreement.js",type:'js'}); 
+	In('sreward_agreement','print'); 
+</script> 
+<script type="text/javascript">
+	var basic_url = '{$basic_url}';
+</script>
+<!--{template footer_dou}-->

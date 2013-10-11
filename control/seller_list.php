@@ -11,7 +11,7 @@ $dynamic_arr = kekezu::get_feed(" feedtype='pub_service' ", "feed_time desc", 10
 $website_url = "index.php?" . $_SERVER ['QUERY_STRING'];
 $indus_all_arr = $kekezu->_indus_arr;
 $where_arr = get_where_arr();
-$sql = "select a.*,b.seller_level,b.skill_ids,b.residency,b.indus_id,b.indus_pid,b.isvip,b.seller_total_num,b.reg_time,b.balance,b.seller_good_num,
+$sql = "select a.*,b.seller_level,b.skill_ids,b.residency,b.indus_id,b.indus_pid,b.isvip,b.seller_total_num,b.reg_time,b.balance,b.ensure,b.seller_good_num,
 		if(b.seller_total_num>0,b.seller_good_num/b.seller_total_num,0) as good_rate
 		from " . TABLEPRE . "witkey_shop as a left join ".TABLEPRE."witkey_space b 
 		on a.uid = b.uid  where 1=1  and a.shop_status = 1"; 
@@ -42,7 +42,9 @@ $register =  intval ( $register ['count'] );
 	}
 // end 
 
-
+// baozhang
+	$ensure = array('无',500,1000,2000);
+// end
 //unset($indus_id); 
 $url = "index.php?do=$do&page_size=$page_size&path=$path";
 $page_size = intval ( $page_size ) ? intval ( $page_size ) : 10;
@@ -58,7 +60,9 @@ $seller_aid = keke_user_mark_class::get_user_aid ( 1, '2', null, '1' );
 $star_show_sql = sprintf('select `uid`,`aid`,`aid_star` from %switkey_mark where mark_type=2 and mark_status > 0',TABLEPRE);
 $rs_star = db_factory::query($star_show_sql);
 $aid_config = keke_user_mark_class::get_mark_aid ( 2 ); 
+
 $service_arr = db_factory::query ( $sql . $where );
+
 $check_arr = keke_search_class::get_path_url( $where_arr, $path );
 $check_url_arr = $check_arr ['url'];
 $check_all = $check_arr ['all'];
@@ -120,7 +124,7 @@ function rz_show($uid){
 	return $img_list;
 }
 function get_where($path) {
-	global $task_cash_arr, $search_key,$ord,$indus_id,$province,$city,$area;
+	global $task_cash_arr, $search_key,$ord,$indus_id,$province,$city,$area,$level;
 	$url_info = keke_search_class::get_analytic_url($path);
 	$indus_id and $where .=sprintf(" and b.indus_id = %d",$indus_id);
 	$url_info ['A'] and $where .= sprintf ( " and b.indus_pid = %d", $url_info ['A'] ); 
@@ -129,11 +133,16 @@ function get_where($path) {
 	if($province&&$city&&$area){
 		$where .= sprintf(" and b.residency = '%s' ",$province.','.$city.','.$area);
 	}
-	
-	
-	$ord == 1 and $where .=" order by if(b.seller_total_num>0,b.seller_good_num/b.seller_total_num,0) asc";		
-	$ord ==2 and $where .=" order by if(b.seller_total_num>0,b.seller_good_num/b.seller_total_num,0) desc";	
-	$ord or $where .= " order by a.shop_id desc"; 
+	if($level){
+		
+		$where .= " and b.seller_level like '%".$level."%'";	
+	}
+	//var_dump($where);
+	$orders = " field(b.isvip,1,2,0), ";
+	$ord == 1 and $where .=" order by ".$orders."if(b.seller_total_num>0,b.seller_good_num/b.seller_total_num,0) asc";		
+	$ord ==2 and $where .=" order by ".$orders."if(b.seller_total_num>0,b.seller_good_num/b.seller_total_num,0) desc";	
+	$ord or $where .= " order by ".$orders."a.shop_id desc"; 
+
 	return $where;
 } 
 function get_where_arr(){
@@ -158,6 +167,16 @@ foreach($service_arr as $key => $val){
 }
 
 // end
+//error_reporting(E_ALL);
+// 能力等级列表
+	$sql_level = "select * from ". TABLEPRE."witkey_mark_rule ";
+	$level_arr = db_factory::query($sql_level);
+//
+
+$first_type_list = db_factory::query ( " select * from ".TABLEPRE."witkey_indus_type order by type_id asc");
+foreach($first_type_list as $key => $val){
+	$first_type_list[$key]['indus'] = db_factory::query ( " select * from ".TABLEPRE."witkey_industry where indus_id in (".$val['indus_ids'].")");
+}
 
 
 $type_infos = keke_search_class::get_analytic_url ( $path );

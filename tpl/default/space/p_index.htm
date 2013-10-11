@@ -5,7 +5,7 @@
             	{if $service_arr}
 			            {loop $service_arr $k $v}
                         	<!--{eval $pic_arr = explode(",", $v['pic']);}-->
-                        	<span><a href="index.php?do=space&member_id={$member_info['uid']}&view=service_info&sid=$v['service_id']"><img src="{$pic_arr[0]}" width="114" height="114" /></a></span>
+                        	<span><a href="index.php?do=space&member_id={$member_info['uid']}&view=service_info&sid=$v['service_id']"><img src="{$pic_arr[0]}" width="114" height="114" /></a><h1 title="$v['title']"><!--{eval echo kekezu::cutstr($v['title'], 16);}--></h1></span>
 			            {/loop}
 		            {else}
 		            	暂无服务
@@ -50,12 +50,13 @@
                         {/if}
                     	<img src="{$v['case_pic']}" width="114" height="114" />
                     	</a>
+                        <h1 title="$v['case_name']"><!--{eval echo kekezu::cutstr($v['case_name'], 16);}--></h1>
                     </span>
                     {/loop}
                 {/if}
                 <div class="clear"></div>
             </div>
-            <div class="div_zs_rcsfw">我们的团队风采<a href="#">显示更多 »</a><div class="clear"></div></div>
+            <!--<div class="div_zs_rcsfw">我们的团队风采<a href="#">显示更多 »</a><div class="clear"></div></div>
             <div class="div_zs_rcsnr">
             	<span><img src="/tpl/default/d8/images/dad1.jpg" width="114" height="114" /></span>
                 <span><img src="/tpl/default/d8/images/dad1.jpg" width="114" height="114" /></span>
@@ -72,7 +73,7 @@
                 <span><img src="/tpl/default/d8/images/dad1.jpg" width="114" height="114" /></span>
                 <span><img src="/tpl/default/d8/images/dad1.jpg" width="114" height="114" /></span>
                 <div class="clear"></div>
-            </div>
+            </div>-->
             
         </div>
         <div class="clear"></div>

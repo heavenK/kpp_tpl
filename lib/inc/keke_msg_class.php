@@ -203,6 +203,7 @@ class keke_msg_class {
 			echo $msg_id;
 			exit;
 		}
+		if($type == 'no_echo') exit;
 		$msg_id and kekezu::keke_show_msg ( $url, $_lang['sms_send_success'], "", $output ) or kekezu::keke_show_msg ( $_lang['operate_notice'], $url, $_lang['sms_send_fail'], "error", $output );
 	}
 	public static function notify_user($uid, $username, $action, $title, $v_arr = array()) {

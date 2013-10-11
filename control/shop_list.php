@@ -132,6 +132,11 @@ $register =  intval ( $register ['count'] );
 $top_s_6 = db_factory::query ( sprintf ( "select a.username,a.uid,a.indus_id,a.indus_pid,a.isvip,a.seller_good_num,a.seller_total_num,b.shop_name from %switkey_shop b "
 		." left join %switkey_space a on a.uid=b.uid  where a.isvip>0 and a.recommend=1 and IFNULL(b.is_close,0)=0 and shop_status=1 order by a.uid desc limit 0,6", TABLEPRE,TABLEPRE ));
 
+$first_type_list = db_factory::query ( " select * from ".TABLEPRE."witkey_indus_type order by type_id asc");
+foreach($first_type_list as $key => $val){
+	$first_type_list[$key]['indus'] = db_factory::query ( " select * from ".TABLEPRE."witkey_industry where indus_id in (".$val['indus_ids'].")");
+}
+
 
 $final_task = kekezu::get_classify_indus();
 

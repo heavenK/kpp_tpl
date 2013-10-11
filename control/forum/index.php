@@ -3,7 +3,7 @@
 $gonggao_arr = db_factory::query(sprintf("select art_id,art_title,listorder,is_recommend,pub_time from %switkey_article where art_cat_id=17 order by is_recommend desc, listorder asc, pub_time desc limit 0,10",TABLEPRE));
 
 $sql = sprintf ( "select * from %switkey_space s left join %switkey_shop p on s.uid=p.uid where ", TABLEPRE, TABLEPRE );
-$where = " s.isvip>0 order by s.uid desc limit 0,6";
+$where = " s.isvip>0 order by s.isvip asc,s.uid desc limit 0,6";
 $shop_info = db_factory::query ( $sql . $where );
 
 $thread_top[12] = getThread(12,0,1,'h');

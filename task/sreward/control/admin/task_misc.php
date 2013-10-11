@@ -21,6 +21,15 @@ switch ($op) {
 					$f_list = db_factory::query ( sprintf ( ' select a.file_id,a.file_name,a.save_name from %switkey_file a 
 							left join %switkey_task_work b on a.file_id in (b.work_file) where b.work_id=%d and b.work_file is not null ', TABLEPRE, TABLEPRE, $work_id ) );
 					break;
+				case 'voter' : 
+					$v_list = db_factory::query ( sprintf ( ' select * from %switkey_vote where work_id=%d ', TABLEPRE, $work_id ) );
+					
+					break;
+				case 'modi_vote' : 
+					$res = db_factory::execute ( sprintf ( ' update %switkey_task_work set vote_num=%d where work_id=%d ', TABLEPRE,$nums, $work_id ) );
+					$res and kekezu::echojson ( '', 1 ) or kekezu::echojson ( '', 0 );
+					die ();
+					break;
 				case 'comm' : 
 					$c_list = db_factory::query ( sprintf ( ' select a.content,a.on_time from %switkey_comment a 
 						left join %switkey_task_work b on a.obj_id=b.work_id where b.work_id=%d', TABLEPRE, TABLEPRE, $work_id ) );

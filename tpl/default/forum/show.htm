@@ -9,6 +9,7 @@
 .page_count a:hover {background: none repeat scroll 0 0 #49b68d;border-color: #49b68d;color: #FFFFFF;}
 </style>
 <style>
+.bbs_zhutil_twonr_pl01 img	{ max-width:550px;}
 .bbs_zhuti00 { width:743px; float:left; border:1px solid #d0d0d0}
 </style>
 
@@ -18,9 +19,11 @@
             	<div class="bbs_zhuti_onetit">您的位置：<a href="index.php">首页</a>&nbsp;&gt;&nbsp;<a href="index.php?do=forum">豆豆论坛</a>&nbsp;&gt;&nbsp;<a href="index.php?do=forum&view=list&type_id={$thread_info['type_id']}">{$type_info['type_name']}</a>&nbsp;&gt;&nbsp;{$thread_info['title']}</div>
                 <div class="bbs_zhuti_onebt"><span>{$thread_info['title']}</span><a href="index.php?do=forum&view=post&type=thread&type_id={$thread_info['type_id']}">发新话题</a><a href="index.php?do=forum&view=post&type=post&type_id={$thread_info['type_id']}&tid={$thread_info['tid']}">我要回帖</a><div class="clear" style="clear:both;"></div></div>
                 <div class="bbs_zhuti_onenr" style="position:relative">
-                	{$thread_info['content']}
+                    <!--{eval echo htmlspecialchars_decode($thread_info[content])}-->
                     <!-- Baidu Button BEGIN -->
-                    <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare" style="float:right; position:absolute; bottom:5px; right:5px;">
+                    
+                    <div class="bbs_zuozhe" style="float:right; position:absolute; bottom:5px; left:20px; color:#666; font-size:12px">作者：{$thread_info['username']} 发表于：<!--{date('Y-m-d H:i:s',$thread_info['pub_time'])}--></div>
+                    <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare" style="float:right; position:absolute; z-index:100; bottom:5px; right:5px;">
                     <span class="bds_more">分享到：</span>
                     <a class="bds_qzone"></a>
                     <a class="bds_tsina"></a>
@@ -48,13 +51,13 @@
                         <h2>{$v['username']}</h2>
                         <h2>{$v['uid']}</h2>
                         <!--{eval $member_info = kekezu::get_user_info($v[uid]);}-->
-                        <p>诚信保障：无</p>
+                        <p>诚信保障：{$ensure[$member_info['ensure']]}</p>
                         <p>豆币：<!--{eval echo(intval($member_info['credit']));}--></p>
                          <!--{eval $member_info['seller_level']=unserialize($member_info['seller_level'])}-->
                         <p>能力等级：{$member_info['seller_level']['pic']}</p>
                     </div>
                     <div class="bbs_zhutil_twonr_pl">
-                    	<div class="bbs_zhutil_twonr_pl01">{$v['content']}</div>
+                    	<div class="bbs_zhutil_twonr_pl01"><!--{eval echo htmlspecialchars_decode($v[content])}--></div>
                         <div class="bbs_zhutil_twonr_pl02">&nbsp;&nbsp;&nbsp;支持[11452]</div>
                     </div>
                     <div class="clear" style="clear:both;"></div>
@@ -74,13 +77,13 @@
                         <h2>{$v['username']}</h2>
                         <h2>{$v['uid']}</h2>
                         <!--{eval $member_info = kekezu::get_user_info($v[uid]);}-->
-                        <p>诚信保障：无</p>
+                        <p>诚信保障：{$ensure[$member_info['ensure']]}</p>
                         <p>豆币：<!--{eval echo(intval($member_info['credit']));}--></p>
                          <!--{eval $member_info['seller_level']=unserialize($member_info['seller_level'])}-->
                         <p>能力等级：{$member_info['seller_level']['pic']}</p>
                     </div>
                     <div class="bbs_zhutil_twonr_pl">
-                    	<div class="bbs_zhutil_twonr_pl01">{$v['content']}</div>
+                    	<div class="bbs_zhutil_twonr_pl01"><!--{eval echo htmlspecialchars_decode($v[content])}--></div>
                         <div class="bbs_zhutil_twonr_pl02">&nbsp;&nbsp;&nbsp;支持[11452]</div>
                     </div>
                     <div class="clear" style="clear:both;"></div>
@@ -107,13 +110,13 @@
                         <h2>{$v['username']}</h2>
                         <h2>{$v['uid']}</h2>
                         <!--{eval $member_info = kekezu::get_user_info($v[uid]);}-->
-                        <p>诚信保障：无</p>
+                        <p>诚信保障：{$ensure[$member_info['ensure']]}</p>
                         <p>豆币：<!--{eval echo(intval($member_info['credit']));}--></p>
                          <!--{eval $member_info['seller_level']=unserialize($member_info['seller_level'])}-->
                         <p>能力等级：{$member_info['seller_level']['pic']}</p>
                     </div>
                     <div class="bbs_zhutil_twonr_pl">
-                    	<div class="bbs_zhutil_twonr_pl01">{if $v[status] != 2}内容正在审核中！{else}{$v[content]}{/if}</div>
+                    	<div class="bbs_zhutil_twonr_pl01">{if $v[status] != 2}内容正在审核中！{else}<!--{eval echo htmlspecialchars_decode($v[content])}-->{/if}</div>
                         <div class="bbs_zhutil_twonr_pl02">&nbsp;&nbsp;&nbsp;<a href="###" onclick="post_good({$v['pid']})" style="color:#F00">支持[<i id="good{$v[pid]}">{$v['good']}</i>]</a></div>
                     </div>
                     <div class="clear" style="clear:both;"></div>

@@ -1,6 +1,7 @@
 <?php
 defined ( 'IN_KEKE' ) or exit ( 'Access Denied' );
 $basic_config = $kekezu->_sys_config;
+if(!isset($show)) $show='send';
 if ($model_id) {	
 	if ($download) {
 		$title = '源文件下载';

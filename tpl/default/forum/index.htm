@@ -228,7 +228,7 @@
             	{loop $shop_info $k $v}
         		<li>
         			<b><a href="index.php?do=space&member_id={$v['uid']}"><img src="<!--{userpicurl($v['uid'],middle)}-->"  width="106" height="106"/></a></b>
-        			<span><!--{eval echo kekezu::cutstr($v['shop_name'],14);}--></span>
+        			<span>{if $v[shop_name]}<!--{eval echo kekezu::cutstr($v['shop_name'],28);}-->{else}<!--{eval echo kekezu::cutstr($v['username'],28);}-->{/if}</span>
         			<i>{$v['residency']}</i>
                     <i>工作室商铺 VIP拓展</i>
         		</li>

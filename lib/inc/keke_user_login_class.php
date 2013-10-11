@@ -56,7 +56,7 @@ class keke_user_login_class {
 						$user_info = $this->valid_email_auth ();
 						break;
 					case 'username' :
-						$user_info = $this->valid_username ();
+						$user_info = $this->valid_username_uid ();
 						break;
 				}
 				if ($user_info ['password'] !== $password) {
@@ -163,6 +163,20 @@ class keke_user_login_class {
 			$this->show_msg ( $_lang ['you_input_password_not_right'], 3 ,'index.php?do=login',1);
 		}
 	}
+	
+	function valid_username_uid() {
+		global $_lang;
+		$user_info = kekezu::get_user_info ( $this->_account, 1 );
+		if(!$user_info) $user_info = kekezu::get_user_info ( $this->_account );
+		if ($user_info) {
+			$user_info ['login_type'] = 'username';
+			return $user_info;
+		} else {
+			$this->add_login_time();
+			$this->show_msg ( $_lang ['you_input_password_not_right'], 3 ,'index.php?do=login',1);
+		}
+	}
+	
 	function add_login_time($t=1){
 		$this->_login_times = $_SESSION['login_times']=intval($t);
 	}
@@ -204,12 +218,18 @@ class keke_user_login_class {
 		}
 		return $u;
 	}
-	public function save_user_info($user_info, $ckb_cookie = 1, $login_type = 0, $oauth_login = 1) {
+	public function save_user_info($user_info, $ckb_cookie = 1, $login_type = 0, $oauth_login = 1, $rem = 0, $pwd) {
 		global $kekezu, $_K,$handlekey;
 		global $_lang;
 		$_SESSION ['uid'] = $user_info ['uid'];
 		$_SESSION ['username'] = $user_info ['username'];
 		$_SESSION['last_login_time'] = $user_info['last_login_time'];
+		
+		if($rem){
+			setcookie("username", $user_info ['username'], time()+3600*24*7); 
+			setcookie("password", $pwd, time()+3600*24*7); 
+		}
+		
 		$this->add_login_time(0);
 		$oauth_login = intval ( $oauth_login );
 		$login_type = $this->_login_type;
@@ -235,6 +255,81 @@ class keke_user_login_class {
 			$prom_obj = $kekezu->_prom_obj;
 			$url_data = $prom_obj->extract_prom_cookie ();
 			$url_data ['p'] == 'reg' or $prom_obj->create_prom_relation ( $user_info ['uid'], $user_info ['username'], $url_data, '2' );
+		}
+		if ($login_type == 1) {
+			if (strtolower ( $_SERVER ['REQUEST_METHOD'] ) == 'post') {
+				keke_tpl_class::xml_out ( "<h1>".$_lang ['login_success']."!</h1> $synhtml <script>hideWindow('{$handlekey}');window.location.href='$r'</script>" );
+			} elseif (strtolower ( $_SERVER ['REQUEST_METHOD'] ) == 'get') {
+				echo "$synhtml<script>window.location.href='$r';</script>";
+				die ();
+			}
+		} else if ($login_type == 3||$login_type==4) {
+			$info = $user_info;
+			$return_info ['uid'] = $info ['uid'];
+			$return_info ['username'] = $info ['username'];
+			$return_info ['balance'] = intval ( $info ['balance'] );
+			$return_info ['credit'] = intval ( $info ['credit'] );
+			$return_info ['pic'] = keke_user_class::get_user_pic ( $user_info ['uid'] );
+			$return_info ['syn'] = $synhtml;
+			($user_info ['uid'] == ADMIN_UID || $user_info ['group_id'] > 0) and $return_info ['is_admin'] = 1; 
+			$return_info ['g_pic'] = unserialize($info['buyer_level']);
+			$return_info ['s_pic'] = unserialize($info['seller_level']); 
+			$this->show_msg($_lang ['login_success'],1,$return_info );
+			die ();
+		}elseif($login_type == 2){
+			return true;
+		} else {
+			if ($oauth_login == 1) {
+				keke_tpl_class::xml_out ( "<h1>".$_lang ['login_success']."!</h1> $synhtml <script>hideWindow('{$handlekey}');window.location.href='$r'</script>" );
+			}else {
+				echo "$synhtml<script>window.location.href='$r';hideWindow('oauth_login_frm1')</script>";
+			}
+		}
+	}
+	
+	public function save_user_info_auto($user_info, $ckb_cookie = 1, $login_type = 0, $oauth_login = 1, $rem = 0, $pwd) {
+		global $kekezu, $_K,$handlekey;
+		global $_lang;
+		$_SESSION ['uid'] = $user_info ['uid'];
+		$_SESSION ['username'] = $user_info ['username'];
+		$_SESSION['last_login_time'] = $user_info['last_login_time'];
+		
+		if($rem){
+			setcookie("username", $user_info ['username'], time()+3600*24*7); 
+			setcookie("password", $pwd, time()+3600*24*7); 
+		}
+		
+		$flag = $login_type;
+		
+		$this->add_login_time(0);
+		$oauth_login = intval ( $oauth_login );
+		$login_type = $this->_login_type;
+		if ($_K ['refer']) {
+			$r = $_K ['refer'];
+		} else {
+			$r = 'index.php';
+		}
+		if ($this->_sys_config ['user_intergration'] != 1) { 
+			$synhtml = keke_user_class::user_synlogin ( $user_info ['uid'], $this->_password );
+		}
+		$synhtml = isset($synhtml)?$synhtml:"";
+		$user_obj = new Keke_witkey_space_class ();
+		$user_obj->setLast_login_time ( time () );
+		$user_obj->setWhere ( "uid = '{$user_info['uid']}'" );
+		$user_obj->edit_keke_witkey_space ();
+		$black_obj = new Keke_witkey_member_black_class();
+		$black_obj->setWhere("uid = '{$user_info['uid']}'");
+		$black_obj->del_keke_witkey_member_black();
+		db_factory::execute ( sprintf ( "update %switkey_member_oltime set last_op_time=%d where uid = %d", TABLEPRE, time (), $user_info ['uid'] ) );
+		if (isset($_COOKIE ['user_prom_event'])&&$_COOKIE ['user_prom_event']) {
+			$kekezu->init_prom ();
+			$prom_obj = $kekezu->_prom_obj;
+			$url_data = $prom_obj->extract_prom_cookie ();
+			$url_data ['p'] == 'reg' or $prom_obj->create_prom_relation ( $user_info ['uid'], $user_info ['username'], $url_data, '2' );
+		}
+		if($flag = 10){
+			echo '<script>history.go(0); </script>';
+			die ();
 		}
 		if ($login_type == 1) {
 			if (strtolower ( $_SERVER ['REQUEST_METHOD'] ) == 'post') {

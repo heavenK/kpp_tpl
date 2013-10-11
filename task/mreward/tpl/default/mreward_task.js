@@ -15,6 +15,12 @@ $(function() {
 /** 稿件提交 */
 function workHand() {
 	if (check_user_login()) {
+		
+		if(flags == '2'){
+			showDialog('您没开通工作室，无法提交稿件！', 'alert', '您没开通工作室，无法提交稿件！', 'window.location.href="index.php?do=user&view=store"', 0);
+			return false;
+		}
+		
 		if (uid == guid) {
 			showDialog(L.t_hand_forbidden, 'alert', L.operate_notice, '', 0);
 			return false;

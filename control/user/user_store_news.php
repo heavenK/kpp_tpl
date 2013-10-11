@@ -22,6 +22,10 @@ if($show == 'add'){
 		}
 		isset($fields['is_recommend']) or $fields['is_recommend']=0;
 		$url = "index.php?do=$do&view=$view&op=$op&show=list";
+		if($_FILES['art_pic']['name']){
+				$art_pic = keke_file_class::upload_file('art_pic');
+				$art_pic&&$fields['art_pic']= $art_pic;
+		}
 		$fields=kekezu::escape($fields);
 		$res = $art_obj->save ( $fields, $pk );
 		$log_ac = array('edit'=>$_lang['edit_art'],'add'=>$_lang['add_art']);

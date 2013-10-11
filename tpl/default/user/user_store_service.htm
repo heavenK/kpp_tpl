@@ -66,7 +66,14 @@
                                                             <th style="font-weight:normal">{c:$v['price']}</th>
                                                             <th style="font-weight:normal">{$v['service_time']}{$v['unit_time']}</th>
                                                             <th style="font-weight:normal">{$status_arr[$v['service_status']]}</th>
-                                                            <th style="font-weight:normal"><a href="###" onclick="seEdit('{$v[service_id]}');">编辑</a>&nbsp;|&nbsp;<a onclick="return del(this);" href="{$url}&ac=del&ser_id=$v['service_id']">删除</a></th>
+                                                            <th style="font-weight:normal">
+                                                            {if $v['service_status'] == 3}
+                                                            <a onclick="return up_shelf('{$v[service_id]}');" href="javascript:void(0);">重新上架</a>
+                                                            {else}
+                                                            <a href="###" onclick="seEdit('{$v[service_id]}');">编辑</a>&nbsp;|&nbsp;<a onclick="return del(this);" href="{$url}&ac=del&ser_id=$v['service_id']">删除</a>
+                                                            {if $v['service_status']==2}&nbsp;|&nbsp;
+                                                            <a onclick="return down_shelf('{$v[service_id]}');" href="javascript:void(0);">下架</a>
+													        {/if}{/if}</th>
                                                         </tr>
                                                         {/loop}
                                                     </tbody>
@@ -130,6 +137,14 @@
 	function down_shelf(sid){
         showDialog("确定要下架吗", "confirm", "操作提示", function(){
 			 var url = "{$url}&ac=down_shelf&ser_id=" + sid;
+			 formSub(url,'url',false);return false;
+        });
+		
+        return false;
+    }
+	function up_shelf(sid){
+        showDialog("确定要重新上架吗", "confirm", "操作提示", function(){
+			 var url = "{$url}&ac=up_shelf&ser_id=" + sid;
 			 formSub(url,'url',false);return false;
         });
 		

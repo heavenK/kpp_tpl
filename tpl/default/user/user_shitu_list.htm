@@ -45,7 +45,7 @@
                     </div>
                     <div class="teacher_zl_list">
                         <ul>
-                            <li><em>欢&nbsp;&nbsp;迎&nbsp;&nbsp;您：</em><span>{$username}&nbsp; {if !$user_info['pid']}师傅{/if}</span><div class="clear"></div></li>
+                            <li><em>欢&nbsp;&nbsp;迎&nbsp;&nbsp;您：</em><span><!--{eval echo kekezu::cutstr($username,12);}-->&nbsp; {if !$user_info['pid']}师傅{/if}</span><div class="clear"></div></li>
                             <li>
                                 <em>认证状况：</em>
                                 <span>
@@ -96,8 +96,8 @@
                             	{loop $shitu_info $k $v}
                                 {if $uid != $v[uid]}
                                 <li>
-                                    <h2><img width="139" height="139" src="<!--{userpicurl($v['uid'],middle)}-->"></h2>
-                                    <span>{$v['username']}</span>
+                                    <h2><a href="index.php?do=space&member_id=$v[uid]" target="_blank"><img width="139" height="139" src="<!--{userpicurl($v['uid'],middle)}-->"></a></h2>
+                                    <span title="$v[username]"><a href="index.php?do=space&member_id=$v[uid]" target="_blank"><!--{eval echo kekezu::cutstr($v['username'],18);}--></a></span>
                                     <span title="{$v['shop_name']}">工作室名称：<!--{eval echo kekezu::cutstr($v['shop_name'],8);}--></span>
                                     <!--{eval $v['seller_level']=unserialize($v['seller_level'])}-->
                                     <span><i>能力等级：</i>{$v['seller_level']['pic']}</span>
@@ -128,8 +128,8 @@
                             <ul>
                             	{loop $shitu_info $k $v}
                                 <li>
-                                    <h2><img width="139" height="139" src="<!--{userpicurl($v['uid'],middle)}-->"></h2>
-                                    <span>{$v['username']}</span>
+                                    <h2><a href="index.php?do=space&member_id=$v[uid]" target="_blank"><img width="139" height="139" src="<!--{userpicurl($v['uid'],middle)}-->"></a></h2>
+                                    <span title="$v[username]"><a href="index.php?do=space&member_id=$v[uid]" target="_blank"><!--{eval echo kekezu::cutstr($v['username'],18);}--></a></span>
                                     <span title="{$v['shop_name']}">工作室名称：<!--{eval echo kekezu::cutstr($v['shop_name'],8);}--></span>
                                     <!--{eval $v['seller_level']=unserialize($v['seller_level'])}-->
                                     <span><i>能力等级：</i>{$v['seller_level']['pic']}</span>

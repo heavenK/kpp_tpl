@@ -24,6 +24,7 @@ $lang = array(
 	'order_deal_fail_and_link_kf'=>'订单处理失败,请稍后再试或联系客服解决',
 	'buy_work_coplete'=>'购买作品完成',
 	'recept_your_order'=>'接受了您的订单',
+	'haved_confim_pay'=>'已完成付款',
 	'order_deal_complete_and_order_recept'=>'订单处理完成，该订单已接受',
 	'work_order_complete'=>'作品订单确认完成',
 	'goods_order_recept'=>'商品订单接受',

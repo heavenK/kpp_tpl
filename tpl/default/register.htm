@@ -38,7 +38,7 @@
                 	<div class="zc_kn">
 						<label class="zc_kz b1">账号</label>
 						<div class="zc_kk">
-							<input type="text" class="txt txt_input" autocomplete="off" name="int_uid" id="int_uid" limit="required:true;len:8;type:int;between:10000000-19999999;general:true" msg="账号输入有误！" ajax="index.php?do=register&check_uid=" title="账号为8位数字" msgArea="login_uid_msg" style="width:100px;" />&nbsp;&nbsp;&nbsp;&nbsp;<a href="###" onclick="rand_name()">随机生成</a>
+							<input type="text" class="txt txt_input" autocomplete="off" name="int_uid" id="int_uid" limit="required:true;len:8;type:int;between:10000000-99999999;general:true" msg="账号输入有误！" ajax="index.php?do=register&check_uid=" title="账号为8位数字" msgArea="login_uid_msg" style="width:100px;" />&nbsp;&nbsp;&nbsp;&nbsp;<a href="###" onclick="rand_name()">随机生成</a>
                         	<span class="msg" id="login_uid_msg"></span>    
                         </div>
 					</div>
@@ -203,7 +203,7 @@ function rand_name(){
 	var uname = '';
 	var n = 0;
 	for(n =0; n<10; n++){
-		uname = parseInt(Math.random()*(19999999-10000000+1)+10000000);
+		uname = parseInt(Math.random()*(99999999-10000000+1)+10000000);
 		$.ajax({
            type: "GET",
            url: "index.php?do=register&check_uid="+uname,
@@ -217,7 +217,7 @@ function rand_name(){
 			$("#int_uid").val(uname);
 			$("#login_uid_msg").attr('class','msg');	
 			$("#login_uid_msg").html('');
-			exit;
+			return true;
 		}
 	}
 

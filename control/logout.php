@@ -15,6 +15,12 @@ if (isset ( $_COOKIE ['user_login'] )) {
 if (isset ( $_COOKIE ['prom_cke'] )) {
 	setcookie ( 'prom_cke', '' );
 }
+if (isset ( $_COOKIE ['username'] )) {
+	setcookie ( 'username', '' );
+}
+if (isset ( $_COOKIE ['last_login_time'] )) {
+	setcookie ( 'last_login_time', '' );
+}
 $synhtml = keke_user_class::user_synlogout();
 unset($_COOKIE);
 unset($_COOKIE['username']);

@@ -61,9 +61,15 @@
                                 <p>
                                     <span>{if $service_info['model_id']==7}服务名称{else}作品名称{/if}</span>：<a href="index.php?do=service&sid={$service_info['service_id']}"><!--{eval echo kekezu::cutstr($service_info['title'],16)}--></a>
                                 </p>
+                                {if $op=='buy'}
                                 <p>
                                     单价：<span class="cc00">{if $service_info['model_id'] == 7}{c:$service_info['price']}{else}{c:$service_info['price']}/{$service_info['unite_price']}{/if}</span>
                                 </p>
+                                {else}
+                                <p>
+                                    单价：<span class="cc00">{if $service_info['model_id'] == 7}{c:$order_info['order_amount']}{else}{c:$order_info['order_amount']}/{$service_info['unite_price']}{/if}</span>
+                                </p>
+                                {/if}
                                 <p>
                                     卖家名称：<a href="index.php?do=space&member_id={$service_info['uid']}">{$service_info['username']}</a>
                                 </p>
@@ -117,7 +123,7 @@
                                                                          下单时间：<!--{eval echo date('Y-m-d,H:i:s',$order_info['order_time'])}-->
                             </div>
                          
-							支付金额：<span class="cc00">{c:$service_info['price']}</span>
+							支付金额：<span class="cc00">{c:$order_info['order_amount']}</span>
                               
                         </div>
                         <div class="t_c pt_20 pb_20">

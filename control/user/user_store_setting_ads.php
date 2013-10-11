@@ -5,6 +5,8 @@ if (isset($formhash)&&kekezu::submitcheck($formhash)){
 
 	if($_FILES['pic']['name']){
 		$pic = keke_file_class::upload_file('pic');
+	}else if($hdn_case_pic){
+		$pic = $hdn_case_pic;
 	}
 	
 	

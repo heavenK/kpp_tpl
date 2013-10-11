@@ -8,10 +8,18 @@
  * 2010-6-13早上11:25:00
  */
 
+if($sid && $view=='service_info'){
+	$s_list = db_factory::get_one(sprintf("select * from %switkey_service where service_id = '%d'",TABLEPRE,$sid));
+	$member_id = $s_list['uid'];	
+}
+
 $member_id = intval ( $member_id );
+
 $language = $kekezu->_lang;
 keke_lang_class::package_init ( $do );
 $member_info = kekezu::get_user_info ( $member_id );
+
+if($member_info['status'] == 2) kekezu::show_msg("用户已经被封号，无法访问其店铺！","index.php",2,"用户已经被封号，无法访问其店铺！","alert_error");
 //店铺信息
 $shop_info = db_factory::get_one(sprintf("select * from %switkey_shop where uid = '%d'",TABLEPRE,$member_id));
 

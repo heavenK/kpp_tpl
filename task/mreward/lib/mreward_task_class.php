@@ -546,6 +546,7 @@ class mreward_task_class extends keke_task_class {
 		$prize_date = $this->get_prize_date (); 
 		$work_count = $this->get_prize_work_count ();
 		if ($prize_date ['count'] ['prize_1'] == $work_count ['prize_1'] && $prize_date ['count'] ['prize_2'] == $work_count ['prize_2'] && $prize_date ['count'] ['prize_3'] == $work_count ['prize_3']) {
+			db_factory::execute ( sprintf ( " update %switkey_task set is_vote=2 ,vote_start=%d where task_id ='%d'", TABLEPRE, time(), $this->_task_id ) );
 			$this->set_task_status ( '5' );
 			$this->set_task_sp_end_time ();
 		}

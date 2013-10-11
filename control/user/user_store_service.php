@@ -1,5 +1,8 @@
 <?php
 defined ( 'IN_KEKE' ) or exit ( 'Access Denied' );
+$sql_type = "select * from ".TABLEPRE."witkey_indus_type";
+$type_arr = db_factory::query($sql_type);
+
 if ($model_id && !$opp) {
 	
 	$indus = db_factory::query( sprintf ( "select indus_id,indus_name from %switkey_industry ", TABLEPRE ) );
@@ -42,6 +45,13 @@ if ($model_id && !$opp) {
 					if($res){
 						$res1 = db_factory::execute(sprintf("update %switkey_shop set on_sale = on_sale-1 where uid=$uid",TABLEPRE));
 						$res1 and kekezu::show_msg ( $_lang ['operate_notice'], $url, 1, '商品下架成功', 'alert_right' ) or kekezu::show_msg ( $_lang ['operate_notice'], $url, 1, '商品下架失败', 'alert_error' );
+					}
+					break;
+				case "up_shelf" :
+					$res = db_factory::execute ( sprintf ( " update %switkey_service set service_status=2 where service_id='%d'", TABLEPRE, $ser_id ) );
+					if($res){
+						$res1 = db_factory::execute(sprintf("update %switkey_shop set on_sale = on_sale-1 where uid=$uid",TABLEPRE));
+						$res1 and kekezu::show_msg ( $_lang ['operate_notice'], $url, 1, '商品重新上架成功', 'alert_right' ) or kekezu::show_msg ( $_lang ['operate_notice'], $url, 1, '商品重新上架失败', 'alert_error' );
 					}
 					break;
 			}

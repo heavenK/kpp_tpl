@@ -13,7 +13,7 @@
                 <!--main content-->
                     <div class="_gztt _gztt0 " style="height:44px">
                         <div class="yh_xxnav">
-                            <span style=" font-size:16px; font-weight:bold; line-height:46px">发件箱</span>
+                            <span style=" font-size:16px; font-weight:bold; line-height:46px">写短信</span>
                         </div>
                         
                     </div>
@@ -53,7 +53,8 @@
                                                 {$_lang['message_content']}:
                                             </label>
 											<div class="fl_l">
-                                            <textarea  rows="12" name="txt_msg_content" id="tar_content" msgArea="msg_content" class="yh_nr" style="width:300px; border:1px solid #ccc" onblur="contentCheck('tar_content','{$_lang['message_content']}',1,500)" ></textarea>
+                                            <textarea  rows="12" name="txt_msg_content" id="tar_content" msg="长度不可以为空，长度不可以超过250字。" msgArea="msg_content" class="yh_nr" style="width:300px; border:1px solid #ccc" ></textarea>
+                                           
                                             </div>
 											<div class="fl_l ml_5">
                                                 <div id="msg_content">
@@ -86,11 +87,11 @@
 <script type="text/javascript">
             	In('form');
                 function check_send(){
-					if(contentCheck('tar_content',"{$_lang['message_content']}",1,500)){						
+				/*	if(contentCheck('tar_content',"{$_lang['message_content']}",1,500)){	*/					
 						formSub('frm_msg','form',true);
-					}else{
-						return false;
-					}                        	             
+/*					}else{
+						alert("内容长度过长！");
+					} */                       	             
                 }
             </script>
 <!--contain end-->

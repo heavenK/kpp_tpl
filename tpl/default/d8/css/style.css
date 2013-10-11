@@ -164,6 +164,7 @@ body
 .vip_zs_rtopbom em a					{color:#fff; font-size:23px;}
 .div_zs_rcsfw							{background:url(../images/vip36.jpg) repeat-x; height:35px; line-height:35px; margin-bottom:5px; padding:0 19px 0 14px; font-size:20px;}
 .div_zs_rcsfw a							{float:right; font-size:12px; color:#000; }
+.div_zs_rcsnr_content					{border:1px solid #d5d5d5; padding:22px 0 40px 23px; margin-bottom:15px;}
 .div_zs_rcsnr							{border:1px solid #d5d5d5; padding:22px 0 40px 23px; margin-bottom:15px;}
 .div_zs_rcsnr span						{border:1px solid #acbea7; float:left; margin-right:26px; display:inline; margin-bottom:10px; width:114px;}
 .div_zs_rcsnr ul li						{width:187px; float:left; padding:10px; margin-right:25px; display:inline;}
@@ -204,7 +205,8 @@ body
 
 
 
-
+.div_zs_rcsnr span h1 { float:left; font-size:12px; padding-left:5px; padding-right:5px; color:#666}
+.div_zs_rcsnr span h2 { float:left; font-size:12px; font-weight:normal; padding-left:5px; color:#666; padding-right:5px;}
 
 
 

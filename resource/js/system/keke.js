@@ -482,7 +482,10 @@ function leave_master(uid) {
 							   async: true,
 							   success: function(data){
 								   if(data == 'fail') showDialog("您的豆币不足，无法操作！", 'error', L.operate_notice);
-								   else if(data == 1)	history.go(0);
+								   else if(data)	{
+								 	   alert("离开成功！");
+									   history.go(0);
+								   }
 								   else	showDialog("操作失败！", 'error', L.operate_notice);
 							   }
 							})
@@ -518,13 +521,14 @@ function send_req_zj(to_uid) {
 							   url: "index.php?do=user&view=shitu&ajax=2&from_uid="+uid+"&to_uid="+to_uid,
 							   async: true,
 							   success: function(data){
-								   if(data > 6)	showDialog("申请成功！", 'notice', L.operate_notice);
+								   if(data > 7)	showDialog("申请成功！", 'notice', L.operate_notice);
 								   else if(data == 2)	showDialog("不可以对自己拜师！", 'notice', L.operate_notice);
-								   else	if(data == 1)showDialog("您已经拜过师了，请耐心等待！", 'error', L.operate_notice);
+								   else	if(data == 1)showDialog("您已经拜过师了，请不要重复拜师！", 'error', L.operate_notice);
 								   else	if(data == 3)showDialog("您的豆币不足，无法拜师！", 'error', L.operate_notice);
 								   else	if(data == 4)showDialog("您已经是师傅了，无法拜别人！", 'error', L.operate_notice);
 								   else	if(data == 5)showDialog("对方是别人的徒弟，您无法拜他！", 'error', L.operate_notice);
 								   else	if(data == 6)showDialog("对方的徒弟数已满，您无法拜他！", 'error', L.operate_notice);
+								   else	if(data == 7)showDialog("正在拜师申请中，请等待！", 'error', L.operate_notice);
 								   else	showDialog("暂时无法拜师！", 'error', L.operate_notice);
 								   
 							   }
@@ -583,7 +587,7 @@ function deny_req(f_uid) {
  *            task_id 任务ID
  *			  v_uid 报名人ID
  */
-function choose_vote(task_id, v_uid){
+function choose_vote(task_id, v_uid, dou_val){
 	if(check_user_login()){
 		$.ajax({
 							   type: "GET",
@@ -591,7 +595,8 @@ function choose_vote(task_id, v_uid){
 							   async: true,
 							   success: function(data){
 								   if(data == 'fail')	showDialog("您已经报过名了！", 'error', L.operate_notice);
-								   else if(data > 0)	showDialog("报名成功！", 'notice', L.operate_notice);
+								   else if(data == 'no_credit')	showDialog("您的豆币不足，无法报名！", 'notice', L.operate_notice);
+								   else if(data > 0)	showDialog("报名成功！已经扣除您"+dou_val+"豆币！", 'notice', L.operate_notice);
 								   else	showDialog("暂时无法报名！", 'error', L.operate_notice);
 								   
 							   }
@@ -657,6 +662,7 @@ function send_flower(){
 							   url: "index.php?do=user&view=ajax&type=4",
 							   async: true,
 							   success: function(data){
+								   //alert(data);
 								   if(data == 'sended')	showDialog("您已经送过了！", 'error', L.operate_notice);
 								   else if(data == 'fail')	showDialog("您的豆币不够！", 'error', L.operate_notice);
 								    else if(data == 'no')	showDialog("您没有师傅！", 'error', L.operate_notice);
@@ -703,7 +709,9 @@ function post_good(pid,obj){
 								   if(data > 0)	{
 									   showDialog("操作成功！", 'notice', L.operate_notice);
 									   $("#good"+pid).text(parseInt($("#good"+pid).text())+1);
-								   }
+								   }else if(data == -1){
+									   showDialog("只能支持一次！", 'error', L.operate_notice);
+									}
 								   else	showDialog("操作失败！", 'error', L.operate_notice);
 								   
 							   }
@@ -726,7 +734,9 @@ function send_tid(tid,type){
 								   if(data > 0)	{
 									   showDialog("操作成功！", 'notice', L.operate_notice);
 									   $("#good"+pid).text(parseInt($("#good"+pid).text())+1);
-								   }
+								   }else if(data == -1){
+									   showDialog("只能支持一次！", 'error', L.operate_notice);
+									}
 								   else	showDialog("操作失败！", 'error', L.operate_notice);
 								   
 							   }
@@ -1324,7 +1334,8 @@ function showMenu(v) {
 			coverObj.style.zIndex = menuObj.style.zIndex - 1;
 			coverObj.style.left = coverObj.style.top = '0px';
 			coverObj.style.width = '100%';
-			coverObj.style.height = Math.max(document.documentElement.clientHeight, document.body.offsetHeight)+ 'px';
+			//coverObj.style.height = Math.max(document.documentElement.clientHeight, document.body.offsetHeight)+ 'px';
+			coverObj.style.height = '5000px';
 			coverObj.style.backgroundColor = '#000';
 			coverObj.style.filter = 'progid:DXImageTransform.Microsoft.Alpha(opacity=50)';
 			coverObj.style.opacity = 0.5;

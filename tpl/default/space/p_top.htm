@@ -221,13 +221,13 @@ function ieGo(){
                 <div class="denglu">
                		{if !$uid&&!$oauth_user_info}
                 	<div class="hydl">
-                    	<a href="#" id="huiyuan"  class="huiyuan">会员登录<b style="font-size:14px;">▼</b></a>
+                    	<a href="index.php?do=login" id="huiyuan"  class="huiyuan">会员登录<b style="font-size:14px;">▼</b></a>
                         <i></i>
                     	<a href="index.php?do=register"  class="zhuce">免费注册</a>
                     </div>
                     {else}
                     <div class="hydl">
-                    	<a href="index.php?do=user&view=setting" class="huiyuan">{if $username}{$username}{elseif $oauth_user_info}{$oauth_user_info['account']}{/if}</a>
+                    	<a href="index.php?do=space&member_id={$uid}" class="huiyuan">{if $username}<!--{eval echo kekezu::cutstr($username,14);}-->{elseif $oauth_user_info}{$oauth_user_info['account']}{/if}</a>
                         <i></i>
                     	<a href="index.php?do=logout"  class="zhuce">{$_lang['logout']}</a>
                     </div>
@@ -240,7 +240,7 @@ function ieGo(){
                         <ul>
                             <li class="dl_btn">
                                 <label class="dl_btnz">账户</label>
-                                <input class="" name="txt_account" id="txt_account" type="text" style="width:140px" value="用户名/手机号/邮箱" onfocus="if(this.value=='用户名/手机号/邮箱'){this.value='';}"  onblur="if(this.value==''){this.value='用户名/手机号/邮箱'}";/>
+                                <input class="" name="txt_account" id="txt_account" type="text" style="width:140px" value="用户名/手机号/邮箱/账号" onfocus="if(this.value=='用户名/手机号/邮箱/账号'){this.value='';}"  onblur="if(this.value==''){this.value='用户名/手机号/邮箱'}";/>
                             </li>
                             <li class="dl_btn">
                                 <label class="dl_btnz">密码</label>
@@ -248,8 +248,8 @@ function ieGo(){
                             </li>
                             
                             <li class="dl_btn0" style="width:155px; height:30px; padding-top:15px; padding-left:30px;">
-                                <input name="" type="button" onclick="return user_login();"  value="登录"/>
-                                <a href="">忘记密码？</a>
+                                <input name="" type="submit"  onclick="return user_login();"  value="登录"/>
+                                <a href="index.php?do=get_password">忘记密码？</a>
                             </li> 
                         </ul>
                     </form>

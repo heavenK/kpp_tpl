@@ -34,6 +34,9 @@ $pages = $kekezu->_page_obj->getPages ( $count, $page_size, $page, $url );
 $where .= "  order by floor asc".$pages['where'];
 $post_list = db_factory::query ( sprintf ( "select * from %sforum_post ".$where , TABLEPRE ) );
 
+// baozhang
+	$ensure = array('无',500,1000,2000);
+// end
 
 $type_info = db_factory::get_one ( sprintf ( "select * from %sforum_type where id=".$thread_info['type_id'], TABLEPRE ) );
 require keke_tpl_class::template ( "forum/" . $view );

@@ -134,7 +134,7 @@
 			{/if}
         	{$_lang['view_belongs']}{$trans_object[$v['obj']]}</a>
 		 </td>
-		 <td><!--{eval echo kekezu::cutstr($v['report_desc'],30);}-->...</td>
+		 <td title="$v['report_desc']"><!--{eval echo kekezu::cutstr($v['report_desc'],30);}-->...</td>
          <td><a href="{$_K['siteurl']}/index.php?do=space&member_id={$v['uid']}" target="_blank">{$v['username']}</a></td>
 		 <td><a href="{$_K['siteurl']}/index.php?do=space&member_id={$v['to_uid']}" target="_blank">{$v['to_username']}</a></td>
          <td>

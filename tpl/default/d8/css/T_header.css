@@ -1,5 +1,5 @@
 .you                { width:222px; height:220px; top:0; right:0; position: fixed; z-index:999999}
-.you_xia                { width:180px; height:280px; background:url(../images/fanhui.png) no-repeat; top:316px; right:0; position:fixed; z-index:999999}
+.you_xia                { width:180px; height:280px; background:url(../images/fanhui.png) no-repeat;right:0; position:absolute; overflow:hidden; z-index:999999}
 .you_xia h1     { float:left; width:180px; font-size:14px; margin-top:90px; margin-left:30px}
 .you_xia h2     { float:left; width:180px; font-size:14px; margin-top:43px; margin-left:30px}
 .you_xia h2 a   { color:#000}

@@ -35,6 +35,32 @@ $(document).ready(function () {
         <div class="yjxm">
           <!--新增选项 开始-->
           <div class="selectbox_dw">
+              <select name="indus_type" id="indus_type" title="{$_lang['select_industry']}"  onchange="showIndusPid(this.value)" limit = "required:true;between:5-10" msg = '{$_lang['industry_no_choose']}' msgArea="span_indus">
+                      <option value="">{$_lang['select_industry']}</option>
+                      {loop $type_arr $v}
+                           <option value="{$v['type_id']}">{$v['type_name']}</option>
+                      {/loop} 
+              </select>
+          </div>
+          <script>
+		   function showIndusPid(val){
+			   		$.ajax({
+							   type: "GET",
+							   url: "index.php?do=user&view=ajax&type=release&type_id="+val,
+							   async: true,
+							   success: function(data){
+								   if(data)	{
+									   data = "<option value=''>{$_lang['select_industry']}</option>"+data;
+									   //alert(data);
+									   $("#indus_pid").html(data);
+									}
+								   
+								   
+							   }
+					})
+			   }
+		  </script>
+          <div class="selectbox_dw" style="margin-left:10px;">
               <select name="indus_pid" id="indus_pid" title="{$_lang['select_industry']}"  onchange="showTaskIndus(this.value)" limit = "required:true;between:5-10" msg = '{$_lang['industry_no_choose']}' msgArea="span_indus">
                       <option value="">{$_lang['select_industry']}</option>
                       {loop $indus_p_arr $v}
@@ -123,8 +149,8 @@ $(document).ready(function () {
 			}
 		</script>
         <input name="txt_mobile" id="contact_mobile" type="text" value="{if $release_info['txt_mobile']}$release_info['txt_mobile']{else}$user_info['mobile']{/if}" 
-						 title="{$_lang['mobile_title']}" size="34" msgArea="span_mobile"
-						limit="required:true;type:mobileCn" msg="{$_lang['mobile_msg']}" maxlength="50"  class="input_7"/>
+						 title="{$_lang['mobile_title']}" size="34" msgArea="span_contact"
+						limit="required:false;type:mobileCn" msg="{$_lang['mobile_msg']}" maxlength="50"  class="input_7"/>
         <input name="txt_qq" id="contact_qq" type="text" value="{if $release_info['txt_qq']}$release_info['txt_qq']{else}$user_info['qq']{/if}" 
 
 						limit="required:false;type:int;len:5-13" msg="请填写正确的QQ号码" maxlength="50"  class="input_7" style="display:none"/>
@@ -238,7 +264,19 @@ $(document).ready(function () {
 				ale();
 			}
 		}
-	
+		function change_duo_money(){
+			
+			var m1 = parseInt($("#txt_prize1_cash").val());
+			var m2 = parseInt($("#txt_prize2_cash").val());
+			var m3 = parseInt($("#txt_prize3_cash").val());
+			
+			if(!m1) m1=0;
+			if(!m2) m2=0;
+			if(!m3) m3=0;
+			
+			var money = m1+m2+m3;
+			$("#str_cash").text(money);
+		}
 	</script>
         <div class="choslitcbox setmark" style="background:#fff; border:1px solid #ccc;display:none;">
                       <div class="costobg">&nbsp;</div>
@@ -250,15 +288,15 @@ $(document).ready(function () {
                         <!--input type="text" size="12" class="txt txt_input" value=""-->&nbsp;共享该赏金￥<strong class="cc30" id="str_cash">0</strong> ，请设定赏金分配金额
                         <div id="prize_1_li" class="mb_10">一等奖1人，赏金&nbsp;
                           <input  name="txt_prize1_num" value="1" type="hidden" id="txt_prize1_num"  />
-                          <input class="txc_1" name="txt_prize1_cash" value="{if $release_info[txt_prize1_cash]}$release_info[txt_prize1_cash]{/if}" type="text" size="8" id="txt_prize1_cash" msgArea="span_prize1_cash"  title="{$_lang['prize_cash_title']}" onkeyup="clearstr(this)" limit="required:true;type:int;between:0-" msg="{$_lang['prize_no_empty']}" />
+                          <input class="txc_1" name="txt_prize1_cash" value="{if $release_info[txt_prize1_cash]}$release_info[txt_prize1_cash]{/if}" type="text" size="8" id="txt_prize1_cash" msgArea="span_prize1_cash"  title="{$_lang['prize_cash_title']}" onkeyup="clearstr(this)" onblur="change_duo_money();" limit="required:true;type:int;between:0-" msg="{$_lang['prize_no_empty']}" />
                         </div>
                         <div id="prize_2_li" class="mb_10">二等奖1人，赏金&nbsp;
                         <input  name="txt_prize2_num" value="1" type="hidden" id="txt_prize2_num"  />
-                          <input class="txc_1" name="txt_prize2_cash" value="{if $release_info[txt_prize2_cash]}$release_info[txt_prize2_cash]{/if}" type="text" size="8" id="txt_prize2_cash" msgArea="span_prize2_cash"  title="{$_lang['prize_cash_title']}" onkeyup="clearstr(this)" limit="required:true;type:int;between:0-" msg="{$_lang['prize_no_empty']}" />
+                          <input class="txc_1" name="txt_prize2_cash" value="{if $release_info[txt_prize2_cash]}$release_info[txt_prize2_cash]{/if}" type="text" size="8" id="txt_prize2_cash" msgArea="span_prize2_cash"  title="{$_lang['prize_cash_title']}" onkeyup="clearstr(this)" onblur="change_duo_money();" limit="required:true;type:int;between:0-" msg="{$_lang['prize_no_empty']}" />
                         </div>
                         <div id="prize_3_li" class="mb_10" style='display:none' >三等奖1人，赏金&nbsp;
                         	<input  disabled="disabled" name="txt_prize3_num" value="1" type="hidden" id="txt_prize3_num"  />
-                          <input class="txc_1" name="txt_prize3_cash" value="{if $release_info[txt_prize3_cash]}$release_info[txt_prize3_cash]{/if}" type="text" size="8" id="txt_prize3_cash" msgArea="span_prize3_cash"  title="{$_lang['prize_cash_title']}" onkeyup="clearstr(this)" limit="required:true;type:int;between:0-" msg="{$_lang['prize_no_empty']}" />
+                          <input class="txc_1" name="txt_prize3_cash" value="{if $release_info[txt_prize3_cash]}$release_info[txt_prize3_cash]{/if}" type="text" size="8" id="txt_prize3_cash" msgArea="span_prize3_cash"  title="{$_lang['prize_cash_title']}" onkeyup="clearstr(this)" onblur="change_duo_money();" limit="required:true;type:int;between:0-" msg="{$_lang['prize_no_empty']}" />
                         </div>
                         <div id="msg_prize_valid" class="red"></div>
                       </div>
@@ -354,7 +392,7 @@ $(document).ready(function () {
 								   item_code="$v['item_code']" item_type="buy" item_name="$v['item_name']"
 									  size="4" />
     <label for="checkbox_urgent">&nbsp;{$v['item_name']}</label></td>
-    <td height="40" valign="middle"><span class="c999 font12"> {$v['item_desc']}                                                                        
+    <td height="40" valign="middle"><span class="c999 font12"> <!--{eval echo htmlspecialchars_decode($v[item_desc])}-->                                                                       
     </span></td>
     <td width="110" height="40" valign="middle"><strong class="cf60 pad10">{c:$v['item_cash']}{if $v['item_code']=='top'}/3天{/if}</strong></td>
     </tr>
@@ -488,8 +526,11 @@ function ale_all(obj){
 }
 
 function modify_totle(){
+	if($("#jutisj").attr('checked') || $("#jujiansj").attr('checked')){}
+	else{
 	 $("#cash_task").text($("#txt_task_cash").val());
 	$("#total_money").text(parseInt($("#txt_task_cash").val())+parseInt($("#item_totle_cash").val()));
+	}
 }
 
 $(function(){

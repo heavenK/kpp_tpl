@@ -14,8 +14,19 @@ $page_keyword = $kekezu->_sys_config['seo_keyword'];
 $page_description = $kekezu->_sys_config ['seo_desc'];
 $kf_phone = $kekezu->_sys_config['kf_phone'];
 $uid = $kekezu->_uid;
+if(!$uid){
+	if($_COOKIE['username'] && $_COOKIE['password']){
+		
+		$login_obj = new keke_user_login_class();
+		$user_info = $login_obj->user_login($_COOKIE['username'], md5($_COOKIE['password'])); 
+		
+		$login_obj->save_user_info_auto($user_info, $ckb_cookie,10); 
+		
+	}
+}
 $username = $kekezu->_username;
 $messagecount = $kekezu->_messagecount;
+$mess_new = $kekezu->_message_new;
 $user_info = $kekezu->_userinfo;
 $indus_p_arr = $kekezu->_indus_p_arr;
 $indus_c_arr = $kekezu->_indus_c_arr;

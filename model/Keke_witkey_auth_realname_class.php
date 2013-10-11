@@ -13,6 +13,7 @@ class Keke_witkey_auth_realname_class{
 	public $_start_time;
 	public $_end_time;
 	public $_auth_status;
+	public $_licen_pic;
 	
 	public $_zone;
 	public $_user_type;
@@ -68,6 +69,9 @@ class Keke_witkey_auth_realname_class{
 	public function getUser_type(){
 		return $this->_user_type ;
 	}
+	public function getLicen_pic(){
+		return $this->_licen_pic ;
+	}
 	
 	
 
@@ -112,6 +116,9 @@ class Keke_witkey_auth_realname_class{
 	}
 	public function setUser_type($value){
 		$this->_user_type = $value;
+	}
+	public function setLicen_pic($value){
+		$this->_licen_pic = $value;
 	}
 	
 	 
@@ -179,6 +186,9 @@ class Keke_witkey_auth_realname_class{
 		if(!is_null($this->_user_type)){
 			$data['user_type']=$this->_user_type;
 		}
+		if(!is_null($this->_licen_pic)){
+			$data['licen_pic']=$this->_licen_pic;
+		}
 
 		return $this->_realname_a_id = $this->_db->inserttable($this->_tablename,$data,1,$this->_replace);
 	}
@@ -225,6 +235,9 @@ class Keke_witkey_auth_realname_class{
 		}
 		if(!is_null($this->_user_type)){
 			$data['user_type']=$this->_user_type;
+		}
+		if(!is_null($this->_licen_pic)){
+			$data['licen_pic']=$this->_licen_pic;
 		}
 
 		if($this->_where){

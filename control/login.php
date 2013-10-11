@@ -7,6 +7,15 @@ $inter = $kekezu->_sys_config ['user_intergration'];
 $login_times = intval($_SESSION['login_times']);
 $page_type = "用户登录";
 
+if($_COOKIE['username'] && $_COOKIE['password']){
+	
+	$login_obj = new keke_user_login_class();
+ 	$user_info = $login_obj->user_login($_COOKIE['username'], md5($_COOKIE['password'])); 
+	
+	$login_obj->save_user_info_auto($user_info, $ckb_cookie,10); 
+	
+}
+
 if (kekezu::submitcheck(isset($formhash))|| isset($login_type) ==3) {
 	 isset($hdn_refer) and $_K['refer'] = $hdn_refer;  
 	 isset($_COOKIE['kekeloginrefer']) and $_K['refer'] =  $_COOKIE['kekeloginrefer'];
@@ -15,6 +24,7 @@ if (kekezu::submitcheck(isset($formhash))|| isset($login_type) ==3) {
 	 $ckb_cookie = isset($ckb_cookie)?$ckb_cookie:"";
 	$login_obj = new keke_user_login_class();
  	$user_info = $login_obj->user_login($txt_account, md5($pwd_password),$txt_code,$login_type); 
-	$login_obj->save_user_info($user_info, $ckb_cookie,$login_type); 
+	
+	$login_obj->save_user_info($user_info, $ckb_cookie,$login_type, 1 ,$remember, $pwd_password); 
 }
 require  keke_tpl_class::template ( $do );

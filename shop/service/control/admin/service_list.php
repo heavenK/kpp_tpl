@@ -11,8 +11,8 @@ $service_obj = new service_shop_class();
 
 $service_obj = new service_shop_class();
 //$status_arr = $service_obj->get_service_status();
-$status_arr = array("1"=>"´ýÉóºË","2"=>"³öÊÛÖÐ","3"=>"ÒÑÏÂ¼Ü","4"=>"ÉóºËÊ§°Ü");
-//¼ìË÷Ìõ¼þ
+$status_arr = array("1"=>"å¾…å®¡æ ¸","2"=>"å‡ºå”®ä¸­","3"=>"å·²ä¸‹æž¶","4"=>"å®¡æ ¸å¤±è´¥");
+//æ£€ç´¢æ¡ä»¶
 $wh = "1=1";
 
 $w[service_id] and $wh .= " and service_id= ".$w[service_id];
@@ -36,12 +36,12 @@ $w['ord'] and $wh.=" order by ".$w['ord'] or $wh.=" order by service_id desc ";
 
 $url_str = "index.php?do=model&model_id=7&view=list&w[service_id]=$w[service_id]&w[service_status]=$w[service_status]&w[title]=$w[title]&w[username]=$w[username]&page=$page&page_size=$page_size";
 
-//²éÑ¯
+//æŸ¥è¯¢
 $table_arr = $table_obj->get_grid ( $wh, $url_str, $page, $page_size, null, 1, 'ajax_dom');
 $service_arr = $table_arr['data'];
 $pages = $table_arr['pages'];
 
-//²Ù×÷ 1.É¾³ý£»2..½ûÓÃ£»3.ÉóºË 4.ÆôÓÃ
+//æ“ä½œ 1.åˆ é™¤ï¼›2..ç¦ç”¨ï¼›3.å®¡æ ¸ 4.å¯ç”¨
 if($service_id){
 	$service_arr = db_factory::get_one(sprintf("select * from %switkey_service where service_id='%d' ",TABLEPRE,$service_id));
 
@@ -54,27 +54,27 @@ if($service_id){
 			kekezu::admin_show_msg($_lang['operate_notice'],$url_str,2,$_lang['delete_success'],'success');
 		break;
 		case 'pass':
-		case 'shelves'://ÉÏ¼Ü
+		case 'shelves'://ä¸Šæž¶
 			$time = time()-$service_arr[on_time]; 
 		 	keke_payitem_class::update_service_payitem_time($service_arr[payitem_time], $time, $service_id); 
 			//service_shop_class::set_on_sale_num($service_id);
 			$service_obj->service_pass($service_id);
 			kekezu::admin_show_msg($_lang['operate_notice'],$url_str,2,$_lang['service_audit_success'],'success');
 		break;
-		case 'nopass'://ÉóºËÊ§°Ü×´Ì¬±äÎª4
+		case 'nopass'://å®¡æ ¸å¤±è´¥çŠ¶æ€å˜ä¸º4
 			goods_shop_class::set_service_status($service_id, 4);
-			//²éÑ¯Ò»ÏÂ·¢²¼Ê±Ê¹ÓÃµÄ¹¤¾ß¼°¹ºÂòµÄ¹¤¾ß
+			//æŸ¥è¯¢ä¸€ä¸‹å‘å¸ƒæ—¶ä½¿ç”¨çš„å·¥å…·åŠè´­ä¹°çš„å·¥å…·
 			db_factory::execute(sprintf("delete from %switkey_payitem_record where obj_id=%d and use_type='spend'",TABLEPRE,$service_id));
-			kekezu::admin_show_msg($_lang['operate_notice'],$url_str,2,'·þÎñÉóºË²»Í¨¹ý³É¹¦','success');
+			kekezu::admin_show_msg($_lang['operate_notice'],$url_str,2,'æœåŠ¡å®¡æ ¸ä¸é€šè¿‡æˆåŠŸ','success');
 			break;
-		case 'off_shelf'://ÏÂ¼Ü
+		case 'off_shelf'://ä¸‹æž¶
 			$service_obj->service_down($service_id);
 			kekezu::admin_show_msg($_lang['operate_notice'],$url_str,2,$_lang['service_use_success'],'success');
 		break;
 
 	}
 }
-//ÅúÁ¿²Ù×÷
+//æ‰¹é‡æ“ä½œ
 if($sbt_action){
 	$keyids = $ckb;
 	if(is_array($keyids)){
@@ -82,7 +82,7 @@ if($sbt_action){
 		$log_msg = $_lang['to_witkey_service_has_in'].$log_mac_arr[$sbt_action].$_lang['operate'];
 		kekezu::admin_system_log($log_msg);
 		switch ($sbt_action) {
-				case $_lang['mulit_delete']://ÅúÁ¿É¾³ý
+				case $_lang['mulit_delete']://æ‰¹é‡åˆ é™¤
 					$res = keke_shop_class::service_del($keyids);
 					kekezu::admin_show_msg($_lang['operate_notice'],$url_str,2,$_lang['mulit_delete_success'],'success');
 				break;
@@ -100,7 +100,7 @@ if($sbt_action){
 					$res = goods_shop_class::set_service_status($key_ids,4);
 					$action = $_lang['mulit_pass'];
 					break;
-				case $_lang['batch_shelves']://ÅúÁ¿ÉÏ¼Ü
+				case $_lang['batch_shelves']://æ‰¹é‡ä¸Šæž¶
 					foreach ($keyids as $v) {
 						$service_info = kekezu::get_table_data("*","witkey_service","service_id = $v");
 						$service_info = $service_info[0];
@@ -109,7 +109,7 @@ if($sbt_action){
 					}
 					$service_obj->service_pass($keyids) and kekezu::admin_show_msg($_lang['operate_notice'],$url_str,2,$_lang['mulit_pass_success'],'success');
 				break;
-				case $_lang['batch_off_the_shelf']://ÅúÁ¿ÏÂ¼Ü
+				case $_lang['batch_off_the_shelf']://æ‰¹é‡ä¸‹æž¶
 					$service_obj->service_down($keyids) and kekezu::admin_show_msg($_lang['operate_notice'],$url_str,2,$_lang['mulit_use_success'],'success');
 				break;
 		}

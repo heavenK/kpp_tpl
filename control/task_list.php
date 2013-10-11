@@ -61,7 +61,7 @@ if (isset ( $path )) {
 } else {
 	$path = '';
 }
-$model_where = ' 1=1 and ';
+$model_where = ' 1=1 and model_id <> 10 and ';
 if (isset ( $model_ids )&& $model_ids) {
 	$model_val = implode ( ',', array_filter ( explode ( "M", $model_ids ) ) );
 	$model_where = "  a.model_id in ($model_val) and ";
@@ -127,7 +127,6 @@ function get_cash_where($min_cash, $max_cash) {
 	return $where;
 }
 
-
 // 获取查询条件
 function get_where($path) {
 	global $task_cash_arr, $search_key, $min, $max, $ord, $model_ids, $indus_id, $model_open,$province,$city,$area;
@@ -148,7 +147,11 @@ function get_where($path) {
 				$where = "a.task_status=8";
 				break;
 		}
-	}//task_list_search_cash
+	}else{
+		$where = "a.task_status in (2,3,6)";
+	}
+	
+	//task_list_search_cash
 	$indus_id and $where .= sprintf ( " and   a.indus_id = %d", $indus_id );
 	if($province&&$city&&$area){
 		$where .= sprintf(" and a.city = '%s' ",$province.','.$city.','.$area);
@@ -231,21 +234,22 @@ function get_where($path) {
 				break;
 		}
 	}
+	$orders = "(CASE WHEN substring( payitem_time, instr(a.payitem_time,'top')+4+LENGTH('top'),10)>1000000000 THEN a.start_time ELSE 0 END) desc,(CASE WHEN substring( payitem_time, instr(a.payitem_time,'urgent')+4+LENGTH('urgent'),10)>1000000000 THEN a.start_time ELSE 0 END) desc,";
 	switch ($ord) {
 		case 1 :
-			$order_by = " order by a.start_time desc";
+			$order_by = " order by ".$orders."a.start_time desc";
 			break;
 		case 2 :
-			$order_by = " order by a.start_time asc";
+			$order_by = " order by ".$orders."a.start_time asc";
 			break;
 		case 3 :
-			$order_by = " order by a.task_cash desc";
+			$order_by = " order by ".$orders."a.task_cash desc";
 			break;
 		case 4 :
-			$order_by = " order by a.task_cash asc";
+			$order_by = " order by ".$orders."a.task_cash asc";
 			break;
 	}
-	$ord or $order_by = " order by (CASE WHEN substring( payitem_time, instr(a.payitem_time,'top')+4+LENGTH('top'),10)>UNIX_TIMESTAMP() THEN a.start_time ELSE 0 END) desc,a.start_time  desc";
+	$ord or $order_by = " order by ".$orders."a.start_time  desc";
 
 	return $where . $order_by;
 
@@ -539,6 +543,12 @@ $task_count =  intval ( $task_count ['count'] );
 $task_in = number_format ( $task_in ['cash'], 2, ".", "," );
 $register =  intval ( $register ['count'] );
 // end
+
+$first_type_list = db_factory::query ( " select * from ".TABLEPRE."witkey_indus_type order by type_id asc");
+foreach($first_type_list as $key => $val){
+	$first_type_list[$key]['indus'] = db_factory::query ( " select * from ".TABLEPRE."witkey_industry where indus_id in (".$val['indus_ids'].")");
+}
+
 
 $type_infos = keke_search_class::get_analytic_url ( $path );
 

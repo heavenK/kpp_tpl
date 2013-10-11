@@ -12,6 +12,8 @@ $sub_nav = array (
 		) 
 )
 ;
+
+
 // add by heavenK
 if(!$op) $op = 'index';
 
@@ -23,4 +25,16 @@ $task_count =  intval ( $task_count ['count'] );
 $task_in = number_format ( $task_in ['cash'], 2, ".", "," );
 $register =  intval ( $register ['count'] );
 // end
+
+$shop_infoss = db_factory::get_one ( sprintf ( " select * from %switkey_shop where uid=%d", TABLEPRE, $uid )); 
+
+$auth_inoss = db_factory::get_one ( sprintf ( " select * from %switkey_auth_realname where uid=%d", TABLEPRE, $uid )); 
+
+if(!$auth_inoss && !$shop_infoss['on_time']){
+	kekezu::show_msg ( "您没有进行实名认证，无法开通和管理工作室！", "index.php?do=user&view=payitem&op=auth&auth_code=realname", '3', "您没有进行实名认证，无法开通和管理工作室！", 'alert_right' ) ;
+}
+
 require 'user_'.$view."_".$op.".php";
+
+
+

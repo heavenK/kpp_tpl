@@ -27,7 +27,9 @@
                 </div>
                 <div class="vip_about_info" style="padding-top:0px;">
                 	{loop $member_list $k $v}
-                    <tt id="member_{$v['member_id']}">{$v['truename']}</tt>
+                    
+                    <h1 style="margin-top:5px;"><img src="{if $v['member_pic']}{$v['member_pic']}{else}/data/avatar/default/women_middle.jpg{/if}" width="50" height="50" /></h1>
+                    <h2 style="font-size:12px; margin-top:5px;color:#71C6ED">{$v['truename']}</h2>
                 	<span>职位</span>
                     <em>{$v['member_job']}</em>
                     <em><!--{eval echo htmlspecialchars_decode($v[member_desc])}--></em>

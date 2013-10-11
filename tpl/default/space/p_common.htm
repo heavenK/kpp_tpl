@@ -68,10 +68,10 @@
     	<div class="vip_zs_left">
         	<div class="vip_zs_lpic"><h1><img src="<!--{userpicurl($member_info['uid'],larger)}-->" width="198" height="198" /></h1><p>{$member_info['username']}</p></div>
             <div class="vip_zs_lrz"><em>认证状况:</em>
-            	{if $shop_info[shop_type]==1}
-                <span>个人认证</span>
-                {else}
+            	{if $member_info[user_type]==2}
                 <span>公司认证</span>
+                {else}
+                <span>个人认证</span>
                 {/if}
                 <div class="clear"></div>
             </div>
@@ -119,16 +119,16 @@
             	<h1>最近访客</h1>
                 <ul>
                 	{loop $visit_list $k $v}
-                	<li><h2><a href="index.php?do=space&member_id={$v[uid]}"><img src="<!--{userpicurl($v[uid],middle)}-->" width="95" height="95" /></a></h2><p style="margin-bottom:0; line-height:20px">{$v['username']} </p><p style="margin-bottom:0; line-height:20px"><!--{date('Y-m-d',$v['on_time'])}--></p></li>
+                	<li><h2><a href="index.php?do=space&member_id={$v[uid]}"><img src="<!--{userpicurl($v[uid],middle)}-->" width="95" height="95" /></a></h2><p style="margin-bottom:0; line-height:20px"><!--{eval echo kekezu::cutstr($v['username'],14);}--></p><p style="margin-bottom:0; line-height:20px"><!--{date('Y-m-d',$v['on_time'])}--></p></li>
                     {/loop}
                     <div class="clear"></div>
                 </ul>
             </div>
             <div class="vip_zs_lzs">
-            	<h1><a href="guanzhu_shops_list.html">我关注的威客</a></h1>
+            	<h1>我关注的威客</h1>
                 <ul>
                 	{loop $follow_list $k $v}
-                    <li><h2><a href="index.php?do=space&member_id={$v[focus_uid]}"><img src="<!--{userpicurl($v[focus_uid],middle)}-->" width="95" height="95" /></a></h2><p>{$v[focus_username]}</p></li>
+                    <li><h2><a href="index.php?do=space&member_id={$v[focus_uid]}"><img src="<!--{userpicurl($v[focus_uid],middle)}-->" width="95" height="95" /></a></h2><p><!--{eval echo kekezu::cutstr($v['focus_username'],14);}--></p></li>
                     {/loop}
                     <div class="clear"></div>
                 </ul>

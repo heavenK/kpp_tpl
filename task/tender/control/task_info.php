@@ -12,6 +12,7 @@ $payitem_str = $task_obj->get_payitem_str();
 if(!$uid&&strstr(' '.$payitem_str,'seohide')){
 	kekezu::show_msg("拒绝访问",$back_url,3,"该任务在您登录后才可以访问");
 }
+if(strstr($payitem_str,'search')) banspider();
 $model_id = $task_obj->_model_id;
 $task_status = $task_obj->_task_status;
 $tender_time_obj = new tender_time_class();
@@ -37,6 +38,7 @@ $browing_history = $task_obj->browing_history ( $task_id, $task_cash_cove, $task
 $show_payitem = $task_obj->show_payitem ();
 $task_obj->plus_view_num (); 
 $g_info = $task_obj->_g_userinfo;
+
 switch ($op) {
 	case "pub_agreement" : 
 		$bid_info = $task_obj->get_bid_info ();		
@@ -52,6 +54,9 @@ switch ($op) {
 			$u->task_close ( array ('r_task_id' => $u->_r_task_id, 'indetify' =>1,'bid_uid'=>$bid_info['uid'] ) );
 		}
 		$res = $task_obj->set_agreement_status ( $bid_info ['bid_id'], 2 );
+		
+		if($task_info['true_cash'])	keke_finance_class::cash_in ( $bid_info ['uid'], $task_info['true_cash'], 0, 'task_bid', '', 'task', $task_id);
+		
 		$res and kekezu::keke_show_msg ( "index.php?do=task&task_id=$task_id", $_lang ['operate_success'], 'alert_right' ) or kekezu::keke_show_msg ( "index.php?do=task&task_id=$task_id", $_lang ['operate_fail'], 'alert_error' );
 		die ();
 		break;
@@ -96,6 +101,29 @@ switch ($op) {
 			$loca = explode ( ",", $user_info ['residency'] );
 			$workhide_exists = keke_payitem_class::payitem_exists ( $uid, 'workhide', 'work' ); 
 			require keke_tpl_class::template ( 'task/tender_work' );
+		}
+		die ();
+		break;
+	case "send_money" : 
+		$title = '托管赏金';
+		if ($sbt_edit) {
+			
+			if($user_info['balance'] < $work_frm['txt_cash'])	kekezu::show_msg ( "您的余额不足，无法托管赏金！", "index.php?do=task&task_id=" . $task_info[task_id], 3, "提交失败", "alert_error" );
+			
+			else{
+				$res = db_factory::execute ( " update ".TABLEPRE."witkey_task set true_cash=".$work_frm['txt_cash']." where task_id =".$task_id);
+				
+				if($res) {
+					keke_finance_class::cash_out ($uid, $work_frm['txt_cash'], 'send_money', '', 'task', $task_id);
+					kekezu::show_msg ( "托管赏金完成！", "index.php?do=task&task_id=" . $task_info[task_id], 3, "托管赏金完成", "success" );
+				}
+				else 	kekezu::show_msg ( "无法托管赏金！", "index.php?do=task&task_id=" . $task_info[task_id], 3, "提交失败", "alert_error" );
+			}
+			
+		} else {
+			$loca = explode ( ",", $user_info ['residency'] );
+			$workhide_exists = keke_payitem_class::payitem_exists ( $uid, 'workhide', 'work' ); 
+			require keke_tpl_class::template ( 'task/send_money' );
 		}
 		die ();
 		break;
@@ -167,13 +195,11 @@ $sql = sprintf ( "select a.*,b.* from %switkey_task_bid as a left join %switkey_
 $st = $st ? $st : "all";
 $sql .= " and 1=1";
 $ut == "my" and $sql .= " and a.uid=" . intval ( $uid );
-$url = "index.php?do=task&task_id=$task_id&view=work&ut=$ut&page_size=$page_size&$page=$page";
+$url = "index.php?do=task&task_id=$task_id&page_size=$page_size&$page=$page";
 $count = db_factory::execute ( $sql );
 $page = $page ? $page : 1;
 $page_size = intval ( $page_size ) ? intval ( $page_size ) : 5;
 $sql .= " order by (CASE WHEN  a.bid_status!=0 THEN a.bid_status ELSE 0 END) asc ,a.bid_time desc";
-$page_obj->setAjax ( 1 );
-$page_obj->setAjaxDom ( "gj_summery" );
 $pages = $page_obj->getPages ( $count, $page_size, $page, $url );
 $sql = $sql . $pages ['where'];
 $bid_info = db_factory::query ( $sql );
@@ -181,9 +207,6 @@ $bid_info1 = kekezu::get_arr_by_key ( $bid_info, 'bid_id' );
 $bid_ids = implode ( ',', array_keys ( $bid_info1 ) );
 $bid_ids && $uid == $task_info ['uid'] and db_factory::execute ( 'update ' . TABLEPRE . 'witkey_task_bid set is_view=1 where bid_id in (' . $bid_ids . ') and is_view=0' );
 $has_new = $task_obj->has_new_comment ( $page, $page_size );
-
-
-
 
 
 

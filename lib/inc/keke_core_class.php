@@ -809,6 +809,7 @@ class kekezu extends keke_core_class {
 	public $_finance;
 	public $_tag;
 	public $_messagecount;
+	public $_message_new;
 	public $_indus_p_arr;
 	public $_indus_c_arr;
 	public $_indus_arr;
@@ -920,6 +921,7 @@ class kekezu extends keke_core_class {
 			$userinfo = keke_user_class::get_user_info ( $this->_uid );
 			$sql = "select count(msg_id) from %switkey_msg where to_uid = '%d' and view_status=0 and msg_status!=1 and msg_status !=2";
 			$this->_messagecount = db_factory::get_count ( sprintf ( $sql, TABLEPRE, $this->_uid ) );
+			$this->_message_new = db_factory::get_one ( sprintf ( "select * from %switkey_msg where to_uid = '%d' and view_status=0 and msg_status!=1 and msg_status !=2 order by on_time desc", TABLEPRE, $this->_uid ) );
 			if (! $userinfo ['last_login_time']) { 
 				 db_factory::execute ( ' update ' . TABLEPRE . 'witkey_space set last_login_time=' . time () . ' where uid=' . $this->_uid );
 				$userinfo ['last_login_time'] = time ();

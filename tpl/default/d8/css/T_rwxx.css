@@ -29,7 +29,7 @@ DIV.selectbox-wrapper UL LI 	{ PADDING-BOTTOM: 3px; WIDTH: 83px; padding-left:3p
 .fabu_01 dl dt h1 i { font-size:12px; font-style:normal; color:#666; right:20px; top:0; position:absolute}
 .fabu_01 dl dt h2 p { font-size:12px; font-style:normal; color:#F30; right:20px; top:45px; position:absolute}
 
-.fabu_01 dl dt h2 b { width:66px; height:27px; background:#47af8a; font-size:14px; color:#fff; text-align:center; line-height:26px; float:left; }
+.fabu_01 dl dt h2 b { width:66px; height:32px; background:#47af8a; font-size:14px; color:#fff; text-align:center; line-height:32px; float:left; }
 .fabu_01 dl dt h2 span { padding:7px 24px 0 6px;}
 .fabu_01 dl dt h2 span i { font-size:14px; color:#b80002; font-style:normal; line-height:26px;}
 .fabu_01 dl dt h2 span em { color:#47af8a; margin-left:30px; font-size:14px; font-style:normal;}
@@ -40,8 +40,21 @@ DIV.selectbox-wrapper UL LI 	{ PADDING-BOTTOM: 3px; WIDTH: 83px; padding-left:3p
 .fabu_02 h1 em { color:#e66435; font-style:normal; font-weight:bold;}
 .fabu_02 h1 b { color:#000; font-weight:normal; font-weight: bold}
 .fabu_02 h3 { width:700px; margin-top:40px; height:65px; background: url(../images/zhaobiao.png) no-repeat scroll 12px 0}
+
+.fabu_02 .step1 { width:700px; margin-top:40px; height:65px; background: url(../images/s01.png) no-repeat scroll 12px 0}
+.fabu_02 .step2 { width:700px; margin-top:40px; height:65px; background: url(../images/s02.png) no-repeat scroll 12px 0}
+.fabu_02 .step3 { width:700px; margin-top:40px; height:65px; background: url(../images/s03.png) no-repeat scroll 12px 0}
+.fabu_02 .step4 { width:700px; margin-top:40px; height:65px; background: url(../images/s04.png) no-repeat scroll 12px 0}
+.fabu_02 .step5 { width:700px; margin-top:40px; height:65px; background: url(../images/s05.png) no-repeat scroll 12px 0}
+.fabu_02 .step6 { width:700px; margin-top:40px; height:65px; background: url(../images/s06.png) no-repeat scroll 12px 0}
+.fabu_02 .step7 { width:700px; margin-top:40px; height:65px; background: url(../images/s07.png) no-repeat scroll 12px 0}
+
 .fabu_02 h3 i { font-style: normal; font-size:16px; font-weight:normal; line-height:100px; margin-right:50px; margin-left:5px;}
-.fabu_02 h3 em { font-style: normal; font-size:16px; color:#8d8d8d; font-weight:normal; line-height:100px; margin-right:50px; margin-left:5px;}
+.fabu_02 h3 em { font-style: normal; font-size:16px;  font-weight:normal; line-height:100px; margin-right:50px; margin-left:5px;}
+
+.fabu_02 h3 .no_sel {color:#8d8d8d;}
+
+
 .fabu_03 { width:702px; padding:14px 0 12px 16px; float:left; border-bottom:1px solid #ccc;}
 .fabu_03 h1 { color:#39a6d5; font-weight:bold; font-size:16px; margin-bottom:20px;}
 .fabu_03 h2 { color:#000; font-weight:bold; margin-bottom:10px}
@@ -75,7 +88,7 @@ DIV.selectbox-wrapper UL LI 	{ PADDING-BOTTOM: 3px; WIDTH: 83px; padding-left:3p
 #jquery{width:690px; height:180px; float:left; margin-top:16px; margin-left:12px; position:relative}
 #jquery h1 { width:690px; height:34px; float:left; background:#f4f4f4}
 #jquery h1 a { width:71px; height:25px; margin:4px 0 0 8px; float:left;}
-.juwenben { width:684px; height:92px; line-height:14px; float:left; border:none; padding:3px; color:#bdbdbd; font-size:12px;}
+.juwenben { width:684px; height:92px; line-height:14px; float:left; border:none; padding:3px; color:#000; font-size:12px;}
 .jiantou { width:16px; height:10px; position:absolute; top:-9px; left:52px;}
 .jquery03 { width:690px; height:134px; border:1px solid #dfdfdf; float:left; margin-bottom:15px; }
 #jquery b { font-weight:normal; float:left; line-height:14px; color:#898b8a}
@@ -135,7 +148,7 @@ DIV.selectbox-wrapper UL LI 	{ PADDING-BOTTOM: 3px; WIDTH: 83px; padding-left:3p
 .gaojiao { width:600px; float:left; padding-bottom:20px;}
 .gaojiao_02 { float:left; text-align:left; padding-bottom:20px; line-height:20px; width:500px;}
 .gaojiao h3 { width:600px; float:left; font-weight:bold; text-align:left; color:#000}
-.gaojiao a { width:84px; height:84px; float:left; margin-right:10px; margin-top:10px; display:inline; }
+.gaojiao a { width:84px; float:left; margin-right:10px; margin-top:10px; display:inline; }
 .baojia { width:600px; float:left; color:#b2b2b2; text-align:left; }
 .baojia h4 { float:left; color:#000; margin-right:30px; display:inline; font-size:12px;}
 .baojia h4 b { color:#b80002}
@@ -244,4 +257,6 @@ DIV.selectbox-wrapper UL LI 	{ PADDING-BOTTOM: 3px; WIDTH: 83px; padding-left:3p
 .ljfb_right_jiao h2 i { float:left}
 .ljfb_right_jiao h2 em { font-style:normal; margin-left:5px; float:left; color:#303030}
 .ljfb_right_jiao a { width:150px; height:36px; float:left;background:url(../images/jiao.png) no-repeat; margin-left:60px; margin-top:15px;}
+.ljfb_right_jiao .tou { background:url(../images/tou01.png) no-repeat;}
+.ljfb_right_jiao .tou:hover { background:url(../images/tou02.png) no-repeat;}
 .ljfb_right_jiao a:hover { background:url(../images/jiao01.png) no-repeat;}

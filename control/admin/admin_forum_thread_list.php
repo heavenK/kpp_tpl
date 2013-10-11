@@ -40,39 +40,40 @@ $type_arr = array();
 foreach($res as $key => $val){
 	$type_arr[$val['id']] = $val['type_name'];
 }
-
 if($type == 'thread'){
 	
 	$where = "where isShow=1";
 	
 	if($type_id) $where .= ' and type_id='.$type_id;
+	$title and $where .= " and title like '%" . $title . "%'";
 	if($op == 'check') $where .= ' and status=1';
 	else	 $where .= ' and status=2';
 	
-	$count = db_factory::get_count ( sprintf ( "select count(tid) count from %sforum_thread ".$where, TABLEPRE ) );
+	$count = db_factory::get_count (  "select count(tid) count from ".TABLEPRE."forum_thread ".$where);
 	
 	$page_size  and $page_size = intval ( $page_size ) or $page_size = 20;
 	$page and $page = intval ( $page ) or $page = 1;
 	$pages = $kekezu->_page_obj->getPages ( $count, $page_size, $page, $url );
 	
 	$where .= " order by pub_time desc".$pages['where'];
-	$thread_arr = db_factory::query ( sprintf ( "select * from %sforum_thread ".$where, TABLEPRE ) );
+	$thread_arr = db_factory::query ( "select * from ".TABLEPRE."forum_thread ".$where);
 }else{
 
 	$where = "where floor>1";
 	
 	if($type_id) $where .= ' and type_id='.$type_id;
+	$title and $where .= " and title like '%" . $title . "%'";
 	if($op == 'check') $where .= ' and status=1';
 	else	 $where .= ' and status=2';
 	
-	$count = db_factory::get_count ( sprintf ( "select count(tid) count from %sforum_post ".$where, TABLEPRE ) );
+	$count = db_factory::get_count ( "select count(tid) count from ".TABLEPRE."forum_post ".$where );
 	
 	$page_size  and $page_size = intval ( $page_size ) or $page_size = 20;
 	$page and $page = intval ( $page ) or $page = 1;
 	$pages = $kekezu->_page_obj->getPages ( $count, $page_size, $page, $url );
 	
 	$where .= " order by pub_time desc".$pages['where'];
-	$thread_arr = db_factory::query ( sprintf ( "select * from %sforum_post ".$where, TABLEPRE ) );
+	$thread_arr = db_factory::query ( "select * from ".TABLEPRE."forum_post ".$where );
 }
 
 function getTitle($tid){

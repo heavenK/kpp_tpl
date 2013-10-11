@@ -10,13 +10,21 @@
 	  {else}
 			<font color="red">{$_lang['no_data']}</font>
 	  {/if}
-	{elseif $ac='file'}<!--加载附件--> 
+	{elseif $ac=='file'}<!--加载附件--> 
 		{if $f_list}
 			{loop $f_list $v}
 				<a href="{$_K['siteurl']}/index.php?do=ajax&view=file&ajax=download&file_name={$v['file_name']}&file_path={$v['save_name']}">$v['file_name']</a>
 			{/loop}
 		{else}
 			<font color="red">{$_lang['no_data']}</font>
+		{/if}
+	{elseif $ac=='voter'}<!--加载附件--> 
+		{if $v_list}
+			{loop $v_list $v}
+				<a href="{$_K['siteurl']}/index.php?do=space&member_id={$v['uid']}" target="_blank">{$v['username']}</a>
+			{/loop}
+		{else}
+			<font color="red">{$_lang['no_data']}1</font>
 		{/if}
 	{/if}
 {/if}

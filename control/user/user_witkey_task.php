@@ -1,5 +1,6 @@
 <?php
 defined ( 'IN_KEKE' ) or exit ( 'Access Denied' );
+
 if ($model_id) {
 	$cove_arr = kekezu::get_table_data ( "*", "witkey_task_cash_cove", "", "", "", "", "cash_rule_id" );
 	$third_nav = array ();
@@ -10,6 +11,7 @@ if ($model_id) {
 	$model_info = $model_list [$model_id]; 
 	switch ($model_info ['model_code']) {
 		case "sreward" :
+		case "zjreward" :
 		case "preward" :
 		case "mreward" :
 		case "wbzf" :

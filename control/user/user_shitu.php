@@ -44,6 +44,13 @@ if($ajax == 2){
 		echo 1;
 		exit;	
 	}
+	
+	$res1 = db_factory::get_one (" select * from ".TABLEPRE."witkey_msg where uid=".$uid." and title = '申请拜师'"); 
+	if($res1) {
+		echo 7;
+		exit;	
+	}
+	
 	if($res['credit'] < $basic_config['baishi_credit']){
 		echo 3;
 		exit;

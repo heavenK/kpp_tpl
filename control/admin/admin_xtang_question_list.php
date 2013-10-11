@@ -2,7 +2,17 @@
 defined ( 'ADMIN_KEKE' ) or exit ( 'Access Denied' );
 
 $url = 'index.php?do=xtang&view=question_list';
-$question_arr = db_factory::query ( sprintf ( "select * from %sxtang_question order by qid desc", TABLEPRE ) );
+
+$w = " 1=1 ";
+$page = max($page,1);
+$limit = max($limit,20);
+$ord = max($ord,1);
+$w.=' order by qid desc ';
+$count =  max(db_factory::get_count(' select count(qid) from '.TABLEPRE.'xtang_question where '.$w),0);
+$pages = $kekezu->_page_obj->getPages($count, $limit, $page,$url.'&ord='.$ord.'&limit='.$limit);
+
+
+$question_arr = db_factory::query ( sprintf ( "select * from %sxtang_question where %s", TABLEPRE, $w.$pages['where'] ) );
 
 
 if($ac == 'del' && $qid){
