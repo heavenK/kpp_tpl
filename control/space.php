@@ -19,10 +19,15 @@ $language = $kekezu->_lang;
 keke_lang_class::package_init ( $do );
 $member_info = kekezu::get_user_info ( $member_id );
 
-if($member_info['status'] == 2) kekezu::show_msg("用户已经被封号，无法访问其店铺！","index.php",2,"用户已经被封号，无法访问其店铺！","alert_error");
+if($member_info['status'] == 2) kekezu::show_msg("用户已经被封号，无法访问其工作室！","index.php",2,"用户已经被封号，无法访问其工作室！","alert_error");
 //店铺信息
 $shop_info = db_factory::get_one(sprintf("select * from %switkey_shop where uid = '%d'",TABLEPRE,$member_id));
 
+
+if(!$shop_info['on_time']) {
+	if($uid == $shop_info['uid'])	kekezu::show_msg("您还没有开通自己的工作室！","index.php?do=user&view=store",2,"您还没有开通自己的工作室！","alert_error");
+	else	kekezu::show_msg("用户尚未开通工作室，无法访问！","index.php",2,"用户尚未开通工作室，无法访问！","alert_error");
+}
 //seo的相关
 $shop_info['seo_title'] and $page_title = $shop_info['seo_title'];
 if($shop_info['seo_keyword']){

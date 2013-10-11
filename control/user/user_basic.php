@@ -53,10 +53,18 @@ switch ($opp) {
 		$user_type == 2 and $real_pass = keke_auth_fac_class::auth_check ( 'enterprise', $uid ) or $real_pass = keke_auth_fac_class::auth_check ( "realname", $uid );
 		$loca= explode ( ',', $user_info ['residency'] );
 		$space_obj = keke_table_class::get_instance ( 'witkey_space' );
+		
 		$sect_info = kekezu::get_table_data ( "*", "witkey_member_ext", " type='sect' and uid='$uid' ", "", "", "", "k" );
 			if (isset($formhash)&&kekezu::submitcheck($formhash)) {
 			$province && $city and $conf ['residency'] = $province . ',' . $city.','.$area;
 			$pk[uid] = intval($uid);
+			if(!$user_info['zl_flag'])	{
+				keke_finance_class::cash_in($uid, floatval(0),intval($basic_config['shop_open_credit']),'finish_contect','','finish_contect');
+				$msgs = "第一次完善资料，赠送您".$basic_config['shop_open_credit']."豆币";
+			}else{
+				$msgs = $_lang['submit success'];	
+			}
+			$conf['zl_flag'] = 1;
 			$conf and $res = $space_obj->save ( $conf, $pk );
 			if ($sect) {
 				foreach ( $sect as $k => $v ) {
@@ -73,7 +81,7 @@ switch ($opp) {
 					}
 				}
 			}
-			kekezu::show_msg ( $_lang['system prompt'], $ac_url . "&opp=$opp", '1', $_lang['submit success'], 'alert_right' ) ;
+			kekezu::show_msg ( $_lang['system prompt'], $ac_url . "&opp=$opp", '1', $msgs, 'alert_right' ) ;
 		}
 		$auth = keke_auth_fac_class::auth_check(array('mobile','email'),$uid);
 		$auth = kekezu::get_arr_by_key($auth,'auth_code');

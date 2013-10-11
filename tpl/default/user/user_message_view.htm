@@ -62,6 +62,7 @@
                                         <div class="rowElem clearfix form_button">
                                             
 											 <a  class="button mr_10" href="javascript:void(0)"  onclick="history.go(-1);"> {$_lang['return']}</button>
+                                             {if $msg['uid']}<a  class="button"  href="index.php?do=user&view=message&op=send&msg_type=write&txt_to_username={$msg['username']}">回复</a>{/if}
                         					<a  class="button" onclick="return del(this);" href="index.php?do=$do&view=$view&op=del&page=$page&msg_id=$msg_id&msg_type=$msg_type">{$_lang['delete']}</a>
                                         </div>
                                 

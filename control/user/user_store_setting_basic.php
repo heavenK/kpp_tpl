@@ -19,8 +19,8 @@ if (isset($formhash)&&kekezu::submitcheck($formhash)){
 	$shop_info = db_factory::query($sql);
 
 	if($shop_info[0]['on_time'] == NULL){
-		keke_finance_class::cash_in($uid, floatval(0),intval($basic_config['shop_open_credit']),'admin_charge','','admin_charge');
-		$msg_credit = " 您已经获得网站赠送的".$basic_config['shop_open_credit']."豆币！";
+		//keke_finance_class::cash_in($uid, floatval(0),intval($basic_config['shop_open_credit']),'admin_charge','','admin_charge');
+		$msg_credit = "恭喜您已成功开通工作室，完善详细资料，豆8网将赠送您".$basic_config['shop_open_credit']."豆币！";
 	}
 	
 	$pk['shop_id'] = $shop_info['0']['shop_id']; 

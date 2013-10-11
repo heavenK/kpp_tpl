@@ -78,6 +78,7 @@ class Keke_witkey_space_class{
 	public $_ziwojieshao;
 	public $_pid;
 	public $_look_credit;
+	public $_zl_flag;
 
 	
 	
@@ -318,6 +319,9 @@ class Keke_witkey_space_class{
 	public function getLook_credit(){
 		return $this->_look_credit ;
 	}
+	public function getZl_flag(){
+		return $this->_zl_flag ;
+	}
 
 
 	public function getCache_config() {
@@ -551,6 +555,9 @@ class Keke_witkey_space_class{
 	}
 	public function setLook_credit($value){
 		$this->_look_credit = $value;
+	}
+	public function setZl_flag($value){
+		$this->_zl_flag = $value;
 	}
 	
 	
@@ -812,6 +819,9 @@ class Keke_witkey_space_class{
 		if(!is_null($this->_look_credit)){
 			$data['_look_credit']=$this->_look_credit;
 		}
+		if(!is_null($this->_zl_flag)){
+			$data['_zl_flag']=$this->_zl_flag;
+		}
 
 		return $this->_uid = $this->_db->inserttable($this->_tablename,$data,1,$this->_replace);
 	}
@@ -1045,6 +1055,9 @@ class Keke_witkey_space_class{
 		}
 		if(!is_null($this->_look_credit)){
 			$data['look_credit']=$this->_look_credit;
+		}
+		if(!is_null($this->_zl_flag)){
+			$data['zl_flag']=$this->_zl_flag;
 		}
 
 		if($this->_where){

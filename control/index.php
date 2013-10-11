@@ -7,7 +7,7 @@ $cur_info = $_currencies[$now_cur];
 $cash_coverage = kekezu::get_cash_cove ( '', true );
 if ($task_open) {
 	$final_task = kekezu::get_classify_indus();
-	$indus_recomm_task = db_factory::query(sprintf("select task_id,task_title,task_cash,task_cash_coverage,indus_pid,task_status,start_time from %switkey_task where task_status=2 order by start_time desc limit 0,9",TABLEPRE));
+	$indus_recomm_task = db_factory::query(sprintf("select task_id,task_title,task_cash,task_cash_coverage,indus_pid,task_status,start_time from %switkey_task where task_status=2 and model_id in (1,2,4) order by start_time desc limit 0,9",TABLEPRE));
 	$indus_recomm_task_1 = db_factory::query(sprintf("select task_id,task_title,task_cash,task_cash_coverage,indus_pid,task_status,start_time from %switkey_task where task_status=2 and model_id=1 or model_id=2 order by start_time desc limit 0,9",TABLEPRE));
 	$task_array = array();
 	if($indus_recomm_task){

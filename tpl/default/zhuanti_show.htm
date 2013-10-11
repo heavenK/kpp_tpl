@@ -12,65 +12,6 @@
 
 
 
-<!--点击IE6浏览器弹出升级页JS-->
-<script language="javascript">
-ieGo();
-function ieGo(){ 
-		var ie = !-[1,];  
-		if(ie == true) {
-			var ua = navigator.userAgent.toLowerCase();
-			var version = parseInt(ua.match(/msie ([\d.]+)/)[1]);
-			if(version <= 6) {
-				location.href='default.html'; 
-			}
-		}
-}
-</script>
-
-<!--豆豆导航JS-->
-<script language="javascript">
-	$(function(){
-	  //当鼠标滑入时将div的class换成divOver
-	  $('#daohang,.rukou_nav').hover(function(){
-		$("#daohang").addClass('rukouOver');
-		$(".rukou_nav").show();  
-	   },
-	   function(){
-		//鼠标离开时移除divOver样式
-		$("#daohang").removeClass('rukouOver'); 
-		$(".rukou_nav").hide();
-	   }
-	  );
-	});
-</script> 
-
-<!--会员登陆JS-->
-<script language="javascript">
-	$(function(){
-	  //当鼠标滑入时将div的class换成divOver
-	  $('.huiyuan,.dl_t').hover(function(){
-		$(".huiyuan").addClass('rukouOver2');
-		$(".dl_t").show();  
-	   },
-	   function(){
-		//鼠标离开时移除divOver样式
-		$(".huiyuan").removeClass('rukouOver2'); 
-		$(".dl_t").hide();
-	   }
-	  );
-	});
-</script>
-       
-
-<!--下拉框JS-->
-<script type="text/javascript" src="js/jQselect.js"></script>
-<script>
-$(document).ready(function () {
-	$(".SelectCity").selectbox();
-});
-</script> 
-
-
 <style type="text/css">
 .you_xia	{ text-align:left;}
 </style>
@@ -82,7 +23,7 @@ $(document).ready(function () {
 <body style="text-align:center; background:none #53c1d2">
 <div class="you_xia">
 	<h1>400-850-5066</h1>
-   	<h2><a href="tencent://message/?uin=4008505066&Site=qq&Menu=yes" target="">4008505066</a></h2> 
+   	<h2 id='qqs'><a href="###">4008505066</a></h2> 
     <h3><a href="index.php?do=release" target="_blank">发布任务</a></h3>
 	<h4><i><a href="index.php">首页</a></i><em><a href="#" title="返回顶部"></a></em></h4>  
 </div>
