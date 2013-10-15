@@ -116,6 +116,11 @@ function rz_show($uid){
 $allow_baomings = array();
 $work_lists = db_factory::query("select * from ".TABLEPRE."witkey_task_work where task_id=".$task_id." and work_status>0 ");
 
+$own_user = array();
+foreach($work_lists as $key2 => $val2){
+	$own_user[] = $val2['uid'];
+}
+
 foreach($work_info as $key => $val){
 	
 	$allow_baomings[$key] = $val['uid'];

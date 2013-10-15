@@ -205,7 +205,7 @@
                                                             <a href="javascript:void(0);" onclick="mark('{$basic_url}&op=mark&role_type=1&obj_id={$v[work_id]}&task_id={$task_id}');">{if $mark[$v[work_id]][mark_status]}{$_lang['modify_mark_info']}{else}{$_lang['mark_to_g']}{/if}</a>
                                                     {/if}
                                                 {/if}
-                                             {if $task_info['is_vote'] == 2 && $v['work_status'] != 4 && $uid != $v[uid] && in_array($uid,$baomings)}
+                                             {if $task_info['is_vote'] == 2 && $v['work_status'] != 4 && $uid != $v[uid] && in_array($uid,$baomings) && !in_array($v['uid'],$own_user)}
                                              	<a href="javascript:void(0);" onclick="task_votes({$task_id},'{$v[work_id]}')">投此稿一票</a>
                                              {/if}
                                         </div>

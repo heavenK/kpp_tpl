@@ -162,23 +162,22 @@ $date_prv = date("Y-m-d",time());
 $work_status = $task_obj->get_work_status ();
 intval ( $page ) and $p ['page'] = intval ( $page ) or $p ['page']='1';
 intval ( $page_size ) and $p ['page_size'] = intval ( $page_size ) or $p['page_size']='10';
-$p['url'] = $basic_url."&view=work&page_size=".$p ['page_size']."&page=".$p ['page'];
+$p['url'] = $basic_url."&page_size=".$p ['page_size']."&page=".$p ['page'];
 if($st){
 	$p['url'] .="&st=".$st;
 }
 if($ut){
 	$p['url'] .="&ut=".$ut;
 }
-$p ['anchor'] = '';
 $w['work_id'] = $work_id;
-$w['work_status'] = $st;
-$w['user_type']   = $ut;
 $work_arr = $task_obj->get_work_info ($w, " work_id asc ", $p ); 
+
 $pages = $work_arr ['pages'];
 $work_info = $work_arr ['work_info'];
 $mark      = $work_arr['mark'];
 $agree_id  = intval($task_obj->_agree_id);
 $has_new  = $task_obj->has_new_comment($p ['page'],$p ['page_size']);
+
 // end
 
 // 留言
@@ -207,6 +206,11 @@ if($ids){
 // 允许报名
 $allow_baomings = array();
 $work_lists = db_factory::query("select * from ".TABLEPRE."witkey_task_work where task_id=".$task_id." and work_status>0 ");
+
+$own_user = array();
+foreach($work_lists as $key2 => $val2){
+	$own_user[] = $val2['uid'];
+}
 
 foreach($work_info as $key => $val){
 	

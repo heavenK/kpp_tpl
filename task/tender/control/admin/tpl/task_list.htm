@@ -94,7 +94,16 @@
 					</td>
                     <td>$task_status[$v[task_status]]</td>
               
-                    <td> {c:$cash_rule_arr[$v[task_cash_coverage]][start_cove]}-{c:$cash_rule_arr[$v[task_cash_coverage]][end_cove]}</td>
+                    <td> 
+                    
+                    {if !$v[task_cash_coverage]}
+                        {c:$v['task_cash']}
+                    {else}
+                         {c:$cash_rule_arr[$v[task_cash_coverage]][start_cove]}-{c:$cash_rule_arr[$v[task_cash_coverage]][end_cove]}
+                    {/if}
+                   
+                    
+                    </td>
                     <td>$v[username]</td>
                     <td>
                     <!-- 

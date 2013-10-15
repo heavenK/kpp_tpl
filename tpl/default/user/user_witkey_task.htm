@@ -71,11 +71,16 @@
                                             <th style="font-weight:normal" title="$v['task_title']"><!--{eval echo kekezu::cutstr($v['task_title'],30)}--></th>
                                             <th style="font-weight:normal">
                                             {if $v[model_id]==4||$v[model_id]==5}
-                                                          {c:$cove_arr[$v[task_cash_coverage]]['start_cove']}-{c:$cove_arr[$v[task_cash_coverage]]['end_cove']}
-                                                          {else}
-                                                           {c:$v['task_cash']}
-                                                        {/if}
-                                            
+                                           		{if !$v[task_cash_coverage]}
+                                                	{c:$v['task_cash']}
+                                                {else}
+                                              		 {c:$cove_arr[$v[task_cash_coverage]]['start_cove']}-{c:$cove_arr[$v[task_cash_coverage]]['end_cove']}
+                                                {/if}
+                                           
+                                            {else}
+                                                {c:$v['task_cash']}
+                                            {/if}
+                                           
                                             </th>
                                             <th style="font-weight:normal"> <!--{date('Y-m-d H:i:s',$v[$time_fds])}--></th>
                                             <th style="font-weight:normal">$status_arr[$v['task_status']]</th>

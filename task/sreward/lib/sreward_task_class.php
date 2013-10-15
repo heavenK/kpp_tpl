@@ -118,8 +118,6 @@ class sreward_task_class extends keke_task_class {
 		$where .= "   order by (CASE WHEN  a.work_status!=0 THEN work_id ELSE 0 END) asc,work_id desc ";
 		if (! empty ( $p )) {
 			$page_obj = $kekezu->_page_obj;
-			$page_obj->setAjax ( 1 );
-			$page_obj->setAjaxDom ( "gj_summery" );
 			$count = intval ( db_factory::get_count ( $count_sql . $where ) );
 			$pages = $page_obj->getPages ( $count, $p ['page_size'], $p ['page'], $p ['url'], $p ['anchor'] );
 			$where .= $pages ['where'];

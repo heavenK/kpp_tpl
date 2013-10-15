@@ -10,7 +10,7 @@
                 <div class="learn_lend_tit">推荐知识点</div>
                 <ul>
                 	{loop $art_top_arr $k $v}
-                    <li><a href="index.php?do=school&view=art_show&sid={$v[sid]}">$v[title]</a></li>
+                    <li><a href="index.php?do=school&view=art_show&sid={$v[sid]}" title="$v['title']"><!--{eval echo kekezu::cutstr($v['title'],30);}--></a></li>
                     {/loop}
                 </ul>
             </div>

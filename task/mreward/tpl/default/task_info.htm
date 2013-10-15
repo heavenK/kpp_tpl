@@ -209,7 +209,7 @@
                                                 {if $process_can['work_mark']&&(in_array($v['work_status'],array(1,2,3)))&&$uid==$task_info['uid']}<a href="javascript:void(0);" onclick="mark('{$basic_url}&op=mark&role_type=2&obj_id={$v[work_id]}&task_id={$task_id}');">{if $mark[$v[work_id]][mark_status]}{$_lang['modify_mark_info']}{else}{$_lang['mark_to_work']}{/if}</a>{/if}
                                                 {if $process_can['task_mark']&&(in_array($v['work_status'],array(1,2,3)))&&$uid==$v['uid']}<a href="javascript:void(0);"  onclick="mark('{$basic_url}&op=mark&role_type=1&obj_id={$v[work_id]}&task_id={$task_id}');">{if $mark[$v[work_id]][mark_status]}{$_lang['modify_mark_info']}{else}{$_lang['mark_to_g']}{/if}</a>{/if}
                                             {/if}
-                                            {if $task_info['is_vote'] == 2 && $v['work_status'] != 1&& $v['work_status'] != 2&& $v['work_status'] != 3 && $uid != $v[uid] && in_array($uid,$baomings)}
+                                            {if $task_info['is_vote'] == 2 && $v['work_status'] != 1&& $v['work_status'] != 2&& $v['work_status'] != 3 && $uid != $v[uid] && in_array($uid,$baomings) && !in_array($v['uid'],$own_user)}
                                              	<a href="javascript:void(0);" onclick="task_votes({$task_id},'{$v[work_id]}')">投此稿一票</a>
                                              {/if}
                                         </div>
