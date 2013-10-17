@@ -1,4 +1,5 @@
 <?php	defined ( 'ADMIN_KEKE' ) or exit ( 'Access Denied' );
+error_reporting(E_ALL);
 $fina_action_arr = keke_glob_class::get_finance_action();
 $views = array ('withdraw', 'report', 'all','analysis','recharge','revenue','budget','ensure','vip');
 (in_array ( $view, $views )) or  $view ='all';

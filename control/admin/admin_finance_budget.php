@@ -1,7 +1,7 @@
 <?php
 defined ( 'ADMIN_KEKE' ) or exit ( 'Access Denied' );
 kekezu::admin_check_role ( 6 );
-error_reporting(E_ALL);
+
 $charge_type_arr=keke_glob_class::get_charge_type();
 $bank_arr = keke_glob_class::get_bank();
 $sql_in = "select * from ".TABLEPRE."witkey_order_charge where order_status ='ok' order by pay_time desc";
