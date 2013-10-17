@@ -2,8 +2,8 @@
 define('ADMIN_UID','1');
 define ( 'DBHOST', 'localhost');
 define ( 'DBNAME', 'kppw22');
-define ( 'DBUSER', 'user1');
-define ( 'DBPASS', '123');
+define ( 'DBUSER', 'root');
+define ( 'DBPASS', '');
 define('DBCHARSET','utf8');
 define('CHARSET', 'utf-8');
 define('DBTYPE','mysql');
