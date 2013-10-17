@@ -270,12 +270,15 @@ EOT;
 		return true;
 	}
 	function check_uid($reg_uid) {
-		global $_lang;
+		global $_lang,$basic_config;
 		$check_uid = trim ( $reg_uid );
 		if (empty ( $check_uid )) {
 			return "账号为空";
 		}
 		if (kekezu::check_user_by_name ( $check_uid, 0 )) {
+			return "账号已存在";
+		}
+		if (strstr($basic_config['save_uid'],$reg_uid)) {
 			return "账号已存在";
 		}
 		return true;

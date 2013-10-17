@@ -10,6 +10,7 @@ if(!in_array($task_info['task_status'],array(6,8,11,13))){
 $task_config = unserialize($model_info['config']);
 $payitem_arr = keke_payitem_class::get_payitem_info('employer',$model_list[$task_info['model_id']]['model_code']); 
 $payitem_arr_desc = unserialize($task_info['payitem_time']);
+
 $payitem_standard = keke_payitem_class::payitem_standard (); 
 keke_lang_class::loadlang('task_edit','task');
 $task_sub_time = date('Y-m-d',$task_info['sub_time']);

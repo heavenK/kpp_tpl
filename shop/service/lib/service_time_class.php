@@ -9,6 +9,7 @@ final class service_time_class extends time_base_class {
 	}
 	public function ys_end_time() {
 		$order_list = db_factory::query ( sprintf ( " select * from %switkey_order where order_status='confirm_complete' and model_id=7 and ys_end_time<%d", TABLEPRE, time () ) );
+		
 		if (is_array ( $order_list )) {
 			foreach ( $order_list as $k => $v ) {
 					$obj = new service_shop_class ();

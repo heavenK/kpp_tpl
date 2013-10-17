@@ -28,8 +28,8 @@ $sql_c = "select a.*,a.indus_id in_id,b.* from " . TABLEPRE . "witkey_shop_case 
 					where  a.shop_id = " . intval($shop_info ['shop_id']) . " order by b.service_id desc limit 0,5";
 $shop_arr = db_factory::query ( $sql_c );
 
-
-
+$ad_info = db_factory::query ( " select * from " . TABLEPRE . "witkey_shop_ads where shop_id=".$shop_info['shop_id']." order by ad_id desc limit 0,6");
+//$ad_count = db_factory::get_count ( " select count(ad_id) count from " . TABLEPRE . "witkey_shop_ads where shop_id=".$shop_info['shop_id']);
 
 $sql = "select * from " . TABLEPRE . "witkey_task order by task_id desc limit 0,10";
 $task_list_arr = db_factory::query ( $sql );

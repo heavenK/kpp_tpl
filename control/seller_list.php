@@ -46,7 +46,7 @@ $register =  intval ( $register ['count'] );
 	$ensure = array('无',500,1000,2000);
 // end
 //unset($indus_id); 
-$url = "index.php?do=$do&page_size=$page_size&path=$path";
+$url = "index.php?do=$do&page_size=$page_size&path=$path&province=$province&city=$city&area=$area&level=$level&auths=$auths";
 $page_size = intval ( $page_size ) ? intval ( $page_size ) : 10;
 $count = db_factory::get_count($count_sql . $where );
 $page = $page ? $page : 1;
@@ -124,7 +124,9 @@ function rz_show($uid){
 	return $img_list;
 }
 function get_where($path) {
-	global $task_cash_arr, $search_key,$ord,$indus_id,$province,$city,$area,$level;
+	
+	global $task_cash_arr, $search_key,$ord,$indus_id,$province,$city,$area,$level,$auths,$auths_name;
+	//error_reporting(E_ALL);
 	$url_info = keke_search_class::get_analytic_url($path);
 	$indus_id and $where .=sprintf(" and b.indus_id = %d",$indus_id);
 	$url_info ['A'] and $where .= sprintf ( " and b.indus_pid = %d", $url_info ['A'] ); 
@@ -137,6 +139,50 @@ function get_where($path) {
 		
 		$where .= " and b.seller_level like '%".$level."%'";	
 	}
+	
+	if($auths){
+		
+		switch ($auths){
+			case "realname":
+					$where_auth =" and auth_code='".$auths."'";
+					$auths_name = "实名认证";
+				break;
+			case "mobile":
+					$where_auth =" and auth_code='".$auths."'";
+					$auths_name = "手机认证";
+				break;
+		
+			case "email":
+					$where_auth =" and auth_code='".$auths."'";
+					$auths_name = "邮箱认证";
+				break;
+		
+			case "bank":
+					$where_auth =" and auth_code='".$auths."'";
+					$auths_name = "银行卡认证";
+				break;
+			case "vip":
+					$where .=" and b.isvip>0 or b.ensure>0";
+					$auths_name = "vip诚信会员";
+				break;
+		}
+		
+		if($auths != 'vip'){
+			
+			
+			$auth_infos = db_factory::query ( 'select * from '.TABLEPRE.'witkey_auth_record where auth_status=1'.$where_auth);
+			
+			foreach($auth_infos as $key => $val){
+				if(!$key)	$auth_uids = $val['uid'];
+				else	$auth_uids .= ','.$val['uid'];
+			}
+			
+			if($auth_uids) $where .= " and b.uid in (".$auth_uids.")";	
+			else $where .= " and b.uid = 0";
+		}
+		
+	}
+	
 	//var_dump($where);
 	$orders = " field(b.isvip,1,2,0), ";
 	$ord == 1 and $where .=" order by ".$orders."if(b.seller_total_num>0,b.seller_good_num/b.seller_total_num,0) asc";		

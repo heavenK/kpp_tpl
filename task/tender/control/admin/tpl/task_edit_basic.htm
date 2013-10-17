@@ -100,7 +100,7 @@
 				<input type="hidden" name="payitem_list[{$v['item_id']}][item_code]" value="$v['item_code']">
 				<div class="tool_list fl_l" style="width:20%">
 					<div class="fl_l pad10"> 
-						<img alt="$v['item_name']" src="../../$v['big_pic']" original-title="$v['item_name']">			
+						<img alt="$v['item_name']" src="../../$v['small_pic']" original-title="$v['item_name']">			
 		            </div>
 		
 					<div class="tool_text">
@@ -186,11 +186,17 @@
 					<tr>
                         <th scope="row">{$_lang['task_cash']}{$_lang['zh_mh']}</th>
                         <td>
+                        	{if !$task_info[task_cash_coverage]}
+                                {c:$task_info['task_cash']}
+                            {else}
+                                 
+                           
                         	<select name='fds[task_cash_coverage]'>
         						{loop $cash_rule_arr $value}
 									<option {if $task_info[task_cash_coverage]==$value['cash_rule_id']}selected="selected"{/if} value="$value['cash_rule_id']">{c:$value['start_cove']}-{c:$value['end_cove']}</option>
 								{/loop}
 							</select>
+                            {/if}
 						</td>
                     </tr> 
 					 <tr>

@@ -3,12 +3,15 @@ defined ( 'IN_KEKE' ) or exit ( 'Access Denied' );
 keke_lang_class::loadlang ( 'user_finance_order', 'user' );
 if ($model_id) {
 	$time_obj =new  service_time_class();
+	
 	$time_obj->validtaskstatus();
+	
 	if ($role == 1) { 
 		$order_count = kekezu::get_table_data ( "model_id,count(order_id) count", "witkey_order", "model_id IN(6,7) and `seller_uid`=$uid ", "", "model_id=6,model_id=7", "", "model_id", 3600 );
 	} else { 
 		$order_count = kekezu::get_table_data ( "model_id,count(order_id) count", "witkey_order", "model_id IN(6,7) and `order_uid`=$uid ", "", "model_id=6,model_id=7", "", "model_id", 3600 );
 	}
+	
 	$third_nav = array ();
 	foreach ( $model_list as $v ) {
 		$third_nav [] = array (
@@ -17,6 +20,7 @@ if ($model_id) {
 				"3" => intval ( $order_count [$v ['model_id']] ['count'] ) 
 		);
 	}
+	
 	$page = intval ( $page );
 	$page or $page = 1;
 	$page_size = intval ( $page_size );
@@ -41,6 +45,7 @@ if ($model_id) {
 		require "control/ajax/ajax_file.php";
 		die ();
 	} else {
+		
 		$model_list = $kekezu->_model_list;
 		$obj_arr = keke_order_class::get_order_obj (); 
 		$sql = " select a.*,b.obj_type,b.obj_id,c.`submit_method`,d.`mobile` from " . TABLEPRE . "witkey_order a left join " . TABLEPRE . "witkey_order_detail b on a.order_id = b.order_id 
@@ -103,4 +108,5 @@ function get_mark_info($order_id, $obj_id, $order_uid, $seller_uid) {
 	$mark_info = db_factory::get_one ( sprintf ( "select * from %switkey_mark where obj_id=%d and origin_id=%d and mark_type=%d and uid=$auid and by_uid=$uid", TABLEPRE, $order_id, $obj_id, $mark_type ) );
 	return $mark_info;
 }
+
 require keke_tpl_class::template ( "user/user_finance_order_service" );

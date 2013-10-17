@@ -60,10 +60,12 @@ class service_shop_class {
 	}
 	public function dispose_order($order_id, $action) {
 		global $uid, $username, $_K, $kekezu, $_lang;
+		
 		$order_info = keke_order_class::get_order_info ( $order_id ); 
 		if ($order_info) {
 			$s_order_link = "<a href=\"" . $_K ['siteurl'] . "/index.php?do=user&view=witkey&op=shop&model_id=".$order_info['model_id']."&order_id=" . $order_id . "\">" . $order_info ['order_name'] . "</a>";
 			$b_order_link = "<a href=\"" . $_K ['siteurl'] . "/index.php?do=user&view=employer&op=shop&model_id=".$order_info['model_id']."&order_id=" . $order_id . "\">" . $order_info ['order_name'] . "</a>";
+			
 			if ($uid == $order_info ['order_uid'] || $uid == $order_info ['seller_uid']) {
 				$service_info = keke_shop_class::get_service_info ( $order_info ['obj_id'] ); 
 					if ($action == 'delete') { 
@@ -165,6 +167,7 @@ class service_shop_class {
 									$kekezu->_prom_obj->dispose_prom_event ( "service", $order_info ['order_uid'], $order_info ['obj_id'] );
 									$v_arr = array ($_lang ['user_msg'] => $order_info ['order_username'], $_lang ['action'] => $_lang ['confirm_service_complete'], $_lang ['order_id'] => $order_id, $_lang ['order_link'] => $s_order_link );
 									keke_shop_class::notify_user ( $order_info ['seller_uid'], $order_info ['seller_username'], "order_change", $_lang ['service_order_confirm_complete'], $v_arr );
+									
 									kekezu::show_msg ( $_lang['system prompt'],  "index.php?do=shop_order&sid=$order_info[obj_id]&order_id=$order_id&steps=step4", '1',$_lang ['order_deal_complete_the_order_complete'], 'alert_right' ) ;
 								} else {
 									kekezu::show_msg ( $_lang['system prompt'],  "index.php?do=shop_order&sid=$order_info[obj_id]&order_id=$order_id&steps=step3", '1', $_lang ['order_deal_fail_and_link_kf'], 'alert_error' ) ;
@@ -188,7 +191,7 @@ class service_shop_class {
 						}
 					}
 			} else {
-				kekezu::keke_show_msg ( '', $_lang ['error_order_num_notice'], 'error', 'json' );
+				//kekezu::keke_show_msg ( '', $_lang ['error_order_num_notice'], 'error', 'json' );
 			}
 		} else {
 			kekezu::keke_show_msg ( '', $_lang ['no_exist_goods_order'], 'error', 'json' );

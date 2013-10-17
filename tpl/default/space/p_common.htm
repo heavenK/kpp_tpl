@@ -51,12 +51,20 @@
                       <div class="leftLoop">
                           <div class="hd">
                               <a class="next"></a>
-                              <ul><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li></ul>
+                              <ul>
+                              {loop $ad_info $k $v}
+                              <!--{eval $i = $k+1;}-->
+                              <li>{$i}</li>
+                              {/loop}
+                              </ul>
                               <a class="prev"></a>
                           </div>
                           <div class="bd">
                               <ul class="picList">
-                                  <!--{ad_show(HOME_TOP_SLIDE,1)}-->
+                              	  {loop $ad_info $k $v}
+                                  <li><a href="{$v['url']}" target="_blank" title="{$v['title']}"><img src="{$v['pic']}" /></a></li>
+                                  {/loop}
+                                  
                               </ul>
                           </div>
                       </div>

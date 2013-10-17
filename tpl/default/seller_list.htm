@@ -151,6 +151,27 @@ function fa_bu(){
                 </div>
             </div>
             
+            <div class="rclx">
+                <em>人才状态</em>
+                <div class="selectbox_dw">
+                    <select class="SelectCity" name="auths" id="auths" >
+                        <option value="">不限</option>
+                        <option value="realname" {if $auths == 'realname'}selected="selected"{/if}>实名认证</option>
+                        <option value="mobile" {if $auths == 'mobile'}selected="selected"{/if}>手机认证</option>
+                        <option value="email" {if $auths == 'email'}selected="selected"{/if}>邮箱认证</option>
+                        <option value="bank" {if $auths == 'bank'}selected="selected"{/if}>银行卡认证</option>
+                        <option value="vip" {if $auths == 'vip'}selected="selected"{/if}>vip诚信会员</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="rclx">
+                <em></em>
+                <div class="selectbox_dw">
+                   
+                </div>
+            </div>
+            
             <div class="rclx" style="width:600px;">
                 <em>所在地区：</em>
                 <div class="selectbox_dw">
@@ -164,12 +185,15 @@ function fa_bu(){
                 {loop $select_arr $k $v}
                 <a href="$v['url']" class="selected">$v['name'] <font class="close">&times;</font></a>
                 {/loop}
+                {if $auths_name}
+                <a href="index.php?do=seller_list&path={$path}&province=$province&city=$city&area=$area&level=$level">{$auths_name} <font class="close">&times;</font></a>
+                {/if}
                 {if $level}
-                <a href="index.php?do=seller_list&path={$path}">{$level} <font class="close">&times;</font></a>
+                <a href="index.php?do=seller_list&path={$path}&province=$province&city=$city&area=$area&auths=$auths">{$level} <font class="close">&times;</font></a>
                 {/if}
                 {if $province&&$city&&$area}<a href="index.php?do=seller_list&path={$path}&min={$min}&max={$max}" class="selected">{$province},{$city},{$area} <font class="close">&times;</font></a>{/if}
                 
-                {if $select_arr||$max||$province||$level}<a href="index.php?do=seller_list" class="button"><span class="icon reload"></span>{$_lang['reset']}　</a>
+                {if $select_arr||$max||$province||$level||$auths_name}<a href="index.php?do=seller_list" class="button"><span class="icon reload"></span>{$_lang['reset']}　</a>
                 {else}{$_lang['no_selected_terms']}
                 {/if}
                 
@@ -187,9 +211,21 @@ function fa_bu(){
 					
 					var level= $(this).val();
 					  if(level){
-						  window.location.href = "index.php?do=seller_list&path=$path&province=$province&city=$city&area=$area&level="+level+"#official";
+						  window.location.href = "index.php?do=seller_list&path=$path&province=$province&city=$city&area=$area&auths=$auths&level="+level+"#official";
 					  }else{
-						  window.location.href = "index.php?do=seller_list&path=$path&province=$province&city=$city&area=$area#official";
+						  window.location.href = "index.php?do=seller_list&path=$path&province=$province&city=$city&area=$area&auths=$auths#official";
+						 }
+					
+					//location.href=$(this).val()+"#official";
+				});
+			$("#auths").change(function(e) {
+					//alert($(this).val());
+					
+					var auths= $(this).val();
+					  if(auths){
+						  window.location.href = "index.php?do=seller_list&path=$path&province=$province&city=$city&area=$area&level=$level&auths="+auths+"#official";
+					  }else{
+						  window.location.href = "index.php?do=seller_list&path=$path&province=$province&city=$city&area=$area&level=$level#official";
 						 }
 					
 					//location.href=$(this).val()+"#official";
