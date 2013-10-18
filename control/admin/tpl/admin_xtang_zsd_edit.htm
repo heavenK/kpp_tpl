@@ -1,7 +1,10 @@
 <!--{template control/admin/tpl/admin_header}-->
  <script type="text/javascript" src="../../resource/js/system/keke.js"></script>
  <script type="text/javascript" src="../../resource/js/system/ajaxfileupload.js"></script>
-
+<style type="text/css">
+.jia {background: url(tpl/img/plus.gif)}
+.jian {background: url(tpl/img/minus.gif) }
+</style>
 	<div class="page_title">
    <h1>知识点管理</h1>
          <div class="tool"> 
@@ -20,6 +23,50 @@
                 <input type="hidden" name="view" value="{$view}">
                 <input type="hidden" name="sid" value="{$zsd_info['sid']}">
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <th scope="row" width="130">分类{$_lang['zh_mh']}</th>
+                        <td><input type="text" readonly="readonly" id="type_names" value="{if $zsd_info['type_id']}{$cat_name_list[$zsd_info['type_id']]}{else}{$cat_name_list[$type_id]}{/if}"  onclick="$('#type_lists').toggle();" /><a href="###" class="button dbl_target" onclick="$('#type_lists').toggle();"><span class="pen icon"></span>选取</a><input type="hidden" value="{if $zsd_info['type_id']}{$zsd_info['type_id']}{else}{$type_id}{/if}" name="type_id" id="type_id" />
+                        </td>
+                      </tr>
+                     </table>
+                      <table id="type_lists" style="display:none;">
+                      {loop $cat_show_arr $k $v}
+                         <tbody>
+                          <tr class="item" align="left">
+                            <td align="left">
+                                <span class="jia" onclick="if($(this).attr('class')=='jia'){
+                                    change_show('{$v[id]}');
+                                    $(this).attr('class','jian');
+                                    }else{change_show('{$v[id]}');
+                                    $(this).attr('class','jia')}
+                                    ">&nbsp;&nbsp;&nbsp;&nbsp;</span>{$v['type_name']}
+                            </td>                                
+                            <td>
+                            </td>
+                          </tr>
+                          </tbody>
+                          <tbody id="children_{$v['id']}" style="display:none;">
+                          {loop $v['sub'] $k1 $v1}
+                          
+                          <tr class="item" align="left">
+                            <td align="left">
+                                &nbsp;&nbsp;&nbsp;&nbsp;|----{$v1['type_name']}
+                            </td>                                
+                            <td>
+                                <a href="###" class="button dbl_target" onclick="set_Val({$v1['id']},'{$v1[type_name]}');"><span class="pen icon"></span>确认</a>
+                            </td>
+                          </tr>
+                          
+                          {/loop}
+                          </tbody>
+                      {/loop}
+                      </table>
+                    
+                    
+                    
+                    
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    
                       <tr>
                         <th scope="row" width="130">标题{$_lang['zh_mh']}</th>
                         <td>
@@ -31,21 +78,7 @@
                         </td>
                       </tr>
                     
-                      <tr>
-                        <th scope="row" width="130">分类{$_lang['zh_mh']}</th>
-                        <td>
-	                        <select id="type_id" name="type_id" style=" width:270px;"
-	                        		 limit = "required:true;type:int" 
-                                     msg = '{$_lang['select_father_cat']}' 
-                                     title='{$_lang['cat_what']}{$_lang['zh_wh']}' 
-                                     msgArea="msg_cat_id">
-	                        {loop $cat_arr $v}
-	                        <option value="{$v[id]}" {if $zsd_info['type_id']==$v[id]} selected="selected"{/if}>$v['type_name']</option>
-	                        {/loop}
-	                   		 </select>
-	                        <span id="msg_cat_id"></span>
-                        </td>
-                      </tr>
+                      
                       <tr>
                         <th scope="row">图片:</th>
                         <td id="t_pic" class=" p_relative"> 
@@ -93,6 +126,16 @@
         });
 		}
     }
+	
+	function set_Val(id,name){
+		$("#type_id").val(id);
+		$("#type_names").val(name);
+		$("#type_lists").hide();
+	}
+	
+	function change_show(id){
+			$("#children_"+id).toggle();
+		}
 	</script>
     				<tr>
                         <th scope="row" width="130">关键字{$_lang['zh_mh']}</th>
@@ -109,7 +152,7 @@
                       <tr>
                         <th scope="row" width="130">内容{$_lang['zh_mh']}</th>
                         <td>
-                        	<textarea rows="30" name="fields[content]" style="width:75%;" id="tar_content"  class="xheditor {urlBase:'$_K['siteurl']/',tools:'simple',admin:'../../',html5Upload:false,emotMark:false,upImgUrl:'../../index.php?do=ajax&view=upload&file_type=att'}" cols="70">{$zsd_info['content']}</textarea>
+                        	<textarea rows="80" name="fields[content]" style="width:75%;" id="tar_content"  class="xheditor {urlBase:'$_K['siteurl']/',tools:'simple',admin:'../../',html5Upload:false,emotMark:false,upImgUrl:'../../index.php?do=ajax&view=upload&file_type=att'}" cols="70">{$zsd_info['content']}</textarea>
                         </td>
                       </tr>
                       <tr>

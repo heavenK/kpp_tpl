@@ -1,0 +1,17 @@
+<tr id="question_{$sid}"></tr>
+                  {loop $question_arr $k $v}
+                  <tr class="item question_{$v['sid']}" align="left">
+                    <td class="td28">
+                    	$v['list_order']</td>
+                    <td class="left" style="color:#F0F">
+                    	问题</td>
+                    <td align="left">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|----<!--{eval echo(kekezu::cutstr($v['q_title'],50));}-->
+					</td>                                
+                    <td>
+						<a href="index.php?do={$do}&view=question_edit&qid={$v['qid']}" class="button dbl_target"><span class="pen icon"></span>{$_lang['edit']}</a>
+						<a href="index.php?do={$do}&view=question_list&qid={$v['qid']}&ac=del" class="button"><span class="trash icon"></span>{$_lang['delete']}</a>
+					</td>
+                  </tr>
+                  {/loop}
+                  

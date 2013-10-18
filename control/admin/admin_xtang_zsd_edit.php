@@ -1,6 +1,17 @@
 <?php defined ( 'ADMIN_KEKE' )or exit ( 'Access Denied' );
 
-$cat_arr = db_factory::query ( sprintf ( "select * from %sxtang_type where pid>0 order by list_order asc", TABLEPRE ) );
+$cat_arr = db_factory::query ( sprintf ( "select * from %sxtang_type order by id asc, list_order asc", TABLEPRE ) );
+
+$cat_show_arr = array();
+foreach($cat_arr as $key => $val){
+	if($val['pid'] == 0) $cat_show_arr[$val['id']] = $val;
+	else $cat_show_arr[$val['pid']]['sub'][$key] = $val;
+}
+
+$cat_name_list = array();
+foreach($cat_arr as $key => $val){
+	$cat_name_list[$val['id']] = $val['type_name'];
+}
 
 if($sid){
 	$zsd_info = db_factory::get_one ( sprintf ( "select * from %sxtang_article where sid=".$sid." order by pub_time desc", TABLEPRE ) );

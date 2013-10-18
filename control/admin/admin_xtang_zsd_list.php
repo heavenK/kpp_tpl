@@ -3,6 +3,11 @@ defined ( 'ADMIN_KEKE' ) or exit ( 'Access Denied' );
 $url = 'index.php?do=xtang&view=zsd_list';
 
 
+if($ajax && $type_id){
+	$art_arr = db_factory::query ( sprintf ( "select * from %sxtang_article where type_id=%d order by pub_time desc", TABLEPRE, $type_id ) );
+	require  $template_obj->template('control/admin/tpl/admin_'. $do .'_'. $view.'_ajax');
+	die();
+}
 
 $w = " 1=1 ";
 $page = max($page,1);
@@ -11,7 +16,7 @@ $ord = max($ord,1);
 
 $title and $w .= " and title like '%" . $title . "%'";
 $type_id and $w .= " and type_id = " . $type_id ;
-$w.=' order by pub_time desc ';
+$w.=' order by type_id asc ';
 $count =  max(db_factory::get_count(' select count(sid) from '.TABLEPRE.'xtang_article where '.$w),0);
 $pages = $kekezu->_page_obj->getPages($count, $limit, $page,$url.'&ord='.$ord.'&limit='.$limit);
 

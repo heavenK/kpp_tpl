@@ -1,0 +1,19 @@
+<tr id="zsd_{$type_id}"></tr>
+                  {loop $art_arr $k $v}
+                  <tr class="item zsd_{$v['type_id']}" align="left">
+                    <td class="td28">
+                    	$v['list_order']</td>
+                    <td class="left" style="color:red;">
+                    	知识点</td>
+                    <td align="left">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|----<span class="jia" onclick="show_question(this,{$v[sid]})">&nbsp;&nbsp;&nbsp;&nbsp;</span><!--{eval echo(kekezu::cutstr($v['title'],50));}-->
+					</td>                                
+                    <td>
+						<a href="index.php?do={$do}&view=zsd_question&sid={$v['sid']}" class="button"><span class="book icon"></span>选题</a> 
+						<a href="index.php?do={$do}&view=zsd_edit&sid={$v['sid']}" class="button dbl_target"><span class="pen icon"></span>{$_lang['edit']}</a>
+						<a href="index.php?do={$do}&view=zsd_list&sid={$v['sid']}&ac=del" class="button"><span class="trash icon"></span>{$_lang['delete']}</a>
+					</td>
+                  </tr>
+                  <tr id="question_{$v['sid']}"></tr>
+                  {/loop}
+				 

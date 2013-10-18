@@ -1,6 +1,14 @@
 <?php
 defined ( 'ADMIN_KEKE' ) or exit ( 'Access Denied' );
 
+
+if($ajax && $sid){
+	$question_arr = db_factory::query ( sprintf ( "select * from %sxtang_question where sid=%d order by qid desc", TABLEPRE, $sid ) );
+	require  $template_obj->template('control/admin/tpl/admin_'. $do .'_'. $view.'_ajax');
+	die();
+}
+
+
 $url = 'index.php?do=xtang&view=question_list';
 
 $w = " 1=1 ";

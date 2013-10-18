@@ -27,47 +27,58 @@
                 <tbody>
                 <tr>
                  <!--   <th width="8%">ID</th>-->
-                    <th width="7%">显示顺序</th>
+                    <th width="5%">显示顺序</th>
+                    <th width="5%">类型</th>
                     <th width="30%">{$_lang['category']}{$_lang['name']}</th>             
-                   <th width="13%">{$_lang['operate']}</th>
+                   <th>{$_lang['operate']}</th>
                 </tr>
-                
+               
                 {loop $cat_show_arr $k $v}
 				 <tbody>
                   <tr class="item" align="left">
                     <td class="td28">
                     	$v['list_order']</td>
+                    <td class="left" style="color:blue;">
+                    	父分类</td>
                     <td align="left">
-						{$v['type_name']}
+						<span class="jia" onclick="change_sub(this,{$v[id]})">&nbsp;&nbsp;&nbsp;&nbsp;</span>{$v['type_name']}
 					</td>                                
                     <td>
 						<a href="index.php?do={$do}&view=cat_edit&type_id={$v['id']}&pid={$v['pid']}&type={$type}" class="button dbl_target"><span class="pen icon"></span>编辑</a>
 						{if $v[pid]!=0}
+                        
 						<a href="index.php?do=$do&view=cat_list&type_id=$v['id']&ac=del" class="button"><span class="trash icon"></span>删除</a>
 						{/if}
 						
 					</td>
                   </tr>
 				  </tbody>
+                  <tbody id="children_{$v['id']}" style="display:none;">
                   {loop $v['sub'] $k1 $v1}
-                  <tbody>
+                  
                   <tr class="item" align="left">
                     <td class="td28">
                     	$v1['list_order']</td>
+                    <td class="left" style="color:green;">
+                    	子分类</td>
                     <td align="left">
-						|--{$v1['type_name']}
+						&nbsp;&nbsp;&nbsp;&nbsp;|----<span class="jia" onclick="change_zsd(this,{$v1[id]})">&nbsp;&nbsp;&nbsp;&nbsp;</span>{$v1['type_name']}
 					</td>                                
                     <td>
 						<a href="index.php?do={$do}&view=cat_edit&type_id={$v1['id']}&pid={$v1['pid']}&type={$type}" class="button dbl_target"><span class="pen icon"></span>编辑</a>
 						{if $v1[pid]!=0}
+                        <a href="index.php?do=xtang&view=zsd_list&type_id={$v1['id']}" class="button dbl_target"><span class="pen icon"></span>查看知识点</a>
+                        <a href="index.php?do=xtang&view=zsd_edit&type_id={$v1['id']}" class="button dbl_target"><span class="pen icon"></span>添加知识点</a>
 						<a href="index.php?do=$do&view=cat_list&type_id=$v1['id']&ac=del" class="button"><span class="trash icon"></span>删除</a>
 						{/if}
 					</td>
                   </tr>
-				  </tbody>
+                  <tr id="zsd_{$v1['id']}"></tr>
                   {/loop}
+                  </tbody>
                   {/loop}
                <tr>
+               
                	<td>&nbsp;</td>
                     <td colspan="6">
 	                   
@@ -83,6 +94,68 @@
         </div>       
     </div>
 <script type="text/javascript">
+
+		function change_sub(obj ,id){
+			if($(obj).attr('class')=='jia'){
+			change_show(id);
+			$(obj).attr('class','jian');
+			}else{change_show(id);
+			$(obj).attr('class','jia')}
+			
+		}
+		
+		function load_zsd_list(id){
+			$.ajax({
+					   type: "GET",
+					   url: "index.php?do=xtang&view=zsd_list&ajax=1&type_id="+id,
+					   async: true,
+					   success: function(data){
+						   //alert(data);
+						   $("#zsd_"+id).replaceWith(data);
+					   }
+				})
+		}
+		
+		function load_question_list(id){
+			$.ajax({
+					   type: "GET",
+					   url: "index.php?do=xtang&view=question_list&ajax=1&sid="+id,
+					   async: true,
+					   success: function(data){
+						   //alert(data);
+						   $("#question_"+id).replaceWith(data);
+					   }
+				})
+		}
+		
+		function change_zsd(obj ,id){
+			if($(obj).attr('class')=='jia'){
+				
+				load_zsd_list(id);
+				
+				$(obj).attr('class','jian');
+			}else{
+				$(".zsd_"+id).remove();
+				$(obj).attr('class','jia')}
+			
+		}
+		
+		function show_question(obj, id){
+			if($(obj).attr('class')=='jia'){
+				
+				load_question_list(id);
+				
+				$(obj).attr('class','jian');
+			}else{
+				$(".question_"+id).remove();
+				$(obj).attr('class','jia')}
+			
+		}
+
+		function change_show(id){
+			$("#children_"+id).toggle();
+		}
+
 
     	function edit_listorder(iid,v){
     		$.get('index.php?do={$do}&view={$view}&ac=editlistorder',{iid:iid,val:v});
