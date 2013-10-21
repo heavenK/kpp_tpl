@@ -18,6 +18,10 @@ if ($type && ! $_SESSION ['auth_' . $type] ['last_key']) {
 }
 $taobao_user_id=$_SESSION ['auth_' . $type] ['last_key']['taobao_user_id'];
 $nick=$_SESSION ['auth_' . $type] ['last_key']['nick'];
+
+
+$oauth_user_info['account'] = str_replace("'","",$oauth_user_info ['account']);
+
 $bind_info = keke_register_class::is_oauth_bind ( $type, $oauth_user_info ['account'] );
 if ($oauth_user_info && $bind_info) {
 	$user_info = kekezu::get_user_info ( $bind_info ['uid'] );
