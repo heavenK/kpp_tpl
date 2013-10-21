@@ -67,7 +67,6 @@
                     <td>
 						<a href="index.php?do={$do}&view=cat_edit&type_id={$v1['id']}&pid={$v1['pid']}&type={$type}" class="button dbl_target"><span class="pen icon"></span>编辑</a>
 						{if $v1[pid]!=0}
-                        <a href="index.php?do=xtang&view=zsd_list&type_id={$v1['id']}" class="button dbl_target"><span class="pen icon"></span>查看知识点</a>
                         <a href="index.php?do=xtang&view=zsd_edit&type_id={$v1['id']}" class="button dbl_target"><span class="pen icon"></span>添加知识点</a>
 						<a href="index.php?do=$do&view=cat_list&type_id=$v1['id']&ac=del" class="button"><span class="trash icon"></span>删除</a>
 						{/if}
