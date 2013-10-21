@@ -11,7 +11,9 @@ if($ajax && $sid){
 
 $url = 'index.php?do=xtang&view=question_list';
 
+
 $w = " 1=1 ";
+$title and $w .= " and q_title like '%" . $title . "%' ";
 $page = max($page,1);
 $limit = max($limit,20);
 $ord = max($ord,1);
