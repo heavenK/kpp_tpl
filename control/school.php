@@ -58,8 +58,7 @@ if($view == 'art_show'){
 }
 
 if($view == 'question'){
-	ini_set('display_errors','1');
-error_reporting(E_ALL);
+	
 	if(!$uid) kekezu::show_msg("您还没有登录，无法答题！",'index.php?do=login',3,'','fail');
 	
 	$art_info = db_factory::get_one ( sprintf ( " select * from %sxtang_article where sid=".$sid, TABLEPRE )); 
@@ -79,11 +78,11 @@ error_reporting(E_ALL);
 		}
 		if($result)	{
 			
-			$sidUid = db_factory::get_one ( sprintf ( " select * from %sxtang_artUid where sid=".$sid." and uid=".$uid, TABLEPRE )); 
+			$sidUid = db_factory::get_one ( sprintf ( " select * from %sxtang_artuid where sid=".$sid." and uid=".$uid, TABLEPRE )); 
 			if(!$sidUid){
 				keke_finance_class::cash_in($uid, floatval(0),intval($basic_config['answer_credit']),'answer_credit','','answer_credit');
 				
-				$sqlplus = "insert into %sxtang_artUid values(%d,%d)";
+				$sqlplus = "insert into %sxtang_artuid values(%d,%d)";
 				db_factory::execute(sprintf($sqlplus,TABLEPRE,$sid,$uid));
 			}
 
