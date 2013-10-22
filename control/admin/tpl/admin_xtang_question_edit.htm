@@ -33,7 +33,7 @@
     				<tr>
                         <th scope="row" width="130">排序{$_lang['zh_mh']}</th>
                         <td>
-	                        <input type="text" class="txt" style=" width:260px;" name="list_order" id="list_order" value="{$question_info['list_order']}" />
+	                        <input type="text" class="txt" style=" width:260px;" name="list_order" id="list_order" value="{if $question_info['list_order']}{$question_info['list_order']}{else}0{/if}" />
                         </td>
                       </tr>
                       <tr>
