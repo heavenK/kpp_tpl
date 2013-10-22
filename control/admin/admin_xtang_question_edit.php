@@ -11,7 +11,8 @@ if($qid){
 }else{
 	if($sbt_edit){
 		//var_dump(" insert into ".TABLEPRE."xtang_type value('','".$type_name."','".$fields['art_pic']."',".$isShow.",".$list_order.",".$pid.")");
-		$res = db_factory::execute(" insert into ".TABLEPRE."xtang_question(q_title,q_answer,list_order) value('".$q_title."',".$q_answer.",".$list_order.")");
+		if($sid)	$res = db_factory::execute(" insert into ".TABLEPRE."xtang_question(q_title,q_answer,list_order,sid) value('".$q_title."',".$q_answer.",".$list_order.",".$sid.")");
+		else	$res = db_factory::execute(" insert into ".TABLEPRE."xtang_question(q_title,q_answer,list_order) value('".$q_title."',".$q_answer.",".$list_order.")");
 	}
 	
 }
