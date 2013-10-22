@@ -81,7 +81,7 @@ if($view == 'question'){
 			$sidUid = db_factory::get_one ( sprintf ( " select * from %sxtang_artuid where sid=".$sid." and uid=".$uid, TABLEPRE )); 
 			if(!$sidUid){
 				keke_finance_class::cash_in($uid, floatval(0),intval($basic_config['answer_credit']),'answer_credit','','answer_credit');
-				
+				$flags = 1;
 				$sqlplus = "insert into %sxtang_artuid values(%d,%d)";
 				db_factory::execute(sprintf($sqlplus,TABLEPRE,$sid,$uid));
 			}
