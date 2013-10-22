@@ -58,7 +58,8 @@ if($view == 'art_show'){
 }
 
 if($view == 'question'){
-	
+	ini_set('display_errors','1');
+error_reporting(E_ALL);
 	if(!$uid) kekezu::show_msg("您还没有登录，无法答题！",'index.php?do=login',3,'','fail');
 	
 	$art_info = db_factory::get_one ( sprintf ( " select * from %sxtang_article where sid=".$sid, TABLEPRE )); 
