@@ -25,7 +25,6 @@ if($op&&$op == 'out'){
 	$pages = $kekezu->_page_obj->getPages ( $count_in, $page_size, $page, $url );
 	$website_in = db_factory::query($sql_in.$pages['where']);
 }
-var_dump("111");
 if (isset ( $export_in )) {
 	$wh = " order_status ='ok' ";
 	if($stime&&$etime){
@@ -68,7 +67,6 @@ if (isset ( $export_in )) {
 	echo $contents;
 	die ();
 }
-var_dump("aa");
 
 if (isset ( $export_out )) {
 	$wh = " withdraw_status = 2 ";
@@ -115,9 +113,10 @@ if (isset ( $export_out )) {
 	echo $contents;
 	die ();
 }
-var_dump("bb");
+
 
 $order_obj = new keke_witkey_order_charge_class();
+var_dump("bb");
 if (isset ( $ac ) && $order_id) { //
 	switch ($ac) {
 		case "del" : //删除
@@ -129,13 +128,16 @@ if (isset ( $ac ) && $order_id) { //
 	}
 } elseif (isset ( $ckb )) { //批量删除
 	$ckb_string = implode ( ',', $ckb );
+	var_dump("1");
 	$order_obj->setWhere ( 'order_id in (' . $ckb_string . ')' );
+	var_dump("2");
 	switch ($sbt_action) {
 		case $_lang['mulit_delete'] : //批量删除
 			$res = $order_obj->del_keke_witkey_order_charge ();
 			kekezu::admin_system_log ( $_lang['mulit_delete_financial_records'] . "_$ids" );
 			break;
 	}
+	var_dump("3");
 	$res and kekezu::admin_show_msg ( $_lang['mulit_operate_success'], $url,3,'','success' ) or kekezu::admin_show_msg ( $_lang['mulit_operate_fail'], $url,3,'','warning' );
 }
 var_dump("cc");
