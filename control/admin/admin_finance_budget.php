@@ -25,8 +25,7 @@ if($op&&$op == 'out'){
 	$pages = $kekezu->_page_obj->getPages ( $count_in, $page_size, $page, $url );
 	$website_in = db_factory::query($sql_in.$pages['where']);
 }
-var_dump("aa");
-exit;
+var_dump("111");
 if (isset ( $export_in )) {
 	$wh = " order_status ='ok' ";
 	if($stime&&$etime){
@@ -69,6 +68,8 @@ if (isset ( $export_in )) {
 	echo $contents;
 	die ();
 }
+var_dump("aa");
+
 if (isset ( $export_out )) {
 	$wh = " withdraw_status = 2 ";
 	if($stime&&$etime){
@@ -114,6 +115,8 @@ if (isset ( $export_out )) {
 	echo $contents;
 	die ();
 }
+var_dump("bb");
+
 $order_obj = new keke_witkey_order_charge_class();
 if (isset ( $ac ) && $order_id) { //
 	switch ($ac) {
@@ -135,4 +138,6 @@ if (isset ( $ac ) && $order_id) { //
 	}
 	$res and kekezu::admin_show_msg ( $_lang['mulit_operate_success'], $url,3,'','success' ) or kekezu::admin_show_msg ( $_lang['mulit_operate_fail'], $url,3,'','warning' );
 }
+var_dump("cc");
+exit;
 require $template_obj->template ( 'control/admin/tpl/admin_' . $do . '_' . $view );
