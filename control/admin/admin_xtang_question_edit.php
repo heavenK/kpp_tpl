@@ -10,6 +10,8 @@ if($qid){
 	}
 }else{
 	if($sbt_edit){
+		ini_set('display_errors','1');
+error_reporting(E_ALL);
 		//var_dump(" insert into ".TABLEPRE."xtang_type value('','".$type_name."','".$fields['art_pic']."',".$isShow.",".$list_order.",".$pid.")");
 		$res = db_factory::execute(" insert into ".TABLEPRE."xtang_question(q_title,q_answer,list_order) value('".$q_title."',".$q_answer.",".$list_order.")");
 	}
