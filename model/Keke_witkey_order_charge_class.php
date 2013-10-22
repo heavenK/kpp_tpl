@@ -19,13 +19,9 @@ class Keke_witkey_order_charge_class{
 	public $_replace=0;
 	public $_where;
 	function  keke_witkey_order_charge_class(){
-		var_dump("1");
 		$this->_db = new db_factory ( );
-		var_dump("2");
 		$this->_dbop = $this->_db->create(DBTYPE);
-		var_dump("3");
 		$this->_tablename = TABLEPRE."witkey_order_charge";
-		var_dump("4");
 	}
 	 
 	public function getOrder_id(){

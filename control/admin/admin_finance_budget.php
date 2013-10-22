@@ -2,7 +2,7 @@
 defined ( 'ADMIN_KEKE' ) or exit ( 'Access Denied' );
 kekezu::admin_check_role ( 6 );
 ini_set('display_errors','1');
-error_reporting(E_ALL);
+
 $charge_type_arr=keke_glob_class::get_charge_type();
 $bank_arr = keke_glob_class::get_bank();
 $sql_in = "select * from ".TABLEPRE."witkey_order_charge where order_status ='ok' order by pay_time desc";
@@ -114,10 +114,8 @@ if (isset ( $export_out )) {
 	echo $contents;
 	die ();
 }
-var_dump("bb");
 
 $order_obj = new keke_witkey_order_charge_class();
-var_dump("1112");
 if (isset ( $ac ) && $order_id) { //
 	switch ($ac) {
 		case "del" : //删除
@@ -138,6 +136,4 @@ if (isset ( $ac ) && $order_id) { //
 	}
 	$res and kekezu::admin_show_msg ( $_lang['mulit_operate_success'], $url,3,'','success' ) or kekezu::admin_show_msg ( $_lang['mulit_operate_fail'], $url,3,'','warning' );
 }
-var_dump("cc");
-exit;
 require $template_obj->template ( 'control/admin/tpl/admin_' . $do . '_' . $view );
