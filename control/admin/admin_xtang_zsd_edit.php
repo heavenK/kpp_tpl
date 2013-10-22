@@ -24,6 +24,8 @@ if($sid){
 	}
 }else{
 	if($sbt_edit){
+		ini_set('display_errors','1');
+error_reporting(E_ALL);
 		if(!isset($isShow)) $isShow = 0;
 		if(!isset($isTop)) $isTop = 0;
 		//var_dump(" insert into ".TABLEPRE."xtang_type value('','".$type_name."','".$fields['art_pic']."',".$isShow.",".$list_order.",".$pid.")");
