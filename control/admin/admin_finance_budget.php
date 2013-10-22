@@ -1,7 +1,6 @@
 <?php
 defined ( 'ADMIN_KEKE' ) or exit ( 'Access Denied' );
 kekezu::admin_check_role ( 6 );
-ini_set('display_errors','1');
 
 $charge_type_arr=keke_glob_class::get_charge_type();
 $bank_arr = keke_glob_class::get_bank();
@@ -115,7 +114,7 @@ if (isset ( $export_out )) {
 	die ();
 }
 
-$order_obj = new keke_witkey_order_charge_class();
+$order_obj = new Keke_witkey_order_charge_class();
 if (isset ( $ac ) && $order_id) { //
 	switch ($ac) {
 		case "del" : //删除
