@@ -1,8 +1,7 @@
 <?php
 defined ( 'ADMIN_KEKE' ) or exit ( 'Access Denied' );
 kekezu::admin_check_role ( 6 );
-var_dump("aa");
-exit;
+
 $charge_type_arr=keke_glob_class::get_charge_type();
 $bank_arr = keke_glob_class::get_bank();
 $sql_in = "select * from ".TABLEPRE."witkey_order_charge where order_status ='ok' order by pay_time desc";
@@ -26,6 +25,8 @@ if($op&&$op == 'out'){
 	$pages = $kekezu->_page_obj->getPages ( $count_in, $page_size, $page, $url );
 	$website_in = db_factory::query($sql_in.$pages['where']);
 }
+var_dump("aa");
+exit;
 if (isset ( $export_in )) {
 	$wh = " order_status ='ok' ";
 	if($stime&&$etime){
