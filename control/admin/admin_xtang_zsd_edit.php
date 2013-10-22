@@ -24,12 +24,10 @@ if($sid){
 	}
 }else{
 	if($sbt_edit){
-		ini_set('display_errors','1');
-error_reporting(E_ALL);
 		if(!isset($isShow)) $isShow = 0;
 		if(!isset($isTop)) $isTop = 0;
 		//var_dump(" insert into ".TABLEPRE."xtang_type value('','".$type_name."','".$fields['art_pic']."',".$isShow.",".$list_order.",".$pid.")");
-		$res = db_factory::execute(" insert into ".TABLEPRE."xtang_article value('',".$type_id.",'".$title."','".$fields['art_pic']."','".$keyword."','".$fields['description']."','".$fields['content']."','".$admin_info['uid']."','".$admin_info['username']."',".time().",".$isTop.",0,".$isShow.")");
+		$res = db_factory::execute(" insert into ".TABLEPRE."xtang_article value('',".$type_id.",'".$title."','".$fields['art_pic']."','".$keyword."','".$fields['description']."','".$fields['content']."','".$admin_info['uid']."','".$admin_info['username']."',".time().",".$isTop.",0,".$isShow.",0,0)");
 	}
 	
 }
