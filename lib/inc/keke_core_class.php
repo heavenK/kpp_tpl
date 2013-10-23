@@ -10,7 +10,7 @@ class keke_core_class extends keke_base_class {
 				 'shop_list', 'footer', 'task_indus_list', 'indus', 'agreement', 'report', 'seccode', 'bid', 'work',
 				 'prom', 'reset_email', 'avatar', 'pay', 'browser', 'shop_release', 'service', 'shop_order', 'article',
 				 'task_map', 'verify_secode', 'index_map', 'shop_map', 'protocol', 'excite_email', 'link', 'mobile',
-				 'link', 'single', 'login_p','square','denounce','p_store','vip_info','360','school','forum','zhuanti'
+				 'link', 'single', 'login_p','square','denounce','p_store','vip_info','360','ads','school','forum','zhuanti'
 				 );
 	}
 	static function admin_show_msg($title = "", $url = "", $time = 3, $content = "", $type = "info") {
