@@ -74,10 +74,10 @@ public static function get_instance($auth_code='email') {
 		global $_K,$_lang;
 		$md5_code = md5($data['uid'].$data['username'].$data['email']);
 		$title = $_K['html_title'].'--'.$_lang['email_auth'];
-		$body = '<font color="red">'.$_K['html_title'].$_lang['__email_auth'].'</font><br><br>&nbsp;&nbsp;&nbsp;'.$_lang['please_click_email_auth_url'].'<a href="'
+		$body = '<font color="red">亲爱的 '.$data['uid'].'：</font><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;感谢你注册豆8网（www.dou8wang.com），成为豆8网的一员！<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在这里，你可以轻松赚取赏金，还能在豆8网找到有共同兴趣的豆友！相聚“豆豆江湖”，一起分享你的经历和经验！当然啦！你也可以在“豆豆学堂”了解各种稀奇古怪的知识。在“师徒关系”中向豆豆红人取经，提高自己任务的成功率！<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;豆8网让你随时随地“赚”起来……千千万万大威客、小威客集结这里！ 打造这个属于我们的威客时代！<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请点击下面的链接完成注册：<a href="'
 			.$_K[siteurl].'/index.php?do=user&view=payitem&op=auth&auth_code=email&email_a_id='.$email_a_id.'&ac=check_email&auth_step=step3&ver=1&active_code='.$md5_code.'">'
 			.$_K[siteurl].'/index.php?do=user&view=payitem&op=auth&auth_code=email&email_a_id='
-			.$email_a_id.'&ac=check_email&auth_step=step3&ver=1&active_code='.$md5_code.'</a>,如果链接无法点击，请复制以下链接到浏览器中执行'.$_K[siteurl].'/index.php?do=user&view=payitem&op=auth&auth_code=email&email_a_id='.$email_a_id.'&ac=check_email&auth_step=step3&ver=1&active_code='.$md5_code;
+			.$email_a_id.'&ac=check_email&auth_step=step3&ver=1&active_code='.$md5_code.'</a>,如果你的邮箱不支持链接点击，请将链接地址拷贝到你的浏览器地址栏中。'.$_K[siteurl].'/index.php?do=user&view=payitem&op=auth&auth_code=email&email_a_id='.$email_a_id.'&ac=check_email&auth_step=step3&ver=1&active_code='.$md5_code.'<br><br>&nbsp;&nbsp;&nbsp;为确保我们的信息不被当做垃圾邮件处理，请把豆8网 dou88@dou88.com.cn 添加为您的联系人！(这是一封自动产生的email，请勿回复。）<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;感谢对豆8网的支持，再次希望你在豆8网体验愉快；如有任何疑问请联系下方客服<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;豆8网';
 		return kekezu::send_mail($data['email'],$title,$body);
 	}
 }
