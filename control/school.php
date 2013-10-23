@@ -120,6 +120,8 @@ if($view == 'index'){
 		$where .= " order by id asc, list_order asc".$pages['where'];
 		$sql = "select * from %sxtang_type ".$where;
 	}
+	
+	
 	$cat_sub_arr = db_factory::query ( sprintf ( $sql, TABLEPRE ) );
 	
 	require $kekezu->_tpl_obj->template ( $do );
