@@ -109,6 +109,12 @@ $(function(){
 		$(".you_xia").animate({top:pos+d_top},50); 
 	} );
 
+	$(".logo_top_nav").css('z-index','10000');
+	$(window).scroll( function() { 
+		d_top = $(document).scrollTop(); 
+		$(".logo_top_nav").animate({top:d_top},0); 
+	} );
+
 </script>
 
 

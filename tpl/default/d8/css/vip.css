@@ -9,7 +9,7 @@ body{background:url(../images/header_bg1.jpg) repeat-x #fff;}
 .hydl{background:url(../images/vip31.jpg) repeat-x;}
 .hydl a{background:none;}
 .hydl i{background:#c29a60;}
-.logo_top_nav{background:url(../images/logo_nav1.jpg) no-repeat;}
+.logo_top_nav{background:url(../images/logo_nav1.png) no-repeat;}
 .rukou_nav{ background:#a47436; box-shadow:2px 2px 3px #b28244}
 .gz ul li a:hover{background:#f2e49b; color:#000;}
 .rukouOver2{ filter:alpha(opacity=50); -moz-opacity:0.5; -khtml-opacity: 0.5; opacity: 0.5;}

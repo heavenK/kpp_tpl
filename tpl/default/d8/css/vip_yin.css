@@ -5,11 +5,11 @@ body{background:url(../images/header_bg2.jpg) repeat-x #fff;}
 .menu ul li .hide:hover { width:100px;color:#fff; background:url(../images/nav_bg2.jpg) no-repeat top center;}
 .menu ul li.h_r			{ width:100px; height:34px; background:url(../images/nav_bg2.jpg) no-repeat top center; float:left;}
 .menu ul li.h_r a:hover	{ width:100px;color:#fff; background:url(../images/nav_bg2.jpg) no-repeat top center;}
-.logo_top_nav{background:url(../images/logo_nav1.jpg) no-repeat;}
+.logo_top_nav{background:url(../images/logo_nav1.png) no-repeat;}
 .menu ul li.h_r a.hide{color:#fff;}
 .menu ul li a.hide:hover{color:#fff;}
 .top_b{border-top:1px solid #c1a05d; background:#e6e6e6;}
-.logo_top_nav{background:url(../images/logo_nav2.jpg) no-repeat;}
+.logo_top_nav{background:url(../images/logo_nav2.png) no-repeat;}
 .hydl{background:url(../images/vip41.jpg) repeat-x;}
 .hydl a{background:none; color:#000;}
 .hydl i{background:#fff;}

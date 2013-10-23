@@ -22,7 +22,7 @@
 .logo				{width:159px; height:188px; float:left; position:absolute; left:-5px;}
 .logo img			{width:160px; height:188px;}
 .logo_r				{width:845px; float:right;}
-.logo_top_nav		{width:487px; height:26px; background:url(../images/logo_nav.jpg) no-repeat; float:right; position:relative;}
+.logo_top_nav		{width:487px; height:26px; background:url(../images/logo_nav.png) no-repeat; float:right; position:relative;}
 .logo_top_nav_t 	{ height:26px; line-height:20px; float:left;}
 .logo_top_nav_t a 	{ margin-left:32px; height:26px; float:left; display:inline; margin-right:3px; display:inline; color:#fff; font-size:14px; font-weight:bold;}
 .rukou_nav	 		{ width:130px; display:none; background:#48B78D; border-top:none; position:absolute; z-index:9999; top:21px; left:178px; float:left; overflow:hidden; -moz-box-shadow:2px 2px 3px #48B78D; -webkit-box-shadow:2px 2px 3px #48B78D; box-shadow:2px 2px 3px #48B78D;}

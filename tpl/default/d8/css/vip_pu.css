@@ -6,7 +6,7 @@ body{background:url(../images/header_bg3.jpg) repeat-x #fff;}
 .menu ul li.h_r			{ width:100px; height:34px; background:url(../images/nav_bg3.jpg) no-repeat top center; float:left;}
 .menu ul li.h_r a:hover	{ width:100px;color:#fff; background:url(../images/nav_bg3.jpg) no-repeat top center;}
 .top_b{border-top:1px solid #c1a05d; background:#e4eee5;}
-.logo_top_nav{background:url(../images/logo_nav3.jpg) no-repeat;}
+.logo_top_nav{background:url(../images/logo_nav3.png) no-repeat;}
 .hydl{background:#47b68c;}
 .hydl a{background:none; color:#000;}
 .hydl i{background:#fff;}
