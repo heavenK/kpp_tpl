@@ -72,7 +72,7 @@
                           {loop $new_member $k $v}
                           <li>
                               <div id="div4{$k}" onMouseOver="show('div4{$k}');" onMouseOut="hide('div4{$k}');" style="display:none; cursor:pointer;">
-                              <div class="text"><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><p>{$v['username']}</p><p>诚信保障：{$ensure[$v['ensure']]}</p><p>能力等级：{$credit_level[$k]["title"]}</p></a></div>
+                              <div class="text"><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><p>{$v['uid']}</p><p>诚信保障：{$ensure[$v['ensure']]}</p><p>能力等级：{$credit_level[$k]["title"]}</p></a></div>
                               <div class="bg"></div>
                               </div>
                               <a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><img src="<!--{userpicurl($v['uid'],middle)}-->" onMouseOver="show('div4{$k}')" onMouseOut="hide('div4{$k}')" /></a><span><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->">{$v['username']}</a></span>
@@ -83,7 +83,7 @@
                           {loop $new_member_vip $k $v}
                           <li>
                               <div id="div1{$k}" onMouseOver="show('div1{$k}');" onMouseOut="hide('div1{$k}');" style="display:none; cursor:pointer;">
-                              <div class="text"><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><p>{$v['username']}</p><p>诚信保障：{$ensure[$v['ensure']]}</p><p>能力等级：{$v['seller_level']["title"]}</p></a></div>
+                              <div class="text"><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><p>{$v['uid']}</p><p>诚信保障：{$ensure[$v['ensure']]}</p><p>能力等级：{$v['seller_level']["title"]}</p></a></div>
                               <div class="bg"></div>
                               </div>
                               <a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><img src="<!--{userpicurl($v['uid'],middle)}-->" onMouseOver="show('div1{$k}')" onMouseOut="hide('div1{$k}')" /></a><span><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->">{$v['username']}</a></span>
@@ -94,7 +94,7 @@
                           {loop $new_member $k $v}
                           <li>
                               <div id="div2{$k}" onMouseOver="show('div2{$k}');" onMouseOut="hide('div2{$k}');" style="display:none; cursor:pointer;">
-                              <div class="text"><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><p>{$v['username']}</p><p>诚信保障：{$ensure[$v['ensure']]}</p><p>能力等级：{$credit_level[$k]["title"]}</p></a></div>
+                              <div class="text"><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><p>{$v['uid']}</p><p>诚信保障：{$ensure[$v['ensure']]}</p><p>能力等级：{$credit_level[$k]["title"]}</p></a></div>
                               <div class="bg"></div>
                               </div>
                               <a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><img src="<!--{userpicurl($v['uid'],middle)}-->" onMouseOver="show('div2{$k}')" onMouseOut="hide('div2{$k}')" /></a><span><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->">{$v['username']}</a></span>
@@ -105,7 +105,7 @@
                           {loop $accept_member $k $v}
                           <li>
                               <div id="div3{$k}" onMouseOver="show('div3{$k}');" onMouseOut="hide('div3{$k}');" style="display:none; cursor:pointer;">
-                              <div class="text"><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><p>{$v['username']}</p><p>诚信保障：{$ensure[$v['ensure']]}</p><p>能力等级：{$v['seller_level']["title"]}</p></a></div>
+                              <div class="text"><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><p>{$v['uid']}</p><p>诚信保障：{$ensure[$v['ensure']]}</p><p>能力等级：{$v['seller_level']["title"]}</p></a></div>
                               <div class="bg"></div>
                               </div>
                               <a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->"><img src="<!--{userpicurl($v['uid'],middle)}-->" onMouseOver="show('div3{$k}')" onMouseOut="hide('div3{$k}')" /></a><span><a href="<!--{eval echo kekezu::build_space_url($v['uid']);}-->">{$v['username']}</a></span>
