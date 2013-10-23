@@ -174,7 +174,39 @@ if($type == 'release'){
 	exit;
 }
 
+if($type == 'check_uid'){
+	$user_infos = db_factory::get_one("select username from ".TABLEPRE."witkey_space where uid=".$check_uid);	
+	
+	if($user_infos){
+		echo $user_infos['username'];
+	}else	echo 0;
+	exit;
+}
 
+if($type == 'send_credits'){
+	$to_user_info = keke_user_class::get_user_info($to_uid);
+
+	if(!$uid){
+		echo "login";
+		exit;	
+	}
+	
+	if($user_info['credit'] < $credits){
+		echo "fail";
+		exit;
+	}
+	
+	$credits1 = floor($basic_config['send_credits'] * $credits);
+
+
+	$r = keke_finance_class::cash_out ($uid, $credits, 'send_credits','','','',1); 
+	$r = keke_finance_class::cash_in($to_uid, floatval(0),intval($credits1),'send_credits','','send_credits');
+	keke_msg_class::send_private_message ("收到豆币","您收到由".$username."转让给您的".$credits1."豆币。", $to_uid, $to_user_info['username'],'','','ajax');
+	
+	echo $r;
+	
+	exit;
+}
 
 
 

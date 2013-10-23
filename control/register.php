@@ -27,6 +27,11 @@ if (isset ( $check_username ) && ! empty ( $check_username )) {
 	 echo  $res;
 	 die ();
 }
+if ($ajax && isset ( $check_uid ) && ! empty ( $check_uid )) {
+	 $res =  keke_user_class::check_uid ( $check_uid , $ajax);
+	 echo  $res;
+	 die ();
+}
 if (isset ( $check_uid ) && ! empty ( $check_uid )) {
 	 $res =  keke_user_class::check_uid ( $check_uid );
 	 echo  $res;

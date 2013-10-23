@@ -23,7 +23,69 @@
     
 </div>
 
+<div id="modal2" class="modal">
+	<h1><p class="closeBtn"><img width="16" border="0" height="16" src="/tpl/default/d8/images/close.png"></p></h1>
+    <div class="baibai">
+      	<h2>转入的账号：<input type="text" name="to_uname" id="to_uname" value="" /><input type="button" onclick="check_uname()" value="验证" /></h2>
+        <input type="hidden" name="flag_uname" id="flag_uname" value="0" />
+        <h2 id="username_show" style="display:none"></h2>
+        <h2>转入的豆币：<input type="text" name="to_credit" id="to_credit" value="" /></h2>
+        <h4><a href="###" class="guanbi" onclick="send_credits()" >转入</a><a href="#" class="guanbi" >取消</a></h4>
+    </div>
+    
+</div>
 
+<script>
+	function check_uname(){
+		if(!$("#to_uname").val()){
+			alert("用户名账号不可以为空！");
+			return;	
+		}
+		$.ajax({
+           type: "GET",
+           url: "index.php?do=user&view=ajax&type=check_uid&check_uid="+$("#to_uname").val(),
+           async: false,
+           success: function(data){
+               if(data != -1 ) {
+				  $("#username_show").text("转入的用户："+data);
+				  $("#username_show").show();
+				  //alert(data);
+					$("#flag_uname").val(1);
+			   }
+			   else alert("用户账号不存在！");
+           }
+        })	
+	}
+	
+	function send_credits(){
+		
+		var u = "{$uid}";
+		
+		if(!u) {
+			alert("请先登录！");
+			return;	
+		}
+		
+		if(!$("#flag_uname").val()){
+			alert("请先验证用户账号！");
+			return;	
+		}
+		if($("#to_credit").val() < 1){
+			alert("转入数值不可以为空！");
+			return;	
+		}
+		$.ajax({
+           type: "GET",
+           url: "index.php?do=user&view=ajax&type=send_credits&to_uid="+$("#to_uname").val()+"&credits="+Math.round($("#to_credit").val()),
+           async: false,
+           success: function(data){
+               if(data == 'fail') alert("您的豆币不足！");
+			   else if(data > 0) alert("转让成功！");
+			   else alert("转让失败！");
+           }
+        })	
+	}
+</script>
 
     <div class="clear"></div>
     
@@ -75,7 +137,11 @@
             		<div class="clear"></div>
                 </div>
                 <div class="sq_top_rtwo">
-                	<div class="sq_top_rad"><a  class="modalLink" href="#modal1" ><img src="/tpl/default/d8/images/jion3.jpg" width="197" height="144" /></a><img src="/tpl/default/d8/images/jion3.jpg" width="197" height="144" /><img src="/tpl/default/d8/images/jion3.jpg" width="197" height="144" /></div>
+                	<div class="sq_top_rad">
+                        <a class="modalLink" href="#modal1" ><img src="/tpl/default/d8/images/jion3.jpg" width="197" height="144" /></a>
+                        <a class="modalLink" href="#modal2" ><img src="/tpl/default/d8/images/jion3.jpg" width="197" height="144" /></a>
+                        <img src="/tpl/default/d8/images/jion3.jpg" width="197" height="144" />
+                    </div>
                     <div class="sq_top_rfabu"><h1>寻求帮助</h1><input type="button" value="发布任务" class="sq_fabu" onclick="location='index.php?do=release'" /></div>
                     <div class="clear"></div>
                 </div>
