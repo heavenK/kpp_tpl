@@ -66,6 +66,11 @@
 			return;	
 		}
 		
+		if(u == $("#to_uname").val()){
+			alert("不可以转给自己！");
+			return;	
+		}
+		
 		if(!$("#flag_uname").val()){
 			alert("请先验证用户账号！");
 			return;	
