@@ -98,7 +98,6 @@ if($view == 'question'){
 
 if($view == 'index'){
 
-	
 	if(!$pid) $where = 'where pid >0';
 	else $where = "where pid=".$pid;
 	
@@ -111,13 +110,16 @@ if($view == 'index'){
 	$pages = $kekezu->_page_obj->getPages ( $count, $page_size, $page, $url );
 	
 	if(!$pid) $where = 'where t.pid >0';
-	else $where = "where t.pid=".$pid;
+	else $where = "where pid=".$pid;
 	
-	
+	if(!$pid){
 		$where .= " GROUP BY t.id ORDER BY sums desc ".$pages['where'];
 	
-		$sql = "SELECT t.*,SUM(a.views) sums FROM %sxtang_article a LEFT JOIN %sxtang_type t on a.type_id=t.id ".$where;
-	
+		$sql = "SELECT t.*,SUM(a.views) sums FROM %sxtang_article a LEFT JOIN ".TABLEPRE."xtang_type t on a.type_id=t.id ".$where;
+	}else{
+		$where .= " order by id asc, list_order asc".$pages['where'];
+		$sql = "select * from %sxtang_type ".$where;
+	}
 	$cat_sub_arr = db_factory::query ( sprintf ( $sql, TABLEPRE ) );
 	
 	require $kekezu->_tpl_obj->template ( $do );
