@@ -97,9 +97,9 @@ if($view == 'question'){
 }
 
 if($view == 'index'){
+
 	
-	
-	if(!isset($pid)) $where = 'where pid >0';
+	if(!$pid) $where = 'where pid =0';
 	else $where = "where pid=".$pid;
 	
 	
