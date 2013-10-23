@@ -46,7 +46,7 @@
            url: "index.php?do=user&view=ajax&type=check_uid&check_uid="+$("#to_uname").val(),
            async: false,
            success: function(data){
-               if(data != -1 ) {
+               if(data) {
 				  $("#username_show").text("转入的用户："+data);
 				  $("#username_show").show();
 				  //alert(data);
