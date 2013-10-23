@@ -111,8 +111,12 @@ if($view == 'index'){
 	$pages = $kekezu->_page_obj->getPages ( $count, $page_size, $page, $url );
 	
 	
-	$where .= " order by id asc, list_order asc".$pages['where'];
-	$cat_sub_arr = db_factory::query ( sprintf ( "select * from %sxtang_type ".$where, TABLEPRE ) );
+	$where .= " GROUP BY t.id ORDER BY sums desc ".$pages['where'];
+	
+	$sql = "SELECT t.*,SUM(a.views) sums FROM %sxtang_article a LEFT JOIN %sxtang_type t on a.type_id=t.id ".$where;
+	
+	
+	$cat_sub_arr = db_factory::query ( sprintf ( $sql, TABLEPRE, TABLEPRE ) );
 	
 	require $kekezu->_tpl_obj->template ( $do );
 }
