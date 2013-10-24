@@ -63,69 +63,7 @@
                 </div>
 			</div>
           
-            <div class="top_b">
-                <div class="denglu">
-               		{if !$uid&&!$oauth_user_info}
-                	<div class="hydl">
-                    	<a href="index.php?do=login" id="huiyuan" class="huiyuan">会员登录<b style="font-size:14px;">▼</b></a>
-                        <i></i>
-                    	<a href="index.php?do=register"  class="zhuce">免费注册</a>
-                    </div>
-                    {else}
-                    <div class="hydl">
-                    	<a href="index.php?do=space&member_id={$uid}" class="huiyuan">{if $username}<!--{eval echo kekezu::cutstr($username,14);}-->{elseif $oauth_user_info}{$oauth_user_info['account']}{/if}</a>
-                        <i></i>
-                    	<a href="index.php?do=logout" class="zhuce" >{$_lang['logout']}</a>
-                    </div>
-                    {/if}
-                    <div class="dl_t">
-                    <form action="index.php?do=login" method="post" id="login_frm" name="login_frm">
-                        <input type="hidden" name="formhash" id="formhash" value="{FORMHASH}">
-                        <input type="hidden" name="hdn_refer" id="hdn_refer" value="{$_K['refer']}">
-                        <input type="hidden" name="handlekey" value="login_frm1"><!--账号-->
-                        <ul>
-                            <li class="dl_btn">
-                                <label class="dl_btnz">账户</label>
-                                <input class="" name="txt_account" id="txt_account" type="text" style="width:140px" value="用户名/手机号/邮箱" onFocus="if(this.value=='用户名/手机号/邮箱'){this.value='';}"  onblur="if(this.value==''){this.value='用户名/手机号/邮箱'}";/>
-                            </li>
-                            <li class="dl_btn">
-                                <label class="dl_btnz">密码</label>
-                                <input class=""  style="width:140px" type="password" name="pwd_password" id="pwd_password" value="密码长度应为6-20位" original-title="" onFocus="if(this.value=='密码长度应为6-20位'){this.value='';}"  onblur="if(this.value==''){this.value='密码长度应为6-20位'}">
-                            </li>
-                            
-                            <li class="dl_btn0" style="width:155px; height:30px; padding-top:15px; padding-left:30px;">
-                                <input name="" type="button" onClick="return user_login();"  value="登录"/>
-                                <a href="index.php?do=get_password">忘记密码？</a>
-                            </li> 
-                        </ul>
-                    </form>
-                    </div>
-            	</div>
-
-                
-                
-                <div class="top_b_t">
-                <form action="" method="post" id="frm_search" class="clearfix fl_l">
-                	<div style="display:none;">
-                        	<div id="search_select" class="search_options">
-                        	{if $task_open}
-                           		 <a href="javascript:void(0);" class="selected" rel="task_list"><span>{$_lang['task']}</span>▼</a>
-                            {elseif !$task_open&&$shop_open}
-								 <a href="javascript:void(0);" class="selected" rel="shop_list"><span>{$_lang['goods']}</span>▼</a>
-                            {/if}
-							{if $task_open}
-						   		 <a href="javascript:void(0);" class="hidden"   rel="task_list">{$_lang['task']}</a>
-							{/if}
-							{if $shop_open}
-                           	 	<a href="javascript:void(0);" class="hidden"   rel="shop_list">{$_lang['goods']}</a>
-							 {/if}
-                            </div>
-                        </div>
-                    <input type="text" value="热门词：豌豆，奖金" name="search_key" onKeyDown="search_keydown(event);" id="search_key" onFocus="if(this.value=='热门词：豌豆，奖金'){this.value='';}"  onblur="if(this.value==''){this.value='热门词：豌豆，奖金'}"; class="input_1" /> 
-                    <input name="" type="submit" id="search_btn"  value="" class="suo"/>
-                </form>
-                </div>
-            </div>
+            <!--{template header_index_top_search}-->
             
             <div class="xiangmu">
                 <i><b>项目总数：</b><span>{$task_count}</span></i>

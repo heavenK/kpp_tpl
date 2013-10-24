@@ -1,0 +1,87 @@
+<div class="top_b">
+                <div class="denglu">
+               		{if !$uid&&!$oauth_user_info}
+                	<div class="hydl">
+                    	<a href="index.php?do=login" id="huiyuan"  class="huiyuan">会员登录<b style="font-size:14px;">▼</b></a>
+                        <i></i>
+                    	<a href="index.php?do=register" class="zhuce">免费注册</a>
+                    </div>
+                    {else}
+                    <div class="hydl">
+                    	<a href="index.php?do=space&member_id={$uid}"  class="huiyuan">{if $username}<!--{eval echo kekezu::cutstr($username,14);}-->{elseif $oauth_user_info}{$oauth_user_info['account']}{/if}</a>
+                        <i></i>
+                    	<a href="index.php?do=logout"  class="zhuce">{$_lang['logout']}</a>
+                    </div>
+                    {/if}
+                    <div class="dl_t">
+                    <form action="index.php?do=login" method="post" id="login_frm" name="login_frm">
+                        <input type="hidden" name="formhash" id="formhash" value="{FORMHASH}">
+                        <input type="hidden" name="hdn_refer" id="hdn_refer" value="{$_K['refer']}">
+                        <input type="hidden" name="handlekey" value="login_frm1"><!--账号-->
+                        <ul>
+                            <li class="dl_btn">
+                                <label class="dl_btnz">账户</label>
+                                <input class="" name="txt_account" id="txt_account" type="text" style="width:140px" value="用户名/手机号/邮箱/账号" onfocus="if(this.value=='用户名/手机号/邮箱/账号'){this.value='';}"  onblur="if(this.value==''){this.value='用户名/手机号/邮箱'}";/>
+                            </li>
+                            <li class="dl_btn">
+                                <label class="dl_btnz">密码</label>
+                                <input class=""  style="width:140px" type="password" name="pwd_password" id="pwd_password" value="密码长度应为6-20位" original-title="" onfocus="if(this.value=='密码长度应为6-20位'){this.value='';}"  onblur="if(this.value==''){this.value='密码长度应为6-20位'}">
+                            </li>
+                            
+                            <li class="dl_btn0" style="width:155px; height:30px; padding-top:15px; padding-left:30px;">
+                                <input name="" onclick="return user_login();" type="submit"  value="登录"/>
+                                <a href="index.php?do=get_password">忘记密码？</a>
+                            </li> 
+                        </ul>
+                    </form>
+                    </div>
+            	</div>
+                
+                <script type="text/javascript">
+				//登录
+				function user_login(){ 
+					if (checkForm(document.getElementById("login_frm"), false)) {
+						//login_frm.submit();
+						showWindow('login_frm1', 'login_frm', 'post',0,{cover:1},'hide()');
+						
+					}
+					return false;
+				}
+			</script>
+                
+                
+                <div class="top_b_t">
+                <form action="" method="post" id="frm_search" class="clearfix fl_l">
+                <div style="display:none;">
+                        	<div id="search_select" class="search_options">
+                        	
+                           		 <a href="javascript:void(0);" id="task_lists" class="selected" rel="task_list"><span>{$_lang['task']}</span>▼</a>
+                            
+								 <a href="javascript:void(0);" id="seller_lists" rel="seller_list"><span>{$_lang['goods']}</span>▼</a>
+                            
+                            </div>
+                        </div>
+                    
+                    <input type="text" value="热门词：豌豆，奖金" name="search_key" onkeydown="search_keydown(event);" id="search_key" onfocus="if(this.value=='热门词：豌豆，奖金'){this.value='';}"  onblur="if(this.value==''){this.value='热门词：豌豆，奖金'}"; class="input_1" /> 
+                    <input name="" type="button" id="search_btn"  value="" class="suo"/>
+                </form>
+                </div>
+                <div class="selectbox_dw0" style="float:right; padding:17px;">
+                    <select onchange="change_types(this);" style=" width:80px; height:27px; padding-right:5px; padding-top:5px; padding-bottom:5px">
+                        <option value="task_list">任务</option>
+                        <option value="seller_list">人才</option>
+                    </select>
+                </div>
+            </div>
+            <script>
+				function change_types(obj){
+					if($(obj).val() == 'task_list') {
+						$("#task_lists").addClass("selected");
+						$("#seller_lists").removeClass("selected");
+					}
+					if($(obj).val() == 'seller_list') {
+						$("#seller_lists").addClass("selected");
+						$("#task_lists").removeClass("selected");
+					}
+				}
+			</script>
