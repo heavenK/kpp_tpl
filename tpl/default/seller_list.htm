@@ -192,7 +192,7 @@ function fa_bu(){
                 <a href="index.php?do=seller_list&path={$path}&province=$province&city=$city&area=$area&auths=$auths&search_key=$search_key">{$level} <font class="close">&times;</font></a>
                 {/if}
                 {if $search_key}
-                <a href="index.php?do=seller_list&path={$path}&province=$province&city=$city&area=$area&auths=$auths">{$search_key} <font class="close">&times;</font></a>
+                <a href="index.php?do=seller_list&path={$path}&province=$province&city=$city&area=$area&auths=$auths">{if is_numeric($search_key)}账号{else}用户名{/if}：{$search_key} <font class="close">&times;</font></a>
                 {/if}
                 {if $province&&$city&&$area}<a href="index.php?do=seller_list&path={$path}&min={$min}&max={$max}&search_key=$search_key&auths=$auths&level=$level" class="selected">{$province},{$city},{$area} <font class="close">&times;</font></a>{/if}
                 
