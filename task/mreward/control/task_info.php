@@ -147,9 +147,19 @@ if($days > $basic_config['vote_time'] && $task_info['is_vote'] == 2){
 	
 	db_factory::execute ( sprintf ( " update %switkey_task set is_vote=1 where task_id ='%d'", TABLEPRE, $task_id ) );
 
+
 	$works_list = db_factory::query ( sprintf ( "select * from %switkey_task_work where task_id=%d and vote_num > 0 order by vote_num desc limit 0,3", TABLEPRE, $task_id) );
+	
+	$works_list_count = db_factory::get_count( sprintf ( "select count(work_id) count from %switkey_task_work where task_id=%d and vote_num > 0 order by vote_num desc limit 0,3", TABLEPRE, $task_id) );
 	foreach($works_list as $key => $val){
 		keke_finance_class::cash_in($val['uid'], floatval(0),intval($basic_config['baoming_credit']),'vote_win','','vote_win');
+
+		if($task_config['task_rate'] > 0){
+			$win_cash = $task_info['task_cash'] * $task_config['task_rate']/100  ;
+			$win_cash = floor($win_cash/$works_list_count);
+			
+			keke_finance_class::cash_in($val['uid'], intval($win_cash),intval(0),'vote_win','','vote_win');
+		}
 		
 		db_factory::execute ( 'update ' . TABLEPRE . 'witkey_task_work set vote_position='.($key+1).' where work_id ='.$val['work_id'] );
 	}
