@@ -2,7 +2,7 @@
                   {loop $art_arr $k $v}
                   <tr class="item zsd_{$v['type_id']}" align="left">
                     <td class="td28">
-                    	$v['list_order']</td>
+                    	<input type="checkbox" name="sub_zsd" value="{$v['sid']}" />$v['list_order']</td>
                     <td class="left" style="color:red;">
                     	知识点</td>
                     <td align="left">

@@ -10,13 +10,46 @@
           <a href="index.php?do=$do&view=cat_edit&type=$type" {if $view=='cat_edit'}class="here"{/if} {if $view=='edit'}class="here" {/if}>分类添加</a>           
 		</div>
 </div>
+<script>
+function move_sub(type){
+	var str="";  
+	var msg = ''; 
+	var ids = '';
+	$("input[name='sub_"+type+"']:checked").each(function(){   
+		str+=$(this).val()+",";
+	})  
+	
+	str = str.substring(0,str.length-1); 
 
+	if(type == 'type') {
+		msg = "子分类";
+		ids = $("#father_type_id").val();
+	}
+	if(type == 'zsd') {
+		msg = "知识点";
+		ids = $("#sub_type_id").val();
+	}
+	
+	
+	if(!str)	alert("没有选择"+msg+"！");
+	else if(!ids)	alert("没有选择目标！");
+	else{	
+		window.location.href="index.php?do=xtang&view=move_sub&type="+type+"&id="+ids+"&sub_ids="+str;
+		
+	}
+}
+
+function select_target(id, name, type){
+	$("#"+type).val(name);	
+	$("#"+type+"_id").val(id);
+}
+</script>
 <div class="box search p_relative">
     	<div class="title"><h2>{$_lang['search']}</h2></div>
         <div class="detail" id="detail">
            
-		   
-			
+			<p>目标：<input type="text" name="father_type" id="father_type" value="" readonly="readonly" /><input type="hidden" name="father_type_id" id="father_type_id" value="" /><input type="button" name="move_sub" onclick="move_sub('type');" value="转移子分类" /></p>
+			<p>目标：<input type="text" name="sub_type" id="sub_type" value="" readonly="readonly"/><input type="hidden" name="sub_type_id" id="sub_type_id" value="" /><input type="button" name="move_sub" onclick="move_sub('zsd');" value="转移知识点" /></p>
         </div>
     </div>
     <!--搜索结束-->
@@ -45,6 +78,7 @@
 					</td>                                
                     <td>
 						<a href="index.php?do={$do}&view=cat_edit&type_id={$v['id']}&pid={$v['pid']}&type={$type}" class="button dbl_target"><span class="pen icon"></span>编辑</a>
+                        <a href="###" class="button dbl_target" onclick="select_target({$v['id']},'{$v['type_name']}','father_type');"><span class="pen icon"></span>选为目标</a>
 						{if $v[pid]!=0}
                         
 						<a href="index.php?do=$do&view=cat_list&type_id=$v['id']&ac=del" class="button"><span class="trash icon"></span>删除</a>
@@ -58,7 +92,7 @@
                   
                   <tr class="item" align="left">
                     <td class="td28">
-                    	$v1['list_order']</td>
+                    	<input type="checkbox" name="sub_type" value="{$v1['id']}" />$v1['list_order']</td>
                     <td class="left" style="color:green;">
                     	子分类</td>
                     <td align="left">
@@ -70,6 +104,7 @@
                         <a href="index.php?do=xtang&view=zsd_edit&type_id={$v1['id']}" class="button dbl_target"><span class="pen icon"></span>添加知识点</a>
 						<a href="index.php?do=$do&view=cat_list&type_id=$v1['id']&ac=del" class="button"><span class="trash icon"></span>删除</a>
 						{/if}
+                        <a href="###" class="button dbl_target" onclick="select_target({$v1['id']},'{$v1['type_name']}','sub_type');"><span class="pen icon"></span>选为目标</a>
 					</td>
                   </tr>
                   <tr id="zsd_{$v1['id']}"></tr>

@@ -1,7 +1,7 @@
 <?php defined ( 'ADMIN_KEKE' ) or exit ( 'Access Denied' );
 
 
-$views = array ('list', 'edit','cat_list','cat_edit','zsd_list','zsd_edit','zsd_question','question_list','question_edit');
+$views = array ('list', 'edit','cat_list','cat_edit','zsd_list','zsd_edit','zsd_question','question_list','question_edit','move_sub');
 (! empty ( $view ) && in_array ( $view, $views )) or $view = 'cat_list';
 
 
