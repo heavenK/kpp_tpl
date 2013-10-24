@@ -111,12 +111,15 @@ class keke_user_login_class {
 					}else{
 						$url = "index.php";
 					}
+					unset($_COOKIE);
 					unset($_COOKIE['username']);
 					unset($_COOKIE['password']);
 				} elseif ($user_info ['status'] == 2) {
+					unset($_COOKIE);
 					unset($_COOKIE['username']);
 					unset($_COOKIE['password']);
 				} elseif ($user_info ['status'] == 3) {
+					unset($_COOKIE);
 					unset($_COOKIE['username']);
 					unset($_COOKIE['password']);
 				}
@@ -124,6 +127,7 @@ class keke_user_login_class {
 			case "2" :
 			case "3" :
 				if($accout_type != 'username'){
+					unset($_COOKIE);
 					unset($_COOKIE['username']);
 					unset($_COOKIE['password']);
 					$this->show_msg ( $_lang ['integrated_model_nust_use_name'], 5 );
