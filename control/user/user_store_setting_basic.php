@@ -12,7 +12,7 @@ if (isset($formhash)&&kekezu::submitcheck($formhash)){
 	$conf['seo_title'] = kekezu::escape($seo_title);
 	$conf['seo_keyword'] = kekezu::escape($seo_keyword);
 	$conf['seo_desc'] = kekezu::escape($seo_desc);
-	$conf['on_time'] = time();
+	
 	intval($shop_info['shop_id']) or $conf['shop_background'] = $file_temp;
 	$shop_slogans and $conf ['shop_slogans'] = kekezu::escape($shop_slogans);
  	$sql = sprintf("select shop_id, on_time from %switkey_shop where uid=%d ",TABLEPRE,$uid); 
@@ -20,6 +20,7 @@ if (isset($formhash)&&kekezu::submitcheck($formhash)){
 
 	if($shop_info[0]['on_time'] == NULL){
 		//keke_finance_class::cash_in($uid, floatval(0),intval($basic_config['shop_open_credit']),'admin_charge','','admin_charge');
+		$conf['on_time'] = time();
 		$msg_credit = "恭喜您已成功开通工作室，完善详细资料，豆8网将赠送您".$basic_config['shop_open_credit']."豆币！";
 	}
 	
