@@ -227,7 +227,7 @@ class keke_user_login_class {
 		
 		if($rem){
 			setcookie("username", $user_info ['username'], time()+3600*24*7); 
-			setcookie("password", $pwd, time()+3600*24*7); 
+			setcookie("password", md5($pwd), time()+3600*24*7); 
 		}
 		
 		$this->add_login_time(0);
@@ -294,10 +294,7 @@ class keke_user_login_class {
 		$_SESSION ['username'] = $user_info ['username'];
 		$_SESSION['last_login_time'] = $user_info['last_login_time'];
 		
-		if($rem){
-			setcookie("username", $user_info ['username'], time()+3600*24*7); 
-			setcookie("password", $pwd, time()+3600*24*7); 
-		}
+		
 		
 		$flag = $login_type;
 		

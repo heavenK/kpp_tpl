@@ -7,10 +7,15 @@ $inter = $kekezu->_sys_config ['user_intergration'];
 $login_times = intval($_SESSION['login_times']);
 $page_type = "用户登录";
 
+
+
 if($_COOKIE['username'] && $_COOKIE['password']){
-	
+
 	$login_obj = new keke_user_login_class();
- 	$user_info = $login_obj->user_login($_COOKIE['username'], md5($_COOKIE['password'])); 
+	
+ 	$user_info = $login_obj->user_login($_COOKIE['username'], $_COOKIE['password']); 
+	
+	
 	
 	$login_obj->save_user_info_auto($user_info, $ckb_cookie,10); 
 	

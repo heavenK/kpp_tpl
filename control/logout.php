@@ -24,6 +24,7 @@ if (isset ( $_COOKIE ['last_login_time'] )) {
 $synhtml = keke_user_class::user_synlogout();
 unset($_COOKIE);
 unset($_COOKIE['username']);
+unset($_COOKIE['password']);
 session_destroy();
 in_array($refer_do['do'],array('user','release','shop_release','logout','register_wizard')) and  $jump = 'index.php' or $jump =$_SERVER['HTTP_REFERER']; 
 setcookie('rememberme','',time()-1);
