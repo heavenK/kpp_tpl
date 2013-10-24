@@ -141,7 +141,8 @@ function get_where($path) {
 	}
 	
 	if($search_key){
-		$where .= " and b.username like '%".$search_key."%'";	
+		if(is_numeric($search_key))	$where .= " and b.uid=".$search_key;	
+		else	$where .= " and b.username like '%".$search_key."%'";	
 	}
 	
 	if($auths){
