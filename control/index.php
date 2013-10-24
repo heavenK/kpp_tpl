@@ -121,7 +121,7 @@ $indus_all_arr = $kekezu->_indus_arr;
 
 
 // 最新威客
-	$new_member = db_factory::query(sprintf("select *  from %switkey_member m left join %switkey_space s on m.uid=s.uid order by s.reg_time desc limit 0,10",TABLEPRE,TABLEPRE));
+	$new_member = db_factory::query(sprintf("select *  from %switkey_space s left join %switkey_shop p on s.uid=p.uid order by p.on_time desc limit 0,10",TABLEPRE,TABLEPRE));
 	foreach($new_member as $key => $val){
 		$credit_level[$key] = unserialize($val['seller_level']);
 	}
