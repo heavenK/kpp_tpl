@@ -322,25 +322,37 @@ $(document).ready(function (){
                 <form action="" method="post" id="frm_search" class="clearfix fl_l">
                 <div style="display:none;">
                         	<div id="search_select" class="search_options">
-                        	{if $task_open}
-                           		 <a href="javascript:void(0);" class="selected" rel="task_list"><span>{$_lang['task']}</span>▼</a>
-                            {elseif !$task_open&&$shop_open}
-								 <a href="javascript:void(0);" class="selected" rel="shop_list"><span>{$_lang['goods']}</span>▼</a>
-                            {/if}
-							{if $task_open}
-						   		 <a href="javascript:void(0);" class="hidden"   rel="task_list">{$_lang['task']}</a>
-							{/if}
-							{if $shop_open}
-                           	 	<a href="javascript:void(0);" class="hidden"   rel="shop_list">{$_lang['goods']}</a>
-							 {/if}
+                        	
+                           		 <a href="javascript:void(0);" id="task_lists" class="selected" rel="task_list"><span>{$_lang['task']}</span>▼</a>
+                            
+								 <a href="javascript:void(0);" id="seller_lists" rel="seller_list"><span>{$_lang['goods']}</span>▼</a>
+                            
                             </div>
                         </div>
+                    
                     <input type="text" value="热门词：豌豆，奖金" name="search_key" onkeydown="search_keydown(event);" id="search_key" onfocus="if(this.value=='热门词：豌豆，奖金'){this.value='';}"  onblur="if(this.value==''){this.value='热门词：豌豆，奖金'}"; class="input_1" /> 
                     <input name="" type="button" id="search_btn"  value="" class="suo"/>
                 </form>
                 </div>
+                <div class="selectbox_dw0" style="float:right; padding:17px;">
+                    <select class="SelectCity" onchange="change_types(this);" style=" width:80px; height:27px; padding-right:5px; padding-top:5px; padding-bottom:5px">
+                        <option value="task_list">任务</option>
+                        <option value="seller_list">人才</option>
+                    </select>
+                </div>
             </div>
-            
+            <script>
+				function change_types(obj){
+					if($(obj).val() == 'task_list') {
+						$("#task_lists").addClass("selected");
+						$("#seller_lists").removeClass("selected");
+					}
+					if($(obj).val() == 'seller_list') {
+						$("#seller_lists").addClass("selected");
+						$("#task_lists").removeClass("selected");
+					}
+				}
+			</script>
             <div class="xiangmu">
                 <i><b>项目总数：</b><span>{$task_count}</span></i>
                 <i><b>交易金额：</b><span>￥{$task_in}</span></i>

@@ -140,6 +140,10 @@ function get_where($path) {
 		$where .= " and b.seller_level like '%".$level."%'";	
 	}
 	
+	if($search_key){
+		$where .= " and b.username like '%".$search_key."%'";	
+	}
+	
 	if($auths){
 		
 		switch ($auths){
