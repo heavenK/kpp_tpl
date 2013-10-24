@@ -13,7 +13,7 @@ if($_COOKIE['username'] && $_COOKIE['password']){
 
 	$login_obj = new keke_user_login_class();
 	
- 	$user_info = $login_obj->user_login($_COOKIE['username'], $_COOKIE['password']); 
+ 	$user_info = $login_obj->user_login_auto($_COOKIE['username'], $_COOKIE['password']); 
 	
 	
 	

@@ -81,6 +81,58 @@ class keke_user_login_class {
 		}
 		return $user_info;
 	}
+	function user_login_auto($account, $password, $code = null, $login_type = 0) {
+		global $_lang,$_K;
+		($login_type == 3 and strtolower ( CHARSET ) == 'gbk') and $account = kekezu::utftogbk ( $account );
+		$this->account_init ( $account );
+		$this->password_init ( $password );
+		$this->login_type ( $login_type );
+		if($this->_login_times){
+			$this->check_code ( $code );
+		}
+		$accout_type = $this->get_login_type ();
+		switch ($this->_sys_config ['user_intergration']) {
+			case "1" :
+				switch ($accout_type) {
+					case 'mobile' :
+						$user_info = $this->valid_moble_auth ();
+						break;
+					case 'email' :
+						$user_info = $this->valid_email_auth ();
+						break;
+					case 'username' :
+						$user_info = $this->valid_username_uid ();
+						break;
+				}
+				if ($user_info ['password'] !== $password) {
+					$this->add_login_time();
+					if($_K['do']){
+						$url = "index.php?do={$_K['do']}";
+					}else{
+						$url = "index.php";
+					}
+					unset($_COOKIE['username']);
+					unset($_COOKIE['password']);
+				} elseif ($user_info ['status'] == 2) {
+					unset($_COOKIE['username']);
+					unset($_COOKIE['password']);
+				} elseif ($user_info ['status'] == 3) {
+					unset($_COOKIE['username']);
+					unset($_COOKIE['password']);
+				}
+				break;
+			case "2" :
+			case "3" :
+				if($accout_type != 'username'){
+					unset($_COOKIE['username']);
+					unset($_COOKIE['password']);
+					$this->show_msg ( $_lang ['integrated_model_nust_use_name'], 5 );
+				}
+				$user_info = $this->user_intergration ( $account, $password );
+				break;
+		}
+		return $user_info;
+	}
 	function login_freeze(){
 		if($this->check_black()){
 			$db_times = $this->get_login_times($this->_login_uid);
