@@ -186,14 +186,17 @@ function fa_bu(){
                 <a href="$v['url']" class="selected">$v['name'] <font class="close">&times;</font></a>
                 {/loop}
                 {if $auths_name}
-                <a href="index.php?do=seller_list&path={$path}&province=$province&city=$city&area=$area&level=$level">{$auths_name} <font class="close">&times;</font></a>
+                <a href="index.php?do=seller_list&path={$path}&province=$province&city=$city&area=$area&level=$level&search_key=$search_key">{$auths_name} <font class="close">&times;</font></a>
                 {/if}
                 {if $level}
-                <a href="index.php?do=seller_list&path={$path}&province=$province&city=$city&area=$area&auths=$auths">{$level} <font class="close">&times;</font></a>
+                <a href="index.php?do=seller_list&path={$path}&province=$province&city=$city&area=$area&auths=$auths&search_key=$search_key">{$level} <font class="close">&times;</font></a>
                 {/if}
-                {if $province&&$city&&$area}<a href="index.php?do=seller_list&path={$path}&min={$min}&max={$max}" class="selected">{$province},{$city},{$area} <font class="close">&times;</font></a>{/if}
+                {if $search_key}
+                <a href="index.php?do=seller_list&path={$path}&province=$province&city=$city&area=$area&auths=$auths">用户名：{$search_key} <font class="close">&times;</font></a>
+                {/if}
+                {if $province&&$city&&$area}<a href="index.php?do=seller_list&path={$path}&min={$min}&max={$max}&search_key=$search_key&auths=$auths&level=$level" class="selected">{$province},{$city},{$area} <font class="close">&times;</font></a>{/if}
                 
-                {if $select_arr||$max||$province||$level||$auths_name}<a href="index.php?do=seller_list" class="button"><span class="icon reload"></span>{$_lang['reset']}　</a>
+                {if $select_arr||$max||$province||$level||$auths_name||$search_key}<a href="index.php?do=seller_list" class="button"><span class="icon reload"></span>{$_lang['reset']}　</a>
                 {else}{$_lang['no_selected_terms']}
                 {/if}
                 
