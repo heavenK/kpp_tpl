@@ -171,7 +171,7 @@
                         {/if}
                         </span>
                         {if $member_info[uid] != $uid}
-                        <span><a href="javascript:void(0);" onclick="favor('shop_id','shop','shop','$p_shop_info[uid]','$p_shop_info[uid]','{$p_shop_info[shop_name]}','$p_shop_info[uid]')" >收藏店铺</a></span>
+                        <span><a href="javascript:void(0);" onclick="favor('shop_id','shop','shop','$shop_info[uid]','$shop_info[shop_id]','{$shop_info[shop_name]}','$shop_info[shop_id]')" >收藏店铺</a></span>
                         {else}
                         <span><a href="index.php?do=user&view=message">豆豆邮局</a></span>
                         {/if}
