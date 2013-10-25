@@ -182,6 +182,9 @@ function fa_bu(){
             <div class="rclx" style="width:600px;">
                 <em>已选条件：</em>
                 <div class="selectbox_dw" style="line-height:30px;">
+                {if $skills}
+                <a href="index.php?do=seller_list&path={$path}&province=$province&city=$city&area=$area&auths=$auths&search_key=$search_key">{$skills} <font class="close">&times;</font></a>
+                {/if}
                 {loop $select_arr $k $v}
                 <a href="$v['url']" class="selected">$v['name'] <font class="close">&times;</font></a>
                 {/loop}
@@ -196,7 +199,7 @@ function fa_bu(){
                 {/if}
                 {if $province&&$city&&$area}<a href="index.php?do=seller_list&path={$path}&min={$min}&max={$max}&search_key=$search_key&auths=$auths&level=$level" class="selected">{$province},{$city},{$area} <font class="close">&times;</font></a>{/if}
                 
-                {if $select_arr||$max||$province||$level||$auths_name||$search_key}<a href="index.php?do=seller_list" class="button"><span class="icon reload"></span>{$_lang['reset']}　</a>
+                {if $select_arr||$max||$province||$level||$auths_name||$search_key||$skills}<a href="index.php?do=seller_list" class="button"><span class="icon reload"></span>{$_lang['reset']}　</a>
                 {else}{$_lang['no_selected_terms']}
                 {/if}
                 

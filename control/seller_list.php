@@ -125,7 +125,7 @@ function rz_show($uid){
 }
 function get_where($path) {
 	
-	global $task_cash_arr, $search_key,$ord,$indus_id,$province,$city,$area,$level,$auths,$auths_name;
+	global $task_cash_arr, $search_key,$ord,$indus_id,$province,$city,$area,$level,$auths,$auths_name,$search_key,$skills;
 	//error_reporting(E_ALL);
 	$url_info = keke_search_class::get_analytic_url($path);
 	$indus_id and $where .=sprintf(" and b.indus_id = %d",$indus_id);
@@ -143,6 +143,10 @@ function get_where($path) {
 	if($search_key){
 		if(is_numeric($search_key))	$where .= " and b.uid=".$search_key;	
 		else	$where .= " and b.username like '%".$search_key."%'";	
+	}
+	
+	if($skills){
+		$where .= " and b.skill_ids like '%".$skills."%'";	
 	}
 	
 	if($auths){
