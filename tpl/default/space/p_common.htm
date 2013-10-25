@@ -52,18 +52,28 @@
                           <div class="hd">
                               <a class="next"></a>
                               <ul>
+                              {if $member_info['isvip']> 0}
                               {loop $ad_info $k $v}
                               <!--{eval $i = $k+1;}-->
                               <li>{$i}</li>
                               {/loop}
+                              {else}
+                              <li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li>
+                              {/if}
                               </ul>
                               <a class="prev"></a>
                           </div>
                           <div class="bd">
                               <ul class="picList">
-                              	  {loop $ad_info $k $v}
-                                  <li><a href="{$v['url']}" target="_blank" title="{$v['title']}"><img src="{$v['pic']}" /></a></li>
-                                  {/loop}
+                                  {if $member_info['isvip'] >0}
+                                      {loop $ad_info $k $v}
+                                      <li><a href="{$v['url']}" target="_blank" title="{$v['title']}"><img src="{$v['pic']}" /></a></li>
+                                      {/loop}
+                                  {else}
+                                  		<!--{ad_show(HOME_TOP_SLIDE,1)}-->
+                                  {/if}
+                              
+                              	  
                                   
                               </ul>
                           </div>
