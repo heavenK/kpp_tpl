@@ -31,7 +31,7 @@ if($view == 'art'){
 	$count = db_factory::get_count ( sprintf ( "select count(sid) count from %sxtang_article ".$where, TABLEPRE ) );
 	
 	$url = "index.php?do=school&view=art&type_id=$type_id&page_size=$page_size&page=$page&type=$type";
-	$page_size  and $page_size = intval ( $page_size ) or $page_size = 30;
+	$page_size  and $page_size = intval ( $page_size ) or $page_size = 7;
 	$page and $page = intval ( $page ) or $page = 1;
 	$pages = $kekezu->_page_obj->getPages ( $count, $page_size, $page, $url );
 	
