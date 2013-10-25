@@ -170,9 +170,11 @@
                         {/if}
                         {/if}
                         </span>
-                        
+                        {if $member_info[uid] != $uid}
+                        <span><a href="javascript:void(0);" onclick="favor('shop_id','shop','shop','$p_shop_info[uid]','$p_shop_info[uid]','{$p_shop_info[shop_name]}','$p_shop_info[uid]')" >收藏店铺</a></span>
+                        {else}
                         <span><a href="index.php?do=user&view=message">豆豆邮局</a></span>
-                        
+                        {/if}
                         <em>
                         {if $member_info[uid] != $uid}
                         	<a href="index.php?do=release&to_uid={$member_info['uid']}">我要雇佣</a>
