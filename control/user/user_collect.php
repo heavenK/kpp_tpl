@@ -1,6 +1,6 @@
 <?php	defined ( 'IN_KEKE' ) or exit('Access Denied');
 $ops = array ('task','work','service','shop');
-
+//error_reporting(E_ALL);
 if($task_open==0){
 	unset($ops[0],$ops[1]);
 }
@@ -61,10 +61,10 @@ foreach($favor_arr as $key => $val){
 	$favor_arr_new[$val['obj_id']] = $val; 
 }
 
-
 if($ids){
 	if($op == 'task')	$sql =  sprintf ( " select * from %switkey_task where task_id in (%s)", TABLEPRE, $ids );
 	if($op == 'service')	$sql =  sprintf ( " select * from %switkey_service where service_id in (%s)", TABLEPRE, $ids );
+	if($op == 'shop')	$sql =  sprintf ( " select * from %switkey_shop where shop_id in (%s)", TABLEPRE, $ids );
 	$task_arr = db_factory::query ($sql);
 }
 
@@ -76,6 +76,11 @@ if($op == 'task'){
 if($op == 'service'){
 	foreach($task_arr as $key => $val){
 		$task_arr_new[$val['service_id']] = $val;
+	}
+}
+if($op == 'shop'){
+	foreach($task_arr as $key => $val){
+		$task_arr_new[$val['shop_id']] = $val;
 	}
 }
 // add by heavenK

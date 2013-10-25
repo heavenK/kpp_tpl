@@ -27,7 +27,8 @@
                                 </h1>
                                 <h2><b>招标金额</b><span><i>￥{$task_arr_new[$k]['task_cash']}</i><em>已托管：￥{$task_arr_new[$k]['task_cash']}</em></span></h2>
                                 <h3>{$task_arr_new[$k]['work_num']}个人参与|收藏（{$task_arr_new[$k]['focus_num']}）</h3>
-                                <h4>任务编号：<i>{$v['obj_id']}</i></h4>
+                                <h4>任务编号：<i>{$v['obj_id']}</i>&nbsp;&nbsp;&nbsp;&nbsp;<a class="button" href="index.php?do=$do&view=$view&ac=del&f_id={$v['f_id']}&page={$page}&op={$op}"
+													 onclick="return del(this);">{$_lang['delete']}</a></h4>
                             </div>
                             {/loop}
                             {/if}
@@ -40,7 +41,21 @@
                                 </h1>
                                 <h2><b>价格</b><span><i>￥{$task_arr_new[$k]['price']}/{$task_arr_new[$k]['unite_price']}</i></span></h2>
                                 <h3>{$task_arr_new[$k]['views']}个人浏览|收藏（{$task_arr_new[$k]['focus_num']}）</h3>
-                                <h4>任务编号：<i>{$v['obj_id']}</i></h4>
+                                <h4><a class="button" href="index.php?do=$do&view=$view&ac=del&f_id={$v['f_id']}&page={$page}&op={$op}"
+													 onclick="return del(this);">{$_lang['delete']}</a></h4>
+                            </div>
+                            {/loop}
+                            {/if}
+                            {if $op=='shop'}
+                            {loop $favor_arr_new $k $v}
+                            <div class="renren_01">
+                                <h1>
+                                    <i>工作室名称：</i><a href="index.php?do=space&member_id={$task_arr_new[$v['obj_id']]['uid']}" title="$v['obj_name']" target="_blank">$v['obj_name']</a>
+                                    <em><b><img width="15" height="15" src="/tpl/default/d8/images/zanyu.png"></b><tt><!--{date('Y-m-d',$v['on_date'])}--></tt></em> 
+                                </h1>
+                                <h3>{$task_arr_new[$k]['views']}个人浏览|收藏（{$task_arr_new[$k]['focus_num']}）</h3>
+                                <h4><a class="button" href="index.php?do=$do&view=$view&ac=del&f_id={$v['f_id']}&page={$page}&op={$op}"
+													 onclick="return del(this);">{$_lang['delete']}</a></h4>
                             </div>
                             {/loop}
                             {/if}
@@ -74,7 +89,7 @@ function work_over(url){
 }
     function del(obj){
         var url = obj.href;
-        showDialog("$_lang['confirm_delete_ma']", "confirm", "{$_lang['operate_notice']}", function(){
+        showDialog("确认要删除吗？", "confirm", "{$_lang['operate_notice']}", function(){
            formSub(url,'url',false);
         });
         return false;
