@@ -27,7 +27,7 @@
                       <tr>
                         <td width="80" valign="top" align="right" height="240">工作室简介：</td>
                         <td width="20" valign="top" height="240">&nbsp;</td>
-                        <td valign="top" align="left" height="240"><textarea class="nr_text xheditor {tools:'Bold,Fontface,FontColor,Italic,Underline,Strikethrough,Align,List,Outdent,Indent,Link,Unlink',skin:'nostyle'}" style="width:400px" name="shop_slogans" id="tar_content">{$shop_info['shop_slogans']}</textarea></td>
+                        <td valign="top" align="left" height="240"><textarea class="nr_text xheditor {tools:'Bold,Fontface,FontColor,Italic,Underline,Strikethrough,Align,List,Outdent,Indent,Link,Unlink',skin:'nostyle'}" style="width:400px" name="shop_slogans" id="tar_content" limit="required:true;len:1-200" msg="请正确简介，1-100个汉字！">{$shop_info['shop_slogans']}</textarea></td>
                       </tr>
                       <script type="text/javascript">
 							       $(function(){
