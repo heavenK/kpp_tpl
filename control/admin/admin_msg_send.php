@@ -1,6 +1,7 @@
 <?php	defined ( 'ADMIN_KEKE' ) or exit ( 'Access Denied' );
 kekezu::admin_check_role(67);
-include_once S_ROOT . '/keke_client/sms/d9.php';
+//include_once S_ROOT . '/keke_client/sms/d9.php';
+include_once S_ROOT . '/keke_client/sms/sms.php';
 $account_info=$kekezu->_sys_config;
 $mobile_u=$account_info['mobile_username'];
 $mobile_p=$account_info['mobile_password'];
@@ -28,7 +29,8 @@ switch ($ac){
 				}
 				$txt_tel = implode(",",$tel_group);
 		}
-		$sms = new sms_d9($txt_tel,$tar_content);
+		$sms = new sms($txt_tel,$tar_content);
+		//$sms = new sms_d9($txt_tel,$tar_content);
 		$m = $sms->send();
 		if($m=='操作成功'){
 			kekezu::admin_system_log($_lang['sms_send_success']);

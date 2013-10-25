@@ -81,7 +81,6 @@
                         <td>
                         	<div id="remainfee"></div>
                         	 
-                      		
                        </td>
                     </tr>
 				 
@@ -109,6 +108,7 @@
   
   $("#remainfee").ready(function(){
 		$.post("index.php?do=$do&view=$view&op=manage&remain_fee=1",function(json){
+			//alert(json);
 			if(json.status==1){
 				var num = json.msg.balance;
 				var str="余额:<span>"+num+"</span>元<br>";

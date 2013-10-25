@@ -162,10 +162,12 @@ class keke_msg_class {
 		}
 	}
 	public function send_phone_sms( $mobiles = '', $tar_content = '') {
-			include_once S_ROOT . '/keke_client/sms/d9.php';
+			//include_once S_ROOT . '/keke_client/sms/d9.php';
+			include_once S_ROOT . '/keke_client/sms/sms.php';
 			!$mobiles and $mobiles = $this->_mobile;
 			!$tar_content and $tar_content = $this->_mobile_content;
-			$msg = new sms_d9($mobiles,$tar_content);
+			//$msg = new sms_d9($mobiles,$tar_content);
+			$msg = new sms($mobiles,$tar_content);
 			return $msg->send();
 	}
 	public function send_message($uid, $username, $action, $title, $v_arr = array(), $email = null, $mobile = null) {
