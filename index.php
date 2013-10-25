@@ -48,6 +48,9 @@ $f_c_list = keke_curren_class::get_curr_list('code,title');
 $_currencies = keke_curren_class::get_curr_list();
 $flink = kekezu::get_table_data("link_id,link_name,link_url","witkey_link",""," link_id asc","","","",3600);
 $log_account=null;
+if($user_info['isvip']>0 && $user_info['vip_end_time'] < time()){
+	db_factory::execute(" update ".TABLEPRE."witkey_space set isvip=0,vip_status=0,vip_start_time=0,vip_end_time=0 where uid=".$uid);
+}
 if(isset($_COOKIE['log_account'])){
 	$log_account = $_COOKIE['log_account'];
 }
