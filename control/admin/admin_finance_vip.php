@@ -7,11 +7,15 @@ $url = "index.php?do=finance&view=ensure&page_size=$page_size&page=$page&type=$t
 
 if($ac == 'pass' || $ac == 'nopass'){
 	
+	$condition  = '';
 	
-	if($ac == 'pass') $isvip = $vip_status;
+	if($ac == 'pass') {
+		$isvip = $vip_status;
+		$condition = ",vip_start_time=".time().",vip_end_time=".strtotime("+1 year");
+	}
 	else $isvip = 0;
 	
-	if($t_uid)	$res = db_factory::execute(" update ".TABLEPRE."witkey_space set isvip=".$isvip.", vip_status=0 where uid=".$t_uid);
+	if($t_uid)	$res = db_factory::execute(" update ".TABLEPRE."witkey_space set isvip=".$isvip.$condition.", vip_status=0 where uid=".$t_uid);
 
 	
 	if($res)	kekezu::admin_show_msg($_lang['operate_success'],$url,3,'','success');
