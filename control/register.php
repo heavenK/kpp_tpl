@@ -15,6 +15,13 @@ if (isset ($success)) {
 if (isset($formhash)&&kekezu::submitcheck($formhash)){ 
 	$reg_uid = $reg_obj->user_register($txt_account, md5($pwd_password), $txt_email,$txt_code,1,$pwd_password,$int_uid);
 	$user_info = keke_user_class::get_user_info($reg_uid); 
+	
+	$pic_id = rand(1,20);
+	$id = keke_user_avatar_class::set_user_sys_pic($reg_uid, $pic_id);
+	if($id){
+    	$kekezu->_cache_obj->del ( "keke_witkey_member_ext" );
+    }
+	
 	$reg_obj->register_login_jump($user_info);
 }
 if (isset ( $check_email ) && ! empty ( $check_email )) {
