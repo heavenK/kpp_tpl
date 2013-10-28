@@ -224,6 +224,10 @@ class keke_user_login_class {
 		global $_lang;
 		$user_info = kekezu::get_user_info ( $this->_account, 1 );
 		if(!$user_info) $user_info = kekezu::get_user_info ( $this->_account );
+		if(!$user_info) {
+			$res = db_factory::get_one(sprintf('select `uid` from %switkey_space_ext where `v`=%d ',TABLEPRE,$this->_account));
+			$user_info = kekezu::get_user_info ( $res['uid'] );
+		}
 		if ($user_info) {
 			$user_info ['login_type'] = 'username';
 			return $user_info;
