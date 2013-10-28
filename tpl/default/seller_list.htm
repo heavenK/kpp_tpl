@@ -262,13 +262,16 @@ function fa_bu(){
             	{loop $service_arr $k $v}
             
            		<li class="shsh">
-            		<div class="shsh_top" style="height:165px;">	
+            		<div class="shsh_top" style="height:185px;">	
             			<div class="shsh_top_tx">
             				<b><a href="index.php?do=space&member_id={$v['uid']}&view=index"><img src="<!--{userpicurl($v['uid'],middle)}-->" width="98" height="98" /></a></b>
             				<span><a href="javascript:void(0)" num=0 class="btn-slide" id="{$v['shop_id']}">查看服务和案例</a></span>
                         </div>
             			<div class="shsh_top_xx">
                         	<h1>{if $v['shop_name']}$v['shop_name']{else}$v['username']{/if}</h1>
+                            <h2 style="margin-bottom:5px;">
+                            	<i>账号：</i><em>$v['uid']</em>
+                            </h2>
                         	<h2 style="margin-bottom:0;">
                             	<!--{eval echo rz_show($v['uid']);}-->
                             </h2>
