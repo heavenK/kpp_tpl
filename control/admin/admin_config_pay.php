@@ -1,5 +1,7 @@
 <?php	defined ( 'ADMIN_KEKE' ) or exit ( 'Access Denied' );
 kekezu::admin_check_role ( 2 );
+ini_set('display_errors','1');
+error_reporting(E_ALL);
 $pay_obj = new Keke_witkey_pay_config_class ();
 $op or $op = 'config';
 $kekezu->_cache_obj->gc();
