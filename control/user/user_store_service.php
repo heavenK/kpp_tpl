@@ -136,6 +136,20 @@ if ($model_id && !$opp) {
 				$release_obj->save_service_obj ( $_POST, $std_cache_name ); 
 				$service_id = $release_obj->pub_service();
 				$release_obj->update_service_info($service_id, $std_cache_name);
+				
+				$rs = db_factory::get_one(sprintf ( "select * from %switkey_space_ext where uid = '%d' and k='first_service'", TABLEPRE, $uid ));
+				if(!$rs['v']){
+					keke_finance_class::cash_in($uid, floatval(0),intval($basic_config['first_service']),'first_service','','first_service');
+					$msg .= "，第一次发布服务，豆8网赠送您".$basic_config['first_service']."豆币！";
+					
+					if($rs)	db_factory::execute ( sprintf ( "update %switkey_space_ext set v=%d where uid = %d and k='first_service'", TABLEPRE, 1, $uid ) );
+					else db_factory::execute ( sprintf ( "insert into %switkey_space_ext value(%d, 'first_service', %d, %d)", TABLEPRE, $uid, 1, time() ) );
+					
+					//$conf['on_time'] = time();
+					//$msg_credit = "恭喜您已成功开通工作室，完善详细资料，豆8网将赠送您".$basic_config['shop_open_credit']."豆币！";
+				}
+				
+				
 				header ( "location:index.php?do=user&view=store&op=service&model_id=7" );
 				die ();
 			} else {
