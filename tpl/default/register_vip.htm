@@ -1,0 +1,148 @@
+<!--{template header_reg}--><!--页面样式	-->
+
+	<!--zhuce begin  -->
+	<div class="zc_n">
+    	<div class="zc_frist">
+        	<div class="zc_n01">
+				<!--<p>网站快速注册</p>-->
+                <a class="a0"><b>VIP账号特权</b></a>
+			</div>
+        </div>
+		<div class="zc_nleft">
+			
+			<div class="zc_k">
+				<div style="float:left; width:615px; padding-left:30px;">
+                
+				<form action="index.php?do=register" method="post" id="register_frm" name="register_frm">
+                	<input type="hidden" name="sbt" id="sbt" value="1">
+					<input type="hidden" name="view" id="view" value="{$view}">
+                    <div class="zc_kn">
+						您是{if $user_info['isvip'] ==1 }尊享版{else}开创版{/if}VIP，可以设定一个{if $user_info['isvip'] ==1 }4{else}5{/if}位的特权账号！
+					</div>
+                	<div class="zc_kn">
+						<label class="zc_kz b1">账号</label>
+						<div class="zc_kk">
+							<input type="text" class="txt txt_input" autocomplete="off" name="vip_uid" id="int_uid" {if $user_info['isvip'] ==1 }limit="required:true;len:4;type:int;between:1000-9999;general:true"{else}limit="required:true;len:5;type:int;between:10000-99999;general:true"{/if} msg="账号输入有误！" ajax="index.php?do=register&check_uid=" title="账号为{if $user_info['isvip'] ==1 }4{else}5{/if}位数字" msgArea="login_uid_msg" style="width:100px;" />&nbsp;&nbsp;&nbsp;&nbsp;<a href="###" onclick="rand_name()">随机生成</a>
+                        	<span class="msg" id="login_uid_msg"></span>    
+                        </div>
+					</div>
+ 
+				
+				</div>
+				<div class="zc_btn" style="width:615px;">
+                    <input name="" type="button" class="btn" style="font-size:16px; color:#FFF; width:100px; height:30px; border: 1px solid #C90;background-image: -webkit-gradient(linear, left top, left bottom, from(#FDD901), to(#F5C400));background-image: -webkit-linear-gradient(top, #FDD901, #F5C400);background-image: -moz-linear-gradient(top, #FDD901, #F5C400);
+background-image: -ms-linear-gradient(top, #FDD901, #F5C400);background-image: -o-linear-gradient(top, #FDD901, #F5C400);background-image: linear-gradient(to bottom, #FDD901, #F5C400);filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#fdd901,endColorstr=#f5c400);
+zoom: 1;border-radius: 5px;text-shadow: 0 1px 1px white;" value="提交设定" onClick="return user_register();"/>
+					<input name="" type="button" class="btn" style="font-size:16px; color:#FFF; width:100px; height:30px; border: 1px solid #C90;background-image: -webkit-gradient(linear, left top, left bottom, from(#FDD901), to(#F5C400));background-image: -webkit-linear-gradient(top, #FDD901, #F5C400);background-image: -moz-linear-gradient(top, #FDD901, #F5C400);
+background-image: -ms-linear-gradient(top, #FDD901, #F5C400);background-image: -o-linear-gradient(top, #FDD901, #F5C400);background-image: linear-gradient(to bottom, #FDD901, #F5C400);filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#fdd901,endColorstr=#f5c400);
+zoom: 1;border-radius: 5px;text-shadow: 0 1px 1px white;" value="放弃账号特权" onclick='window.location.href="index.php?do=register&view=reg_vip&action=no_uid"; '/>
+				</div>
+			</div>
+
+            </form>
+
+		</div>
+		
+		
+	</div>
+    
+    
+    <script type="text/javascript">
+   In('form');
+    //注册
+    function user_register(){
+		var i = checkForm(document.getElementById("register_frm"));
+        if (i) {
+			 showWindow('register_frm1', 'register_frm', 'post',0,{cover:1});
+         }else{
+      		return false;
+		 }
+    }
+$("#txt_code").focus(function(){
+	$("#show_secode_menu_content").removeClass("hidden");
+});
+$(".agreement_link").toggle(function(){
+	$(".agreement_part").show();
+},function(){
+	$(".agreement_part").hide();
+});
+function checkStrong(sPW){
+	//if (sPW.length < 3){
+		//Modes=1;
+	//}else{
+		var pwLength = 	sPW.length;
+		  var patEn = /[a-zA-Z]/;
+		  var patnum = /[0-9]/;
+		  var speChar = /[`~!@#$\^&\*\(\)=\|{}':;',\/\?\[\]\.<>]/;
+		  var isEn = patEn.test(sPW);
+		  var isNum = patnum.test(sPW);
+		  var isSpe = speChar.test(sPW);
+		  Modes = getStrong(isEn,isNum,isSpe,pwLength);
+	
+	//}
+	 return Modes; 
+}
+
+function getStrong (isEn,isNum,isSpe,pwLength){
+	if (isEn && isNum && isSpe && (pwLength>6)){
+		var setModes = 3;
+	}else{
+		var setModes = 2;
+		if((isEn && isNum)||(isNum && isSpe)||(isEn&&isSpe)){
+			var setModes = 2;
+		}else{
+			var setModes = 1;
+		}
+	}
+	return setModes;
+}
+
+function pwStrength(pwd){ 
+  if (pwd==null||pwd==""){ 
+  	S_level = 0;
+  } else{ 
+	  S_level=checkStrong(pwd); 
+	  $("#pwdStrength span:lt("+S_level+")").addClass('selected');
+	  $("#pwdStrength span:gt("+(S_level-1)+")").removeClass('selected'); 
+  } 
+
+}
+		
+function rand_name(){
+	var res = 0;
+	var uname = '';
+	var n = 0;
+	for(n =0; n<10; n++){
+		{if $user_info['isvip'] ==1 }
+		uname = parseInt(Math.random()*(9999-1000+1)+1000);
+		{else}
+		uname = parseInt(Math.random()*(99999-10000+1)+10000);
+		{/if}
+		
+		$.ajax({
+           type: "GET",
+           url: "index.php?do=register&check_uid="+uname,
+           async: false,
+           success: function(data){
+               res = data;
+           }
+        })
+		
+		if(res == 1) {
+			$("#int_uid").val(uname);
+			$("#login_uid_msg").attr('class','msg');	
+			$("#login_uid_msg").html('');
+			return true;
+		}
+	}
+
+	alert("没随机到新账号！请再次点击！")
+	
+}						
+</script>
+	<!-- zhuce end -->
+	<div class="blank"></div>
+</div>
+
+</body>
+</html>

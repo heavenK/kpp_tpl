@@ -277,6 +277,7 @@ class keke_user_login_class {
 	public function save_user_info($user_info, $ckb_cookie = 1, $login_type = 0, $oauth_login = 1, $rem = 0, $pwd) {
 		global $kekezu, $_K,$handlekey;
 		global $_lang;
+		//error_reporting(E_ALL);
 		$_SESSION ['uid'] = $user_info ['uid'];
 		$_SESSION ['username'] = $user_info ['username'];
 		$_SESSION['last_login_time'] = $user_info['last_login_time'];
@@ -305,6 +306,13 @@ class keke_user_login_class {
 		$black_obj = new Keke_witkey_member_black_class();
 		$black_obj->setWhere("uid = '{$user_info['uid']}'");
 		$black_obj->del_keke_witkey_member_black();
+		
+		if($user_info['isvip']>0){
+			$res = db_factory::get_one ( sprintf ( "select * from %switkey_space_ext where uid = %d and k='vip_uid'", TABLEPRE, $user_info ['uid'] ) );
+			
+			if(!$res['v']) $r = 'index.php?do=register&view=reg_vip';
+		}
+		
 		db_factory::execute ( sprintf ( "update %switkey_member_oltime set last_op_time=%d where uid = %d", TABLEPRE, time (), $user_info ['uid'] ) );
 		if (isset($_COOKIE ['user_prom_event'])&&$_COOKIE ['user_prom_event']) {
 			$kekezu->init_prom ();

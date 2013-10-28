@@ -3,6 +3,29 @@ if (isset ($success)) {
 	 require keke_tpl_class::template ( $do."_cg" );
 	 die ();
 }
+if ($view == 'reg_vip') {
+	
+	if($sbt){
+		$res = db_factory::get_one ( sprintf ( "select * from %switkey_space_ext where uid = %d and k='vip_uid'", TABLEPRE, $user_info ['uid'] ) );
+		if($res)	db_factory::execute ( sprintf ( "update %switkey_space_ext set v=%d where uid = %d", TABLEPRE, $vip_uid, $user_info ['uid'] ) );
+		else db_factory::execute ( sprintf ( "insert into %switkey_space_ext value(%d, 'vip_uid', %d, %d)", TABLEPRE, $user_info ['uid'], $vip_uid, time() ) );
+		kekezu::show_msg ( "设置成功！", "index.php", '2', "设置成功", 'alert_right' ) ;
+	}
+	
+	if($action == 'no_uid'){
+		$res = db_factory::get_one ( sprintf ( "select * from %switkey_space_ext where uid = %d and k='vip_uid'", TABLEPRE, $user_info ['uid'] ) );
+		if($res)	db_factory::execute ( sprintf ( "update %switkey_space_ext set v=%d where uid = %d", TABLEPRE, 0, $user_info ['uid'] ) );
+		else db_factory::execute ( sprintf ( "insert into %switkey_space_ext value(%d, 'vip_uid', %d, %d)", TABLEPRE, $user_info ['uid'], -1, time() ) );
+		kekezu::show_msg ( "设置成功！", "index.php", '2', "设置成功", 'alert_right' ) ;
+	}
+	 require keke_tpl_class::template ( $do."_vip" );
+	 die ();
+}
+if (isset ( $check_uid ) && ! empty ( $check_uid )) {
+	 $res =  keke_user_class::check_uid ( $check_uid );
+	 echo  $res;
+	 die ();
+}
 ($uid && !isset($_SESSION['auid'])) and header ( "location:index.php" ); 
 $page_title=$_lang['register'].'-'.$_K['html_title'];
 $reg_obj = new keke_register_class();
@@ -39,9 +62,5 @@ if ($ajax && isset ( $check_uid ) && ! empty ( $check_uid )) {
 	 echo  $res;
 	 die ();
 }
-if (isset ( $check_uid ) && ! empty ( $check_uid )) {
-	 $res =  keke_user_class::check_uid ( $check_uid );
-	 echo  $res;
-	 die ();
-}
+
 require keke_tpl_class::template ( $do );
