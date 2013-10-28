@@ -134,8 +134,46 @@
                            </p>
                            <p>
                             	<label><span>*</span>&nbsp;爱好：</label>
-                                <textarea name="conf[aihao]" id="aihao" limit="required:true;len:1-500" cols="70" msg="爱好不可以为空，长度1-500" rows="5" style="width:252px; height:100px; border:1px solid #ccc " >{$user_info['aihao']}</textarea>
+                                <textarea name="conf[aihao]" id="aihao" limit="required:true;len:1-500" cols="50" msg="爱好不可以为空，长度1-500" rows="5" style="width:200px; float:left; height:100px; border:1px solid #ccc " >{$user_info['aihao']}</textarea>
+                             <select id="select_aihao" style="float:left; margin-left:10px;">
+                                	<option value="阅读">阅读</option>
+                                    <option value="运动">运动</option>
+                                    <option value="饮食">饮食</option>
+                                    <option value="旅游">旅游</option>
+                                    <option value="音乐">音乐</option>
+                                    <option value="品茶">品茶</option>
+                                    <option value="影视">影视</option>
+                                    <option value="书籍">书籍</option>
+                                    <option value="钓鱼">钓鱼</option>
+                                    <option value="划船">划船</option>
+                                    <option value="打牌">打牌</option>
+                                    <option value="摄影">摄影</option>
+                                    <option value="古董">古董</option>  
+                                    <option value="艺术">艺术</option>
+                                    <option value="瑜伽">瑜伽</option>
+                                    <option value="炒股">炒股</option>
+                                    <option value="烹饪">烹饪</option> 
+                             </select>
+                             <input type="button" value="添加" onclick="add_aihao();" style="text-align:center;  width:100px; height:30px; margin-left:10px;"/>
+                             <script>
+							 	function add_aihao(){
+									
+									var str = $("#aihao").val();
+									
+									var new_v = $("#select_aihao").val();
+									
+									if(str.indexOf(new_v)>=0){
+										alert("已添加此项！");
+										return;
+									}
+									if(!str) str = new_v;
+									else str += " "+new_v;
+									$("#aihao").val(str);
+									
+								}
+							 </script>
                            </p>
+                               
                            <p>
                             	<label><span>*</span>&nbsp;职业：</label>
                                 <input type="text" name="conf[zhiye]" id="zhiye" limit="required:true;len:1-50" msg="职业不可以为空，长度1-50" value="{$user_info['zhiye']}" class="texts1" />
