@@ -145,7 +145,9 @@ abstract class keke_task_release_class {
 					}
 			}
 		} else {
-			$task_status = "0"; 
+			$model_code = $this->_model_info ['model_code'];
+			if($model_code == "tender") $this->_task_config ['zb_audit'] == 2 and $task_status = "2" or $task_status = "1";
+			else	$task_status = "0"; 
 		}
 		$this->_task_obj->setTask_status ( $task_status ); 
 		$this->_task_obj->setCash_cost ( $cash_cost ); 

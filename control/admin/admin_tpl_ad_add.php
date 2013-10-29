@@ -32,8 +32,10 @@ if ($sbt_action) {
 	$file_path && $ad_obj->setAd_file ( $file_path ); 
 	$ad_name = $hdn_ad_name ? $hdn_ad_name : $ad_name; 
 	$ad_obj->setAd_name ( $ad_name ); 
-	$start_time && $ad_obj->setStart_time ( strtotime ( $start_time ) );
-	$end_time && $ad_obj->setEnd_time ( strtotime ( $end_time ) );
+	//$start_time && $ad_obj->setStart_time ( strtotime ( $start_time ) );
+	//$end_time && $ad_obj->setEnd_time ( strtotime ( $end_time ) );
+	$ad_obj->setStart_time ( strtotime ( $start_time ) );
+	$ad_obj->setEnd_time ( strtotime ( $end_time ) );
 	$ad_obj->setAd_type ( $ad_type );
 	$ad_obj->setAd_position ( $ad_position );
 	$width = ${$type . '_width'};
