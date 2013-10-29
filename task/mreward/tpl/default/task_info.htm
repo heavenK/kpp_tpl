@@ -36,7 +36,7 @@
         				<dd><a href="vip_shops.html"><img src="<!--{userpicurl($task_info['uid'],'small')}-->"  width="67" height="67"/></a></dd>
         				<dt>
         					<h1><a href="index.php?do=space&member_id={$task_info['uid']}" target="_blank">{$task_info[username]}</a>：{$task_info['task_title']}<i>任务编号：{$task_info[task_id]}</i></h1>
-                			<h2><b>金额</b><span><i>{c:$task_info['task_cash']}</i><em>已托管：{c:$task_info['task_cash']}</em></span></h2>
+                			<h2><b>金额</b><span><i>{c:$task_info['task_cash']}</i><em>已托管：{if $task_info['task_status']> 0}{c:$task_info['task_cash']}{else}0{/if}</em></span></h2>
                         </dt>
                 	</dl>
                 </div>
