@@ -36,12 +36,14 @@
                     <input type="hidden" name="hdn_refer" id="hdn_refer" value="{$_K['refer']}">
                     <input type="hidden" name="handlekey" value="register_frm1"><!--账号-->
                 	<div class="zc_kn">
+                    	<p style="padding:5px 0 10px 0;">请输入心仪的8位数字作为您的终身账号，也可随机生成。</p>
 						<label class="zc_kz b1">账号</label>
 						<div class="zc_kk">
-							<input type="text" class="txt txt_input" autocomplete="off" name="int_uid" id="int_uid" limit="required:true;len:8;type:int;between:10000000-99999999;general:true" msg="账号输入有误！" ajax="index.php?do=register&check_uid=" title="账号为8位数字" msgArea="login_uid_msg" style="width:100px;" />&nbsp;&nbsp;&nbsp;&nbsp;<a href="###" onclick="rand_name()">随机生成</a>
+							<input type="text" class="txt txt_input" autocomplete="off" name="int_uid" id="int_uid" limit="required:true;len:8;type:int;between:10000000-99999999;general:true" msg="账号输入有误！" ajax="index.php?do=register&check_uid=" title="请输入心仪的8位数字作为您的终身账号，也可随机生成。" msgArea="login_uid_msg" style="width:100px;" />&nbsp;&nbsp;&nbsp;&nbsp;<a href="###" onclick="rand_name()">随机生成</a>
                         	<span class="msg" id="login_uid_msg"></span>    
                         </div>
 					</div>
+                    <p style="padding:5px 0 10px 0;">&nbsp;</p>
                     <div class="zc_kn">
 						<label class="zc_kz b0">用户名</label>
 						<div class="zc_kk">

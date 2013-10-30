@@ -111,7 +111,7 @@
 								  	{if $v['pay_status']} 
 			                           <!--{eval $i++;}-->
                                        	<td>
-                                            <div class="a0 mt_10"> <img width="100" alt="" src="resource/img/system/kppw_2.0_{$v['payment']}.png" original-title=""> </div>
+                                            <div class="a0 mt_10"> <a href="{$v['pay_url']}" target='_blank'><img width="100" alt="" src="resource/img/system/kppw_2.0_{$v['payment']}.png" original-title=""></a> </div>
                                             <ul class="ml_10 a0">
                                                 <li><b>开户行：</b>{$v['pay_name']}</li>
                                                 <li><b>账&#12288;号：</b>{$v['pay_account']}</li>
