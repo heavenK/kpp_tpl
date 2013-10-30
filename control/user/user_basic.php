@@ -59,8 +59,8 @@ switch ($opp) {
 			$province && $city and $conf ['residency'] = $province . ',' . $city.','.$area;
 			$pk[uid] = intval($uid);
 			if(!$user_info['zl_flag'])	{
-				keke_finance_class::cash_in($uid, floatval(0),intval($basic_config['shop_open_credit']),'finish_contect','','finish_contect');
-				$msgs = "第一次完善资料，赠送您".$basic_config['shop_open_credit']."豆币";
+				keke_finance_class::cash_in($uid, floatval(0),intval($basic_config['fill_basic']),'finish_contect','','finish_contect');
+				$msgs = "第一次完善资料，赠送您".$basic_config['fill_basic']."豆币";
 			}else{
 				$msgs = $_lang['submit success'];	
 			}
