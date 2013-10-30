@@ -33,15 +33,24 @@
               </ul>
         	</div>
         </div>
-
+        <script>
+			$(document).ready(function(){
+				for (var i=0;i<9;i++)
+				{
+					var str = '';
+					str = $(".nine_"+i).html();
+					//alert(str);
+					$("#forum_"+i).prepend(str);
+				}
+			});
+		</script>
+		<div style="display:none">
+        <!--{ad_show(FORUM_NINE,1)}-->
+        </div>
 		<div class="cont_03">
         	<div class="cont_03_tt">
                 <dl>
-                    <dd>
-                    	{loop $thread_top[12] $k $v}
-                        <h1><a href="index.php?do=forum&view=show&tid=$v[tid]"><img src="{$v[pic]}"  width="133" height="133"/></a></h1>
-                        <h2>{$v[title]}</h2>
-                        {/loop}
+                    <dd id="forum_0">
                         {loop $thread_part1_arr[12] $k $v}
                         <li><i>&middot;</i><a href="index.php?do=forum&view=show&tid=$v[tid]">{$v[title]}</a></li>
                         {/loop}
@@ -56,11 +65,7 @@
             </div>
         	<div class="cont_03_tt">
                 <dl>
-                    <dd>
-                    	{loop $thread_top[13] $k $v}
-                        <h1><a href="index.php?do=forum&view=show&tid=$v[tid]"><img src="{$v[pic]}"  width="133" height="133"/></a></h1>
-                        <h2>{$v[title]}</h2>
-                        {/loop}
+                    <dd id="forum_1">
                         {loop $thread_part1_arr[13] $k $v}
                         <li><i>&middot;</i><a href="index.php?do=forum&view=show&tid=$v[tid]">{$v[title]}</a></li>
                         {/loop}
@@ -75,11 +80,7 @@
             </div>
         	<div class="cont_03_tt">
                 <dl>
-                    <dd>
-                    	{loop $thread_top[14] $k $v}
-                        <h1><a href="index.php?do=forum&view=show&tid=$v[tid]"><img src="{$v[pic]}"  width="133" height="133"/></a></h1>
-                        <h2>{$v[title]}</h2>
-                        {/loop}
+                    <dd id="forum_2">
                         {loop $thread_part1_arr[14] $k $v}
                         <li><i>&middot;</i><a href="index.php?do=forum&view=show&tid=$v[tid]">{$v[title]}</a></li>
                         {/loop}
@@ -101,11 +102,7 @@
         <div class="cont_03">
         	<div class="cont_03_tt">
                 <dl>
-                    <dd>
-                    	{loop $thread_top[15] $k $v}
-                        <h1><a href="index.php?do=forum&view=show&tid=$v[tid]"><img src="{$v[pic]}"  width="133" height="133"/></a></h1>
-                        <h2>{$v[title]}</h2>
-                        {/loop}
+                    <dd id="forum_3">
                         {loop $thread_part1_arr[15] $k $v}
                         <li><i>&middot;</i><a href="index.php?do=forum&view=show&tid=$v[tid]">{$v[title]}</a></li>
                         {/loop}
@@ -120,11 +117,7 @@
             </div>
         	<div class="cont_03_tt">
                 <dl>
-                    <dd>
-                    	{loop $thread_top[16] $k $v}
-                        <h1><a href="index.php?do=forum&view=show&tid=$v[tid]"><img src="{$v[pic]}"  width="133" height="133"/></a></h1>
-                        <h2>{$v[title]}</h2>
-                        {/loop}
+                    <dd id="forum_4">
                         {loop $thread_part1_arr[16] $k $v}
                         <li><i>&middot;</i><a href="index.php?do=forum&view=show&tid=$v[tid]">{$v[title]}</a></li>
                         {/loop}
@@ -139,11 +132,7 @@
             </div>
         	<div class="cont_03_tt">
                 <dl>
-                    <dd>
-                    	{loop $thread_top[17] $k $v}
-                        <h1><a href="index.php?do=forum&view=show&tid=$v[tid]"><img src="{$v[pic]}"  width="133" height="133"/></a></h1>
-                        <h2>{$v[title]}</h2>
-                        {/loop}
+                    <dd id="forum_5">
                         {loop $thread_part1_arr[17] $k $v}
                         <li><i>&middot;</i><a href="index.php?do=forum&view=show&tid=$v[tid]">{$v[title]}</a></li>
                         {/loop}
@@ -165,11 +154,7 @@
        	<div class="cont_03">
         	<div class="cont_03_tt">
                 <dl>
-                    <dd>
-                    	{loop $thread_top[18] $k $v}
-                        <h1><a href="index.php?do=forum&view=show&tid=$v[tid]"><img src="{$v[pic]}"  width="133" height="133"/></a></h1>
-                        <h2>{$v[title]}</h2>
-                        {/loop}
+                    <dd id="forum_6">
                         {loop $thread_part1_arr[18] $k $v}
                         <li><i>&middot;</i><a href="index.php?do=forum&view=show&tid=$v[tid]">{$v[title]}</a></li>
                         {/loop}
@@ -184,11 +169,7 @@
             </div>
         	<div class="cont_03_tt">
                 <dl>
-                    <dd>
-                    	{loop $thread_top[19] $k $v}
-                        <h1><a href="index.php?do=forum&view=show&tid=$v[tid]"><img src="{$v[pic]}"  width="133" height="133"/></a></h1>
-                        <h2>{$v[title]}</h2>
-                        {/loop}
+                    <dd id="forum_7">
                         {loop $thread_part1_arr[19] $k $v}
                         <li><i>&middot;</i><a href="index.php?do=forum&view=show&tid=$v[tid]">{$v[title]}</a></li>
                         {/loop}
@@ -203,11 +184,7 @@
             </div>
         	<div class="cont_03_tt">
                 <dl>
-                    <dd>
-                    	{loop $thread_top[20] $k $v}
-                        <h1><a href="index.php?do=forum&view=show&tid=$v[tid]"><img src="{$v[pic]}"  width="133" height="133"/></a></h1>
-                        <h2>{$v[title]}</h2>
-                        {/loop}
+                    <dd id="forum_8">
                         {loop $thread_part1_arr[20] $k $v}
                         <li><i>&middot;</i><a href="index.php?do=forum&view=show&tid=$v[tid]">{$v[title]}</a></li>
                         {/loop}
