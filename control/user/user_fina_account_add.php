@@ -1,4 +1,5 @@
 <?php	defined ( 'IN_KEKE' ) or exit ( 'Access Denied' );
+
 $user_info = kekezu::get_user_info($uid);
 $step_list=array(
 				"step1"=>array($_lang['step_one'], $_lang['complete_bank_account_info']), 
@@ -27,11 +28,13 @@ switch ($step){
 			die();
 		}
 		if(kekezu::submitcheck($formhash)){
+			//error_reporting(E_ALL);
 			if($type==1){
 				$conf[real_name] ='';
 			}elseif($type==2) {
 				$conf[company] ='';
 			}
+			//unset($conf['deposit_name']);
 			$conf or kekezu::show_msg( $_lang['submit_fail_retry_later'],$ac_url."&step=step3&bank_type=$bank_type#userCenter","3",'','warning');;
 			$bank_obj=keke_table_class::get_instance("witkey_member_bank");
 			$update_card = true;
@@ -54,7 +57,9 @@ switch ($step){
 			}
 			$conf['on_time']     = time();
 			$conf = kekezu::escape($conf);
+			
 			$bank_id=$bank_obj->save($conf);
+			
 			if($bank_id){
 				db_factory::execute(sprintf(" update %switkey_member_bank set bind_status='1' where bank_id='%d'",TABLEPRE,$bank_id));
 				unset($_SESSION['bank_zone']);
