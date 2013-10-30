@@ -93,7 +93,7 @@
                         <td valign="middle" align="left" height="40">
                         <input name="txt_price" type="text" id="txt_price" value="<!--{eval number_format($release_info[txt_price],2,',','.');}-->" msgArea="span_price"
 					 limit="required:true;type:float;between:{$service_config[min_cash]}-" msg="{$_lang['sell_min_money']}{$service_config[min_cash]}{$_lang['yuan']}"
-					 title="{$_lang['input_service_sell_price']}{$service_config[min_cash]}{$_lang['yuan']}" class="nr_input_1"/>{$_lang['yuan']}/
+					 title="{$_lang['input_service_sell_price']}{$service_config[min_cash]}{$_lang['yuan']}" class="nr_input_1"/>豆币/
                         <select name="unite_price" id="unite_price" style="width:70px;">
                             {loop $price_unit $v}
                                 <option value="{$v}" {if $release_info[unite_price]==$v}selected{/if}>{$v}</option>	
