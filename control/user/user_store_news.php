@@ -35,7 +35,21 @@ if($show == 'add'){
 			kekezu::admin_system_log($log_ac['add'].":".$fields['art_title']) ;
 		} 
 		if($res){
-			kekezu::show_msg($_lang['operate_success'],$url,3,'','success');
+			
+			$rs = db_factory::get_one(sprintf ( "select * from %switkey_space_ext where uid = '%d' and k='first_news'", TABLEPRE, $uid ));
+				if(!$rs['v']){
+					keke_finance_class::cash_in($uid, floatval(0),intval($basic_config['first_news']),'first_news','','first_news');
+					$msg .= "，第一次发布案例，豆8网赠送您".$basic_config['first_news']."豆币！";
+					
+					if($rs)	db_factory::execute ( sprintf ( "update %switkey_space_ext set v=%d where uid = %d and k='first_news'", TABLEPRE, 1, $uid ) );
+					else db_factory::execute ( sprintf ( "insert into %switkey_space_ext value(%d, 'first_news', %d, %d)", TABLEPRE, $uid, 1, time() ) );
+					
+					//$conf['on_time'] = time();
+					//$msg_credit = "恭喜您已成功开通工作室，完善详细资料，豆8网将赠送您".$basic_config['shop_open_credit']."豆币！";
+				}
+			
+			
+			kekezu::show_msg($_lang['operate_success'].$msg,$url,3,'','success');
 		}else{
 			kekezu::show_msg($_lang['operate_fail'],$url,3,'','warning');
 		}

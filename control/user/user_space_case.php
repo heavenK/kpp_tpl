@@ -19,7 +19,21 @@ switch ($show){
 				$case_pic&&$conf['case_pic']=$case_pic;
 			}
 			$res=$case_obj->save($conf,$pk);
-			$res and kekezu::show_msg($_lang['case_operate_success'],$ac_url."&show=list#userCenter",3,'','success') or kekezu::show_msg($_lang['case_operate_fail'],$ac_url."&show=add&case_id=$case_id#userCenter",3,'','warning');
+			
+			$rs = db_factory::get_one(sprintf ( "select * from %switkey_space_ext where uid = '%d' and k='first_anli'", TABLEPRE, $uid ));
+				if(!$rs['v']){
+					keke_finance_class::cash_in($uid, floatval(0),intval($basic_config['first_anli']),'first_anli','','first_anli');
+					$msg .= "，第一次发布案例，豆8网赠送您".$basic_config['first_anli']."豆币！";
+					
+					if($rs)	db_factory::execute ( sprintf ( "update %switkey_space_ext set v=%d where uid = %d and k='first_anli'", TABLEPRE, 1, $uid ) );
+					else db_factory::execute ( sprintf ( "insert into %switkey_space_ext value(%d, 'first_anli', %d, %d)", TABLEPRE, $uid, 1, time() ) );
+					
+					//$conf['on_time'] = time();
+					//$msg_credit = "恭喜您已成功开通工作室，完善详细资料，豆8网将赠送您".$basic_config['shop_open_credit']."豆币！";
+				}
+			
+			
+			$res and kekezu::show_msg($_lang['case_operate_success'].$msg,$ac_url."&show=list#userCenter",3,'','success') or kekezu::show_msg($_lang['case_operate_fail'],$ac_url."&show=add&case_id=$case_id#userCenter",3,'','warning');
 		}else{
 			$case_id and $case_info=db_factory::get_one(sprintf(" select * from %switkey_shop_case where case_id='%d'",TABLEPRE,$case_id));
 		}
