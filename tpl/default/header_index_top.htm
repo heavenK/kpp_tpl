@@ -210,6 +210,21 @@ $(document).ready(function (){
     <div id="noflushwarper_sub"></div>
 </div>
 
+<script type="text/javascript" src="/tpl/default/d8/js/jquery.modal.js"></script>
+            <script type="text/javascript" src="/tpl/default/d8/js/site.js"></script>
+            <link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/shitu.css">
+			<div class="overlay"></div>
+            <div id="modal3" class="modal">
+                <h1><p class="closeBtn"><img width="16" border="0" height="16" src="/tpl/default/d8/images/close.png"></p></h1>
+                <div class="baibai">
+                    <h2>豆8网提示您</h2>
+                    <h3>游戏大厅预计3个月后正式上线</h3>
+                   
+                </div>
+                
+            </div>
+
+
 {if $do == 'school'}
 <script src="/tpl/default/d8/js/new.js" language="JavaScript"></script>
 <DIV id="lovexin12" style='left:0;POSITION:absolute;TOP:80px;'><!--{ad_show(XUETANG_LEFTMOVE,学堂_左侧浮动)}--><br><a href=JavaScript:; onclick="lovexin12.style.visibility='hidden'"><img border=0 src=/tpl/default/d8/images/close.gif></a></div>
@@ -280,17 +295,7 @@ $(document).ready(function (){
                 <i><b>交易金额：</b><span>￥{$task_in}</span></i>
                 <i><b>威客数量： </b><span>{$register}</span></i>
             </div>
-            <script type="text/javascript" src="/tpl/default/d8/js/jquery.modal.js"></script>
-			<div class="overlay"></div>
-            <div id="modal3" class="modal">
-                <h1><p class="closeBtn"><img width="16" border="0" height="16" src="/tpl/default/d8/images/close.png"></p></h1>
-                <div class="baibai">
-                    <h2>豆8网提示您</h2>
-                    <h3>游戏大厅预计3个月后正式上线</h3>
-                   
-                </div>
-                
-            </div>
+            
             <div class="menu">
                 <ul>
                   <li {if $do=='index'}class="h_r"{/if}><a href="index.php" class="hide">首页</a></li>
@@ -305,7 +310,7 @@ $(document).ready(function (){
                    <li>|</li>
                   <li {if $do=='forum'}class="h_r"{/if}><a href="index.php?do=forum" class="hide">豆豆江湖</a></li>
                    <li>|</li>
-                  <li><a  class="modalLink" href="#modal1">豆豆游戏</a></li>
+                  <li><a  class="modalLink hide" href="#modal1">豆豆游戏</a></li>
                   
                 </ul>
              </div>
