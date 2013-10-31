@@ -1,4 +1,6 @@
 <?php	defined ( 'IN_KEKE' ) or exit ( 'Access Denied' );
+
+header('Location: /index.php?do=360&view=bz');
 if(!isset($op)) $op = 'index';
 
 
