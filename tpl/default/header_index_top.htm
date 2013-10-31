@@ -250,7 +250,7 @@ $(document).ready(function (){
                     <a href="index.php?do=user&view={if $user_info['index_page']}$user_info['index_page']{else}setting{/if}">个人中心</a>
                     <a href="index.php?do=release">发布任务</a>
                     <a href="#" id="daohang">豆豆导航</a>
-                    <a href="#">豆豆游戏</a>
+                    <a class="modalLink" href="#modal3">豆豆游戏</a>
                     <a href="index.php?do=help">帮助中心</a>
           		</div>
           		<div class="rukou_nav">
@@ -281,7 +281,7 @@ $(document).ready(function (){
                             <li><a href="index.php?do=shop">豆豆商圈</a></li>
                             <li><a href="index.php?do=forum">豆豆江湖</a></li>
                             <li><a href="index.php?do=user&view=witkey&op=ensure">诚信保障</a></li>
-                            <li><a href="#">豆豆游戏</a></li>
+                            <li><a class="modalLink" href="#modal3">豆豆游戏</a></li>
                             <li><a href="index.php?do=360&view=map">网站地图</a></li>
                             <li><a href="index.php?do=zhuanti">豆豆专题</a></li>
                         </ul>
@@ -313,7 +313,7 @@ $(document).ready(function (){
                    <li>|</li>
                   <li {if $do=='forum'}class="h_r"{/if}><a href="index.php?do=forum" class="hide">豆豆江湖</a></li>
                    <li>|</li>
-                  <li><a  class="modalLink hide" href="#modal1">豆豆游戏</a></li>
+                  <li><a  class="modalLink hide" href="#modal3">豆豆游戏</a></li>
                   
                 </ul>
              </div>
