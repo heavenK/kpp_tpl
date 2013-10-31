@@ -1430,7 +1430,7 @@
             <div class="rk"><a href="###" title="豆8网秘书全程服务，品牌合作入口">豆8网秘书全程服务，品牌合作入口> ></a></div>
           </div>
           
-          <div class="te_l1">
+          <div class="te_l1" style="position:absolute">
             <ul>
               <li class="w_1"><a href="index.php?do=zhuanti&view=show&art_id=323" target="_blank"></a></li>
               <li class="w_2"><a href="index.php?do=ads&view=shitu"></a></li>
@@ -1447,8 +1447,13 @@
     <script>
 $(document).ready(function(){
   
-	//$("body").html("<img src='/tpl/default/d8/images/new_index.jpg' width='100%'/>");
-
-  
+	$("body").prepend("<div id='show_start' style='position:absolute;top:0px, left:0px; z-index=100000;'><img src='/tpl/default/d8/images/new_index.jpg' width='100%'/></div>");
+	$(".box").hide();
+	setTimeout(logo_shows,3000);
+	
 });
+function logo_shows(){
+	$("#show_start").remove();
+  	$(".box").show();
+	}
 </script>
