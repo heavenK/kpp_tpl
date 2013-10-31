@@ -160,7 +160,7 @@
                             <p style=" font-size:14px; text-align:center;">
                             {if $auth_info && !$auth_info['auth_status']}
 							  您的实名认证正在审核中，请耐心等待...
-							{else if $auth_info['auth_status']==2}
+							{elseif $auth_info['auth_status']==2}
                             对不起，您的审核没通过
                             {else}
                             恭喜，您已通过了实名认证
