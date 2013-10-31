@@ -17,7 +17,7 @@
             <input type="hidden" name="sbt_edit" value="1" />
             {if $type != 'post'}
             <div class="bbs_zhuti_onetit">
-            	<input type="text" class="txt" style=" width:260px;" name="title" id="title" value="{$zsd_info['title']}" maxlength="20" 
+            	<input type="text" class="txt" style=" width:260px;" name="title" id="title" value="{$thread_info['title']}" maxlength="20" 
                          limit="required:true;len:2-20" 
                          msg="{$_lang['cat_name_limit']}" 
                          msgArea="zsd_name_msg" 
@@ -25,7 +25,7 @@
             </div>
             {/if}
             <div class="bbs_zhuti_onetit">
-            	<textarea id="elm2" class="nr_text" cols="70" rows="20" name="content" style="width:645px"></textarea>
+            	<textarea id="elm2" class="nr_text" cols="70" rows="20" name="content" style="width:645px">{$thread_info['content']}</textarea>
             	<!--<textarea class="nr_text" cols="70" rows="20" name="content" style="width:645px"></textarea>-->
                 <script type="text/javascript" src="resource/js/xheditor/xheditor.js"></script>
                 <script>

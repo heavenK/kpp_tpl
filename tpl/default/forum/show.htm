@@ -22,7 +22,7 @@
                     <!--{eval echo htmlspecialchars_decode($thread_info[content])}-->
                     <!-- Baidu Button BEGIN -->
                     
-                    <div class="bbs_zuozhe" style="float:right; position:absolute; bottom:5px; left:20px; color:#666; font-size:12px">作者：{$thread_info['username']} 发表于：<!--{date('Y-m-d H:i:s',$thread_info['pub_time'])}--></div>
+                    <div class="bbs_zuozhe" style="float:right; position:absolute; bottom:5px; left:20px; color:#666; font-size:12px">作者：{$thread_info['username']} 发表于：<!--{date('Y-m-d H:i:s',$thread_info['pub_time'])}--> &nbsp;&nbsp;&nbsp;&nbsp;{if $thread_info['uid'] == $uid}<a href="index.php?do=forum&view=post&type=thread&type_id={$thread_info['type_id']}&tid={$thread_info['tid']}">编辑</a>{/if}</div>
                     <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare" style="float:right; position:absolute; z-index:100; bottom:5px; right:5px;">
                     <span class="bds_more">分享到：</span>
                     <a class="bds_qzone"></a>
