@@ -14,10 +14,10 @@ $where_arr = get_where_arr();
 $sql = "select a.*,b.seller_level,b.skill_ids,b.residency,b.indus_id,b.indus_pid,b.isvip,b.seller_total_num,b.reg_time,b.balance,b.ensure,b.seller_good_num,
 		if(b.seller_total_num>0,b.seller_good_num/b.seller_total_num,0) as good_rate
 		from " . TABLEPRE . "witkey_shop as a left join ".TABLEPRE."witkey_space b 
-		on a.uid = b.uid  where 1=1 and uid<>1 and a.shop_status = 1"; 
+		on a.uid = b.uid  where 1=1 and a.uid<>1 and a.shop_status = 1"; 
 $count_sql = "select  count(shop_id) as c 
 		from " . TABLEPRE . "witkey_shop as a left join ".TABLEPRE."witkey_space b 
-		on a.uid = b.uid  where 1=1 and a.shop_status = 1"; 
+		on a.uid = b.uid  where 1=1 and a.uid<>1 and a.shop_status = 1"; 
 $where = get_where ( $path );
 
 
