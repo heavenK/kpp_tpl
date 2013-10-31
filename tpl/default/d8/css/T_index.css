@@ -16,11 +16,11 @@ a{text-decoration:none;}
 .picList .title				{ line-height:24px; }
 .leftLoop					{ position:relative; }
 .leftLoop .hd				{ overflow:hidden; }
-.leftLoop .hd .prev,.leftLoop .hd .next{display: block;width: 35px;height: 38px;float: right;overflow: hidden;cursor: pointer;background: url("../images/icoLeft.gif") no-repeat;position: absolute;z-index: 1000;top: 217px;right: -50px}
-.leftLoop .hd .next			{ background: url("../images/icoRight.gif") no-repeat;position: absolute;z-index: 1000;top: 220px;left: -50px}
+.leftLoop .hd .prev,.leftLoop .hd .next{display: block;width: 35px;height: 38px;float: right;overflow: hidden;cursor: pointer;background: url("../images/icoleft.gif") no-repeat;position: absolute;z-index: 1000;top: 217px;right: -50px}
+.leftLoop .hd .next			{ background: url("../images/icoright.gif") no-repeat;position: absolute;z-index: 1000;top: 220px;left: -50px}
 .next 						{ position:absolute; top:0; left:0;}
-.leftLoop .hd .next:hover	{ background: url("../images/icoRight.gif") no-repeat; -moz-opacity:0.8; -webkit-opacity:0.8; opacity:0.8; filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=80);}
-.leftLoop .hd .prev:hover	{ background: url("../images/icoLeft.gif") no-repeat; -moz-opacity:0.8; -webkit-opacity:0.8; opacity:0.8; filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=80);}
+.leftLoop .hd .next:hover	{ background: url("../images/icoright.gif") no-repeat; -moz-opacity:0.8; -webkit-opacity:0.8; opacity:0.8; filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=80);}
+.leftLoop .hd .prev:hover	{ background: url("../images/icoleft.gif") no-repeat; -moz-opacity:0.8; -webkit-opacity:0.8; opacity:0.8; filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=80);}
 .leftLoop .hd ul			{ float:right; overflow:hidden; zoom:1; position:absolute; top:428px; right:50px; z-index:1000;}
 .leftLoop .hd ul li			{ position:relative; _display:inline; float:left; width:15px; overflow:hidden; background:url(../images/pagination.png) no-repeat; background-position:0 -18px; margin-right:10px; text-indent:-999px; cursor:pointer;}
 .leftLoop .hd ul li.on		{ background:url(../images/pagination.png) no-repeat; background-position:0 -1px}
