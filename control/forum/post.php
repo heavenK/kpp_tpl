@@ -4,9 +4,10 @@ if(!$uid) kekezu::show_msg("您还没有登录，无法发话题！",'index.php?
 
 $thread_right_arr = db_factory::query ( "select * from ".TABLEPRE."forum_thread where flag like '%r%' and status=2 and isShow=1 limit 0,10");
 
-if($tid){
+if($tid & $type =='thread'){
 	$thread_info = db_factory::get_one(" select * from ".TABLEPRE."forum_thread where tid=".$tid);
-	
+}
+if($tid){
 	
 }
 
