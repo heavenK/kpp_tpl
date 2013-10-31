@@ -117,7 +117,7 @@
                     </div>
                     <div class="bbs_zhutil_twonr_pl">
                     	<div class="bbs_zhutil_twonr_pl01">{if $v[status] != 2}内容正在审核中！{else}<!--{eval echo htmlspecialchars_decode($v[content])}-->{/if}</div>
-                        <div class="bbs_zhutil_twonr_pl02">&nbsp;&nbsp;&nbsp;<a href="###" onclick="post_good({$v['pid']})" style="color:#F00">支持[<i id="good{$v[pid]}">{$v['good']}</i>]</a></div>
+                        <div class="bbs_zhutil_twonr_pl02">&nbsp;&nbsp;&nbsp;<a href="###" onclick="post_good({$v['pid']})" style="color:#F00">支持[<i id="good{$v[pid]}">{$v['good']}</i>]</a>&nbsp;&nbsp;&nbsp;&nbsp;{if $thread_info['uid'] == $uid}<a href="index.php?do=forum&view=post&type=post&type_id={$thread_info['type_id']}&tid={$thread_info['tid']}&pid={$v['pid']}">编辑</a>{/if}</div>
                     </div>
                     <div class="clear" style="clear:both;"></div>
                 </div>

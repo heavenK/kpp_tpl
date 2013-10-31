@@ -7,8 +7,8 @@ $thread_right_arr = db_factory::query ( "select * from ".TABLEPRE."forum_thread 
 if($tid & $type =='thread'){
 	$thread_info = db_factory::get_one(" select * from ".TABLEPRE."forum_thread where tid=".$tid);
 }
-if($tid){
-	
+if($pid){
+	$thread_info = db_factory::get_one(" select * from ".TABLEPRE."forum_post where pid=".$pid);
 }
 
 if($sbt_edit){
@@ -62,17 +62,23 @@ if($sbt_edit){
 	}
 	if($type == 'post'){
 		
-		$thread_first = db_factory::get_one(" select * from ".TABLEPRE."forum_post where tid=".$tid ." order by floor desc limit 0,1");
-		
-		if($thread_first)	$res1 = db_factory::execute(" insert into ".TABLEPRE."forum_post (tid, type_id, content, uid, username, pub_time, status, floor) value(".$tid.",".$type_id.",'".$content."',".$uid.",'".$username."',".time().",2, ".($thread_first['floor']+1).")");
-		else	kekezu::show_msg("主题不存在！",$url,3,'','error');
-		
-		if($res1)	{
-			db_factory::execute(" update ".TABLEPRE."forum_thread set reply=reply+1 where tid=".$tid);
-			kekezu::show_msg("发布成功！",$url_success.$tid,1,'','success');
+		if($pid){
+			$res = db_factory::execute(" update ".TABLEPRE."forum_post set content='".$content."' where pid=".$pid);
+			if($res)kekezu::show_msg("修改成功！",$url_success.$tid,1,'','success');
+			else kekezu::show_msg("修改失败！",$url,3,'','error');
+		}else{
+			
+			$thread_first = db_factory::get_one(" select * from ".TABLEPRE."forum_post where tid=".$tid ." order by floor desc limit 0,1");
+			
+			if($thread_first)	$res1 = db_factory::execute(" insert into ".TABLEPRE."forum_post (tid, type_id, content, uid, username, pub_time, status, floor) value(".$tid.",".$type_id.",'".$content."',".$uid.",'".$username."',".time().",2, ".($thread_first['floor']+1).")");
+			else	kekezu::show_msg("主题不存在！",$url,3,'','error');
+			
+			if($res1)	{
+				db_factory::execute(" update ".TABLEPRE."forum_thread set reply=reply+1 where tid=".$tid);
+				kekezu::show_msg("发布成功！",$url_success.$tid,1,'','success');
+			}
+			else	kekezu::show_msg("发布失败！",$url,3,'','error');
 		}
-		else	kekezu::show_msg("发布失败！",$url,3,'','error');
-		
 	}
 }
 
