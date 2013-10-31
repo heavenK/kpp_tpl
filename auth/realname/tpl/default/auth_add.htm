@@ -157,9 +157,12 @@
                  <div class="smrz_box">
               	<div style="width:740px; overflow:hidden;">
                     <div style="padding-top:20px; ">
-                            <p style=" font-size:14px; text-align:center;">{if !$auth_info['auth_status']}
+                            <p style=" font-size:14px; text-align:center;">
+                            {if $auth_info && !$auth_info['auth_status']}
 							  您的实名认证正在审核中，请耐心等待...
-							{else}
+							{else if $auth_info['auth_status']==2}
+                            对不起，您的审核没通过
+                            {else}
                             恭喜，您已通过了实名认证
                             {/if}</p>
                     </div>
