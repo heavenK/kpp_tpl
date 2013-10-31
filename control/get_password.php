@@ -25,7 +25,8 @@ switch($get_step){
 						keke_shop_class::notify_user($user_info['uid'], $user_info['username'], 'get_password', $_lang['find_back_password'],$v_arr);
 						kekezu::show_msg($_lang['friendly_notice'],$j,1,$_lang['your_new_password_in_email']);			     
 		} else {
-			        $user_info = kekezu::get_user_info($account,true);			      
+			        $user_info = kekezu::get_user_info($account,true);	
+					if(!$user_info)	 $user_info = kekezu::get_user_info($account);	
 					$email_auth = db_factory::query(sprintf("select * from %switkey_auth_email where uid=%d and auth_status=1",TABLEPRE,$user_info['uid']));
 					$email_auth and $email_info = $email_auth[0][email];
 					$email_str=explode('@',$email_info);
