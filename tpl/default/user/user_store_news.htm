@@ -133,7 +133,16 @@
                         <td width="80" valign="top" align="right" height="240">文章内容：</td>
                         <td width="20" valign="top" height="240">&nbsp;</td>
                         <td valign="top" align="left" height="240">
-                        <textarea name="fields[content]"  id="tar_content"  class="nr_text xheditor-simple {skin:'nostyle'}" >{$art_info['content']}</textarea>
+                        <textarea name="fields[content]"  id="tar_content"  class="nr_text" >{$art_info['content']}</textarea>
+                        
+            	<!--<textarea class="nr_text" cols="70" rows="20" name="content" style="width:645px"></textarea>-->
+                <script type="text/javascript" src="resource/js/xheditor/xheditor.js"></script>
+                <script>
+				$(function(){
+							 editor = $("#tar_content").xheditor({tools:'Bold,Fontface,FontSize,FontColor,Italic,Underline,Strikethrough,Align,List,Outdent,Indent,Link,Img,Unlink,Table',skin:'nostyle',upImgUrl:"upload.php",upImgExt:"jpg,jpeg,gif,png",});
+					 })
+				</script>
+                        
                         </td>
                       </tr>
                       <tr>
