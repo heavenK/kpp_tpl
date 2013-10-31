@@ -14,5 +14,6 @@ if ($sbt_pay_to_user) {
 	$res and kekezu::admin_show_msg ( $_lang['give_cach_success'],$_SERVER['HTTP_REFERER'],'3','','success');
 }else{
 	$bank_a_id and $bank_info = db_factory::get_one(sprintf(" select * from %switkey_auth_bank where bank_a_id = '%d'",TABLEPRE,$bank_a_id));
+	$bank_info and $bank_user_info = kekezu::get_user_info($bank_info['username'],true);	
 }
 require $template_obj->template ( 'auth/' . $auth_dir . '/control/admin/tpl/auth_info' );
