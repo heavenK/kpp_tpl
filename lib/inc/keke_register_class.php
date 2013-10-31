@@ -206,6 +206,7 @@ class keke_register_class {
 		if (empty ( $check_username )) {
 			return $_lang ['username_is_empty'];
 		}
+		
 		if (kekezu::k_strpos ( $check_username )) {
 			return $_lang ['username_illegal'];
 		}

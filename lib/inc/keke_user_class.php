@@ -238,6 +238,11 @@ EOT;
 		 if (empty ( $check_username )) {
 			return $_lang['username_is_empty'];
 		  }
+		  
+		if(preg_match('/^\d*$/',$check_username)){
+			return "用户名不可以为纯数字";
+		}
+		  
 		if ($basic_config ['user_intergration'] == 1) {
 			if (kekezu::k_strpos ( $check_username )) {
 				return $_lang['username_illegal'];
