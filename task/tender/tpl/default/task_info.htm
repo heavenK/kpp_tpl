@@ -155,7 +155,7 @@ function send_money(task_id) {
                                     <div class="vip_jiaoyi_list">
                                         <div class="vip_jiaoyi_list_left">
                                             <div class="touxiang"><a href="index.php?do=space&member_id={$v['uid']}"><img src="<!--{userpicurl($v['uid'],'middle')}-->"  width="80" height="80"/></a></div>
-                                            <div class="idhao">{$v['username']}</div>
+                                            <div class="idhao" title="{$v['username']}"><!--{eval echo kekezu::cutstr($v['username'],12);}--></div>
                                             <div class="geita"><a  href="javascript:void(0)" onclick="sendMessage($v['uid'],'$v[username]')"><img src="/tpl/default/d8/images/geita.png"  width="80" height="19"/></a></div>
                                             
                                         </div>
@@ -207,7 +207,7 @@ function send_money(task_id) {
                                     <div class="vip_jiaoyi_list">
                                         <div class="vip_jiaoyi_list_left">
                                             <div class="touxiang"><a href="index.php?do=space&member_id={$v['uid']}"><img src="<!--{userpicurl($v['uid'],'middle')}-->"  width="80" height="80"/></a></div>
-                                            <div class="idhao">{$v['username']}</div>
+                                            <div class="idhao" title="{$v['username']}"><!--{eval echo kekezu::cutstr($v['username'],12);}--></div>
                                             <div class="geita"><a  href="javascript:void(0)" onclick="sendMessage($v['uid'],'$v[username]')"><img src="/tpl/default/d8/images/geita.png"  width="80" height="19"/></a></div>
                                         </div>
                                         <!--{eval $user_leve=unserialize($member_info[$v['uid']]['seller_level'])}-->
