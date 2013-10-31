@@ -210,6 +210,8 @@ $(document).ready(function (){
     <div id="noflushwarper_sub"></div>
 </div>
 
+
+
 <script type="text/javascript" src="/tpl/default/d8/js/jquery.modal.js"></script>
             <script type="text/javascript" src="/tpl/default/d8/js/site.js"></script>
             <link rel="stylesheet" type="text/css" href="/tpl/default/d8/css/shitu.css">
@@ -236,7 +238,14 @@ $(document).ready(function (){
 	<h4><i><a href="index.php">首页</a></i><em><a href="#" title="返回顶部"></a></em></h4>  
 </div>
 {/if}
+
+{if $do == 'index'}
+<div id='show_start' style='position:absolute;top:0px, left:0px; z-index=100000;'><img src='/tpl/default/d8/images/new_index.jpg' width='100%'/></div>
+<div class="box" style="display:none;">
+{else}
 <div class="box">
+{/if}
+
 
 	<div class="header"><!--顶部导航-->
         <div class="logo"><a href="index.php"><img src="/tpl/default/d8/images/logo.jpg"  width="159" height="188"/></a></div>
