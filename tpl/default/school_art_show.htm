@@ -12,7 +12,7 @@
                 <div class="learn_r_wznr">
                 <!--{eval echo htmlspecialchars_decode($art_info[content])}-->
                 </div>
-                <div class="learn_r_wzcs"><a href="index.php?do=school&view=question&pid=$pid&type_id=$type_id&sid=$sid" target="_blank">开始测试</a></div>
+                {if $question_infos}<div class="learn_r_wzcs"><a href="index.php?do=school&view=question&pid=$pid&type_id=$type_id&sid=$sid" target="_blank">开始测试</a></div>{/if}
             </div>
         </div>
     </div>

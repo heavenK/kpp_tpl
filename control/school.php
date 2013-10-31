@@ -50,6 +50,8 @@ if($view == 'art_show'){
 		$pid = $pid_info['pid'];
 	}
 	
+	$question_infos = db_factory::get_one ( sprintf ( " select * from %sxtang_question where sid=".$sid, TABLEPRE )); 
+	
 	$sqlplus = "update %sxtang_article set views = views+1 where sid = %d";
 	db_factory::execute(sprintf($sqlplus,TABLEPRE,$sid));
 	
