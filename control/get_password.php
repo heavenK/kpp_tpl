@@ -18,7 +18,8 @@ switch($get_step){
 		break;
     case "step2" :
     	if (kekezu::submitcheck($formhash)) {
-    		        $user_info = kekezu::get_user_info($txt_account,true);			
+    		        $user_info = kekezu::get_user_info($txt_account,true);
+							
 						$pass_info = reset_set_password($user_info);
 						$v_arr = array($_lang['username']=>$user_info['username'],$_lang['website_name']=>$kekezu->_sys_config['website_name'],$_lang['password']=>$pass_info['code'],$_lang['safe_code']=>$pass_info['sec_code'] ); 
 						keke_shop_class::notify_user($user_info['uid'], $user_info['username'], 'get_password', $_lang['find_back_password'],$v_arr);
