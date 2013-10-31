@@ -34,7 +34,9 @@ switch ($step){
 			}elseif($type==2) {
 				$conf[company] ='';
 			}
-			//unset($conf['deposit_name']);
+			$conf['bank_sub_name'] = $conf['deposit_name'];
+			unset($conf['deposit_name']);
+			
 			$conf or kekezu::show_msg( $_lang['submit_fail_retry_later'],$ac_url."&step=step3&bank_type=$bank_type#userCenter","3",'','warning');;
 			$bank_obj=keke_table_class::get_instance("witkey_member_bank");
 			$update_card = true;
