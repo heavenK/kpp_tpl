@@ -82,14 +82,45 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 </div>
 
 <div class="footer">
-  <div class="footer_p">
+<!--  <div class="footer_p">
     
-	<!--<p><img src="/tpl/default/d8/images/foot_03.jpg" />&nbsp;<img src="/tpl/default/d8/images/foot_04.jpg" />&nbsp;<img src="/tpl/default/d8/images/foot_05.jpg" />&nbsp;<img src="/tpl/default/d8/images/foot_06.jpg" />&nbsp;<img src="/tpl/default/d8/images/foot_07.jpg" /></p>
+	<p><img src="/tpl/default/d8/images/foot_03.jpg" />&nbsp;<img src="/tpl/default/d8/images/foot_04.jpg" />&nbsp;<img src="/tpl/default/d8/images/foot_05.jpg" />&nbsp;<img src="/tpl/default/d8/images/foot_06.jpg" />&nbsp;<img src="/tpl/default/d8/images/foot_07.jpg" /></p>
     <p><a href="#">关于豆八</a> | <a href="#">About Tencent</a> | <a href="#">服务协议</a> | <a href="#">隐私权保护</a> | <a href="#">开放平台</a> | <a href="#">广告服务</a> | <a href="#">豆八招聘</a> | <a href="#">豆八公益</a> | <a href="#">客服中心</a> | <a href="#">网站导航</a></p>
     <p>Copyright © 1998-2013 Dou Ba.All Rights Reserved</p>
+    <p>DouBa公司 版权所有</p>
+  </div>-->
+  
+  
+    <div class="footer_p">
+	<section class="site_links clearfix m_h">
+	 <div class="container_24 ">
+	 	  
+	      <div class="links">
+		    	<dl>
+		        	<dt style="float:left;">{$_lang['friend_link']}：</dt>
+		            <dd>
+		            	<ul class="clearfix">
+		            		
+					    	{loop $flink $k $v}
+					       		 <li style="float:left; padding:0 10px;"><a href="{$v['link_url']}" target="_blank"><span>{$v['link_name']}</span></a></li>
+							{/loop}
+		                </ul>
+		            </dd>
+		        </dl>
+		    </div>
+		   
+		</div>
+	</section>
+    <p>公司名称：北京金豆天扬科技有限公司 &nbsp;&nbsp;京ICP备&nbsp;13016371&nbsp;&nbsp;客服电话：400-850-5066</p>
+	<!--<p><img src="/tpl/default/d8/images/foot_03.jpg" />&nbsp;<img src="/tpl/default/d8/images/foot_04.jpg" />&nbsp;<img src="/tpl/default/d8/images/foot_05.jpg" />&nbsp;<img src="/tpl/default/d8/images/foot_06.jpg" />&nbsp;<img src="/tpl/default/d8/images/foot_07.jpg" /></p>
+    <p><a href="#">关于豆八</a> | <a href="#">About Tencent</a> | <a href="#">服务协议</a> | <a href="#">隐私权保护</a> | <a href="#">开放平台</a> | <a href="#">广告服务</a> | <a href="#">豆八招聘</a> | <a href="#">豆八公益</a> | <a href="#">客服中心</a> | <a href="#">网站导航</a></p>
+    <p>Copyright ? 1998-2013 Dou Ba.All Rights Reserved</p>
     <p>DouBa公司 版权所有</p>-->
   </div>
 </div>
+
+
+
 {if $uid}
 	<!--{eval kekezu::update_oltime($uid,$username)}-->
 {/if}
