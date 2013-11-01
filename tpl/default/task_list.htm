@@ -249,7 +249,7 @@ function fa_bu(){
 															<!--{eval $time = time();}-->
                                                             {if $v['top_time']> 1000000000&&$item_config['2']['small_pic']} <img src="{$_K['siteurl']}/{$item_config['2']['small_pic']}" alt="{$_lang['top']}" >{/if}
                                                            {if $v['urgent_time'] > 1000000000&&$item_config['3']['small_pic']}<img src="{$_K['siteurl']}/{$item_config['3']['small_pic']}" alt="{$_lang['hurry_up']}" >{/if}
-														   <!--{if $v['pay_item'] == '1'} <img src="{$_K['siteurl']}/{$item_config['1']['small_pic']}" alt="{$_lang['hide']}">{/if}-->
+														 
                                                      	   {if stristr($v['pay_item'],'1')&&$item_config['1']['small_pic']}<img src="{$_K['siteurl']}/{$item_config['1']['small_pic']}" alt="稿件隐藏">{/if}
 														   {if stristr($v['pay_item'],'5')&&$item_config['5']['small_pic']}<img src="{$_K['siteurl']}/{$item_config['5']['small_pic']}" alt="屏蔽搜索引擎">{/if}
 														   <!-- {if $v['is_top'] == '1'}<img src="{$_K['siteurl']}/resource/img/ico/tj.png" alt="{$_lang['recommend']}" >{/if}-->
