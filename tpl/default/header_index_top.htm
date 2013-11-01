@@ -134,6 +134,14 @@ function ieGo(){
 
 <!-- VIP-js -->
 <script type="text/javascript">
+function bar11901_show(){
+	   document.getElementById('Bar11901_big').style.display='';
+	   document.getElementById('Bar11901_small').style.display='none';
+	}
+function bar11901_hidden(){
+	   document.getElementById('Bar11901_big').style.display='none';
+	   document.getElementById('Bar11901_small').style.display='';
+}
 $(document).ready(function (){
 	
 	//点击小图切换大图
@@ -230,15 +238,28 @@ $(document).ready(function (){
 <script src="/tpl/default/d8/js/new.js" language="JavaScript"></script>
 <DIV id="lovexin12" style='left:0;POSITION:absolute;TOP:80px;'><!--{ad_show(XUETANG_LEFTMOVE,学堂_左侧浮动)}--><br><a href=JavaScript:; onclick="lovexin12.style.visibility='hidden'"><img border=0 src=/tpl/default/d8/images/close.gif></a></div>
 <DIV id="lovexin14" style='right:0;POSITION:absolute;TOP:80px;'><!--{ad_show(XUETANG_RIGHTMOVE,学堂_右侧浮动)}--><br><a href=JavaScript:; onclick="lovexin14.style.display = 'none'"><img border=0 src=/tpl/default/d8/images/close.gif></div>
+
 {else}
-<div class="you_xia">
+<!--<div class="you_xia">
 	<h1 style="line-height:19px">400-850-5066</h1>
    	<h2 id="qqs" style="line-height:19px"><a href="###">4008505066</a></h2> 
     <h3><a href="index.php?do=release" target="_blank">发布任务</a></h3>
 	<h4><i><a href="index.php">首页</a></i><em><a href="#" title="返回顶部"></a></em></h4>  
+</div>-->
+<div id="Bar11901_big" class="fixediv fixediv-r">
+	<div class="btn"><a href="javascript:void(0);" onClick="bar11901_hidden()">关闭</a> </div>
+	<div class="you_xia">
+		<h1 style="line-height:19px">400-850-5066</h1>
+	   	<h2 id="qqs" style="line-height:19px"><a href="###">4008505066</a></h2> 
+	    <h3><a href="index.php?do=release" target="_blank">发布任务</a></h3>
+		<h4><i><a href="index.php">首页</a></i><em><a href="#" title="返回顶部"></a></em></h4>  
+	</div>
+</div>
+<div id="Bar11901_small" class="fixediv fixediv-r" style="width:25px;display:none;">
+	<div class="btn"><a href="javascript:void(0);" onClick="bar11901_show()">展开</a></div>
+	<a href="javascript:void(0);" onClick="bar11901_show()"><img width="25" height="155" src="/tpl/default/d8/images/kefu.gif" alt="广告" /></a>
 </div>
 {/if}
-
 
 <div class="box">
 
