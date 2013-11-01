@@ -56,7 +56,7 @@ function fa_bu(){
         <td height="35" valign="middle" class="sb">
         {loop $indus_c_arr $k1 $v1}
          {if $type_infos['A']==$v1['indus_pid']}
-             <a href="index.php?do=seller_list&path=A{$v1['indus_pid']}&indus_id={$v1['indus_id']}" {if $indus_id == $v1['indus_id']}style="background:#52c79b; color:#fff"{/if}>$v1['indus_name']</a>
+             <a href="index.php?do=seller_list&path=A{$v1['indus_pid']}&indus_id={$v1['indus_id']}&skills={$v1['indus_name']}" {if $indus_id == $v1['indus_id']}style="background:#52c79b; color:#fff"{/if}>$v1['indus_name']</a>
          {/if} 
         {/loop}
         </td>
@@ -182,20 +182,21 @@ function fa_bu(){
             <div class="rclx" style="width:600px;">
                 <em>已选条件：</em>
                 <div class="selectbox_dw" style="line-height:30px;">
+                {if $path}
+                <a href="index.php?do=seller_list&province=$province&city=$city&area=$area&auths=$auths&search_key=$search_key&skills=$skills">{$indus_pid_info['indus_name']} <font class="close">&times;</font></a>
+                {/if}
                 {if $skills}
                 <a href="index.php?do=seller_list&path={$path}&province=$province&city=$city&area=$area&auths=$auths&search_key=$search_key">{$skills} <font class="close">&times;</font></a>
                 {/if}
-                {loop $select_arr $k $v}
-                <a href="$v['url']" class="selected">$v['name'] <font class="close">&times;</font></a>
-                {/loop}
+                
                 {if $auths_name}
-                <a href="index.php?do=seller_list&path={$path}&province=$province&city=$city&area=$area&level=$level&search_key=$search_key">{$auths_name} <font class="close">&times;</font></a>
+                <a href="index.php?do=seller_list&path={$path}&province=$province&city=$city&area=$area&level=$level&search_key=$search_key&skills=$skills">{$auths_name} <font class="close">&times;</font></a>
                 {/if}
                 {if $level}
-                <a href="index.php?do=seller_list&path={$path}&province=$province&city=$city&area=$area&auths=$auths&search_key=$search_key">{$level} <font class="close">&times;</font></a>
+                <a href="index.php?do=seller_list&path={$path}&province=$province&city=$city&area=$area&auths=$auths&search_key=$search_key&skills=$skills">{$level} <font class="close">&times;</font></a>
                 {/if}
                 {if $search_key}
-                <a href="index.php?do=seller_list&path={$path}&province=$province&city=$city&area=$area&auths=$auths">{if is_numeric($search_key)}账号{else}用户名{/if}：{$search_key} <font class="close">&times;</font></a>
+                <a href="index.php?do=seller_list&path={$path}&province=$province&city=$city&area=$area&auths=$auths&skills=$skills">{if is_numeric($search_key)}账号{else}用户名{/if}：{$search_key} <font class="close">&times;</font></a>
                 {/if}
                 {if $province&&$city&&$area}<a href="index.php?do=seller_list&path={$path}&min={$min}&max={$max}&search_key=$search_key&auths=$auths&level=$level" class="selected">{$province},{$city},{$area} <font class="close">&times;</font></a>{/if}
                 

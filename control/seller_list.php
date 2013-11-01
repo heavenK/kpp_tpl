@@ -123,13 +123,29 @@ function rz_show($uid){
 	 $img_list =$first.$img_list;
 	return $img_list;
 }
+
 function get_where($path) {
 	
-	global $task_cash_arr, $search_key,$ord,$indus_id,$province,$city,$area,$level,$auths,$auths_name,$search_key,$skills;
+	global $task_cash_arr, $search_key,$ord,$indus_id,$province,$city,$area,$level,$auths,$auths_name,$search_key,$skills,$indus_pid_info;
 	//error_reporting(E_ALL);
 	$url_info = keke_search_class::get_analytic_url($path);
-	$indus_id and $where .=sprintf(" and b.indus_id = %d",$indus_id);
-	$url_info ['A'] and $where .= sprintf ( " and b.indus_pid = %d", $url_info ['A'] ); 
+	//$indus_id and $where .=sprintf(" and b.indus_id = %d",$indus_id);
+	//$url_info ['A'] and $where .= sprintf ( " and b.indus_pid = %d", $url_info ['A'] ); 
+	if($url_info['A']){
+		
+		$indus_pid_info = db_factory::get_one ( 'select indus_name from '.TABLEPRE.'witkey_industry where indus_id='.$url_info ['A']);
+	}
+	
+	if($url_info['A'] && !$skills){
+		
+		$skills_lists = db_factory::query ( 'select indus_name from '.TABLEPRE.'witkey_industry where indus_pid='.$url_info ['A']);
+		foreach($skills_lists as $key => $val){
+			if(!$key) $where .= " and b.skill_ids like '%".$val['indus_name']."%'";	
+			else $where .= " or b.skill_ids like '%".$val['indus_name']."%'";	
+		}
+		
+	}
+	
 	$url_info ['C'] and $where .= sprintf ( " and a.shop_type = %d", $url_info ['C'] ); 
 	
 	if($province&&$city&&$area){
@@ -232,7 +248,6 @@ $first_type_list = db_factory::query ( " select * from ".TABLEPRE."witkey_indus_
 foreach($first_type_list as $key => $val){
 	$first_type_list[$key]['indus'] = db_factory::query ( " select * from ".TABLEPRE."witkey_industry where indus_id in (".$val['indus_ids'].")");
 }
-
 
 $type_infos = keke_search_class::get_analytic_url ( $path );
 require $kekezu->_tpl_obj->template ( $do );
